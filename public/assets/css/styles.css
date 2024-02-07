@@ -217,7 +217,7 @@ textarea.cdk-textarea-autosize-measuring-firefox {
     --grey-900: #1c1c1c;
     --header-dark-color: #181E25;
     --footer-grey-color: #D9D9D9;
-    --primary-color: #ffffff;
+
     --primary-color-shade: #ffffff;
     --primary-color-tint: #ffffff;
     --primary-color-contrast: #ffffff;
@@ -239,7 +239,17 @@ textarea.cdk-textarea-autosize-measuring-firefox {
     --white-color: #ffffff;
     --back-light: #D4E8F8;
     --lay-light: #F7E7EB;
-    --tabIcon-filter: invert(1)
+  
+
+    --secondary-color: #db469a;
+    --secondary-color-contrast: #ffffff;
+    --primary-color: #000000;
+    --primary-color-shade: #141414;
+    --primary-color-tint: #222222;
+    --primary-color-contrast: #ffffff;
+    --highlight-color: #db469a;
+    --tabIcon-filter: invert(0)
+
 }
 
 body[color-theme=default] {
@@ -883,14 +893,14 @@ body[color-theme=electricblue] {
 @font-face {
     font-family: open_bold;
 
-    src: url(assets/font/OpenSans-Bold.ttf) format("truetype");
+    src: url('/assets/font/OpenSans-Bold.ttf') format("truetype");
     font-weight: 700;
     font-style: normal
 }
 
 @font-face {
     font-family: open_semiBold;
-    src: url(assets/font/OpenSans-SemiBold.ttf) format("truetype");
+    src: url('/assets/font/OpenSans-SemiBold.ttf') format("truetype");
     font-weight: 500;
     font-style: normal
 }
@@ -898,7 +908,7 @@ body[color-theme=electricblue] {
 @font-face {
     font-family: open_regular;
 
-    src: url(assets/font/OpenSans-Regular.ttf) format("truetype");
+    src: url('/assets/font/OpenSans-Regular.ttf') format("truetype");
     font-weight: 400;
     font-style: normal
 }
@@ -906,7 +916,7 @@ body[color-theme=electricblue] {
 @font-face {
     font-family: open_light;
 
-    src: url(assets/font/OpenSans-Light.ttf) format("truetype");
+    src: url('/assets/font/OpenSans-Light.ttf') format("truetype");
     font-weight: 300;
     font-style: normal
 }
@@ -2641,6 +2651,7 @@ input[type=number] {
     direction: ltr;
     -webkit-font-feature-settings: 'liga';
     -webkit-font-smoothing: antialiased;
+    color: white;
 }
 
 
@@ -9296,4 +9307,3 @@ svg.mdc-button__icon {
     cursor: not-allowed
 }
 
-</

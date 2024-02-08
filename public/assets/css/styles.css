@@ -893,14 +893,14 @@ body[color-theme=electricblue] {
 @font-face {
     font-family: open_bold;
 
-    src: url(assets/font/OpenSans-Bold.ttf) format("truetype");
+    src: url('/assets/font/OpenSans-Bold.ttf') format("truetype");
     font-weight: 700;
     font-style: normal
 }
 
 @font-face {
     font-family: open_semiBold;
-    src: url(assets/font/OpenSans-SemiBold.ttf) format("truetype");
+    src: url('/assets/font/OpenSans-SemiBold.ttf') format("truetype");
     font-weight: 500;
     font-style: normal
 }
@@ -908,7 +908,7 @@ body[color-theme=electricblue] {
 @font-face {
     font-family: open_regular;
 
-    src: url(assets/font/OpenSans-Regular.ttf) format("truetype");
+    src: url('/assets/font/OpenSans-Regular.ttf') format("truetype");
     font-weight: 400;
     font-style: normal
 }
@@ -916,7 +916,7 @@ body[color-theme=electricblue] {
 @font-face {
     font-family: open_light;
 
-    src: url(assets/font/OpenSans-Light.ttf) format("truetype");
+    src: url('/assets/font/OpenSans-Light.ttf') format("truetype");
     font-weight: 300;
     font-style: normal
 }

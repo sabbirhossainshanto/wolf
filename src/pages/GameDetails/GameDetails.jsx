@@ -6,6 +6,8 @@ import { token } from "../../api/token";
 import MatchOdds from "./GameType/MatchOdds";
 import Bookmaker from "./GameType/Bookmaker";
 import Fancy from "./GameType/Fancy";
+import UseEncryptData from "../../hooks/UseEncryptData";
+import UseTokenGenerator from "../../hooks/UseTokenGenerator";
 
 /* eslint-disable react/no-unknown-property */
 const GameDetails = () => {
@@ -17,6 +19,7 @@ const GameDetails = () => {
   const [normal, setNormal] = useState([]);
   const [fancy1, setFancy1] = useState([]);
   const [overByOver, setOverByOver] = useState([]);
+  const [iFrameUrl,setIframeUrl] = useState('')
 
   // console.log(eventId, eventTypeId);
   /* Get game details */
@@ -71,6 +74,33 @@ const GameDetails = () => {
     );
     setOverByOver(overByOverFilter);
   }, [data]);
+
+  useEffect(() => {
+    const getVideo = () => {
+      const generatedToken = UseTokenGenerator();
+      const encryptedVideoData = UseEncryptData({
+        eventTypeId: eventTypeId,
+        eventId: eventId,
+        type: "video",
+        token: generatedToken,
+      });
+     
+        fetch(API.accessToken, {
+          method: "POST",
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+          body: JSON.stringify(encryptedVideoData),
+        })
+          .then((res) => res.json())
+          .then((data) => {
+            setIframeUrl(data?.result?.url);
+            
+          });
+  
+    };
+    getVideo();
+  }, [eventId,eventTypeId]);
 
   // console.log(data);
   return (
@@ -316,8 +346,11 @@ const GameDetails = () => {
                       </mat-icon>
                       <iframe
                         _ngcontent-ng-c942213636=""
-                        width="100%"
-                        src=""
+                        style={{
+                          width: "100%",
+                          border: "0px",
+                        }}
+                        src={iFrameUrl}
                       ></iframe>
                     </div>
                     <div

@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 import useContextState from "../../../hooks/useContextState";
 import { useRef } from "react";
 import useCloseModalClickOutside from "../../../hooks/useCloseModalClickOutside";
-import { motion } from "framer-motion"
+
 /* eslint-disable react/no-unknown-property */
 const Sidebar = () => {
   const { showSidebar, setShowSidebar } = useContextState();
@@ -19,12 +19,9 @@ const Sidebar = () => {
       opened="false"
       className="mat-drawer mat-sidenav left-sidemenu ng-tns-c3816625663-0 ng-trigger ng-trigger-transform mat-drawer-over ng-star-inserted"
       style={{
-        transform: 'none',
-        visibility: `${showSidebar ? "visible" : "hidden"}`,
-     
-        animationDuration:'3s',
-        transition: 'width 3s ease',
-      
+        transform: `translate(${showSidebar ? "0" : "-100%"}, 0)`,
+
+        transition: "0.5s",
       }}
     >
       {/* <span

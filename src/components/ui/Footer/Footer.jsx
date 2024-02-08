@@ -20,7 +20,7 @@ const Footer = () => {
               <span className="mdc-button__label">
                 <img
                   _ngcontent-ng-c2125492905=""
-                  src="assets/img/transparent-img.svg"
+                  src="/assets/img/transparent-img.svg"
                   alt="Tab Icon"
                   style={{
                     backgroundImage:
@@ -49,7 +49,7 @@ const Footer = () => {
               <span className="mdc-button__label">
                 <img
                   _ngcontent-ng-c2125492905=""
-                  src="assets/img/transparent-img.svg"
+                  src="/assets/img/transparent-img.svg"
                   alt="Tab Icon"
                   style={{
                     backgroundImage:
@@ -79,7 +79,7 @@ const Footer = () => {
               <span className="mdc-button__label">
                 <img
                   _ngcontent-ng-c2125492905=""
-                  src="assets/img/transparent-img.svg"
+                  src="/assets/img/transparent-img.svg"
                   alt="Tab Icon"
                   style={{
                     backgroundImage:
@@ -109,7 +109,7 @@ const Footer = () => {
               <span className="mdc-button__label">
                 <img
                   _ngcontent-ng-c2125492905=""
-                  src="assets/img/transparent-img.svg"
+                  src="/assets/img/transparent-img.svg"
                   alt="Tab Icon"
                   style={{
                     backgroundImage:

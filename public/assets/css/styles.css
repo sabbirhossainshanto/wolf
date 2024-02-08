@@ -217,7 +217,7 @@ textarea.cdk-textarea-autosize-measuring-firefox {
     --grey-900: #1c1c1c;
     --header-dark-color: #181E25;
     --footer-grey-color: #D9D9D9;
-
+      --primary-color: #000000;
     --primary-color-shade: #ffffff;
     --primary-color-tint: #ffffff;
     --primary-color-contrast: #ffffff;
@@ -239,7 +239,8 @@ textarea.cdk-textarea-autosize-measuring-firefox {
     --white-color: #ffffff;
     --back-light: #D4E8F8;
     --lay-light: #F7E7EB;
-  
+    --tabIcon-filter: invert(1)
+
 
     --secondary-color: #db469a;
     --secondary-color-contrast: #ffffff;
@@ -249,7 +250,6 @@ textarea.cdk-textarea-autosize-measuring-firefox {
     --primary-color-contrast: #ffffff;
     --highlight-color: #db469a;
     --tabIcon-filter: invert(0)
-
 }
 
 body[color-theme=default] {
@@ -893,14 +893,14 @@ body[color-theme=electricblue] {
 @font-face {
     font-family: open_bold;
 
-    src: url('/assets/font/OpenSans-Bold.ttf') format("truetype");
+    src: url(/assets/font/OpenSans-Bold.ttf) format("truetype");
     font-weight: 700;
     font-style: normal
 }
 
 @font-face {
     font-family: open_semiBold;
-    src: url('/assets/font/OpenSans-SemiBold.ttf') format("truetype");
+    src: url(/assets/font/OpenSans-SemiBold.ttf) format("truetype");
     font-weight: 500;
     font-style: normal
 }
@@ -908,7 +908,7 @@ body[color-theme=electricblue] {
 @font-face {
     font-family: open_regular;
 
-    src: url('/assets/font/OpenSans-Regular.ttf') format("truetype");
+    src: url(/assets/font/OpenSans-Regular.ttf) format("truetype");
     font-weight: 400;
     font-style: normal
 }
@@ -916,7 +916,7 @@ body[color-theme=electricblue] {
 @font-face {
     font-family: open_light;
 
-    src: url('/assets/font/OpenSans-Light.ttf') format("truetype");
+    src: url(/assets/font/OpenSans-Light.ttf) format("truetype");
     font-weight: 300;
     font-style: normal
 }
@@ -2651,7 +2651,7 @@ input[type=number] {
     direction: ltr;
     -webkit-font-feature-settings: 'liga';
     -webkit-font-smoothing: antialiased;
-    color: white;
+  
 }
 
 
@@ -2755,7 +2755,9 @@ input[type=number] {
     outline: 0;
     box-sizing: border-box;
     overflow-y: auto;
-    transform: translate3d(-100%, 0, 0)
+    transform: translate3d(-100%, 0, 0);
+
+    
 }
 
 .cdk-high-contrast-active .mat-drawer,
@@ -3134,16 +3136,16 @@ input[type=number] {
     top: 74px
 }
 
-.page-body.demoID[_ngcontent-ng-c942213636] .game-tab[_ngcontent-ng-c942213636] mat-tab-group[_ngcontent-ng-c942213636] .mat-tab-body {
+.page-body.demoID[_ngcontent-ng-c942213636] .game-tab[_ngcontent-ng-c942213636] .mat-tab-group .mat-tab-body {
     min-height: calc(var(--vh, 1vh) * 100 - 165px)
 }
 
-.game-tab[_ngcontent-ng-c942213636] mat-tab-group[_ngcontent-ng-c942213636] mat-tab-header .mat-tab-label-container .mat-tab-labels {
+.game-tab[_ngcontent-ng-c942213636] .mat-tab-group mat-tab-header .mat-tab-label-container .mat-tab-labels {
     width: 100%;
     justify-content: space-around
 }
 
-.game-tab[_ngcontent-ng-c942213636] mat-tab-group[_ngcontent-ng-c942213636] mat-tab-header .mat-tab-label-container .mat-tab-labels .mat-tab-label {
+.game-tab[_ngcontent-ng-c942213636] .mat-tab-group mat-tab-header .mat-tab-label-container .mat-tab-labels .mat-tab-label {
     height: 40px;
     min-width: auto;
     padding: 0 15px;
@@ -3153,28 +3155,28 @@ input[type=number] {
     font-size: 12px
 }
 
-.game-tab[_ngcontent-ng-c942213636] mat-tab-group[_ngcontent-ng-c942213636] mat-tab-header .mat-tab-label-container .mat-tab-labels .mat-tab-label.mat-tab-label-active {
+.game-tab[_ngcontent-ng-c942213636] .mat-tab-group mat-tab-header .mat-tab-label-container .mat-tab-labels .mat-tab-label.mat-tab-label-active {
     color: var(--primary-color)
 }
 
-.game-tab[_ngcontent-ng-c942213636] mat-tab-group[_ngcontent-ng-c942213636] mat-tab-header .mat-tab-label-container .mat-ink-bar {
+.game-tab[_ngcontent-ng-c942213636] .mat-tab-group mat-tab-header .mat-tab-label-container .mat-ink-bar {
     background-color: var(--primary-color)
 }
 
-.game-tab[_ngcontent-ng-c942213636] mat-tab-group[_ngcontent-ng-c942213636] .mat-mdc-tab-body-wrapper {
+.game-tab[_ngcontent-ng-c942213636] .mat-tab-group .mat-mdc-tab-body-wrapper {
     padding: 0
 }
 
-.game-tab[_ngcontent-ng-c942213636] mat-tab-group[_ngcontent-ng-c942213636] .mat-tab-body {
+.game-tab[_ngcontent-ng-c942213636] .mat-tab-group .mat-tab-body {
     color: var(--text-color);
     min-height: calc(var(--vh, 1vh) * 100 - 130px)
 }
 
-.game-tab[_ngcontent-ng-c942213636] mat-tab-group[_ngcontent-ng-c942213636] .mat-tab-body .mat-mdc-tab-body-content .tab-body {
+.game-tab[_ngcontent-ng-c942213636] .mat-tab-group .mat-tab-body .mat-mdc-tab-body-content .tab-body {
     color: var(--text-color)
 }
 
-.game-tab[_ngcontent-ng-c942213636] mat-tab-group[_ngcontent-ng-c942213636] .mat-tab-body .mat-mdc-tab-body-content .tab-body.sports-tab {
+.game-tab[_ngcontent-ng-c942213636] .mat-tab-group .mat-tab-body .mat-mdc-tab-body-content .tab-body.sports-tab {
     max-height: calc(var(--vh, 1vh) * 100 - 132px);
     overflow-y: auto;
     min-height: 100%;
@@ -3182,17 +3184,17 @@ input[type=number] {
     padding-bottom: 35px
 }
 
-.game-tab[_ngcontent-ng-c942213636] mat-tab-group[_ngcontent-ng-c942213636] .mat-tab-body .mat-mdc-tab-body-content .tab-body.sports-tab .team-play {
+.game-tab[_ngcontent-ng-c942213636] .mat-tab-group .mat-tab-body .mat-mdc-tab-body-content .tab-body.sports-tab .team-play {
     margin-bottom: 20px
 }
 
-.game-tab[_ngcontent-ng-c942213636] mat-tab-group[_ngcontent-ng-c942213636] .mat-tab-body .mat-mdc-tab-body-content .tab-body.sports-tab .team-play .match-type-heading {
+.game-tab[_ngcontent-ng-c942213636] .mat-tab-group .mat-tab-body .mat-mdc-tab-body-content .tab-body.sports-tab .team-play .match-type-heading {
     padding: 10px;
     justify-content: center;
     text-align: center
 }
 
-.game-tab[_ngcontent-ng-c942213636] mat-tab-group[_ngcontent-ng-c942213636] .mat-tab-body .mat-mdc-tab-body-content .tab-body.sports-tab .team-play .match-type-heading h3 {
+.game-tab[_ngcontent-ng-c942213636] .mat-tab-group .mat-tab-body .mat-mdc-tab-body-content .tab-body.sports-tab .team-play .match-type-heading h3 {
     font-size: clamp(.875rem, 2vw, 1rem);
     display: inline-flex;
     min-width: 150px;
@@ -3201,12 +3203,12 @@ input[type=number] {
     margin: 0
 }
 
-.game-tab[_ngcontent-ng-c942213636] mat-tab-group[_ngcontent-ng-c942213636] .mat-tab-body .mat-mdc-tab-body-content .tab-body.sports-tab .team-play .match-type-heading p {
+.game-tab[_ngcontent-ng-c942213636] .mat-tab-group .mat-tab-body .mat-mdc-tab-body-content .tab-body.sports-tab .team-play .match-type-heading p {
     font-size: 12px;
     margin: 0
 }
 
-.game-tab[_ngcontent-ng-c942213636] mat-tab-group[_ngcontent-ng-c942213636] .mat-tab-body .mat-mdc-tab-body-content .tab-body.sports-tab .team-play .team-details {
+.game-tab[_ngcontent-ng-c942213636] .mat-tab-group .mat-tab-body .mat-mdc-tab-body-content .tab-body.sports-tab .team-play .team-details {
     display: flex;
     justify-content: space-evenly;
     align-items: center;
@@ -3214,7 +3216,7 @@ input[type=number] {
     column-gap: 10px
 }
 
-.game-tab[_ngcontent-ng-c942213636] mat-tab-group[_ngcontent-ng-c942213636] .mat-tab-body .mat-mdc-tab-body-content .tab-body.sports-tab .team-play .team-details p {
+.game-tab[_ngcontent-ng-c942213636] .mat-tab-group .mat-tab-body .mat-mdc-tab-body-content .tab-body.sports-tab .team-play .team-details p {
     font-size: 12px;
     margin-bottom: 0;
     display: flex;
@@ -3222,39 +3224,39 @@ input[type=number] {
     justify-content: space-around
 }
 
-.game-tab[_ngcontent-ng-c942213636] mat-tab-group[_ngcontent-ng-c942213636] .mat-tab-body .mat-mdc-tab-body-content .tab-body.sports-tab .team-play .team-details .team-name {
+.game-tab[_ngcontent-ng-c942213636] .mat-tab-group .mat-tab-body .mat-mdc-tab-body-content .tab-body.sports-tab .team-play .team-details .team-name {
     padding: 10px 20px;
     background-color: var(--card-background);
     border: 1px solid var(--card-background);
     border-radius: 0
 }
 
-.game-tab[_ngcontent-ng-c942213636] mat-tab-group[_ngcontent-ng-c942213636] .mat-tab-body .mat-mdc-tab-body-content .tab-body.sports-tab .team-play .team-details .team-name.batting {
+.game-tab[_ngcontent-ng-c942213636] .mat-tab-group .mat-tab-body .mat-mdc-tab-body-content .tab-body.sports-tab .team-play .team-details .team-name.batting {
     background-color: transparent;
     border: 1px solid var(--primary-color);
     border-radius: 0
 }
 
-.game-tab[_ngcontent-ng-c942213636] mat-tab-group[_ngcontent-ng-c942213636] .mat-tab-body .mat-mdc-tab-body-content .tab-body.sports-tab .team-play .team-details .team-name .flag-cont {
+.game-tab[_ngcontent-ng-c942213636] .mat-tab-group .mat-tab-body .mat-mdc-tab-body-content .tab-body.sports-tab .team-play .team-details .team-name .flag-cont {
     margin-bottom: 5px
 }
 
-.game-tab[_ngcontent-ng-c942213636] mat-tab-group[_ngcontent-ng-c942213636] .mat-tab-body .mat-mdc-tab-body-content .tab-body.sports-tab .team-play .team-details .team-name .flag-cont img {
+.game-tab[_ngcontent-ng-c942213636] .mat-tab-group .mat-tab-body .mat-mdc-tab-body-content .tab-body.sports-tab .team-play .team-details .team-name .flag-cont img {
     display: block;
     margin: auto;
     max-width: 40px
 }
 
-.game-tab[_ngcontent-ng-c942213636] mat-tab-group[_ngcontent-ng-c942213636] .mat-tab-body .mat-mdc-tab-body-content .tab-body.sports-tab .bookmaker-card.disableMo {
+.game-tab[_ngcontent-ng-c942213636] .mat-tab-group .mat-tab-body .mat-mdc-tab-body-content .tab-body.sports-tab .bookmaker-card.disableMo {
     pointer-events: none;
     cursor: not-allowed
 }
 
-.game-tab[_ngcontent-ng-c942213636] mat-tab-group[_ngcontent-ng-c942213636] .mat-tab-body .mat-mdc-tab-body-content .tab-body.sports-tab .bookmaker-card.disableMo .count-value {
+.game-tab[_ngcontent-ng-c942213636] .mat-tab-group .mat-tab-body .mat-mdc-tab-body-content .tab-body.sports-tab .bookmaker-card.disableMo .count-value {
     cursor: not-allowed
 }
 
-.game-tab[_ngcontent-ng-c942213636] mat-tab-group[_ngcontent-ng-c942213636] .mat-tab-body .mat-mdc-tab-body-content .tab-body.sports-tab .bookmaker-card.disableMo .count-value:before {
+.game-tab[_ngcontent-ng-c942213636] .mat-tab-group .mat-tab-body .mat-mdc-tab-body-content .tab-body.sports-tab .bookmaker-card.disableMo .count-value:before {
     content: "";
     position: absolute;
     top: 0;
@@ -3263,20 +3265,20 @@ input[type=number] {
     height: 100%
 }
 
-.game-tab[_ngcontent-ng-c942213636] mat-tab-group[_ngcontent-ng-c942213636] .mat-tab-body .mat-mdc-tab-body-content .tab-body.sports-tab .card-outer {
+.game-tab[_ngcontent-ng-c942213636] .mat-tab-group .mat-tab-body .mat-mdc-tab-body-content .tab-body.sports-tab .card-outer {
     background-color: var(--white-color);
     padding: 0;
     border-radius: 0
 }
 
-.game-tab[_ngcontent-ng-c942213636] mat-tab-group[_ngcontent-ng-c942213636] .mat-tab-body .mat-mdc-tab-body-content .tab-body.sports-tab .card-outer .head-wrap {
+.game-tab[_ngcontent-ng-c942213636] .mat-tab-group .mat-tab-body .mat-mdc-tab-body-content .tab-body.sports-tab .card-outer .head-wrap {
     background-color: var(--header-dark-color);
     display: flex;
     justify-content: space-between;
     align-items: center
 }
 
-.game-tab[_ngcontent-ng-c942213636] mat-tab-group[_ngcontent-ng-c942213636] .mat-tab-body .mat-mdc-tab-body-content .tab-body.sports-tab .card-outer .head-wrap .card-heading {
+.game-tab[_ngcontent-ng-c942213636] .mat-tab-group .mat-tab-body .mat-mdc-tab-body-content .tab-body.sports-tab .card-outer .head-wrap .card-heading {
     padding: 0 10px;
     color: var(--white-color);
     font-size: 11px;
@@ -3289,7 +3291,7 @@ input[type=number] {
     align-items: center
 }
 
-.game-tab[_ngcontent-ng-c942213636] mat-tab-group[_ngcontent-ng-c942213636] .mat-tab-body .mat-mdc-tab-body-content .tab-body.sports-tab .card-outer .head-wrap button {
+.game-tab[_ngcontent-ng-c942213636] .mat-tab-group .mat-tab-body .mat-mdc-tab-body-content .tab-body.sports-tab .card-outer .head-wrap button {
     height: 20px;
     min-height: auto;
     line-height: normal;
@@ -3303,7 +3305,7 @@ input[type=number] {
     cursor: pointer
 }
 
-.game-tab[_ngcontent-ng-c942213636] mat-tab-group[_ngcontent-ng-c942213636] .mat-tab-body .mat-mdc-tab-body-content .tab-body.sports-tab .card-outer .head-wrap button:disabled {
+.game-tab[_ngcontent-ng-c942213636] .mat-tab-group .mat-tab-body .mat-mdc-tab-body-content .tab-body.sports-tab .card-outer .head-wrap button:disabled {
     opacity: .6;
     cursor: not-allowed;
     filter: grayscale(1);
@@ -3312,7 +3314,7 @@ input[type=number] {
     border: 1px solid var(--grey-300)
 }
 
-.game-tab[_ngcontent-ng-c942213636] mat-tab-group[_ngcontent-ng-c942213636] .mat-tab-body .mat-mdc-tab-body-content .tab-body.sports-tab .card-outer .card-header {
+.game-tab[_ngcontent-ng-c942213636] .mat-tab-group .mat-tab-body .mat-mdc-tab-body-content .tab-body.sports-tab .card-outer .card-header {
     display: grid;
     grid-template-columns: 4fr 2fr;
     column-gap: 5px;
@@ -3324,14 +3326,14 @@ input[type=number] {
     align-items: center
 }
 
-.game-tab[_ngcontent-ng-c942213636] mat-tab-group[_ngcontent-ng-c942213636] .mat-tab-body .mat-mdc-tab-body-content .tab-body.sports-tab .card-outer .card-header .lay-back-wrap {
+.game-tab[_ngcontent-ng-c942213636] .mat-tab-group .mat-tab-body .mat-mdc-tab-body-content .tab-body.sports-tab .card-outer .card-header .lay-back-wrap {
     display: grid;
     grid-template-columns: 1fr 1fr;
     height: 30px;
     align-items: center
 }
 
-.game-tab[_ngcontent-ng-c942213636] mat-tab-group[_ngcontent-ng-c942213636] .mat-tab-body .mat-mdc-tab-body-content .tab-body.sports-tab .card-outer .card-header h3 {
+.game-tab[_ngcontent-ng-c942213636] .mat-tab-group .mat-tab-body .mat-mdc-tab-body-content .tab-body.sports-tab .card-outer .card-header h3 {
     margin: 0;
     text-align: center;
     font-family: open_semiBold;
@@ -3343,13 +3345,13 @@ input[type=number] {
     justify-content: center
 }
 
-.game-tab[_ngcontent-ng-c942213636] mat-tab-group[_ngcontent-ng-c942213636] .mat-tab-body .mat-mdc-tab-body-content .tab-body.sports-tab .card-outer .card-header h3.team-title {
+.game-tab[_ngcontent-ng-c942213636] .mat-tab-group .mat-tab-body .mat-mdc-tab-body-content .tab-body.sports-tab .card-outer .card-header h3.team-title {
     font-size: .75rem;
     color: var(--dark-text);
     text-transform: capitalize
 }
 
-.game-tab[_ngcontent-ng-c942213636] mat-tab-group[_ngcontent-ng-c942213636] .mat-tab-body .mat-mdc-tab-body-content .tab-body.sports-tab .card-outer .card-header h3.card-title {
+.game-tab[_ngcontent-ng-c942213636] .mat-tab-group .mat-tab-body .mat-mdc-tab-body-content .tab-body.sports-tab .card-outer .card-header h3.card-title {
     text-align: left;
     position: relative;
     padding: 0 10px;
@@ -3358,7 +3360,7 @@ input[type=number] {
     font-family: open_regular
 }
 
-.game-tab[_ngcontent-ng-c942213636] mat-tab-group[_ngcontent-ng-c942213636] .mat-tab-body .mat-mdc-tab-body-content .tab-body.sports-tab .card-outer .card-body .data-wrap {
+.game-tab[_ngcontent-ng-c942213636] .mat-tab-group .mat-tab-body .mat-mdc-tab-body-content .tab-body.sports-tab .card-outer .card-body .data-wrap {
     display: grid;
     grid-template-columns: 4fr 2fr;
     column-gap: 5px;
@@ -3368,24 +3370,24 @@ input[type=number] {
     min-height: 36px
 }
 
-.game-tab[_ngcontent-ng-c942213636] mat-tab-group[_ngcontent-ng-c942213636] .mat-tab-body .mat-mdc-tab-body-content .tab-body.sports-tab .card-outer .card-body .data-wrap .teamlist-info {
+.game-tab[_ngcontent-ng-c942213636] .mat-tab-group .mat-tab-body .mat-mdc-tab-body-content .tab-body.sports-tab .card-outer .card-body .data-wrap .teamlist-info {
     display: flex;
     align-items: center;
     padding: 0 10px
 }
 
-.game-tab[_ngcontent-ng-c942213636] mat-tab-group[_ngcontent-ng-c942213636] .mat-tab-body .mat-mdc-tab-body-content .tab-body.sports-tab .card-outer .card-body .data-wrap .teamlist-info .flag-wrap {
+.game-tab[_ngcontent-ng-c942213636] .mat-tab-group .mat-tab-body .mat-mdc-tab-body-content .tab-body.sports-tab .card-outer .card-body .data-wrap .teamlist-info .flag-wrap {
     display: flex;
     align-items: center
 }
 
-.game-tab[_ngcontent-ng-c942213636] mat-tab-group[_ngcontent-ng-c942213636] .mat-tab-body .mat-mdc-tab-body-content .tab-body.sports-tab .card-outer .card-body .data-wrap .teamlist-info p {
+.game-tab[_ngcontent-ng-c942213636] .mat-tab-group .mat-tab-body .mat-mdc-tab-body-content .tab-body.sports-tab .card-outer .card-body .data-wrap .teamlist-info p {
     margin: 0;
     line-height: 1.2;
     font-size: .625rem
 }
 
-.game-tab[_ngcontent-ng-c942213636] mat-tab-group[_ngcontent-ng-c942213636] .mat-tab-body .mat-mdc-tab-body-content .tab-body.sports-tab .card-outer .card-body .data-wrap .suspended-wrap {
+.game-tab[_ngcontent-ng-c942213636] .mat-tab-group .mat-tab-body .mat-mdc-tab-body-content .tab-body.sports-tab .card-outer .card-body .data-wrap .suspended-wrap {
     border-radius: 0;
     min-height: 35px;
     position: relative;
@@ -3393,7 +3395,7 @@ input[type=number] {
     align-items: center
 }
 
-.game-tab[_ngcontent-ng-c942213636] mat-tab-group[_ngcontent-ng-c942213636] .mat-tab-body .mat-mdc-tab-body-content .tab-body.sports-tab .card-outer .card-body .data-wrap .suspended-wrap h4 {
+.game-tab[_ngcontent-ng-c942213636] .mat-tab-group .mat-tab-body .mat-mdc-tab-body-content .tab-body.sports-tab .card-outer .card-body .data-wrap .suspended-wrap h4 {
     text-align: center;
     margin: 0 auto;
     text-transform: capitalize;
@@ -3408,7 +3410,7 @@ input[type=number] {
     font-size: 10px
 }
 
-.game-tab[_ngcontent-ng-c942213636] mat-tab-group[_ngcontent-ng-c942213636] .mat-tab-body .mat-mdc-tab-body-content .tab-body.sports-tab .card-outer .card-body .data-wrap .suspended-wrap:before {
+.game-tab[_ngcontent-ng-c942213636] .mat-tab-group .mat-tab-body .mat-mdc-tab-body-content .tab-body.sports-tab .card-outer .card-body .data-wrap .suspended-wrap:before {
     content: "";
     background: var(--back-color);
     width: 50%;
@@ -3417,7 +3419,7 @@ input[type=number] {
     z-index: 0
 }
 
-.game-tab[_ngcontent-ng-c942213636] mat-tab-group[_ngcontent-ng-c942213636] .mat-tab-body .mat-mdc-tab-body-content .tab-body.sports-tab .card-outer .card-body .data-wrap .suspended-wrap:after {
+.game-tab[_ngcontent-ng-c942213636] .mat-tab-group .mat-tab-body .mat-mdc-tab-body-content .tab-body.sports-tab .card-outer .card-body .data-wrap .suspended-wrap:after {
     content: "";
     background: var(--lay-color);
     width: 50%;
@@ -3427,12 +3429,12 @@ input[type=number] {
     right: 0
 }
 
-.game-tab[_ngcontent-ng-c942213636] mat-tab-group[_ngcontent-ng-c942213636] .mat-tab-body .mat-mdc-tab-body-content .tab-body.sports-tab .card-outer .card-body .data-wrap .count-v-wrap {
+.game-tab[_ngcontent-ng-c942213636] .mat-tab-group .mat-tab-body .mat-mdc-tab-body-content .tab-body.sports-tab .card-outer .card-body .data-wrap .count-v-wrap {
     display: grid;
     grid-template-columns: 1fr 1fr
 }
 
-.game-tab[_ngcontent-ng-c942213636] mat-tab-group[_ngcontent-ng-c942213636] .mat-tab-body .mat-mdc-tab-body-content .tab-body.sports-tab .card-outer .card-body .data-wrap .count-value {
+.game-tab[_ngcontent-ng-c942213636] .mat-tab-group .mat-tab-body .mat-mdc-tab-body-content .tab-body.sports-tab .card-outer .card-body .data-wrap .count-value {
     padding: 0;
     display: flex;
     align-items: center;
@@ -3448,11 +3450,11 @@ input[type=number] {
     font-size: 14px
 }
 
-.game-tab[_ngcontent-ng-c942213636] mat-tab-group[_ngcontent-ng-c942213636] .mat-tab-body .mat-mdc-tab-body-content .tab-body.sports-tab .card-outer .card-body .data-wrap .count-value.sBtn-suspended {
+.game-tab[_ngcontent-ng-c942213636] .mat-tab-group .mat-tab-body .mat-mdc-tab-body-content .tab-body.sports-tab .card-outer .card-body .data-wrap .count-value.sBtn-suspended {
     background: rgba(128, 128, 128, .7)
 }
 
-.game-tab[_ngcontent-ng-c942213636] mat-tab-group[_ngcontent-ng-c942213636] .mat-tab-body .mat-mdc-tab-body-content .tab-body.sports-tab .card-outer .card-body .data-wrap .count-value.sBtn-suspended h4 {
+.game-tab[_ngcontent-ng-c942213636] .mat-tab-group .mat-tab-body .mat-mdc-tab-body-content .tab-body.sports-tab .card-outer .card-body .data-wrap .count-value.sBtn-suspended h4 {
     font-size: 10px;
     width: 100%;
     overflow: hidden;
@@ -3463,12 +3465,12 @@ input[type=number] {
     font-family: open_regular
 }
 
-.game-tab[_ngcontent-ng-c942213636] mat-tab-group[_ngcontent-ng-c942213636] .mat-tab-body .mat-mdc-tab-body-content .tab-body.sports-tab .card-outer .card-body .data-wrap .count-value .mat-button-focus-overlay,
-.game-tab[_ngcontent-ng-c942213636] mat-tab-group[_ngcontent-ng-c942213636] .mat-tab-body .mat-mdc-tab-body-content .tab-body.sports-tab .card-outer .card-body .data-wrap .count-value .mat-ripple {
+.game-tab[_ngcontent-ng-c942213636] .mat-tab-group .mat-tab-body .mat-mdc-tab-body-content .tab-body.sports-tab .card-outer .card-body .data-wrap .count-value .mat-button-focus-overlay,
+.game-tab[_ngcontent-ng-c942213636] .mat-tab-group .mat-tab-body .mat-mdc-tab-body-content .tab-body.sports-tab .card-outer .card-body .data-wrap .count-value .mat-ripple {
     display: none
 }
 
-.game-tab[_ngcontent-ng-c942213636] mat-tab-group[_ngcontent-ng-c942213636] .mat-tab-body .mat-mdc-tab-body-content .tab-body.sports-tab .card-outer .card-body .data-wrap .count-value .mat-button-wrapper {
+.game-tab[_ngcontent-ng-c942213636] .mat-tab-group .mat-tab-body .mat-mdc-tab-body-content .tab-body.sports-tab .card-outer .card-body .data-wrap .count-value .mat-button-wrapper {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -3476,7 +3478,7 @@ input[type=number] {
     row-gap: 4px
 }
 
-.game-tab[_ngcontent-ng-c942213636] mat-tab-group[_ngcontent-ng-c942213636] .mat-tab-body .mat-mdc-tab-body-content .tab-body.sports-tab .card-outer .card-body .data-wrap .count-value h4 {
+.game-tab[_ngcontent-ng-c942213636] .mat-tab-group .mat-tab-body .mat-mdc-tab-body-content .tab-body.sports-tab .card-outer .card-body .data-wrap .count-value h4 {
     text-align: center;
     margin: 0 auto;
     font-size: 12px;
@@ -3484,7 +3486,7 @@ input[type=number] {
     line-height: 14px
 }
 
-.game-tab[_ngcontent-ng-c942213636] mat-tab-group[_ngcontent-ng-c942213636] .mat-tab-body .mat-mdc-tab-body-content .tab-body.sports-tab .card-outer .card-body .data-wrap .count-value p {
+.game-tab[_ngcontent-ng-c942213636] .mat-tab-group .mat-tab-body .mat-mdc-tab-body-content .tab-body.sports-tab .card-outer .card-body .data-wrap .count-value p {
     text-align: center;
     max-width: 30px;
     margin: 0 auto;
@@ -3493,25 +3495,25 @@ input[type=number] {
     font-family: open_regular
 }
 
-.game-tab[_ngcontent-ng-c942213636] mat-tab-group[_ngcontent-ng-c942213636] .mat-tab-body .mat-mdc-tab-body-content .tab-body.sports-tab .card-outer .card-body .betvalue-wrap {
+.game-tab[_ngcontent-ng-c942213636] .mat-tab-group .mat-tab-body .mat-mdc-tab-body-content .tab-body.sports-tab .card-outer .card-body .betvalue-wrap {
     margin: 5px 0;
     background: var(--grey-200);
     padding: 5px;
     border-radius: 0
 }
 
-.game-tab[_ngcontent-ng-c942213636] mat-tab-group[_ngcontent-ng-c942213636] .mat-tab-body .mat-mdc-tab-body-content .tab-body.sports-tab .card-outer .card-body .betvalue-wrap:last-child {
+.game-tab[_ngcontent-ng-c942213636] .mat-tab-group .mat-tab-body .mat-mdc-tab-body-content .tab-body.sports-tab .card-outer .card-body .betvalue-wrap:last-child {
     grid-column-start: 1;
     grid-column-end: 3
 }
 
-.game-tab[_ngcontent-ng-c942213636] mat-tab-group[_ngcontent-ng-c942213636] .mat-tab-body .mat-mdc-tab-body-content .tab-body.sports-tab .card-outer .card-body .betvalue-wrap .amt-chip-grid {
+.game-tab[_ngcontent-ng-c942213636] .mat-tab-group .mat-tab-body .mat-mdc-tab-body-content .tab-body.sports-tab .card-outer .card-body .betvalue-wrap .amt-chip-grid {
     display: grid;
     grid-template-columns: repeat(6, 1fr);
     margin-bottom: 10px
 }
 
-.game-tab[_ngcontent-ng-c942213636] mat-tab-group[_ngcontent-ng-c942213636] .mat-tab-body .mat-mdc-tab-body-content .tab-body.sports-tab .card-outer .card-body .betvalue-wrap .amt-chip-grid .chip-grid-item {
+.game-tab[_ngcontent-ng-c942213636] .mat-tab-group .mat-tab-body .mat-mdc-tab-body-content .tab-body.sports-tab .card-outer .card-body .betvalue-wrap .amt-chip-grid .chip-grid-item {
     text-align: center;
     min-width: auto;
     padding: 10px 0;
@@ -3524,41 +3526,41 @@ input[type=number] {
     font-size: 12px
 }
 
-.game-tab[_ngcontent-ng-c942213636] mat-tab-group[_ngcontent-ng-c942213636] .mat-tab-body .mat-mdc-tab-body-content .tab-body.sports-tab .card-outer .card-body .betvalue-wrap .amt-chip-grid .chip-grid-item:last-child {
+.game-tab[_ngcontent-ng-c942213636] .mat-tab-group .mat-tab-body .mat-mdc-tab-body-content .tab-body.sports-tab .card-outer .card-body .betvalue-wrap .amt-chip-grid .chip-grid-item:last-child {
     margin-right: 0
 }
 
-.game-tab[_ngcontent-ng-c942213636] mat-tab-group[_ngcontent-ng-c942213636] .mat-tab-body .mat-mdc-tab-body-content .tab-body.sports-tab .card-outer .card-body .betvalue-wrap.forlay .chip-grid-item {
+.game-tab[_ngcontent-ng-c942213636] .mat-tab-group .mat-tab-body .mat-mdc-tab-body-content .tab-body.sports-tab .card-outer .card-body .betvalue-wrap.forlay .chip-grid-item {
     border: 1px solid var(--lay-color)
 }
 
-.game-tab[_ngcontent-ng-c942213636] mat-tab-group[_ngcontent-ng-c942213636] .mat-tab-body .mat-mdc-tab-body-content .tab-body.sports-tab .card-outer .card-body .betvalue-wrap.forlay .bet-action-item:first-child {
+.game-tab[_ngcontent-ng-c942213636] .mat-tab-group .mat-tab-body .mat-mdc-tab-body-content .tab-body.sports-tab .card-outer .card-body .betvalue-wrap.forlay .bet-action-item:first-child {
     background-color: var(--lay-color);
     color: var(--dark-text)
 }
 
-.game-tab[_ngcontent-ng-c942213636] mat-tab-group[_ngcontent-ng-c942213636] .mat-tab-body .mat-mdc-tab-body-content .tab-body.sports-tab .card-outer .card-body .betvalue-wrap.forback .chip-grid-item {
+.game-tab[_ngcontent-ng-c942213636] .mat-tab-group .mat-tab-body .mat-mdc-tab-body-content .tab-body.sports-tab .card-outer .card-body .betvalue-wrap.forback .chip-grid-item {
     border: 1px solid var(--back-color)
 }
 
-.game-tab[_ngcontent-ng-c942213636] mat-tab-group[_ngcontent-ng-c942213636] .mat-tab-body .mat-mdc-tab-body-content .tab-body.sports-tab .card-outer .card-body .betvalue-wrap.forback .bet-action-item:first-child {
+.game-tab[_ngcontent-ng-c942213636] .mat-tab-group .mat-tab-body .mat-mdc-tab-body-content .tab-body.sports-tab .card-outer .card-body .betvalue-wrap.forback .bet-action-item:first-child {
     background-color: var(--back-color);
     color: var(--dark-text)
 }
 
-.game-tab[_ngcontent-ng-c942213636] mat-tab-group[_ngcontent-ng-c942213636] .mat-tab-body .mat-mdc-tab-body-content .tab-body.sports-tab .card-outer .card-body .betvalue-wrap .bet-action-grid {
+.game-tab[_ngcontent-ng-c942213636] .mat-tab-group .mat-tab-body .mat-mdc-tab-body-content .tab-body.sports-tab .card-outer .card-body .betvalue-wrap .bet-action-grid {
     display: grid;
     grid-template-columns: 20% 1fr 1fr 20%
 }
 
-.game-tab[_ngcontent-ng-c942213636] mat-tab-group[_ngcontent-ng-c942213636] .mat-tab-body .mat-mdc-tab-body-content .tab-body.sports-tab .card-outer .card-body .betvalue-wrap .bet-action-grid .bet-action-item {
+.game-tab[_ngcontent-ng-c942213636] .mat-tab-group .mat-tab-body .mat-mdc-tab-body-content .tab-body.sports-tab .card-outer .card-body .betvalue-wrap .bet-action-grid .bet-action-item {
     align-self: center;
     border-radius: 0;
     margin-right: 10px;
     height: 100%
 }
 
-.game-tab[_ngcontent-ng-c942213636] mat-tab-group[_ngcontent-ng-c942213636] .mat-tab-body .mat-mdc-tab-body-content .tab-body.sports-tab .card-outer .card-body .betvalue-wrap .bet-action-grid .bet-action-item:first-child {
+.game-tab[_ngcontent-ng-c942213636] .mat-tab-group .mat-tab-body .mat-mdc-tab-body-content .tab-body.sports-tab .card-outer .card-body .betvalue-wrap .bet-action-grid .bet-action-item:first-child {
     border-radius: 0;
     font-size: clamp(.625rem, 2vw, 1rem);
     text-align: center;
@@ -3568,11 +3570,11 @@ input[type=number] {
     justify-content: space-around
 }
 
-.game-tab[_ngcontent-ng-c942213636] mat-tab-group[_ngcontent-ng-c942213636] .mat-tab-body .mat-mdc-tab-body-content .tab-body.sports-tab .card-outer .card-body .betvalue-wrap .bet-action-grid .bet-action-item:last-child {
+.game-tab[_ngcontent-ng-c942213636] .mat-tab-group .mat-tab-body .mat-mdc-tab-body-content .tab-body.sports-tab .card-outer .card-body .betvalue-wrap .bet-action-grid .bet-action-item:last-child {
     margin-right: 0
 }
 
-.game-tab[_ngcontent-ng-c942213636] mat-tab-group[_ngcontent-ng-c942213636] .mat-tab-body .mat-mdc-tab-body-content .tab-body.sports-tab .card-outer .card-body .betvalue-wrap .bet-action-grid .bet-action-item input {
+.game-tab[_ngcontent-ng-c942213636] .mat-tab-group .mat-tab-body .mat-mdc-tab-body-content .tab-body.sports-tab .card-outer .card-body .betvalue-wrap .bet-action-grid .bet-action-item input {
     padding: 0 5px;
     border-radius: 0;
     border: none;
@@ -3582,15 +3584,15 @@ input[type=number] {
     box-sizing: border-box
 }
 
-.game-tab[_ngcontent-ng-c942213636] mat-tab-group[_ngcontent-ng-c942213636] .mat-tab-body .mat-mdc-tab-body-content .tab-body.sports-tab .card-outer .card-body .betvalue-wrap .bet-action-grid .bet-action-item input::placeholder {
+.game-tab[_ngcontent-ng-c942213636] .mat-tab-group .mat-tab-body .mat-mdc-tab-body-content .tab-body.sports-tab .card-outer .card-body .betvalue-wrap .bet-action-grid .bet-action-item input::placeholder {
     color: var(--text-color)
 }
 
-.game-tab[_ngcontent-ng-c942213636] mat-tab-group[_ngcontent-ng-c942213636] .mat-tab-body .mat-mdc-tab-body-content .tab-body.sports-tab .card-outer .card-body .betvalue-wrap .bet-action-grid .bet-action-item input:focus-visible {
+.game-tab[_ngcontent-ng-c942213636] .mat-tab-group .mat-tab-body .mat-mdc-tab-body-content .tab-body.sports-tab .card-outer .card-body .betvalue-wrap .bet-action-grid .bet-action-item input:focus-visible {
     outline: none
 }
 
-.game-tab[_ngcontent-ng-c942213636] mat-tab-group[_ngcontent-ng-c942213636] .mat-tab-body .mat-mdc-tab-body-content .tab-body.sports-tab .card-outer .card-body .betvalue-wrap .bet-action-grid .bet-action-item button {
+.game-tab[_ngcontent-ng-c942213636] .mat-tab-group .mat-tab-body .mat-mdc-tab-body-content .tab-body.sports-tab .card-outer .card-body .betvalue-wrap .bet-action-grid .bet-action-item button {
     border: none;
     border-radius: 0;
     padding: 10px 0;
@@ -3600,7 +3602,7 @@ input[type=number] {
     font-size: 12px
 }
 
-.game-tab[_ngcontent-ng-c942213636] mat-tab-group[_ngcontent-ng-c942213636] .mat-tab-body .mat-mdc-tab-body-content .tab-body.sports-tab .card-outer .card-body .betvalue-wrap .betvalue-checkbox {
+.game-tab[_ngcontent-ng-c942213636] .mat-tab-group .mat-tab-body .mat-mdc-tab-body-content .tab-body.sports-tab .card-outer .card-body .betvalue-wrap .betvalue-checkbox {
     margin-top: 10px;
     display: block;
     border-radius: 0;
@@ -3609,7 +3611,7 @@ input[type=number] {
     color: var(--dark-text)
 }
 
-.game-tab[_ngcontent-ng-c942213636] mat-tab-group[_ngcontent-ng-c942213636] .mat-tab-body .mat-mdc-tab-body-content .tab-body.sports-tab .card-outer .card-body .betvalue-wrap .betvalue-checkbox .mat-checkbox-frame {
+.game-tab[_ngcontent-ng-c942213636] .mat-tab-group .mat-tab-body .mat-mdc-tab-body-content .tab-body.sports-tab .card-outer .card-body .betvalue-wrap .betvalue-checkbox .mat-checkbox-frame {
     border-color: var(--primary-color)
 }
 
@@ -3617,7 +3619,7 @@ input[type=number] {
     background-color: var(--primary-color)
 }
 
-.game-tab[_ngcontent-ng-c942213636] mat-tab-group[_ngcontent-ng-c942213636] .mat-tab-body .mat-mdc-tab-body-content .tab-body.sports-tab .card-body .data-wrap .teamlist-info .flag-wrap img {
+.game-tab[_ngcontent-ng-c942213636] .mat-tab-group .mat-tab-body .mat-mdc-tab-body-content .tab-body.sports-tab .card-body .data-wrap .teamlist-info .flag-wrap img {
     width: 25px;
     height: 25px;
     border-radius: 50%;
@@ -3625,39 +3627,39 @@ input[type=number] {
     margin-right: 10px
 }
 
-.game-tab[_ngcontent-ng-c942213636] mat-tab-group[_ngcontent-ng-c942213636] .mat-tab-body .mat-mdc-tab-body-content .tab-body.sports-tab .card-body .data-wrap .back-count {
+.game-tab[_ngcontent-ng-c942213636] .mat-tab-group .mat-tab-body .mat-mdc-tab-body-content .tab-body.sports-tab .card-body .data-wrap .back-count {
     background-color: var(--back-color);
     color: var(--dark-text)
 }
 
-.game-tab[_ngcontent-ng-c942213636] mat-tab-group[_ngcontent-ng-c942213636] .mat-tab-body .mat-mdc-tab-body-content .tab-body.sports-tab .card-body .data-wrap .back-count.rate-changing {
+.game-tab[_ngcontent-ng-c942213636] .mat-tab-group .mat-tab-body .mat-mdc-tab-body-content .tab-body.sports-tab .card-body .data-wrap .back-count.rate-changing {
     animation: _ngcontent-ng-c942213636_blinkBack .5s ease
 }
 
-.game-tab[_ngcontent-ng-c942213636] mat-tab-group[_ngcontent-ng-c942213636] .mat-tab-body .mat-mdc-tab-body-content .tab-body.sports-tab .card-body .data-wrap .lay-count {
+.game-tab[_ngcontent-ng-c942213636] .mat-tab-group .mat-tab-body .mat-mdc-tab-body-content .tab-body.sports-tab .card-body .data-wrap .lay-count {
     background-color: var(--lay-color);
     color: var(--dark-text)
 }
 
-.game-tab[_ngcontent-ng-c942213636] mat-tab-group[_ngcontent-ng-c942213636] .mat-tab-body .mat-mdc-tab-body-content .tab-body.sports-tab .card-body .data-wrap .lay-count.rate-changing {
+.game-tab[_ngcontent-ng-c942213636] .mat-tab-group .mat-tab-body .mat-mdc-tab-body-content .tab-body.sports-tab .card-body .data-wrap .lay-count.rate-changing {
     animation: _ngcontent-ng-c942213636_blinkLay .5s ease
 }
 
-.game-tab[_ngcontent-ng-c942213636] mat-tab-group[_ngcontent-ng-c942213636] .mat-tab-body .mat-mdc-tab-body-content .tab-body.sports-tab .card-body .data-wrap:first-child .count-value {
+.game-tab[_ngcontent-ng-c942213636] .mat-tab-group .mat-tab-body .mat-mdc-tab-body-content .tab-body.sports-tab .card-body .data-wrap:first-child .count-value {
     border-radius: 0
 }
 
-.game-tab[_ngcontent-ng-c942213636] mat-tab-group[_ngcontent-ng-c942213636] .mat-tab-body .mat-mdc-tab-body-content .tab-body.sports-tab .card-body .data-wrap:last-child .count-value {
+.game-tab[_ngcontent-ng-c942213636] .mat-tab-group .mat-tab-body .mat-mdc-tab-body-content .tab-body.sports-tab .card-body .data-wrap:last-child .count-value {
     border-radius: 0
 }
 
-.game-tab[_ngcontent-ng-c942213636] mat-tab-group[_ngcontent-ng-c942213636] .mat-tab-body .mat-mdc-tab-body-content .tab-body.sports-tab .fancy-card .card-body .data-wrap {
+.game-tab[_ngcontent-ng-c942213636] .mat-tab-group .mat-tab-body .mat-mdc-tab-body-content .tab-body.sports-tab .fancy-card .card-body .data-wrap {
     grid-template-columns: 4fr 2fr;
     position: relative;
     min-height: 36px
 }
 
-.game-tab[_ngcontent-ng-c942213636] mat-tab-group[_ngcontent-ng-c942213636] .mat-tab-body .mat-mdc-tab-body-content .tab-body.sports-tab .fancy-card .card-body .data-wrap .bar-btn {
+.game-tab[_ngcontent-ng-c942213636] .mat-tab-group .mat-tab-body .mat-mdc-tab-body-content .tab-body.sports-tab .fancy-card .card-body .data-wrap .bar-btn {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -3670,7 +3672,7 @@ input[type=number] {
     right: 35%
 }
 
-.game-tab[_ngcontent-ng-c942213636] mat-tab-group[_ngcontent-ng-c942213636] .mat-tab-body .mat-mdc-tab-body-content .tab-body.sports-tab .fancy-card .card-body .data-wrap .bar-btn mat-icon {
+.game-tab[_ngcontent-ng-c942213636] .mat-tab-group .mat-tab-body .mat-mdc-tab-body-content .tab-body.sports-tab .fancy-card .card-body .data-wrap .bar-btn mat-icon {
     font-size: clamp(.75rem, 2vw, .875rem);
     display: flex;
     align-items: center;
@@ -3679,25 +3681,25 @@ input[type=number] {
     color: #a29ca2
 }
 
-.game-tab[_ngcontent-ng-c942213636] mat-tab-group[_ngcontent-ng-c942213636] .mat-tab-body .mat-mdc-tab-body-content .tab-body.sports-tab .fancy-card .card-body .data-wrap .bar-btn img.ladder-img {
+.game-tab[_ngcontent-ng-c942213636] .mat-tab-group .mat-tab-body .mat-mdc-tab-body-content .tab-body.sports-tab .fancy-card .card-body .data-wrap .bar-btn img.ladder-img {
     max-height: 18px
 }
 
-.game-tab[_ngcontent-ng-c942213636] mat-tab-group[_ngcontent-ng-c942213636] .mat-tab-body .mat-mdc-tab-body-content .tab-body.sports-tab .fancy-card .card-body .data-wrap mat-menu {
+.game-tab[_ngcontent-ng-c942213636] .mat-tab-group .mat-tab-body .mat-mdc-tab-body-content .tab-body.sports-tab .fancy-card .card-body .data-wrap mat-menu {
     display: none
 }
 
-.game-tab[_ngcontent-ng-c942213636] mat-tab-group[_ngcontent-ng-c942213636] .mat-tab-body .mat-mdc-tab-body-content .tab-body.sports-tab .fancy-card .card-body .betvalue-wrap:last-child {
+.game-tab[_ngcontent-ng-c942213636] .mat-tab-group .mat-tab-body .mat-mdc-tab-body-content .tab-body.sports-tab .fancy-card .card-body .betvalue-wrap:last-child {
     grid-column-start: 1;
     grid-column-end: 4
 }
 
-.game-tab[_ngcontent-ng-c942213636] mat-tab-group[_ngcontent-ng-c942213636] .mat-tab-body .mat-mdc-tab-body-content .tab-body.sports-tab .mat-expansion-panel {
+.game-tab[_ngcontent-ng-c942213636] .mat-tab-group .mat-tab-body .mat-mdc-tab-body-content .tab-body.sports-tab .mat-expansion-panel {
     background: var(--white-color);
     color: var(--text-color)
 }
 
-.game-tab[_ngcontent-ng-c942213636] mat-tab-group[_ngcontent-ng-c942213636] .mat-tab-body .mat-mdc-tab-body-content .tab-body.sports-tab mat-expansion-panel-header.card-header {
+.game-tab[_ngcontent-ng-c942213636] .mat-tab-group .mat-tab-body .mat-mdc-tab-body-content .tab-body.sports-tab mat-expansion-panel-header.card-header {
     padding: 0 10px 0 0 !important;
     margin: 0 !important;
     display: flex !important;
@@ -3707,7 +3709,7 @@ input[type=number] {
     border-radius: 0
 }
 
-.game-tab[_ngcontent-ng-c942213636] mat-tab-group[_ngcontent-ng-c942213636] .mat-tab-body .mat-mdc-tab-body-content .tab-body.sports-tab mat-expansion-panel-header.card-header .mat-expansion-indicator {
+.game-tab[_ngcontent-ng-c942213636] .mat-tab-group .mat-tab-body .mat-mdc-tab-body-content .tab-body.sports-tab mat-expansion-panel-header.card-header .mat-expansion-indicator {
     text-align: center;
     width: 22px;
     height: 22px;
@@ -3719,24 +3721,24 @@ input[type=number] {
     padding-bottom: 2px
 }
 
-.game-tab[_ngcontent-ng-c942213636] mat-tab-group[_ngcontent-ng-c942213636] .mat-tab-body .mat-mdc-tab-body-content .tab-body.sports-tab mat-expansion-panel-header.card-header .mat-expansion-indicator:after {
+.game-tab[_ngcontent-ng-c942213636] .mat-tab-group .mat-tab-body .mat-mdc-tab-body-content .tab-body.sports-tab mat-expansion-panel-header.card-header .mat-expansion-indicator:after {
     padding: 2px;
     color: var(--body-background)
 }
 
-.game-tab[_ngcontent-ng-c942213636] mat-tab-group[_ngcontent-ng-c942213636] .mat-tab-body .mat-mdc-tab-body-content .tab-body.sports-tab mat-expansion-panel-header.card-header mat-panel-description {
+.game-tab[_ngcontent-ng-c942213636] .mat-tab-group .mat-tab-body .mat-mdc-tab-body-content .tab-body.sports-tab mat-expansion-panel-header.card-header mat-panel-description {
     justify-content: flex-end;
     margin: 0;
     align-items: center
 }
 
-.game-tab[_ngcontent-ng-c942213636] mat-tab-group[_ngcontent-ng-c942213636] .mat-tab-body .mat-mdc-tab-body-content .tab-body.sports-tab mat-expansion-panel-header.card-header mat-panel-description mat-icon {
+.game-tab[_ngcontent-ng-c942213636] .mat-tab-group .mat-tab-body .mat-mdc-tab-body-content .tab-body.sports-tab mat-expansion-panel-header.card-header mat-panel-description mat-icon {
     font-size: 1.75rem;
     width: 28px;
     height: 28px
 }
 
-.game-tab[_ngcontent-ng-c942213636] mat-tab-group[_ngcontent-ng-c942213636] .mat-tab-body .mat-mdc-tab-body-content .tab-body.sports-tab .fancybody-header {
+.game-tab[_ngcontent-ng-c942213636] .mat-tab-group .mat-tab-body .mat-mdc-tab-body-content .tab-body.sports-tab .fancybody-header {
     display: grid;
     grid-template-columns: 4fr 2fr;
     column-gap: 5px;
@@ -3748,7 +3750,7 @@ input[type=number] {
     align-items: center
 }
 
-.game-tab[_ngcontent-ng-c942213636] mat-tab-group[_ngcontent-ng-c942213636] .mat-tab-body .mat-mdc-tab-body-content .tab-body.sports-tab .fancybody-header .card-title {
+.game-tab[_ngcontent-ng-c942213636] .mat-tab-group .mat-tab-body .mat-mdc-tab-body-content .tab-body.sports-tab .fancybody-header .card-title {
     text-align: left;
     position: relative;
     padding: 0 10px;
@@ -3757,13 +3759,13 @@ input[type=number] {
     font-family: open_regular
 }
 
-.game-tab[_ngcontent-ng-c942213636] mat-tab-group[_ngcontent-ng-c942213636] .mat-tab-body .mat-mdc-tab-body-content .tab-body.sports-tab .fancybody-header .fb-stitle {
+.game-tab[_ngcontent-ng-c942213636] .mat-tab-group .mat-tab-body .mat-mdc-tab-body-content .tab-body.sports-tab .fancybody-header .fb-stitle {
     display: grid;
     grid-template-columns: 1fr 1fr;
     height: 100%
 }
 
-.game-tab[_ngcontent-ng-c942213636] mat-tab-group[_ngcontent-ng-c942213636] .mat-tab-body .mat-mdc-tab-body-content .tab-body.sports-tab .fancybody-header h3 {
+.game-tab[_ngcontent-ng-c942213636] .mat-tab-group .mat-tab-body .mat-mdc-tab-body-content .tab-body.sports-tab .fancybody-header h3 {
     margin: 0;
     text-align: center;
     font-family: open_semiBold;
@@ -3775,14 +3777,14 @@ input[type=number] {
     justify-content: center
 }
 
-.game-tab[_ngcontent-ng-c942213636] mat-tab-group[_ngcontent-ng-c942213636] .mat-tab-body .mat-mdc-tab-body-content .tab-body.sports-tab .card-body .data-wrap .teamlist-info {
+.game-tab[_ngcontent-ng-c942213636] .mat-tab-group .mat-tab-body .mat-mdc-tab-body-content .tab-body.sports-tab .card-body .data-wrap .teamlist-info {
     border-radius: 0;
     padding: 0;
     font-family: open_regular;
     row-gap: 3px
 }
 
-.game-tab[_ngcontent-ng-c942213636] mat-tab-group[_ngcontent-ng-c942213636] .mat-tab-body .mat-mdc-tab-body-content .tab-body.sports-tab .card-body .data-wrap .teamlist-info h3.team-title {
+.game-tab[_ngcontent-ng-c942213636] .mat-tab-group .mat-tab-body .mat-mdc-tab-body-content .tab-body.sports-tab .card-body .data-wrap .teamlist-info h3.team-title {
     text-transform: capitalize;
     font-size: .6875rem;
     font-family: open_bold;
@@ -3793,25 +3795,25 @@ input[type=number] {
     row-gap: 4px
 }
 
-.game-tab[_ngcontent-ng-c942213636] mat-tab-group[_ngcontent-ng-c942213636] .mat-tab-body .mat-mdc-tab-body-content .tab-body.sports-tab .card-body .data-wrap .count-value {
+.game-tab[_ngcontent-ng-c942213636] .mat-tab-group .mat-tab-body .mat-mdc-tab-body-content .tab-body.sports-tab .card-body .data-wrap .count-value {
     border-radius: 0
 }
 
-.game-tab[_ngcontent-ng-c942213636] mat-tab-group[_ngcontent-ng-c942213636] .mat-tab-body .mat-mdc-tab-body-content .mkt-tab-section mat-tab-group mat-tab-header {
+.game-tab[_ngcontent-ng-c942213636] .mat-tab-group .mat-tab-body .mat-mdc-tab-body-content .mkt-tab-section mat-tab-group mat-tab-header {
     background-color: transparent;
     border-bottom: 0;
     background-color: var(--primary-color)
 }
 
-.game-tab[_ngcontent-ng-c942213636] mat-tab-group[_ngcontent-ng-c942213636] .mat-tab-body .mat-mdc-tab-body-content .mkt-tab-section mat-tab-group mat-tab-header mat-ink-bar {
+.game-tab[_ngcontent-ng-c942213636] .mat-tab-group .mat-tab-body .mat-mdc-tab-body-content .mkt-tab-section mat-tab-group mat-tab-header mat-ink-bar {
     display: none
 }
 
-.game-tab[_ngcontent-ng-c942213636] mat-tab-group[_ngcontent-ng-c942213636] .mat-tab-body .mat-mdc-tab-body-content .mkt-tab-section mat-tab-group mat-tab-header .mat-tab-label-container .mat-tab-list .mat-tab-labels {
+.game-tab[_ngcontent-ng-c942213636] .mat-tab-group .mat-tab-body .mat-mdc-tab-body-content .mkt-tab-section mat-tab-group mat-tab-header .mat-tab-label-container .mat-tab-list .mat-tab-labels {
     justify-content: center
 }
 
-.game-tab[_ngcontent-ng-c942213636] mat-tab-group[_ngcontent-ng-c942213636] .mat-tab-body .mat-mdc-tab-body-content .mkt-tab-section mat-tab-group mat-tab-header .mat-tab-label-container .mat-tab-list .mat-tab-label {
+.game-tab[_ngcontent-ng-c942213636] .mat-tab-group .mat-tab-body .mat-mdc-tab-body-content .mkt-tab-section mat-tab-group mat-tab-header .mat-tab-label-container .mat-tab-list .mat-tab-label {
     background-color: transparent;
     margin-right: 10px;
     height: 30px;
@@ -3821,23 +3823,23 @@ input[type=number] {
     font-size: 12px
 }
 
-.game-tab[_ngcontent-ng-c942213636] mat-tab-group[_ngcontent-ng-c942213636] .mat-tab-body .mat-mdc-tab-body-content .mkt-tab-section mat-tab-group mat-tab-header .mat-tab-label-container .mat-tab-list .mat-tab-label.mat-tab-label-active {
+.game-tab[_ngcontent-ng-c942213636] .mat-tab-group .mat-tab-body .mat-mdc-tab-body-content .mkt-tab-section mat-tab-group mat-tab-header .mat-tab-label-container .mat-tab-list .mat-tab-label.mat-tab-label-active {
     border-bottom: 1px solid var(--primary-color);
     color: var(--primary-color)
 }
 
-.game-tab[_ngcontent-ng-c942213636] mat-tab-group[_ngcontent-ng-c942213636] .mat-tab-body .mat-mdc-tab-body-content .live-match-screen {
+.game-tab[_ngcontent-ng-c942213636] .mat-tab-group .mat-tab-body .mat-mdc-tab-body-content .live-match-screen {
     position: relative;
     background-color: var(--header-dark-color)
 }
 
-.game-tab[_ngcontent-ng-c942213636] mat-tab-group[_ngcontent-ng-c942213636] .mat-tab-body .mat-mdc-tab-body-content .live-match-screen.sticky-top {
+.game-tab[_ngcontent-ng-c942213636] .mat-tab-group .mat-tab-body .mat-mdc-tab-body-content .live-match-screen.sticky-top {
     position: sticky;
     top: 0;
     z-index: 9999
 }
 
-.game-tab[_ngcontent-ng-c942213636] mat-tab-group[_ngcontent-ng-c942213636] .mat-tab-body .mat-mdc-tab-body-content .live-match-screen .sticky-icon {
+.game-tab[_ngcontent-ng-c942213636] .mat-tab-group .mat-tab-body .mat-mdc-tab-body-content .live-match-screen .sticky-icon {
     position: absolute;
     top: 15px;
     right: 15px;
@@ -3857,23 +3859,23 @@ input[type=number] {
     z-index: 999
 }
 
-.game-tab[_ngcontent-ng-c942213636] mat-tab-group[_ngcontent-ng-c942213636] .mat-tab-body .mat-mdc-tab-body-content .live-match-screen .sticky-icon.active {
+.game-tab[_ngcontent-ng-c942213636] .mat-tab-group .mat-tab-body .mat-mdc-tab-body-content .live-match-screen .sticky-icon.active {
     background: var(--secondary-color);
     border: 1px solid var(--secondary-color);
     color: var(--secondary-color-contrast);
     transform: rotate(0)
 }
 
-.game-tab[_ngcontent-ng-c942213636] mat-tab-group[_ngcontent-ng-c942213636] .mat-tab-body .mat-mdc-tab-body-content .live-match-screen iframe {
+.game-tab[_ngcontent-ng-c942213636] .mat-tab-group .mat-tab-body .mat-mdc-tab-body-content .live-match-screen iframe {
     aspect-ratio: 16/9;
     z-index: 0
 }
 
-.game-tab[_ngcontent-ng-c942213636] mat-tab-group[_ngcontent-ng-c942213636] .mat-tab-body .mat-mdc-tab-body-content .live-score-section {
+.game-tab[_ngcontent-ng-c942213636] .mat-tab-group .mat-tab-body .mat-mdc-tab-body-content .live-score-section {
     position: relative
 }
 
-.game-tab[_ngcontent-ng-c942213636] mat-tab-group[_ngcontent-ng-c942213636] .mat-tab-body .mat-mdc-tab-body-content .live-score-section .score-overlay {
+.game-tab[_ngcontent-ng-c942213636] .mat-tab-group .mat-tab-body .mat-mdc-tab-body-content .live-score-section .score-overlay {
     width: 100%;
     height: 30px;
     background-color: var(--grey-50);
@@ -3883,19 +3885,19 @@ input[type=number] {
     align-items: center
 }
 
-.game-tab[_ngcontent-ng-c942213636] mat-tab-group[_ngcontent-ng-c942213636] .mat-tab-body .mat-mdc-tab-body-content .live-score-section .score-overlay.target-info {
+.game-tab[_ngcontent-ng-c942213636] .mat-tab-group .mat-tab-body .mat-mdc-tab-body-content .live-score-section .score-overlay.target-info {
     background-color: var(--primary-color);
     color: var(--primary-color-contrast)
 }
 
-.game-tab[_ngcontent-ng-c942213636] mat-tab-group[_ngcontent-ng-c942213636] .mat-tab-body .mat-mdc-tab-body-content .live-score-section .score-overlay.target-info p {
+.game-tab[_ngcontent-ng-c942213636] .mat-tab-group .mat-tab-body .mat-mdc-tab-body-content .live-score-section .score-overlay.target-info p {
     color: var(--primary-color-contrast);
     animation: none;
     font-size: 12px;
     font-family: open_regular
 }
 
-.game-tab[_ngcontent-ng-c942213636] mat-tab-group[_ngcontent-ng-c942213636] .mat-tab-body .mat-mdc-tab-body-content .live-score-section .score-overlay p {
+.game-tab[_ngcontent-ng-c942213636] .mat-tab-group .mat-tab-body .mat-mdc-tab-body-content .live-score-section .score-overlay p {
     font-size: 12px;
     margin-bottom: 0;
     font-family: Open Sans, sans-serif;
@@ -3904,7 +3906,7 @@ input[type=number] {
     animation: _ngcontent-ng-c942213636_zoom-in-zoom-out 2s ease infinite
 }
 
-.game-tab[_ngcontent-ng-c942213636] mat-tab-group[_ngcontent-ng-c942213636] .mat-tab-body .mat-mdc-tab-body-content .live-score-section .score-overlay marquee {
+.game-tab[_ngcontent-ng-c942213636] .mat-tab-group .mat-tab-body .mat-mdc-tab-body-content .live-score-section .score-overlay marquee {
     animation: _ngcontent-ng-c942213636_blinker 1.5s linear infinite;
     font-size: 14px;
     font-family: Open Sans, sans-serif;
@@ -3913,7 +3915,7 @@ input[type=number] {
     margin: 0 10px
 }
 
-.game-tab[_ngcontent-ng-c942213636] mat-tab-group[_ngcontent-ng-c942213636] .mat-tab-body .mat-mdc-tab-body-content .score-wrap {
+.game-tab[_ngcontent-ng-c942213636] .mat-tab-group .mat-tab-body .mat-mdc-tab-body-content .score-wrap {
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -3924,28 +3926,28 @@ input[type=number] {
     color: var(--primary-color-contrast)
 }
 
-.game-tab[_ngcontent-ng-c942213636] mat-tab-group[_ngcontent-ng-c942213636] .mat-tab-body .mat-mdc-tab-body-content .score-wrap img {
+.game-tab[_ngcontent-ng-c942213636] .mat-tab-group .mat-tab-body .mat-mdc-tab-body-content .score-wrap img {
     max-width: 18px
 }
 
-.game-tab[_ngcontent-ng-c942213636] mat-tab-group[_ngcontent-ng-c942213636] .mat-tab-body .mat-mdc-tab-body-content .last-balls-record.multiple-overs {
+.game-tab[_ngcontent-ng-c942213636] .mat-tab-group .mat-tab-body .mat-mdc-tab-body-content .last-balls-record.multiple-overs {
     padding: 5px;
     background-color: var(--primary-color-tint);
     margin: 0
 }
 
-.game-tab[_ngcontent-ng-c942213636] mat-tab-group[_ngcontent-ng-c942213636] .mat-tab-body .mat-mdc-tab-body-content .last-balls-record.multiple-overs .mat-label {
+.game-tab[_ngcontent-ng-c942213636] .mat-tab-group .mat-tab-body .mat-mdc-tab-body-content .last-balls-record.multiple-overs .mat-label {
     font-size: 10px;
     margin: 0;
     color: var(--primary-color-contrast)
 }
 
-.game-tab[_ngcontent-ng-c942213636] mat-tab-group[_ngcontent-ng-c942213636] .mat-tab-body .mat-mdc-tab-body-content .last-balls-record.multiple-overs ul {
+.game-tab[_ngcontent-ng-c942213636] .mat-tab-group .mat-tab-body .mat-mdc-tab-body-content .last-balls-record.multiple-overs ul {
     justify-content: flex-start;
     column-gap: 2px
 }
 
-.game-tab[_ngcontent-ng-c942213636] mat-tab-group[_ngcontent-ng-c942213636] .mat-tab-body .mat-mdc-tab-body-content .last-balls-record.multiple-overs ul p {
+.game-tab[_ngcontent-ng-c942213636] .mat-tab-group .mat-tab-body .mat-mdc-tab-body-content .last-balls-record.multiple-overs ul p {
     background-color: var(--header-dark-color);
     height: 20px;
     min-width: 20px;
@@ -3954,22 +3956,22 @@ input[type=number] {
     border-radius: 10px
 }
 
-.game-tab[_ngcontent-ng-c942213636] mat-tab-group[_ngcontent-ng-c942213636] .mat-tab-body .mat-mdc-tab-body-content .last-balls-record.multiple-overs .current-over {
+.game-tab[_ngcontent-ng-c942213636] .mat-tab-group .mat-tab-body .mat-mdc-tab-body-content .last-balls-record.multiple-overs .current-over {
     display: flex;
     flex-direction: column;
     row-gap: 2px
 }
 
-.game-tab[_ngcontent-ng-c942213636] mat-tab-group[_ngcontent-ng-c942213636] .mat-tab-body .mat-mdc-tab-body-content .last-balls-record.multiple-overs .current-over .mat-label {
+.game-tab[_ngcontent-ng-c942213636] .mat-tab-group .mat-tab-body .mat-mdc-tab-body-content .last-balls-record.multiple-overs .current-over .mat-label {
     text-align: right
 }
 
-.game-tab[_ngcontent-ng-c942213636] mat-tab-group[_ngcontent-ng-c942213636] .mat-tab-body .mat-mdc-tab-body-content .last-balls-record.multiple-overs .previous-over {
+.game-tab[_ngcontent-ng-c942213636] .mat-tab-group .mat-tab-body .mat-mdc-tab-body-content .last-balls-record.multiple-overs .previous-over {
     display: flex;
     flex-direction: column
 }
 
-.game-tab[_ngcontent-ng-c942213636] mat-tab-group[_ngcontent-ng-c942213636] .mat-tab-body .mat-mdc-tab-body-content .last-balls-record.overflow-overs {
+.game-tab[_ngcontent-ng-c942213636] .mat-tab-group .mat-tab-body .mat-mdc-tab-body-content .last-balls-record.overflow-overs {
     flex-direction: row-reverse;
     scroll-behavior: smooth;
     display: flex;
@@ -3985,58 +3987,58 @@ input[type=number] {
     border-top: 1px solid var(--primary-color)
 }
 
-.game-tab[_ngcontent-ng-c942213636] mat-tab-group[_ngcontent-ng-c942213636] .mat-tab-body .mat-mdc-tab-body-content .last-balls-record.overflow-overs::-webkit-scrollbar {
+.game-tab[_ngcontent-ng-c942213636] .mat-tab-group .mat-tab-body .mat-mdc-tab-body-content .last-balls-record.overflow-overs::-webkit-scrollbar {
     height: 3px
 }
 
-.game-tab[_ngcontent-ng-c942213636] mat-tab-group[_ngcontent-ng-c942213636] .mat-tab-body .mat-mdc-tab-body-content .last-balls-record.overflow-overs .over-details {
+.game-tab[_ngcontent-ng-c942213636] .mat-tab-group .mat-tab-body .mat-mdc-tab-body-content .last-balls-record.overflow-overs .over-details {
     display: flex;
     align-items: center;
     column-gap: 5px
 }
 
-.game-tab[_ngcontent-ng-c942213636] mat-tab-group[_ngcontent-ng-c942213636] .mat-tab-body .mat-mdc-tab-body-content .last-balls-record.overflow-overs .over-details .mat-label {
+.game-tab[_ngcontent-ng-c942213636] .mat-tab-group .mat-tab-body .mat-mdc-tab-body-content .last-balls-record.overflow-overs .over-details .mat-label {
     margin: 0;
     text-wrap: nowrap
 }
 
-.game-tab[_ngcontent-ng-c942213636] mat-tab-group[_ngcontent-ng-c942213636] .mat-tab-body .mat-mdc-tab-body-content .last-balls-record.overflow-overs .over-details ul {
+.game-tab[_ngcontent-ng-c942213636] .mat-tab-group .mat-tab-body .mat-mdc-tab-body-content .last-balls-record.overflow-overs .over-details ul {
     width: auto
 }
 
-.game-tab[_ngcontent-ng-c942213636] mat-tab-group[_ngcontent-ng-c942213636] .mat-tab-body .mat-mdc-tab-body-content .last-balls-record.overflow-overs .over-details ul li p._WKT,
-.game-tab[_ngcontent-ng-c942213636] mat-tab-group[_ngcontent-ng-c942213636] .mat-tab-body .mat-mdc-tab-body-content .last-balls-record.overflow-overs .over-details ul li p._LBW,
-.game-tab[_ngcontent-ng-c942213636] mat-tab-group[_ngcontent-ng-c942213636] .mat-tab-body .mat-mdc-tab-body-content .last-balls-record.overflow-overs .over-details ul li p._wkt,
-.game-tab[_ngcontent-ng-c942213636] mat-tab-group[_ngcontent-ng-c942213636] .mat-tab-body .mat-mdc-tab-body-content .last-balls-record.overflow-overs .over-details ul li p._lbw {
+.game-tab[_ngcontent-ng-c942213636] .mat-tab-group .mat-tab-body .mat-mdc-tab-body-content .last-balls-record.overflow-overs .over-details ul li p._WKT,
+.game-tab[_ngcontent-ng-c942213636] .mat-tab-group .mat-tab-body .mat-mdc-tab-body-content .last-balls-record.overflow-overs .over-details ul li p._LBW,
+.game-tab[_ngcontent-ng-c942213636] .mat-tab-group .mat-tab-body .mat-mdc-tab-body-content .last-balls-record.overflow-overs .over-details ul li p._wkt,
+.game-tab[_ngcontent-ng-c942213636] .mat-tab-group .mat-tab-body .mat-mdc-tab-body-content .last-balls-record.overflow-overs .over-details ul li p._lbw {
     background-color: var(--red-color)
 }
 
-.game-tab[_ngcontent-ng-c942213636] mat-tab-group[_ngcontent-ng-c942213636] .mat-tab-body .mat-mdc-tab-body-content .last-balls-record.overflow-overs .over-details ul li p._6,
-.game-tab[_ngcontent-ng-c942213636] mat-tab-group[_ngcontent-ng-c942213636] .mat-tab-body .mat-mdc-tab-body-content .last-balls-record.overflow-overs .over-details ul li p._4,
-.game-tab[_ngcontent-ng-c942213636] mat-tab-group[_ngcontent-ng-c942213636] .mat-tab-body .mat-mdc-tab-body-content .last-balls-record.overflow-overs .over-details ul li p._4NB,
-.game-tab[_ngcontent-ng-c942213636] mat-tab-group[_ngcontent-ng-c942213636] .mat-tab-body .mat-mdc-tab-body-content .last-balls-record.overflow-overs .over-details ul li p._6NB,
-.game-tab[_ngcontent-ng-c942213636] mat-tab-group[_ngcontent-ng-c942213636] .mat-tab-body .mat-mdc-tab-body-content .last-balls-record.overflow-overs .over-details ul li p._4WD,
-.game-tab[_ngcontent-ng-c942213636] mat-tab-group[_ngcontent-ng-c942213636] .mat-tab-body .mat-mdc-tab-body-content .last-balls-record.overflow-overs .over-details ul li p._6WD {
+.game-tab[_ngcontent-ng-c942213636] .mat-tab-group .mat-tab-body .mat-mdc-tab-body-content .last-balls-record.overflow-overs .over-details ul li p._6,
+.game-tab[_ngcontent-ng-c942213636] .mat-tab-group .mat-tab-body .mat-mdc-tab-body-content .last-balls-record.overflow-overs .over-details ul li p._4,
+.game-tab[_ngcontent-ng-c942213636] .mat-tab-group .mat-tab-body .mat-mdc-tab-body-content .last-balls-record.overflow-overs .over-details ul li p._4NB,
+.game-tab[_ngcontent-ng-c942213636] .mat-tab-group .mat-tab-body .mat-mdc-tab-body-content .last-balls-record.overflow-overs .over-details ul li p._6NB,
+.game-tab[_ngcontent-ng-c942213636] .mat-tab-group .mat-tab-body .mat-mdc-tab-body-content .last-balls-record.overflow-overs .over-details ul li p._4WD,
+.game-tab[_ngcontent-ng-c942213636] .mat-tab-group .mat-tab-body .mat-mdc-tab-body-content .last-balls-record.overflow-overs .over-details ul li p._6WD {
     background-color: var(--green-color)
 }
 
-.game-tab[_ngcontent-ng-c942213636] mat-tab-group[_ngcontent-ng-c942213636] .mat-tab-body .mat-mdc-tab-body-content .last-balls-record.overflow-overs .over-details ul li p._NB,
-.game-tab[_ngcontent-ng-c942213636] mat-tab-group[_ngcontent-ng-c942213636] .mat-tab-body .mat-mdc-tab-body-content .last-balls-record.overflow-overs .over-details ul li p._1NB,
-.game-tab[_ngcontent-ng-c942213636] mat-tab-group[_ngcontent-ng-c942213636] .mat-tab-body .mat-mdc-tab-body-content .last-balls-record.overflow-overs .over-details ul li p._2NB,
-.game-tab[_ngcontent-ng-c942213636] mat-tab-group[_ngcontent-ng-c942213636] .mat-tab-body .mat-mdc-tab-body-content .last-balls-record.overflow-overs .over-details ul li p._3NB,
-.game-tab[_ngcontent-ng-c942213636] mat-tab-group[_ngcontent-ng-c942213636] .mat-tab-body .mat-mdc-tab-body-content .last-balls-record.overflow-overs .over-details ul li p._5NB {
+.game-tab[_ngcontent-ng-c942213636] .mat-tab-group .mat-tab-body .mat-mdc-tab-body-content .last-balls-record.overflow-overs .over-details ul li p._NB,
+.game-tab[_ngcontent-ng-c942213636] .mat-tab-group .mat-tab-body .mat-mdc-tab-body-content .last-balls-record.overflow-overs .over-details ul li p._1NB,
+.game-tab[_ngcontent-ng-c942213636] .mat-tab-group .mat-tab-body .mat-mdc-tab-body-content .last-balls-record.overflow-overs .over-details ul li p._2NB,
+.game-tab[_ngcontent-ng-c942213636] .mat-tab-group .mat-tab-body .mat-mdc-tab-body-content .last-balls-record.overflow-overs .over-details ul li p._3NB,
+.game-tab[_ngcontent-ng-c942213636] .mat-tab-group .mat-tab-body .mat-mdc-tab-body-content .last-balls-record.overflow-overs .over-details ul li p._5NB {
     background-color: var(--red-color)
 }
 
-.game-tab[_ngcontent-ng-c942213636] mat-tab-group[_ngcontent-ng-c942213636] .mat-tab-body .mat-mdc-tab-body-content .last-balls-record.overflow-overs .over-details ul li p._WD,
-.game-tab[_ngcontent-ng-c942213636] mat-tab-group[_ngcontent-ng-c942213636] .mat-tab-body .mat-mdc-tab-body-content .last-balls-record.overflow-overs .over-details ul li p._1WD,
-.game-tab[_ngcontent-ng-c942213636] mat-tab-group[_ngcontent-ng-c942213636] .mat-tab-body .mat-mdc-tab-body-content .last-balls-record.overflow-overs .over-details ul li p._2WD,
-.game-tab[_ngcontent-ng-c942213636] mat-tab-group[_ngcontent-ng-c942213636] .mat-tab-body .mat-mdc-tab-body-content .last-balls-record.overflow-overs .over-details ul li p._3WD,
-.game-tab[_ngcontent-ng-c942213636] mat-tab-group[_ngcontent-ng-c942213636] .mat-tab-body .mat-mdc-tab-body-content .last-balls-record.overflow-overs .over-details ul li p._5WD {
+.game-tab[_ngcontent-ng-c942213636] .mat-tab-group .mat-tab-body .mat-mdc-tab-body-content .last-balls-record.overflow-overs .over-details ul li p._WD,
+.game-tab[_ngcontent-ng-c942213636] .mat-tab-group .mat-tab-body .mat-mdc-tab-body-content .last-balls-record.overflow-overs .over-details ul li p._1WD,
+.game-tab[_ngcontent-ng-c942213636] .mat-tab-group .mat-tab-body .mat-mdc-tab-body-content .last-balls-record.overflow-overs .over-details ul li p._2WD,
+.game-tab[_ngcontent-ng-c942213636] .mat-tab-group .mat-tab-body .mat-mdc-tab-body-content .last-balls-record.overflow-overs .over-details ul li p._3WD,
+.game-tab[_ngcontent-ng-c942213636] .mat-tab-group .mat-tab-body .mat-mdc-tab-body-content .last-balls-record.overflow-overs .over-details ul li p._5WD {
     background-color: var(--yellow-color)
 }
 
-.game-tab[_ngcontent-ng-c942213636] mat-tab-group[_ngcontent-ng-c942213636] .mat-tab-body .mat-mdc-tab-body-content .last-balls-record {
+.game-tab[_ngcontent-ng-c942213636] .mat-tab-group .mat-tab-body .mat-mdc-tab-body-content .last-balls-record {
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -4047,12 +4049,12 @@ input[type=number] {
     margin-bottom: 2px
 }
 
-.game-tab[_ngcontent-ng-c942213636] mat-tab-group[_ngcontent-ng-c942213636] .mat-tab-body .mat-mdc-tab-body-content .last-balls-record .mat-label {
+.game-tab[_ngcontent-ng-c942213636] .mat-tab-group .mat-tab-body .mat-mdc-tab-body-content .last-balls-record .mat-label {
     margin-right: 10px;
     font-size: .75rem
 }
 
-.game-tab[_ngcontent-ng-c942213636] mat-tab-group[_ngcontent-ng-c942213636] .mat-tab-body .mat-mdc-tab-body-content .last-balls-record ul {
+.game-tab[_ngcontent-ng-c942213636] .mat-tab-group .mat-tab-body .mat-mdc-tab-body-content .last-balls-record ul {
     list-style: none;
     padding-left: 0;
     display: flex;
@@ -4063,7 +4065,7 @@ input[type=number] {
     width: calc(100% - 85px)
 }
 
-.game-tab[_ngcontent-ng-c942213636] mat-tab-group[_ngcontent-ng-c942213636] .mat-tab-body .mat-mdc-tab-body-content .last-balls-record ul li p {
+.game-tab[_ngcontent-ng-c942213636] .mat-tab-group .mat-tab-body .mat-mdc-tab-body-content .last-balls-record ul li p {
     background-color: var(--grey-200);
     border-radius: 50%;
     color: var(--white-color);
@@ -4076,40 +4078,40 @@ input[type=number] {
     height: clamp(20px, 6vw, 30px)
 }
 
-.game-tab[_ngcontent-ng-c942213636] mat-tab-group[_ngcontent-ng-c942213636] .mat-tab-body .mat-mdc-tab-body-content .last-balls-record ul li p._WKT,
-.game-tab[_ngcontent-ng-c942213636] mat-tab-group[_ngcontent-ng-c942213636] .mat-tab-body .mat-mdc-tab-body-content .last-balls-record ul li p._LBW,
-.game-tab[_ngcontent-ng-c942213636] mat-tab-group[_ngcontent-ng-c942213636] .mat-tab-body .mat-mdc-tab-body-content .last-balls-record ul li p._wkt,
-.game-tab[_ngcontent-ng-c942213636] mat-tab-group[_ngcontent-ng-c942213636] .mat-tab-body .mat-mdc-tab-body-content .last-balls-record ul li p._lbw {
+.game-tab[_ngcontent-ng-c942213636] .mat-tab-group .mat-tab-body .mat-mdc-tab-body-content .last-balls-record ul li p._WKT,
+.game-tab[_ngcontent-ng-c942213636] .mat-tab-group .mat-tab-body .mat-mdc-tab-body-content .last-balls-record ul li p._LBW,
+.game-tab[_ngcontent-ng-c942213636] .mat-tab-group .mat-tab-body .mat-mdc-tab-body-content .last-balls-record ul li p._wkt,
+.game-tab[_ngcontent-ng-c942213636] .mat-tab-group .mat-tab-body .mat-mdc-tab-body-content .last-balls-record ul li p._lbw {
     background-color: var(--red-color)
 }
 
-.game-tab[_ngcontent-ng-c942213636] mat-tab-group[_ngcontent-ng-c942213636] .mat-tab-body .mat-mdc-tab-body-content .last-balls-record ul li p._6,
-.game-tab[_ngcontent-ng-c942213636] mat-tab-group[_ngcontent-ng-c942213636] .mat-tab-body .mat-mdc-tab-body-content .last-balls-record ul li p._4,
-.game-tab[_ngcontent-ng-c942213636] mat-tab-group[_ngcontent-ng-c942213636] .mat-tab-body .mat-mdc-tab-body-content .last-balls-record ul li p._4NB,
-.game-tab[_ngcontent-ng-c942213636] mat-tab-group[_ngcontent-ng-c942213636] .mat-tab-body .mat-mdc-tab-body-content .last-balls-record ul li p._6NB,
-.game-tab[_ngcontent-ng-c942213636] mat-tab-group[_ngcontent-ng-c942213636] .mat-tab-body .mat-mdc-tab-body-content .last-balls-record ul li p._4WD,
-.game-tab[_ngcontent-ng-c942213636] mat-tab-group[_ngcontent-ng-c942213636] .mat-tab-body .mat-mdc-tab-body-content .last-balls-record ul li p._6WD {
+.game-tab[_ngcontent-ng-c942213636] .mat-tab-group .mat-tab-body .mat-mdc-tab-body-content .last-balls-record ul li p._6,
+.game-tab[_ngcontent-ng-c942213636] .mat-tab-group .mat-tab-body .mat-mdc-tab-body-content .last-balls-record ul li p._4,
+.game-tab[_ngcontent-ng-c942213636] .mat-tab-group .mat-tab-body .mat-mdc-tab-body-content .last-balls-record ul li p._4NB,
+.game-tab[_ngcontent-ng-c942213636] .mat-tab-group .mat-tab-body .mat-mdc-tab-body-content .last-balls-record ul li p._6NB,
+.game-tab[_ngcontent-ng-c942213636] .mat-tab-group .mat-tab-body .mat-mdc-tab-body-content .last-balls-record ul li p._4WD,
+.game-tab[_ngcontent-ng-c942213636] .mat-tab-group .mat-tab-body .mat-mdc-tab-body-content .last-balls-record ul li p._6WD {
     background-color: var(--green-color)
 }
 
-.game-tab[_ngcontent-ng-c942213636] mat-tab-group[_ngcontent-ng-c942213636] .mat-tab-body .mat-mdc-tab-body-content .last-balls-record ul li p._NB,
-.game-tab[_ngcontent-ng-c942213636] mat-tab-group[_ngcontent-ng-c942213636] .mat-tab-body .mat-mdc-tab-body-content .last-balls-record ul li p._1NB,
-.game-tab[_ngcontent-ng-c942213636] mat-tab-group[_ngcontent-ng-c942213636] .mat-tab-body .mat-mdc-tab-body-content .last-balls-record ul li p._2NB,
-.game-tab[_ngcontent-ng-c942213636] mat-tab-group[_ngcontent-ng-c942213636] .mat-tab-body .mat-mdc-tab-body-content .last-balls-record ul li p._3NB,
-.game-tab[_ngcontent-ng-c942213636] mat-tab-group[_ngcontent-ng-c942213636] .mat-tab-body .mat-mdc-tab-body-content .last-balls-record ul li p._5NB {
+.game-tab[_ngcontent-ng-c942213636] .mat-tab-group .mat-tab-body .mat-mdc-tab-body-content .last-balls-record ul li p._NB,
+.game-tab[_ngcontent-ng-c942213636] .mat-tab-group .mat-tab-body .mat-mdc-tab-body-content .last-balls-record ul li p._1NB,
+.game-tab[_ngcontent-ng-c942213636] .mat-tab-group .mat-tab-body .mat-mdc-tab-body-content .last-balls-record ul li p._2NB,
+.game-tab[_ngcontent-ng-c942213636] .mat-tab-group .mat-tab-body .mat-mdc-tab-body-content .last-balls-record ul li p._3NB,
+.game-tab[_ngcontent-ng-c942213636] .mat-tab-group .mat-tab-body .mat-mdc-tab-body-content .last-balls-record ul li p._5NB {
     background-color: var(--red-color)
 }
 
-.game-tab[_ngcontent-ng-c942213636] mat-tab-group[_ngcontent-ng-c942213636] .mat-tab-body .mat-mdc-tab-body-content .last-balls-record ul li p._WD,
-.game-tab[_ngcontent-ng-c942213636] mat-tab-group[_ngcontent-ng-c942213636] .mat-tab-body .mat-mdc-tab-body-content .last-balls-record ul li p._1WD,
-.game-tab[_ngcontent-ng-c942213636] mat-tab-group[_ngcontent-ng-c942213636] .mat-tab-body .mat-mdc-tab-body-content .last-balls-record ul li p._2WD,
-.game-tab[_ngcontent-ng-c942213636] mat-tab-group[_ngcontent-ng-c942213636] .mat-tab-body .mat-mdc-tab-body-content .last-balls-record ul li p._3WD,
-.game-tab[_ngcontent-ng-c942213636] mat-tab-group[_ngcontent-ng-c942213636] .mat-tab-body .mat-mdc-tab-body-content .last-balls-record ul li p._5WD {
+.game-tab[_ngcontent-ng-c942213636] .mat-tab-group .mat-tab-body .mat-mdc-tab-body-content .last-balls-record ul li p._WD,
+.game-tab[_ngcontent-ng-c942213636] .mat-tab-group .mat-tab-body .mat-mdc-tab-body-content .last-balls-record ul li p._1WD,
+.game-tab[_ngcontent-ng-c942213636] .mat-tab-group .mat-tab-body .mat-mdc-tab-body-content .last-balls-record ul li p._2WD,
+.game-tab[_ngcontent-ng-c942213636] .mat-tab-group .mat-tab-body .mat-mdc-tab-body-content .last-balls-record ul li p._3WD,
+.game-tab[_ngcontent-ng-c942213636] .mat-tab-group .mat-tab-body .mat-mdc-tab-body-content .last-balls-record ul li p._5WD {
     background-color: var(--yellow-color)
 }
 
-.game-tab[_ngcontent-ng-c942213636] mat-tab-group[_ngcontent-ng-c942213636] .mat-tab-body .mat-mdc-tab-body-content .score-wrap .batting-team,
-.game-tab[_ngcontent-ng-c942213636] mat-tab-group[_ngcontent-ng-c942213636] .mat-tab-body .mat-mdc-tab-body-content .score-wrap .bowling-team {
+.game-tab[_ngcontent-ng-c942213636] .mat-tab-group .mat-tab-body .mat-mdc-tab-body-content .score-wrap .batting-team,
+.game-tab[_ngcontent-ng-c942213636] .mat-tab-group .mat-tab-body .mat-mdc-tab-body-content .score-wrap .bowling-team {
     display: flex;
     align-items: flex-start;
     flex-direction: row;
@@ -4120,35 +4122,35 @@ input[type=number] {
     align-items: center
 }
 
-.game-tab[_ngcontent-ng-c942213636] mat-tab-group[_ngcontent-ng-c942213636] .mat-tab-body .mat-mdc-tab-body-content .score-wrap .batting-team p,
-.game-tab[_ngcontent-ng-c942213636] mat-tab-group[_ngcontent-ng-c942213636] .mat-tab-body .mat-mdc-tab-body-content .score-wrap .bowling-team p {
+.game-tab[_ngcontent-ng-c942213636] .mat-tab-group .mat-tab-body .mat-mdc-tab-body-content .score-wrap .batting-team p,
+.game-tab[_ngcontent-ng-c942213636] .mat-tab-group .mat-tab-body .mat-mdc-tab-body-content .score-wrap .bowling-team p {
     font-size: 10px;
     color: var(--primary-color-contrast)
 }
 
-.game-tab[_ngcontent-ng-c942213636] mat-tab-group[_ngcontent-ng-c942213636] .mat-tab-body .mat-mdc-tab-body-content .score-wrap .batting-team p .run-rates,
-.game-tab[_ngcontent-ng-c942213636] mat-tab-group[_ngcontent-ng-c942213636] .mat-tab-body .mat-mdc-tab-body-content .score-wrap .bowling-team p .run-rates {
+.game-tab[_ngcontent-ng-c942213636] .mat-tab-group .mat-tab-body .mat-mdc-tab-body-content .score-wrap .batting-team p .run-rates,
+.game-tab[_ngcontent-ng-c942213636] .mat-tab-group .mat-tab-body .mat-mdc-tab-body-content .score-wrap .bowling-team p .run-rates {
     font-family: open_semiBold
 }
 
-.game-tab[_ngcontent-ng-c942213636] mat-tab-group[_ngcontent-ng-c942213636] .mat-tab-body .mat-mdc-tab-body-content .score-wrap .batting-team .team-infowrap,
-.game-tab[_ngcontent-ng-c942213636] mat-tab-group[_ngcontent-ng-c942213636] .mat-tab-body .mat-mdc-tab-body-content .score-wrap .bowling-team .team-infowrap {
+.game-tab[_ngcontent-ng-c942213636] .mat-tab-group .mat-tab-body .mat-mdc-tab-body-content .score-wrap .batting-team .team-infowrap,
+.game-tab[_ngcontent-ng-c942213636] .mat-tab-group .mat-tab-body .mat-mdc-tab-body-content .score-wrap .bowling-team .team-infowrap {
     display: flex;
     align-items: flex-start;
     column-gap: 5px;
     flex-direction: column
 }
 
-.game-tab[_ngcontent-ng-c942213636] mat-tab-group[_ngcontent-ng-c942213636] .mat-tab-body .mat-mdc-tab-body-content .score-wrap .batting-team .team-infowrap small,
-.game-tab[_ngcontent-ng-c942213636] mat-tab-group[_ngcontent-ng-c942213636] .mat-tab-body .mat-mdc-tab-body-content .score-wrap .bowling-team .team-infowrap small {
+.game-tab[_ngcontent-ng-c942213636] .mat-tab-group .mat-tab-body .mat-mdc-tab-body-content .score-wrap .batting-team .team-infowrap small,
+.game-tab[_ngcontent-ng-c942213636] .mat-tab-group .mat-tab-body .mat-mdc-tab-body-content .score-wrap .bowling-team .team-infowrap small {
     font-size: 12px
 }
 
-.game-tab[_ngcontent-ng-c942213636] mat-tab-group[_ngcontent-ng-c942213636] .mat-tab-body .mat-mdc-tab-body-content .score-wrap .bowling-team {
+.game-tab[_ngcontent-ng-c942213636] .mat-tab-group .mat-tab-body .mat-mdc-tab-body-content .score-wrap .bowling-team {
     flex-direction: row-reverse
 }
 
-.game-tab[_ngcontent-ng-c942213636] mat-tab-group[_ngcontent-ng-c942213636] .mat-tab-body .mat-mdc-tab-body-content .score-wrap .bowling-team .team-infowrap {
+.game-tab[_ngcontent-ng-c942213636] .mat-tab-group .mat-tab-body .mat-mdc-tab-body-content .score-wrap .bowling-team .team-infowrap {
     align-items: flex-end
 }
 
@@ -8966,7 +8968,7 @@ svg.mdc-button__icon {
 }
 
 .mat-sidenav-container .left-sidemenu[_ngcontent-ng-c967272132] .sidemenu-header[_ngcontent-ng-c967272132] {
-    bQckground-color: var(--primary-color)
+    background-color: var(--primary-color)
 }
 
 .mat-sidenav-container .left-sidemenu[_ngcontent-ng-c967272132] .sidemenu-header[_ngcontent-ng-c967272132] .logo[_ngcontent-ng-c967272132] {

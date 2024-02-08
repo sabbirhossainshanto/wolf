@@ -1,5 +1,78 @@
+import axios from "axios";
+import { useEffect, useState } from "react";
+import { API } from "../../api";
+import { useParams } from "react-router-dom";
+import { token } from "../../api/token";
+import MatchOdds from "./GameType/MatchOdds";
+import Bookmaker from "./GameType/Bookmaker";
+import Fancy from "./GameType/Fancy";
+
 /* eslint-disable react/no-unknown-property */
 const GameDetails = () => {
+  const { eventId, eventTypeId } = useParams();
+  const [data, setData] = useState([]);
+  const [match_odds, setMatch_odds] = useState([]);
+  const [bookmarker, setBookmarker] = useState([]);
+  const [bookmarker2, setBookmarker2] = useState([]);
+  const [normal, setNormal] = useState([]);
+  const [fancy1, setFancy1] = useState([]);
+  const [overByOver, setOverByOver] = useState([]);
+
+  // console.log(eventId, eventTypeId);
+  /* Get game details */
+  useEffect(() => {
+    const getGameDetails = async () => {
+      const res = await axios.get(`${API.odds}/${eventTypeId}/${eventId}`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+      const data = res.data;
+      if (data.success) {
+        setData(data.result);
+      }
+    };
+    getGameDetails();
+    const intervalId = setInterval(getGameDetails, API.interval);
+    return () => clearInterval(intervalId);
+  }, [eventId, eventTypeId]);
+
+  /* Filtered all the game  */
+  useEffect(() => {
+    const filterMatch_odds = data?.filter(
+      (match_odd) => match_odd.btype === "MATCH_ODDS"
+    );
+    setMatch_odds(filterMatch_odds);
+
+    const bookmarkerFilter = data?.filter(
+      (bookmarker) => bookmarker.btype === "BOOKMAKER"
+    );
+    setBookmarker(bookmarkerFilter);
+
+    const filterBookmarker2 = data?.filter(
+      (bookmarker2) => bookmarker2.btype === "BOOKMAKER2"
+    );
+    setBookmarker2(filterBookmarker2);
+
+    const normalFilter = data?.filter(
+      (normal) => normal.btype === "FANCY" && normal.tabGroupName === "Normal"
+    );
+    setNormal(normalFilter);
+
+    const fancy1Filter = data?.filter(
+      (fancy1) => fancy1.btype === "ODDS" && fancy1.tabGroupName === "Fancy1"
+    );
+    setFancy1(fancy1Filter);
+
+    const overByOverFilter = data?.filter(
+      (overByOver) =>
+        overByOver.btype === "FANCY" &&
+        overByOver.tabGroupName === "Over By Over"
+    );
+    setOverByOver(overByOverFilter);
+  }, [data]);
+
+  // console.log(data);
   return (
     <>
       <div _ngcontent-ng-c942213636="" className="page-body">
@@ -13,7 +86,6 @@ const GameDetails = () => {
                 <button
                   _ngcontent-ng-c942213636=""
                   mat-icon-button=""
-                  mattooltipclassName="tournament-info"
                   mattooltipposition="below"
                   mattooltiphidedelay="1000"
                   tooltiptouchgestures="on"
@@ -39,22 +111,20 @@ const GameDetails = () => {
               </div>
             </div>
           </div>
-          <mat-tab-group
+          <div
             _ngcontent-ng-c942213636=""
             ngskiphydration=""
             mat-stretch-tabs="true"
             disablepagination="true"
-            className="mat-mdc-tab-group mat-primary mat-mdc-tab-group-stretch-tabs"
-            // style="--mat-tab-animation-duration: 500ms"
+            className="mat-mdc-tab-group mat-tab-group mat-primary mat-mdc-tab-group-stretch-tabs"
+            /*  style="--mat-tab-animation-duration: 500ms" */
           >
-            <mat-tab-header className="mat-mdc-tab-header">
+            <div className="mat-mdc-tab-header mat-tab-header">
               <button
                 aria-hidden="true"
                 type="button"
                 mat-ripple=""
-                tabindex="-1"
                 className="mat-ripple mat-mdc-tab-header-pagination mat-mdc-tab-header-pagination-before mat-mdc-tab-header-pagination-disabled"
-                disabled=""
               >
                 <div className="mat-mdc-tab-header-pagination-chevron"></div>
               </button>
@@ -67,7 +137,6 @@ const GameDetails = () => {
                       cdkmonitorelementfocus=""
                       className="mdc-tab mat-mdc-tab mat-mdc-focus-indicator mdc-tab--active ng-star-inserted mdc-tab-indicator--active"
                       id="mat-tab-label-0-0"
-                      tabindex="0"
                       aria-posinset="1"
                       aria-setsize="3"
                       aria-controls="mat-tab-content-0-0"
@@ -92,7 +161,6 @@ const GameDetails = () => {
                       cdkmonitorelementfocus=""
                       className="mdc-tab mat-mdc-tab mat-mdc-focus-indicator ng-star-inserted"
                       id="mat-tab-label-0-1"
-                      tabindex="-1"
                       aria-posinset="2"
                       aria-setsize="3"
                       aria-controls="mat-tab-content-0-1"
@@ -126,7 +194,6 @@ const GameDetails = () => {
                       cdkmonitorelementfocus=""
                       className="mdc-tab mat-mdc-tab mat-mdc-focus-indicator mat-mdc-tab-disabled ng-star-inserted"
                       id="mat-tab-label-0-2"
-                      tabindex="-1"
                       aria-posinset="3"
                       aria-setsize="3"
                       aria-controls="mat-tab-content-0-2"
@@ -212,29 +279,26 @@ const GameDetails = () => {
                 aria-hidden="true"
                 type="button"
                 mat-ripple=""
-                tabindex="-1"
                 className="mat-ripple mat-mdc-tab-header-pagination mat-mdc-tab-header-pagination-after mat-mdc-tab-header-pagination-disabled"
-                disabled=""
               >
                 <div className="mat-mdc-tab-header-pagination-chevron"></div>
               </button>
-            </mat-tab-header>
+            </div>
             <div className="mat-mdc-tab-body-wrapper">
-              <mat-tab-body
+              <div
                 role="tabpanel"
-                className="mat-mdc-tab-body ng-tns-c737557735-1 mat-mdc-tab-body-active ng-star-inserted"
+                className="mat-mdc-tab-body mat-tab-body ng-tns-c737557735-1 mat-mdc-tab-body-active ng-star-inserted"
                 id="mat-tab-content-0-0"
                 aria-labelledby="mat-tab-label-0-0"
               >
                 <div
                   cdkscrollable=""
                   className="mat-mdc-tab-body-content ng-tns-c737557735-1 ng-trigger ng-trigger-translateTab"
-                  style={{transform:'none'}}
+                  style={{ transform: "none" }}
                 >
                   <div
                     _ngcontent-ng-c942213636=""
                     className="tab-body sports-tab ng-star-inserted"
-                    
                   >
                     <div
                       _ngcontent-ng-c942213636=""
@@ -253,7 +317,6 @@ const GameDetails = () => {
                       <iframe
                         _ngcontent-ng-c942213636=""
                         width="100%"
-                        frameborder="0"
                         src=""
                       ></iframe>
                     </div>
@@ -261,1693 +324,73 @@ const GameDetails = () => {
                       _ngcontent-ng-c942213636=""
                       className="mkt-tab-section"
                     >
-                      <ngcontainer
-                        _ngcontent-ng-c942213636=""
-                        className="ng-star-inserted"
-                      >
-                        <div
-                          _ngcontent-ng-c942213636=""
-                          className="bookmaker-card card-outer disableMo"
-                          id="NXDHP0C"
-                        >
-                          <div
-                            _ngcontent-ng-c942213636=""
-                            className="head-wrap"
-                          >
-                            <h2
-                              _ngcontent-ng-c942213636=""
-                              className="card-heading"
-                            >
-                              Match ODDS
-                            </h2>
-                            <button
-                              _ngcontent-ng-c942213636=""
-                              mat-button=""
-                              mat-ripple-loader-uninitialized=""
-                              mat-ripple-loader-class-name="mat-mdc-button-ripple"
-                              className="mdc-button mat-mdc-button mat-unthemed mat-mdc-button-base ng-star-inserted"
-                              mat-ripple-loader-disabled=""
-                              disabled="true"
-                            >
-                              <span className="mat-mdc-button-persistent-ripple mdc-button__ripple"></span>
-                              <span className="mdc-button__label">Cashout</span>
-                              <span className="mat-mdc-focus-indicator"></span>
-                              <span className="mat-mdc-button-touch-target"></span>
-                            </button>
-                          </div>
-                          <div
-                            _ngcontent-ng-c942213636=""
-                            className="card-header"
-                          >
-                            <h3
-                              _ngcontent-ng-c942213636=""
-                              className="card-title"
-                            >
-                              Min: 0 | Max: 0
-                            </h3>
-                            <div
-                              _ngcontent-ng-c942213636=""
-                              className="lay-back-wrap"
-                            >
-                              <h3
-                                _ngcontent-ng-c942213636=""
-                                className="back-bg"
-                              >
-                                Back
-                              </h3>
-                              <h3
-                                _ngcontent-ng-c942213636=""
-                                className="lay-bg"
-                              >
-                                Lay
-                              </h3>
-                            </div>
-                          </div>
-                          <div
-                            _ngcontent-ng-c942213636=""
-                            className="card-body"
-                          >
-                            <div
-                              _ngcontent-ng-c942213636=""
-                              className="data-wrap ng-star-inserted"
-                            >
-                              <div
-                                _ngcontent-ng-c942213636=""
-                                className="teamlist-info flex-row-left"
-                              >
-                                <h3
-                                  _ngcontent-ng-c942213636=""
-                                  className="team-title"
-                                >
-                                  Australia Women
-                                </h3>
-                              </div>
-                              <div
-                                _ngcontent-ng-c942213636=""
-                                className="count-v-wrap ng-star-inserted"
-                              >
-                                <button
-                                  _ngcontent-ng-c942213636=""
-                                  mat-flat-button=""
-                                  mat-ripple-loader-uninitialized=""
-                                  mat-ripple-loader-class-name="mat-mdc-button-ripple"
-                                  className="mdc-button mdc-button--unelevated mat-mdc-unelevated-button back-count count-value mat-unthemed mat-mdc-button-base ng-star-inserted"
-                                >
-                                  <span className="mat-mdc-button-persistent-ripple mdc-button__ripple"></span>
-                                  <span className="mdc-button__label">
-                                    <h4 _ngcontent-ng-c942213636="">1.17</h4>
-                                    <p _ngcontent-ng-c942213636="">
-                                      12.29
-                                    </p>{" "}
-                                  </span>
-                                  <span className="mat-mdc-focus-indicator"></span>
-                                  <span className="mat-mdc-button-touch-target"></span>
-                                </button>
-                                <button
-                                  _ngcontent-ng-c942213636=""
-                                  mat-flat-button=""
-                                  mat-ripple-loader-uninitialized=""
-                                  mat-ripple-loader-class-name="mat-mdc-button-ripple"
-                                  className="mdc-button mdc-button--unelevated mat-mdc-unelevated-button count-value lay-count mat-unthemed mat-mdc-button-base ng-star-inserted"
-                                >
-                                  <span className="mat-mdc-button-persistent-ripple mdc-button__ripple"></span>
-                                  <span className="mdc-button__label">
-                                    <h4 _ngcontent-ng-c942213636="">1.19</h4>
-                                    <p _ngcontent-ng-c942213636="">
-                                      444.96
-                                    </p>{" "}
-                                  </span>
-                                  <span className="mat-mdc-focus-indicator"></span>
-                                  <span className="mat-mdc-button-touch-target"></span>
-                                </button>
-                              </div>
-                            </div>
-                            <div
-                              _ngcontent-ng-c942213636=""
-                              className="data-wrap ng-star-inserted"
-                            >
-                              <div
-                                _ngcontent-ng-c942213636=""
-                                className="teamlist-info flex-row-left"
-                              >
-                                <h3
-                                  _ngcontent-ng-c942213636=""
-                                  className="team-title"
-                                >
-                                  South Africa Women
-                                </h3>
-                              </div>
-                              <div
-                                _ngcontent-ng-c942213636=""
-                                className="count-v-wrap ng-star-inserted"
-                              >
-                                <button
-                                  _ngcontent-ng-c942213636=""
-                                  mat-flat-button=""
-                                  mat-ripple-loader-uninitialized=""
-                                  mat-ripple-loader-class-name="mat-mdc-button-ripple"
-                                  className="mdc-button mdc-button--unelevated mat-mdc-unelevated-button back-count count-value mat-unthemed mat-mdc-button-base ng-star-inserted"
-                                >
-                                  <span className="mat-mdc-button-persistent-ripple mdc-button__ripple"></span>
-                                  <span className="mdc-button__label">
-                                    <h4 _ngcontent-ng-c942213636="">6.4</h4>
-                                    <p _ngcontent-ng-c942213636="">
-                                      73.31
-                                    </p>{" "}
-                                  </span>
-                                  <span className="mat-mdc-focus-indicator"></span>
-                                  <span className="mat-mdc-button-touch-target"></span>
-                                </button>
-                                <button
-                                  _ngcontent-ng-c942213636=""
-                                  mat-flat-button=""
-                                  mat-ripple-loader-uninitialized=""
-                                  mat-ripple-loader-class-name="mat-mdc-button-ripple"
-                                  className="mdc-button mdc-button--unelevated mat-mdc-unelevated-button count-value lay-count mat-unthemed mat-mdc-button-base ng-star-inserted"
-                                >
-                                  <span className="mat-mdc-button-persistent-ripple mdc-button__ripple"></span>
-                                  <span className="mdc-button__label">
-                                    <h4 _ngcontent-ng-c942213636="">7</h4>
-                                    <p _ngcontent-ng-c942213636="">2.05</p>{" "}
-                                  </span>
-                                  <span className="mat-mdc-focus-indicator"></span>
-                                  <span className="mat-mdc-button-touch-target"></span>
-                                </button>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      </ngcontainer>
-
-                      <ngcontainer
-                        _ngcontent-ng-c942213636=""
-                        className="ng-star-inserted"
-                      >
-                        <div
-                          _ngcontent-ng-c942213636=""
-                          className="bookmaker-card card-outer"
-                          id="YFXXHB0"
-                        >
-                          <div
-                            _ngcontent-ng-c942213636=""
-                            className="head-wrap"
-                          >
-                            <h2
-                              _ngcontent-ng-c942213636=""
-                              className="card-heading ng-star-inserted"
-                            >
-                              BOOKMAKER
-                            </h2>
-                            <button
-                              _ngcontent-ng-c942213636=""
-                              mat-button=""
-                              mat-ripple-loader-uninitialized=""
-                              mat-ripple-loader-class-name="mat-mdc-button-ripple"
-                              className="mdc-button mat-mdc-button mat-unthemed mat-mdc-button-base ng-star-inserted"
-                              mat-ripple-loader-disabled=""
-                              disabled="true"
-                            >
-                              <span className="mat-mdc-button-persistent-ripple mdc-button__ripple"></span>
-                              <span className="mdc-button__label">Cashout</span>
-                              <span className="mat-mdc-focus-indicator"></span>
-                              <span className="mat-mdc-button-touch-target"></span>
-                            </button>
-                          </div>
-                          <div
-                            _ngcontent-ng-c942213636=""
-                            className="card-header"
-                          >
-                            <h3
-                              _ngcontent-ng-c942213636=""
-                              className="card-title"
-                            >
-                              Min: 100 | Max: 5L
-                            </h3>
-                            <div
-                              _ngcontent-ng-c942213636=""
-                              className="lay-back-wrap"
-                            >
-                              <h3
-                                _ngcontent-ng-c942213636=""
-                                className="back-bg"
-                              >
-                                Back
-                              </h3>
-                              <h3
-                                _ngcontent-ng-c942213636=""
-                                className="lay-bg"
-                              >
-                                Lay
-                              </h3>
-                            </div>
-                          </div>
-                          <div
-                            _ngcontent-ng-c942213636=""
-                            className="card-body"
-                          >
-                            <div
-                              _ngcontent-ng-c942213636=""
-                              className="data-wrap ng-star-inserted"
-                            >
-                              <div
-                                _ngcontent-ng-c942213636=""
-                                className="teamlist-info flex-row-left"
-                              >
-                                <h3
-                                  _ngcontent-ng-c942213636=""
-                                  className="team-title"
-                                >
-                                  Sunrisers Eastern Cape
-                                </h3>
-                              </div>
-                              <div
-                                _ngcontent-ng-c942213636=""
-                                className="count-v-wrap ng-star-inserted"
-                               
-                              >
-                                <button
-                                  _ngcontent-ng-c942213636=""
-                                  mat-flat-button=""
-                                  mat-ripple-loader-uninitialized=""
-                                  mat-ripple-loader-class-name="mat-mdc-button-ripple"
-                                  className="mdc-button mdc-button--unelevated mat-mdc-unelevated-button back-count count-value mat-unthemed mat-mdc-button-base ng-star-inserted"
-                                  id="d67e0042e8277600f888897d3a4a8849:f05bb1104e8a7ec43d261c1c0e408764back1"
-                                >
-                                  <span className="mat-mdc-button-persistent-ripple mdc-button__ripple"></span>
-                                  <span className="mdc-button__label">
-                                    <h4 _ngcontent-ng-c942213636="">16</h4>{" "}
-                                  </span>
-                                  <span className="mat-mdc-focus-indicator"></span>
-                                  <span className="mat-mdc-button-touch-target"></span>
-                                </button>
-                                <button
-                                  _ngcontent-ng-c942213636=""
-                                  mat-flat-button=""
-                                  mat-ripple-loader-uninitialized=""
-                                  mat-ripple-loader-class-name="mat-mdc-button-ripple"
-                                  className="mdc-button mdc-button--unelevated mat-mdc-unelevated-button count-value lay-count mat-unthemed mat-mdc-button-base ng-star-inserted"
-                                  id="d67e0042e8277600f888897d3a4a8849:f05bb1104e8a7ec43d261c1c0e408764lay1"
-                                >
-                                  <span className="mat-mdc-button-persistent-ripple mdc-button__ripple"></span>
-                                  <span className="mdc-button__label">
-                                    <h4 _ngcontent-ng-c942213636="">18</h4>{" "}
-                                  </span>
-                                  <span className="mat-mdc-focus-indicator"></span>
-                                  <span className="mat-mdc-button-touch-target"></span>
-                                </button>
-                              </div>
-                            </div>
-
-                            <div
-                              _ngcontent-ng-c942213636=""
-                              className="data-wrap ng-star-inserted"
-                            >
-                              <div
-                                _ngcontent-ng-c942213636=""
-                                className="teamlist-info flex-row-left"
-                              >
-                                <h3
-                                  _ngcontent-ng-c942213636=""
-                                  className="team-title"
-                                >
-                                  Durban Super Giants
-                                </h3>
-                              </div>
-                              <div
-                                _ngcontent-ng-c942213636=""
-                                className="suspended-wrap ng-star-inserted"
-                              >
-                                <h4 _ngcontent-ng-c942213636="">Suspended</h4>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      </ngcontainer>
-                      <div
-                        _ngcontent-ng-c942213636=""
-                        className="fancy-card card-outer ng-star-inserted"
-                      >
-                        <div _ngcontent-ng-c942213636="" className="head-wrap">
-                          <h2
-                            _ngcontent-ng-c942213636=""
-                            className="card-heading"
-                          >
-                            Fancy
-                          </h2>
-                        </div>
-                        <div
-                          _ngcontent-ng-c942213636=""
-                          className="fancybody-header"
-                        >
-                          <h3
-                            _ngcontent-ng-c942213636=""
-                            className="card-title"
-                          >
-                            Min: 100 | Max: 1L
-                          </h3>
-                          <div
-                            _ngcontent-ng-c942213636=""
-                            className="fb-stitle"
-                          >
-                            <h3 _ngcontent-ng-c942213636="" className="lay-bg">
-                              No
-                            </h3>
-                            <h3 _ngcontent-ng-c942213636="" className="back-bg">
-                              Yes
-                            </h3>
-                          </div>
-                        </div>
-                        <div _ngcontent-ng-c942213636="" className="card-body">
-                          <div
-                            _ngcontent-ng-c942213636=""
-                            className="d-none data-wrap ng-star-inserted"
-                            id="5OverDSG"
-                          >
-                            <div
-                              _ngcontent-ng-c942213636=""
-                              className="teamlist-info"
-                            >
-                              <h3
-                                _ngcontent-ng-c942213636=""
-                                className="team-title"
-                              >
-                                5 Over DSG
-                              </h3>
-                            </div>
-                            <div
-                              _ngcontent-ng-c942213636=""
-                              className="ladder-datawrap dropdown-content"
-                            >
-                              <p
-                                _ngcontent-ng-c942213636=""
-                                className="fancy-head"
-                              >
-                                5 Over DSG
-                              </p>
-                              <div
-                                _ngcontent-ng-c942213636=""
-                                className="ld-header"
-                              >
-                                <div
-                                  _ngcontent-ng-c942213636=""
-                                  className="ld-data"
-                                >
-                                  <h3 _ngcontent-ng-c942213636="">Figure</h3>
-                                  <h3 _ngcontent-ng-c942213636="">Win/Loss</h3>
-                                </div>
-                              </div>
-                              <div
-                                _ngcontent-ng-c942213636=""
-                                className="ld-body"
-                              ></div>
-                              <div
-                                _ngcontent-ng-c942213636=""
-                                className="fancy-loader ng-star-inserted"
-                              >
-                                <div
-                                  _ngcontent-ng-c942213636=""
-                                  className="loader"
-                                ></div>
-                              </div>
-                            </div>
-                            <div
-                              _ngcontent-ng-c942213636=""
-                              className="count-v-wrap ng-star-inserted"
-                            >
-                              <button
-                                _ngcontent-ng-c942213636=""
-                                mat-flat-button=""
-                                mat-ripple-loader-uninitialized=""
-                                mat-ripple-loader-class-name="mat-mdc-button-ripple"
-                                className="mdc-button mdc-button--unelevated mat-mdc-unelevated-button count-value lay-count mat-unthemed mat-mdc-button-base"
-                              >
-                                <span className="mat-mdc-button-persistent-ripple mdc-button__ripple"></span>
-                                <span className="mdc-button__label">
-                                  <h4 _ngcontent-ng-c942213636="">15</h4>
-                                  <p _ngcontent-ng-c942213636="">200</p>{" "}
-                                </span>
-                                <span className="mat-mdc-focus-indicator"></span>
-                                <span className="mat-mdc-button-touch-target"></span>
-                              </button>
-                              <button
-                                _ngcontent-ng-c942213636=""
-                                mat-flat-button=""
-                                mat-ripple-loader-uninitialized=""
-                                mat-ripple-loader-class-name="mat-mdc-button-ripple"
-                                className="mdc-button mdc-button--unelevated mat-mdc-unelevated-button back-count count-value mat-unthemed mat-mdc-button-base"
-                              >
-                                <span className="mat-mdc-button-persistent-ripple mdc-button__ripple"></span>
-                                <span className="mdc-button__label">
-                                  <h4 _ngcontent-ng-c942213636="">15</h4>
-                                  <p _ngcontent-ng-c942213636="">130</p>{" "}
-                                </span>
-                                <span className="mat-mdc-focus-indicator"></span>
-                                <span className="mat-mdc-button-touch-target"></span>
-                              </button>
-                            </div>
-                          </div>
-                          <div
-                            _ngcontent-ng-c942213636=""
-                            className="d-none data-wrap ng-star-inserted"
-                            id="6OverDSG1"
-                          >
-                            <div
-                              _ngcontent-ng-c942213636=""
-                              className="teamlist-info"
-                            >
-                              <h3
-                                _ngcontent-ng-c942213636=""
-                                className="team-title"
-                              >
-                                6 Over DSG 1
-                              </h3>
-                            </div>
-                            <div
-                              _ngcontent-ng-c942213636=""
-                              className="ladder-datawrap dropdown-content"
-                            >
-                              <p
-                                _ngcontent-ng-c942213636=""
-                                className="fancy-head"
-                              >
-                                6 Over DSG 1
-                              </p>
-                              <div
-                                _ngcontent-ng-c942213636=""
-                                className="ld-header"
-                              >
-                                <div
-                                  _ngcontent-ng-c942213636=""
-                                  className="ld-data"
-                                >
-                                  <h3 _ngcontent-ng-c942213636="">Figure</h3>
-                                  <h3 _ngcontent-ng-c942213636="">Win/Loss</h3>
-                                </div>
-                              </div>
-                              <div
-                                _ngcontent-ng-c942213636=""
-                                className="ld-body"
-                              ></div>
-                              <div
-                                _ngcontent-ng-c942213636=""
-                                className="fancy-loader ng-star-inserted"
-                              >
-                                <div
-                                  _ngcontent-ng-c942213636=""
-                                  className="loader"
-                                ></div>
-                              </div>
-                            </div>
-                            <div
-                              _ngcontent-ng-c942213636=""
-                              className="suspended-wrap ng-star-inserted"
-                            >
-                              <h4 _ngcontent-ng-c942213636="">Ball Running</h4>
-                            </div>
-                          </div>
-                          <div
-                            _ngcontent-ng-c942213636=""
-                            className="data-wrap ng-star-inserted"
-                            id="7OverDSG"
-                          >
-                            <div
-                              _ngcontent-ng-c942213636=""
-                              className="teamlist-info"
-                            >
-                              <h3
-                                _ngcontent-ng-c942213636=""
-                                className="team-title"
-                              >
-                                7 Over DSG
-                              </h3>
-                            </div>
-                            <div
-                              _ngcontent-ng-c942213636=""
-                              className="ladder-datawrap dropdown-content"
-                            >
-                              <p
-                                _ngcontent-ng-c942213636=""
-                                className="fancy-head"
-                              >
-                                7 Over DSG
-                              </p>
-                              <div
-                                _ngcontent-ng-c942213636=""
-                                className="ld-header"
-                              >
-                                <div
-                                  _ngcontent-ng-c942213636=""
-                                  className="ld-data"
-                                >
-                                  <h3 _ngcontent-ng-c942213636="">Figure</h3>
-                                  <h3 _ngcontent-ng-c942213636="">Win/Loss</h3>
-                                </div>
-                              </div>
-                              <div
-                                _ngcontent-ng-c942213636=""
-                                className="ld-body"
-                              ></div>
-                              <div
-                                _ngcontent-ng-c942213636=""
-                                className="fancy-loader ng-star-inserted"
-                              >
-                                <div
-                                  _ngcontent-ng-c942213636=""
-                                  className="loader"
-                                ></div>
-                              </div>
-                            </div>
-                            <div
-                              _ngcontent-ng-c942213636=""
-                              className="count-v-wrap ng-star-inserted"
-                            
-                            >
-                              <button
-                                _ngcontent-ng-c942213636=""
-                                mat-flat-button=""
-                                mat-ripple-loader-uninitialized=""
-                                mat-ripple-loader-class-name="mat-mdc-button-ripple"
-                                className="mdc-button mdc-button--unelevated mat-mdc-unelevated-button count-value lay-count mat-unthemed mat-mdc-button-base"
-                              >
-                                <span className="mat-mdc-button-persistent-ripple mdc-button__ripple"></span>
-                                <span className="mdc-button__label">
-                                  <h4 _ngcontent-ng-c942213636="">25</h4>
-                                  <p _ngcontent-ng-c942213636="">100</p>{" "}
-                                </span>
-                                <span className="mat-mdc-focus-indicator"></span>
-                                <span className="mat-mdc-button-touch-target"></span>
-                              </button>
-                              <button
-                                _ngcontent-ng-c942213636=""
-                                mat-flat-button=""
-                                mat-ripple-loader-uninitialized=""
-                                mat-ripple-loader-class-name="mat-mdc-button-ripple"
-                                className="mdc-button mdc-button--unelevated mat-mdc-unelevated-button back-count count-value mat-unthemed mat-mdc-button-base"
-                              >
-                                <span className="mat-mdc-button-persistent-ripple mdc-button__ripple"></span>
-                                <span className="mdc-button__label">
-                                  <h4 _ngcontent-ng-c942213636="">26</h4>
-                                  <p _ngcontent-ng-c942213636="">100</p>{" "}
-                                </span>
-                                <span className="mat-mdc-focus-indicator"></span>
-                                <span className="mat-mdc-button-touch-target"></span>
-                              </button>
-                            </div>
-                          </div>
-                          <div
-                            _ngcontent-ng-c942213636=""
-                            className="data-wrap ng-star-inserted"
-                            id="10OverDSG1"
-                          >
-                            <div
-                              _ngcontent-ng-c942213636=""
-                              className="teamlist-info"
-                            >
-                              <h3
-                                _ngcontent-ng-c942213636=""
-                                className="team-title"
-                              >
-                                10 Over DSG 1
-                              </h3>
-                            </div>
-                            <div
-                              _ngcontent-ng-c942213636=""
-                              className="ladder-datawrap dropdown-content"
-                            >
-                              <p
-                                _ngcontent-ng-c942213636=""
-                                className="fancy-head"
-                              >
-                                10 Over DSG 1
-                              </p>
-                              <div
-                                _ngcontent-ng-c942213636=""
-                                className="ld-header"
-                              >
-                                <div
-                                  _ngcontent-ng-c942213636=""
-                                  className="ld-data"
-                                >
-                                  <h3 _ngcontent-ng-c942213636="">Figure</h3>
-                                  <h3 _ngcontent-ng-c942213636="">Win/Loss</h3>
-                                </div>
-                              </div>
-                              <div
-                                _ngcontent-ng-c942213636=""
-                                className="ld-body"
-                              ></div>
-                              <div
-                                _ngcontent-ng-c942213636=""
-                                className="fancy-loader ng-star-inserted"
-                              >
-                                <div
-                                  _ngcontent-ng-c942213636=""
-                                  className="loader"
-                                ></div>
-                              </div>
-                            </div>
-                            <div
-                              _ngcontent-ng-c942213636=""
-                              className="suspended-wrap ng-star-inserted"
-                             
-                            >
-                              <h4 _ngcontent-ng-c942213636="">Ball Running</h4>
-                            </div>
-                          </div>
-                          <div
-                            _ngcontent-ng-c942213636=""
-                            className="data-wrap ng-star-inserted"
-                            id="1st4WktDSG"
-                          >
-                            <div
-                              _ngcontent-ng-c942213636=""
-                              className="teamlist-info"
-                            >
-                              <h3
-                                _ngcontent-ng-c942213636=""
-                                className="team-title"
-                              >
-                                1st 4 Wkt DSG
-                              </h3>
-                            </div>
-                            <div
-                              _ngcontent-ng-c942213636=""
-                              className="ladder-datawrap dropdown-content"
-                            >
-                              <p
-                                _ngcontent-ng-c942213636=""
-                                className="fancy-head"
-                              >
-                                1st 4 Wkt DSG
-                              </p>
-                              <div
-                                _ngcontent-ng-c942213636=""
-                                className="ld-header"
-                              >
-                                <div
-                                  _ngcontent-ng-c942213636=""
-                                  className="ld-data"
-                                >
-                                  <h3 _ngcontent-ng-c942213636="">Figure</h3>
-                                  <h3 _ngcontent-ng-c942213636="">Win/Loss</h3>
-                                </div>
-                              </div>
-                              <div
-                                _ngcontent-ng-c942213636=""
-                                className="ld-body"
-                              ></div>
-                              <div
-                                _ngcontent-ng-c942213636=""
-                                className="fancy-loader ng-star-inserted"
-                              >
-                                <div
-                                  _ngcontent-ng-c942213636=""
-                                  className="loader"
-                                ></div>
-                              </div>
-                            </div>
-                            <div
-                              _ngcontent-ng-c942213636=""
-                              className="count-v-wrap ng-star-inserted"
-                           
-                            >
-                              <button
-                                _ngcontent-ng-c942213636=""
-                                mat-flat-button=""
-                                mat-ripple-loader-uninitialized=""
-                                mat-ripple-loader-class-name="mat-mdc-button-ripple"
-                                className="mdc-button mdc-button--unelevated mat-mdc-unelevated-button count-value lay-count mat-unthemed mat-mdc-button-base"
-                              >
-                                <span className="mat-mdc-button-persistent-ripple mdc-button__ripple"></span>
-                                <span className="mdc-button__label">
-                                  <h4 _ngcontent-ng-c942213636="">36</h4>
-                                  <p _ngcontent-ng-c942213636="">110</p>{" "}
-                                </span>
-                                <span className="mat-mdc-focus-indicator"></span>
-                                <span className="mat-mdc-button-touch-target"></span>
-                              </button>
-                              <button
-                                _ngcontent-ng-c942213636=""
-                                mat-flat-button=""
-                                mat-ripple-loader-uninitialized=""
-                                mat-ripple-loader-class-name="mat-mdc-button-ripple"
-                                className="mdc-button mdc-button--unelevated mat-mdc-unelevated-button back-count count-value mat-unthemed mat-mdc-button-base"
-                              >
-                                <span className="mat-mdc-button-persistent-ripple mdc-button__ripple"></span>
-                                <span className="mdc-button__label">
-                                  <h4 _ngcontent-ng-c942213636="">36</h4>
-                                  <p _ngcontent-ng-c942213636="">90</p>{" "}
-                                </span>
-                                <span className="mat-mdc-focus-indicator"></span>
-                                <span className="mat-mdc-button-touch-target"></span>
-                              </button>
-                            </div>
-                          </div>
-                          <div
-                            _ngcontent-ng-c942213636=""
-                            className="data-wrap ng-star-inserted"
-                            id="1st5WktDSG"
-                          >
-                            <div
-                              _ngcontent-ng-c942213636=""
-                              className="teamlist-info"
-                            >
-                              <h3
-                                _ngcontent-ng-c942213636=""
-                                className="team-title"
-                              >
-                                1st 5 Wkt DSG
-                              </h3>
-                            </div>
-                            <div
-                              _ngcontent-ng-c942213636=""
-                              className="ladder-datawrap dropdown-content"
-                            >
-                              <p
-                                _ngcontent-ng-c942213636=""
-                                className="fancy-head"
-                              >
-                                1st 5 Wkt DSG
-                              </p>
-                              <div
-                                _ngcontent-ng-c942213636=""
-                                className="ld-header"
-                              >
-                                <div
-                                  _ngcontent-ng-c942213636=""
-                                  className="ld-data"
-                                >
-                                  <h3 _ngcontent-ng-c942213636="">Figure</h3>
-                                  <h3 _ngcontent-ng-c942213636="">Win/Loss</h3>
-                                </div>
-                              </div>
-                              <div
-                                _ngcontent-ng-c942213636=""
-                                className="ld-body"
-                              ></div>
-                              <div
-                                _ngcontent-ng-c942213636=""
-                                className="fancy-loader ng-star-inserted"
-                              >
-                                <div
-                                  _ngcontent-ng-c942213636=""
-                                  className="loader"
-                                ></div>
-                              </div>
-                            </div>
-                            <div
-                              _ngcontent-ng-c942213636=""
-                              className="count-v-wrap ng-star-inserted"
-                             
-                            >
-                              <button
-                                _ngcontent-ng-c942213636=""
-                                mat-flat-button=""
-                                mat-ripple-loader-uninitialized=""
-                                mat-ripple-loader-class-name="mat-mdc-button-ripple"
-                                className="mdc-button mdc-button--unelevated mat-mdc-unelevated-button count-value lay-count rate-changing mat-unthemed mat-mdc-button-base"
-                              >
-                                <span className="mat-mdc-button-persistent-ripple mdc-button__ripple"></span>
-                                <span className="mdc-button__label">
-                                  <h4 _ngcontent-ng-c942213636="">65</h4>
-                                  <p _ngcontent-ng-c942213636="">110</p>{" "}
-                                </span>
-                                <span className="mat-mdc-focus-indicator"></span>
-                                <span className="mat-mdc-button-touch-target"></span>
-                              </button>
-                              <button
-                                _ngcontent-ng-c942213636=""
-                                mat-flat-button=""
-                                mat-ripple-loader-uninitialized=""
-                                mat-ripple-loader-class-name="mat-mdc-button-ripple"
-                                className="mdc-button mdc-button--unelevated mat-mdc-unelevated-button back-count count-value rate-changing mat-unthemed mat-mdc-button-base"
-                              >
-                                <span className="mat-mdc-button-persistent-ripple mdc-button__ripple"></span>
-                                <span className="mdc-button__label">
-                                  <h4 _ngcontent-ng-c942213636="">65</h4>
-                                  <p _ngcontent-ng-c942213636="">90</p>{" "}
-                                </span>
-                                <span className="mat-mdc-focus-indicator"></span>
-                                <span className="mat-mdc-button-touch-target"></span>
-                              </button>
-                            </div>
-                          </div>
-                          <div
-                            _ngcontent-ng-c942213636=""
-                            className="data-wrap ng-star-inserted"
-                            id="QdeKockRuns"
-                          >
-                            <div
-                              _ngcontent-ng-c942213636=""
-                              className="teamlist-info"
-                            >
-                              <h3
-                                _ngcontent-ng-c942213636=""
-                                className="team-title"
-                              >
-                                Q de Kock Runs
-                              </h3>
-                            </div>
-                            <div
-                              _ngcontent-ng-c942213636=""
-                              className="ladder-datawrap dropdown-content"
-                            >
-                              <p
-                                _ngcontent-ng-c942213636=""
-                                className="fancy-head"
-                              >
-                                Q de Kock Runs
-                              </p>
-                              <div
-                                _ngcontent-ng-c942213636=""
-                                className="ld-header"
-                              >
-                                <div
-                                  _ngcontent-ng-c942213636=""
-                                  className="ld-data"
-                                >
-                                  <h3 _ngcontent-ng-c942213636="">Figure</h3>
-                                  <h3 _ngcontent-ng-c942213636="">Win/Loss</h3>
-                                </div>
-                              </div>
-                              <div
-                                _ngcontent-ng-c942213636=""
-                                className="ld-body"
-                              ></div>
-                              <div
-                                _ngcontent-ng-c942213636=""
-                                className="fancy-loader ng-star-inserted"
-                              >
-                                <div
-                                  _ngcontent-ng-c942213636=""
-                                  className="loader"
-                                ></div>
-                              </div>
-                            </div>
-                            <div
-                              _ngcontent-ng-c942213636=""
-                              className="count-v-wrap ng-star-inserted"
-                             
-                            >
-                              <button
-                                _ngcontent-ng-c942213636=""
-                                mat-flat-button=""
-                                mat-ripple-loader-uninitialized=""
-                                mat-ripple-loader-class-name="mat-mdc-button-ripple"
-                                className="mdc-button mdc-button--unelevated mat-mdc-unelevated-button count-value lay-count mat-unthemed mat-mdc-button-base"
-                              >
-                                <span className="mat-mdc-button-persistent-ripple mdc-button__ripple"></span>
-                                <span className="mdc-button__label">
-                                  <h4 _ngcontent-ng-c942213636="">26</h4>
-                                  <p _ngcontent-ng-c942213636="">120</p>{" "}
-                                </span>
-                                <span className="mat-mdc-focus-indicator"></span>
-                                <span className="mat-mdc-button-touch-target"></span>
-                              </button>
-                              <button
-                                _ngcontent-ng-c942213636=""
-                                mat-flat-button=""
-                                mat-ripple-loader-uninitialized=""
-                                mat-ripple-loader-class-name="mat-mdc-button-ripple"
-                                className="mdc-button mdc-button--unelevated mat-mdc-unelevated-button back-count count-value mat-unthemed mat-mdc-button-base"
-                              >
-                                <span className="mat-mdc-button-persistent-ripple mdc-button__ripple"></span>
-                                <span className="mdc-button__label">
-                                  <h4 _ngcontent-ng-c942213636="">26</h4>
-                                  <p _ngcontent-ng-c942213636="">100</p>{" "}
-                                </span>
-                                <span className="mat-mdc-focus-indicator"></span>
-                                <span className="mat-mdc-button-touch-target"></span>
-                              </button>
-                            </div>
-                          </div>
-                          <div
-                            _ngcontent-ng-c942213636=""
-                            className="data-wrap ng-star-inserted"
-                            id="QdeKockBoundaries"
-                          >
-                            <div
-                              _ngcontent-ng-c942213636=""
-                              className="teamlist-info"
-                            >
-                              <h3
-                                _ngcontent-ng-c942213636=""
-                                className="team-title"
-                              >
-                                Q de Kock Boundaries
-                              </h3>
-                            </div>
-                            <div
-                              _ngcontent-ng-c942213636=""
-                              className="ladder-datawrap dropdown-content"
-                            >
-                              <p
-                                _ngcontent-ng-c942213636=""
-                                className="fancy-head"
-                              >
-                                Q de Kock Boundaries
-                              </p>
-                              <div
-                                _ngcontent-ng-c942213636=""
-                                className="ld-header"
-                              >
-                                <div
-                                  _ngcontent-ng-c942213636=""
-                                  className="ld-data"
-                                >
-                                  <h3 _ngcontent-ng-c942213636="">Figure</h3>
-                                  <h3 _ngcontent-ng-c942213636="">Win/Loss</h3>
-                                </div>
-                              </div>
-                              <div
-                                _ngcontent-ng-c942213636=""
-                                className="ld-body"
-                              ></div>
-                              <div
-                                _ngcontent-ng-c942213636=""
-                                className="fancy-loader ng-star-inserted"
-                              >
-                                <div
-                                  _ngcontent-ng-c942213636=""
-                                  className="loader"
-                                ></div>
-                              </div>
-                            </div>
-                            <div
-                              _ngcontent-ng-c942213636=""
-                              className="count-v-wrap ng-star-inserted"
-                             
-                            >
-                              <button
-                                _ngcontent-ng-c942213636=""
-                                mat-flat-button=""
-                                mat-ripple-loader-uninitialized=""
-                                mat-ripple-loader-class-name="mat-mdc-button-ripple"
-                                className="mdc-button mdc-button--unelevated mat-mdc-unelevated-button count-value lay-count mat-unthemed mat-mdc-button-base"
-                              >
-                                <span className="mat-mdc-button-persistent-ripple mdc-button__ripple"></span>
-                                <span className="mdc-button__label">
-                                  <h4 _ngcontent-ng-c942213636="">3</h4>
-                                  <p _ngcontent-ng-c942213636="">100</p>{" "}
-                                </span>
-                                <span className="mat-mdc-focus-indicator"></span>
-                                <span className="mat-mdc-button-touch-target"></span>
-                              </button>
-                              <button
-                                _ngcontent-ng-c942213636=""
-                                mat-flat-button=""
-                                mat-ripple-loader-uninitialized=""
-                                mat-ripple-loader-class-name="mat-mdc-button-ripple"
-                                className="mdc-button mdc-button--unelevated mat-mdc-unelevated-button back-count count-value mat-unthemed mat-mdc-button-base"
-                              >
-                                <span className="mat-mdc-button-persistent-ripple mdc-button__ripple"></span>
-                                <span className="mdc-button__label">
-                                  <h4 _ngcontent-ng-c942213636="">4</h4>
-                                  <p _ngcontent-ng-c942213636="">100</p>{" "}
-                                </span>
-                                <span className="mat-mdc-focus-indicator"></span>
-                                <span className="mat-mdc-button-touch-target"></span>
-                              </button>
-                            </div>
-                          </div>
-                          <div
-                            _ngcontent-ng-c942213636=""
-                            className="data-wrap ng-star-inserted"
-                            id="H.M.BFaceByQdeKock"
-                          >
-                            <div
-                              _ngcontent-ng-c942213636=""
-                              className="teamlist-info"
-                            >
-                              <h3
-                                _ngcontent-ng-c942213636=""
-                                className="team-title"
-                              >
-                                H.M.B Face By Q de Kock
-                              </h3>
-                            </div>
-                            <div
-                              _ngcontent-ng-c942213636=""
-                              className="ladder-datawrap dropdown-content"
-                            >
-                              <p
-                                _ngcontent-ng-c942213636=""
-                                className="fancy-head"
-                              >
-                                H.M.B Face By Q de Kock
-                              </p>
-                              <div
-                                _ngcontent-ng-c942213636=""
-                                className="ld-header"
-                              >
-                                <div
-                                  _ngcontent-ng-c942213636=""
-                                  className="ld-data"
-                                >
-                                  <h3 _ngcontent-ng-c942213636="">Figure</h3>
-                                  <h3 _ngcontent-ng-c942213636="">Win/Loss</h3>
-                                </div>
-                              </div>
-                              <div
-                                _ngcontent-ng-c942213636=""
-                                className="ld-body"
-                              ></div>
-                              <div
-                                _ngcontent-ng-c942213636=""
-                                className="fancy-loader ng-star-inserted"
-                              >
-                                <div
-                                  _ngcontent-ng-c942213636=""
-                                  className="loader"
-                                ></div>
-                              </div>
-                            </div>
-                            <div
-                              _ngcontent-ng-c942213636=""
-                              className="count-v-wrap ng-star-inserted"
-                            
-                            >
-                              <button
-                                _ngcontent-ng-c942213636=""
-                                mat-flat-button=""
-                                mat-ripple-loader-uninitialized=""
-                                mat-ripple-loader-class-name="mat-mdc-button-ripple"
-                                className="mdc-button mdc-button--unelevated mat-mdc-unelevated-button count-value lay-count mat-unthemed mat-mdc-button-base"
-                              >
-                                <span className="mat-mdc-button-persistent-ripple mdc-button__ripple"></span>
-                                <span className="mdc-button__label">
-                                  <h4 _ngcontent-ng-c942213636="">24</h4>
-                                  <p _ngcontent-ng-c942213636="">110</p>{" "}
-                                </span>
-                                <span className="mat-mdc-focus-indicator"></span>
-                                <span className="mat-mdc-button-touch-target"></span>
-                              </button>
-                              <button
-                                _ngcontent-ng-c942213636=""
-                                mat-flat-button=""
-                                mat-ripple-loader-uninitialized=""
-                                mat-ripple-loader-class-name="mat-mdc-button-ripple"
-                                className="mdc-button mdc-button--unelevated mat-mdc-unelevated-button back-count count-value mat-unthemed mat-mdc-button-base"
-                              >
-                                <span className="mat-mdc-button-persistent-ripple mdc-button__ripple"></span>
-                                <span className="mdc-button__label">
-                                  <h4 _ngcontent-ng-c942213636="">24</h4>
-                                  <p _ngcontent-ng-c942213636="">90</p>{" "}
-                                </span>
-                                <span className="mat-mdc-focus-indicator"></span>
-                                <span className="mat-mdc-button-touch-target"></span>
-                              </button>
-                            </div>
-                          </div>
-                          <div
-                            _ngcontent-ng-c942213636=""
-                            className="data-wrap ng-star-inserted"
-                            id="WMulderRuns"
-                          >
-                            <div
-                              _ngcontent-ng-c942213636=""
-                              className="teamlist-info"
-                            >
-                              <h3
-                                _ngcontent-ng-c942213636=""
-                                className="team-title"
-                              >
-                                W Mulder Runs
-                              </h3>
-                            </div>
-                            <div
-                              _ngcontent-ng-c942213636=""
-                              className="ladder-datawrap dropdown-content"
-                            >
-                              <p
-                                _ngcontent-ng-c942213636=""
-                                className="fancy-head"
-                              >
-                                W Mulder Runs
-                              </p>
-                              <div
-                                _ngcontent-ng-c942213636=""
-                                className="ld-header"
-                              >
-                                <div
-                                  _ngcontent-ng-c942213636=""
-                                  className="ld-data"
-                                >
-                                  <h3 _ngcontent-ng-c942213636="">Figure</h3>
-                                  <h3 _ngcontent-ng-c942213636="">Win/Loss</h3>
-                                </div>
-                              </div>
-                              <div
-                                _ngcontent-ng-c942213636=""
-                                className="ld-body"
-                              ></div>
-                              <div
-                                _ngcontent-ng-c942213636=""
-                                className="fancy-loader ng-star-inserted"
-                              >
-                                <div
-                                  _ngcontent-ng-c942213636=""
-                                  className="loader"
-                                ></div>
-                              </div>
-                            </div>
-                            <div
-                              _ngcontent-ng-c942213636=""
-                              className="count-v-wrap ng-star-inserted"
-                             
-                            >
-                              <button
-                                _ngcontent-ng-c942213636=""
-                                mat-flat-button=""
-                                mat-ripple-loader-uninitialized=""
-                                mat-ripple-loader-class-name="mat-mdc-button-ripple"
-                                className="mdc-button mdc-button--unelevated mat-mdc-unelevated-button count-value lay-count mat-unthemed mat-mdc-button-base"
-                              >
-                                <span className="mat-mdc-button-persistent-ripple mdc-button__ripple"></span>
-                                <span className="mdc-button__label">
-                                  <h4 _ngcontent-ng-c942213636="">18</h4>
-                                  <p _ngcontent-ng-c942213636="">115</p>{" "}
-                                </span>
-                                <span className="mat-mdc-focus-indicator"></span>
-                                <span className="mat-mdc-button-touch-target"></span>
-                              </button>
-                              <button
-                                _ngcontent-ng-c942213636=""
-                                mat-flat-button=""
-                                mat-ripple-loader-uninitialized=""
-                                mat-ripple-loader-class-name="mat-mdc-button-ripple"
-                                className="mdc-button mdc-button--unelevated mat-mdc-unelevated-button back-count count-value mat-unthemed mat-mdc-button-base"
-                              >
-                                <span className="mat-mdc-button-persistent-ripple mdc-button__ripple"></span>
-                                <span className="mdc-button__label">
-                                  <h4 _ngcontent-ng-c942213636="">18</h4>
-                                  <p _ngcontent-ng-c942213636="">85</p>{" "}
-                                </span>
-                                <span className="mat-mdc-focus-indicator"></span>
-                                <span className="mat-mdc-button-touch-target"></span>
-                              </button>
-                            </div>
-                          </div>
-                          <div
-                            _ngcontent-ng-c942213636=""
-                            className="data-wrap ng-star-inserted"
-                            id="WMulderBoundaries"
-                          >
-                            <div
-                              _ngcontent-ng-c942213636=""
-                              className="teamlist-info"
-                            >
-                              <h3
-                                _ngcontent-ng-c942213636=""
-                                className="team-title"
-                              >
-                                W Mulder Boundaries
-                              </h3>
-                            </div>
-                            <div
-                              _ngcontent-ng-c942213636=""
-                              className="ladder-datawrap dropdown-content"
-                            >
-                              <p
-                                _ngcontent-ng-c942213636=""
-                                className="fancy-head"
-                              >
-                                W Mulder Boundaries
-                              </p>
-                              <div
-                                _ngcontent-ng-c942213636=""
-                                className="ld-header"
-                              >
-                                <div
-                                  _ngcontent-ng-c942213636=""
-                                  className="ld-data"
-                                >
-                                  <h3 _ngcontent-ng-c942213636="">Figure</h3>
-                                  <h3 _ngcontent-ng-c942213636="">Win/Loss</h3>
-                                </div>
-                              </div>
-                              <div
-                                _ngcontent-ng-c942213636=""
-                                className="ld-body"
-                              ></div>
-                              <div
-                                _ngcontent-ng-c942213636=""
-                                className="fancy-loader ng-star-inserted"
-                              >
-                                <div
-                                  _ngcontent-ng-c942213636=""
-                                  className="loader"
-                                ></div>
-                              </div>
-                            </div>
-                            <div
-                              _ngcontent-ng-c942213636=""
-                              className="count-v-wrap ng-star-inserted"
-                             
-                            >
-                              <button
-                                _ngcontent-ng-c942213636=""
-                                mat-flat-button=""
-                                mat-ripple-loader-uninitialized=""
-                                mat-ripple-loader-class-name="mat-mdc-button-ripple"
-                                className="mdc-button mdc-button--unelevated mat-mdc-unelevated-button count-value lay-count mat-unthemed mat-mdc-button-base"
-                              >
-                                <span className="mat-mdc-button-persistent-ripple mdc-button__ripple"></span>
-                                <span className="mdc-button__label">
-                                  <h4 _ngcontent-ng-c942213636="">2</h4>
-                                  <p _ngcontent-ng-c942213636="">125</p>{" "}
-                                </span>
-                                <span className="mat-mdc-focus-indicator"></span>
-                                <span className="mat-mdc-button-touch-target"></span>
-                              </button>
-                              <button
-                                _ngcontent-ng-c942213636=""
-                                mat-flat-button=""
-                                mat-ripple-loader-uninitialized=""
-                                mat-ripple-loader-class-name="mat-mdc-button-ripple"
-                                className="mdc-button mdc-button--unelevated mat-mdc-unelevated-button back-count count-value mat-unthemed mat-mdc-button-base"
-                              >
-                                <span className="mat-mdc-button-persistent-ripple mdc-button__ripple"></span>
-                                <span className="mdc-button__label">
-                                  <h4 _ngcontent-ng-c942213636="">2</h4>
-                                  <p _ngcontent-ng-c942213636="">95</p>{" "}
-                                </span>
-                                <span className="mat-mdc-focus-indicator"></span>
-                                <span className="mat-mdc-button-touch-target"></span>
-                              </button>
-                            </div>
-                          </div>
-                          <div
-                            _ngcontent-ng-c942213636=""
-                            className="data-wrap ng-star-inserted"
-                            id="H.M.BFaceByWMulder"
-                          >
-                            <div
-                              _ngcontent-ng-c942213636=""
-                              className="teamlist-info"
-                            >
-                              <h3
-                                _ngcontent-ng-c942213636=""
-                                className="team-title"
-                              >
-                                H.M.B Face By W Mulder
-                              </h3>
-                            </div>
-                            <div
-                              _ngcontent-ng-c942213636=""
-                              className="ladder-datawrap dropdown-content"
-                            >
-                              <p
-                                _ngcontent-ng-c942213636=""
-                                className="fancy-head"
-                              >
-                                H.M.B Face By W Mulder
-                              </p>
-                              <div
-                                _ngcontent-ng-c942213636=""
-                                className="ld-header"
-                              >
-                                <div
-                                  _ngcontent-ng-c942213636=""
-                                  className="ld-data"
-                                >
-                                  <h3 _ngcontent-ng-c942213636="">Figure</h3>
-                                  <h3 _ngcontent-ng-c942213636="">Win/Loss</h3>
-                                </div>
-                              </div>
-                              <div
-                                _ngcontent-ng-c942213636=""
-                                className="ld-body"
-                              ></div>
-                              <div
-                                _ngcontent-ng-c942213636=""
-                                className="fancy-loader ng-star-inserted"
-                              >
-                                <div
-                                  _ngcontent-ng-c942213636=""
-                                  className="loader"
-                                ></div>
-                              </div>
-                            </div>
-                            <div
-                              _ngcontent-ng-c942213636=""
-                              className="count-v-wrap ng-star-inserted"
-                           
-                            >
-                              <button
-                                _ngcontent-ng-c942213636=""
-                                mat-flat-button=""
-                                mat-ripple-loader-uninitialized=""
-                                mat-ripple-loader-class-name="mat-mdc-button-ripple"
-                                className="mdc-button mdc-button--unelevated mat-mdc-unelevated-button count-value lay-count mat-unthemed mat-mdc-button-base"
-                              >
-                                <span className="mat-mdc-button-persistent-ripple mdc-button__ripple"></span>
-                                <span className="mdc-button__label">
-                                  <h4 _ngcontent-ng-c942213636="">24</h4>
-                                  <p _ngcontent-ng-c942213636="">110</p>{" "}
-                                </span>
-                                <span className="mat-mdc-focus-indicator"></span>
-                                <span className="mat-mdc-button-touch-target"></span>
-                              </button>
-                              <button
-                                _ngcontent-ng-c942213636=""
-                                mat-flat-button=""
-                                mat-ripple-loader-uninitialized=""
-                                mat-ripple-loader-class-name="mat-mdc-button-ripple"
-                                className="mdc-button mdc-button--unelevated mat-mdc-unelevated-button back-count count-value mat-unthemed mat-mdc-button-base"
-                              >
-                                <span className="mat-mdc-button-persistent-ripple mdc-button__ripple"></span>
-                                <span className="mdc-button__label">
-                                  <h4 _ngcontent-ng-c942213636="">24</h4>
-                                  <p _ngcontent-ng-c942213636="">90</p>{" "}
-                                </span>
-                                <span className="mat-mdc-focus-indicator"></span>
-                                <span className="mat-mdc-button-touch-target"></span>
-                              </button>
-                            </div>
-                          </div>
-                          <div
-                            _ngcontent-ng-c942213636=""
-                            className="data-wrap ng-star-inserted"
-                            id="4thWKTCaughtOutDSG@1"
-                          >
-                            <div
-                              _ngcontent-ng-c942213636=""
-                              className="teamlist-info"
-                            >
-                              <h3
-                                _ngcontent-ng-c942213636=""
-                                className="team-title"
-                              >
-                                4th WKT Caught Out DSG @ 1
-                              </h3>
-                            </div>
-                            <div
-                              _ngcontent-ng-c942213636=""
-                              className="ladder-datawrap dropdown-content"
-                            >
-                              <p
-                                _ngcontent-ng-c942213636=""
-                                className="fancy-head"
-                              >
-                                4th WKT Caught Out DSG @ 1
-                              </p>
-                              <div
-                                _ngcontent-ng-c942213636=""
-                                className="ld-header"
-                              >
-                                <div
-                                  _ngcontent-ng-c942213636=""
-                                  className="ld-data"
-                                >
-                                  <h3 _ngcontent-ng-c942213636="">Figure</h3>
-                                  <h3 _ngcontent-ng-c942213636="">Win/Loss</h3>
-                                </div>
-                              </div>
-                              <div
-                                _ngcontent-ng-c942213636=""
-                                className="ld-body"
-                              ></div>
-                              <div
-                                _ngcontent-ng-c942213636=""
-                                className="fancy-loader ng-star-inserted"
-                              >
-                                <div
-                                  _ngcontent-ng-c942213636=""
-                                  className="loader"
-                                ></div>
-                              </div>
-                            </div>
-                            <div
-                              _ngcontent-ng-c942213636=""
-                              className="count-v-wrap ng-star-inserted"
-                             
-                            >
-                              <button
-                                _ngcontent-ng-c942213636=""
-                                mat-flat-button=""
-                                mat-ripple-loader-uninitialized=""
-                                mat-ripple-loader-class-name="mat-mdc-button-ripple"
-                                className="mdc-button mdc-button--unelevated mat-mdc-unelevated-button count-value lay-count mat-unthemed mat-mdc-button-base"
-                              >
-                                <span className="mat-mdc-button-persistent-ripple mdc-button__ripple"></span>
-                                <span className="mdc-button__label">
-                                  <h4 _ngcontent-ng-c942213636="">1</h4>
-                                  <p _ngcontent-ng-c942213636="">50</p>{" "}
-                                </span>
-                                <span className="mat-mdc-focus-indicator"></span>
-                                <span className="mat-mdc-button-touch-target"></span>
-                              </button>
-                              <button
-                                _ngcontent-ng-c942213636=""
-                                mat-flat-button=""
-                                mat-ripple-loader-uninitialized=""
-                                mat-ripple-loader-class-name="mat-mdc-button-ripple"
-                                className="mdc-button mdc-button--unelevated mat-mdc-unelevated-button back-count count-value mat-unthemed mat-mdc-button-base"
-                              >
-                                <span className="mat-mdc-button-persistent-ripple mdc-button__ripple"></span>
-                                <span className="mdc-button__label">
-                                  <h4 _ngcontent-ng-c942213636="">1</h4>
-                                  <p _ngcontent-ng-c942213636="">40</p>{" "}
-                                </span>
-                                <span className="mat-mdc-focus-indicator"></span>
-                                <span className="mat-mdc-button-touch-target"></span>
-                              </button>
-                            </div>
-                          </div>
-                          <div
-                            _ngcontent-ng-c942213636=""
-                            className="data-wrap ng-star-inserted"
-                            id="4thWKTLostToDSGBalls"
-                          >
-                            <div
-                              _ngcontent-ng-c942213636=""
-                              className="teamlist-info"
-                            >
-                              <h3
-                                _ngcontent-ng-c942213636=""
-                                className="team-title"
-                              >
-                                4th WKT Lost To DSG Balls
-                              </h3>
-                            </div>
-                            <div
-                              _ngcontent-ng-c942213636=""
-                              className="ladder-datawrap dropdown-content"
-                            >
-                              <p
-                                _ngcontent-ng-c942213636=""
-                                className="fancy-head"
-                              >
-                                4th WKT Lost To DSG Balls
-                              </p>
-                              <div
-                                _ngcontent-ng-c942213636=""
-                                className="ld-header"
-                              >
-                                <div
-                                  _ngcontent-ng-c942213636=""
-                                  className="ld-data"
-                                >
-                                  <h3 _ngcontent-ng-c942213636="">Figure</h3>
-                                  <h3 _ngcontent-ng-c942213636="">Win/Loss</h3>
-                                </div>
-                              </div>
-                              <div
-                                _ngcontent-ng-c942213636=""
-                                className="ld-body"
-                              ></div>
-                              <div
-                                _ngcontent-ng-c942213636=""
-                                className="fancy-loader ng-star-inserted"
-                              >
-                                <div
-                                  _ngcontent-ng-c942213636=""
-                                  className="loader"
-                                ></div>
-                              </div>
-                            </div>
-                            <div
-                              _ngcontent-ng-c942213636=""
-                              className="count-v-wrap ng-star-inserted"
-                             
-                            >
-                              <button
-                                _ngcontent-ng-c942213636=""
-                                mat-flat-button=""
-                                mat-ripple-loader-uninitialized=""
-                                mat-ripple-loader-class-name="mat-mdc-button-ripple"
-                                className="mdc-button mdc-button--unelevated mat-mdc-unelevated-button count-value lay-count mat-unthemed mat-mdc-button-base"
-                              >
-                                <span className="mat-mdc-button-persistent-ripple mdc-button__ripple"></span>
-                                <span className="mdc-button__label">
-                                  <h4 _ngcontent-ng-c942213636="">54</h4>
-                                  <p _ngcontent-ng-c942213636="">110</p>{" "}
-                                </span>
-                                <span className="mat-mdc-focus-indicator"></span>
-                                <span className="mat-mdc-button-touch-target"></span>
-                              </button>
-                              <button
-                                _ngcontent-ng-c942213636=""
-                                mat-flat-button=""
-                                mat-ripple-loader-uninitialized=""
-                                mat-ripple-loader-class-name="mat-mdc-button-ripple"
-                                className="mdc-button mdc-button--unelevated mat-mdc-unelevated-button back-count count-value mat-unthemed mat-mdc-button-base"
-                              >
-                                <span className="mat-mdc-button-persistent-ripple mdc-button__ripple"></span>
-                                <span className="mdc-button__label">
-                                  <h4 _ngcontent-ng-c942213636="">54</h4>
-                                  <p _ngcontent-ng-c942213636="">90</p>{" "}
-                                </span>
-                                <span className="mat-mdc-focus-indicator"></span>
-                                <span className="mat-mdc-button-touch-target"></span>
-                              </button>
-                            </div>
-                          </div>
-                          <div
-                            _ngcontent-ng-c942213636=""
-                            className="data-wrap ng-star-inserted"
-                            id="4thWktPshipBoundariesDSG"
-                          >
-                            <div
-                              _ngcontent-ng-c942213636=""
-                              className="teamlist-info"
-                            >
-                              <h3
-                                _ngcontent-ng-c942213636=""
-                                className="team-title"
-                              >
-                                4th Wkt Pship Boundaries DSG
-                              </h3>
-                            </div>
-                            <div
-                              _ngcontent-ng-c942213636=""
-                              className="ladder-datawrap dropdown-content"
-                            >
-                              <p
-                                _ngcontent-ng-c942213636=""
-                                className="fancy-head"
-                              >
-                                4th Wkt Pship Boundaries DSG
-                              </p>
-                              <div
-                                _ngcontent-ng-c942213636=""
-                                className="ld-header"
-                              >
-                                <div
-                                  _ngcontent-ng-c942213636=""
-                                  className="ld-data"
-                                >
-                                  <h3 _ngcontent-ng-c942213636="">Figure</h3>
-                                  <h3 _ngcontent-ng-c942213636="">Win/Loss</h3>
-                                </div>
-                              </div>
-                              <div
-                                _ngcontent-ng-c942213636=""
-                                className="ld-body"
-                              ></div>
-                              <div
-                                _ngcontent-ng-c942213636=""
-                                className="fancy-loader ng-star-inserted"
-                              >
-                                <div
-                                  _ngcontent-ng-c942213636=""
-                                  className="loader"
-                                ></div>
-                              </div>
-                            </div>
-                            <div
-                              _ngcontent-ng-c942213636=""
-                              className="count-v-wrap ng-star-inserted"
-                             
-                            >
-                              <button
-                                _ngcontent-ng-c942213636=""
-                                mat-flat-button=""
-                                mat-ripple-loader-uninitialized=""
-                                mat-ripple-loader-class-name="mat-mdc-button-ripple"
-                                className="mdc-button mdc-button--unelevated mat-mdc-unelevated-button count-value lay-count mat-unthemed mat-mdc-button-base rate-changing"
-                              >
-                                <span className="mat-mdc-button-persistent-ripple mdc-button__ripple"></span>
-                                <span className="mdc-button__label">
-                                  <h4 _ngcontent-ng-c942213636="">2</h4>
-                                  <p _ngcontent-ng-c942213636="">100</p>{" "}
-                                </span>
-                                <span className="mat-mdc-focus-indicator"></span>
-                                <span className="mat-mdc-button-touch-target"></span>
-                              </button>
-                              <button
-                                _ngcontent-ng-c942213636=""
-                                mat-flat-button=""
-                                mat-ripple-loader-uninitialized=""
-                                mat-ripple-loader-class-name="mat-mdc-button-ripple"
-                                className="mdc-button mdc-button--unelevated mat-mdc-unelevated-button back-count count-value mat-unthemed mat-mdc-button-base rate-changing"
-                              >
-                                <span className="mat-mdc-button-persistent-ripple mdc-button__ripple"></span>
-                                <span className="mdc-button__label">
-                                  <h4 _ngcontent-ng-c942213636="">3</h4>
-                                  <p _ngcontent-ng-c942213636="">100</p>{" "}
-                                </span>
-                                <span className="mat-mdc-focus-indicator"></span>
-                                <span className="mat-mdc-button-touch-target"></span>
-                              </button>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
+                      <MatchOdds match_odd={match_odds} />
+                      <Bookmaker bookmarker={bookmarker} />
+                      <Fancy normal={normal} />
                     </div>
                   </div>
-                </div>{" "}
-              </mat-tab-body>
-              <mat-tab-body
+                </div>
+              </div>
+              <div
                 role="tabpanel"
-                className="mat-mdc-tab-body ng-tns-c737557735-2 ng-star-inserted"
+                className="mat-mdc-tab-body mat-tab-body ng-tns-c737557735-2 ng-star-inserted"
                 id="mat-tab-content-0-1"
                 aria-labelledby="mat-tab-label-0-1"
               >
                 <div
                   cdkscrollable=""
                   className="mat-mdc-tab-body-content ng-tns-c737557735-2 ng-trigger ng-trigger-translateTab"
-                  style={{transform:'translate3d(100%, 0px, 0px)',minHeight:'1px',visibility:'hidden'}}
-                ></div>{" "}
-              </mat-tab-body>
-              <mat-tab-body
+                  style={{
+                    transform: "translate3d(100%, 0px, 0px)",
+                    minHeight: "1px",
+                    visibility: "hidden",
+                  }}
+                ></div>
+              </div>
+              <div
                 role="tabpanel"
-                className="mat-mdc-tab-body ng-tns-c737557735-3 ng-star-inserted"
+                className="mat-mdc-tab-body mat-tab-body ng-tns-c737557735-3 ng-star-inserted"
                 id="mat-tab-content-0-2"
                 aria-labelledby="mat-tab-label-0-2"
               >
                 <div
                   cdkscrollable=""
                   className="mat-mdc-tab-body-content ng-tns-c737557735-3 ng-trigger ng-trigger-translateTab"
-                  style={{transform:'translate3d(100%, 0px, 0px)',minHeight:'1px',visibility:'hidden'}}
+                  style={{
+                    transform: "translate3d(100%, 0px, 0px)",
+                    minHeight: "1px",
+                    visibility: "hidden",
+                  }}
                 ></div>
-              </mat-tab-body>
+              </div>
             </div>
-          </mat-tab-group>
+          </div>
         </div>
       </div>
 
       {/*  <!-- betslip start --> */}
-      <div className="cdk-overlay-container">
+      <div style={{ display: "none" }} className="cdk-overlay-container">
         <div className="cdk-overlay-backdrop cdk-overlay-dark-backdrop cdk-overlay-backdrop-showing"></div>
         <div
           className="cdk-global-overlay-wrapper"
           dir="ltr"
-          style={{justifyContent:'center',alignItems:'flex-end'}}
+          style={{ justifyContent: "center", alignItems: "flex-end" }}
         >
           <div
             id="cdk-overlay-1"
             className="cdk-overlay-pane betslip-dialog"
-            style={{width:'calc(100% - 30px)',maxWidth:'400px',position:'static',marginBottom:'10px'}}
+            style={{
+              width: "calc(100% - 30px)",
+              maxWidth: "400px",
+              position: "static",
+              marginBottom: "10px",
+            }}
           >
             <div
-              tabindex="0"
               className="cdk-visually-hidden cdk-focus-trap-anchor"
               aria-hidden="true"
             ></div>
-            <mat-dialog-container
-              tabindex="-1"
+            <div
               className="mat-mdc-dialog-container mdc-dialog cdk-dialog-container mdc-dialog--open"
               id="mat-mdc-dialog-1"
               role="dialog"
@@ -1956,15 +399,12 @@ const GameDetails = () => {
             >
               <div className="mdc-dialog__container">
                 <div className="mat-mdc-dialog-surface mdc-dialog__surface">
-                  <app-betslip-dialog
-                    _nghost-ng-c2459892542=""
-                    className="ng-star-inserted"
-                  >
+                  <div _nghost-ng-c2459892542="" className="ng-star-inserted">
                     <div
                       _ngcontent-ng-c2459892542=""
                       className="betslip-modal forback"
                     >
-                      {/*   <!--forback // forlay --> */}
+                      {/* <!--forback // forlay --> */}
                       <div
                         _ngcontent-ng-c2459892542=""
                         className="modal-header"
@@ -2056,8 +496,7 @@ const GameDetails = () => {
                                 className="slip-btn notranslate mdc-button mdc-button--unelevated mat-mdc-unelevated-button mat-unthemed mat-mdc-button-base"
                                 mat-ripple-loader-uninitialized=""
                                 mat-ripple-loader-class-name="mat-mdc-button-ripple"
-                                mat-ripple-loader-disabled=""
-                                disabled="true"
+                                mat-ripple-loader-
                               >
                                 <span className="mat-mdc-button-persistent-ripple mdc-button__ripple"></span>
                                 <span className="mdc-button__label">
@@ -2178,7 +617,7 @@ const GameDetails = () => {
                           >
                             <h2
                               _ngcontent-ng-c2459892542=""
-                              style={{textTransform:'none'}}
+                              style={{ textTransform: "none" }}
                             >
                               Range: 100 to 5L
                             </h2>
@@ -2186,12 +625,11 @@ const GameDetails = () => {
                         </div>
                       </div>
                     </div>
-                  </app-betslip-dialog>
+                  </div>
                 </div>
               </div>
-            </mat-dialog-container>
+            </div>
             <div
-              tabindex="0"
               className="cdk-visually-hidden cdk-focus-trap-anchor"
               aria-hidden="true"
             ></div>

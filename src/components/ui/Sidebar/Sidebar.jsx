@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 import useContextState from "../../../hooks/useContextState";
 import { useRef } from "react";
 import useCloseModalClickOutside from "../../../hooks/useCloseModalClickOutside";
-
+import { motion } from "framer-motion"
 /* eslint-disable react/no-unknown-property */
 const Sidebar = () => {
   const { showSidebar, setShowSidebar } = useContextState();
@@ -19,8 +19,12 @@ const Sidebar = () => {
       opened="false"
       className="mat-drawer mat-sidenav left-sidemenu ng-tns-c3816625663-0 ng-trigger ng-trigger-transform mat-drawer-over ng-star-inserted"
       style={{
-        transform: "none",
+        transform: 'none',
         visibility: `${showSidebar ? "visible" : "hidden"}`,
+     
+        animationDuration:'3s',
+        transition: 'width 3s ease',
+      
       }}
     >
       {/* <span
@@ -148,21 +152,21 @@ const Sidebar = () => {
                   </button>
                 </div>
               </li>
-              <Link
-                onClick={() => setShowSidebar(false)}
-                to="/profile"
-                _ngcontent-ng-c967272132=""
-                className="smenu-item"
-              >
-                <a _ngcontent-ng-c967272132="" className="smenu-link">
+              <li _ngcontent-ng-c967272132="" className="smenu-item">
+                <Link
+                  to="/profile"
+                  onClick={() => setShowSidebar(false)}
+                  _ngcontent-ng-c967272132=""
+                  className="smenu-link"
+                >
                   <img
                     _ngcontent-ng-c967272132=""
                     alt="Menu Icon"
                     src="https://ss.manage63.com/bmk-wl/commonAssets/sidenav_profile.svg"
                   />
                   <span _ngcontent-ng-c967272132="">Profile</span>
-                </a>
-              </Link>
+                </Link>
+              </li>
               <li
                 _ngcontent-ng-c967272132=""
                 routerlinkactive="active-link"
@@ -215,21 +219,21 @@ const Sidebar = () => {
                   <span _ngcontent-ng-c967272132="">Notifications</span>
                 </a>
               </li>
-              <Link
-              onClick={()=> setShowSidebar(false)}
-                _ngcontent-ng-c967272132=""
-             to='/rules'
-                className="smenu-item"
-              >
-                <a _ngcontent-ng-c967272132="" className="smenu-link">
+              <li _ngcontent-ng-c967272132="" className="smenu-item">
+                <Link
+                  onClick={() => setShowSidebar(false)}
+                  to="/rules"
+                  _ngcontent-ng-c967272132=""
+                  className="smenu-link"
+                >
                   <img
                     _ngcontent-ng-c967272132=""
                     alt="Menu Icon"
                     src="https://ss.manage63.com/bmk-wl/commonAssets/sidenav_rules.svg"
                   />
                   <span _ngcontent-ng-c967272132="">Rules</span>
-                </a>
-              </Link>
+                </Link>
+              </li>
               <li
                 _ngcontent-ng-c967272132=""
                 className="smenu-item ng-star-inserted"
@@ -283,7 +287,7 @@ const Sidebar = () => {
                     _ngcontent-ng-c967272132=""
                     className="btn outline-btn app-dwnld-btn notranslate"
                   >
-                    <mat-icon
+                    <span
                       _ngcontent-ng-c967272132=""
                       role="img"
                       className="mat-icon notranslate material-icons mat-ligature-font mat-icon-no-color"
@@ -291,7 +295,7 @@ const Sidebar = () => {
                       data-mat-icon-type="font"
                     >
                       download
-                    </mat-icon>
+                    </span>
                     Download App
                   </button>
                 </div>

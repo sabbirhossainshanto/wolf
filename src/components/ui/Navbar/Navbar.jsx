@@ -11,25 +11,25 @@ const Navbar = () => {
         <div _ngcontent-ng-c3243547741="" className="header-wrapper top-header">
           <div _ngcontent-ng-c3243547741="" className="logo">
             <span
+            
               onClick={() => setShowSidebar(true)}
               _ngcontent-ng-c3243547741=""
               role="img"
               className="mat-icon notranslate material-icons mat-ligature-font mat-icon-no-color ng-star-inserted"
               aria-hidden="true"
               data-mat-icon-type="font"
-              style={{ cursor: "pointer" }}
+              style={{ cursor: "pointer",color:'white' }}
             >
               menu
             </span>
-         <Link to='/'>
-         <img
-              _ngcontent-ng-c3243547741=""
-              alt="logo"
-              src="https://ss.manage63.com/bmk-wl/wl/wolf365/img/logo.svg"
-              className="ng-star-inserted"
-            />
-         </Link>
-       
+            <Link to="/">
+              <img
+                _ngcontent-ng-c3243547741=""
+                alt="logo"
+                src="https://ss.manage63.com/bmk-wl/wl/wolf365/img/logo.svg"
+                className="ng-star-inserted"
+              />
+            </Link>
           </div>
           <div _ngcontent-ng-c3243547741="" className="header-right-cont">
             <div

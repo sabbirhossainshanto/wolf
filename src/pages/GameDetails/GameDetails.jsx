@@ -334,16 +334,7 @@ const GameDetails = () => {
                       _ngcontent-ng-c942213636=""
                       className="live-match-screen ng-star-inserted"
                     >
-                      <mat-icon
-                        _ngcontent-ng-c942213636=""
-                        role="img"
-                        title="Pin"
-                        className="mat-icon notranslate sticky-icon material-icons mat-ligature-font mat-icon-no-color"
-                        aria-hidden="true"
-                        data-mat-icon-type="font"
-                      >
-                        push_pin
-                      </mat-icon>
+                  
                       <iframe
                         _ngcontent-ng-c942213636=""
                         style={{

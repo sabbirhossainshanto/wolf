@@ -893,14 +893,14 @@ body[color-theme=electricblue] {
 @font-face {
     font-family: open_bold;
 
-    src: url(/assets/font/OpenSans-Bold.ttf) format("truetype");
+    src: url(assets/font/OpenSans-Bold.ttf) format("truetype");
     font-weight: 700;
     font-style: normal
 }
 
 @font-face {
     font-family: open_semiBold;
-    src: url(/assets/font/OpenSans-SemiBold.ttf) format("truetype");
+    src: url(assets/font/OpenSans-SemiBold.ttf) format("truetype");
     font-weight: 500;
     font-style: normal
 }
@@ -908,7 +908,7 @@ body[color-theme=electricblue] {
 @font-face {
     font-family: open_regular;
 
-    src: url(/assets/font/OpenSans-Regular.ttf) format("truetype");
+    src: url(assets/font/OpenSans-Regular.ttf) format("truetype");
     font-weight: 400;
     font-style: normal
 }
@@ -916,7 +916,7 @@ body[color-theme=electricblue] {
 @font-face {
     font-family: open_light;
 
-    src: url(/assets/font/OpenSans-Light.ttf) format("truetype");
+    src: url(assets/font/OpenSans-Light.ttf) format("truetype");
     font-weight: 300;
     font-style: normal
 }
@@ -2248,20 +2248,20 @@ mat-form-field input[type=number] {
     display: none
 }
 
-mat-tab-header {
+.mat-tab-header {
     background-color: var(--primary-color)
 }
 
-mat-tab-header .mat-mdc-tab-header-pagination-chevron {
+.mat-tab-header .mat-mdc-tab-header-pagination-chevron {
     border-color: var(--primary-color-contrast)
 }
 
-mat-tab-header .mat-mdc-tab-label-container .mat-mdc-tab.mdc-tab--active:hover .mdc-tab-indicator__content--underline,
-mat-tab-header .mat-mdc-tab-label-container .mat-mdc-tab.mdc-tab--active:focus .mdc-tab-indicator__content--underline {
+.mat-tab-header .mat-mdc-tab-label-container .mat-mdc-tab.mdc-tab--active:hover .mdc-tab-indicator__content--underline,
+.mat-tab-header .mat-mdc-tab-label-container .mat-mdc-tab.mdc-tab--active:focus .mdc-tab-indicator__content--underline {
     border-color: var(--highlight-color)
 }
 
-mat-tab-header .mat-mdc-tab-label-container .mat-mdc-tab {
+.mat-tab-header .mat-mdc-tab-label-container .mat-mdc-tab {
     height: 40px;
     font-size: 10px;
     font-family: open_semibold;
@@ -2269,11 +2269,11 @@ mat-tab-header .mat-mdc-tab-label-container .mat-mdc-tab {
     text-transform: uppercase
 }
 
-mat-tab-header .mat-mdc-tab-label-container .mat-mdc-tab.mdc-tab-indicator--active .mdc-tab-indicator__content--underline {
+.mat-tab-header .mat-mdc-tab-label-container .mat-mdc-tab.mdc-tab-indicator--active .mdc-tab-indicator__content--underline {
     opacity: .85
 }
 
-mat-tab-header .mat-mdc-tab-label-container .mat-mdc-tab .mdc-tab-indicator__content--underline {
+.mat-tab-header .mat-mdc-tab-label-container .mat-mdc-tab .mdc-tab-indicator__content--underline {
     max-width: 60%;
     border-radius: 6px 6px 0 0;
     border-color: var(--highlight-color);
@@ -2651,7 +2651,6 @@ input[type=number] {
     direction: ltr;
     -webkit-font-feature-settings: 'liga';
     -webkit-font-smoothing: antialiased;
-  
 }
 
 
@@ -2755,9 +2754,7 @@ input[type=number] {
     outline: 0;
     box-sizing: border-box;
     overflow-y: auto;
-    transform: translate3d(-100%, 0, 0);
-
-    
+    transform: translate3d(-100%, 0, 0)
 }
 
 .cdk-high-contrast-active .mat-drawer,
@@ -3140,12 +3137,12 @@ input[type=number] {
     min-height: calc(var(--vh, 1vh) * 100 - 165px)
 }
 
-.game-tab[_ngcontent-ng-c942213636] .mat-tab-group mat-tab-header .mat-tab-label-container .mat-tab-labels {
+.game-tab[_ngcontent-ng-c942213636] .mat-tab-group .mat-tab-header .mat-tab-label-container .mat-tab-labels {
     width: 100%;
     justify-content: space-around
 }
 
-.game-tab[_ngcontent-ng-c942213636] .mat-tab-group mat-tab-header .mat-tab-label-container .mat-tab-labels .mat-tab-label {
+.game-tab[_ngcontent-ng-c942213636] .mat-tab-group .mat-tab-header .mat-tab-label-container .mat-tab-labels .mat-tab-label {
     height: 40px;
     min-width: auto;
     padding: 0 15px;
@@ -3155,11 +3152,11 @@ input[type=number] {
     font-size: 12px
 }
 
-.game-tab[_ngcontent-ng-c942213636] .mat-tab-group mat-tab-header .mat-tab-label-container .mat-tab-labels .mat-tab-label.mat-tab-label-active {
+.game-tab[_ngcontent-ng-c942213636] .mat-tab-group .mat-tab-header .mat-tab-label-container .mat-tab-labels .mat-tab-label.mat-tab-label-active {
     color: var(--primary-color)
 }
 
-.game-tab[_ngcontent-ng-c942213636] .mat-tab-group mat-tab-header .mat-tab-label-container .mat-ink-bar {
+.game-tab[_ngcontent-ng-c942213636] .mat-tab-group .mat-tab-header .mat-tab-label-container .mat-ink-bar {
     background-color: var(--primary-color)
 }
 
@@ -3799,21 +3796,21 @@ input[type=number] {
     border-radius: 0
 }
 
-.game-tab[_ngcontent-ng-c942213636] .mat-tab-group .mat-tab-body .mat-mdc-tab-body-content .mkt-tab-section mat-tab-group mat-tab-header {
+.game-tab[_ngcontent-ng-c942213636] .mat-tab-group .mat-tab-body .mat-mdc-tab-body-content .mkt-tab-section mat-tab-group .mat-tab-header {
     background-color: transparent;
     border-bottom: 0;
     background-color: var(--primary-color)
 }
 
-.game-tab[_ngcontent-ng-c942213636] .mat-tab-group .mat-tab-body .mat-mdc-tab-body-content .mkt-tab-section mat-tab-group mat-tab-header mat-ink-bar {
+.game-tab[_ngcontent-ng-c942213636] .mat-tab-group .mat-tab-body .mat-mdc-tab-body-content .mkt-tab-section mat-tab-group .mat-tab-header mat-ink-bar {
     display: none
 }
 
-.game-tab[_ngcontent-ng-c942213636] .mat-tab-group .mat-tab-body .mat-mdc-tab-body-content .mkt-tab-section mat-tab-group mat-tab-header .mat-tab-label-container .mat-tab-list .mat-tab-labels {
+.game-tab[_ngcontent-ng-c942213636] .mat-tab-group .mat-tab-body .mat-mdc-tab-body-content .mkt-tab-section mat-tab-group .mat-tab-header .mat-tab-label-container .mat-tab-list .mat-tab-labels {
     justify-content: center
 }
 
-.game-tab[_ngcontent-ng-c942213636] .mat-tab-group .mat-tab-body .mat-mdc-tab-body-content .mkt-tab-section mat-tab-group mat-tab-header .mat-tab-label-container .mat-tab-list .mat-tab-label {
+.game-tab[_ngcontent-ng-c942213636] .mat-tab-group .mat-tab-body .mat-mdc-tab-body-content .mkt-tab-section mat-tab-group .mat-tab-header .mat-tab-label-container .mat-tab-list .mat-tab-label {
     background-color: transparent;
     margin-right: 10px;
     height: 30px;
@@ -3823,7 +3820,7 @@ input[type=number] {
     font-size: 12px
 }
 
-.game-tab[_ngcontent-ng-c942213636] .mat-tab-group .mat-tab-body .mat-mdc-tab-body-content .mkt-tab-section mat-tab-group mat-tab-header .mat-tab-label-container .mat-tab-list .mat-tab-label.mat-tab-label-active {
+.game-tab[_ngcontent-ng-c942213636] .mat-tab-group .mat-tab-body .mat-mdc-tab-body-content .mkt-tab-section mat-tab-group .mat-tab-header .mat-tab-label-container .mat-tab-list .mat-tab-label.mat-tab-label-active {
     border-bottom: 1px solid var(--primary-color);
     color: var(--primary-color)
 }
@@ -4715,7 +4712,7 @@ mat-tab-header[_ngcontent-ng-c942213636] .mat-mdc-tab-label-container[_ngcontent
     display: none
 }
 
-.bethistory-tabs mat-tab-header {
+.bethistory-tabs .mat-tab-header {
     position: sticky !important;
     top: 0;
     background-color: var(--primary-color);
@@ -4723,11 +4720,11 @@ mat-tab-header[_ngcontent-ng-c942213636] .mat-mdc-tab-label-container[_ngcontent
     border-top: 1px solid rgba(255, 255, 255, .6)
 }
 
-.bethistory-tabs mat-tab-header .mat-tab-label-container .mat-tab-labels .mat-tab-label {
+.bethistory-tabs .mat-tab-header .mat-tab-label-container .mat-tab-labels .mat-tab-label {
     text-transform: capitalize !important
 }
 
-.bethistory-tabs mat-tab-header .mat-tab-label-container .mat-tab-labels .mat-tab-label.mat-tab-label-active {
+.bethistory-tabs .mat-tab-header .mat-tab-label-container .mat-tab-labels .mat-tab-label.mat-tab-label-active {
     background-color: var(--primary-color);
     color: var(--white-color) !important
 }

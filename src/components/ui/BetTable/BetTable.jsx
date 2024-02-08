@@ -1,11 +1,7 @@
 import { useNavigate } from "react-router-dom";
-import useContextState from "../../../hooks/useContextState";
 import { FaStar } from "react-icons/fa";
-
-import moment from "moment";
 /* eslint-disable react/no-unknown-property */
 const BetTable = ({ data, keys }) => {
-  const { sportsType } = useContextState();
   const navigate = useNavigate();
   const navigateGameList = (keys) => {
     navigate(`/game-details/${data[keys]?.eventTypeId}/${keys}`);
@@ -13,7 +9,9 @@ const BetTable = ({ data, keys }) => {
 
   return (
     <>
-      <div _ngcontent-ng-c943649379="" className="table-item ng-star-inserted">
+      <div  
+          onClick={() => navigateGameList(keys)}
+      _ngcontent-ng-c943649379="" className="table-item ng-star-inserted">
         <div _ngcontent-ng-c943649379="" className="teamlist-info">
           <div _ngcontent-ng-c943649379="" className="match-time">
             {data[keys]?.inPlay === 1 ? (

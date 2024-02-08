@@ -1,12 +1,14 @@
 /* eslint-disable react/no-unknown-property */
-
 const GameDetails = () => {
   return (
     <>
       <div _ngcontent-ng-c942213636="" className="page-body">
         <div _ngcontent-ng-c942213636="" className="game-tab ng-star-inserted">
           <div _ngcontent-ng-c942213636="" className="pagetop-bar">
-            <div _ngcontent-ng-c942213636="" className="team-play-bar title-bar">
+            <div
+              _ngcontent-ng-c942213636=""
+              className="team-play-bar title-bar"
+            >
               <div _ngcontent-ng-c942213636="" className="playing-teams">
                 <button
                   _ngcontent-ng-c942213636=""
@@ -37,15 +39,15 @@ const GameDetails = () => {
               </div>
             </div>
           </div>
-          <div
+          <mat-tab-group
             _ngcontent-ng-c942213636=""
             ngskiphydration=""
             mat-stretch-tabs="true"
             disablepagination="true"
-            className="mat-tab-group mat-mdc-tab-group mat-primary mat-mdc-tab-group-stretch-tabs"
+            className="mat-mdc-tab-group mat-primary mat-mdc-tab-group-stretch-tabs"
             // style="--mat-tab-animation-duration: 500ms"
           >
-            <div className="mat-tab-header mat-mdc-tab-header">
+            <mat-tab-header className="mat-mdc-tab-header">
               <button
                 aria-hidden="true"
                 type="button"
@@ -216,11 +218,11 @@ const GameDetails = () => {
               >
                 <div className="mat-mdc-tab-header-pagination-chevron"></div>
               </button>
-            </div>
+            </mat-tab-header>
             <div className="mat-mdc-tab-body-wrapper">
-              <div
+              <mat-tab-body
                 role="tabpanel"
-                className="mat-tab-body mat-mdc-tab-body ng-tns-c737557735-1 mat-mdc-tab-body-active ng-star-inserted"
+                className="mat-mdc-tab-body ng-tns-c737557735-1 mat-mdc-tab-body-active ng-star-inserted"
                 id="mat-tab-content-0-0"
                 aria-labelledby="mat-tab-label-0-0"
               >
@@ -232,7 +234,7 @@ const GameDetails = () => {
                   <div
                     _ngcontent-ng-c942213636=""
                     className="tab-body sports-tab ng-star-inserted"
-                  
+                    
                   >
                     <div
                       _ngcontent-ng-c942213636=""
@@ -255,17 +257,23 @@ const GameDetails = () => {
                         src=""
                       ></iframe>
                     </div>
-                    <div _ngcontent-ng-c942213636="" className="mkt-tab-section">
-                      <div
+                    <div
+                      _ngcontent-ng-c942213636=""
+                      className="mkt-tab-section"
+                    >
+                      <ngcontainer
                         _ngcontent-ng-c942213636=""
-                        className="ngcontainer ng-star-inserted"
+                        className="ng-star-inserted"
                       >
                         <div
                           _ngcontent-ng-c942213636=""
                           className="bookmaker-card card-outer disableMo"
                           id="NXDHP0C"
                         >
-                          <div _ngcontent-ng-c942213636="" className="head-wrap">
+                          <div
+                            _ngcontent-ng-c942213636=""
+                            className="head-wrap"
+                          >
                             <h2
                               _ngcontent-ng-c942213636=""
                               className="card-heading"
@@ -287,23 +295,38 @@ const GameDetails = () => {
                               <span className="mat-mdc-button-touch-target"></span>
                             </button>
                           </div>
-                          <div _ngcontent-ng-c942213636="" className="card-header">
-                            <h3 _ngcontent-ng-c942213636="" className="card-title">
+                          <div
+                            _ngcontent-ng-c942213636=""
+                            className="card-header"
+                          >
+                            <h3
+                              _ngcontent-ng-c942213636=""
+                              className="card-title"
+                            >
                               Min: 0 | Max: 0
                             </h3>
                             <div
                               _ngcontent-ng-c942213636=""
                               className="lay-back-wrap"
                             >
-                              <h3 _ngcontent-ng-c942213636="" className="back-bg">
+                              <h3
+                                _ngcontent-ng-c942213636=""
+                                className="back-bg"
+                              >
                                 Back
                               </h3>
-                              <h3 _ngcontent-ng-c942213636="" className="lay-bg">
+                              <h3
+                                _ngcontent-ng-c942213636=""
+                                className="lay-bg"
+                              >
                                 Lay
                               </h3>
                             </div>
                           </div>
-                          <div _ngcontent-ng-c942213636="" className="card-body">
+                          <div
+                            _ngcontent-ng-c942213636=""
+                            className="card-body"
+                          >
                             <div
                               _ngcontent-ng-c942213636=""
                               className="data-wrap ng-star-inserted"
@@ -414,18 +437,21 @@ const GameDetails = () => {
                             </div>
                           </div>
                         </div>
-                      </div>
+                      </ngcontainer>
 
-                      <div
+                      <ngcontainer
                         _ngcontent-ng-c942213636=""
-                        className="ngcontainer ng-star-inserted"
+                        className="ng-star-inserted"
                       >
                         <div
                           _ngcontent-ng-c942213636=""
                           className="bookmaker-card card-outer"
                           id="YFXXHB0"
                         >
-                          <div _ngcontent-ng-c942213636="" className="head-wrap">
+                          <div
+                            _ngcontent-ng-c942213636=""
+                            className="head-wrap"
+                          >
                             <h2
                               _ngcontent-ng-c942213636=""
                               className="card-heading ng-star-inserted"
@@ -447,23 +473,38 @@ const GameDetails = () => {
                               <span className="mat-mdc-button-touch-target"></span>
                             </button>
                           </div>
-                          <div _ngcontent-ng-c942213636="" className="card-header">
-                            <h3 _ngcontent-ng-c942213636="" className="card-title">
+                          <div
+                            _ngcontent-ng-c942213636=""
+                            className="card-header"
+                          >
+                            <h3
+                              _ngcontent-ng-c942213636=""
+                              className="card-title"
+                            >
                               Min: 100 | Max: 5L
                             </h3>
                             <div
                               _ngcontent-ng-c942213636=""
                               className="lay-back-wrap"
                             >
-                              <h3 _ngcontent-ng-c942213636="" className="back-bg">
+                              <h3
+                                _ngcontent-ng-c942213636=""
+                                className="back-bg"
+                              >
                                 Back
                               </h3>
-                              <h3 _ngcontent-ng-c942213636="" className="lay-bg">
+                              <h3
+                                _ngcontent-ng-c942213636=""
+                                className="lay-bg"
+                              >
                                 Lay
                               </h3>
                             </div>
                           </div>
-                          <div _ngcontent-ng-c942213636="" className="card-body">
+                          <div
+                            _ngcontent-ng-c942213636=""
+                            className="card-body"
+                          >
                             <div
                               _ngcontent-ng-c942213636=""
                               className="data-wrap ng-star-inserted"
@@ -482,7 +523,7 @@ const GameDetails = () => {
                               <div
                                 _ngcontent-ng-c942213636=""
                                 className="count-v-wrap ng-star-inserted"
-                             
+                               
                               >
                                 <button
                                   _ngcontent-ng-c942213636=""
@@ -541,13 +582,16 @@ const GameDetails = () => {
                             </div>
                           </div>
                         </div>
-                      </div>
+                      </ngcontainer>
                       <div
                         _ngcontent-ng-c942213636=""
                         className="fancy-card card-outer ng-star-inserted"
                       >
                         <div _ngcontent-ng-c942213636="" className="head-wrap">
-                          <h2 _ngcontent-ng-c942213636="" className="card-heading">
+                          <h2
+                            _ngcontent-ng-c942213636=""
+                            className="card-heading"
+                          >
                             Fancy
                           </h2>
                         </div>
@@ -555,10 +599,16 @@ const GameDetails = () => {
                           _ngcontent-ng-c942213636=""
                           className="fancybody-header"
                         >
-                          <h3 _ngcontent-ng-c942213636="" className="card-title">
+                          <h3
+                            _ngcontent-ng-c942213636=""
+                            className="card-title"
+                          >
                             Min: 100 | Max: 1L
                           </h3>
-                          <div _ngcontent-ng-c942213636="" className="fb-stitle">
+                          <div
+                            _ngcontent-ng-c942213636=""
+                            className="fb-stitle"
+                          >
                             <h3 _ngcontent-ng-c942213636="" className="lay-bg">
                               No
                             </h3>
@@ -588,7 +638,10 @@ const GameDetails = () => {
                               _ngcontent-ng-c942213636=""
                               className="ladder-datawrap dropdown-content"
                             >
-                              <p _ngcontent-ng-c942213636="" className="fancy-head">
+                              <p
+                                _ngcontent-ng-c942213636=""
+                                className="fancy-head"
+                              >
                                 5 Over DSG
                               </p>
                               <div
@@ -673,7 +726,10 @@ const GameDetails = () => {
                               _ngcontent-ng-c942213636=""
                               className="ladder-datawrap dropdown-content"
                             >
-                              <p _ngcontent-ng-c942213636="" className="fancy-head">
+                              <p
+                                _ngcontent-ng-c942213636=""
+                                className="fancy-head"
+                              >
                                 6 Over DSG 1
                               </p>
                               <div
@@ -729,7 +785,10 @@ const GameDetails = () => {
                               _ngcontent-ng-c942213636=""
                               className="ladder-datawrap dropdown-content"
                             >
-                              <p _ngcontent-ng-c942213636="" className="fancy-head">
+                              <p
+                                _ngcontent-ng-c942213636=""
+                                className="fancy-head"
+                              >
                                 7 Over DSG
                               </p>
                               <div
@@ -761,7 +820,7 @@ const GameDetails = () => {
                             <div
                               _ngcontent-ng-c942213636=""
                               className="count-v-wrap ng-star-inserted"
-                          
+                            
                             >
                               <button
                                 _ngcontent-ng-c942213636=""
@@ -815,7 +874,10 @@ const GameDetails = () => {
                               _ngcontent-ng-c942213636=""
                               className="ladder-datawrap dropdown-content"
                             >
-                              <p _ngcontent-ng-c942213636="" className="fancy-head">
+                              <p
+                                _ngcontent-ng-c942213636=""
+                                className="fancy-head"
+                              >
                                 10 Over DSG 1
                               </p>
                               <div
@@ -847,7 +909,7 @@ const GameDetails = () => {
                             <div
                               _ngcontent-ng-c942213636=""
                               className="suspended-wrap ng-star-inserted"
-                         
+                             
                             >
                               <h4 _ngcontent-ng-c942213636="">Ball Running</h4>
                             </div>
@@ -872,7 +934,10 @@ const GameDetails = () => {
                               _ngcontent-ng-c942213636=""
                               className="ladder-datawrap dropdown-content"
                             >
-                              <p _ngcontent-ng-c942213636="" className="fancy-head">
+                              <p
+                                _ngcontent-ng-c942213636=""
+                                className="fancy-head"
+                              >
                                 1st 4 Wkt DSG
                               </p>
                               <div
@@ -904,7 +969,7 @@ const GameDetails = () => {
                             <div
                               _ngcontent-ng-c942213636=""
                               className="count-v-wrap ng-star-inserted"
-                             
+                           
                             >
                               <button
                                 _ngcontent-ng-c942213636=""
@@ -958,7 +1023,10 @@ const GameDetails = () => {
                               _ngcontent-ng-c942213636=""
                               className="ladder-datawrap dropdown-content"
                             >
-                              <p _ngcontent-ng-c942213636="" className="fancy-head">
+                              <p
+                                _ngcontent-ng-c942213636=""
+                                className="fancy-head"
+                              >
                                 1st 5 Wkt DSG
                               </p>
                               <div
@@ -990,7 +1058,7 @@ const GameDetails = () => {
                             <div
                               _ngcontent-ng-c942213636=""
                               className="count-v-wrap ng-star-inserted"
-                              
+                             
                             >
                               <button
                                 _ngcontent-ng-c942213636=""
@@ -1044,7 +1112,10 @@ const GameDetails = () => {
                               _ngcontent-ng-c942213636=""
                               className="ladder-datawrap dropdown-content"
                             >
-                              <p _ngcontent-ng-c942213636="" className="fancy-head">
+                              <p
+                                _ngcontent-ng-c942213636=""
+                                className="fancy-head"
+                              >
                                 Q de Kock Runs
                               </p>
                               <div
@@ -1076,7 +1147,7 @@ const GameDetails = () => {
                             <div
                               _ngcontent-ng-c942213636=""
                               className="count-v-wrap ng-star-inserted"
-                              
+                             
                             >
                               <button
                                 _ngcontent-ng-c942213636=""
@@ -1130,7 +1201,10 @@ const GameDetails = () => {
                               _ngcontent-ng-c942213636=""
                               className="ladder-datawrap dropdown-content"
                             >
-                              <p _ngcontent-ng-c942213636="" className="fancy-head">
+                              <p
+                                _ngcontent-ng-c942213636=""
+                                className="fancy-head"
+                              >
                                 Q de Kock Boundaries
                               </p>
                               <div
@@ -1162,7 +1236,7 @@ const GameDetails = () => {
                             <div
                               _ngcontent-ng-c942213636=""
                               className="count-v-wrap ng-star-inserted"
-                              
+                             
                             >
                               <button
                                 _ngcontent-ng-c942213636=""
@@ -1216,7 +1290,10 @@ const GameDetails = () => {
                               _ngcontent-ng-c942213636=""
                               className="ladder-datawrap dropdown-content"
                             >
-                              <p _ngcontent-ng-c942213636="" className="fancy-head">
+                              <p
+                                _ngcontent-ng-c942213636=""
+                                className="fancy-head"
+                              >
                                 H.M.B Face By Q de Kock
                               </p>
                               <div
@@ -1248,7 +1325,7 @@ const GameDetails = () => {
                             <div
                               _ngcontent-ng-c942213636=""
                               className="count-v-wrap ng-star-inserted"
-                              
+                            
                             >
                               <button
                                 _ngcontent-ng-c942213636=""
@@ -1302,7 +1379,10 @@ const GameDetails = () => {
                               _ngcontent-ng-c942213636=""
                               className="ladder-datawrap dropdown-content"
                             >
-                              <p _ngcontent-ng-c942213636="" className="fancy-head">
+                              <p
+                                _ngcontent-ng-c942213636=""
+                                className="fancy-head"
+                              >
                                 W Mulder Runs
                               </p>
                               <div
@@ -1334,7 +1414,7 @@ const GameDetails = () => {
                             <div
                               _ngcontent-ng-c942213636=""
                               className="count-v-wrap ng-star-inserted"
-                              
+                             
                             >
                               <button
                                 _ngcontent-ng-c942213636=""
@@ -1388,7 +1468,10 @@ const GameDetails = () => {
                               _ngcontent-ng-c942213636=""
                               className="ladder-datawrap dropdown-content"
                             >
-                              <p _ngcontent-ng-c942213636="" className="fancy-head">
+                              <p
+                                _ngcontent-ng-c942213636=""
+                                className="fancy-head"
+                              >
                                 W Mulder Boundaries
                               </p>
                               <div
@@ -1420,7 +1503,7 @@ const GameDetails = () => {
                             <div
                               _ngcontent-ng-c942213636=""
                               className="count-v-wrap ng-star-inserted"
-                              
+                             
                             >
                               <button
                                 _ngcontent-ng-c942213636=""
@@ -1474,7 +1557,10 @@ const GameDetails = () => {
                               _ngcontent-ng-c942213636=""
                               className="ladder-datawrap dropdown-content"
                             >
-                              <p _ngcontent-ng-c942213636="" className="fancy-head">
+                              <p
+                                _ngcontent-ng-c942213636=""
+                                className="fancy-head"
+                              >
                                 H.M.B Face By W Mulder
                               </p>
                               <div
@@ -1506,7 +1592,7 @@ const GameDetails = () => {
                             <div
                               _ngcontent-ng-c942213636=""
                               className="count-v-wrap ng-star-inserted"
-                              
+                           
                             >
                               <button
                                 _ngcontent-ng-c942213636=""
@@ -1560,7 +1646,10 @@ const GameDetails = () => {
                               _ngcontent-ng-c942213636=""
                               className="ladder-datawrap dropdown-content"
                             >
-                              <p _ngcontent-ng-c942213636="" className="fancy-head">
+                              <p
+                                _ngcontent-ng-c942213636=""
+                                className="fancy-head"
+                              >
                                 4th WKT Caught Out DSG @ 1
                               </p>
                               <div
@@ -1592,7 +1681,7 @@ const GameDetails = () => {
                             <div
                               _ngcontent-ng-c942213636=""
                               className="count-v-wrap ng-star-inserted"
-                              
+                             
                             >
                               <button
                                 _ngcontent-ng-c942213636=""
@@ -1646,7 +1735,10 @@ const GameDetails = () => {
                               _ngcontent-ng-c942213636=""
                               className="ladder-datawrap dropdown-content"
                             >
-                              <p _ngcontent-ng-c942213636="" className="fancy-head">
+                              <p
+                                _ngcontent-ng-c942213636=""
+                                className="fancy-head"
+                              >
                                 4th WKT Lost To DSG Balls
                               </p>
                               <div
@@ -1678,7 +1770,7 @@ const GameDetails = () => {
                             <div
                               _ngcontent-ng-c942213636=""
                               className="count-v-wrap ng-star-inserted"
-                              
+                             
                             >
                               <button
                                 _ngcontent-ng-c942213636=""
@@ -1732,7 +1824,10 @@ const GameDetails = () => {
                               _ngcontent-ng-c942213636=""
                               className="ladder-datawrap dropdown-content"
                             >
-                              <p _ngcontent-ng-c942213636="" className="fancy-head">
+                              <p
+                                _ngcontent-ng-c942213636=""
+                                className="fancy-head"
+                              >
                                 4th Wkt Pship Boundaries DSG
                               </p>
                               <div
@@ -1764,7 +1859,7 @@ const GameDetails = () => {
                             <div
                               _ngcontent-ng-c942213636=""
                               className="count-v-wrap ng-star-inserted"
-                              
+                             
                             >
                               <button
                                 _ngcontent-ng-c942213636=""
@@ -1803,10 +1898,10 @@ const GameDetails = () => {
                     </div>
                   </div>
                 </div>{" "}
-              </div>
-              <div
+              </mat-tab-body>
+              <mat-tab-body
                 role="tabpanel"
-                className="mat-tab-body mat-mdc-tab-body ng-tns-c737557735-2 ng-star-inserted"
+                className="mat-mdc-tab-body ng-tns-c737557735-2 ng-star-inserted"
                 id="mat-tab-content-0-1"
                 aria-labelledby="mat-tab-label-0-1"
               >
@@ -1815,10 +1910,10 @@ const GameDetails = () => {
                   className="mat-mdc-tab-body-content ng-tns-c737557735-2 ng-trigger ng-trigger-translateTab"
                   style={{transform:'translate3d(100%, 0px, 0px)',minHeight:'1px',visibility:'hidden'}}
                 ></div>{" "}
-              </div>
-              <div
+              </mat-tab-body>
+              <mat-tab-body
                 role="tabpanel"
-                className="mat-tab-body mat-mdc-tab-body ng-tns-c737557735-3 ng-star-inserted"
+                className="mat-mdc-tab-body ng-tns-c737557735-3 ng-star-inserted"
                 id="mat-tab-content-0-2"
                 aria-labelledby="mat-tab-label-0-2"
               >
@@ -1826,291 +1921,283 @@ const GameDetails = () => {
                   cdkscrollable=""
                   className="mat-mdc-tab-body-content ng-tns-c737557735-3 ng-trigger ng-trigger-translateTab"
                   style={{transform:'translate3d(100%, 0px, 0px)',minHeight:'1px',visibility:'hidden'}}
-               
                 ></div>
-              </div>
+              </mat-tab-body>
             </div>
-          </div>
+          </mat-tab-group>
         </div>
       </div>
 
       {/*  <!-- betslip start --> */}
-      <div  className="cdk-overlay-container">
-      <div
-        className="cdk-overlay-backdrop cdk-overlay-dark-backdrop cdk-overlay-backdrop-showing"
-      ></div>
-      <div
-        className="cdk-global-overlay-wrapper"
-        dir="ltr"
-        style={{justifyContent:'center',alignItems:'flex-end'}}
-      >
+      <div className="cdk-overlay-container">
+        <div className="cdk-overlay-backdrop cdk-overlay-dark-backdrop cdk-overlay-backdrop-showing"></div>
         <div
-          id="cdk-overlay-1"
-          className="cdk-overlay-pane betslip-dialog"
-          style={{width:'calc(100% - 30px)',maxWidth:'400px',position:'static',marginBottom:'10px'}}
+          className="cdk-global-overlay-wrapper"
+          dir="ltr"
+          style={{justifyContent:'center',alignItems:'flex-end'}}
         >
           <div
-            tabindex="0"
-            className="cdk-visually-hidden cdk-focus-trap-anchor"
-            aria-hidden="true"
-          ></div>
-          <mat-dialog-container
-            tabindex="-1"
-            className="mat-mdc-dialog-container mdc-dialog cdk-dialog-container mdc-dialog--open"
-            id="mat-mdc-dialog-1"
-            role="dialog"
-            aria-modal="true"
-            // style="--mat-dialog-transition-duration: 150ms"
+            id="cdk-overlay-1"
+            className="cdk-overlay-pane betslip-dialog"
+            style={{width:'calc(100% - 30px)',maxWidth:'400px',position:'static',marginBottom:'10px'}}
           >
-            <div className="mdc-dialog__container">
-              <div className="mat-mdc-dialog-surface mdc-dialog__surface">
-                <app-betslip-dialog
-                  _nghost-ng-c2459892542=""
-                  className="ng-star-inserted"
-                >
-                  <div
-                    _ngcontent-ng-c2459892542=""
-                    className="betslip-modal forback"
+            <div
+              tabindex="0"
+              className="cdk-visually-hidden cdk-focus-trap-anchor"
+              aria-hidden="true"
+            ></div>
+            <mat-dialog-container
+              tabindex="-1"
+              className="mat-mdc-dialog-container mdc-dialog cdk-dialog-container mdc-dialog--open"
+              id="mat-mdc-dialog-1"
+              role="dialog"
+              aria-modal="true"
+              // style="--mat-dialog-transition-duration: 150ms"
+            >
+              <div className="mdc-dialog__container">
+                <div className="mat-mdc-dialog-surface mdc-dialog__surface">
+                  <app-betslip-dialog
+                    _nghost-ng-c2459892542=""
+                    className="ng-star-inserted"
                   >
-                   {/*  <!--forback // forlay --> */}
-                    <div _ngcontent-ng-c2459892542="" className="modal-header">
-                      <h2 _ngcontent-ng-c2459892542=""></h2>
-                      <h2 _ngcontent-ng-c2459892542=""></h2>
-                      <h2 _ngcontent-ng-c2459892542="">
-                        Place Bet | BOOKMAKER
-                      </h2>
-                      <div _ngcontent-ng-c2459892542="" className="action-btns">
-                        <button
-                          _ngcontent-ng-c2459892542=""
-                          mat-button=""
-                          mat-dialog-close=""
-                          className="modal-close-btn mdc-button mat-mdc-button mat-unthemed mat-mdc-button-base"
-                          mat-ripple-loader-uninitialized=""
-                          mat-ripple-loader-class-name="mat-mdc-button-ripple"
-                          type="button"
-                        >
-                          <span
-                            className="mat-mdc-button-persistent-ripple mdc-button__ripple"
-                          ></span
-                          ><mat-icon
-                            _ngcontent-ng-c2459892542=""
-                            role="img"
-                            className="mat-icon notranslate material-icons mat-ligature-font mat-icon-no-color"
-                            aria-hidden="true"
-                            data-mat-icon-type="font"
-                            >close</mat-icon
-                          ><span className="mdc-button__label"></span
-                          ><span className="mat-mdc-focus-indicator"></span
-                          ><span className="mat-mdc-button-touch-target"></span>
-                        </button>
-                      </div>
-                    </div>
-                    <div _ngcontent-ng-c2459892542="" className="modal-body">
+                    <div
+                      _ngcontent-ng-c2459892542=""
+                      className="betslip-modal forback"
+                    >
+                      {/*   <!--forback // forlay --> */}
                       <div
                         _ngcontent-ng-c2459892542=""
-                        className="betvalue-wrap forback"
+                        className="modal-header"
                       >
-                        {/* <!--forback // forlay --> */}
+                        <h2 _ngcontent-ng-c2459892542=""></h2>
+                        <h2 _ngcontent-ng-c2459892542=""></h2>
+                        <h2 _ngcontent-ng-c2459892542="">
+                          Place Bet | BOOKMAKER
+                        </h2>
                         <div
                           _ngcontent-ng-c2459892542=""
-                          className="betslip-toprow"
+                          className="action-btns"
                         >
-                          <h2 _ngcontent-ng-c2459892542="">
-                            Sunrisers Eastern Cape
-                          </h2>
+                          <button
+                            _ngcontent-ng-c2459892542=""
+                            mat-button=""
+                            mat-dialog-close=""
+                            className="modal-close-btn mdc-button mat-mdc-button mat-unthemed mat-mdc-button-base"
+                            mat-ripple-loader-uninitialized=""
+                            mat-ripple-loader-class-name="mat-mdc-button-ripple"
+                            type="button"
+                          >
+                            <span className="mat-mdc-button-persistent-ripple mdc-button__ripple"></span>
+                            <mat-icon
+                              _ngcontent-ng-c2459892542=""
+                              role="img"
+                              className="mat-icon notranslate material-icons mat-ligature-font mat-icon-no-color"
+                              aria-hidden="true"
+                              data-mat-icon-type="font"
+                            >
+                              close
+                            </mat-icon>
+                            <span className="mdc-button__label"></span>
+                            <span className="mat-mdc-focus-indicator"></span>
+                            <span className="mat-mdc-button-touch-target"></span>
+                          </button>
                         </div>
+                      </div>
+                      <div _ngcontent-ng-c2459892542="" className="modal-body">
                         <div
                           _ngcontent-ng-c2459892542=""
-                          className="bet-action-grid"
+                          className="betvalue-wrap forback"
                         >
+                          {/* <!--forback // forlay --> */}
                           <div
                             _ngcontent-ng-c2459892542=""
-                            className="bet-action-item"
+                            className="betslip-toprow"
                           >
-                            <input
-                              _ngcontent-ng-c2459892542=""
-                              type="number"
-                              readonly=""
-                              numbersonly=""
-                              name=""
-                              className="rate-inp"
-                            />
+                            <h2 _ngcontent-ng-c2459892542="">
+                              Sunrisers Eastern Cape
+                            </h2>
                           </div>
                           <div
                             _ngcontent-ng-c2459892542=""
-                            className="bet-action-item"
+                            className="bet-action-grid"
                           >
-                            <input
+                            <div
                               _ngcontent-ng-c2459892542=""
-                              type="number"
-                              numbersonly=""
-                              name="betStake"
-                              className="ng-untouched ng-pristine ng-valid"
-                            />
+                              className="bet-action-item"
+                            >
+                              <input
+                                _ngcontent-ng-c2459892542=""
+                                type="number"
+                                readonly=""
+                                numbersonly=""
+                                name=""
+                                className="rate-inp"
+                              />
+                            </div>
+                            <div
+                              _ngcontent-ng-c2459892542=""
+                              className="bet-action-item"
+                            >
+                              <input
+                                _ngcontent-ng-c2459892542=""
+                                type="number"
+                                numbersonly=""
+                                name="betStake"
+                                className="ng-untouched ng-pristine ng-valid"
+                              />
+                            </div>
+                            <div
+                              _ngcontent-ng-c2459892542=""
+                              className="bet-action-item"
+                            >
+                              <button
+                                _ngcontent-ng-c2459892542=""
+                                mat-flat-button=""
+                                className="slip-btn notranslate mdc-button mdc-button--unelevated mat-mdc-unelevated-button mat-unthemed mat-mdc-button-base"
+                                mat-ripple-loader-uninitialized=""
+                                mat-ripple-loader-class-name="mat-mdc-button-ripple"
+                                mat-ripple-loader-disabled=""
+                                disabled="true"
+                              >
+                                <span className="mat-mdc-button-persistent-ripple mdc-button__ripple"></span>
+                                <span className="mdc-button__label">
+                                  Submit
+                                </span>
+                                <span className="mat-mdc-focus-indicator"></span>
+                                <span className="mat-mdc-button-touch-target"></span>
+                              </button>
+                            </div>
                           </div>
                           <div
                             _ngcontent-ng-c2459892542=""
-                            className="bet-action-item"
+                            className="error-wrap"
+                          >
+                            <p
+                              _ngcontent-ng-c2459892542=""
+                              className="spacer"
+                            ></p>
+                            <p
+                              _ngcontent-ng-c2459892542=""
+                              className="error-msg ng-star-inserted"
+                            >
+                              Min bet amount is 100
+                            </p>
+                          </div>
+                          <div
+                            _ngcontent-ng-c2459892542=""
+                            className="amt-chip-grid"
                           >
                             <button
                               _ngcontent-ng-c2459892542=""
                               mat-flat-button=""
-                              className="slip-btn notranslate mdc-button mdc-button--unelevated mat-mdc-unelevated-button mat-unthemed mat-mdc-button-base"
+                              className="chip-grid-item mdc-button mdc-button--unelevated mat-mdc-unelevated-button mat-unthemed mat-mdc-button-base ng-star-inserted"
                               mat-ripple-loader-uninitialized=""
                               mat-ripple-loader-class-name="mat-mdc-button-ripple"
-                              mat-ripple-loader-disabled=""
-                              disabled="true"
                             >
-                              <span
-                                className="mat-mdc-button-persistent-ripple mdc-button__ripple"
-                              ></span
-                              ><span className="mdc-button__label">Submit</span
-                              ><span className="mat-mdc-focus-indicator"></span
-                              ><span className="mat-mdc-button-touch-target"></span>
+                              <span className="mat-mdc-button-persistent-ripple mdc-button__ripple"></span>
+                              <span className="mdc-button__label">100</span>
+                              <span className="mat-mdc-focus-indicator"></span>
+                              <span className="mat-mdc-button-touch-target"></span>
+                            </button>
+                            <button
+                              _ngcontent-ng-c2459892542=""
+                              mat-flat-button=""
+                              className="chip-grid-item mdc-button mdc-button--unelevated mat-mdc-unelevated-button mat-unthemed mat-mdc-button-base ng-star-inserted"
+                              mat-ripple-loader-uninitialized=""
+                              mat-ripple-loader-class-name="mat-mdc-button-ripple"
+                            >
+                              <span className="mat-mdc-button-persistent-ripple mdc-button__ripple"></span>
+                              <span className="mdc-button__label">500</span>
+                              <span className="mat-mdc-focus-indicator"></span>
+                              <span className="mat-mdc-button-touch-target"></span>
+                            </button>
+                            <button
+                              _ngcontent-ng-c2459892542=""
+                              mat-flat-button=""
+                              className="chip-grid-item mdc-button mdc-button--unelevated mat-mdc-unelevated-button mat-unthemed mat-mdc-button-base ng-star-inserted"
+                              mat-ripple-loader-uninitialized=""
+                              mat-ripple-loader-class-name="mat-mdc-button-ripple"
+                            >
+                              <span className="mat-mdc-button-persistent-ripple mdc-button__ripple"></span>
+                              <span className="mdc-button__label">1000</span>
+                              <span className="mat-mdc-focus-indicator"></span>
+                              <span className="mat-mdc-button-touch-target"></span>
+                            </button>
+                            <button
+                              _ngcontent-ng-c2459892542=""
+                              mat-flat-button=""
+                              className="chip-grid-item mdc-button mdc-button--unelevated mat-mdc-unelevated-button mat-unthemed mat-mdc-button-base ng-star-inserted"
+                              mat-ripple-loader-uninitialized=""
+                              mat-ripple-loader-class-name="mat-mdc-button-ripple"
+                            >
+                              <span className="mat-mdc-button-persistent-ripple mdc-button__ripple"></span>
+                              <span className="mdc-button__label">5000</span>
+                              <span className="mat-mdc-focus-indicator"></span>
+                              <span className="mat-mdc-button-touch-target"></span>
+                            </button>
+                            <button
+                              _ngcontent-ng-c2459892542=""
+                              mat-flat-button=""
+                              className="chip-grid-item mdc-button mdc-button--unelevated mat-mdc-unelevated-button mat-unthemed mat-mdc-button-base ng-star-inserted"
+                              mat-ripple-loader-uninitialized=""
+                              mat-ripple-loader-class-name="mat-mdc-button-ripple"
+                            >
+                              <span className="mat-mdc-button-persistent-ripple mdc-button__ripple"></span>
+                              <span className="mdc-button__label">10000</span>
+                              <span className="mat-mdc-focus-indicator"></span>
+                              <span className="mat-mdc-button-touch-target"></span>
+                            </button>
+                            <button
+                              _ngcontent-ng-c2459892542=""
+                              mat-flat-button=""
+                              className="chip-grid-item mdc-button mdc-button--unelevated mat-mdc-unelevated-button mat-unthemed mat-mdc-button-base ng-star-inserted"
+                              mat-ripple-loader-uninitialized=""
+                              mat-ripple-loader-class-name="mat-mdc-button-ripple"
+                            >
+                              <span className="mat-mdc-button-persistent-ripple mdc-button__ripple"></span>
+                              <span className="mdc-button__label">50000</span>
+                              <span className="mat-mdc-focus-indicator"></span>
+                              <span className="mat-mdc-button-touch-target"></span>
+                            </button>
+                            <button
+                              _ngcontent-ng-c2459892542=""
+                              mat-flat-button=""
+                              className="chip-grid-item mdc-button mdc-button--unelevated mat-mdc-unelevated-button mat-unthemed mat-mdc-button-base ng-star-inserted"
+                              mat-ripple-loader-uninitialized=""
+                              mat-ripple-loader-class-name="mat-mdc-button-ripple"
+                            >
+                              <span className="mat-mdc-button-persistent-ripple mdc-button__ripple"></span>
+                              <span className="mdc-button__label">100000</span>
+                              <span className="mat-mdc-focus-indicator"></span>
+                              <span className="mat-mdc-button-touch-target"></span>
                             </button>
                           </div>
-                        </div>
-                        <div _ngcontent-ng-c2459892542="" className="error-wrap">
-                          <p _ngcontent-ng-c2459892542="" className="spacer"></p>
-                          <p
+                          <div
                             _ngcontent-ng-c2459892542=""
-                            className="error-msg ng-star-inserted"
+                            className="range-text-row"
                           >
-                            Min bet amount is 100
-                          </p>
-                        </div>
-                        <div _ngcontent-ng-c2459892542="" className="amt-chip-grid">
-                          <button
-                            _ngcontent-ng-c2459892542=""
-                            mat-flat-button=""
-                            className="chip-grid-item mdc-button mdc-button--unelevated mat-mdc-unelevated-button mat-unthemed mat-mdc-button-base ng-star-inserted"
-                            mat-ripple-loader-uninitialized=""
-                            mat-ripple-loader-class-name="mat-mdc-button-ripple"
-                          >
-                            <span
-                              className="mat-mdc-button-persistent-ripple mdc-button__ripple"
-                            ></span
-                            ><span className="mdc-button__label">100</span
-                            ><span className="mat-mdc-focus-indicator"></span
-                            ><span
-                              className="mat-mdc-button-touch-target"
-                            ></span></button
-                          ><button
-                            _ngcontent-ng-c2459892542=""
-                            mat-flat-button=""
-                            className="chip-grid-item mdc-button mdc-button--unelevated mat-mdc-unelevated-button mat-unthemed mat-mdc-button-base ng-star-inserted"
-                            mat-ripple-loader-uninitialized=""
-                            mat-ripple-loader-class-name="mat-mdc-button-ripple"
-                          >
-                            <span
-                              className="mat-mdc-button-persistent-ripple mdc-button__ripple"
-                            ></span
-                            ><span className="mdc-button__label">500</span
-                            ><span className="mat-mdc-focus-indicator"></span
-                            ><span
-                              className="mat-mdc-button-touch-target"
-                            ></span></button
-                          ><button
-                            _ngcontent-ng-c2459892542=""
-                            mat-flat-button=""
-                            className="chip-grid-item mdc-button mdc-button--unelevated mat-mdc-unelevated-button mat-unthemed mat-mdc-button-base ng-star-inserted"
-                            mat-ripple-loader-uninitialized=""
-                            mat-ripple-loader-class-name="mat-mdc-button-ripple"
-                          >
-                            <span
-                              className="mat-mdc-button-persistent-ripple mdc-button__ripple"
-                            ></span
-                            ><span className="mdc-button__label">1000</span
-                            ><span className="mat-mdc-focus-indicator"></span
-                            ><span
-                              className="mat-mdc-button-touch-target"
-                            ></span></button
-                          ><button
-                            _ngcontent-ng-c2459892542=""
-                            mat-flat-button=""
-                            className="chip-grid-item mdc-button mdc-button--unelevated mat-mdc-unelevated-button mat-unthemed mat-mdc-button-base ng-star-inserted"
-                            mat-ripple-loader-uninitialized=""
-                            mat-ripple-loader-class-name="mat-mdc-button-ripple"
-                          >
-                            <span
-                              className="mat-mdc-button-persistent-ripple mdc-button__ripple"
-                            ></span
-                            ><span className="mdc-button__label">5000</span
-                            ><span className="mat-mdc-focus-indicator"></span
-                            ><span
-                              className="mat-mdc-button-touch-target"
-                            ></span></button
-                          ><button
-                            _ngcontent-ng-c2459892542=""
-                            mat-flat-button=""
-                            className="chip-grid-item mdc-button mdc-button--unelevated mat-mdc-unelevated-button mat-unthemed mat-mdc-button-base ng-star-inserted"
-                            mat-ripple-loader-uninitialized=""
-                            mat-ripple-loader-class-name="mat-mdc-button-ripple"
-                          >
-                            <span
-                              className="mat-mdc-button-persistent-ripple mdc-button__ripple"
-                            ></span
-                            ><span className="mdc-button__label">10000</span
-                            ><span className="mat-mdc-focus-indicator"></span
-                            ><span
-                              className="mat-mdc-button-touch-target"
-                            ></span></button
-                          ><button
-                            _ngcontent-ng-c2459892542=""
-                            mat-flat-button=""
-                            className="chip-grid-item mdc-button mdc-button--unelevated mat-mdc-unelevated-button mat-unthemed mat-mdc-button-base ng-star-inserted"
-                            mat-ripple-loader-uninitialized=""
-                            mat-ripple-loader-class-name="mat-mdc-button-ripple"
-                          >
-                            <span
-                              className="mat-mdc-button-persistent-ripple mdc-button__ripple"
-                            ></span
-                            ><span className="mdc-button__label">50000</span
-                            ><span className="mat-mdc-focus-indicator"></span
-                            ><span
-                              className="mat-mdc-button-touch-target"
-                            ></span></button
-                          ><button
-                            _ngcontent-ng-c2459892542=""
-                            mat-flat-button=""
-                            className="chip-grid-item mdc-button mdc-button--unelevated mat-mdc-unelevated-button mat-unthemed mat-mdc-button-base ng-star-inserted"
-                            mat-ripple-loader-uninitialized=""
-                            mat-ripple-loader-class-name="mat-mdc-button-ripple"
-                          >
-                            <span
-                              className="mat-mdc-button-persistent-ripple mdc-button__ripple"
-                            ></span
-                            ><span className="mdc-button__label">100000</span
-                            ><span className="mat-mdc-focus-indicator"></span
-                            ><span className="mat-mdc-button-touch-target"></span>
-                          </button>
-                        </div>
-                        <div
-                          _ngcontent-ng-c2459892542=""
-                          className="range-text-row"
-                        >
-                          <h2
-                            _ngcontent-ng-c2459892542=""
-                            style={{textTransform:'none'}}
-                          >
-                            Range: 100 to 5L
-                          </h2>
+                            <h2
+                              _ngcontent-ng-c2459892542=""
+                              style={{textTransform:'none'}}
+                            >
+                              Range: 100 to 5L
+                            </h2>
+                          </div>
                         </div>
                       </div>
                     </div>
-                  </div>
-                </app-betslip-dialog>
+                  </app-betslip-dialog>
+                </div>
               </div>
-            </div>
-          </mat-dialog-container>
-          <div
-            tabindex="0"
-            className="cdk-visually-hidden cdk-focus-trap-anchor"
-            aria-hidden="true"
-          ></div>
+            </mat-dialog-container>
+            <div
+              tabindex="0"
+              className="cdk-visually-hidden cdk-focus-trap-anchor"
+              aria-hidden="true"
+            ></div>
+          </div>
         </div>
       </div>
-    </div>
       {/*   <!-- betslip end --> */}
     </>
   );

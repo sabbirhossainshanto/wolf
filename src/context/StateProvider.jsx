@@ -14,6 +14,8 @@ const StateProvider = ({ children }) => {
     setToken(token)
   }, [getToken]);
 
+
+
   const stateInfo = {
     sportsType,
     setSportsType,

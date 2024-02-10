@@ -30,7 +30,7 @@ const Sports = () => {
     }
   }, [sportsType]);
 
-//   console.log(games);
+
   return (
     <div _ngcontent-ng-c943649379="" className="cricket-tab ng-star-inserted">
       <div _ngcontent-ng-c943649379="" className="game-play-heading">

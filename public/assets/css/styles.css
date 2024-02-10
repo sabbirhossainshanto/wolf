@@ -6766,7 +6766,7 @@ screen and (-ms-high-contrast: none) {
     color: var(--white-color);
     text-align: right;
     margin: 0;
-    min-width: 18px;
+    min-width: 10px;
     line-height: 1.2;
     text-transform: capitalize
 }

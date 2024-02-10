@@ -21,7 +21,7 @@ const GameDetails = () => {
   const [overByOver, setOverByOver] = useState([]);
   const [iFrameUrl,setIframeUrl] = useState('')
 
-  // console.log(eventId, eventTypeId);
+
   /* Get game details */
   useEffect(() => {
     const getGameDetails = async () => {
@@ -102,7 +102,7 @@ const GameDetails = () => {
     getVideo();
   }, [eventId,eventTypeId]);
 
-  // console.log(data);
+
   return (
     <>
       <div _ngcontent-ng-c942213636="" className="page-body">

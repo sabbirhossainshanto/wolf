@@ -1,20 +1,22 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import useContextState from "../../../hooks/useContextState";
 import { useRef } from "react";
 import useCloseModalClickOutside from "../../../hooks/useCloseModalClickOutside";
 
 /* eslint-disable react/no-unknown-property */
 const Sidebar = () => {
-  const { showSidebar, setShowSidebar,setGetToken } = useContextState();
+  const { showSidebar, setShowSidebar, setGetToken } = useContextState();
+  const loginName = localStorage.getItem("loginName");
+  const navigate = useNavigate();
   const leftMenuRef = useRef();
   useCloseModalClickOutside(leftMenuRef, () => {
     setShowSidebar(false);
   });
   const handleLogout = () => {
     localStorage.clear();
-    setShowSidebar(false)
-    setGetToken((prev)=> !prev)
-   
+    setShowSidebar(false);
+    setGetToken((prev) => !prev);
+    navigate("/");
   };
   return (
     <div
@@ -72,8 +74,9 @@ const Sidebar = () => {
                 >
                   person
                 </span>
-                Demo
+                {loginName}
               </p>
+              
             </div>
           </div>
           <div _ngcontent-ng-c967272132="" className="sidemenu-list">

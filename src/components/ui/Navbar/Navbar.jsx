@@ -1,3 +1,4 @@
+/* eslint-disable react/no-unknown-property */
 import { Link } from "react-router-dom";
 import useContextState from "../../../hooks/useContextState";
 import Login from "../../modal/Login";
@@ -5,15 +6,16 @@ import UseTokenGenerator from "../../../hooks/UseTokenGenerator";
 import UseEncryptData from "../../../hooks/UseEncryptData";
 import { API } from "../../../api";
 import { useState } from "react";
-
-/* eslint-disable react/no-unknown-property */
+import useBalance from "../../../hooks/UseBalance";
 const Navbar = () => {
   const [errorLogin, setErrorLogin] = useState("");
-  const { setShowSidebar, showLogin, setShowLogin, token,setGetToken } = useContextState();
-  const loginName = localStorage.getItem('loginName')
-console.log(loginName);
-   /* handle login demo user */
-   const loginWithDemo = () => {
+  const { setShowSidebar, showLogin, setShowLogin, token, setGetToken } =
+    useContextState();
+  const loginName = localStorage.getItem("loginName");
+  const { balanceData } = useBalance();
+
+  /* handle login demo user */
+  const loginWithDemo = () => {
     /* Random token generator */
     const generatedToken = UseTokenGenerator();
     /* Encrypted the post data */
@@ -31,7 +33,6 @@ console.log(loginName);
     })
       .then((res) => res.json())
       .then((data) => {
-        console.log(data);
         /* Set token to localeStorage */
         localStorage.setItem("token", data.result.token);
         /* Set login name to locale storage */
@@ -50,13 +51,12 @@ console.log(loginName);
           localStorage.getItem("loginName") &&
           data?.result?.changePassword === false
         ) {
-          setGetToken((prev)=> !prev)
+          setGetToken((prev) => !prev);
         } else {
           setErrorLogin(data?.error);
         }
       });
   };
-
 
   return (
     <>
@@ -98,15 +98,38 @@ console.log(loginName);
                       _ngcontent-ng-c3243547741=""
                       className="bal-amount show-bal"
                     >
-                      <span style={{color:'white',fontSize:'10px'}} _ngcontent-ng-c3243547741="">Bal</span>
-                      <p _ngcontent-ng-c3243547741="">1,500</p>
+                      <span
+                        style={{ color: "white", fontSize: "10px" }}
+                        _ngcontent-ng-c3243547741=""
+                      >
+                        Bal
+                      </span>
+                      <p _ngcontent-ng-c3243547741="">
+                        {balanceData?.creditLimit}
+                      </p>
                     </div>
                     <div
                       _ngcontent-ng-c3243547741=""
                       className="bal-amount exp-bal"
                     >
-                      <span style={{color:'white',fontSize:'10px'}}  _ngcontent-ng-c3243547741="">Exp</span>
-                      <p _ngcontent-ng-c3243547741="">0</p>
+                      <span
+                        style={{ color: "white", fontSize: "10px" }}
+                        _ngcontent-ng-c3243547741=""
+                      >
+                        Exp
+                      </span>
+                      <p
+                        style={{ width: "fit-content", paddingTop: "3px" }}
+                        _ngcontent-ng-c3243547741=""
+                      >
+                        {balanceData?.deductedExposure}
+                      </p>
+                      <span
+                        style={{ color: "white", fontSize: "10px" }}
+                        _ngcontent-ng-c3243547741=""
+                      >
+                        {loginName}
+                      </span>
                     </div>
                   </div>
                   <button
@@ -156,7 +179,7 @@ console.log(loginName);
                   </button>
 
                   <button
-                  onClick={loginWithDemo}
+                    onClick={loginWithDemo}
                     _ngcontent-ng-c3243547741=""
                     mat-flat-button=""
                     className="btn dark-outlined-btn demo-btn mdc-button mdc-button--unelevated mat-mdc-unelevated-button mat-unthemed mat-mdc-button-base"
@@ -173,37 +196,38 @@ console.log(loginName);
             )}
           </div>
         </div>
-        {loginName === 'demo' && (  <div _ngcontent-ng-c943649379="" _nghost-ng-c3660323651="">
-          <div
-            _ngcontent-ng-c3660323651=""
-            className="demoid-marquee bottom ng-star-inserted"
-          >
-       
-              <marquee
+        {loginName === "demo" && (
+          <div _ngcontent-ng-c943649379="" _nghost-ng-c3660323651="">
+            <div
               _ngcontent-ng-c3660323651=""
-              width="100%"
-              direction="left"
-              height="auto"
-              scrollamount="5"
-              loop=""
+              className="demoid-marquee bottom ng-star-inserted"
             >
-              This is a Demo ID (to buy Mercedes play with real money)
-            </marquee>
- 
-            <p _ngcontent-ng-c3660323651="" className="marquee">
-              This is a Demo ID (to buy Mercedes play with real money)
-            </p>
+              <marquee
+                _ngcontent-ng-c3660323651=""
+                width="100%"
+                direction="left"
+                height="auto"
+                scrollamount="5"
+                loop=""
+              >
+                This is a Demo ID (to buy Mercedes play with real money)
+              </marquee>
+
+              <p _ngcontent-ng-c3660323651="" className="marquee">
+                This is a Demo ID (to buy Mercedes play with real money)
+              </p>
+            </div>
           </div>
-        </div>)}
-      
+        )}
       </div>
-      {showLogin && <Login 
-      setShowLogin={setShowLogin}
-      errorLogin={errorLogin} 
-      setErrorLogin={setErrorLogin}
-      setGetToken={setGetToken}
-      
-      />}
+      {showLogin && (
+        <Login
+          setShowLogin={setShowLogin}
+          errorLogin={errorLogin}
+          setErrorLogin={setErrorLogin}
+          setGetToken={setGetToken}
+        />
+      )}
     </>
   );
 };

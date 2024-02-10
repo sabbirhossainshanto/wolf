@@ -17,7 +17,6 @@ const Login = ({ setShowLogin, setErrorLogin, errorLogin, setGetToken }) => {
 
   /* handle login user */
   const onSubmit = ({ username, password }) => {
-    console.log({ username }, { password });
     /* Random token generator */
     const generatedToken = UseTokenGenerator();
     const loginData = {
@@ -36,7 +35,6 @@ const Login = ({ setShowLogin, setErrorLogin, errorLogin, setGetToken }) => {
     })
       .then((res) => res.json())
       .then((data) => {
-        console.log(data);
         if (data.success) {
           /* Set token to localeStorage */
           localStorage.setItem("token", data.result.token);
@@ -84,7 +82,7 @@ const Login = ({ setShowLogin, setErrorLogin, errorLogin, setGetToken }) => {
     })
       .then((res) => res.json())
       .then((data) => {
-        console.log(data);
+  
         /* Set token to localeStorage */
         localStorage.setItem("token", data.result.token);
         /* Set login name to locale storage */

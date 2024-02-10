@@ -1,6 +1,10 @@
 /* eslint-disable react/no-unknown-property */
 
+import useBalance from "../../hooks/UseBalance";
+
 const Profile = () => {
+  const loginName = localStorage.getItem("loginName");
+  const { balanceData } = useBalance();
   return (
     <div _ngcontent-ng-c2865632707="" className="page-body demoID">
       <div _ngcontent-ng-c2865632707="" className="user-details-wrap">
@@ -10,7 +14,7 @@ const Profile = () => {
         >
           <div _ngcontent-ng-c2865632707="" className="contact-info">
             <p _ngcontent-ng-c2865632707="" className="notranslate">
-              Demo
+        {loginName}
             </p>
 
             <p
@@ -45,7 +49,7 @@ const Profile = () => {
             <div _ngcontent-ng-c2865632707="" className="bal-cont">
               <div _ngcontent-ng-c2865632707="" className="avl-bal show-bal">
                 <mat-label _ngcontent-ng-c2865632707="">Balance</mat-label>
-                <p _ngcontent-ng-c2865632707="">1,500</p>
+                <p _ngcontent-ng-c2865632707="">         {balanceData?.creditLimit}</p>
               </div>
             </div>
             <div _ngcontent-ng-c2865632707="" className="d-w-btn">
@@ -87,7 +91,7 @@ const Profile = () => {
               <div _ngcontent-ng-c2865632707="" className="label-wrap">
                 <img
                   _ngcontent-ng-c2865632707=""
-                  onerror="src = '../assets/img/default-logo-icon.svg'"
+               
                   alt="Menu Icon"
                   src="https://ss.manage63.com/bmk-wl/commonAssets/sidenav_alternate _no.svg"
                 />
@@ -103,7 +107,7 @@ const Profile = () => {
               <div _ngcontent-ng-c2865632707="" className="label-wrap">
                 <img
                   _ngcontent-ng-c2865632707=""
-                  onerror="src = '../assets/img/default-logo-icon.svg'"
+          
                   alt="Menu Icon"
                   src="https://ss.manage63.com/bmk-wl/commonAssets/sidenav_email.svg"
                 />
@@ -119,7 +123,7 @@ const Profile = () => {
               <div _ngcontent-ng-c2865632707="" className="label-wrap">
                 <img
                   _ngcontent-ng-c2865632707=""
-                  onerror="src = '../assets/img/default-logo-icon.svg'"
+                
                   alt="Menu Icon"
                   src="https://ss.manage63.com/bmk-wl/commonAssets/sidenav_profile.svg"
                 />
@@ -132,7 +136,7 @@ const Profile = () => {
               <div _ngcontent-ng-c2865632707="" className="label-wrap">
                 <img
                   _ngcontent-ng-c2865632707=""
-                  onerror="src = '../assets/img/default-logo-icon.svg'"
+             
                   alt="Menu Icon"
                   src="https://ss.manage63.com/bmk-wl/commonAssets/sidenav_activebets.svg"
                 />
@@ -149,7 +153,7 @@ const Profile = () => {
               <div _ngcontent-ng-c2865632707="" className="label-wrap">
                 <img
                   _ngcontent-ng-c2865632707=""
-                  onerror="src = '../assets/img/default-logo-icon.svg'"
+           
                   alt="Menu Icon"
                   src="https://ss.manage63.com/bmk-wl/commonAssets/sidenav__ac_statement.svg"
                 />
@@ -166,7 +170,7 @@ const Profile = () => {
               <div _ngcontent-ng-c2865632707="" className="label-wrap">
                 <img
                   _ngcontent-ng-c2865632707=""
-                  onerror="src = '../assets/img/default-logo-icon.svg'"
+           
                   alt="Menu Icon"
                   src="https://ss.manage63.com/bmk-wl/commonAssets/dice.svg"
                 />
@@ -184,7 +188,7 @@ const Profile = () => {
               <div _ngcontent-ng-c2865632707="" className="label-wrap">
                 <img
                   _ngcontent-ng-c2865632707=""
-                  onerror="src = '../assets/img/default-logo-icon.svg'"
+          
                   alt="Menu Icon"
                   src="https://ss.manage63.com/bmk-wl/commonAssets/sidenav_rules.svg"
                 />
@@ -201,7 +205,7 @@ const Profile = () => {
               <div _ngcontent-ng-c2865632707="" className="label-wrap">
                 <img
                   _ngcontent-ng-c2865632707=""
-                  onerror="src = '../assets/img/default-logo-icon.svg'"
+            
                   alt="Menu Icon"
                   src="https://ss.manage63.com/bmk-wl/commonAssets/sidenav_bank.svg"
                 />

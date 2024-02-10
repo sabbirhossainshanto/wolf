@@ -14,19 +14,21 @@ const Footer = () => {
 
   return (
     <div _ngcontent-ng-c943649379="" className="page-footer">
-      <div
-        onClick={handleLogout}
-        _ngcontent-ng-c2865632707=""
-        className="action-btns ng-star-inserted"
-      >
-        <button
+      {location?.pathname === "/profile" && (
+        <div
+          onClick={handleLogout}
           _ngcontent-ng-c2865632707=""
-          type="button"
-          className="btn secondary-btn w-100"
+          className="action-btns ng-star-inserted"
         >
-          Logout
-        </button>
-      </div>
+          <button
+            _ngcontent-ng-c2865632707=""
+            type="button"
+            className="btn secondary-btn w-100"
+          >
+            Logout
+          </button>
+        </div>
+      )}
 
       <div _ngcontent-ng-c943649379="" _nghost-ng-c2125492905="">
         <div _ngcontent-ng-c2125492905="" className="tab-navigation">

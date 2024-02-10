@@ -179,7 +179,6 @@ const Profile = () => {
             routerlink="/rules"
             routerlinkactive="active-link"
             className="smenu-item"
-            tabindex="0"
           >
             <a _ngcontent-ng-c2865632707="" className="smenu-link">
               <div _ngcontent-ng-c2865632707="" className="label-wrap">

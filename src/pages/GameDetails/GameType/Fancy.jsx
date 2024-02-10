@@ -4,7 +4,7 @@ const Fancy = ({ normal }) => {
   return (
     <div
       _ngcontent-ng-c942213636=""
-      className="fancy-card card-outer ng-star-inserted"
+      className={`fancy-card card-outer ng-star-inserted ${normal[0]?.maxLiabilityPerBet == '1'? 'disableMo':''}`}
     >
       <div _ngcontent-ng-c942213636="" className="head-wrap">
         <h2 _ngcontent-ng-c942213636="" className="card-heading">
@@ -13,7 +13,7 @@ const Fancy = ({ normal }) => {
       </div>
       <div _ngcontent-ng-c942213636="" className="fancybody-header">
         <h3 _ngcontent-ng-c942213636="" className="card-title">
-          Min: 100 | Max: 1L
+          Min: 100 | Max: {normal[0]?.maxLiabilityPerBet}
         </h3>
         <div _ngcontent-ng-c942213636="" className="fb-stitle">
           <h3 _ngcontent-ng-c942213636="" className="lay-bg">

@@ -7,7 +7,9 @@ const Bookmaker = ({ bookmarker }) => {
           <div key={i} _ngcontent-ng-c942213636="" className="ng-star-inserted">
             <div
               _ngcontent-ng-c942213636=""
-              className="bookmaker-card card-outer"
+              className={`bookmaker-card card-outer ${
+                games?.maxLiabilityPerBet == "1" ? "disableMo" : ""
+              }`}
               id="YFXXHB0"
             >
               <div _ngcontent-ng-c942213636="" className="head-wrap">
@@ -33,7 +35,7 @@ const Bookmaker = ({ bookmarker }) => {
               </div>
               <div _ngcontent-ng-c942213636="" className="card-header">
                 <h3 _ngcontent-ng-c942213636="" className="card-title">
-                  Min: 100 | Max: 5L
+                  Min: 100 | Max: {games?.maxLiabilityPerBet}
                 </h3>
                 <div _ngcontent-ng-c942213636="" className="lay-back-wrap">
                   <h3 _ngcontent-ng-c942213636="" className="back-bg">

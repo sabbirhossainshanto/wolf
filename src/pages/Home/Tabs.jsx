@@ -77,12 +77,12 @@ const Tabs = () => {
             routerlinkactive="active-link"
             className="pagetab-item ng-star-inserted"
           >
-            <p
+            {/* <p
               _ngcontent-ng-c2582205232=""
               className="newgame ng-star-inserted"
             >
               Started
-            </p>
+            </p> */}
             <div
               _ngcontent-ng-c2582205232=""
               className={`icon-wrap ${

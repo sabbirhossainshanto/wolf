@@ -8,7 +8,9 @@ const MatchOdds = ({ match_odd }) => {
           <div key={i} _ngcontent-ng-c942213636="" className="ng-star-inserted">
             <div
               _ngcontent-ng-c942213636=""
-              className="bookmaker-card card-outer disableMo"
+              className={`bookmaker-card card-outer  ${
+                games?.maxLiabilityPerBet == "1" ? "disableMo" : ""
+              }`}
               id="NXDHP0C"
             >
               <div _ngcontent-ng-c942213636="" className="head-wrap">
@@ -31,7 +33,7 @@ const MatchOdds = ({ match_odd }) => {
               </div>
               <div _ngcontent-ng-c942213636="" className="card-header">
                 <h3 _ngcontent-ng-c942213636="" className="card-title">
-                  Min: 0 | Max: 0
+                  Min: 0 | Max: {games?.maxLiabilityPerBet}
                 </h3>
                 <div _ngcontent-ng-c942213636="" className="lay-back-wrap">
                   <h3 _ngcontent-ng-c942213636="" className="back-bg">

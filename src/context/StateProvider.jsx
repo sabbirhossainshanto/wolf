@@ -1,15 +1,27 @@
-import { createContext, useState } from "react";
+import { createContext, useEffect, useState } from "react";
 
 export const StateContext = createContext(null);
 
 const StateProvider = ({ children }) => {
   const [sportsType, setSportsType] = useState(4);
-  const [showSidebar,setShowSidebar] = useState(false)
+  const [showSidebar, setShowSidebar] = useState(false);
+  const [token, setToken] = useState("");
+  const [showLogin, setShowLogin] = useState(false);
+  const [getToken,setGetToken] = useState(false)
+
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+    setToken(token)
+  }, [getToken]);
 
   const stateInfo = {
     sportsType,
     setSportsType,
-    showSidebar,setShowSidebar
+    showSidebar,
+    setShowSidebar,
+    showLogin, setShowLogin,
+    token, setToken,
+    getToken,setGetToken
   };
   return (
     <StateContext.Provider value={stateInfo}>{children}</StateContext.Provider>

@@ -5,11 +5,17 @@ import useCloseModalClickOutside from "../../../hooks/useCloseModalClickOutside"
 
 /* eslint-disable react/no-unknown-property */
 const Sidebar = () => {
-  const { showSidebar, setShowSidebar } = useContextState();
+  const { showSidebar, setShowSidebar,setGetToken } = useContextState();
   const leftMenuRef = useRef();
   useCloseModalClickOutside(leftMenuRef, () => {
     setShowSidebar(false);
   });
+  const handleLogout = () => {
+    localStorage.clear();
+    setShowSidebar(false)
+    setGetToken((prev)=> !prev)
+   
+  };
   return (
     <div
       ref={leftMenuRef}
@@ -303,6 +309,7 @@ const Sidebar = () => {
                   className="action-btn ng-star-inserted"
                 >
                   <button
+                    onClick={handleLogout}
                     _ngcontent-ng-c967272132=""
                     className="btn secondary-btn notranslate"
                   >

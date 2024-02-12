@@ -60,7 +60,16 @@ const Navbar = () => {
 
   return (
     <>
-      <div _ngcontent-ng-c943649379="" className="page-header">
+      <div
+
+   style={{
+  //   position:'fixed',
+  //   width:'100%',
+  //   zIndex:'1040',
+  //   minHeight:'auto',
+  // boxSizing:'border-box'
+   }}
+      _ngcontent-ng-c943649379="" className="page-header">
         <div _ngcontent-ng-c943649379="" _nghost-ng-c3243547741="">
           <div
             _ngcontent-ng-c3243547741=""

@@ -8,6 +8,8 @@ import Bookmaker from "./GameType/Bookmaker";
 import Fancy from "./GameType/Fancy";
 import UseEncryptData from "../../hooks/UseEncryptData";
 import UseTokenGenerator from "../../hooks/UseTokenGenerator";
+import Bookmaker2 from "./GameType/Bookmaker2";
+import FancyOne from "./GameType/FancyOne";
 
 /* eslint-disable react/no-unknown-property */
 const GameDetails = () => {
@@ -19,9 +21,9 @@ const GameDetails = () => {
   const [normal, setNormal] = useState([]);
   const [fancy1, setFancy1] = useState([]);
   const [overByOver, setOverByOver] = useState([]);
-  const [iFrameUrl,setIframeUrl] = useState('')
+  const [iFrameUrl, setIframeUrl] = useState("");
 
-
+  console.log(fancy1);
   /* Get game details */
   useEffect(() => {
     const getGameDetails = async () => {
@@ -84,25 +86,22 @@ const GameDetails = () => {
         type: "video",
         token: generatedToken,
       });
-     
-        fetch(API.accessToken, {
-          method: "POST",
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-          body: JSON.stringify(encryptedVideoData),
-        })
-          .then((res) => res.json())
-          .then((data) => {
-            setIframeUrl(data?.result?.url);
-            
-          });
-  
+
+      fetch(API.accessToken, {
+        method: "POST",
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+        body: JSON.stringify(encryptedVideoData),
+      })
+        .then((res) => res.json())
+        .then((data) => {
+          setIframeUrl(data?.result?.url);
+        });
     };
     getVideo();
-  }, [eventId,eventTypeId]);
-
-
+  }, [eventId, eventTypeId]);
+  console.log(data);
   return (
     <>
       <div _ngcontent-ng-c942213636="" className="page-body">
@@ -131,12 +130,12 @@ const GameDetails = () => {
                   <span className="mat-mdc-button-touch-target"></span>
                 </button>
                 <span _ngcontent-ng-c942213636="" className="ng-star-inserted">
-                  Sunrisers Eastern Cape v/s Durban Super Giants
+                  {data?.length > 0 && data[0]?.eventName}
                 </span>
               </div>
               <div _ngcontent-ng-c942213636="" className="playing-teams">
                 <span _ngcontent-ng-c942213636="" className="ng-star-inserted">
-                  Started at 9:00pm IST
+                  {data?.length > 0 && data[0]?.openDate}
                 </span>
               </div>
             </div>
@@ -334,7 +333,6 @@ const GameDetails = () => {
                       _ngcontent-ng-c942213636=""
                       className="live-match-screen ng-star-inserted"
                     >
-                  
                       <iframe
                         _ngcontent-ng-c942213636=""
                         style={{
@@ -348,9 +346,23 @@ const GameDetails = () => {
                       _ngcontent-ng-c942213636=""
                       className="mkt-tab-section"
                     >
-                      <MatchOdds match_odd={match_odds} />
-                      <Bookmaker bookmarker={bookmarker} />
-                      <Fancy normal={normal} />
+                      {match_odds && match_odds?.length > 0 && (
+                        <MatchOdds match_odd={match_odds} />
+                      )}
+
+                      {bookmarker && bookmarker?.length > 0 && (
+                        <Bookmaker bookmarker={bookmarker} />
+                      )}
+                      {bookmarker2 && bookmarker2?.length > 0 && (
+                        <Bookmaker2 bookmarker2={bookmarker2} />
+                      )}
+                      {fancy1 && fancy1?.length > 0 && (
+                        <Fancy normal={normal} />
+                      )}
+
+                      {fancy1 && fancy1?.length > 0 && (
+                        <FancyOne FancyOne={fancy1} />
+                      )}
                     </div>
                   </div>
                 </div>

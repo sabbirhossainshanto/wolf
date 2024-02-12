@@ -6,7 +6,9 @@ const Profile = () => {
   const loginName = localStorage.getItem("loginName");
   const { balanceData } = useBalance();
   return (
-    <div _ngcontent-ng-c2865632707="" className="page-body demoID">
+    <div style={{minHeight:'100vh'}} _ngcontent-ng-c2865632707="" className="page-body demoID"
+    
+    >
       <div _ngcontent-ng-c2865632707="" className="user-details-wrap">
         <div
           _ngcontent-ng-c2865632707=""

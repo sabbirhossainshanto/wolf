@@ -28,7 +28,7 @@ const Sidebar = () => {
       className="mat-drawer mat-sidenav left-sidemenu ng-tns-c3816625663-0 ng-trigger ng-trigger-transform mat-drawer-over ng-star-inserted"
       style={{
         transform: `translate(${showSidebar ? "0" : "-100%"}, 0)`,
-
+        boxShadow: "none",
         transition: "0.5s",
       }}
     >
@@ -76,7 +76,6 @@ const Sidebar = () => {
                 </span>
                 {loginName}
               </p>
-              
             </div>
           </div>
           <div _ngcontent-ng-c967272132="" className="sidemenu-list">

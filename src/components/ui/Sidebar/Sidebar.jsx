@@ -2,10 +2,12 @@ import { Link, useNavigate } from "react-router-dom";
 import useContextState from "../../../hooks/useContextState";
 import { useRef } from "react";
 import useCloseModalClickOutside from "../../../hooks/useCloseModalClickOutside";
+import { RiEditBoxFill } from "react-icons/ri";
 
 /* eslint-disable react/no-unknown-property */
 const Sidebar = () => {
-  const { showSidebar, setShowSidebar, setGetToken } = useContextState();
+  const { showSidebar, setShowSidebar, setGetToken, setShowEditStake } =
+    useContextState();
   const loginName = localStorage.getItem("loginName");
   const navigate = useNavigate();
   const leftMenuRef = useRef();
@@ -212,6 +214,23 @@ const Sidebar = () => {
                     src="https://ss.manage63.com/bmk-wl/commonAssets/sidenav_activebets.svg"
                   />
                   <span _ngcontent-ng-c967272132="">Active Bets</span>
+                </a>
+              </li>
+              <li
+                _ngcontent-ng-c967272132=""
+                routerlinkactive="active-link"
+                className="smenu-item"
+              >
+                <a
+                  onClick={() => {
+                    setShowEditStake(true);
+                    setShowSidebar(false);
+                  }}
+                  _ngcontent-ng-c967272132=""
+                  className="smenu-link"
+                >
+                  <RiEditBoxFill size={18} color="#3d3d3d" />
+                  <span _ngcontent-ng-c967272132="">Edit Stakes</span>
                 </a>
               </li>
               <li _ngcontent-ng-c967272132="" className="smenu-item">

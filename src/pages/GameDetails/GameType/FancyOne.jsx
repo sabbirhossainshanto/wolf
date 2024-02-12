@@ -1,5 +1,51 @@
 /* eslint-disable react/no-unknown-property */
-const FancyOne = ({ FancyOne }) => {
+const FancyOne = ({ FancyOne,setOpenBetSlip, setPlaceBetValues  }) => {
+  const handlePlaceBackBet = (item, runner) => {
+    setOpenBetSlip(true);
+    setPlaceBetValues({});
+    setPlaceBetValues({
+      price: runner?.back[0].price,
+      side: 0,
+      selectionId: runner?.id,
+      btype: item?.btype,
+      eventTypeId: item?.eventTypeId,
+      betDelay: item?.betDelay,
+      marketId: item?.id,
+      back: true,
+      name: item.runners.map((runner) => runner.name),
+      runnerId: item.runners.map((runner) => runner.id),
+      selectedBetName: runner?.name,
+      // pnl: updatedPnl,
+      isWeak: item?.isWeak,
+      maxLiabilityPerMarket: item?.maxLiabilityPerMarket,
+      isBettable: item?.isBettable,
+      maxLiabilityPerBet: item?.maxLiabilityPerBet,
+    });
+  };
+
+  const handlePlaceLayBets = (item, runner) => {
+    setOpenBetSlip(true);
+    setPlaceBetValues({});
+    setPlaceBetValues({
+      price: runner?.lay[0].price,
+      side: 1,
+      selectionId: runner?.id,
+      btype: item?.btype,
+      eventTypeId: item?.eventTypeId,
+      betDelay: item?.betDelay,
+      marketId: item?.id,
+      // pnl: updatedPnl,
+      lay: true,
+      selectedBetName: runner?.name,
+      name: item.runners.map((runner) => runner.name),
+      runnerId: item.runners.map((runner) => runner.id),
+      isWeak: item?.isWeak,
+      maxLiabilityPerMarket: item?.maxLiabilityPerMarket,
+      isBettable: item?.isBettable,
+      maxLiabilityPerBet: item?.maxLiabilityPerBet,
+    });
+  };
+
   return (
     <div
       _ngcontent-ng-c942213636=""
@@ -66,6 +112,7 @@ const FancyOne = ({ FancyOne }) => {
                   className="count-v-wrap ng-star-inserted"
                 >
                   <button
+                  onClick={()=> handlePlaceBackBet(games,games?.runners[0])}
                     _ngcontent-ng-c942213636=""
                     mat-flat-button=""
                     mat-ripple-loader-uninitialized=""
@@ -75,16 +122,17 @@ const FancyOne = ({ FancyOne }) => {
                     <span className="mat-mdc-button-persistent-ripple mdc-button__ripple"></span>
                     <span className="mdc-button__label">
                       <h4 _ngcontent-ng-c942213636="">
-                        {games?.runners?.[0]?.back[0]?.line}
+                        {games?.runners?.[0]?.back[0]?.price}
                       </h4>
                       <p _ngcontent-ng-c942213636="">
-                        {games?.runners?.[0]?.back[0]?.price}
+                        {games?.runners?.[0]?.back[0]?.size}
                       </p>{" "}
                     </span>
                     <span className="mat-mdc-focus-indicator"></span>
                     <span className="mat-mdc-button-touch-target"></span>
                   </button>
                   <button
+                  onClick={()=> handlePlaceLayBets(games,games?.runners[0])}
                     _ngcontent-ng-c942213636=""
                     mat-flat-button=""
                     mat-ripple-loader-uninitialized=""
@@ -94,10 +142,10 @@ const FancyOne = ({ FancyOne }) => {
                     <span className="mat-mdc-button-persistent-ripple mdc-button__ripple"></span>
                     <span className="mdc-button__label">
                       <h4 _ngcontent-ng-c942213636="">
-                        {games?.runners?.[0]?.lay[0]?.line}
+                        {games?.runners?.[0]?.lay[0]?.price}
                       </h4>
                       <p _ngcontent-ng-c942213636="">
-                        {games?.runners?.[0]?.lay[0]?.price}
+                        {games?.runners?.[0]?.lay[0]?.size}
                       </p>{" "}
                     </span>
                     <span className="mat-mdc-focus-indicator"></span>

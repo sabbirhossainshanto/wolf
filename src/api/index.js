@@ -33,7 +33,7 @@ export const API = {
   activityLog: "https://odddb.com/activity_log.php",
   casinoResults: "https://odddb.com/casinoResult.php",
   singleResults: "",
-  buttonValue: "https://odddb.com/buttonValue.php",
+  buttonValue: config?.result?.endpoint?.buttonValue,
   changeTheme: "https://odddb.com/changeTheme.php",
   register: "",
   deposit: "",

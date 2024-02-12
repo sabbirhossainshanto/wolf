@@ -1,11 +1,13 @@
 /* eslint-disable react/no-unknown-property */
-
 import { Outlet } from "react-router-dom";
 import Footer from "../ui/Footer/Footer";
 import Navbar from "../ui/Navbar/Navbar";
 import Sidebar from "../ui/Sidebar/Sidebar";
+import useContextState from "../../hooks/useContextState";
+import EditStake from "../modal/EditStake";
 
 const Main = () => {
+  const { showEditStake, setShowEditStake } = useContextState();
   return (
     <>
       <div className="translator-wrap" style={{ display: "block" }}></div>
@@ -25,6 +27,7 @@ const Main = () => {
 
           <Sidebar />
           {/*   <!-- header start--> */}
+          {showEditStake && <EditStake setShowEditStake={setShowEditStake} />}
 
           <div
             className="cdk-visually-hidden cdk-focus-trap-anchor"

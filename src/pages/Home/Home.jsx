@@ -7,7 +7,11 @@ import Tabs from "./Tabs";
 /* eslint-disable react/no-unknown-property */
 const Home = () => {
   return (
-    <div _ngcontent-ng-c943649379="" className="page-body demoID" style={{minHeight:'100vh'}} >
+    <div
+      _ngcontent-ng-c943649379=""
+      className="page-body demoID"
+      style={{ minHeight: "100vh" }}
+    >
       <Tabs />
 
       <div
@@ -39,7 +43,7 @@ const Home = () => {
         </div>
         <div _ngcontent-ng-c943649379="" className="pagetab-body">
           <div _ngcontent-ng-c943649379="" className="pagetab-content">
-            <Sports/>
+            <Sports />
             <GoCasino />
             <LiveCasino />
             <Casino />

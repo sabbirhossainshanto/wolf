@@ -1,5 +1,4 @@
 import { createContext, useEffect, useState } from "react";
-
 export const StateContext = createContext(null);
 
 const StateProvider = ({ children }) => {
@@ -9,7 +8,8 @@ const StateProvider = ({ children }) => {
   const [showLogin, setShowLogin] = useState(false);
   const [getToken, setGetToken] = useState(false);
   const [tokenLoading, setTokenLoading] = useState(true);
-
+  const [showEditStake, setShowEditStake] = useState(false);
+  const [placeBetValues, setPlaceBetValues] = useState({});
   useEffect(() => {
     const token = localStorage.getItem("token");
     setToken(token);
@@ -31,6 +31,9 @@ const StateProvider = ({ children }) => {
     setGetToken,
     tokenLoading,
     setTokenLoading,
+    showEditStake,
+    setShowEditStake,
+    placeBetValues, setPlaceBetValues
   };
   return (
     <StateContext.Provider value={stateInfo}>{children}</StateContext.Provider>

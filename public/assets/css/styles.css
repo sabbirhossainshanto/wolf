@@ -1651,7 +1651,7 @@ button .mat-mdc-button-touch-target {
     background: var(--white-color)
 }
 
-.login-section .login-header-section button.close-btn  {
+.login-section .login-header-section button.close-btn mat-icon {
     font-size: 20px;
     width: auto;
     height: auto;
@@ -1898,8 +1898,8 @@ button .mat-mdc-button-touch-target {
     top: 10px
 }
 
-.mat-mdc-dialog-container.mdc-dialog .modal-header .modal-close-btn ,
-.mat-mdc-dialog-container.mdc-dialog .modal-header .modal-back-btn  {
+.mat-mdc-dialog-container.mdc-dialog .modal-header .modal-close-btn mat-icon,
+.mat-mdc-dialog-container.mdc-dialog .modal-header .modal-back-btn mat-icon {
     color: var(--primary-color-contrast);
     font-size: 16px;
     margin: 0;
@@ -2092,7 +2092,7 @@ button .mat-mdc-button-touch-target {
     box-shadow: none
 }
 
-.login-dialog div.mdc-dialog__surface .login-section div.login-header-section button.close-btn  {
+.login-dialog div.mdc-dialog__surface .login-section div.login-header-section button.close-btn mat-icon {
     font-size: 16px;
     font-weight: 900;
     color: var(--primary-color)
@@ -6766,7 +6766,7 @@ screen and (-ms-high-contrast: none) {
     color: var(--white-color);
     text-align: right;
     margin: 0;
-    min-width: 10px;
+    min-width: 18px;
     line-height: 1.2;
     text-transform: capitalize
 }
@@ -11952,4 +11952,375 @@ div:where(.swal2-container) div:where(.swal2-actions) {
 
 div:where(.swal2-container).swal2-backdrop-show, div:where(.swal2-container).swal2-noanimation {
     background: rgba(0,0,0,.4);
+}
+
+
+
+
+
+
+.modal-header[_ngcontent-ng-c2718167310] {
+    background-color: var(--header-dark-color);
+    color: var(--white-color)
+}
+
+.modal-header[_ngcontent-ng-c2718167310] .action-btns[_ngcontent-ng-c2718167310] {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    column-gap: 5px
+}
+
+.modal-header[_ngcontent-ng-c2718167310] mat-icon[_ngcontent-ng-c2718167310] {
+    font-size: .875rem;
+    width: 24px;
+    height: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0;
+    color: var(--primary-color-contrast)
+}
+
+.modal-header[_ngcontent-ng-c2718167310] button[_ngcontent-ng-c2718167310] {
+    min-width: auto;
+    width: 25px;
+    max-height: 25px;
+    background: var(--primary-color) !important;
+    border-radius: 50%;
+    padding: 0
+}
+
+.modal-header[_ngcontent-ng-c2718167310] button[_ngcontent-ng-c2718167310]:focus-visible {
+    border: 0 !important;
+    outline: none
+}
+
+.modal-header[_ngcontent-ng-c2718167310] button[_ngcontent-ng-c2718167310] span[_ngcontent-ng-c2718167310] {
+    color: var(--primary-color-contrast);
+    font-size: 16px;
+    max-width: 24px
+}
+
+.editvalue-wrap[_ngcontent-ng-c2718167310] {
+    margin: 0;
+    padding: 0;
+    border-radius: 0
+}
+
+.editvalue-wrap[_ngcontent-ng-c2718167310] p.input-msg[_ngcontent-ng-c2718167310] {
+    font-size: .75rem;
+    margin: 0 0 5px;
+    opacity: .8
+}
+
+.editvalue-wrap[_ngcontent-ng-c2718167310]:last-child {
+    grid-column-start: 1;
+    grid-column-end: 3
+}
+
+.editvalue-wrap[_ngcontent-ng-c2718167310] .amt-chip-grid[_ngcontent-ng-c2718167310] {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    column-gap: 5px;
+    row-gap: 5px;
+    margin-bottom: 10px
+}
+
+.editvalue-wrap[_ngcontent-ng-c2718167310] .amt-chip-grid.end-row[_ngcontent-ng-c2718167310] {
+    grid-template-columns: repeat(3, 1fr);
+    border-bottom: 1px solid var(--header-dark-color);
+    padding-bottom: 10px
+}
+
+.editvalue-wrap[_ngcontent-ng-c2718167310] .amt-chip-grid[_ngcontent-ng-c2718167310] .chip-grid-item[_ngcontent-ng-c2718167310] {
+    text-align: center;
+    min-width: auto;
+    padding: 5px 6px;
+    border-radius: 0;
+    border: 1px solid var(--header-dark-color);
+    background-color: var(--grey-00);
+    font-weight: 500;
+    line-height: 1;
+    min-height: 30px;
+    width: 100%;
+    font-size: 10px
+}
+
+.editvalue-wrap[_ngcontent-ng-c2718167310] .amt-chip-grid[_ngcontent-ng-c2718167310] .chip-grid-item.error[_ngcontent-ng-c2718167310] {
+    border-color: var(--danger-color);
+    border-width: 2px
+}
+
+.editvalue-wrap[_ngcontent-ng-c2718167310] .amt-chip-grid[_ngcontent-ng-c2718167310] .chip-grid-item[_ngcontent-ng-c2718167310]:last-child {
+    margin-right: 0
+}
+
+.editvalue-wrap[_ngcontent-ng-c2718167310] .accept-checkwrap[_ngcontent-ng-c2718167310] p[_ngcontent-ng-c2718167310] {
+    font-size: .75rem;
+    font-weight: 500;
+    color: var(--dark-text);
+    margin: 0
+}
+
+.editvalue-wrap[_ngcontent-ng-c2718167310] .accept-checkwrap[_ngcontent-ng-c2718167310] .checkitems[_ngcontent-ng-c2718167310] {
+    display: flex;
+    align-items: center;
+    column-gap: 10px
+}
+
+.editvalue-wrap[_ngcontent-ng-c2718167310] .accept-checkwrap[_ngcontent-ng-c2718167310] .accept-checkbox[_ngcontent-ng-c2718167310] {
+    margin: 5px 0;
+    display: block;
+    border-radius: 0;
+    padding: 0;
+    font-weight: 300;
+    color: var(--dark-text);
+    font-size: .75rem;
+    font-weight: 500
+}
+
+.editvalue-wrap .accept-checkwrap .accept-checkbox.mat-checkbox-disabled .mat-checkbox-inner-container {
+    opacity: .6
+}
+
+.editvalue-wrap .accept-checkwrap .accept-checkbox.mat-checkbox-disabled .mat-checkbox-label {
+    color: var(--text-color);
+    opacity: .6
+}
+
+.editvalue-wrap[_ngcontent-ng-c2718167310] .accept-checkwrap[_ngcontent-ng-c2718167310] .accept-checkbox[_ngcontent-ng-c2718167310] .mat-checkbox-frame {
+    border-color: var(--card-background)
+}
+
+.editvalue-wrap .accept-checkwrap .accept-checkbox.mat-checkbox-checked .mat-checkbox-background {
+    background-color: var(--card-background)
+}
+
+.editvalue-wrap .accept-checkwrap .accept-checkbox.mat-checkbox-checked .mat-checkbox-background .mat-checkbox-checkmark-path {
+    stroke: var(--text-color) !important
+}
+
+.editvalue-wrap[_ngcontent-ng-c2718167310] .action-btns[_ngcontent-ng-c2718167310] {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    column-gap: 10px;
+    margin-top: 10px
+}
+
+.editvalue-wrap[_ngcontent-ng-c2718167310] .action-btns[_ngcontent-ng-c2718167310] button[_ngcontent-ng-c2718167310] {
+    font-size: .75rem;
+    max-height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center
+}
+
+.editvalue-wrap[_ngcontent-ng-c2718167310] .action-btns[_ngcontent-ng-c2718167310] button.cancel-btn[_ngcontent-ng-c2718167310] {
+    border: 1px solid var(--header-dark-color);
+    background-color: transparent
+}
+
+.editvalue-wrap[_ngcontent-ng-c2718167310] .action-btns[_ngcontent-ng-c2718167310] button.save-btn[_ngcontent-ng-c2718167310] {
+    border: 1px solid var(--primary-color);
+    background-color: var(--primary-color);
+    color: var(--primary-color-contrast)
+}
+
+.error-msg[_ngcontent-ng-c2718167310] {
+    font-size: .625rem;
+    color: var(--danger-color)
+}
+
+
+
+
+
+.mdc-snackbar {
+    display: none;
+    position: fixed;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    align-items: center;
+    justify-content: center;
+    box-sizing: border-box;
+    pointer-events: none;
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0)
+}
+
+.mdc-snackbar--opening,
+.mdc-snackbar--open,
+.mdc-snackbar--closing {
+    display: flex
+}
+
+.mdc-snackbar--open .mdc-snackbar__label,
+.mdc-snackbar--open .mdc-snackbar__actions {
+    visibility: visible
+}
+
+.mdc-snackbar__surface {
+    padding-left: 0;
+    padding-right: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    box-sizing: border-box;
+    transform: scale(0.8);
+    opacity: 0
+}
+
+.mdc-snackbar__surface::before {
+    position: absolute;
+    box-sizing: border-box;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    border: 1px solid rgba(0, 0, 0, 0);
+    border-radius: inherit;
+    content: "";
+    pointer-events: none
+}
+
+@media screen and (forced-colors: active) {
+    .mdc-snackbar__surface::before {
+        border-color: CanvasText
+    }
+}
+
+[dir=rtl] .mdc-snackbar__surface,
+.mdc-snackbar__surface[dir=rtl] {
+    padding-left: 8px;
+    padding-right: 0
+}
+
+.mdc-snackbar--open .mdc-snackbar__surface {
+    transform: scale(1);
+    opacity: 1;
+    pointer-events: auto
+}
+
+.mdc-snackbar--closing .mdc-snackbar__surface {
+    transform: scale(1)
+}
+
+.mdc-snackbar__label {
+    padding-left: 16px;
+    padding-right: 8px;
+    width: 100%;
+    flex-grow: 1;
+    box-sizing: border-box;
+    margin: 0;
+    visibility: hidden;
+    padding-top: 14px;
+    padding-bottom: 14px
+}
+
+[dir=rtl] .mdc-snackbar__label,
+.mdc-snackbar__label[dir=rtl] {
+    padding-left: 8px;
+    padding-right: 16px
+}
+
+.mdc-snackbar__label::before {
+    display: inline;
+    content: attr(data-mdc-snackbar-label-text)
+}
+
+.mdc-snackbar__actions {
+    display: flex;
+    flex-shrink: 0;
+    align-items: center;
+    box-sizing: border-box;
+    visibility: hidden
+}
+
+.mdc-snackbar__action+.mdc-snackbar__dismiss {
+    margin-left: 8px;
+    margin-right: 0
+}
+
+[dir=rtl] .mdc-snackbar__action+.mdc-snackbar__dismiss,
+.mdc-snackbar__action+.mdc-snackbar__dismiss[dir=rtl] {
+    margin-left: 0;
+    margin-right: 8px
+}
+
+.mat-mdc-snack-bar-container {
+    margin: 8px;
+    --mdc-snackbar-container-shape: 4px;
+    position: static
+}
+
+.mat-mdc-snack-bar-container .mdc-snackbar__surface {
+    min-width: 344px
+}
+
+@media(max-width: 480px), (max-width: 344px) {
+    .mat-mdc-snack-bar-container .mdc-snackbar__surface {
+        min-width: 100%
+    }
+}
+
+@media(max-width: 480px), (max-width: 344px) {
+    .mat-mdc-snack-bar-container {
+        width: 100vw
+    }
+}
+
+.mat-mdc-snack-bar-container .mdc-snackbar__surface {
+    max-width: 672px
+}
+
+.mat-mdc-snack-bar-container .mdc-snackbar__surface {
+    box-shadow: 0px 3px 5px -1px rgba(0, 0, 0, 0.2), 0px 6px 10px 0px rgba(0, 0, 0, 0.14), 0px 1px 18px 0px rgba(0, 0, 0, 0.12)
+}
+
+.mat-mdc-snack-bar-container .mdc-snackbar__surface {
+    background-color: var(--mdc-snackbar-container-color)
+}
+
+.mat-mdc-snack-bar-container .mdc-snackbar__surface {
+    border-radius: var(--mdc-snackbar-container-shape)
+}
+
+.mat-mdc-snack-bar-container .mdc-snackbar__label {
+    color: var(--mdc-snackbar-supporting-text-color)
+}
+
+.mat-mdc-snack-bar-container .mdc-snackbar__label {
+    font-size: var(--mdc-snackbar-supporting-text-size);
+    font-family: var(--mdc-snackbar-supporting-text-font);
+    font-weight: var(--mdc-snackbar-supporting-text-weight);
+    line-height: var(--mdc-snackbar-supporting-text-line-height)
+}
+
+.mat-mdc-snack-bar-container .mat-mdc-button.mat-mdc-snack-bar-action:not(:disabled) {
+    color: var(--mat-snack-bar-button-color);
+    --mat-mdc-button-persistent-ripple-color: currentColor
+}
+
+.mat-mdc-snack-bar-container .mat-mdc-button.mat-mdc-snack-bar-action:not(:disabled) .mat-ripple-element {
+    background-color: currentColor;
+    opacity: .1
+}
+
+.mat-mdc-snack-bar-container .mdc-snackbar__label::before {
+    display: none
+}
+
+.mat-mdc-snack-bar-handset,
+.mat-mdc-snack-bar-container,
+.mat-mdc-snack-bar-label {
+    flex: 1 1 auto
+}
+
+.mat-mdc-snack-bar-handset .mdc-snackbar__surface {
+    width: 100%
+}
+
+.mat-mdc-simple-snack-bar {
+    display: flex
 }

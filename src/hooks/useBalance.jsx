@@ -7,10 +7,11 @@ import { API } from "../api";
 import { useEffect } from "react";
 /* Balance api */
 const useBalance = () => {
-  const { token, setGetToken } = useContextState();
+  const { token, setGetToken, tokenLoading } = useContextState();
 
   const { data: balanceData, refetch: refetchBalance } = useQuery({
     queryKey: ["balance"],
+    enabled:!tokenLoading,
     queryFn: async () => {
       if (!token) {
         return;

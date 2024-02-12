@@ -7,23 +7,30 @@ const StateProvider = ({ children }) => {
   const [showSidebar, setShowSidebar] = useState(false);
   const [token, setToken] = useState("");
   const [showLogin, setShowLogin] = useState(false);
-  const [getToken,setGetToken] = useState(false)
+  const [getToken, setGetToken] = useState(false);
+  const [tokenLoading, setTokenLoading] = useState(true);
 
   useEffect(() => {
     const token = localStorage.getItem("token");
-    setToken(token)
+    setToken(token);
+    if (token) {
+      setTokenLoading(false);
+    }
   }, [getToken]);
-
-
 
   const stateInfo = {
     sportsType,
     setSportsType,
     showSidebar,
     setShowSidebar,
-    showLogin, setShowLogin,
-    token, setToken,
-    getToken,setGetToken
+    showLogin,
+    setShowLogin,
+    token,
+    setToken,
+    getToken,
+    setGetToken,
+    tokenLoading,
+    setTokenLoading,
   };
   return (
     <StateContext.Provider value={stateInfo}>{children}</StateContext.Provider>

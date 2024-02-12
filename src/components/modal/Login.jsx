@@ -7,7 +7,7 @@ import { useForm } from "react-hook-form";
 import UseEncryptData from "../../hooks/UseEncryptData";
 import UseTokenGenerator from "../../hooks/UseTokenGenerator";
 import { API } from "../../api";
-import Notification from "../ui/Notification/Notification";
+import Warning from "../ui/Notification/Warning";
 const Login = ({ setShowLogin, setErrorLogin, errorLogin, setGetToken }) => {
   const { register, handleSubmit } = useForm();
   const loginRef = useRef();
@@ -82,7 +82,6 @@ const Login = ({ setShowLogin, setErrorLogin, errorLogin, setGetToken }) => {
     })
       .then((res) => res.json())
       .then((data) => {
-  
         /* Set token to localeStorage */
         localStorage.setItem("token", data.result.token);
         /* Set login name to locale storage */
@@ -182,7 +181,7 @@ const Login = ({ setShowLogin, setErrorLogin, errorLogin, setGetToken }) => {
                           </div>
 
                           <button
-                          onClick={()=> setShowLogin(false)}
+                            onClick={() => setShowLogin(false)}
                             _ngcontent-ng-c2806737617=""
                             mat-mini-fab=""
                             color="primary"
@@ -197,13 +196,17 @@ const Login = ({ setShowLogin, setErrorLogin, errorLogin, setGetToken }) => {
                               height: "25px",
                               width: "25px",
                               border: "none",
-                              cursor:'pointer',
-                              fontWeight:'bold'
+                              cursor: "pointer",
                             }}
                           >
                             <IoClose
-                            style={{height:'100%',width:'100%'}}
-                            size={30} />
+                              style={{
+                                height: "100%",
+                                width: "100%",
+                                fontWeight: "700",
+                              }}
+                              size={30}
+                            />
                           </button>
                         </div>
                         <div
@@ -358,7 +361,7 @@ const Login = ({ setShowLogin, setErrorLogin, errorLogin, setGetToken }) => {
         </div>
       </div>
       {errorLogin && (
-        <Notification message={errorLogin} setMessage={setErrorLogin} />
+        <Warning message={errorLogin} setMessage={setErrorLogin} />
       )}
     </>
   );

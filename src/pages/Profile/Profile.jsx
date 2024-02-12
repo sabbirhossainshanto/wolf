@@ -1,14 +1,35 @@
 /* eslint-disable react/no-unknown-property */
 
+import { useState } from "react";
+import ChangePassword from "../../components/modal/ChangePassword";
 import useBalance from "../../hooks/UseBalance";
-
+import Success from "../../components/ui/Notification/Success";
+import Warning from "../../components/ui/Notification/Warning";
 const Profile = () => {
   const loginName = localStorage.getItem("loginName");
   const { balanceData } = useBalance();
+  const [showChangePassModal, setShowChangePassModal] = useState(false);
+  const [errorMessage, setErrorMessage] = useState("");
+  const [successMessage, setSuccessMessage] = useState("");
   return (
-    <div style={{minHeight:'100vh'}} _ngcontent-ng-c2865632707="" className="page-body demoID"
-    
+    <div
+      style={{ minHeight: "100vh" }}
+      _ngcontent-ng-c2865632707=""
+      className="page-body demoID"
     >
+      {showChangePassModal && (
+        <ChangePassword
+          setShowChangePassModal={setShowChangePassModal}
+          setErrorMessage={setErrorMessage}
+          setSuccessMessage={setSuccessMessage}
+        />
+      )}
+      {successMessage && (
+        <Success message={successMessage} setMessage={setSuccessMessage} />
+      )}
+      {errorMessage && (
+        <Warning message={errorMessage} setMessage={setErrorMessage} />
+      )}
       <div _ngcontent-ng-c2865632707="" className="user-details-wrap">
         <div
           _ngcontent-ng-c2865632707=""
@@ -16,7 +37,7 @@ const Profile = () => {
         >
           <div _ngcontent-ng-c2865632707="" className="contact-info">
             <p _ngcontent-ng-c2865632707="" className="notranslate">
-        {loginName}
+              {loginName}
             </p>
 
             <p
@@ -29,6 +50,7 @@ const Profile = () => {
           </div>
           <div _ngcontent-ng-c2865632707="" className="actions-wrap">
             <button
+              onClick={() => setShowChangePassModal(true)}
               _ngcontent-ng-c2865632707=""
               mat-flat-button=""
               className="chng-psw-btn mdc-button mdc-button--unelevated mat-mdc-unelevated-button mat-unthemed mat-mdc-button-base ng-star-inserted"
@@ -51,7 +73,7 @@ const Profile = () => {
             <div _ngcontent-ng-c2865632707="" className="bal-cont">
               <div _ngcontent-ng-c2865632707="" className="avl-bal show-bal">
                 <mat-label _ngcontent-ng-c2865632707="">Balance</mat-label>
-                <p _ngcontent-ng-c2865632707="">         {balanceData?.creditLimit}</p>
+                <p _ngcontent-ng-c2865632707=""> {balanceData?.creditLimit}</p>
               </div>
             </div>
             <div _ngcontent-ng-c2865632707="" className="d-w-btn">
@@ -93,7 +115,6 @@ const Profile = () => {
               <div _ngcontent-ng-c2865632707="" className="label-wrap">
                 <img
                   _ngcontent-ng-c2865632707=""
-               
                   alt="Menu Icon"
                   src="https://ss.manage63.com/bmk-wl/commonAssets/sidenav_alternate _no.svg"
                 />
@@ -109,7 +130,6 @@ const Profile = () => {
               <div _ngcontent-ng-c2865632707="" className="label-wrap">
                 <img
                   _ngcontent-ng-c2865632707=""
-          
                   alt="Menu Icon"
                   src="https://ss.manage63.com/bmk-wl/commonAssets/sidenav_email.svg"
                 />
@@ -125,7 +145,6 @@ const Profile = () => {
               <div _ngcontent-ng-c2865632707="" className="label-wrap">
                 <img
                   _ngcontent-ng-c2865632707=""
-                
                   alt="Menu Icon"
                   src="https://ss.manage63.com/bmk-wl/commonAssets/sidenav_profile.svg"
                 />
@@ -138,7 +157,6 @@ const Profile = () => {
               <div _ngcontent-ng-c2865632707="" className="label-wrap">
                 <img
                   _ngcontent-ng-c2865632707=""
-             
                   alt="Menu Icon"
                   src="https://ss.manage63.com/bmk-wl/commonAssets/sidenav_activebets.svg"
                 />
@@ -155,7 +173,6 @@ const Profile = () => {
               <div _ngcontent-ng-c2865632707="" className="label-wrap">
                 <img
                   _ngcontent-ng-c2865632707=""
-           
                   alt="Menu Icon"
                   src="https://ss.manage63.com/bmk-wl/commonAssets/sidenav__ac_statement.svg"
                 />
@@ -172,7 +189,6 @@ const Profile = () => {
               <div _ngcontent-ng-c2865632707="" className="label-wrap">
                 <img
                   _ngcontent-ng-c2865632707=""
-           
                   alt="Menu Icon"
                   src="https://ss.manage63.com/bmk-wl/commonAssets/dice.svg"
                 />
@@ -190,7 +206,6 @@ const Profile = () => {
               <div _ngcontent-ng-c2865632707="" className="label-wrap">
                 <img
                   _ngcontent-ng-c2865632707=""
-          
                   alt="Menu Icon"
                   src="https://ss.manage63.com/bmk-wl/commonAssets/sidenav_rules.svg"
                 />
@@ -207,7 +222,6 @@ const Profile = () => {
               <div _ngcontent-ng-c2865632707="" className="label-wrap">
                 <img
                   _ngcontent-ng-c2865632707=""
-            
                   alt="Menu Icon"
                   src="https://ss.manage63.com/bmk-wl/commonAssets/sidenav_bank.svg"
                 />

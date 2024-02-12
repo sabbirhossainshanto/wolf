@@ -1,7 +1,7 @@
-const Notification = ({ message, setMessage }) => {
+const Warning = ({ message, setMessage }) => {
   setTimeout(() => {
     setMessage("");
-  }, 5000);
+  }, 3000);
   return (
     <div
       className="swal2-container swal2-bottom swal2-backdrop-show"
@@ -11,7 +11,6 @@ const Notification = ({ message, setMessage }) => {
         aria-labelledby="swal2-title"
         aria-describedby="swal2-html-container"
         className="swal2-popup swal2-modal warning-alert alert-dialog"
-     
         role="dialog"
         aria-live="assertive"
         aria-modal="true"
@@ -45,7 +44,6 @@ const Notification = ({ message, setMessage }) => {
           style={{ display: "block" }}
         >
           {message}
-        
         </div>
         <input
           id="swal2-input"
@@ -116,4 +114,4 @@ const Notification = ({ message, setMessage }) => {
   );
 };
 
-export default Notification;
+export default Warning;

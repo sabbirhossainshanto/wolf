@@ -13,7 +13,6 @@ const Navbar = () => {
     useContextState();
   const loginName = localStorage.getItem("loginName");
   const { balanceData } = useBalance();
-
   /* handle login demo user */
   const loginWithDemo = () => {
     /* Random token generator */
@@ -61,15 +60,18 @@ const Navbar = () => {
   return (
     <>
       <div
-
-   style={{
-  //   position:'fixed',
-  //   width:'100%',
-  //   zIndex:'1040',
-  //   minHeight:'auto',
-  // boxSizing:'border-box'
-   }}
-      _ngcontent-ng-c943649379="" className="page-header">
+        style={
+          {
+            //   position:'fixed',
+            //   width:'100%',
+            //   zIndex:'1040',
+            //   minHeight:'auto',
+            // boxSizing:'border-box'
+          }
+        }
+        _ngcontent-ng-c943649379=""
+        className="page-header"
+      >
         <div _ngcontent-ng-c943649379="" _nghost-ng-c3243547741="">
           <div
             _ngcontent-ng-c3243547741=""

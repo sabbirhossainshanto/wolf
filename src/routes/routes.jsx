@@ -4,6 +4,8 @@ import Home from "../pages/Home/Home";
 import GameDetails from "../pages/GameDetails/GameDetails";
 import Profile from "../pages/Profile/Profile";
 import Rules from "../pages/Rules/Rules";
+import Deposit from "../pages/Deposit/Deposit";
+import Withdraw from "../pages/Withdraw/Withdraw";
 
 export const router = createBrowserRouter([
   {
@@ -19,12 +21,20 @@ export const router = createBrowserRouter([
         element: <GameDetails />,
       },
       {
-        path: "/profile",
+        path: "profile",
         element: <Profile />,
       },
-    
       {
-        path: "/rules",
+        path: "profile/deposit",
+        element: <Deposit />,
+      },
+      {
+        path: "profile/withdraw",
+        element: <Withdraw />,
+      },
+
+      {
+        path: "rules",
         element: <Rules />,
       },
     ],

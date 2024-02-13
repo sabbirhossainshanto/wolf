@@ -40,6 +40,7 @@ const Success = ({message, setMessage }) => {
                         className="mat-mdc-snack-bar-actions mdc-snackbar__actions ng-star-inserted"
                       >
                         <button
+                        onClick={()=> setMessage('')}
                           mat-button=""
                           matsnackbaraction=""
                           className="mat-mdc-snack-bar-action mdc-snackbar__action mdc-button mat-mdc-button mat-unthemed mat-mdc-button-base"

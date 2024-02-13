@@ -36,8 +36,8 @@ export const API = {
   buttonValue: config?.result?.endpoint?.buttonValue,
   changeTheme: "https://odddb.com/changeTheme.php",
   register: "",
-  deposit: "",
-  withdraw: "",
+  deposit: config?.result?.endpoint?.depositIframe,
+  withdraw: config?.result?.endpoint?.withdrawIframe,
   message: "",
   ourCasino: config?.result?.endpoint?.auraCasino,
   diamondCasino: config?.result?.endpoint?.diamondCasino,
@@ -51,5 +51,6 @@ export const API = {
   interval:config?.result?.settings?.interval,
   exposure:config?.result?.endpoint?.exposure,
   accountStatement:config?.result?.endpoint?.accountStatement,
-  settledBets:config?.result?.endpoint?.settledBets
+  settledBets:config?.result?.endpoint?.settledBets,
+  siteUrl:config?.result?.settings?.siteUrl
 };

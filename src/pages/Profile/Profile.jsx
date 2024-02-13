@@ -5,12 +5,14 @@ import ChangePassword from "../../components/modal/ChangePassword";
 import useBalance from "../../hooks/UseBalance";
 import Success from "../../components/ui/Notification/Success";
 import Warning from "../../components/ui/Notification/Warning";
+import { useNavigate } from "react-router-dom";
 const Profile = () => {
   const loginName = localStorage.getItem("loginName");
   const { balanceData } = useBalance();
   const [showChangePassModal, setShowChangePassModal] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
   const [successMessage, setSuccessMessage] = useState("");
+  const navigate = useNavigate()
   return (
     <div
       style={{ minHeight: "100vh" }}
@@ -78,6 +80,9 @@ const Profile = () => {
             </div>
             <div _ngcontent-ng-c2865632707="" className="d-w-btn">
               <button
+              onClick={()=> {
+                navigate('/profile/deposit')
+              }}
                 _ngcontent-ng-c2865632707=""
                 mat-flat-button=""
                 className="notranslate mdc-button mdc-button--unelevated mat-mdc-unelevated-button mat-unthemed mat-mdc-button-base"
@@ -90,6 +95,9 @@ const Profile = () => {
                 <span className="mat-ripple mat-mdc-button-ripple"></span>
               </button>
               <button
+               onClick={()=> {
+                navigate('/profile/withdraw')
+              }}
                 _ngcontent-ng-c2865632707=""
                 mat-flat-button=""
                 className="notranslate mdc-button mdc-button--unelevated mat-mdc-unelevated-button mat-unthemed mat-mdc-button-base"

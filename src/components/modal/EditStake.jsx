@@ -4,8 +4,9 @@ import { useForm } from "react-hook-form";
 import useContextState from "../../hooks/useContextState";
 import { API } from "../../api";
 
+
 /* eslint-disable react/no-unknown-property */
-const EditStake = ({ setShowEditStake }) => {
+const EditStake = ({ setShowEditStake,setSuccessEditStake }) => {
   const stakeRef = useRef();
   useCloseModalClickOutside(stakeRef, () => {
     setShowEditStake(false);
@@ -13,7 +14,7 @@ const EditStake = ({ setShowEditStake }) => {
   const buttonGameValue = JSON.parse(localStorage.getItem("buttonValue"));
   const { register, handleSubmit } = useForm();
   const { token } = useContextState();
-
+  
   const onSubmit = ({
     buttons0value,
     buttons1value,
@@ -69,6 +70,8 @@ const EditStake = ({ setShowEditStake }) => {
       .then((res) => res.json())
       .then((data) => {
         if (data.success) {
+          console.log(data?.result?.message);
+          setSuccessEditStake(data?.result?.message);
           localStorage.removeItem("buttonValue");
           const gameButtonsValues = [
             {
@@ -309,6 +312,7 @@ const EditStake = ({ setShowEditStake }) => {
                             className="action-btns"
                           >
                             <button
+                              onClick={() => setShowEditStake(false)}
                               _ngcontent-ng-c2718167310=""
                               mat-flat-button=""
                               className="cancel-btn mdc-button mdc-button--unelevated mat-mdc-unelevated-button mat-unthemed mat-mdc-button-base"
@@ -349,6 +353,7 @@ const EditStake = ({ setShowEditStake }) => {
           ></div>
         </div>
       </div>
+
     </div>
   );
 };

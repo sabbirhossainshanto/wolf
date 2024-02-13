@@ -1,5 +1,5 @@
 import { useNavigate } from "react-router-dom";
-import { FaStar } from "react-icons/fa";
+// import { FaStar } from "react-icons/fa";
 /* eslint-disable react/no-unknown-property */
 const BetTable = ({ data, keys }) => {
   const navigate = useNavigate();
@@ -42,7 +42,7 @@ const BetTable = ({ data, keys }) => {
               >
                   
               </span> */}
-              <FaStar />
+              {/* <FaStar /> */}
               <span
                 _ngcontent-ng-c943649379=""
                 className="team-name ng-star-inserted"
@@ -60,7 +60,7 @@ const BetTable = ({ data, keys }) => {
             </p>
             <p _ngcontent-ng-c943649379="" className="ng-star-inserted"></p>
           </h3>
-          <div
+          {/* <div
             _ngcontent-ng-c943649379=""
             className="inplay-wrap ng-star-inserted"
           >
@@ -73,7 +73,7 @@ const BetTable = ({ data, keys }) => {
             >
               play_arrow
             </span>
-          </div>
+          </div> */}
         </div>
         <div
           _ngcontent-ng-c943649379=""
@@ -92,7 +92,7 @@ const BetTable = ({ data, keys }) => {
                 {data[keys]?.[0]?.ex?.availableToBack[0]?.price}
               </h4>
               <p _ngcontent-ng-c943649379="">
-                {data[keys]?.[0]?.ex?.availableToLay[0]?.price}
+              {data[keys]?.[0]?.ex?.availableToBack[0]?.size}
               </p>{" "}
             </span>
             <span className="mat-mdc-focus-indicator"></span>
@@ -108,10 +108,10 @@ const BetTable = ({ data, keys }) => {
             <span className="mat-mdc-button-persistent-ripple mdc-button__ripple"></span>
             <span className="mdc-button__label">
               <h4 _ngcontent-ng-c943649379="">
-                {data[keys]?.[1]?.ex?.availableToBack[0]?.price}
+              {data[keys]?.[0]?.ex?.availableToLay[0]?.price}
               </h4>
               <p _ngcontent-ng-c943649379="">
-                {data[keys]?.[1]?.ex?.availableToLay[0]?.price}
+              {data[keys]?.[0]?.ex?.availableToLay[0]?.size}
               </p>{" "}
             </span>
             <span className="mat-mdc-focus-indicator"></span>

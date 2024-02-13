@@ -1,50 +1,13 @@
-/* eslint-disable react/no-unknown-property */
-const Bookmaker = ({ bookmarker, setOpenBetSlip, setPlaceBetValues }) => {
-  const handlePlaceBackBet = (item, runner) => {
-    setOpenBetSlip(true);
-    setPlaceBetValues({});
-    setPlaceBetValues({
-      price: runner?.back[0].price,
-      side: 0,
-      selectionId: runner?.id,
-      btype: item?.btype,
-      eventTypeId: item?.eventTypeId,
-      betDelay: item?.betDelay,
-      marketId: item?.id,
-      back: true,
-      name: item.runners.map((runner) => runner.name),
-      runnerId: item.runners.map((runner) => runner.id),
-      selectedBetName: runner?.name,
-      // pnl: updatedPnl,
-      isWeak: item?.isWeak,
-      maxLiabilityPerMarket: item?.maxLiabilityPerMarket,
-      isBettable: item?.isBettable,
-      maxLiabilityPerBet: item?.maxLiabilityPerBet,
-    });
-  };
+import { handlePlaceBet } from "../../../utils/handlePlaceBet";
 
-  const handlePlaceLayBets = (item, runner) => {
-    setOpenBetSlip(true);
-    setPlaceBetValues({});
-    setPlaceBetValues({
-      price: runner?.lay[0].price,
-      side: 1,
-      selectionId: runner?.id,
-      btype: item?.btype,
-      eventTypeId: item?.eventTypeId,
-      betDelay: item?.betDelay,
-      marketId: item?.id,
-      // pnl: updatedPnl,
-      lay: true,
-      selectedBetName: runner?.name,
-      name: item.runners.map((runner) => runner.name),
-      runnerId: item.runners.map((runner) => runner.id),
-      isWeak: item?.isWeak,
-      maxLiabilityPerMarket: item?.maxLiabilityPerMarket,
-      isBettable: item?.isBettable,
-      maxLiabilityPerBet: item?.maxLiabilityPerBet,
-    });
-  };
+/* eslint-disable react/no-unknown-property */
+const Bookmaker = ({ bookmarker, setOpenBetSlip, setPlaceBetValues,exposer }) => {
+
+  let pnlBySelection;
+  if (exposer?.pnlBySelection) {
+    const obj = exposer?.pnlBySelection;
+    pnlBySelection = Object?.values(obj);
+  }
 
   return (
     <>
@@ -94,6 +57,9 @@ const Bookmaker = ({ bookmarker, setOpenBetSlip, setPlaceBetValues }) => {
               </div>
               <div _ngcontent-ng-c942213636="" className="card-body">
                 {games?.runners?.map((runner) => {
+                     const pnl = pnlBySelection?.filter(
+                      (pnl) => pnl?.RunnerId === runner?.id
+                    );
                   return (
                     <div
                       key={runner?.id}
@@ -107,6 +73,25 @@ const Bookmaker = ({ bookmarker, setOpenBetSlip, setPlaceBetValues }) => {
                         <h3 _ngcontent-ng-c942213636="" className="team-title">
                           {runner?.name}
                         </h3>
+                        {pnl &&
+                          pnl?.map(({ pnl, MarketId }, i) => {
+                        
+                            return (
+                              <p
+                              _ngcontent-ng-c942213636=""
+                                // onClick={() => handleLader(MarketId)}
+                                key={i}
+                                className={`ng-star-inserted ${
+                                  pnl > 0 ? "text-success" : "text-danger"
+                                }`}
+                                style={{
+                                  cursor: "pointer",
+                                }}
+                              >
+                                {pnl}
+                              </p>
+                            );
+                          })}
                       </div>
                       {games?.status === "OPEN" ? (
                         <div
@@ -114,7 +99,7 @@ const Bookmaker = ({ bookmarker, setOpenBetSlip, setPlaceBetValues }) => {
                           className="count-v-wrap ng-star-inserted"
                         >
                           <button
-                          onClick={()=> handlePlaceBackBet(games,runner)}
+                          onClick={()=> handlePlaceBet(games,runner,'back',setOpenBetSlip,setPlaceBetValues)}
                             _ngcontent-ng-c942213636=""
                             mat-flat-button=""
                             mat-ripple-loader-uninitialized=""
@@ -132,7 +117,7 @@ const Bookmaker = ({ bookmarker, setOpenBetSlip, setPlaceBetValues }) => {
                             <span className="mat-mdc-button-touch-target"></span>
                           </button>
                           <button
-                          onClick={()=> handlePlaceLayBets(games,runner)}
+                          onClick={()=> handlePlaceBet(games,runner,'lay',setOpenBetSlip,setPlaceBetValues)}
                             _ngcontent-ng-c942213636=""
                             mat-flat-button=""
                             mat-ripple-loader-uninitialized=""

@@ -31,7 +31,6 @@ const ChangePassword = ({
 
   /* Change password */
   const onSubmit = ({ password, newPassword, newPasswordConfirm }) => {
-    console.log(password, newPassword, newPasswordConfirm);
     const generatedToken = UseTokenGenerator();
     const encryptedData = UseEncryptData({
       oldPassword: password,

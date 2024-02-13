@@ -3,11 +3,10 @@ import { useEffect, useState } from "react";
 import useContextState from "../../hooks/useContextState";
 import axios from "axios";
 import { API } from "../../api";
-import { token } from "../../api/token";
 import BetTable from "../../components/ui/BetTable/BetTable";
 import { GoClock } from "react-icons/go";
 const Sports = () => {
-  const { sportsType } = useContextState();
+  const { sportsType,token } = useContextState();
   const [games, setGames] = useState(null);
   /* Get game events */
   useEffect(() => {

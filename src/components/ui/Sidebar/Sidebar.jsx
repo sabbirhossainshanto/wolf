@@ -6,11 +6,18 @@ import { RiEditBoxFill } from "react-icons/ri";
 
 /* eslint-disable react/no-unknown-property */
 const Sidebar = () => {
-  const { showSidebar, setShowSidebar, setGetToken, setShowEditStake } =
-    useContextState();
+  const {
+    showSidebar,
+    setShowSidebar,
+    setGetToken,
+    setShowEditStake,
+    token,
+    setShowLogin,
+  } = useContextState();
   const loginName = localStorage.getItem("loginName");
   const navigate = useNavigate();
   const leftMenuRef = useRef();
+
   useCloseModalClickOutside(leftMenuRef, () => {
     setShowSidebar(false);
   });
@@ -21,11 +28,11 @@ const Sidebar = () => {
     navigate("/");
   };
 
-
   return (
     <>
-      <div className="mat-drawer-backdrop ng-star-inserted"
-      style={{visibility:`${showSidebar ? 'visible':'hidden'}`}}
+      <div
+        className="mat-drawer-backdrop ng-star-inserted"
+        style={{ visibility: `${showSidebar ? "visible" : "hidden"}` }}
       ></div>
       <div
         className="cdk-visually-hidden cdk-focus-trap-anchor"
@@ -93,169 +100,182 @@ const Sidebar = () => {
             </div>
             <div _ngcontent-ng-c967272132="" className="sidemenu-list">
               <ul _ngcontent-ng-c967272132="" className="smenu-wrap top">
-                <li
-                  _ngcontent-ng-c967272132=""
-                  className="smenu-item nav-bonus ng-star-inserted"
-                >
-                  <div _ngcontent-ng-c967272132="" className="smenu-link">
-                    <img
+                {token && (
+                  <>
+                    <li
                       _ngcontent-ng-c967272132=""
-                      alt="Menu Icon"
-                      src="https://ss.manage63.com/bmk-wl/commonAssets/sidenav_bonus.svg"
-                    />
-                    <span _ngcontent-ng-c967272132="">Bonus</span>
-                    <mat-icon
-                      _ngcontent-ng-c967272132=""
-                      role="img"
-                      className="mat-icon notranslate material-icon rules-icon material-icons mat-ligature-font mat-icon-no-color"
-                      aria-hidden="true"
-                      data-mat-icon-type="font"
+                      className="smenu-item nav-bonus ng-star-inserted"
                     >
-                      description
-                    </mat-icon>
-                  </div>
-                  <div _ngcontent-ng-c967272132="">
-                    <div _ngcontent-ng-c967272132="" className="bonus-wrap">
-                      <div
-                        _ngcontent-ng-c967272132=""
-                        className="bonus-details"
-                      >
-                        <div _ngcontent-ng-c967272132="" className="bonus-info">
-                          <p _ngcontent-ng-c967272132="">Total Bonus: 1,100</p>
+                      <div _ngcontent-ng-c967272132="" className="smenu-link">
+                        <img
+                          _ngcontent-ng-c967272132=""
+                          alt="Menu Icon"
+                          src="https://ss.manage63.com/bmk-wl/commonAssets/sidenav_bonus.svg"
+                        />
+                        <span _ngcontent-ng-c967272132="">Bonus</span>
+                        <span
+                          _ngcontent-ng-c967272132=""
+                          role="img"
+                          className="mat-icon notranslate material-icon rules-icon material-icons mat-ligature-font mat-icon-no-color"
+                          aria-hidden="true"
+                          data-mat-icon-type="font"
+                        >
+                          description
+                        </span>
+                      </div>
+                      <div _ngcontent-ng-c967272132="">
+                        <div _ngcontent-ng-c967272132="" className="bonus-wrap">
                           <div
                             _ngcontent-ng-c967272132=""
-                            className="claim-btn"
+                            className="bonus-details"
                           >
-                            <p _ngcontent-ng-c967272132="">
-                              Claimable Bonus: 0
-                            </p>
-                            <button
+                            <div
                               _ngcontent-ng-c967272132=""
-                              className="btn secondary-btn"
-                              disabled=""
+                              className="bonus-info"
                             >
-                              Claim
-                            </button>
+                              <p _ngcontent-ng-c967272132="">
+                                Total Bonus: 1,100
+                              </p>
+                              <div
+                                _ngcontent-ng-c967272132=""
+                                className="claim-btn"
+                              >
+                                <p _ngcontent-ng-c967272132="">
+                                  Claimable Bonus: 0
+                                </p>
+                                <button
+                                  _ngcontent-ng-c967272132=""
+                                  className="btn secondary-btn"
+                                  disabled=""
+                                >
+                                  Claim
+                                </button>
+                              </div>
+                              <p _ngcontent-ng-c967272132="" className="n-msg">
+                                Min. Claimable Coins: 100
+                              </p>
+                            </div>
                           </div>
-                          <p _ngcontent-ng-c967272132="" className="n-msg">
-                            Min. Claimable Coins: 100
-                          </p>
                         </div>
                       </div>
-                    </div>
-                  </div>
-                </li>
+                    </li>
 
-                <li
-                  _ngcontent-ng-c967272132=""
-                  hidden=""
-                  className="smenu-item"
-                >
-                  <a _ngcontent-ng-c967272132="" className="smenu-link">
-                    <img
+                    <li
                       _ngcontent-ng-c967272132=""
-                      alt="Menu Icon"
-                      src="https://ss.manage63.com/bmk-wl/commonAssets/sidenav-reward.svg"
-                    />
-                    <span _ngcontent-ng-c967272132="">
-                      Have a promo/refer code
-                    </span>
-                  </a>
-                  <div _ngcontent-ng-c967272132="" className="refer-code">
-                    <input
-                      _ngcontent-ng-c967272132=""
-                      type="text"
-                      placeholder="Enter Promo/Refer code"
-                    />
-                    <p
-                      _ngcontent-ng-c967272132=""
-                      className="timer text-danger"
-                      style={{ display: "none" }}
+                      hidden=""
+                      className="smenu-item"
                     >
-                      23:03
-                    </p>
-                    <button
+                      <a _ngcontent-ng-c967272132="" className="smenu-link">
+                        <img
+                          _ngcontent-ng-c967272132=""
+                          alt="Menu Icon"
+                          src="https://ss.manage63.com/bmk-wl/commonAssets/sidenav-reward.svg"
+                        />
+                        <span _ngcontent-ng-c967272132="">
+                          Have a promo/refer code
+                        </span>
+                      </a>
+                      <div _ngcontent-ng-c967272132="" className="refer-code">
+                        <input
+                          _ngcontent-ng-c967272132=""
+                          type="text"
+                          placeholder="Enter Promo/Refer code"
+                        />
+                        <p
+                          _ngcontent-ng-c967272132=""
+                          className="timer text-danger"
+                          style={{ display: "none" }}
+                        >
+                          23:03
+                        </p>
+                        <button
+                          _ngcontent-ng-c967272132=""
+                          className="btn secondary-btn"
+                        >
+                          Submit
+                        </button>
+                      </div>
+                    </li>
+                    <li _ngcontent-ng-c967272132="" className="smenu-item">
+                      <Link
+                        to="/profile"
+                        onClick={() => setShowSidebar(false)}
+                        _ngcontent-ng-c967272132=""
+                        className="smenu-link"
+                      >
+                        <img
+                          _ngcontent-ng-c967272132=""
+                          alt="Menu Icon"
+                          src="https://ss.manage63.com/bmk-wl/commonAssets/sidenav_profile.svg"
+                        />
+                        <span _ngcontent-ng-c967272132="">Profile</span>
+                      </Link>
+                    </li>
+                    <li
                       _ngcontent-ng-c967272132=""
-                      className="btn secondary-btn"
+                      routerlinkactive="active-link"
+                      className="smenu-item"
                     >
-                      Submit
-                    </button>
-                  </div>
-                </li>
-                <li _ngcontent-ng-c967272132="" className="smenu-item">
-                  <Link
-                    to="/profile"
-                    onClick={() => setShowSidebar(false)}
-                    _ngcontent-ng-c967272132=""
-                    className="smenu-link"
-                  >
-                    <img
+                      <a _ngcontent-ng-c967272132="" className="smenu-link">
+                        <img
+                          _ngcontent-ng-c967272132=""
+                          alt="Menu Icon"
+                          src="https://ss.manage63.com/bmk-wl/commonAssets/sidenav_bank.svg"
+                        />
+                        <span _ngcontent-ng-c967272132="">
+                          Withdrawal Details
+                        </span>
+                      </a>
+                    </li>
+                    <li
                       _ngcontent-ng-c967272132=""
-                      alt="Menu Icon"
-                      src="https://ss.manage63.com/bmk-wl/commonAssets/sidenav_profile.svg"
-                    />
-                    <span _ngcontent-ng-c967272132="">Profile</span>
-                  </Link>
-                </li>
-                <li
-                  _ngcontent-ng-c967272132=""
-                  routerlinkactive="active-link"
-                  className="smenu-item"
-                >
-                  <a _ngcontent-ng-c967272132="" className="smenu-link">
-                    <img
+                      routerlinkactive="active-link"
+                      className="smenu-item"
+                    >
+                      <a _ngcontent-ng-c967272132="" className="smenu-link">
+                        <img
+                          _ngcontent-ng-c967272132=""
+                          alt="Menu Icon"
+                          src="https://ss.manage63.com/bmk-wl/commonAssets/sidenav__ac_statement.svg"
+                        />
+                        <span _ngcontent-ng-c967272132="">
+                          Account Statement
+                        </span>
+                      </a>
+                    </li>
+                    <li
                       _ngcontent-ng-c967272132=""
-                      alt="Menu Icon"
-                      src="https://ss.manage63.com/bmk-wl/commonAssets/sidenav_bank.svg"
-                    />
-                    <span _ngcontent-ng-c967272132="">Withdrawal Details</span>
-                  </a>
-                </li>
-                <li
-                  _ngcontent-ng-c967272132=""
-                  routerlinkactive="active-link"
-                  className="smenu-item"
-                >
-                  <a _ngcontent-ng-c967272132="" className="smenu-link">
-                    <img
+                      routerlinkactive="active-link"
+                      className="smenu-item"
+                    >
+                      <a _ngcontent-ng-c967272132="" className="smenu-link">
+                        <img
+                          _ngcontent-ng-c967272132=""
+                          alt="Menu Icon"
+                          src="https://ss.manage63.com/bmk-wl/commonAssets/sidenav_activebets.svg"
+                        />
+                        <span _ngcontent-ng-c967272132="">Active Bets</span>
+                      </a>
+                    </li>
+                    <li
                       _ngcontent-ng-c967272132=""
-                      alt="Menu Icon"
-                      src="https://ss.manage63.com/bmk-wl/commonAssets/sidenav__ac_statement.svg"
-                    />
-                    <span _ngcontent-ng-c967272132="">Account Statement</span>
-                  </a>
-                </li>
-                <li
-                  _ngcontent-ng-c967272132=""
-                  routerlinkactive="active-link"
-                  className="smenu-item"
-                >
-                  <a _ngcontent-ng-c967272132="" className="smenu-link">
-                    <img
-                      _ngcontent-ng-c967272132=""
-                      alt="Menu Icon"
-                      src="https://ss.manage63.com/bmk-wl/commonAssets/sidenav_activebets.svg"
-                    />
-                    <span _ngcontent-ng-c967272132="">Active Bets</span>
-                  </a>
-                </li>
-                <li
-                  _ngcontent-ng-c967272132=""
-                  routerlinkactive="active-link"
-                  className="smenu-item"
-                >
-                  <a
-                    onClick={() => {
-                      setShowEditStake(true);
-                      setShowSidebar(false);
-                    }}
-                    _ngcontent-ng-c967272132=""
-                    className="smenu-link"
-                  >
-                    <RiEditBoxFill size={18} color="#3d3d3d" />
-                    <span _ngcontent-ng-c967272132="">Edit Stakes</span>
-                  </a>
-                </li>
+                      routerlinkactive="active-link"
+                      className="smenu-item"
+                    >
+                      <a
+                        onClick={() => {
+                          setShowEditStake(true);
+                          setShowSidebar(false);
+                        }}
+                        _ngcontent-ng-c967272132=""
+                        className="smenu-link"
+                      >
+                        <RiEditBoxFill size={18} color="#3d3d3d" />
+                        <span _ngcontent-ng-c967272132="">Edit Stakes</span>
+                      </a>
+                    </li>
+                  </>
+                )}
                 <li _ngcontent-ng-c967272132="" className="smenu-item">
                   <a _ngcontent-ng-c967272132="" className="smenu-link">
                     <img
@@ -352,13 +372,26 @@ const Sidebar = () => {
                     _ngcontent-ng-c967272132=""
                     className="action-btn ng-star-inserted"
                   >
-                    <button
-                      onClick={handleLogout}
-                      _ngcontent-ng-c967272132=""
-                      className="btn secondary-btn notranslate"
-                    >
-                      Logout
-                    </button>
+                    {token ? (
+                      <button
+                        onClick={handleLogout}
+                        _ngcontent-ng-c967272132=""
+                        className="btn secondary-btn notranslate"
+                      >
+                        Logout
+                      </button>
+                    ) : (
+                      <button
+                        onClick={() => {
+                          setShowLogin(true);
+                          setShowSidebar(false);
+                        }}
+                        _ngcontent-ng-c967272132=""
+                        className="btn secondary-btn notranslate"
+                      >
+                        Login
+                      </button>
+                    )}
                   </div>
                 </li>
               </ul>

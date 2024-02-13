@@ -1,7 +1,12 @@
 import { handlePlaceBet } from "../../../utils/handlePlaceBet";
 
 /* eslint-disable react/no-unknown-property */
-const FancyOne = ({ FancyOne, setOpenBetSlip, setPlaceBetValues }) => {
+const FancyOne = ({ FancyOne, setOpenBetSlip, setPlaceBetValues,exposer }) => {
+  let pnlBySelection;
+  if (exposer?.pnlBySelection) {
+    const obj = exposer?.pnlBySelection;
+    pnlBySelection = Object?.values(obj);
+  }
   return (
     <div
       _ngcontent-ng-c942213636=""
@@ -29,6 +34,9 @@ const FancyOne = ({ FancyOne, setOpenBetSlip, setPlaceBetValues }) => {
       </div>
       <div _ngcontent-ng-c942213636="" className="card-body">
         {FancyOne?.map((games, i) => {
+             const pnl = pnlBySelection?.filter(
+              (pnl) => pnl?.MarketId === games?.id
+            );
           return (
             <div
               key={i}
@@ -39,6 +47,25 @@ const FancyOne = ({ FancyOne, setOpenBetSlip, setPlaceBetValues }) => {
               <div _ngcontent-ng-c942213636="" className="teamlist-info">
                 <h3 _ngcontent-ng-c942213636="" className="team-title">
                   {games?.name}
+                  {pnl &&
+                          pnl?.map(({ pnl, MarketId }, i) => {
+                        
+                            return (
+                              <p
+                              _ngcontent-ng-c942213636=""
+                                // onClick={() => handleLader(MarketId)}
+                                key={i}
+                                className={`ng-star-inserted ${
+                                  pnl > 0 ? "text-success" : "text-danger"
+                                }`}
+                                style={{
+                                  cursor: "pointer",
+                                }}
+                              >
+                                {pnl}
+                              </p>
+                            );
+                          })}
                 </h3>
               </div>
               <div

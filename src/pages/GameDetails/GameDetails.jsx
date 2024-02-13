@@ -2,7 +2,6 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import { API } from "../../api";
 import { useParams } from "react-router-dom";
-import { token } from "../../api/token";
 import MatchOdds from "./GameType/MatchOdds";
 import Bookmaker from "./GameType/Bookmaker";
 import Fancy from "./GameType/Fancy";
@@ -27,7 +26,7 @@ const GameDetails = () => {
   // const [overByOver, setOverByOver] = useState([]);
   const [iFrameUrl, setIframeUrl] = useState("");
   const [openBetSlip, setOpenBetSlip] = useState(false);
-  const { placeBetValues, setPlaceBetValues } = useContextState();
+  const { placeBetValues, setPlaceBetValues,token,tokenLoading } = useContextState();
   const [successMessage, setSuccessMessage] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
 
@@ -113,6 +112,7 @@ const GameDetails = () => {
   /* Get exposure data */
   const { data: exposer = [], refetch: refetchExposure } = useQuery({
     queryKey: ["exposure"],
+    enabled:!tokenLoading,
     queryFn: async () => {
       const generatedToken = UseTokenGenerator();
       const encryptedData = UseEncryptData(generatedToken);
@@ -126,7 +126,7 @@ const GameDetails = () => {
         }
       );
       const data = res.data;
-console.log(data);
+
       if (data.success) {
         return data.result;
       }
@@ -134,7 +134,33 @@ console.log(data);
   });
 
 
-  // console.log(exposer);
+  /* Fetch Current Bets */
+  const { data: myBets = [], refetch: refetchCurrentBets } = useQuery({
+    queryKey: ["currentBets"],
+    enabled:!tokenLoading,
+    queryFn: async () => {
+      try {
+        const generatedToken = UseTokenGenerator();
+        const encryptedData = UseEncryptData(generatedToken);
+        const response = await fetch(`${API.currentBets}/${eventId}`, {
+          method: "POST",
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+          body: JSON.stringify(encryptedData),
+        });
+
+        const data = await response.json();
+
+        if (data.success) {
+          return data.result;
+        }
+      } catch (error) {
+        console.error("Error fetching data:", error);
+      }
+    },
+  });
+
 
   return (
     <>
@@ -243,7 +269,7 @@ console.log(data);
                             matbadgeoverlap="false"
                             className="ng-star-inserted"
                           >
-                            Open Bets (0)
+                            Open Bets ({myBets?.length})
                           </span>
                         </span>
                       </span>
@@ -385,6 +411,7 @@ console.log(data);
                           match_odd={match_odds}
                           setOpenBetSlip={setOpenBetSlip}
                           setPlaceBetValues={setPlaceBetValues}
+                          exposer={exposer}
                         />
                       )}
 
@@ -393,6 +420,7 @@ console.log(data);
                           bookmarker={bookmarker}
                           setOpenBetSlip={setOpenBetSlip}
                           setPlaceBetValues={setPlaceBetValues}
+                          exposer={exposer}
                         />
                       )}
                       {bookmarker2 && bookmarker2?.length > 0 && (
@@ -400,6 +428,7 @@ console.log(data);
                           bookmarker2={bookmarker2}
                           setOpenBetSlip={setOpenBetSlip}
                           setPlaceBetValues={setPlaceBetValues}
+                          exposer={exposer}
                         />
                       )}
                       {fancy1 && fancy1?.length > 0 && (
@@ -407,6 +436,7 @@ console.log(data);
                           normal={normal}
                           setOpenBetSlip={setOpenBetSlip}
                           setPlaceBetValues={setPlaceBetValues}
+                          exposer={exposer}
                         />
                       )}
 
@@ -415,6 +445,7 @@ console.log(data);
                           FancyOne={fancy1}
                           setOpenBetSlip={setOpenBetSlip}
                           setPlaceBetValues={setPlaceBetValues}
+                          exposer={exposer}
                         />
                       )}
                     </div>
@@ -466,6 +497,7 @@ console.log(data);
           refetchExposure={refetchExposure}
           setErrorMessage={setErrorMessage}
           setSuccessMessage={setSuccessMessage}
+          refetchCurrentBets={refetchCurrentBets}
         />
       )}
       {errorMessage && (

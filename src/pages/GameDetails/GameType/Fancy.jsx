@@ -1,5 +1,5 @@
 /* eslint-disable react/no-unknown-property */
-const Fancy = ({ normal, setOpenBetSlip, setPlaceBetValues }) => {
+const Fancy = ({ normal, setOpenBetSlip, setPlaceBetValues, exposer }) => {
   const handlePlaceBet = (item, runner, betType) => {
     setOpenBetSlip(true);
     setPlaceBetValues({});
@@ -22,6 +22,12 @@ const Fancy = ({ normal, setOpenBetSlip, setPlaceBetValues }) => {
       maxLiabilityPerBet: item?.maxLiabilityPerBet,
     });
   };
+
+  let pnlBySelection;
+  if (exposer?.pnlBySelection) {
+    const obj = exposer?.pnlBySelection;
+    pnlBySelection = Object?.values(obj);
+  }
   return (
     <div
       _ngcontent-ng-c942213636=""
@@ -49,6 +55,9 @@ const Fancy = ({ normal, setOpenBetSlip, setPlaceBetValues }) => {
       </div>
       <div _ngcontent-ng-c942213636="" className="card-body">
         {normal?.map((games, i) => {
+          const pnl = pnlBySelection?.filter(
+            (pnl) => pnl?.MarketId === games?.id
+          );
           return (
             <div
               key={i}
@@ -59,12 +68,24 @@ const Fancy = ({ normal, setOpenBetSlip, setPlaceBetValues }) => {
               <div _ngcontent-ng-c942213636="" className="teamlist-info">
                 <h3 _ngcontent-ng-c942213636="" className="team-title">
                   {games?.name}
-                  <p
-                    _ngcontent-ng-c942213636=""
-                    class="text-danger ng-star-inserted"
-                  >
-                    -200
-                  </p>
+                  {pnl &&
+                    pnl?.map(({ pnl, MarketId }, i) => {
+                      return (
+                        <p
+                          _ngcontent-ng-c942213636=""
+                          // onClick={() => handleLader(MarketId)}
+                          key={i}
+                          className={`ng-star-inserted ${
+                            pnl > 0 ? "text-success" : "text-danger"
+                          }`}
+                          style={{
+                            cursor: "pointer",
+                          }}
+                        >
+                          {pnl}
+                        </p>
+                      );
+                    })}
                 </h3>
                 <button
                   _ngcontent-ng-c942213636=""
@@ -77,7 +98,6 @@ const Fancy = ({ normal, setOpenBetSlip, setPlaceBetValues }) => {
                   <span class="mdc-button__label">
                     <img
                       _ngcontent-ng-c942213636=""
-                      onerror="src='../assets/img/ladder.svg'"
                       alt=""
                       class="ladder-img"
                       src="https://ss.manage63.com/bmk-wl/commonAssets/ladder.svg"

@@ -13,6 +13,7 @@ const BetSlip = ({
   refetchExposure,
   setSuccessMessage,
   setErrorMessage,
+  refetchCurrentBets
 }) => {
   const { token } = useContextState();
   const betSlipRef = useRef();
@@ -61,6 +62,7 @@ const BetSlip = ({
         if (data?.success) {
           refetchExposure();
           refetchBalance();
+          refetchCurrentBets()
           setLoader(false);
           setOpenBetSlip(false);
           setSuccessMessage("Bet Place Successfully !");
@@ -70,6 +72,7 @@ const BetSlip = ({
           setOpenBetSlip(false);
           refetchExposure();
           refetchBalance();
+          refetchCurrentBets()
         }
       });
   };
@@ -182,7 +185,7 @@ const BetSlip = ({
                             <input
                               _ngcontent-ng-c2459892542=""
                               type="number"
-                              readonly=""
+                          
                               numbersonly=""
                               name=""
                               className="rate-inp"

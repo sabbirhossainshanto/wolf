@@ -1,7 +1,12 @@
 import { handlePlaceBet } from "../../../utils/handlePlaceBet";
 
 /* eslint-disable react/no-unknown-property */
-const Bookmaker2 = ({ bookmarker2,setOpenBetSlip,setPlaceBetValues }) => {
+const Bookmaker2 = ({ bookmarker2,setOpenBetSlip,setPlaceBetValues,exposer }) => {
+  let pnlBySelection;
+  if (exposer?.pnlBySelection) {
+    const obj = exposer?.pnlBySelection;
+    pnlBySelection = Object?.values(obj);
+  }
   return (
     <>
       {bookmarker2?.map((games, i) => {
@@ -50,6 +55,9 @@ const Bookmaker2 = ({ bookmarker2,setOpenBetSlip,setPlaceBetValues }) => {
               </div>
               <div _ngcontent-ng-c942213636="" className="card-body">
                 {games?.runners?.map((runner) => {
+                     const pnl = pnlBySelection?.filter(
+                      (pnl) => pnl?.RunnerId === runner?.id
+                    );
                   return (
                     <div
                       key={runner?.id}
@@ -63,6 +71,25 @@ const Bookmaker2 = ({ bookmarker2,setOpenBetSlip,setPlaceBetValues }) => {
                         <h3 _ngcontent-ng-c942213636="" className="team-title">
                           {runner?.name}
                         </h3>
+                        {pnl &&
+                          pnl?.map(({ pnl, MarketId }, i) => {
+                        
+                            return (
+                              <p
+                              _ngcontent-ng-c942213636=""
+                                // onClick={() => handleLader(MarketId)}
+                                key={i}
+                                className={`ng-star-inserted ${
+                                  pnl > 0 ? "text-success" : "text-danger"
+                                }`}
+                                style={{
+                                  cursor: "pointer",
+                                }}
+                              >
+                                {pnl}
+                              </p>
+                            );
+                          })}
                       </div>
                       {games?.status === "OPEN" ? (
                         <div

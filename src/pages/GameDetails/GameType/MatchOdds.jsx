@@ -1,29 +1,13 @@
 /* eslint-disable react/no-unknown-property */
 import { handlePlaceBet } from "../../../utils/handlePlaceBet";
-const MatchOdds = ({ match_odd, setOpenBetSlip, setPlaceBetValues }) => {
-  // const handlePlaceBet = (item, runner, betType) => {
-  //   setOpenBetSlip(true);
-  //   setPlaceBetValues({});
-  //   setPlaceBetValues({
-  //     price: betType === "back" ? runner?.back[0].price : runner?.lay[0].price,
-  //     side: betType === "back" ? 0 : 1,
-  //     selectionId: runner?.id,
-  //     btype: item?.btype,
-  //     eventTypeId: item?.eventTypeId,
-  //     betDelay: item?.betDelay,
-  //     marketId: item?.id,
-  //     lay: betType === "lay",
-  //     back: betType === "back",
-  //     selectedBetName: runner?.name,
-  //     name: item.runners.map((runner) => runner.name),
-  //     runnerId: item.runners.map((runner) => runner.id),
-  //     isWeak: item?.isWeak,
-  //     maxLiabilityPerMarket: item?.maxLiabilityPerMarket,
-  //     isBettable: item?.isBettable,
-  //     maxLiabilityPerBet: item?.maxLiabilityPerBet,
-  //   });
-  // };
+const MatchOdds = ({ match_odd, setOpenBetSlip, setPlaceBetValues,exposer }) => {
+  let pnlBySelection;
+  if (exposer?.pnlBySelection) {
+    const obj = exposer?.pnlBySelection;
+    pnlBySelection = Object?.values(obj);
+  }
 
+ 
   return (
     <>
       {match_odd?.map((games, i) => {
@@ -69,6 +53,9 @@ const MatchOdds = ({ match_odd, setOpenBetSlip, setPlaceBetValues }) => {
               </div>
               <div _ngcontent-ng-c942213636="" className="card-body">
                 {games?.runners?.map((runner) => {
+                    const pnl = pnlBySelection?.filter(
+                      (pnl) => pnl?.RunnerId === runner?.id
+                    );
                   return (
                     <div
                       key={runner?.id}
@@ -82,12 +69,26 @@ const MatchOdds = ({ match_odd, setOpenBetSlip, setPlaceBetValues }) => {
                         <h3 _ngcontent-ng-c942213636="" className="team-title">
                           {runner?.name}
                         </h3>
-                        <p
-                          _ngcontent-ng-c942213636=""
-                          class="text-success ng-star-inserted"
-                        >
-                          -48
-                        </p>
+                        {pnl &&
+                          pnl?.map(({ pnl, MarketId }, i) => {
+                        
+                            return (
+                              <p
+                              _ngcontent-ng-c942213636=""
+                                // onClick={() => handleLader(MarketId)}
+                                key={i}
+                                className={`ng-star-inserted ${
+                                  pnl > 0 ? "text-success" : "text-danger"
+                                }`}
+                                style={{
+                                  cursor: "pointer",
+                                }}
+                              >
+                                {pnl}
+                              </p>
+                            );
+                          })}
+                    
                       </div>
                       <div
                         _ngcontent-ng-c942213636=""

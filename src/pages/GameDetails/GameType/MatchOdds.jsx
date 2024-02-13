@@ -82,13 +82,27 @@ const MatchOdds = ({ match_odd, setOpenBetSlip, setPlaceBetValues }) => {
                         <h3 _ngcontent-ng-c942213636="" className="team-title">
                           {runner?.name}
                         </h3>
+                        <p
+                          _ngcontent-ng-c942213636=""
+                          class="text-success ng-star-inserted"
+                        >
+                          -48
+                        </p>
                       </div>
                       <div
                         _ngcontent-ng-c942213636=""
                         className="count-v-wrap ng-star-inserted"
                       >
                         <button
-                          onClick={() => handlePlaceBet(games, runner, "back",setOpenBetSlip,setPlaceBetValues)}
+                          onClick={() =>
+                            handlePlaceBet(
+                              games,
+                              runner,
+                              "back",
+                              setOpenBetSlip,
+                              setPlaceBetValues
+                            )
+                          }
                           _ngcontent-ng-c942213636=""
                           mat-flat-button=""
                           mat-ripple-loader-uninitialized=""
@@ -108,7 +122,15 @@ const MatchOdds = ({ match_odd, setOpenBetSlip, setPlaceBetValues }) => {
                           <span className="mat-mdc-button-touch-target"></span>
                         </button>
                         <button
-                          onClick={() => handlePlaceBet(games, runner, "lay",setOpenBetSlip,setPlaceBetValues)}
+                          onClick={() =>
+                            handlePlaceBet(
+                              games,
+                              runner,
+                              "lay",
+                              setOpenBetSlip,
+                              setPlaceBetValues
+                            )
+                          }
                           _ngcontent-ng-c942213636=""
                           mat-flat-button=""
                           mat-ripple-loader-uninitialized=""

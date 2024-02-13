@@ -1,14 +1,78 @@
 import { useRef, useState } from "react";
 import useCloseModalClickOutside from "../../hooks/useCloseModalClickOutside";
-
+import UseTokenGenerator from "../../hooks/UseTokenGenerator";
+import UseEncryptData from "../../hooks/UseEncryptData";
+import { API } from "../../api";
+import useContextState from "../../hooks/useContextState";
+import useBalance from "../../hooks/useBalance";
+import { FaSpinner } from "react-icons/fa";
 /* eslint-disable react/no-unknown-property */
-const BetSlip = ({ setOpenBetSlip, placeBetValues }) => {
+const BetSlip = ({
+  setOpenBetSlip,
+  placeBetValues,
+  refetchExposure,
+  setSuccessMessage,
+  setErrorMessage,
+}) => {
+  const { token } = useContextState();
   const betSlipRef = useRef();
   useCloseModalClickOutside(betSlipRef, () => {
     setOpenBetSlip(false);
   });
   const buttonGameValue = JSON.parse(localStorage.getItem("buttonValue"));
   const [totalSize, setTotalSize] = useState("");
+  const [loader, setLoader] = useState(false);
+  const { refetchBalance } = useBalance();
+  const [stakeErr, setStakeErr] = useState("");
+
+  /* Handle bets */
+  const handleOrderBets = () => {
+    if (totalSize < 100) {
+      return setStakeErr("Min bet amount is 100");
+    }
+    const generatedToken = UseTokenGenerator();
+    const encryptedData = UseEncryptData([
+      {
+        betDelay: placeBetValues?.betDelay,
+        btype: placeBetValues?.btype,
+        eventTypeId: placeBetValues?.eventTypeId,
+        marketId: placeBetValues?.marketId,
+        price: placeBetValues?.price,
+        selectionId: placeBetValues?.selectionId,
+        side: placeBetValues?.side,
+        totalSize: totalSize,
+        token: generatedToken,
+        maxLiabilityPerMarket: placeBetValues?.maxLiabilityPerMarket,
+        isBettable: placeBetValues?.isBettable,
+        maxLiabilityPerBet: placeBetValues?.maxLiabilityPerBet,
+      },
+    ]);
+    setLoader(true);
+    fetch(API.order, {
+      method: "POST",
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+      body: JSON.stringify(encryptedData),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+        if (data?.success) {
+          refetchExposure();
+          refetchBalance();
+          setLoader(false);
+          setOpenBetSlip(false);
+          setSuccessMessage("Bet Place Successfully !");
+        } else {
+          setErrorMessage(data?.error?.status[0]?.description);
+          setLoader(false);
+          setOpenBetSlip(false);
+          refetchExposure();
+          refetchBalance();
+        }
+      });
+  };
 
   return (
     <div className="cdk-overlay-container">
@@ -91,7 +155,13 @@ const BetSlip = ({ setOpenBetSlip, placeBetValues }) => {
                           placeBetValues?.back ? "forback" : "forlay"
                         }`}
                       >
-                        {" "}
+                        {loader && (
+                          <div id="loader-section">
+                            <div id="load-inner">
+                              <FaSpinner size={20} />
+                            </div>
+                          </div>
+                        )}{" "}
                         {/* <!--forback // forlay --> */}
                         <div
                           _ngcontent-ng-c2459892542=""
@@ -124,6 +194,7 @@ const BetSlip = ({ setOpenBetSlip, placeBetValues }) => {
                             className="bet-action-item"
                           >
                             <input
+                              onChange={(e) => setTotalSize(e.target.value)}
                               _ngcontent-ng-c2459892542=""
                               type="number"
                               numbersonly=""
@@ -137,13 +208,13 @@ const BetSlip = ({ setOpenBetSlip, placeBetValues }) => {
                             className="bet-action-item"
                           >
                             <button
+                              onClick={handleOrderBets}
                               _ngcontent-ng-c2459892542=""
                               mat-flat-button=""
                               className="slip-btn notranslate mdc-button mdc-button--unelevated mat-mdc-unelevated-button mat-unthemed mat-mdc-button-base"
                               mat-ripple-loader-uninitialized=""
                               mat-ripple-loader-class-name="mat-mdc-button-ripple"
                               mat-ripple-loader-disabled=""
-                              disabled="true"
                             >
                               <span className="mat-mdc-button-persistent-ripple mdc-button__ripple"></span>
                               <span className="mdc-button__label">Submit</span>
@@ -165,14 +236,14 @@ const BetSlip = ({ setOpenBetSlip, placeBetValues }) => {
                             className="error-msg ng-star-inserted"
                           >
                             {" "}
-                            Min bet amount is 100{" "}
+                            {stakeErr}
                           </p>
                         </div>
                         <div
                           _ngcontent-ng-c2459892542=""
                           className="amt-chip-grid"
                         >
-                          {buttonGameValue?.slice(0,8).map(({ value }, i) => {
+                          {buttonGameValue?.slice(0, 8).map(({ value }, i) => {
                             return (
                               <button
                                 onClick={() => setTotalSize(value)}

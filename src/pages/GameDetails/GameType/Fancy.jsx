@@ -59,7 +59,33 @@ const Fancy = ({ normal, setOpenBetSlip, setPlaceBetValues }) => {
               <div _ngcontent-ng-c942213636="" className="teamlist-info">
                 <h3 _ngcontent-ng-c942213636="" className="team-title">
                   {games?.name}
+                  <p
+                    _ngcontent-ng-c942213636=""
+                    class="text-danger ng-star-inserted"
+                  >
+                    -200
+                  </p>
                 </h3>
+                <button
+                  _ngcontent-ng-c942213636=""
+                  mat-flat-button=""
+                  class="bar-btn mdc-button mdc-button--unelevated mat-mdc-unelevated-button mat-unthemed mat-mdc-button-base ng-star-inserted"
+                  mat-ripple-loader-uninitialized=""
+                  mat-ripple-loader-class-name="mat-mdc-button-ripple"
+                >
+                  <span class="mat-mdc-button-persistent-ripple mdc-button__ripple"></span>
+                  <span class="mdc-button__label">
+                    <img
+                      _ngcontent-ng-c942213636=""
+                      onerror="src='../assets/img/ladder.svg'"
+                      alt=""
+                      class="ladder-img"
+                      src="https://ss.manage63.com/bmk-wl/commonAssets/ladder.svg"
+                    />
+                  </span>
+                  <span class="mat-mdc-focus-indicator"></span>
+                  <span class="mat-mdc-button-touch-target"></span>
+                </button>
               </div>
               <div
                 _ngcontent-ng-c942213636=""

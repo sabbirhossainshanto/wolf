@@ -12,6 +12,8 @@ import Bookmaker2 from "./GameType/Bookmaker2";
 import FancyOne from "./GameType/FancyOne";
 import BetSlip from "../../components/modal/BetSlip";
 import useContextState from "../../hooks/useContextState";
+import { useQuery } from "@tanstack/react-query";
+import Success from "../../components/ui/Notification/Success";
 
 /* eslint-disable react/no-unknown-property */
 const GameDetails = () => {
@@ -26,6 +28,8 @@ const GameDetails = () => {
   const [iFrameUrl, setIframeUrl] = useState("");
   const [openBetSlip, setOpenBetSlip] = useState(false);
   const { placeBetValues, setPlaceBetValues } = useContextState();
+  const [successMessage, setSuccessMessage] = useState("");
+  const [errorMessage, setErrorMessage] = useState("");
 
   /* Get game details */
   useEffect(() => {
@@ -104,6 +108,33 @@ const GameDetails = () => {
     };
     getVideo();
   }, [eventId, eventTypeId]);
+
+  
+  /* Get exposure data */
+  const { data: exposer = [], refetch: refetchExposure } = useQuery({
+    queryKey: ["exposure"],
+    queryFn: async () => {
+      const generatedToken = UseTokenGenerator();
+      const encryptedData = UseEncryptData(generatedToken);
+      const res = await axios.post(
+        `${API.exposure}/${eventId}`,
+        encryptedData,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+      const data = res.data;
+console.log(data);
+      if (data.success) {
+        return data.result;
+      }
+    },
+  });
+
+
+  // console.log(exposer);
 
   return (
     <>
@@ -432,6 +463,23 @@ const GameDetails = () => {
         <BetSlip
           setOpenBetSlip={setOpenBetSlip}
           placeBetValues={placeBetValues}
+          refetchExposure={refetchExposure}
+          setErrorMessage={setErrorMessage}
+          setSuccessMessage={setSuccessMessage}
+        />
+      )}
+      {errorMessage && (
+        <Success
+          message={errorMessage}
+          success={false}
+          setMessage={setErrorMessage}
+        />
+      )}
+      {successMessage && (
+        <Success
+          message={successMessage}
+          success={true}
+          setMessage={setSuccessMessage}
         />
       )}
       {/*   <!-- betslip end --> */}

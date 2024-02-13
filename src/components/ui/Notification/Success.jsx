@@ -1,5 +1,5 @@
 /* eslint-disable react/no-unknown-property */
-const Success = ({message, setMessage }) => {
+const Success = ({message, setMessage,success }) => {
     setTimeout(() => {
         setMessage("");
       }, 3000);
@@ -16,7 +16,7 @@ const Success = ({message, setMessage }) => {
           style={{ position: "static", marginBottom: "0px" }}
         >
           <div
-            className="mdc-snackbar mat-mdc-snack-bar-container mdc-snackbar--open ng-tns-c3293340843-2 ng-trigger ng-trigger-state success-snackbar ng-star-inserted"
+            className={`mdc-snackbar mat-mdc-snack-bar-container mdc-snackbar--open ng-tns-c3293340843-2 ng-trigger ng-trigger-state ${success ? 'success-snackbar':'fail-snackbar'} ng-star-inserted`}
             style={{ transform: "scale(1)", opacity: 1 }}
           >
             <div className="mdc-snackbar__surface ng-tns-c3293340843-2">

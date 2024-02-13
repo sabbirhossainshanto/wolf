@@ -107,7 +107,7 @@ const Profile = () => {
       </div>
       <div _ngcontent-ng-c2865632707="" className="menu-items-wrap">
         <ul _ngcontent-ng-c2865632707="" className="smenu-wrap">
-          <li
+          {/* <li
             _ngcontent-ng-c2865632707=""
             className="smenu-item ng-star-inserted"
           >
@@ -151,7 +151,7 @@ const Profile = () => {
                 <span _ngcontent-ng-c2865632707="">Complete Profile</span>
               </div>
             </a>
-          </li>
+          </li> */}
           <li _ngcontent-ng-c2865632707="" className="smenu-item">
             <a _ngcontent-ng-c2865632707="" className="smenu-link">
               <div _ngcontent-ng-c2865632707="" className="label-wrap">

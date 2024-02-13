@@ -1,42 +1,18 @@
 /* eslint-disable react/no-unknown-property */
-
 const Fancy = ({ normal, setOpenBetSlip, setPlaceBetValues }) => {
-  const handlePlaceBackBet = (item, runner) => {
+  const handlePlaceBet = (item, runner, betType) => {
     setOpenBetSlip(true);
     setPlaceBetValues({});
     setPlaceBetValues({
-      price: runner?.back[0].price,
-      side: 0,
+      price: betType === "back" ? runner?.back[0].line : runner?.lay[0].line,
+      side: betType === "back" ? 0 : 1,
       selectionId: runner?.id,
       btype: item?.btype,
       eventTypeId: item?.eventTypeId,
       betDelay: item?.betDelay,
       marketId: item?.id,
-      back: true,
-      name: item.runners.map((runner) => runner.name),
-      runnerId: item.runners.map((runner) => runner.id),
-      selectedBetName: runner?.name,
-      // pnl: updatedPnl,
-      isWeak: item?.isWeak,
-      maxLiabilityPerMarket: item?.maxLiabilityPerMarket,
-      isBettable: item?.isBettable,
-      maxLiabilityPerBet: item?.maxLiabilityPerBet,
-    });
-  };
-
-  const handlePlaceLayBets = (item, runner) => {
-    setOpenBetSlip(true);
-    setPlaceBetValues({});
-    setPlaceBetValues({
-      price: runner?.lay[0].price,
-      side: 1,
-      selectionId: runner?.id,
-      btype: item?.btype,
-      eventTypeId: item?.eventTypeId,
-      betDelay: item?.betDelay,
-      marketId: item?.id,
-      // pnl: updatedPnl,
-      lay: true,
+      lay: betType === "lay",
+      back: betType === "back",
       selectedBetName: runner?.name,
       name: item.runners.map((runner) => runner.name),
       runnerId: item.runners.map((runner) => runner.id),
@@ -46,11 +22,12 @@ const Fancy = ({ normal, setOpenBetSlip, setPlaceBetValues }) => {
       maxLiabilityPerBet: item?.maxLiabilityPerBet,
     });
   };
-
   return (
     <div
       _ngcontent-ng-c942213636=""
-      className={`fancy-card card-outer ng-star-inserted ${normal[0]?.maxLiabilityPerBet == '1'? 'disableMo':''}`}
+      className={`fancy-card card-outer ng-star-inserted ${
+        normal[0]?.maxLiabilityPerBet == "1" ? "disableMo" : ""
+      }`}
     >
       <div _ngcontent-ng-c942213636="" className="head-wrap">
         <h2 _ngcontent-ng-c942213636="" className="card-heading">
@@ -111,7 +88,9 @@ const Fancy = ({ normal, setOpenBetSlip, setPlaceBetValues }) => {
                   className="count-v-wrap ng-star-inserted"
                 >
                   <button
-                  onClick={()=> handlePlaceLayBets(games,games?.runners[0])}
+                    onClick={() =>
+                      handlePlaceBet(games, games?.runners[0], "lay")
+                    }
                     _ngcontent-ng-c942213636=""
                     mat-flat-button=""
                     mat-ripple-loader-uninitialized=""
@@ -121,18 +100,19 @@ const Fancy = ({ normal, setOpenBetSlip, setPlaceBetValues }) => {
                     <span className="mat-mdc-button-persistent-ripple mdc-button__ripple"></span>
                     <span className="mdc-button__label">
                       <h4 _ngcontent-ng-c942213636="">
-                        {games?.runners?.[0]?.back[0]?.line}
+                        {games?.runners?.[0]?.lay[0]?.line}
                       </h4>
                       <p _ngcontent-ng-c942213636="">
-                        {games?.runners?.[0]?.back[0]?.price}
+                        {games?.runners?.[0]?.lay[0]?.price}
                       </p>{" "}
                     </span>
                     <span className="mat-mdc-focus-indicator"></span>
                     <span className="mat-mdc-button-touch-target"></span>
                   </button>
                   <button
-
-                  onClick={()=> handlePlaceBackBet(games,games?.runners[0])}
+                    onClick={() =>
+                      handlePlaceBet(games, games?.runners[0], "back")
+                    }
                     _ngcontent-ng-c942213636=""
                     mat-flat-button=""
                     mat-ripple-loader-uninitialized=""
@@ -142,10 +122,10 @@ const Fancy = ({ normal, setOpenBetSlip, setPlaceBetValues }) => {
                     <span className="mat-mdc-button-persistent-ripple mdc-button__ripple"></span>
                     <span className="mdc-button__label">
                       <h4 _ngcontent-ng-c942213636="">
-                        {games?.runners?.[0]?.lay[0]?.line}
+                        {games?.runners?.[0]?.back[0]?.line}
                       </h4>
                       <p _ngcontent-ng-c942213636="">
-                        {games?.runners?.[0]?.lay[0]?.price}
+                        {games?.runners?.[0]?.back[0]?.price}
                       </p>{" "}
                     </span>
                     <span className="mat-mdc-focus-indicator"></span>

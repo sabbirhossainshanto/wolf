@@ -11,7 +11,7 @@ const Tabs = () => {
       className="ng-star-inserted"
     >
       <div _ngcontent-ng-c2582205232="" className="pagetab-wrapper">
-        <div
+        {/* <div
           _ngcontent-ng-c2582205232=""
           className="latest-events ng-star-inserted"
         >
@@ -25,7 +25,7 @@ const Tabs = () => {
               </span>
             </h2>
           </div>
-        </div>
+        </div> */}
         <div _ngcontent-ng-c2582205232="" className="pagetab-header">
           <div
             onClick={() => setSportsType(4)}

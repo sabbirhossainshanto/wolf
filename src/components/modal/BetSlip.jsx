@@ -1,4 +1,4 @@
-import { useRef } from "react";
+import { useRef, useState } from "react";
 import useCloseModalClickOutside from "../../hooks/useCloseModalClickOutside";
 
 /* eslint-disable react/no-unknown-property */
@@ -7,6 +7,8 @@ const BetSlip = ({ setOpenBetSlip, placeBetValues }) => {
   useCloseModalClickOutside(betSlipRef, () => {
     setOpenBetSlip(false);
   });
+  const buttonGameValue = JSON.parse(localStorage.getItem("buttonValue"));
+  const [totalSize, setTotalSize] = useState("");
 
   return (
     <div className="cdk-overlay-container">
@@ -43,7 +45,9 @@ const BetSlip = ({ setOpenBetSlip, placeBetValues }) => {
                 <div _nghost-ng-c2459892542="" className="ng-star-inserted">
                   <div
                     _ngcontent-ng-c2459892542=""
-                    className="betslip-modal forback"
+                    className={`betslip-modal ${
+                      placeBetValues?.back ? "forback" : "forlay"
+                    }`}
                   >
                     {/*  <!--forback // forlay --> */}
                     <div _ngcontent-ng-c2459892542="" className="modal-header">
@@ -94,7 +98,7 @@ const BetSlip = ({ setOpenBetSlip, placeBetValues }) => {
                           className="betslip-toprow"
                         >
                           <h2 _ngcontent-ng-c2459892542="">
-                            Sunrisers Eastern Cape{" "}
+                            {placeBetValues?.selectedBetName}{" "}
                           </h2>
                         </div>
                         <div
@@ -112,6 +116,7 @@ const BetSlip = ({ setOpenBetSlip, placeBetValues }) => {
                               numbersonly=""
                               name=""
                               className="rate-inp"
+                              defaultValue={placeBetValues?.price}
                             />
                           </div>
                           <div
@@ -124,6 +129,7 @@ const BetSlip = ({ setOpenBetSlip, placeBetValues }) => {
                               numbersonly=""
                               name="betStake"
                               className="ng-untouched ng-pristine ng-valid"
+                              defaultValue={totalSize}
                             />
                           </div>
                           <div
@@ -166,103 +172,26 @@ const BetSlip = ({ setOpenBetSlip, placeBetValues }) => {
                           _ngcontent-ng-c2459892542=""
                           className="amt-chip-grid"
                         >
-                          <button
-                            _ngcontent-ng-c2459892542=""
-                            mat-flat-button=""
-                            className="chip-grid-item mdc-button mdc-button--unelevated mat-mdc-unelevated-button mat-unthemed mat-mdc-button-base ng-star-inserted"
-                            mat-ripple-loader-uninitialized=""
-                            mat-ripple-loader-class-name="mat-mdc-button-ripple"
-                          >
-                            <span className="mat-mdc-button-persistent-ripple mdc-button__ripple"></span>
-                            <span className="mdc-button__label">100</span>
-                            <span className="mat-mdc-focus-indicator"></span>
-                            <span className="mat-mdc-button-touch-target"></span>
-                          </button>
-                          <button
-                            _ngcontent-ng-c2459892542=""
-                            mat-flat-button=""
-                            className="chip-grid-item mdc-button mdc-button--unelevated mat-mdc-unelevated-button mat-unthemed mat-mdc-button-base ng-star-inserted"
-                            mat-ripple-loader-uninitialized=""
-                            mat-ripple-loader-class-name="mat-mdc-button-ripple"
-                          >
-                            <span className="mat-mdc-button-persistent-ripple mdc-button__ripple"></span>
-                            <span className="mdc-button__label">500</span>
-                            <span className="mat-mdc-focus-indicator"></span>
-                            <span className="mat-mdc-button-touch-target"></span>
-                          </button>
-                          <button
-                            _ngcontent-ng-c2459892542=""
-                            mat-flat-button=""
-                            className="chip-grid-item mdc-button mdc-button--unelevated mat-mdc-unelevated-button mat-unthemed mat-mdc-button-base ng-star-inserted"
-                            mat-ripple-loader-uninitialized=""
-                            mat-ripple-loader-class-name="mat-mdc-button-ripple"
-                          >
-                            <span className="mat-mdc-button-persistent-ripple mdc-button__ripple"></span>
-                            <span className="mdc-button__label">1000</span>
-                            <span className="mat-mdc-focus-indicator"></span>
-                            <span className="mat-mdc-button-touch-target"></span>
-                          </button>
-                          <button
-                            _ngcontent-ng-c2459892542=""
-                            mat-flat-button=""
-                            className="chip-grid-item mdc-button mdc-button--unelevated mat-mdc-unelevated-button mat-unthemed mat-mdc-button-base ng-star-inserted"
-                            mat-ripple-loader-uninitialized=""
-                            mat-ripple-loader-class-name="mat-mdc-button-ripple"
-                          >
-                            <span className="mat-mdc-button-persistent-ripple mdc-button__ripple"></span>
-                            <span className="mdc-button__label">5000</span>
-                            <span className="mat-mdc-focus-indicator"></span>
-                            <span className="mat-mdc-button-touch-target"></span>
-                          </button>
-
-                          <button
-                            _ngcontent-ng-c2459892542=""
-                            mat-flat-button=""
-                            className="chip-grid-item mdc-button mdc-button--unelevated mat-mdc-unelevated-button mat-unthemed mat-mdc-button-base ng-star-inserted"
-                            mat-ripple-loader-uninitialized=""
-                            mat-ripple-loader-class-name="mat-mdc-button-ripple"
-                          >
-                            <span className="mat-mdc-button-persistent-ripple mdc-button__ripple"></span>
-                            <span className="mdc-button__label">100</span>
-                            <span className="mat-mdc-focus-indicator"></span>
-                            <span className="mat-mdc-button-touch-target"></span>
-                          </button>
-                          <button
-                            _ngcontent-ng-c2459892542=""
-                            mat-flat-button=""
-                            className="chip-grid-item mdc-button mdc-button--unelevated mat-mdc-unelevated-button mat-unthemed mat-mdc-button-base ng-star-inserted"
-                            mat-ripple-loader-uninitialized=""
-                            mat-ripple-loader-class-name="mat-mdc-button-ripple"
-                          >
-                            <span className="mat-mdc-button-persistent-ripple mdc-button__ripple"></span>
-                            <span className="mdc-button__label">500</span>
-                            <span className="mat-mdc-focus-indicator"></span>
-                            <span className="mat-mdc-button-touch-target"></span>
-                          </button>
-                          <button
-                            _ngcontent-ng-c2459892542=""
-                            mat-flat-button=""
-                            className="chip-grid-item mdc-button mdc-button--unelevated mat-mdc-unelevated-button mat-unthemed mat-mdc-button-base ng-star-inserted"
-                            mat-ripple-loader-uninitialized=""
-                            mat-ripple-loader-class-name="mat-mdc-button-ripple"
-                          >
-                            <span className="mat-mdc-button-persistent-ripple mdc-button__ripple"></span>
-                            <span className="mdc-button__label">1000</span>
-                            <span className="mat-mdc-focus-indicator"></span>
-                            <span className="mat-mdc-button-touch-target"></span>
-                          </button>
-                          <button
-                            _ngcontent-ng-c2459892542=""
-                            mat-flat-button=""
-                            className="chip-grid-item mdc-button mdc-button--unelevated mat-mdc-unelevated-button mat-unthemed mat-mdc-button-base ng-star-inserted"
-                            mat-ripple-loader-uninitialized=""
-                            mat-ripple-loader-class-name="mat-mdc-button-ripple"
-                          >
-                            <span className="mat-mdc-button-persistent-ripple mdc-button__ripple"></span>
-                            <span className="mdc-button__label">5000</span>
-                            <span className="mat-mdc-focus-indicator"></span>
-                            <span className="mat-mdc-button-touch-target"></span>
-                          </button>
+                          {buttonGameValue?.map(({ value }, i) => {
+                            return (
+                              <button
+                                onClick={() => setTotalSize(value)}
+                                key={i}
+                                _ngcontent-ng-c2459892542=""
+                                mat-flat-button=""
+                                className="chip-grid-item mdc-button mdc-button--unelevated mat-mdc-unelevated-button mat-unthemed mat-mdc-button-base ng-star-inserted"
+                                mat-ripple-loader-uninitialized=""
+                                mat-ripple-loader-class-name="mat-mdc-button-ripple"
+                              >
+                                <span className="mat-mdc-button-persistent-ripple mdc-button__ripple"></span>
+                                <span className="mdc-button__label">
+                                  {value}
+                                </span>
+                                <span className="mat-mdc-focus-indicator"></span>
+                                <span className="mat-mdc-button-touch-target"></span>
+                              </button>
+                            );
+                          })}
                         </div>
                         <div
                           _ngcontent-ng-c2459892542=""

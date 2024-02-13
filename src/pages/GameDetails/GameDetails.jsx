@@ -22,7 +22,7 @@ const GameDetails = () => {
   const [bookmarker2, setBookmarker2] = useState([]);
   const [normal, setNormal] = useState([]);
   const [fancy1, setFancy1] = useState([]);
-  const [overByOver, setOverByOver] = useState([]);
+  // const [overByOver, setOverByOver] = useState([]);
   const [iFrameUrl, setIframeUrl] = useState("");
   const [openBetSlip, setOpenBetSlip] = useState(false);
   const { placeBetValues, setPlaceBetValues } = useContextState();
@@ -72,12 +72,12 @@ const GameDetails = () => {
     );
     setFancy1(fancy1Filter);
 
-    const overByOverFilter = data?.filter(
-      (overByOver) =>
-        overByOver.btype === "FANCY" &&
-        overByOver.tabGroupName === "Over By Over"
-    );
-    setOverByOver(overByOverFilter);
+    // const overByOverFilter = data?.filter(
+    //   (overByOver) =>
+    //     overByOver.btype === "FANCY" &&
+    //     overByOver.tabGroupName === "Over By Over"
+    // );
+    // setOverByOver(overByOverFilter);
   }, [data]);
 
   useEffect(() => {

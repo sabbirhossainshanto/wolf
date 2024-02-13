@@ -1,51 +1,7 @@
+import { handlePlaceBet } from "../../../utils/handlePlaceBet";
+
 /* eslint-disable react/no-unknown-property */
-const FancyOne = ({ FancyOne,setOpenBetSlip, setPlaceBetValues  }) => {
-  const handlePlaceBackBet = (item, runner) => {
-    setOpenBetSlip(true);
-    setPlaceBetValues({});
-    setPlaceBetValues({
-      price: runner?.back[0].price,
-      side: 0,
-      selectionId: runner?.id,
-      btype: item?.btype,
-      eventTypeId: item?.eventTypeId,
-      betDelay: item?.betDelay,
-      marketId: item?.id,
-      back: true,
-      name: item.runners.map((runner) => runner.name),
-      runnerId: item.runners.map((runner) => runner.id),
-      selectedBetName: runner?.name,
-      // pnl: updatedPnl,
-      isWeak: item?.isWeak,
-      maxLiabilityPerMarket: item?.maxLiabilityPerMarket,
-      isBettable: item?.isBettable,
-      maxLiabilityPerBet: item?.maxLiabilityPerBet,
-    });
-  };
-
-  const handlePlaceLayBets = (item, runner) => {
-    setOpenBetSlip(true);
-    setPlaceBetValues({});
-    setPlaceBetValues({
-      price: runner?.lay[0].price,
-      side: 1,
-      selectionId: runner?.id,
-      btype: item?.btype,
-      eventTypeId: item?.eventTypeId,
-      betDelay: item?.betDelay,
-      marketId: item?.id,
-      // pnl: updatedPnl,
-      lay: true,
-      selectedBetName: runner?.name,
-      name: item.runners.map((runner) => runner.name),
-      runnerId: item.runners.map((runner) => runner.id),
-      isWeak: item?.isWeak,
-      maxLiabilityPerMarket: item?.maxLiabilityPerMarket,
-      isBettable: item?.isBettable,
-      maxLiabilityPerBet: item?.maxLiabilityPerBet,
-    });
-  };
-
+const FancyOne = ({ FancyOne, setOpenBetSlip, setPlaceBetValues }) => {
   return (
     <div
       _ngcontent-ng-c942213636=""
@@ -112,7 +68,15 @@ const FancyOne = ({ FancyOne,setOpenBetSlip, setPlaceBetValues  }) => {
                   className="count-v-wrap ng-star-inserted"
                 >
                   <button
-                  onClick={()=> handlePlaceBackBet(games,games?.runners[0])}
+                    onClick={() =>
+                      handlePlaceBet(
+                        games,
+                        games?.runners[0],
+                        "back",
+                        setOpenBetSlip,
+                        setPlaceBetValues
+                      )
+                    }
                     _ngcontent-ng-c942213636=""
                     mat-flat-button=""
                     mat-ripple-loader-uninitialized=""
@@ -132,7 +96,15 @@ const FancyOne = ({ FancyOne,setOpenBetSlip, setPlaceBetValues  }) => {
                     <span className="mat-mdc-button-touch-target"></span>
                   </button>
                   <button
-                  onClick={()=> handlePlaceLayBets(games,games?.runners[0])}
+                    onClick={() =>
+                      handlePlaceBet(
+                        games,
+                        games?.runners[0],
+                        "lay",
+                        setOpenBetSlip,
+                        setPlaceBetValues
+                      )
+                    }
                     _ngcontent-ng-c942213636=""
                     mat-flat-button=""
                     mat-ripple-loader-uninitialized=""

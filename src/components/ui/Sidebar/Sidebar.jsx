@@ -273,7 +273,7 @@ const Sidebar = () => {
               </li>
             </ul>
             <ul _ngcontent-ng-c967272132="" className="smenu-wrap bottom">
-              <li
+              {/* <li
                 _ngcontent-ng-c967272132=""
                 className="smenu-item social-links-wrap ng-star-inserted"
               >
@@ -323,7 +323,7 @@ const Sidebar = () => {
                     Download App
                   </button>
                 </div>
-              </li>
+              </li> */}
               <li _ngcontent-ng-c967272132="" className="smenu-item">
                 <div
                   _ngcontent-ng-c967272132=""

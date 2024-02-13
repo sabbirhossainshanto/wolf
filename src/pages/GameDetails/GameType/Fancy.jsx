@@ -55,7 +55,6 @@ const Fancy = ({ normal, setOpenBetSlip, setPlaceBetValues, exposer }) => {
       </div>
       <div _ngcontent-ng-c942213636="" className="card-body">
         {normal?.map((games, i) => {
-          
           const pnl = pnlBySelection?.filter(
             (pnl) => pnl?.MarketId === games?.id
           );
@@ -97,12 +96,14 @@ const Fancy = ({ normal, setOpenBetSlip, setPlaceBetValues, exposer }) => {
                 >
                   <span class="mat-mdc-button-persistent-ripple mdc-button__ripple"></span>
                   <span class="mdc-button__label">
-                    <img
-                      _ngcontent-ng-c942213636=""
-                      alt=""
-                      class="ladder-img"
-                      src="https://ss.manage63.com/bmk-wl/commonAssets/ladder.svg"
-                    />
+                    {pnl?.length > 0 && (
+                      <img
+                        _ngcontent-ng-c942213636=""
+                        alt=""
+                        class="ladder-img"
+                        src="https://ss.manage63.com/bmk-wl/commonAssets/ladder.svg"
+                      />
+                    )}
                   </span>
                   <span class="mat-mdc-focus-indicator"></span>
                   <span class="mat-mdc-button-touch-target"></span>

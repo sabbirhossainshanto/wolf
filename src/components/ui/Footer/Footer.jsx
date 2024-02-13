@@ -5,7 +5,7 @@ import useContextState from "../../../hooks/useContextState";
 const Footer = () => {
   const location = useLocation();
   const navigate = useNavigate();
-  const { setGetToken } = useContextState();
+  const { setGetToken,token,setShowLogin } = useContextState();
   const handleLogout = () => {
     localStorage.clear();
     setGetToken((prev) => !prev);
@@ -14,7 +14,7 @@ const Footer = () => {
 
   return (
     <div _ngcontent-ng-c943649379="" className="page-footer">
-      {location?.pathname === "/profile" && (
+      {location?.pathname === "/profile" && token &&  (
         <div
           onClick={handleLogout}
           _ngcontent-ng-c2865632707=""
@@ -26,6 +26,23 @@ const Footer = () => {
             className="btn secondary-btn w-100"
           >
             Logout
+          </button>
+        </div>
+      )}
+       {location?.pathname === "/profile" && !token &&  (
+        <div
+          onClick={()=> {
+            setShowLogin(true)
+          }}
+          _ngcontent-ng-c2865632707=""
+          className="action-btns ng-star-inserted"
+        >
+          <button
+            _ngcontent-ng-c2865632707=""
+            type="button"
+            className="btn secondary-btn w-100"
+          >
+            Login
           </button>
         </div>
       )}

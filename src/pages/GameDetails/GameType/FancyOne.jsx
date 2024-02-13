@@ -1,7 +1,7 @@
 import { handlePlaceBet } from "../../../utils/handlePlaceBet";
 
 /* eslint-disable react/no-unknown-property */
-const FancyOne = ({ FancyOne, setOpenBetSlip, setPlaceBetValues,exposer }) => {
+const FancyOne = ({ FancyOne, setOpenBetSlip, setPlaceBetValues, exposer }) => {
   let pnlBySelection;
   if (exposer?.pnlBySelection) {
     const obj = exposer?.pnlBySelection;
@@ -34,9 +34,9 @@ const FancyOne = ({ FancyOne, setOpenBetSlip, setPlaceBetValues,exposer }) => {
       </div>
       <div _ngcontent-ng-c942213636="" className="card-body">
         {FancyOne?.map((games, i) => {
-             const pnl = pnlBySelection?.filter(
-              (pnl) => pnl?.MarketId === games?.id
-            );
+          const pnl = pnlBySelection?.filter(
+            (pnl) => pnl?.MarketId === games?.id
+          );
           return (
             <div
               key={i}
@@ -48,25 +48,45 @@ const FancyOne = ({ FancyOne, setOpenBetSlip, setPlaceBetValues,exposer }) => {
                 <h3 _ngcontent-ng-c942213636="" className="team-title">
                   {games?.name}
                   {pnl &&
-                          pnl?.map(({ pnl, MarketId }, i) => {
-                        
-                            return (
-                              <p
-                              _ngcontent-ng-c942213636=""
-                                // onClick={() => handleLader(MarketId)}
-                                key={i}
-                                className={`ng-star-inserted ${
-                                  pnl > 0 ? "text-success" : "text-danger"
-                                }`}
-                                style={{
-                                  cursor: "pointer",
-                                }}
-                              >
-                                {pnl}
-                              </p>
-                            );
-                          })}
+                    pnl?.map(({ pnl, MarketId }, i) => {
+                      return (
+                        <p
+                          _ngcontent-ng-c942213636=""
+                          // onClick={() => handleLader(MarketId)}
+                          key={i}
+                          className={`ng-star-inserted ${
+                            pnl > 0 ? "text-success" : "text-danger"
+                          }`}
+                          style={{
+                            cursor: "pointer",
+                          }}
+                        >
+                          {pnl}
+                        </p>
+                      );
+                    })}
                 </h3>
+                <button
+                  _ngcontent-ng-c942213636=""
+                  mat-flat-button=""
+                  class="bar-btn mdc-button mdc-button--unelevated mat-mdc-unelevated-button mat-unthemed mat-mdc-button-base ng-star-inserted"
+                  mat-ripple-loader-uninitialized=""
+                  mat-ripple-loader-class-name="mat-mdc-button-ripple"
+                >
+                  <span class="mat-mdc-button-persistent-ripple mdc-button__ripple"></span>
+                  <span class="mdc-button__label">
+                    {pnl?.length > 0 && (
+                      <img
+                        _ngcontent-ng-c942213636=""
+                        alt=""
+                        class="ladder-img"
+                        src="https://ss.manage63.com/bmk-wl/commonAssets/ladder.svg"
+                      />
+                    )}
+                  </span>
+                  <span class="mat-mdc-focus-indicator"></span>
+                  <span class="mat-mdc-button-touch-target"></span>
+                </button>
               </div>
               <div
                 _ngcontent-ng-c942213636=""

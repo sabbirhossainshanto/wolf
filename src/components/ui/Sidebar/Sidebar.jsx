@@ -94,7 +94,7 @@ const Sidebar = () => {
                   >
                     person
                   </span>
-                  {loginName}
+                  {loginName || 'Guest User'}
                 </p>
               </div>
             </div>

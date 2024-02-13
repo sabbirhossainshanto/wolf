@@ -8,7 +8,7 @@ const Bookmaker = ({ bookmarker, setOpenBetSlip, setPlaceBetValues,exposer }) =>
     const obj = exposer?.pnlBySelection;
     pnlBySelection = Object?.values(obj);
   }
-
+console.log(bookmarker);
   return (
     <>
       {bookmarker?.map((games, i) => {
@@ -93,7 +93,7 @@ const Bookmaker = ({ bookmarker, setOpenBetSlip, setPlaceBetValues,exposer }) =>
                             );
                           })}
                       </div>
-                      {games?.status === "OPEN" ? (
+                      {games?.status === "OPEN" && runner?.status === "OPEN"  ? (
                         <div
                           _ngcontent-ng-c942213636=""
                           className="count-v-wrap ng-star-inserted"

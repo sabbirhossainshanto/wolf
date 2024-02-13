@@ -55,6 +55,7 @@ const Fancy = ({ normal, setOpenBetSlip, setPlaceBetValues, exposer }) => {
       </div>
       <div _ngcontent-ng-c942213636="" className="card-body">
         {normal?.map((games, i) => {
+          
           const pnl = pnlBySelection?.filter(
             (pnl) => pnl?.MarketId === games?.id
           );

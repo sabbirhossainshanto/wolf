@@ -91,7 +91,7 @@ const Bookmaker2 = ({ bookmarker2,setOpenBetSlip,setPlaceBetValues,exposer }) =>
                             );
                           })}
                       </div>
-                      {games?.status === "OPEN" ? (
+                      {games?.status === "OPEN" && runner?.status === "OPEN"  ?  (
                         <div
                           _ngcontent-ng-c942213636=""
                           className="count-v-wrap ng-star-inserted"

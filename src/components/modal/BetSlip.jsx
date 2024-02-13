@@ -172,7 +172,7 @@ const BetSlip = ({ setOpenBetSlip, placeBetValues }) => {
                           _ngcontent-ng-c2459892542=""
                           className="amt-chip-grid"
                         >
-                          {buttonGameValue?.map(({ value }, i) => {
+                          {buttonGameValue?.slice(0,8).map(({ value }, i) => {
                             return (
                               <button
                                 onClick={() => setTotalSize(value)}

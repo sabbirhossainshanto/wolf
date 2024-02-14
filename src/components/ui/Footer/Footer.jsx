@@ -1,5 +1,6 @@
 import { useLocation, useNavigate } from "react-router-dom";
 import useContextState from "../../../hooks/useContextState";
+import { handleLogOut } from "../../../utils/handleLogOut";
 
 /* eslint-disable react/no-unknown-property */
 const Footer = () => {
@@ -7,7 +8,7 @@ const Footer = () => {
   const navigate = useNavigate();
   const { setGetToken,token,setShowLogin } = useContextState();
   const handleLogout = () => {
-    localStorage.clear();
+    handleLogOut()
     setGetToken((prev) => !prev);
     navigate("/");
   };

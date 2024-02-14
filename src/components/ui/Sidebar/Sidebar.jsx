@@ -4,6 +4,7 @@ import { useRef } from "react";
 import useCloseModalClickOutside from "../../../hooks/useCloseModalClickOutside";
 import { RiEditBoxFill } from "react-icons/ri";
 import useBonusBalance from "../../../hooks/useBonusBalance";
+import { handleLogOut } from "../../../utils/handleLogOut";
 
 /* eslint-disable react/no-unknown-property */
 const Sidebar = () => {
@@ -14,7 +15,7 @@ const Sidebar = () => {
     setShowEditStake,
     token,
     setShowLogin,
-    setBonusToken,
+    isCheckedBonusToken,
   } = useContextState();
   const loginName = localStorage.getItem("loginName");
   const navigate = useNavigate();
@@ -24,15 +25,20 @@ const Sidebar = () => {
     setShowSidebar(false);
   });
   const handleLogout = () => {
-    localStorage.clear();
+    handleLogOut();
     setShowSidebar(false);
     setGetToken((prev) => !prev);
     navigate("/");
   };
 
   const handleBonusToken = (e) => {
-    const bonusToken = e.target.checked;
-    setBonusToken(bonusToken);
+    const bonusTokenChecked = e.target.checked;
+    if (bonusTokenChecked) {
+      localStorage.setItem("checkedBonusToken", "true");
+    } else {
+      localStorage.removeItem("checkedBonusToken");
+    }
+    setGetToken((prev) => !prev);
   };
 
   return (
@@ -130,11 +136,12 @@ const Sidebar = () => {
                           }}
                         >
                           <input
-                          style={{cursor:'pointer'}}
+                            style={{ cursor: "pointer" }}
                             onChange={handleBonusToken}
                             type="checkbox"
                             name="bonus"
                             id="bonus"
+                            checked={isCheckedBonusToken ? true : false}
                           ></input>
                           <label htmlFor="bonus"> Bonus Wallet</label>
                         </span>

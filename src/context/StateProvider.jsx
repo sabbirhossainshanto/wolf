@@ -10,16 +10,23 @@ const StateProvider = ({ children }) => {
   const [tokenLoading, setTokenLoading] = useState(true);
   const [showEditStake, setShowEditStake] = useState(false);
   const [placeBetValues, setPlaceBetValues] = useState({});
-  const [bonusToken, setBonusToken] = useState(false);
+  const [isCheckedBonusToken, setIsCheckedBonusToken] = useState(false);
 
   useEffect(() => {
     const getToken = localStorage.getItem("token");
     const getBonusToken = localStorage.getItem("bonusToken");
-    bonusToken ? setToken(getBonusToken) : setToken(getToken);
+    const getCheckedBonusToken = localStorage.getItem("checkedBonusToken");
+    if (getCheckedBonusToken) {
+      setToken(getBonusToken);
+      setIsCheckedBonusToken(true);
+    } else {
+      setToken(getToken);
+      setIsCheckedBonusToken(false);
+    }
     if (getToken === token || getBonusToken === token) {
       setTokenLoading(false);
     }
-  }, [getToken, bonusToken, token]);
+  }, [getToken, token]);
 
   const stateInfo = {
     sportsType,
@@ -38,8 +45,7 @@ const StateProvider = ({ children }) => {
     setShowEditStake,
     placeBetValues,
     setPlaceBetValues,
-    bonusToken,
-    setBonusToken,
+    isCheckedBonusToken, setIsCheckedBonusToken
   };
   return (
     <StateContext.Provider value={stateInfo}>{children}</StateContext.Provider>

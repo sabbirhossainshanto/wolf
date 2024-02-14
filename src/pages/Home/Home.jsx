@@ -1,11 +1,38 @@
+import { useQuery } from "@tanstack/react-query";
 import Casino from "./Casino";
 import GoCasino from "./GoCasino";
 import LiveCasino from "./LiveCasino";
 import Sports from "./Sports";
 import Tabs from "./Tabs";
+import UseTokenGenerator from "../../hooks/UseTokenGenerator";
+import UseEncryptData from "../../hooks/UseEncryptData";
+import { API } from "../../api";
+import axios from "axios";
 
 /* eslint-disable react/no-unknown-property */
 const Home = () => {
+  const { data: whatsAppLink } = useQuery({
+    queryKey: ["whatsApp"],
+    queryFn: async () => {
+      /* random token function */
+      const generatedToken = UseTokenGenerator();
+      /* Encryption post data */
+      const encryptedVideoData = UseEncryptData({
+        site: API.siteUrl,
+        token: generatedToken,
+      });
+      const res = await axios.post(API.whatsApp, encryptedVideoData);
+      const data = res.data;
+      if (data?.success) {
+        return data?.result?.link;
+      }
+    },
+  });
+
+  const navigateWhatsApp = () => {
+    window.open(whatsAppLink, "_blank");
+  };
+
   return (
     <div
       _ngcontent-ng-c943649379=""
@@ -50,17 +77,26 @@ const Home = () => {
           </div>
         </div>
       </div>
-      <div _ngcontent-ng-c943649379="" className="floating-btns">
-        <div _ngcontent-ng-c943649379="" className="btn-item ng-star-inserted">
-          <div _ngcontent-ng-c943649379="" className="btn-wrap whatsapp">
-            <img
-              _ngcontent-ng-c943649379=""
-              alt="WhatsApp"
-              src="https://ss.manage63.com/bmk-wl/commonAssets/whatsapp-icon.svg"
-            />
+      {whatsAppLink && (
+        <div
+          onClick={navigateWhatsApp}
+          _ngcontent-ng-c943649379=""
+          className="floating-btns"
+        >
+          <div
+            _ngcontent-ng-c943649379=""
+            className="btn-item ng-star-inserted"
+          >
+            <div _ngcontent-ng-c943649379="" className="btn-wrap whatsapp">
+              <img
+                _ngcontent-ng-c943649379=""
+                alt="WhatsApp"
+                src="https://ss.manage63.com/bmk-wl/commonAssets/whatsapp-icon.svg"
+              />
+            </div>
           </div>
         </div>
-      </div>
+      )}
     </div>
   );
 };

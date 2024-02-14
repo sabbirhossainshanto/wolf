@@ -5,6 +5,7 @@ import UseTokenGenerator from "./UseTokenGenerator";
 import useContextState from "./useContextState";
 import { API } from "../api";
 import { useEffect } from "react";
+import { handleLogOut } from "../utils/handleLogOut";
 
 const useBonusBalance = () => {
   const { setGetToken } = useContextState();
@@ -20,7 +21,7 @@ const useBonusBalance = () => {
         },
       });
       if (res?.data?.success === false && bonusToken) {
-        // localStorage.clear();
+        handleLogOut();
         setGetToken((prev) => !prev);
       } else if (res?.data?.success && bonusToken) {
         const data = res.data?.result;

@@ -8,6 +8,7 @@ import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import useContextState from "../../hooks/useContextState";
 import { motion } from "framer-motion";
+import { handleLogOut } from "../../utils/handleLogOut";
 const ChangePassword = ({
   setShowChangePassModal,
   setErrorMessage,
@@ -51,7 +52,7 @@ const ChangePassword = ({
           setSuccessMessage(data?.result?.message);
           setShowChangePassModal(false);
           setTimeout(() => {
-            localStorage.clear();
+            handleLogOut()
             setGetToken((prev) => !prev);
             navigate("/");
           }, 1000);

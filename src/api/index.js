@@ -52,5 +52,6 @@ export const API = {
   exposure:config?.result?.endpoint?.exposure,
   accountStatement:config?.result?.endpoint?.accountStatement,
   settledBets:config?.result?.endpoint?.settledBets,
-  siteUrl:config?.result?.settings?.siteUrl
+  siteUrl:config?.result?.settings?.siteUrl,
+  whatsApp:config?.result?.endpoint?.whatsapp
 };

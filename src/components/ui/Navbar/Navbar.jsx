@@ -10,10 +10,16 @@ import useBalance from "../../../hooks/useBalance";
 import { IoArrowBack } from "react-icons/io5";
 const Navbar = () => {
   const [errorLogin, setErrorLogin] = useState("");
-  const { setShowSidebar, showLogin, setShowLogin, token, setGetToken } =
-    useContextState();
+  const {
+    setShowSidebar,
+    showLogin,
+    setShowLogin,
+    token,
+    setGetToken,
+    isCheckedBonusToken,
+  } = useContextState();
   const location = useLocation();
-  const navigate = useNavigate()
+  const navigate = useNavigate();
   const loginName = localStorage.getItem("loginName");
   const { balanceData } = useBalance();
   /* handle login demo user */
@@ -94,14 +100,14 @@ const Navbar = () => {
                   menu
                 </span>
               ) : (
-                <IoArrowBack  
-                size={25}
-                 color="#fff"
-                 style={{cursor:'pointer'}}
-                 onClick={()=> {
-                  navigate(-1)
-                 }}
-                 />
+                <IoArrowBack
+                  size={25}
+                  color="#fff"
+                  style={{ cursor: "pointer" }}
+                  onClick={() => {
+                    navigate(-1);
+                  }}
+                />
               )}
               <Link to="/">
                 <img
@@ -127,7 +133,7 @@ const Navbar = () => {
                         style={{ color: "white", fontSize: "10px" }}
                         _ngcontent-ng-c3243547741=""
                       >
-                        Bal
+                        {isCheckedBonusToken ? "Bonus" : "Bal"}
                       </span>
                       <p _ngcontent-ng-c3243547741="">
                         {balanceData?.creditLimit}
@@ -158,6 +164,9 @@ const Navbar = () => {
                     </div>
                   </div>
                   <button
+                    onClick={() => {
+                      navigate("/profile/deposit");
+                    }}
                     _ngcontent-ng-c3243547741=""
                     mat-flat-button=""
                     className="btn deposit-btn mdc-button mdc-button--unelevated mat-mdc-unelevated-button mat-unthemed mat-mdc-button-base ng-star-inserted"

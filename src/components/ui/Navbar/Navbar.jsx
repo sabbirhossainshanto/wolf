@@ -1,16 +1,19 @@
 /* eslint-disable react/no-unknown-property */
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import useContextState from "../../../hooks/useContextState";
 import Login from "../../modal/Login";
 import UseTokenGenerator from "../../../hooks/UseTokenGenerator";
 import UseEncryptData from "../../../hooks/UseEncryptData";
 import { API } from "../../../api";
 import { useState } from "react";
-import useBalance from "../../../hooks/UseBalance";
+import useBalance from "../../../hooks/useBalance";
+import { IoArrowBack } from "react-icons/io5";
 const Navbar = () => {
   const [errorLogin, setErrorLogin] = useState("");
   const { setShowSidebar, showLogin, setShowLogin, token, setGetToken } =
     useContextState();
+  const location = useLocation();
+  const navigate = useNavigate()
   const loginName = localStorage.getItem("loginName");
   const { balanceData } = useBalance();
   /* handle login demo user */
@@ -78,17 +81,28 @@ const Navbar = () => {
             className="header-wrapper top-header"
           >
             <div _ngcontent-ng-c3243547741="" className="logo">
-              <span
-                onClick={() => setShowSidebar(true)}
-                _ngcontent-ng-c3243547741=""
-                role="img"
-                className="mat-icon notranslate material-icons mat-ligature-font mat-icon-no-color ng-star-inserted"
-                aria-hidden="true"
-                data-mat-icon-type="font"
-                style={{ cursor: "pointer", color: "white" }}
-              >
-                menu
-              </span>
+              {location?.pathname === "/" ? (
+                <span
+                  onClick={() => setShowSidebar(true)}
+                  _ngcontent-ng-c3243547741=""
+                  role="img"
+                  className="mat-icon notranslate material-icons mat-ligature-font mat-icon-no-color ng-star-inserted"
+                  aria-hidden="true"
+                  data-mat-icon-type="font"
+                  style={{ cursor: "pointer", color: "white" }}
+                >
+                  menu
+                </span>
+              ) : (
+                <IoArrowBack  
+                size={25}
+                 color="#fff"
+                 style={{cursor:'pointer'}}
+                 onClick={()=> {
+                  navigate(-1)
+                 }}
+                 />
+              )}
               <Link to="/">
                 <img
                   _ngcontent-ng-c3243547741=""

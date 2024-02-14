@@ -3,6 +3,7 @@ import useContextState from "../../../hooks/useContextState";
 import { useRef } from "react";
 import useCloseModalClickOutside from "../../../hooks/useCloseModalClickOutside";
 import { RiEditBoxFill } from "react-icons/ri";
+import useBonusBalance from "../../../hooks/useBonusBalance";
 
 /* eslint-disable react/no-unknown-property */
 const Sidebar = () => {
@@ -13,11 +14,12 @@ const Sidebar = () => {
     setShowEditStake,
     token,
     setShowLogin,
+    setBonusToken,
   } = useContextState();
   const loginName = localStorage.getItem("loginName");
   const navigate = useNavigate();
   const leftMenuRef = useRef();
-
+  const { bonusBalanceData } = useBonusBalance();
   useCloseModalClickOutside(leftMenuRef, () => {
     setShowSidebar(false);
   });
@@ -26,6 +28,11 @@ const Sidebar = () => {
     setShowSidebar(false);
     setGetToken((prev) => !prev);
     navigate("/");
+  };
+
+  const handleBonusToken = (e) => {
+    const bonusToken = e.target.checked;
+    setBonusToken(bonusToken);
   };
 
   return (
@@ -94,7 +101,7 @@ const Sidebar = () => {
                   >
                     person
                   </span>
-                  {loginName || 'Guest User'}
+                  {loginName || "Guest User"}
                 </p>
               </div>
             </div>
@@ -114,13 +121,22 @@ const Sidebar = () => {
                         />
                         <span _ngcontent-ng-c967272132="">Bonus</span>
                         <span
-                          _ngcontent-ng-c967272132=""
-                          role="img"
-                          className="mat-icon notranslate material-icon rules-icon material-icons mat-ligature-font mat-icon-no-color"
-                          aria-hidden="true"
-                          data-mat-icon-type="font"
+                          style={{
+                            width: "100%",
+                            display: "flex",
+                            alignItems: "center",
+                            marginLeft: "auto",
+                            justifyContent: "flex-end",
+                          }}
                         >
-                          description
+                          <input
+                          style={{cursor:'pointer'}}
+                            onChange={handleBonusToken}
+                            type="checkbox"
+                            name="bonus"
+                            id="bonus"
+                          ></input>
+                          <label htmlFor="bonus"> Bonus Wallet</label>
                         </span>
                       </div>
                       <div _ngcontent-ng-c967272132="">
@@ -134,7 +150,7 @@ const Sidebar = () => {
                               className="bonus-info"
                             >
                               <p _ngcontent-ng-c967272132="">
-                                Total Bonus: 1,100
+                                Total Bonus: {bonusBalanceData?.availBalance}
                               </p>
                               <div
                                 _ngcontent-ng-c967272132=""

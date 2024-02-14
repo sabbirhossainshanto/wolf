@@ -5,27 +5,24 @@ import UseTokenGenerator from "./UseTokenGenerator";
 import useContextState from "./useContextState";
 import { API } from "../api";
 import { useEffect } from "react";
-/* Balance api */
-const useBalance = () => {
-  const { token, setGetToken, tokenLoading } = useContextState();
-  const { data: balanceData, refetch: refetchBalance } = useQuery({
-    queryKey: ["balance"],
-    enabled:!tokenLoading,
+
+const useBonusBalance = () => {
+  const { setGetToken } = useContextState();
+  const bonusToken = localStorage.getItem("bonusToken");
+  const { data: bonusBalanceData, refetch: bonusRefetchBalance } = useQuery({
+    queryKey: ["bonusBalance"],
     queryFn: async () => {
-      if (!token) {
-        return;
-      }
       const generatedToken = UseTokenGenerator();
       const encryptedData = UseEncryptData(generatedToken);
       const res = await axios.post(API.balance, encryptedData, {
         headers: {
-          Authorization: `Bearer ${token}`,
+          Authorization: `Bearer ${bonusToken}`,
         },
       });
-      if (res?.data?.success === false && token) {
+      if (res?.data?.success === false && bonusToken) {
         // localStorage.clear();
         setGetToken((prev) => !prev);
-      } else if (res?.data?.success && token) {
+      } else if (res?.data?.success && bonusToken) {
         const data = res.data?.result;
         return data;
       }
@@ -35,12 +32,12 @@ const useBalance = () => {
   });
 
   useEffect(() => {
-    if (token) {
-      refetchBalance();
+    if (bonusToken) {
+      bonusRefetchBalance();
     }
-  }, [token, refetchBalance]);
+  }, [bonusToken, bonusRefetchBalance]);
 
-  return { balanceData, refetchBalance };
+  return { bonusBalanceData, bonusRefetchBalance };
 };
 
-export default useBalance;
+export default useBonusBalance;

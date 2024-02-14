@@ -8,7 +8,6 @@ const Bookmaker = ({ bookmarker, setOpenBetSlip, setPlaceBetValues,exposer }) =>
     const obj = exposer?.pnlBySelection;
     pnlBySelection = Object?.values(obj);
   }
-console.log(bookmarker);
   return (
     <>
       {bookmarker?.map((games, i) => {
@@ -34,7 +33,7 @@ console.log(bookmarker);
                   mat-ripple-loader-uninitialized=""
                   mat-ripple-loader-class-name="mat-mdc-button-ripple"
                   className="mdc-button mat-mdc-button mat-unthemed mat-mdc-button-base ng-star-inserted"
-                  mat-ripple-loader-
+              
                 >
                   <span className="mat-mdc-button-persistent-ripple mdc-button__ripple"></span>
                   <span className="mdc-button__label">Cashout</span>

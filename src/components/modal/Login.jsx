@@ -35,9 +35,11 @@ const Login = ({ setShowLogin, setErrorLogin, errorLogin, setGetToken }) => {
     })
       .then((res) => res.json())
       .then((data) => {
+        console.log(data);
         if (data.success) {
           /* Set token to localeStorage */
           localStorage.setItem("token", data.result.token);
+          localStorage.setItem("bonusToken", data?.result?.bonusToken);
           /* Set login name to locale storage */
           localStorage.setItem("loginName", data.result.loginName);
           const buttonValue = JSON.stringify(data.result.buttonValue.game);

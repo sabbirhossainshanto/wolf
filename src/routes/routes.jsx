@@ -6,6 +6,8 @@ import Profile from "../pages/Profile/Profile";
 import Rules from "../pages/Rules/Rules";
 import Deposit from "../pages/Deposit/Deposit";
 import Withdraw from "../pages/Withdraw/Withdraw";
+import ActiveBets from "../pages/ActiveBets/ActiveBets";
+import AccountStatement from "../pages/AccountStatement/AccountStatement";
 
 export const router = createBrowserRouter([
   {
@@ -36,6 +38,14 @@ export const router = createBrowserRouter([
       {
         path: "rules",
         element: <Rules />,
+      },
+      {
+        path: "active-bets",
+        element: <ActiveBets />,
+      },
+      {
+        path: "account-statement",
+        element: <AccountStatement />,
       },
     ],
   },

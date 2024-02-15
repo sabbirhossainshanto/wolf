@@ -172,7 +172,7 @@ const EditStake = ({ setShowEditStake,setSuccessEditStake }) => {
                             className="mat-icon notranslate material-icons mat-ligature-font mat-icon-no-color"
                             aria-hidden="true"
                             data-mat-icon-type="font"
-                            style={{ marginLeft: "7px" }}
+                            style={{ marginLeft: "4px" }}
                           >
                             close
                           </span>

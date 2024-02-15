@@ -8,6 +8,7 @@ import EditStake from "../modal/EditStake";
 import { useState } from "react";
 import Success from "../ui/Notification/Success";
 
+
 const Main = () => {
   const { showEditStake, setShowEditStake } = useContextState();
   const [successEditStake, setSuccessEditStake] = useState("");
@@ -58,6 +59,7 @@ const Main = () => {
                   <Navbar />
                   <Outlet />
                   <Footer />
+                
                 </div>
               </div>
             </div>

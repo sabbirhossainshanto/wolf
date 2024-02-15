@@ -1,4 +1,5 @@
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import useContextState from "../../hooks/useContextState";
 
 /* eslint-disable react/no-unknown-property */
 const LoggedInProfile = ({
@@ -7,6 +8,7 @@ const LoggedInProfile = ({
   balanceData,
 }) => {
   const navigate = useNavigate();
+  const { isCheckedBonusToken } = useContextState();
   return (
     <>
       <div _ngcontent-ng-c2865632707="" className="user-details-wrap">
@@ -28,19 +30,21 @@ const LoggedInProfile = ({
             </p>
           </div>
           <div _ngcontent-ng-c2865632707="" className="actions-wrap">
-            <button
-              onClick={() => setShowChangePassModal(true)}
-              _ngcontent-ng-c2865632707=""
-              mat-flat-button=""
-              className="chng-psw-btn mdc-button mdc-button--unelevated mat-mdc-unelevated-button mat-unthemed mat-mdc-button-base ng-star-inserted"
-              mat-ripple-loader-class-name="mat-mdc-button-ripple"
-            >
-              <span className="mat-mdc-button-persistent-ripple mdc-button__ripple"></span>
-              <span className="mdc-button__label">Change Password</span>
-              <span className="mat-mdc-focus-indicator"></span>
-              <span className="mat-mdc-button-touch-target"></span>
-              <span className="mat-ripple mat-mdc-button-ripple"></span>
-            </button>
+            {!isCheckedBonusToken && (
+              <button
+                onClick={() => setShowChangePassModal(true)}
+                _ngcontent-ng-c2865632707=""
+                mat-flat-button=""
+                className="chng-psw-btn mdc-button mdc-button--unelevated mat-mdc-unelevated-button mat-unthemed mat-mdc-button-base ng-star-inserted"
+                mat-ripple-loader-class-name="mat-mdc-button-ripple"
+              >
+                <span className="mat-mdc-button-persistent-ripple mdc-button__ripple"></span>
+                <span className="mdc-button__label">Change Password</span>
+                <span className="mat-mdc-focus-indicator"></span>
+                <span className="mat-mdc-button-touch-target"></span>
+                <span className="mat-ripple mat-mdc-button-ripple"></span>
+              </button>
+            )}
           </div>
         </div>
 
@@ -55,7 +59,9 @@ const LoggedInProfile = ({
                 <p _ngcontent-ng-c2865632707=""> {balanceData?.creditLimit}</p>
               </div>
             </div>
-            <div _ngcontent-ng-c2865632707="" className="d-w-btn">
+          {
+            !isCheckedBonusToken && (
+              <div _ngcontent-ng-c2865632707="" className="d-w-btn">
               <button
                 onClick={() => {
                   navigate("/profile/deposit");
@@ -87,6 +93,8 @@ const LoggedInProfile = ({
                 <span className="mat-mdc-button-touch-target"></span>
               </button>
             </div>
+            )
+          }
           </div>
         </div>
       </div>
@@ -138,7 +146,7 @@ const LoggedInProfile = ({
             </a>
           </li> */}
           <li _ngcontent-ng-c2865632707="" className="smenu-item">
-            <a _ngcontent-ng-c2865632707="" className="smenu-link">
+            <Link to='/active-bets' _ngcontent-ng-c2865632707="" className="smenu-link">
               <div _ngcontent-ng-c2865632707="" className="label-wrap">
                 <img
                   _ngcontent-ng-c2865632707=""
@@ -147,14 +155,14 @@ const LoggedInProfile = ({
                 />
                 <span _ngcontent-ng-c2865632707="">Active Bets</span>
               </div>
-            </a>
+            </Link>
           </li>
           <li
             _ngcontent-ng-c2865632707=""
             routerlinkactive="active-link"
             className="smenu-item"
           >
-            <a _ngcontent-ng-c2865632707="" className="smenu-link">
+            <Link to='/account-statement' _ngcontent-ng-c2865632707="" className="smenu-link">
               <div _ngcontent-ng-c2865632707="" className="label-wrap">
                 <img
                   _ngcontent-ng-c2865632707=""
@@ -163,7 +171,7 @@ const LoggedInProfile = ({
                 />
                 <span _ngcontent-ng-c2865632707="">Account Statement</span>
               </div>
-            </a>
+            </Link>
           </li>
           <li
             _ngcontent-ng-c2865632707=""
@@ -187,7 +195,7 @@ const LoggedInProfile = ({
             routerlinkactive="active-link"
             className="smenu-item"
           >
-            <a _ngcontent-ng-c2865632707="" className="smenu-link">
+            <Link to='/rules' _ngcontent-ng-c2865632707="" className="smenu-link">
               <div _ngcontent-ng-c2865632707="" className="label-wrap">
                 <img
                   _ngcontent-ng-c2865632707=""
@@ -196,7 +204,7 @@ const LoggedInProfile = ({
                 />
                 <span _ngcontent-ng-c2865632707="">Rules</span>
               </div>
-            </a>
+            </Link>
           </li>
           <li
             _ngcontent-ng-c2865632707=""

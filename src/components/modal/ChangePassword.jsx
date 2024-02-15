@@ -122,7 +122,7 @@ const ChangePassword = ({
                           aria-hidden="true"
                           data-mat-icon-type="font"
                           style={{
-                            marginLeft: "7px",
+                            marginLeft: "4.5px",
                             color: "white",
                             fontWeight: "600",
                           }}

@@ -69,23 +69,23 @@ const FancyOne = ({ FancyOne, setOpenBetSlip, setPlaceBetValues, exposer }) => {
                 <button
                   _ngcontent-ng-c942213636=""
                   mat-flat-button=""
-                  class="bar-btn mdc-button mdc-button--unelevated mat-mdc-unelevated-button mat-unthemed mat-mdc-button-base ng-star-inserted"
+                  className="bar-btn mdc-button mdc-button--unelevated mat-mdc-unelevated-button mat-unthemed mat-mdc-button-base ng-star-inserted"
                   mat-ripple-loader-uninitialized=""
                   mat-ripple-loader-class-name="mat-mdc-button-ripple"
                 >
-                  <span class="mat-mdc-button-persistent-ripple mdc-button__ripple"></span>
-                  <span class="mdc-button__label">
+                  <span className="mat-mdc-button-persistent-ripple mdc-button__ripple"></span>
+                  <span className="mdc-button__label">
                     {pnl?.length > 0 && (
                       <img
                         _ngcontent-ng-c942213636=""
                         alt=""
-                        class="ladder-img"
+                        className="ladder-img"
                         src="https://ss.manage63.com/bmk-wl/commonAssets/ladder.svg"
                       />
                     )}
                   </span>
-                  <span class="mat-mdc-focus-indicator"></span>
-                  <span class="mat-mdc-button-touch-target"></span>
+                  <span className="mat-mdc-focus-indicator"></span>
+                  <span className="mat-mdc-button-touch-target"></span>
                 </button>
               </div>
               <div

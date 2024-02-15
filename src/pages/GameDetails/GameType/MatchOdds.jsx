@@ -24,7 +24,7 @@ const MatchOdds = ({ match_odd, setOpenBetSlip, setPlaceBetValues,exposer }) => 
                 <h2 _ngcontent-ng-c942213636="" className="card-heading">
                   {games?.name.toUpperCase()}
                 </h2>
-                <button
+                {/* <button
                   _ngcontent-ng-c942213636=""
                   mat-button=""
                   mat-ripple-loader-uninitialized=""
@@ -36,7 +36,7 @@ const MatchOdds = ({ match_odd, setOpenBetSlip, setPlaceBetValues,exposer }) => 
                   <span className="mdc-button__label">Cashout</span>
                   <span className="mat-mdc-focus-indicator"></span>
                   <span className="mat-mdc-button-touch-target"></span>
-                </button>
+                </button> */}
               </div>
               <div _ngcontent-ng-c942213636="" className="card-header">
                 <h3 _ngcontent-ng-c942213636="" className="card-title">

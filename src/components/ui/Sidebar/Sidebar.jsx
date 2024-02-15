@@ -255,7 +255,12 @@ const Sidebar = () => {
                       routerlinkactive="active-link"
                       className="smenu-item"
                     >
-                      <a _ngcontent-ng-c967272132="" className="smenu-link">
+                      <Link
+                        onClick={() => setShowSidebar(false)}
+                        to="/account-statement"
+                        _ngcontent-ng-c967272132=""
+                        className="smenu-link"
+                      >
                         <img
                           _ngcontent-ng-c967272132=""
                           alt="Menu Icon"
@@ -264,21 +269,26 @@ const Sidebar = () => {
                         <span _ngcontent-ng-c967272132="">
                           Account Statement
                         </span>
-                      </a>
+                      </Link>
                     </li>
                     <li
                       _ngcontent-ng-c967272132=""
                       routerlinkactive="active-link"
                       className="smenu-item"
                     >
-                      <a _ngcontent-ng-c967272132="" className="smenu-link">
+                      <Link
+                        onClick={() => setShowSidebar(false)}
+                        to="/active-bets"
+                        _ngcontent-ng-c967272132=""
+                        className="smenu-link"
+                      >
                         <img
                           _ngcontent-ng-c967272132=""
                           alt="Menu Icon"
                           src="https://ss.manage63.com/bmk-wl/commonAssets/sidenav_activebets.svg"
                         />
                         <span _ngcontent-ng-c967272132="">Active Bets</span>
-                      </a>
+                      </Link>
                     </li>
                     <li
                       _ngcontent-ng-c967272132=""

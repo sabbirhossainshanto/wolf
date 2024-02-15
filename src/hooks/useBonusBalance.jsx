@@ -8,10 +8,12 @@ import { useEffect } from "react";
 import { handleLogOut } from "../utils/handleLogOut";
 
 const useBonusBalance = () => {
-  const { setGetToken } = useContextState();
+  const { setGetToken, isCheckedBonusToken } = useContextState();
   const bonusToken = localStorage.getItem("bonusToken");
+
   const { data: bonusBalanceData, refetch: bonusRefetchBalance } = useQuery({
     queryKey: ["bonusBalance"],
+    enabled: isCheckedBonusToken,
     queryFn: async () => {
       const generatedToken = UseTokenGenerator();
       const encryptedData = UseEncryptData(generatedToken);

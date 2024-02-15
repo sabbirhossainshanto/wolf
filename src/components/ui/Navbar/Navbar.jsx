@@ -8,6 +8,7 @@ import { API } from "../../../api";
 import { useState } from "react";
 import useBalance from "../../../hooks/useBalance";
 import { IoArrowBack } from "react-icons/io5";
+import Warning from "../Notification/Warning";
 const Navbar = () => {
   const [errorLogin, setErrorLogin] = useState("");
   const {
@@ -22,6 +23,7 @@ const Navbar = () => {
   const navigate = useNavigate();
   const loginName = localStorage.getItem("loginName");
   const { balanceData } = useBalance();
+  const [showWarning, setShowWarning] = useState("");
   /* handle login demo user */
   const loginWithDemo = () => {
     /* Random token generator */
@@ -66,8 +68,20 @@ const Navbar = () => {
       });
   };
 
+  const handleNavigateDeposit = () => {
+    if (isCheckedBonusToken) {
+      setShowWarning("Please switch to main wallet for deposit.");
+    } else {
+      navigate("/profile/deposit");
+    }
+  };
+
   return (
     <>
+      {showWarning && (
+        <Warning message={showWarning} setMessage={setShowWarning} />
+      )}
+
       <div
         style={
           {
@@ -164,9 +178,7 @@ const Navbar = () => {
                     </div>
                   </div>
                   <button
-                    onClick={() => {
-                      navigate("/profile/deposit");
-                    }}
+                    onClick={handleNavigateDeposit}
                     _ngcontent-ng-c3243547741=""
                     mat-flat-button=""
                     className="btn deposit-btn mdc-button mdc-button--unelevated mat-mdc-unelevated-button mat-unthemed mat-mdc-button-base ng-star-inserted"

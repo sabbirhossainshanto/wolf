@@ -1,7 +1,7 @@
 /* eslint-disable react/no-unknown-property */
 import { useState } from "react";
 import ChangePassword from "../../components/modal/ChangePassword";
-import useBalance from "../../hooks/UseBalance";
+import useBalance from "../../hooks/useBalance";
 import Success from "../../components/ui/Notification/Success";
 import Warning from "../../components/ui/Notification/Warning";
 import LoggedInProfile from "./LogedInProfile";

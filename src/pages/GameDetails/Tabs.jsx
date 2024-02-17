@@ -1,6 +1,14 @@
 /* eslint-disable react/no-unknown-property */
 
-const Tabs = ({ myBets, setTabs, tabs }) => {
+const Tabs = ({
+  myBets,
+  setTabs,
+  tabs,
+  setShowIFrame,
+  showIFrame,
+  showScore,
+  setShowScore,
+}) => {
   return (
     <div className="mat-mdc-tab-header mat-tab-header">
       <button
@@ -101,9 +109,12 @@ const Tabs = ({ myBets, setTabs, tabs }) => {
                     className="livetv-tab ng-star-inserted"
                   >
                     <button
+                      onClick={() => setShowIFrame((prev) => !prev)}
                       _ngcontent-ng-c942213636=""
                       mat-flat-button=""
-                      className="livetv-btn rounded mdc-button mdc-button--unelevated mat-mdc-unelevated-button active mat-unthemed mat-mdc-button-base"
+                      className={`livetv-btn rounded mdc-button mdc-button--unelevated mat-mdc-unelevated-button ${
+                        showIFrame ? "active" : ""
+                      } mat-unthemed mat-mdc-button-base`}
                       mat-ripple-loader-uninitialized=""
                       mat-ripple-loader-class-name="mat-mdc-button-ripple"
                     >
@@ -119,9 +130,12 @@ const Tabs = ({ myBets, setTabs, tabs }) => {
                       <span className="mat-mdc-button-touch-target"></span>
                     </button>
                     <button
+                      onClick={() => setShowScore((prev) => !prev)}
                       _ngcontent-ng-c942213636=""
                       mat-flat-button=""
-                      className="livetv-btn rounded mdc-button mdc-button--unelevated mat-mdc-unelevated-button mat-unthemed mat-mdc-button-base"
+                      className={`livetv-btn rounded mdc-button mdc-button--unelevated mat-mdc-unelevated-button mat-unthemed mat-mdc-button-base ${
+                        showScore ? "active" : ""
+                      }`}
                       mat-ripple-loader-uninitialized=""
                       mat-ripple-loader-class-name="mat-mdc-button-ripple"
                     >

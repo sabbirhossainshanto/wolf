@@ -72,15 +72,15 @@ const Sports = () => {
             >
               <GoClock />
             </mat-icon>
-            Teams
+            Upcoming Matches
           </h3>
           <div _ngcontent-ng-c943649379="" className="lay-back-wrap">
-            <h3 _ngcontent-ng-c943649379="" className="back-bg">
+            {/* <h3 _ngcontent-ng-c943649379="" className="back-bg">
               Back
             </h3>
             <h3 _ngcontent-ng-c943649379="" className="lay-bg">
               Lay
-            </h3>
+            </h3> */}
           </div>
         </div>
         <div _ngcontent-ng-c943649379="" className="table-body">

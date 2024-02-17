@@ -11,6 +11,7 @@ const BetTable = ({ data, keys }) => {
     <>
       {data[keys]?.inPlay === 0 && (
         <div
+        style={{cursor:'pointer'}} 
           onClick={() => navigateGameList(keys)}
           _ngcontent-ng-c943649379=""
           className="table-item ng-star-inserted"
@@ -33,39 +34,18 @@ const BetTable = ({ data, keys }) => {
                 {data[keys]?.date}
               </p>
             </div>
-            <h3 _ngcontent-ng-c943649379="" className="team-title">
-              <p
-                _ngcontent-ng-c943649379=""
-                className="ng-star-inserted"
-                style={{ display: "flex", gap: "5px" }}
-              >
-                {/*  <span
-              _ngcontent-ng-c943649379=""
-              role="img"
-              className="mat-icon notranslate material-icons favorite mat-ligature-font mat-icon-no-color ng-star-inserted"
-              aria-hidden="true"
-              data-mat-icon-type="font"
-            >
-                
-            </span> */}
-                {/* <FaStar /> */}
+
+            <h3 _ngcontent-ng-c943649379="" class="team-title">
+              <p _ngcontent-ng-c943649379="" class="ng-star-inserted">
                 <span
                   _ngcontent-ng-c943649379=""
                   className="team-name ng-star-inserted"
                 >
-                  {data[keys]?.eventName?.split("v")[0]}
+                  {data[keys]?.eventName}
                 </span>
               </p>
-              <p _ngcontent-ng-c943649379="" className="ng-star-inserted">
-                <span
-                  _ngcontent-ng-c943649379=""
-                  className="team-name ng-star-inserted"
-                >
-                  {data[keys]?.eventName?.split("v")[1]}
-                </span>
-              </p>
-              <p _ngcontent-ng-c943649379="" className="ng-star-inserted"></p>
             </h3>
+
             {/* <div
           _ngcontent-ng-c943649379=""
           className="inplay-wrap ng-star-inserted"
@@ -81,7 +61,7 @@ const BetTable = ({ data, keys }) => {
           </span>
         </div> */}
           </div>
-          <div
+          {/* <div
             _ngcontent-ng-c943649379=""
             className="count-v-wrap ng-star-inserted"
           >
@@ -123,7 +103,7 @@ const BetTable = ({ data, keys }) => {
               <span className="mat-mdc-focus-indicator"></span>
               <span className="mat-mdc-button-touch-target"></span>
             </button>
-          </div>
+          </div> */}
         </div>
       )}
     </>

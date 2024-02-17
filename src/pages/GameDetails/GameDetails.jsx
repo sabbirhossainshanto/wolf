@@ -23,6 +23,8 @@ const GameDetails = () => {
   const { exposer, refetchExposure } = useExposer(eventId);
   const { iFrameUrl } = useIFrame(eventTypeId, eventId);
   const { data } = useGameDetails(eventTypeId, eventId);
+  const [showIFrame, setShowIFrame] = useState(true);
+  const [showScore, setShowScore] = useState(false);
 
   return (
     <>
@@ -70,18 +72,27 @@ const GameDetails = () => {
             className="mat-mdc-tab-group mat-tab-group mat-primary mat-mdc-tab-group-stretch-tabs"
             /*  style="--mat-tab-animation-duration: 500ms" */
           >
-            <Tabs myBets={myBets} setTabs={setTabs} tabs={tabs} />
+            <Tabs
+              myBets={myBets}
+              setTabs={setTabs}
+              tabs={tabs}
+              setShowIFrame={setShowIFrame}
+              showIFrame={showIFrame}
+              showScore={showScore}
+              setShowScore={setShowScore}
+            />
             {tabs === "market" && (
               <MarketTab
                 data={data}
                 setOpenBetSlip={setOpenBetSlip}
                 exposer={exposer}
                 iFrameUrl={iFrameUrl}
+                showIFrame={showIFrame}
+                showScore={showScore}
+                setShowScore={setShowScore}
               />
             )}
-            {tabs === "openBets" && <OpenBetsTab 
-            myBets={myBets}
-            />}
+            {tabs === "openBets" && <OpenBetsTab myBets={myBets} />}
           </div>
         </div>
       </div>

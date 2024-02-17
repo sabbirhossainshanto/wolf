@@ -8,6 +8,8 @@ import Deposit from "../pages/Deposit/Deposit";
 import Withdraw from "../pages/Withdraw/Withdraw";
 import ActiveBets from "../pages/ActiveBets/ActiveBets";
 import AccountStatement from "../pages/AccountStatement/AccountStatement";
+import Passbook from "../pages/Passbook/Passbook";
+import SinglePassbook from "../pages/Passbook/SinglePassbook";
 
 export const router = createBrowserRouter([
   {
@@ -46,6 +48,14 @@ export const router = createBrowserRouter([
       {
         path: "account-statement",
         element: <AccountStatement />,
+      },
+      {
+        path: "passbook",
+        element: <Passbook/>,
+      },
+      {
+        path: "passbook/:marketId",
+        element: <SinglePassbook/>,
       },
     ],
   },

@@ -116,11 +116,16 @@ const Footer = () => {
                 <span className="mat-mdc-button-touch-target"></span>
               </button>
               <button
+                onClick={() => {
+                  navigate("/passbook");
+                }}
                 _ngcontent-ng-c2125492905=""
                 mat-flat-button=""
                 routerlink="/passbook"
                 routerlinkactive="active-link"
-                className="passbook mdc-button mdc-button--unelevated mat-mdc-unelevated-button mat-unthemed mat-mdc-button-base ng-star-inserted"
+                className={`passbook mdc-button mdc-button--unelevated mat-mdc-unelevated-button mat-unthemed mat-mdc-button-base ng-star-inserted ${
+                  location?.pathname === "/passbook" ? "active-link" : ""
+                }`}
                 mat-ripple-loader-uninitialized=""
                 mat-ripple-loader-class-name="mat-mdc-button-ripple"
               >

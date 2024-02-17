@@ -6,7 +6,7 @@ import { API } from "../../../api";
 import UseEncryptData from "../../../hooks/UseEncryptData";
 import UseTokenGenerator from "../../../hooks/UseTokenGenerator";
 /* eslint-disable react/no-unknown-property */
-const Registration = ({ setShowRegister, setShowOTP, mobileNo }) => {
+const Registration = ({ setShowRegister, setShowOTP, mobileNo,setSuccessRegister,setErrRegister }) => {
   const registerRef = useRef();
   useCloseModalClickOutside(registerRef, () => {
     setShowRegister(false);
@@ -23,8 +23,7 @@ const Registration = ({ setShowRegister, setShowOTP, mobileNo }) => {
 //   const [userName, setUserName] = useState("");
 //   const [otpField, setOtpField] = useState("");
 //   const [confirmPasswordErr, setConfirmPasswordErr] = useState("");
-  const [errRegister, setErrRegister] = useState("");
-  const [successRegister, setSuccessRegister] = useState("");
+
   const { handleSubmit } = useForm();
   /* Handle register */
   const onSubmit = () => {
@@ -88,9 +87,11 @@ const Registration = ({ setShowRegister, setShowOTP, mobileNo }) => {
           .then((data) => {
             console.log(data);
             if (data?.success) {
-              setSuccessRegister("User created successfully");
+              setSuccessRegister("User registration successful, please login.");
+              setShowRegister(false)
             } else if (!data?.success) {
               setErrRegister(data?.error?.description);
+              setShowRegister(false)
             }
           });
   };
@@ -253,6 +254,7 @@ const Registration = ({ setShowRegister, setShowOTP, mobileNo }) => {
                                         type="tel"
                                         matinput=""
                                         autocomplete="new-password"
+                                        maxLength={4}
                                         appnumericonly=""
                                         formcontrolname="otp"
                                         placeholder="****"

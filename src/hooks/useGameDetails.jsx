@@ -4,10 +4,10 @@ import axios from "axios";
 import { API } from "../api";
 
 const useGameDetails = (eventTypeId, eventId) => {
-  const { token, tokenLoading } = useContextState();
+  const { token} = useContextState();
   const { data,refetch:refetchGame } = useQuery({
     queryKey: ["gameDetails"],
-    enabled: !tokenLoading,
+   
     queryFn: async () => {
       const res = await axios.get(`${API.odds}/${eventTypeId}/${eventId}`, {
         headers: {

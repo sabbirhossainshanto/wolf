@@ -7,6 +7,8 @@ const FancyOne = ({ FancyOne, setOpenBetSlip, setPlaceBetValues, exposer }) => {
     const obj = exposer?.pnlBySelection;
     pnlBySelection = Object?.values(obj);
   }
+
+
   return (
     <div
       _ngcontent-ng-c942213636=""
@@ -49,6 +51,7 @@ const FancyOne = ({ FancyOne, setOpenBetSlip, setPlaceBetValues, exposer }) => {
                   {games?.name}
                   {pnl &&
                     pnl?.map(({ pnl, MarketId }, i) => {
+                      
                       return (
                         <p
                           _ngcontent-ng-c942213636=""
@@ -61,7 +64,7 @@ const FancyOne = ({ FancyOne, setOpenBetSlip, setPlaceBetValues, exposer }) => {
                             cursor: "pointer",
                           }}
                         >
-                          {pnl}
+                          {pnl > 0 && pnl}
                         </p>
                       );
                     })}
@@ -75,14 +78,7 @@ const FancyOne = ({ FancyOne, setOpenBetSlip, setPlaceBetValues, exposer }) => {
                 >
                   <span className="mat-mdc-button-persistent-ripple mdc-button__ripple"></span>
                   <span className="mdc-button__label">
-                    {pnl?.length > 0 && (
-                      <img
-                        _ngcontent-ng-c942213636=""
-                        alt=""
-                        className="ladder-img"
-                        src="https://ss.manage63.com/bmk-wl/commonAssets/ladder.svg"
-                      />
-                    )}
+                 
                   </span>
                   <span className="mat-mdc-focus-indicator"></span>
                   <span className="mat-mdc-button-touch-target"></span>

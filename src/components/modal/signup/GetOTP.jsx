@@ -1,6 +1,6 @@
 /* eslint-disable react/no-unknown-property */
 import { motion } from "framer-motion";
-import { useRef, useState } from "react";
+import { useRef } from "react";
 import useCloseModalClickOutside from "../../../hooks/useCloseModalClickOutside";
 import UseTokenGenerator from "../../../hooks/UseTokenGenerator";
 import UseEncryptData from "../../../hooks/UseEncryptData";
@@ -11,9 +11,6 @@ const GetOTP = ({ setShowOTP, setShowRegister, mobileNo, setMobileNo }) => {
   useCloseModalClickOutside(OTPRef, () => {
     setShowOTP(false);
   });
-
-  const [OTP, setOTP] = useState("");
-  const [errOTP, setErrOTP] = useState(false);
 
   /* Get whats app api */
   const getOtp = async (e) => {
@@ -27,14 +24,11 @@ const GetOTP = ({ setShowOTP, setShowRegister, mobileNo, setMobileNo }) => {
     const res = await axios.post(API.otp, encryptedData);
     const data = res.data;
     if (data?.success) {
-      setOTP(data?.result?.message);
       setShowOTP(false);
       setShowRegister(true);
-    } else {
-      setErrOTP(data?.error?.description);
     }
   };
-  console.log(OTP, errOTP);
+
   return (
     <div className="cdk-overlay-container">
       <div className="cdk-overlay-backdrop cdk-overlay-dark-backdrop cdk-overlay-backdrop-showing"></div>

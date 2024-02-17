@@ -8,22 +8,29 @@ import EditStake from "../modal/EditStake";
 import { useState } from "react";
 import Success from "../ui/Notification/Success";
 
-
 const Main = () => {
   const { showEditStake, setShowEditStake } = useContextState();
   const [successEditStake, setSuccessEditStake] = useState("");
 
   return (
     <>
-      <div className="translator-wrap" style={{ display: "block" }}></div>
-      <div _nghost-ng-c967272132="" ng-version="16.2.0">
+      <div
+
+        className="translator-wrap"
+        style={{ display: "block", overflow: "hidden" }}
+      ></div>
+      <div
+      
+        _nghost-ng-c967272132=""
+        ng-version="16.2.0"
+        
+      >
         <div
+      
           _ngcontent-ng-c967272132=""
           ngskiphydration=""
           className="mat-drawer-container mat-sidenav-container sidenav-container"
         >
-      
-
           {/*   <!-- mennu start--> */}
 
           <Sidebar />
@@ -59,7 +66,6 @@ const Main = () => {
                   <Navbar />
                   <Outlet />
                   <Footer />
-                
                 </div>
               </div>
             </div>

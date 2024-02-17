@@ -11,6 +11,7 @@ import { IoArrowBack } from "react-icons/io5";
 import Warning from "../Notification/Warning";
 import GetOTP from "../../modal/signup/GetOTP";
 import Registration from "../../modal/signup/Registration";
+import Success from "../Notification/Success";
 const Navbar = () => {
   const [errorLogin, setErrorLogin] = useState("");
   const {
@@ -30,6 +31,9 @@ const Navbar = () => {
   const [showOTP, setShowOTP] = useState(false);
   const [showRegister, setShowRegister] = useState(false);
   const [mobileNo, setMobileNo] = useState("");
+  const [errRegister, setErrRegister] = useState("");
+  const [successRegister, setSuccessRegister] = useState("");
+
   /* handle login demo user */
   const loginWithDemo = () => {
     /* Random token generator */
@@ -87,6 +91,8 @@ const Navbar = () => {
       {showWarning && (
         <Warning message={showWarning} setMessage={setShowWarning} />
       )}
+
+      {}
 
       <div
         style={
@@ -288,19 +294,37 @@ const Navbar = () => {
         />
       )}
       {showOTP && (
-        <GetOTP 
-        setShowOTP={setShowOTP}
-        setShowRegister={setShowRegister}
-        mobileNo={mobileNo}
-        setMobileNo={setMobileNo}
+        <GetOTP
+          setShowOTP={setShowOTP}
+          setShowRegister={setShowRegister}
+          mobileNo={mobileNo}
+          setMobileNo={setMobileNo}
+          
         />
       )}
-      {showRegister && 
-      <Registration 
-      setShowRegister={setShowRegister}
-      setShowOTP={setShowOTP}
-      mobileNo={mobileNo}
-      />}
+      {showRegister && (
+        <Registration
+          setShowRegister={setShowRegister}
+          setShowOTP={setShowOTP}
+          mobileNo={mobileNo}
+          setErrRegister={setErrRegister}
+          setSuccessRegister={setSuccessRegister}
+        />
+      )}
+      {successRegister && (
+        <Success
+          message={successRegister}
+          setMessage={setSuccessRegister}
+          success={true}
+        />
+      )}
+      {errRegister && (
+        <Success
+          message={errRegister}
+          setMessage={setErrRegister}
+          success={false}
+        />
+      )}
     </>
   );
 };

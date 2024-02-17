@@ -1,6 +1,6 @@
 import { Link, useNavigate } from "react-router-dom";
 import useContextState from "../../../hooks/useContextState";
-import { useRef } from "react";
+import { useEffect, useRef } from "react";
 import useCloseModalClickOutside from "../../../hooks/useCloseModalClickOutside";
 import { RiEditBoxFill } from "react-icons/ri";
 import useBonusBalance from "../../../hooks/useBonusBalance";
@@ -41,6 +41,16 @@ const Sidebar = () => {
     setGetToken((prev) => !prev);
   };
 
+  useEffect(() => {
+    if (showSidebar) {
+      document.body.classList.add("disable-scroll");
+    } else {
+      document.body.classList.remove("disable-scroll");
+    }
+    return () => {
+      document.body.classList.remove("disable-scroll");
+    };
+  }, [showSidebar]);
 
   return (
     <>
@@ -169,7 +179,8 @@ const Sidebar = () => {
                                   className="claim-btn"
                                 >
                                   <p _ngcontent-ng-c967272132="">
-                                    Claimable Bonus: {bonusBalanceData?.claimBonus}
+                                    Claimable Bonus:{" "}
+                                    {bonusBalanceData?.claimBonus}
                                   </p>
                                   <button
                                     _ngcontent-ng-c967272132=""

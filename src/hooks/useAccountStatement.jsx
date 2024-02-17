@@ -29,6 +29,7 @@ const useAccountStatement = () => {
         },
       });
       const data = res?.data;
+      console.log(data);
       if (data?.success) {
         return data?.result;
       }

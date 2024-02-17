@@ -7,7 +7,7 @@ const AccountStatement = () => {
   const [showModal, setShowModal] = useState(false);
   const [image, setImage] = useState("");
   const { accountStatement } = useAccountStatement();
-
+// console.log(accountStatement);
   return (
     <div
       _ngcontent-ng-c3622565476=""

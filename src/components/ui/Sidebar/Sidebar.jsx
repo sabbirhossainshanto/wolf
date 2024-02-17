@@ -5,7 +5,7 @@ import useCloseModalClickOutside from "../../../hooks/useCloseModalClickOutside"
 import { RiEditBoxFill } from "react-icons/ri";
 import useBonusBalance from "../../../hooks/useBonusBalance";
 import { handleLogOut } from "../../../utils/handleLogOut";
-
+import { Settings } from "../../../api";
 /* eslint-disable react/no-unknown-property */
 const Sidebar = () => {
   const {
@@ -40,6 +40,7 @@ const Sidebar = () => {
     }
     setGetToken((prev) => !prev);
   };
+
 
   return (
     <>
@@ -115,73 +116,81 @@ const Sidebar = () => {
               <ul _ngcontent-ng-c967272132="" className="smenu-wrap top">
                 {token && (
                   <>
-                    <li
-                      _ngcontent-ng-c967272132=""
-                      className="smenu-item nav-bonus ng-star-inserted"
-                    >
-                      <div _ngcontent-ng-c967272132="" className="smenu-link">
-                        <img
-                          _ngcontent-ng-c967272132=""
-                          alt="Menu Icon"
-                          src="https://ss.manage63.com/bmk-wl/commonAssets/sidenav_bonus.svg"
-                        />
-                        <span _ngcontent-ng-c967272132="">Bonus</span>
-                        <span
-                          style={{
-                            width: "100%",
-                            display: "flex",
-                            alignItems: "center",
-                            marginLeft: "auto",
-                            justifyContent: "flex-end",
-                          }}
-                        >
-                          <input
-                            style={{ cursor: "pointer" }}
-                            onChange={handleBonusToken}
-                            type="checkbox"
-                            name="bonus"
-                            id="bonus"
-                            checked={isCheckedBonusToken ? true : false}
-                          ></input>
-                          <label htmlFor="bonus"> Bonus Wallet</label>
-                        </span>
-                      </div>
-                      <div _ngcontent-ng-c967272132="">
-                        <div _ngcontent-ng-c967272132="" className="bonus-wrap">
+                    {Settings.bonus && (
+                      <li
+                        _ngcontent-ng-c967272132=""
+                        className="smenu-item nav-bonus ng-star-inserted"
+                      >
+                        <div _ngcontent-ng-c967272132="" className="smenu-link">
+                          <img
+                            _ngcontent-ng-c967272132=""
+                            alt="Menu Icon"
+                            src="https://ss.manage63.com/bmk-wl/commonAssets/sidenav_bonus.svg"
+                          />
+                          <span _ngcontent-ng-c967272132="">Bonus</span>
+                          <span
+                            style={{
+                              width: "100%",
+                              display: "flex",
+                              alignItems: "center",
+                              marginLeft: "auto",
+                              justifyContent: "flex-end",
+                            }}
+                          >
+                            <input
+                              style={{ cursor: "pointer" }}
+                              onChange={handleBonusToken}
+                              type="checkbox"
+                              name="bonus"
+                              id="bonus"
+                              checked={isCheckedBonusToken ? true : false}
+                            ></input>
+                            <label htmlFor="bonus"> Bonus Wallet</label>
+                          </span>
+                        </div>
+                        <div _ngcontent-ng-c967272132="">
                           <div
                             _ngcontent-ng-c967272132=""
-                            className="bonus-details"
+                            className="bonus-wrap"
                           >
                             <div
                               _ngcontent-ng-c967272132=""
-                              className="bonus-info"
+                              className="bonus-details"
                             >
-                              <p _ngcontent-ng-c967272132="">
-                                Total Bonus: {bonusBalanceData?.availBalance}
-                              </p>
                               <div
                                 _ngcontent-ng-c967272132=""
-                                className="claim-btn"
+                                className="bonus-info"
                               >
                                 <p _ngcontent-ng-c967272132="">
-                                  Claimable Bonus: 0
+                                  Total Bonus: {bonusBalanceData?.availBalance}
                                 </p>
-                                <button
+                                <div
                                   _ngcontent-ng-c967272132=""
-                                  className="btn secondary-btn"
-                                  disabled=""
+                                  className="claim-btn"
                                 >
-                                  Claim
-                                </button>
+                                  <p _ngcontent-ng-c967272132="">
+                                    Claimable Bonus: {bonusBalanceData?.claimBonus}
+                                  </p>
+                                  <button
+                                    _ngcontent-ng-c967272132=""
+                                    className="btn secondary-btn"
+                                    disabled=""
+                                  >
+                                    Claim
+                                  </button>
+                                </div>
+                                <p
+                                  _ngcontent-ng-c967272132=""
+                                  className="n-msg"
+                                >
+                                  Min. Claimable Coins: 100
+                                </p>
                               </div>
-                              <p _ngcontent-ng-c967272132="" className="n-msg">
-                                Min. Claimable Coins: 100
-                              </p>
                             </div>
                           </div>
                         </div>
-                      </div>
-                    </li>
+                      </li>
+                    )}
 
                     <li
                       _ngcontent-ng-c967272132=""

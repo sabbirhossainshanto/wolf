@@ -1,5 +1,6 @@
 import { Link, useNavigate } from "react-router-dom";
 import useContextState from "../../hooks/useContextState";
+import { Settings } from "../../api";
 
 /* eslint-disable react/no-unknown-property */
 const LoggedInProfile = ({
@@ -62,22 +63,26 @@ const LoggedInProfile = ({
           {
             !isCheckedBonusToken && (
               <div _ngcontent-ng-c2865632707="" className="d-w-btn">
-              <button
-                onClick={() => {
-                  navigate("/profile/deposit");
-                }}
-                _ngcontent-ng-c2865632707=""
-                mat-flat-button=""
-                className="notranslate mdc-button mdc-button--unelevated mat-mdc-unelevated-button mat-unthemed mat-mdc-button-base"
-                mat-ripple-loader-class-name="mat-mdc-button-ripple"
-              >
-                <span className="mat-mdc-button-persistent-ripple mdc-button__ripple"></span>
-                <span className="mdc-button__label">Deposit</span>
-                <span className="mat-mdc-focus-indicator"></span>
-                <span className="mat-mdc-button-touch-target"></span>
-                <span className="mat-ripple mat-mdc-button-ripple"></span>
-              </button>
-              <button
+             {Settings.deposit && (
+               <button
+               onClick={() => {
+                 navigate("/profile/deposit");
+               }}
+               _ngcontent-ng-c2865632707=""
+               mat-flat-button=""
+               className="notranslate mdc-button mdc-button--unelevated mat-mdc-unelevated-button mat-unthemed mat-mdc-button-base"
+               mat-ripple-loader-class-name="mat-mdc-button-ripple"
+             >
+               <span className="mat-mdc-button-persistent-ripple mdc-button__ripple"></span>
+               <span className="mdc-button__label">Deposit</span>
+               <span className="mat-mdc-focus-indicator"></span>
+               <span className="mat-mdc-button-touch-target"></span>
+               <span className="mat-ripple mat-mdc-button-ripple"></span>
+             </button>
+             )}
+            {
+              Settings.withdraw && (
+                <button
                 onClick={() => {
                   navigate("/profile/withdraw");
                 }}
@@ -92,6 +97,8 @@ const LoggedInProfile = ({
                 <span className="mat-mdc-focus-indicator"></span>
                 <span className="mat-mdc-button-touch-target"></span>
               </button>
+              )
+            }
             </div>
             )
           }

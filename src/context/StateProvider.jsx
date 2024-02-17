@@ -23,6 +23,7 @@ const StateProvider = ({ children }) => {
       setToken(getToken);
       setIsCheckedBonusToken(false);
     }
+
     if (getToken === token || getBonusToken === token) {
       setTokenLoading(false);
     }
@@ -45,7 +46,8 @@ const StateProvider = ({ children }) => {
     setShowEditStake,
     placeBetValues,
     setPlaceBetValues,
-    isCheckedBonusToken, setIsCheckedBonusToken
+    isCheckedBonusToken,
+    setIsCheckedBonusToken,
   };
   return (
     <StateContext.Provider value={stateInfo}>{children}</StateContext.Provider>

@@ -35,7 +35,7 @@ export const API = {
   singleResults: "",
   buttonValue: config?.result?.endpoint?.buttonValue,
   changeTheme: "https://odddb.com/changeTheme.php",
-  register: "",
+  register: config?.result?.endpoint?.register,
   deposit: config?.result?.endpoint?.depositIframe,
   withdraw: config?.result?.endpoint?.withdrawIframe,
   message: "",
@@ -54,6 +54,7 @@ export const API = {
   settledBets: config?.result?.endpoint?.settledBets,
   siteUrl: config?.result?.settings?.siteUrl,
   whatsApp: config?.result?.endpoint?.whatsapp,
+  otp:config?.result?.endpoint?.otp
 };
 
 export const Settings = {

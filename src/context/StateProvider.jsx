@@ -16,7 +16,7 @@ const StateProvider = ({ children }) => {
     const getToken = localStorage.getItem("token");
     const getBonusToken = localStorage.getItem("bonusToken");
     const getCheckedBonusToken = localStorage.getItem("checkedBonusToken");
-    if (getCheckedBonusToken) {
+    if (getCheckedBonusToken && getBonusToken) {
       setToken(getBonusToken);
       setIsCheckedBonusToken(true);
     } else {
@@ -24,7 +24,8 @@ const StateProvider = ({ children }) => {
       setIsCheckedBonusToken(false);
     }
 
-    if (getToken === token || getBonusToken === token) {
+    if (token && (getToken === token || getBonusToken === token)) {
+      
       setTokenLoading(false);
     }
   }, [getToken, token]);

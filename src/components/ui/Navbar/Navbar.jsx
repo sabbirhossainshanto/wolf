@@ -9,6 +9,8 @@ import { useState } from "react";
 import useBalance from "../../../hooks/useBalance";
 import { IoArrowBack } from "react-icons/io5";
 import Warning from "../Notification/Warning";
+import GetOTP from "../../modal/signup/GetOTP";
+import Registration from "../../modal/signup/Registration";
 const Navbar = () => {
   const [errorLogin, setErrorLogin] = useState("");
   const {
@@ -24,6 +26,10 @@ const Navbar = () => {
   const loginName = localStorage.getItem("loginName");
   const { balanceData } = useBalance();
   const [showWarning, setShowWarning] = useState("");
+
+  const [showOTP, setShowOTP] = useState(false);
+  const [showRegister, setShowRegister] = useState(false);
+  const [mobileNo, setMobileNo] = useState("");
   /* handle login demo user */
   const loginWithDemo = () => {
     /* Random token generator */
@@ -177,23 +183,21 @@ const Navbar = () => {
                       </span>
                     </div>
                   </div>
-           {
-            Settings.deposit && (
-              <button
-              onClick={handleNavigateDeposit}
-              _ngcontent-ng-c3243547741=""
-              mat-flat-button=""
-              className="btn deposit-btn mdc-button mdc-button--unelevated mat-mdc-unelevated-button mat-unthemed mat-mdc-button-base ng-star-inserted"
-              mat-ripple-loader-uninitialized=""
-              mat-ripple-loader-class-name="mat-mdc-button-ripple"
-            >
-              <span className="mat-mdc-button-persistent-ripple mdc-button__ripple"></span>
-              <span className="mdc-button__label"> Deposit </span>
-              <span className="mat-mdc-focus-indicator"></span>
-              <span className="mat-mdc-button-touch-target"></span>
-            </button>
-            )
-           }
+                  {Settings.deposit && (
+                    <button
+                      onClick={handleNavigateDeposit}
+                      _ngcontent-ng-c3243547741=""
+                      mat-flat-button=""
+                      className="btn deposit-btn mdc-button mdc-button--unelevated mat-mdc-unelevated-button mat-unthemed mat-mdc-button-base ng-star-inserted"
+                      mat-ripple-loader-uninitialized=""
+                      mat-ripple-loader-class-name="mat-mdc-button-ripple"
+                    >
+                      <span className="mat-mdc-button-persistent-ripple mdc-button__ripple"></span>
+                      <span className="mdc-button__label"> Deposit </span>
+                      <span className="mat-mdc-focus-indicator"></span>
+                      <span className="mat-mdc-button-touch-target"></span>
+                    </button>
+                  )}
                 </div>
               </div>
             ) : (
@@ -215,40 +219,37 @@ const Navbar = () => {
                     <span className="mat-mdc-button-touch-target"></span>
                     <span className="mat-ripple mat-mdc-button-ripple"></span>
                   </button>
-                {
-                  Settings.register && (
+                  {Settings.register && (
                     <button
-                    _ngcontent-ng-c3243547741=""
-                    mat-flat-button=""
-                    className="btn dark-outlined-btn mdc-button mdc-button--unelevated mat-mdc-unelevated-button mat-unthemed mat-mdc-button-base"
-                    mat-ripple-loader-class-name="mat-mdc-button-ripple"
-                  >
-                    <span className="mat-mdc-button-persistent-ripple mdc-button__ripple"></span>
-                    <span className="mdc-button__label">Register</span>
-                    <span className="mat-mdc-focus-indicator"></span>
-                    <span className="mat-mdc-button-touch-target"></span>
-                    <span className="mat-ripple mat-mdc-button-ripple"></span>
-                  </button>
-                  )
-                }
+                      onClick={() => setShowOTP(true)}
+                      _ngcontent-ng-c3243547741=""
+                      mat-flat-button=""
+                      className="btn dark-outlined-btn mdc-button mdc-button--unelevated mat-mdc-unelevated-button mat-unthemed mat-mdc-button-base"
+                      mat-ripple-loader-class-name="mat-mdc-button-ripple"
+                    >
+                      <span className="mat-mdc-button-persistent-ripple mdc-button__ripple"></span>
+                      <span className="mdc-button__label">Register</span>
+                      <span className="mat-mdc-focus-indicator"></span>
+                      <span className="mat-mdc-button-touch-target"></span>
+                      <span className="mat-ripple mat-mdc-button-ripple"></span>
+                    </button>
+                  )}
 
-             {
-              Settings.demoLogin && (
-                <button
-                onClick={loginWithDemo}
-                _ngcontent-ng-c3243547741=""
-                mat-flat-button=""
-                className="btn dark-outlined-btn demo-btn mdc-button mdc-button--unelevated mat-mdc-unelevated-button mat-unthemed mat-mdc-button-base"
-                mat-ripple-loader-class-name="mat-mdc-button-ripple"
-              >
-                <span className="mat-mdc-button-persistent-ripple mdc-button__ripple"></span>
-                <span className="mdc-button__label">Demo ID</span>
-                <span className="mat-mdc-focus-indicator"></span>
-                <span className="mat-mdc-button-touch-target"></span>
-                <span className="mat-ripple mat-mdc-button-ripple"></span>
-              </button>
-              )
-             }
+                  {Settings.demoLogin && (
+                    <button
+                      onClick={loginWithDemo}
+                      _ngcontent-ng-c3243547741=""
+                      mat-flat-button=""
+                      className="btn dark-outlined-btn demo-btn mdc-button mdc-button--unelevated mat-mdc-unelevated-button mat-unthemed mat-mdc-button-base"
+                      mat-ripple-loader-class-name="mat-mdc-button-ripple"
+                    >
+                      <span className="mat-mdc-button-persistent-ripple mdc-button__ripple"></span>
+                      <span className="mdc-button__label">Demo ID</span>
+                      <span className="mat-mdc-focus-indicator"></span>
+                      <span className="mat-mdc-button-touch-target"></span>
+                      <span className="mat-ripple mat-mdc-button-ripple"></span>
+                    </button>
+                  )}
                 </div>
               </div>
             )}
@@ -286,6 +287,20 @@ const Navbar = () => {
           setGetToken={setGetToken}
         />
       )}
+      {showOTP && (
+        <GetOTP 
+        setShowOTP={setShowOTP}
+        setShowRegister={setShowRegister}
+        mobileNo={mobileNo}
+        setMobileNo={setMobileNo}
+        />
+      )}
+      {showRegister && 
+      <Registration 
+      setShowRegister={setShowRegister}
+      setShowOTP={setShowOTP}
+      mobileNo={mobileNo}
+      />}
     </>
   );
 };

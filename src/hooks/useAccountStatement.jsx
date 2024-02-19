@@ -6,12 +6,14 @@ import { API } from "../api";
 import useContextState from "./useContextState";
 
 const useAccountStatement = () => {
-  const fromDate = new Date(new Date().setDate(new Date().getDate() - 7)).toISOString().split("T")[0];
+  const fromDate = new Date(new Date().setDate(new Date().getDate() - 7))
+    .toISOString()
+    .split("T")[0];
   const toDate = new Date().toISOString().split("T")[0];
   const { token, tokenLoading } = useContextState();
 
   const { data: accountStatement = [] } = useQuery({
-    queryKey: ["account-Statement"],
+    queryKey: ["deposit-statement"],
     enabled: !tokenLoading,
     queryFn: async () => {
       const generatedToken = UseTokenGenerator();

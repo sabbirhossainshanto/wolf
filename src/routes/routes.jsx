@@ -46,16 +46,16 @@ export const router = createBrowserRouter([
         element: <ActiveBets />,
       },
       {
-        path: "account-statement",
+        path: "deposit-statement",
         element: <AccountStatement />,
       },
       {
         path: "passbook",
-        element: <Passbook/>,
+        element: <Passbook />,
       },
       {
         path: "passbook/:marketId",
-        element: <SinglePassbook/>,
+        element: <SinglePassbook />,
       },
     ],
   },

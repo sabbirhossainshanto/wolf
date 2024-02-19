@@ -276,13 +276,13 @@ const SinglePassbook = () => {
                                                               {item?.amount}
                                                             </h3>
                                                             <h3 _ngcontent-ng-c773751984="">
-                                                              {item?.bhav}
+                                                            {item?.amount}
                                                             </h3>
                                                             <h3
                                                               _ngcontent-ng-c773751984=""
                                                               className="Lost ng-star-inserted"
                                                             >
-                                                              4
+                                                              {item?.win}
                                                             </h3>
                                                           </div>
                                                         </div>

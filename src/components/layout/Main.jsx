@@ -1,32 +1,43 @@
 /* eslint-disable react/no-unknown-property */
-import { Outlet } from "react-router-dom";
+import { Outlet, useNavigate } from "react-router-dom";
 import Footer from "../ui/Footer/Footer";
 import Navbar from "../ui/Navbar/Navbar";
 import Sidebar from "../ui/Sidebar/Sidebar";
 import useContextState from "../../hooks/useContextState";
 import EditStake from "../modal/EditStake";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Success from "../ui/Notification/Success";
+import disableDevtool from "disable-devtool";
+import { Settings } from "../../api";
+import { handleLogOut } from "../../utils/handleLogOut";
 
 const Main = () => {
   const { showEditStake, setShowEditStake } = useContextState();
   const [successEditStake, setSuccessEditStake] = useState("");
-
+  const navigate = useNavigate();
+  const disabledDevtool = Settings.disabledDevtool;
+  /* Disabled devtool */
+  useEffect(() => {
+    if (disabledDevtool) {
+      disableDevtool({
+        ondevtoolopen: (type) => {
+          const info = "devtool opened!; type =" + type;
+          if (info) {
+            handleLogOut();
+            navigate("/");
+          }
+        },
+      });
+    }
+  }, [navigate, disabledDevtool]);
   return (
     <>
       <div
-
         className="translator-wrap"
         style={{ display: "block", overflow: "hidden" }}
       ></div>
-      <div
-      
-        _nghost-ng-c967272132=""
-        ng-version="16.2.0"
-        
-      >
+      <div _nghost-ng-c967272132="" ng-version="16.2.0">
         <div
-      
           _ngcontent-ng-c967272132=""
           ngskiphydration=""
           className="mat-drawer-container mat-sidenav-container sidenav-container"

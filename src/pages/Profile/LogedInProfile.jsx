@@ -60,48 +60,44 @@ const LoggedInProfile = ({
                 <p _ngcontent-ng-c2865632707=""> {balanceData?.creditLimit}</p>
               </div>
             </div>
-          {
-            !isCheckedBonusToken && (
+            {!isCheckedBonusToken && (
               <div _ngcontent-ng-c2865632707="" className="d-w-btn">
-             {Settings.deposit && (
-               <button
-               onClick={() => {
-                 navigate("/profile/deposit");
-               }}
-               _ngcontent-ng-c2865632707=""
-               mat-flat-button=""
-               className="notranslate mdc-button mdc-button--unelevated mat-mdc-unelevated-button mat-unthemed mat-mdc-button-base"
-               mat-ripple-loader-class-name="mat-mdc-button-ripple"
-             >
-               <span className="mat-mdc-button-persistent-ripple mdc-button__ripple"></span>
-               <span className="mdc-button__label">Deposit</span>
-               <span className="mat-mdc-focus-indicator"></span>
-               <span className="mat-mdc-button-touch-target"></span>
-               <span className="mat-ripple mat-mdc-button-ripple"></span>
-             </button>
-             )}
-            {
-              Settings.withdraw && (
-                <button
-                onClick={() => {
-                  navigate("/profile/withdraw");
-                }}
-                _ngcontent-ng-c2865632707=""
-                mat-flat-button=""
-                className="notranslate mdc-button mdc-button--unelevated mat-mdc-unelevated-button mat-unthemed mat-mdc-button-base"
-                mat-ripple-loader-uninitialized=""
-                mat-ripple-loader-class-name="mat-mdc-button-ripple"
-              >
-                <span className="mat-mdc-button-persistent-ripple mdc-button__ripple"></span>
-                <span className="mdc-button__label">Withdraw</span>
-                <span className="mat-mdc-focus-indicator"></span>
-                <span className="mat-mdc-button-touch-target"></span>
-              </button>
-              )
-            }
-            </div>
-            )
-          }
+                {Settings.deposit && (
+                  <button
+                    onClick={() => {
+                      navigate("/profile/deposit");
+                    }}
+                    _ngcontent-ng-c2865632707=""
+                    mat-flat-button=""
+                    className="notranslate mdc-button mdc-button--unelevated mat-mdc-unelevated-button mat-unthemed mat-mdc-button-base"
+                    mat-ripple-loader-class-name="mat-mdc-button-ripple"
+                  >
+                    <span className="mat-mdc-button-persistent-ripple mdc-button__ripple"></span>
+                    <span className="mdc-button__label">Deposit</span>
+                    <span className="mat-mdc-focus-indicator"></span>
+                    <span className="mat-mdc-button-touch-target"></span>
+                    <span className="mat-ripple mat-mdc-button-ripple"></span>
+                  </button>
+                )}
+                {Settings.withdraw && (
+                  <button
+                    onClick={() => {
+                      navigate("/profile/withdraw");
+                    }}
+                    _ngcontent-ng-c2865632707=""
+                    mat-flat-button=""
+                    className="notranslate mdc-button mdc-button--unelevated mat-mdc-unelevated-button mat-unthemed mat-mdc-button-base"
+                    mat-ripple-loader-uninitialized=""
+                    mat-ripple-loader-class-name="mat-mdc-button-ripple"
+                  >
+                    <span className="mat-mdc-button-persistent-ripple mdc-button__ripple"></span>
+                    <span className="mdc-button__label">Withdraw</span>
+                    <span className="mat-mdc-focus-indicator"></span>
+                    <span className="mat-mdc-button-touch-target"></span>
+                  </button>
+                )}
+              </div>
+            )}
           </div>
         </div>
       </div>
@@ -153,7 +149,11 @@ const LoggedInProfile = ({
             </a>
           </li> */}
           <li _ngcontent-ng-c2865632707="" className="smenu-item">
-            <Link to='/active-bets' _ngcontent-ng-c2865632707="" className="smenu-link">
+            <Link
+              to="/active-bets"
+              _ngcontent-ng-c2865632707=""
+              className="smenu-link"
+            >
               <div _ngcontent-ng-c2865632707="" className="label-wrap">
                 <img
                   _ngcontent-ng-c2865632707=""
@@ -169,7 +169,11 @@ const LoggedInProfile = ({
             routerlinkactive="active-link"
             className="smenu-item"
           >
-            <Link to='/account-statement' _ngcontent-ng-c2865632707="" className="smenu-link">
+            <Link
+              to="/deposit-statement"
+              _ngcontent-ng-c2865632707=""
+              className="smenu-link"
+            >
               <div _ngcontent-ng-c2865632707="" className="label-wrap">
                 <img
                   _ngcontent-ng-c2865632707=""
@@ -202,7 +206,11 @@ const LoggedInProfile = ({
             routerlinkactive="active-link"
             className="smenu-item"
           >
-            <Link to='/rules' _ngcontent-ng-c2865632707="" className="smenu-link">
+            <Link
+              to="/rules"
+              _ngcontent-ng-c2865632707=""
+              className="smenu-link"
+            >
               <div _ngcontent-ng-c2865632707="" className="label-wrap">
                 <img
                   _ngcontent-ng-c2865632707=""
@@ -213,7 +221,7 @@ const LoggedInProfile = ({
               </div>
             </Link>
           </li>
-          <li
+          {/* <li
             _ngcontent-ng-c2865632707=""
             routerlinkactive="active-link"
             className="smenu-item"
@@ -228,9 +236,9 @@ const LoggedInProfile = ({
                 <span _ngcontent-ng-c2865632707="">Banking</span>
               </div>
             </a>
-          </li>
+          </li> */}
         </ul>
-        <div
+        {/* <div
           _ngcontent-ng-c2865632707=""
           className="social-links-wrap ng-star-inserted"
         >
@@ -258,7 +266,7 @@ const LoggedInProfile = ({
               />
             </a>
           </div>
-        </div>
+        </div> */}
       </div>
     </>
   );

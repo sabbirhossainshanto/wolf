@@ -254,7 +254,7 @@ const Sidebar = () => {
                         <span _ngcontent-ng-c967272132="">Profile</span>
                       </Link>
                     </li>
-                    <li
+                    {/* <li
                       _ngcontent-ng-c967272132=""
                       routerlinkactive="active-link"
                       className="smenu-item"
@@ -269,7 +269,7 @@ const Sidebar = () => {
                           Withdrawal Details
                         </span>
                       </a>
-                    </li>
+                    </li> */}
                     <li
                       _ngcontent-ng-c967272132=""
                       routerlinkactive="active-link"
@@ -277,7 +277,7 @@ const Sidebar = () => {
                     >
                       <Link
                         onClick={() => setShowSidebar(false)}
-                        to="/account-statement"
+                        to="/deposit-statement"
                         _ngcontent-ng-c967272132=""
                         className="smenu-link"
                       >
@@ -287,7 +287,7 @@ const Sidebar = () => {
                           src="https://ss.manage63.com/bmk-wl/commonAssets/sidenav__ac_statement.svg"
                         />
                         <span _ngcontent-ng-c967272132="">
-                          Account Statement
+                          Deposit Statement
                         </span>
                       </Link>
                     </li>
@@ -354,7 +354,7 @@ const Sidebar = () => {
                     <span _ngcontent-ng-c967272132="">Rules</span>
                   </Link>
                 </li>
-                <li
+                {/* <li
                   _ngcontent-ng-c967272132=""
                   className="smenu-item ng-star-inserted"
                 >
@@ -366,7 +366,7 @@ const Sidebar = () => {
                     />
                     <span _ngcontent-ng-c967272132="">Help</span>
                   </a>
-                </li>
+                </li> */}
               </ul>
               <ul _ngcontent-ng-c967272132="" className="smenu-wrap bottom">
                 {/* <li

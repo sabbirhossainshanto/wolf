@@ -180,7 +180,7 @@ const LoggedInProfile = ({
                   alt="Menu Icon"
                   src="https://ss.manage63.com/bmk-wl/commonAssets/sidenav__ac_statement.svg"
                 />
-                <span _ngcontent-ng-c2865632707="">Account Statement</span>
+                <span _ngcontent-ng-c2865632707="">Deposit Statement</span>
               </div>
             </Link>
           </li>

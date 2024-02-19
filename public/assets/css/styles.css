@@ -13196,7 +13196,10 @@ p{color:var(--grey-900);}
 .game-tab[_ngcontent-ng-c3799324686]   .mat-tab-group[_ngcontent-ng-c3799324686]     .mat-tab-body .mat-mdc-tab-body-content .last-balls-record .ul .li .p{background-color:var(--grey-200);border-radius:50%;color:var(--white-color);display:flex;justify-content:center;align-items:center;margin:0 auto;font-size:.6rem;width:clamp(20px,6vw,30px);height:clamp(20px,6vw,30px);}
 
 
-
+.page-body[_ngcontent-ng-c1287707169]{padding:0 10px;}
+.rules-page-wrap{padding:0;}
+.rules-page-wrap .content-setting{background-color:var(--white-color);padding:10px;border-radius:10px;}
+.rules-page-wrap p{font-size:12px;margin:0 0 10px;text-align:justify;}
 
 
 

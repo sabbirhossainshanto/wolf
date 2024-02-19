@@ -176,7 +176,7 @@ const Navbar = () => {
                         Exp
                       </span>
                       <p
-                        style={{ width: "fit-content", paddingTop: "3px" }}
+                        style={{ width: "fit-content" }}
                         _ngcontent-ng-c3243547741=""
                       >
                         {balanceData?.deductedExposure}

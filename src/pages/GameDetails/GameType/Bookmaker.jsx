@@ -98,7 +98,7 @@ const Bookmaker = ({ bookmarker, setOpenBetSlip, setPlaceBetValues,exposer }) =>
                           className="count-v-wrap ng-star-inserted"
                         >
                           <button
-                          onClick={()=> handlePlaceBet(games,runner,'back',setOpenBetSlip,setPlaceBetValues)}
+                          onClick={()=> handlePlaceBet(games,runner,'back',setOpenBetSlip,setPlaceBetValues,pnlBySelection)}
                             _ngcontent-ng-c942213636=""
                             mat-flat-button=""
                             mat-ripple-loader-uninitialized=""
@@ -116,7 +116,7 @@ const Bookmaker = ({ bookmarker, setOpenBetSlip, setPlaceBetValues,exposer }) =>
                             <span className="mat-mdc-button-touch-target"></span>
                           </button>
                           <button
-                          onClick={()=> handlePlaceBet(games,runner,'lay',setOpenBetSlip,setPlaceBetValues)}
+                          onClick={()=> handlePlaceBet(games,runner,'lay',setOpenBetSlip,setPlaceBetValues,pnlBySelection)}
                             _ngcontent-ng-c942213636=""
                             mat-flat-button=""
                             mat-ripple-loader-uninitialized=""

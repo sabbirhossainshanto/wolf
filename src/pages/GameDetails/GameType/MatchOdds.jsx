@@ -1,13 +1,17 @@
 /* eslint-disable react/no-unknown-property */
 import { handlePlaceBet } from "../../../utils/handlePlaceBet";
-const MatchOdds = ({ match_odd, setOpenBetSlip, setPlaceBetValues,exposer }) => {
+const MatchOdds = ({
+  match_odd,
+  setOpenBetSlip,
+  setPlaceBetValues,
+  exposer,
+}) => {
   let pnlBySelection;
   if (exposer?.pnlBySelection) {
     const obj = exposer?.pnlBySelection;
     pnlBySelection = Object?.values(obj);
   }
 
- 
   return (
     <>
       {match_odd?.map((games, i) => {
@@ -53,9 +57,9 @@ const MatchOdds = ({ match_odd, setOpenBetSlip, setPlaceBetValues,exposer }) => 
               </div>
               <div _ngcontent-ng-c942213636="" className="card-body">
                 {games?.runners?.map((runner) => {
-                    const pnl = pnlBySelection?.filter(
-                      (pnl) => pnl?.RunnerId === runner?.id
-                    );
+                  const pnl = pnlBySelection?.filter(
+                    (pnl) => pnl?.RunnerId === runner?.id
+                  );
                   return (
                     <div
                       key={runner?.id}
@@ -71,10 +75,9 @@ const MatchOdds = ({ match_odd, setOpenBetSlip, setPlaceBetValues,exposer }) => 
                         </h3>
                         {pnl &&
                           pnl?.map(({ pnl, MarketId }, i) => {
-                        
                             return (
                               <p
-                              _ngcontent-ng-c942213636=""
+                                _ngcontent-ng-c942213636=""
                                 // onClick={() => handleLader(MarketId)}
                                 key={i}
                                 className={`ng-star-inserted ${
@@ -88,7 +91,6 @@ const MatchOdds = ({ match_odd, setOpenBetSlip, setPlaceBetValues,exposer }) => 
                               </p>
                             );
                           })}
-                    
                       </div>
                       <div
                         _ngcontent-ng-c942213636=""
@@ -101,7 +103,8 @@ const MatchOdds = ({ match_odd, setOpenBetSlip, setPlaceBetValues,exposer }) => 
                               runner,
                               "back",
                               setOpenBetSlip,
-                              setPlaceBetValues
+                              setPlaceBetValues,
+                              pnlBySelection
                             )
                           }
                           _ngcontent-ng-c942213636=""
@@ -129,7 +132,8 @@ const MatchOdds = ({ match_odd, setOpenBetSlip, setPlaceBetValues,exposer }) => 
                               runner,
                               "lay",
                               setOpenBetSlip,
-                              setPlaceBetValues
+                              setPlaceBetValues,
+                              pnlBySelection
                             )
                           }
                           _ngcontent-ng-c942213636=""

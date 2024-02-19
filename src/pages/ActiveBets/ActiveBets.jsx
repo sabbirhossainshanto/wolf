@@ -101,7 +101,7 @@ const ActiveBets = () => {
                                   _ngcontent-ng-c773751984=""
                                   className="betslip-card ng-star-inserted"
                                 >
-                                  <div
+                                  {myBets?.length > 0 ? ( <div
                                     _ngcontent-ng-c773751984=""
                                     className="betslip-data-wrap ng-star-inserted"
                                   >
@@ -263,7 +263,16 @@ const ActiveBets = () => {
                                         </div>
                                       );
                                     })}
-                                  </div>
+                                  </div>):(<div
+                      _ngcontent-ng-c3799324686=""
+                      className="no-data ng-star-inserted"
+                    >
+                      <p _ngcontent-ng-c3799324686="">
+                        No bets placed yet, Place your bet now!
+                      </p>
+                    </div>)}
+                                 
+                                  
                                 </div>
                               </div>
                             </div>

@@ -117,7 +117,8 @@ const FancyOne = ({ FancyOne, setOpenBetSlip, setPlaceBetValues, exposer }) => {
                         games?.runners[0],
                         "back",
                         setOpenBetSlip,
-                        setPlaceBetValues
+                        setPlaceBetValues,
+                        pnlBySelection
                       )
                     }
                     _ngcontent-ng-c942213636=""
@@ -145,7 +146,8 @@ const FancyOne = ({ FancyOne, setOpenBetSlip, setPlaceBetValues, exposer }) => {
                         games?.runners[0],
                         "lay",
                         setOpenBetSlip,
-                        setPlaceBetValues
+                        setPlaceBetValues,
+                        pnlBySelection
                       )
                     }
                     _ngcontent-ng-c942213636=""

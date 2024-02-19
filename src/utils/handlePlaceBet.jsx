@@ -3,8 +3,18 @@ export const handlePlaceBet = (
   runner,
   betType,
   setOpenBetSlip,
-  setPlaceBetValues
+  setPlaceBetValues,
+  pnlBySelection
 ) => {
+  const updatedPnl = [];
+  item?.runners?.forEach((runner) => {
+    const pnl = pnlBySelection?.find(
+      (p) => p?.RunnerId === runner?.id
+    );
+    if (pnl) {
+      updatedPnl.push(pnl?.pnl);
+    }
+  });
   setOpenBetSlip(true);
   setPlaceBetValues({});
   setPlaceBetValues({
@@ -24,5 +34,6 @@ export const handlePlaceBet = (
     maxLiabilityPerMarket: item?.maxLiabilityPerMarket,
     isBettable: item?.isBettable,
     maxLiabilityPerBet: item?.maxLiabilityPerBet,
+    pnl: updatedPnl,
   });
 };

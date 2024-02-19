@@ -7,7 +7,7 @@ const AccountStatement = () => {
   const [showModal, setShowModal] = useState(false);
   const [image, setImage] = useState("");
   const { accountStatement } = useAccountStatement();
-// console.log(accountStatement);
+  // console.log(accountStatement);
   return (
     <div
       _ngcontent-ng-c3622565476=""
@@ -55,145 +55,156 @@ const AccountStatement = () => {
                       <div _ngcontent-ng-c2945624842="" className="title">
                         <h2 _ngcontent-ng-c2945624842="">Transactions</h2>
                       </div>
-                      {accountStatement?.map((data, i) => {
-                        return (
-                          <div
-                            key={i}
-                            _ngcontent-ng-c2945624842=""
-                            className="transaction-item ng-star-inserted"
-                          >
+                      {accountStatement?.length > 0 ? (
+                        accountStatement?.map((data, i) => {
+                          return (
                             <div
+                              key={i}
                               _ngcontent-ng-c2945624842=""
-                              className="wrapper"
+                              className="transaction-item ng-star-inserted"
                             >
-                              <ul _ngcontent-ng-c2945624842="">
-                                <li _ngcontent-ng-c2945624842="">
+                              <div
+                                _ngcontent-ng-c2945624842=""
+                                className="wrapper"
+                              >
+                                <ul _ngcontent-ng-c2945624842="">
+                                  <li _ngcontent-ng-c2945624842="">
+                                    <p
+                                      _ngcontent-ng-c2945624842=""
+                                      className="txn-type"
+                                    >
+                                      {" "}
+                                      Deposit{" "}
+                                      <span _ngcontent-ng-c2945624842="">
+                                        {data?.date}
+                                      </span>
+                                    </p>
+                                    <p
+                                      _ngcontent-ng-c2945624842=""
+                                      className="amount"
+                                    >
+                                      <span
+                                        _ngcontent-ng-c2945624842=""
+                                        className="coins"
+                                      >
+                                        {data?.amount}
+                                      </span>
+                                      <span
+                                        _ngcontent-ng-c2945624842=""
+                                        className={`${
+                                          data?.status === "APPROVED"
+                                            ? "Approved status"
+                                            : "Rejected status"
+                                        }`}
+                                      >
+                                        {data?.status}
+                                      </span>
+                                    </p>
+                                  </li>
+                                </ul>
+                                <span
+                                  _ngcontent-ng-c2945624842=""
+                                  role="img"
+                                  className="mat-icon notranslate material-icons mat-ligature-font mat-icon-no-color ng-star-inserted"
+                                  aria-hidden="true"
+                                  data-mat-icon-type="font"
+                                >
+                                  arrow_drop_down
+                                </span>
+                              </div>
+                              <div
+                                _ngcontent-ng-c2945624842=""
+                                className="txn-detail ng-star-inserted"
+                              >
+                                <div
+                                  _ngcontent-ng-c2945624842=""
+                                  className="txn-detail-header"
+                                >
+                                  <p _ngcontent-ng-c2945624842="">
+                                    <span _ngcontent-ng-c2945624842="">
+                                      Reference no.
+                                    </span>
+                                    <span _ngcontent-ng-c2945624842="">
+                                      {data?.referenceNo}
+                                    </span>
+                                  </p>
                                   <p
                                     _ngcontent-ng-c2945624842=""
-                                    className="txn-type"
+                                    className="ng-star-inserted"
                                   >
-                                    {" "}
-                                    Deposit{" "}
+                                    <span _ngcontent-ng-c2945624842="">
+                                      Coins
+                                    </span>
+                                    <span _ngcontent-ng-c2945624842="">
+                                      {data?.amount}
+                                    </span>
+                                  </p>
+                                  <p
+                                    _ngcontent-ng-c2945624842=""
+                                    className="ng-star-inserted"
+                                  >
+                                    <span _ngcontent-ng-c2945624842="">
+                                      Approved on
+                                    </span>
                                     <span _ngcontent-ng-c2945624842="">
                                       {data?.date}
                                     </span>
                                   </p>
-                                  <p
-                                    _ngcontent-ng-c2945624842=""
-                                    className="amount"
-                                  >
-                                    <span
-                                      _ngcontent-ng-c2945624842=""
-                                      className="coins"
-                                    >
-                                      {data?.amount}
-                                    </span>
-                                    <span
-                                      _ngcontent-ng-c2945624842=""
-                                      className={`${
-                                        data?.status === "APPROVED"
-                                          ? "Approved status"
-                                          : "Rejected status"
-                                      }`}
-                                    >
-                                      {data?.status}
-                                    </span>
-                                  </p>
-                                </li>
-                              </ul>
-                              <span
-                                _ngcontent-ng-c2945624842=""
-                                role="img"
-                                className="mat-icon notranslate material-icons mat-ligature-font mat-icon-no-color ng-star-inserted"
-                                aria-hidden="true"
-                                data-mat-icon-type="font"
-                              >
-                                arrow_drop_down
-                              </span>
-                            </div>
-                            <div
-                              _ngcontent-ng-c2945624842=""
-                              className="txn-detail ng-star-inserted"
-                            >
-                              <div
-                                _ngcontent-ng-c2945624842=""
-                                className="txn-detail-header"
-                              >
-                                <p _ngcontent-ng-c2945624842="">
-                                  <span _ngcontent-ng-c2945624842="">
-                                    Reference no.
-                                  </span>
-                                  <span _ngcontent-ng-c2945624842="">
-                                    {data?.referenceNo}
-                                  </span>
-                                </p>
-                                <p
-                                  _ngcontent-ng-c2945624842=""
-                                  className="ng-star-inserted"
-                                >
-                                  <span _ngcontent-ng-c2945624842="">
-                                    Coins
-                                  </span>
-                                  <span _ngcontent-ng-c2945624842="">
-                                    {data?.amount}
-                                  </span>
-                                </p>
-                                <p
-                                  _ngcontent-ng-c2945624842=""
-                                  className="ng-star-inserted"
-                                >
-                                  <span _ngcontent-ng-c2945624842="">
-                                    Approved on
-                                  </span>
-                                  <span _ngcontent-ng-c2945624842="">
-                                    {data?.date}
-                                  </span>
-                                </p>
-                              </div>
-                              <div
-                                _ngcontent-ng-c2945624842=""
-                                className="txn-detail-body ng-star-inserted"
-                              >
+                                </div>
                                 <div
                                   _ngcontent-ng-c2945624842=""
-                                  className="txn-screenshot ng-star-inserted"
+                                  className="txn-detail-body ng-star-inserted"
                                 >
                                   <div
                                     _ngcontent-ng-c2945624842=""
-                                    className="Approved img-wrap"
+                                    className="txn-screenshot ng-star-inserted"
                                   >
-                                    <img
-                                      onClick={() => {
-                                        setShowModal(true);
-                                        setImage("");
-                                        setImage(data?.image);
-                                      }}
+                                    <div
                                       _ngcontent-ng-c2945624842=""
-                                      alt="Screenshot"
-                                      src={data?.image}
-                                    />
-                                  </div>
-                                  <p
-                                    _ngcontent-ng-c2945624842=""
-                                    className="status"
-                                  >
-                                    <span
-                                      _ngcontent-ng-c2945624842=""
-                                      className={` ${
-                                        data?.status === "APPROVED"
-                                          ? "Approved"
-                                          : "Rejected"
-                                      }`}
+                                      className="Approved img-wrap"
                                     >
-                                      {data?.status}
-                                    </span>
-                                  </p>
+                                      <img
+                                        onClick={() => {
+                                          setShowModal(true);
+                                          setImage("");
+                                          setImage(data?.image);
+                                        }}
+                                        _ngcontent-ng-c2945624842=""
+                                        alt="Screenshot"
+                                        src={data?.image}
+                                      />
+                                    </div>
+                                    <p
+                                      _ngcontent-ng-c2945624842=""
+                                      className="status"
+                                    >
+                                      <span
+                                        _ngcontent-ng-c2945624842=""
+                                        className={` ${
+                                          data?.status === "APPROVED"
+                                            ? "Approved"
+                                            : "Rejected"
+                                        }`}
+                                      >
+                                        {data?.status}
+                                      </span>
+                                    </p>
+                                  </div>
                                 </div>
                               </div>
                             </div>
-                          </div>
-                        );
-                      })}
+                          );
+                        })
+                      ) : (
+                        <div
+                          _ngcontent-ng-c3799324686=""
+                          className="no-data ng-star-inserted"
+                        >
+                          <p _ngcontent-ng-c3799324686="">
+                            No transaction yet!
+                          </p>
+                        </div>
+                      )}
                     </div>
                   </div>
                 </div>

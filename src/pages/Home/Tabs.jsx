@@ -100,12 +100,17 @@ const Tabs = () => {
             </div>
           </div>
           <div
+           onClick={() => setSportsType('aura')}
             _ngcontent-ng-c2582205232=""
             routerlink="/casino-bmk-lobby"
             routerlinkactive="active-link"
-            className="pagetab-item ng-star-inserted"
+            className={`pagetab-item ng-star-inserted   ${
+              sportsType === 'aura' ? "active-link" : ""
+            }`}
           >
-            <div _ngcontent-ng-c2582205232="" className="icon-wrap">
+            <div _ngcontent-ng-c2582205232=""  className={`icon-wrap ${
+                sportsType === 'aura' ? "rotate-animation" : ""
+              }`}>
               <img
                 _ngcontent-ng-c2582205232=""
                 alt="Tab Icon"
@@ -138,28 +143,19 @@ const Tabs = () => {
               Live Casino
             </div>
           </div>
+      
           <div
-            _ngcontent-ng-c2582205232=""
-            className="pagetab-item ds-none ng-star-inserted"
-          >
-            <div _ngcontent-ng-c2582205232="" className="icon-wrap">
-              <img
-                _ngcontent-ng-c2582205232=""
-                alt="Tab Icon"
-                src="https://ss.manage63.com/bmk-wl/commonAssets/chips-header-icon.svg"
-              />
-            </div>
-            <div _ngcontent-ng-c2582205232="" className="tab-label">
-              Live Casino
-            </div>
-          </div>
-          <div
+            onClick={() => setSportsType('casino')}
             _ngcontent-ng-c2582205232=""
             routerlink="/casino-lobby/casino"
             routerlinkactive="active-link"
-            className="pagetab-item ng-star-inserted"
+            className={`pagetab-item ng-star-inserted ${
+              sportsType === 'casino' ? "active-link" : ""
+            }`}
           >
-            <div _ngcontent-ng-c2582205232="" className="icon-wrap">
+            <div _ngcontent-ng-c2582205232="" className={`icon-wrap ${
+                sportsType === 'casino' ? "rotate-animation" : ""
+              }`}>
               <img
                 _ngcontent-ng-c2582205232=""
                 alt="Tab Icon"
@@ -170,21 +166,7 @@ const Tabs = () => {
               Casino
             </div>
           </div>
-          <div
-            _ngcontent-ng-c2582205232=""
-            className="pagetab-item ds-none ng-star-inserted"
-          >
-            <div _ngcontent-ng-c2582205232="" className="icon-wrap">
-              <img
-                _ngcontent-ng-c2582205232=""
-                alt="Tab Icon"
-                src="https://ss.manage63.com/bmk-wl/commonAssets/dice-header-icon.svg"
-              />
-            </div>
-            <div _ngcontent-ng-c2582205232="" className="tab-label">
-              Casino
-            </div>
-          </div>
+      
         </div>
       </div>
     </div>

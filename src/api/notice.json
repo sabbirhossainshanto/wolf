@@ -73,7 +73,10 @@
       "otp": "https://api7.live/api/exchange/diamond/otp",
       "testCasino": "https://cache.api7.live/api/exchange/diamond/testCasino",
       "assets": "https://api7.live/sitethemes",
-      "myMarket": "https://api7.live/api/exchange/diamond/myMarket"
+      "myMarket": "https://api7.live/api/exchange/diamond/myMarket",
+      "liveCasinoWolf": "https://api7.live/api/exchange/diamond/liveCasinoWolf",
+      "slotsWolf": "https://api7.live/api/exchange/diamond/slotsWolf",
+      "auraWolf": "https://api7.live/api/exchange/diamond/auraWolf"
     }
   },
   "success": true

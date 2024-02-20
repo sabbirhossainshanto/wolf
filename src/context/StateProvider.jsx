@@ -2,7 +2,7 @@ import { createContext, useEffect, useState } from "react";
 export const StateContext = createContext(null);
 
 const StateProvider = ({ children }) => {
-  const [sportsType, setSportsType] = useState(4);
+  const [sportsType, setSportsType] = useState("casino");
   const [showSidebar, setShowSidebar] = useState(false);
   const [token, setToken] = useState("");
   const [showLogin, setShowLogin] = useState(false);
@@ -25,7 +25,6 @@ const StateProvider = ({ children }) => {
     }
 
     if (token && (getToken === token || getBonusToken === token)) {
-      
       setTokenLoading(false);
     }
   }, [getToken, token]);

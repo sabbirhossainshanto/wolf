@@ -72,7 +72,9 @@ const Home = () => {
           </div>
         </div>
         <div _ngcontent-ng-c943649379="" className="pagetab-body">
-          {sportsType === "live-casino" ? (
+          {sportsType === "live-casino" ||
+          sportsType === "casino" ||
+          sportsType === "aura" ? (
             <LiveCasinoTab />
           ) : (
             <div _ngcontent-ng-c943649379="" className="pagetab-content">

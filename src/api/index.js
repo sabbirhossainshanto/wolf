@@ -54,7 +54,11 @@ export const API = {
   settledBets: config?.result?.endpoint?.settledBets,
   siteUrl: config?.result?.settings?.siteUrl,
   whatsApp: config?.result?.endpoint?.whatsapp,
-  otp:config?.result?.endpoint?.otp
+  otp:config?.result?.endpoint?.otp,
+  liveCasinoWolf:config?.result?.endpoint?.liveCasinoWolf,
+  slotWolf:config?.result?.endpoint?.slotsWolf,
+  liveCasinoIFrame:config?.result?.endpoint?.liveCasinoIframe,
+  auraWolf:config?.result?.endpoint?.auraWolf
 };
 
 export const Settings = {
@@ -64,5 +68,6 @@ export const Settings = {
   register: config?.result?.settings?.registration,
   demoLogin: config?.result?.settings?.demoLogin,
   disabledDevtool:config?.result?.settings?.disabledDevtool,
-  otp:config?.result?.settings?.otp
+  otp:config?.result?.settings?.otp,
+  casinoCurrency:config?.result?.settings?.casinoCurrency
 };

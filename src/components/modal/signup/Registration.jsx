@@ -2,11 +2,17 @@ import { useRef, useState } from "react";
 import useCloseModalClickOutside from "../../../hooks/useCloseModalClickOutside";
 import { motion } from "framer-motion";
 import { useForm } from "react-hook-form";
-import { API } from "../../../api";
+import { API, Settings } from "../../../api";
 import UseEncryptData from "../../../hooks/UseEncryptData";
 import UseTokenGenerator from "../../../hooks/UseTokenGenerator";
 /* eslint-disable react/no-unknown-property */
-const Registration = ({ setShowRegister, setShowOTP, mobileNo,setSuccessRegister,setErrRegister }) => {
+const Registration = ({
+  setShowRegister,
+  setShowOTP,
+  mobileNo,
+  setSuccessRegister,
+  setErrRegister,
+}) => {
   const registerRef = useRef();
   useCloseModalClickOutside(registerRef, () => {
     setShowRegister(false);
@@ -18,11 +24,11 @@ const Registration = ({ setShowRegister, setShowOTP, mobileNo,setSuccessRegister
     mobileNo: "",
     otp: "",
   });
-//   const [password, setPassword] = useState("");
-//   const [mobile, setMobile] = useState("");
-//   const [userName, setUserName] = useState("");
-//   const [otpField, setOtpField] = useState("");
-//   const [confirmPasswordErr, setConfirmPasswordErr] = useState("");
+  //   const [password, setPassword] = useState("");
+  //   const [mobile, setMobile] = useState("");
+  //   const [userName, setUserName] = useState("");
+  //   const [otpField, setOtpField] = useState("");
+  //   const [confirmPasswordErr, setConfirmPasswordErr] = useState("");
 
   const { handleSubmit } = useForm();
   /* Handle register */
@@ -52,48 +58,41 @@ const Registration = ({ setShowRegister, setShowOTP, mobileNo,setSuccessRegister
     //   return setOtpField("OTP is required");
     // } else if (user?.otp?.length > 4 || user?.otp?.length < 4) {
     //   return setOtpField("Enter four digit OTP no");
-    // } 
-        /* Get random token */
-        const generatedToken = UseTokenGenerator();
-        const registerData = {
-          username: user?.userName,
-          password: user?.password,
-          confirmPassword: user?.password,
-          mobile: mobileNo,
-          site: API.siteUrl,
-          token: generatedToken,
-          otp: user?.otp,
-        };
-        console.log(  {
-            username: user?.userName,
-            password: user?.password,
-            confirmPassword: user?.password,
-            mobile: mobileNo,
-            site: API.siteUrl,
-            token: generatedToken,
-            otp: user?.otp,
-          });
-        /* Encrypted post data */
-        const encryptedData = UseEncryptData(registerData);
-        fetch(API.register, {
-          method: "POST",
-          headers: {
-            "content-type": "application/json",
-          },
-          body: JSON.stringify(encryptedData),
-        })
-          .then((res) => res.json())
-  
-          .then((data) => {
-            console.log(data);
-            if (data?.success) {
-              setSuccessRegister("User registration successful, please login.");
-              setShowRegister(false)
-            } else if (!data?.success) {
-              setErrRegister(data?.error?.description);
-              setShowRegister(false)
-            }
-          });
+    // }
+    /* Get random token */
+    const generatedToken = UseTokenGenerator();
+    const registerData = {
+      username: user?.userName,
+      password: user?.password,
+      confirmPassword: user?.password,
+      mobile: mobileNo,
+      site: API.siteUrl,
+      token: generatedToken,
+      otp: user?.otp,
+      isOtpAvailable: Settings.otp,
+    };
+
+    /* Encrypted post data */
+    const encryptedData = UseEncryptData(registerData);
+    fetch(API.register, {
+      method: "POST",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify(encryptedData),
+    })
+      .then((res) => res.json())
+
+      .then((data) => {
+        console.log(data);
+        if (data?.success) {
+          setSuccessRegister("User registration successful, please login.");
+          setShowRegister(false);
+        } else if (!data?.success) {
+          setErrRegister(data?.error?.description);
+          // setShowRegister(false)
+        }
+      });
   };
   return (
     <div className="cdk-overlay-container">
@@ -175,14 +174,16 @@ const Registration = ({ setShowRegister, setShowOTP, mobileNo,setSuccessRegister
                             className="ng-star-inserted"
                           />
                         </div>
-                        <div
-                          _ngcontent-ng-c1411651695=""
-                          className="welcome-text"
-                        >
-                          <h2 _ngcontent-ng-c1411651695="">
-                            Enter verification code
-                          </h2>
-                        </div>
+                        {Settings.otp && (
+                          <div
+                            _ngcontent-ng-c1411651695=""
+                            className="welcome-text"
+                          >
+                            <h2 _ngcontent-ng-c1411651695="">
+                              Enter verification code
+                            </h2>
+                          </div>
+                        )}
                         <button
                           onClick={() => setShowRegister(false)}
                           _ngcontent-ng-c1411651695=""
@@ -229,61 +230,69 @@ const Registration = ({ setShowRegister, setShowOTP, mobileNo,setSuccessRegister
                             _ngcontent-ng-c1411651695=""
                             className="login-form"
                           >
-                            <p
-                              _ngcontent-ng-c1411651695=""
-                              className="form-title ng-star-inserted"
-                            >
-                              We have sent code to +91-{mobileNo}
-                            </p>
-                            <div
-                              _ngcontent-ng-c1411651695=""
-                              className="form-list ng-star-inserted"
-                            >
-                              <mat-form-field
-                                _ngcontent-ng-c1411651695=""
-                                appearance="fill"
-                                className="mat-mdc-form-field ng-tns-c1205077789-4 mat-mdc-form-field-type-mat-input mat-form-field-appearance-fill mat-primary ng-untouched ng-pristine ng-valid ng-star-inserted"
-                              >
-                                <div className="mat-mdc-text-field-wrapper mdc-text-field ng-tns-c1205077789-4 mdc-text-field--filled mdc-text-field--no-label">
-                                  <div className="mat-mdc-form-field-focus-overlay ng-tns-c1205077789-4 ng-star-inserted"></div>
-                                  <div className="mat-mdc-form-field-flex ng-tns-c1205077789-4">
-                                    <div className="mat-mdc-form-field-infix ng-tns-c1205077789-4">
-                                      <input
-                                         onChange={(e) => setUser({ ...user, otp: e.target.value })}
-                                        _ngcontent-ng-c1411651695=""
-                                        type="tel"
-                                        matinput=""
-                                        autocomplete="new-password"
-                                        maxLength={4}
-                                        appnumericonly=""
-                                        formcontrolname="otp"
-                                        placeholder="****"
-                                        className="mat-mdc-input-element ng-tns-c1205077789-4 ng-untouched ng-pristine ng-valid mat-mdc-form-field-input-control mdc-text-field__input cdk-text-field-autofill-monitored"
-                                     
-                                        id="mat-input-1"
-                                        aria-invalid="false"
-                                        aria-required="false"
-                                      />
-                                    </div>
-                                  </div>
-                                  <div
-                                    matformfieldlineripple=""
-                                    className="mdc-line-ripple ng-tns-c1205077789-4 mdc-line-ripple--deactivating ng-star-inserted"
-                                  ></div>
-                                </div>
-                                <div className="mat-mdc-form-field-subscript-wrapper mat-mdc-form-field-bottom-align ng-tns-c1205077789-4">
-                                  <div
-                                    className="mat-mdc-form-field-hint-wrapper ng-tns-c1205077789-4 ng-trigger ng-trigger-transitionMessages ng-star-inserted"
-                                    style={{
-                                      opacity: 1,
-                                      transform: "translateY(0%)",
-                                    }}
+                            {Settings.otp && (
+                              <>
+                                <p
+                                  _ngcontent-ng-c1411651695=""
+                                  className="form-title ng-star-inserted"
+                                >
+                                  We have sent code to +91-{mobileNo}
+                                </p>
+                                <div
+                                  _ngcontent-ng-c1411651695=""
+                                  className="form-list ng-star-inserted"
+                                >
+                                  <mat-form-field
+                                    _ngcontent-ng-c1411651695=""
+                                    appearance="fill"
+                                    className="mat-mdc-form-field ng-tns-c1205077789-4 mat-mdc-form-field-type-mat-input mat-form-field-appearance-fill mat-primary ng-untouched ng-pristine ng-valid ng-star-inserted"
                                   >
-                                    <div className="mat-mdc-form-field-hint-spacer ng-tns-c1205077789-4"></div>
-                                  </div>
+                                    <div className="mat-mdc-text-field-wrapper mdc-text-field ng-tns-c1205077789-4 mdc-text-field--filled mdc-text-field--no-label">
+                                      <div className="mat-mdc-form-field-focus-overlay ng-tns-c1205077789-4 ng-star-inserted"></div>
+                                      <div className="mat-mdc-form-field-flex ng-tns-c1205077789-4">
+                                        <div className="mat-mdc-form-field-infix ng-tns-c1205077789-4">
+                                          <input
+                                            onChange={(e) =>
+                                              setUser({
+                                                ...user,
+                                                otp: e.target.value,
+                                              })
+                                            }
+                                            _ngcontent-ng-c1411651695=""
+                                            type="tel"
+                                            matinput=""
+                                            autocomplete="new-password"
+                                            maxLength={4}
+                                            appnumericonly=""
+                                            formcontrolname="otp"
+                                            placeholder="****"
+                                            className="mat-mdc-input-element ng-tns-c1205077789-4 ng-untouched ng-pristine ng-valid mat-mdc-form-field-input-control mdc-text-field__input cdk-text-field-autofill-monitored"
+                                            id="mat-input-1"
+                                            aria-invalid="false"
+                                            aria-required="false"
+                                          />
+                                        </div>
+                                      </div>
+                                      <div
+                                        matformfieldlineripple=""
+                                        className="mdc-line-ripple ng-tns-c1205077789-4 mdc-line-ripple--deactivating ng-star-inserted"
+                                      ></div>
+                                    </div>
+                                    <div className="mat-mdc-form-field-subscript-wrapper mat-mdc-form-field-bottom-align ng-tns-c1205077789-4">
+                                      <div
+                                        className="mat-mdc-form-field-hint-wrapper ng-tns-c1205077789-4 ng-trigger ng-trigger-transitionMessages ng-star-inserted"
+                                        style={{
+                                          opacity: 1,
+                                          transform: "translateY(0%)",
+                                        }}
+                                      >
+                                        <div className="mat-mdc-form-field-hint-spacer ng-tns-c1205077789-4"></div>
+                                      </div>
+                                    </div>
+                                  </mat-form-field>
                                 </div>
-                              </mat-form-field>
-                            </div>
+                              </>
+                            )}
 
                             <p
                               _ngcontent-ng-c1411651695=""

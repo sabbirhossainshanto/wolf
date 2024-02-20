@@ -63,5 +63,6 @@ export const Settings = {
   withdraw: config?.result?.settings?.withdraw,
   register: config?.result?.settings?.registration,
   demoLogin: config?.result?.settings?.demoLogin,
-  disabledDevtool:config?.result?.settings?.disabledDevtool
+  disabledDevtool:config?.result?.settings?.disabledDevtool,
+  otp:config?.result?.settings?.otp
 };

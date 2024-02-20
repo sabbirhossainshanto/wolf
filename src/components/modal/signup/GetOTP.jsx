@@ -4,7 +4,7 @@ import { useRef } from "react";
 import useCloseModalClickOutside from "../../../hooks/useCloseModalClickOutside";
 import UseTokenGenerator from "../../../hooks/UseTokenGenerator";
 import UseEncryptData from "../../../hooks/UseEncryptData";
-import { API } from "../../../api";
+import { API, Settings } from "../../../api";
 import axios from "axios";
 const GetOTP = ({ setShowOTP, setShowRegister, mobileNo, setMobileNo }) => {
   const OTPRef = useRef();
@@ -15,15 +15,20 @@ const GetOTP = ({ setShowOTP, setShowRegister, mobileNo, setMobileNo }) => {
   /* Get whats app api */
   const getOtp = async (e) => {
     e.preventDefault();
-    const generatedToken = UseTokenGenerator();
-    const otpData = {
-      mobile: mobileNo,
-      token: generatedToken,
-    };
-    const encryptedData = UseEncryptData(otpData);
-    const res = await axios.post(API.otp, encryptedData);
-    const data = res.data;
-    if (data?.success) {
+    if (Settings.otp) {
+      const generatedToken = UseTokenGenerator();
+      const otpData = {
+        mobile: mobileNo,
+        token: generatedToken,
+      };
+      const encryptedData = UseEncryptData(otpData);
+      const res = await axios.post(API.otp, encryptedData);
+      const data = res.data;
+      if (data?.success) {
+        setShowOTP(false);
+        setShowRegister(true);
+      }
+    } else {
       setShowOTP(false);
       setShowRegister(true);
     }
@@ -273,7 +278,7 @@ const GetOTP = ({ setShowOTP, setShowRegister, mobileNo, setMobileNo }) => {
                                 type="submit"
                                 className="btn secondary-btn"
                               >
-                                Get OTP
+                                {Settings.otp ? " Get OTP" : "Proceed"}
                               </button>
                               <p
                                 _ngcontent-ng-c2806737617=""

@@ -16,7 +16,8 @@
       "bonus": true,
       "withdraw": true,
       "disabledDevtool": false,
-      "casinoCurrency": "AED"
+      "casinoCurrency": "AED",
+      "otp": false
     },
 
     "endpoint": {

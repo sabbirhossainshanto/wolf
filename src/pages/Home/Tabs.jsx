@@ -117,12 +117,17 @@ const Tabs = () => {
             </div>
           </div>
           <div
+             onClick={() => setSportsType('live-casino')}
             _ngcontent-ng-c2582205232=""
             routerlink="/live-casino-lobby/live_casino"
             routerlinkactive="active-link"
-            className="pagetab-item ng-star-inserted"
+            className={`pagetab-item ng-star-inserted   ${
+              sportsType === 'live-casino' ? "active-link" : ""
+            }`}
           >
-            <div _ngcontent-ng-c2582205232="" className="icon-wrap">
+            <div _ngcontent-ng-c2582205232=""   className={`icon-wrap ${
+                sportsType === 'live-casino' ? "rotate-animation" : ""
+              }`}>
               <img
                 _ngcontent-ng-c2582205232=""
                 alt="Tab Icon"

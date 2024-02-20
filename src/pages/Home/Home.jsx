@@ -8,9 +8,12 @@ import UseTokenGenerator from "../../hooks/UseTokenGenerator";
 import UseEncryptData from "../../hooks/UseEncryptData";
 import { API } from "../../api";
 import axios from "axios";
+import useContextState from "../../hooks/useContextState";
+import LiveCasinoTab from "./LiveCasinoTab/LiveCasinoTab";
 
 /* eslint-disable react/no-unknown-property */
 const Home = () => {
+  const { sportsType } = useContextState();
   const { data: whatsAppLink } = useQuery({
     queryKey: ["whatsApp"],
     queryFn: async () => {
@@ -37,7 +40,7 @@ const Home = () => {
     <div
       _ngcontent-ng-c943649379=""
       className="page-body demoID"
-      style={{ minHeight: "100vh",  }}
+      style={{ minHeight: "100vh" }}
     >
       <Tabs />
 
@@ -69,12 +72,16 @@ const Home = () => {
           </div>
         </div>
         <div _ngcontent-ng-c943649379="" className="pagetab-body">
-          <div _ngcontent-ng-c943649379="" className="pagetab-content">
-            <Sports />
-            <GoCasino />
-            <LiveCasino />
-            <Casino />
-          </div>
+          {sportsType === "live-casino" ? (
+            <LiveCasinoTab />
+          ) : (
+            <div _ngcontent-ng-c943649379="" className="pagetab-content">
+              <Sports />
+              <GoCasino />
+              <LiveCasino />
+              <Casino />
+            </div>
+          )}
         </div>
       </div>
       {whatsAppLink && (

@@ -5,11 +5,11 @@ import UseTokenGenerator from "./UseTokenGenerator";
 import UseEncryptData from "./UseEncryptData";
 import { API } from "../api";
 
-const useIFrame = (eventTypeId, eventId) => {
-  const { token, tokenLoading } = useContextState();
+const useIFrame = (eventTypeId, eventId, hasVideo) => {
+  const { token } = useContextState();
   const { data: iFrameUrl } = useQuery({
     queryKey: ["iframeVideo"],
-    enabled: !tokenLoading,
+    enabled: hasVideo,
     queryFn: async () => {
       const generatedToken = UseTokenGenerator();
       const encryptedVideoData = UseEncryptData({

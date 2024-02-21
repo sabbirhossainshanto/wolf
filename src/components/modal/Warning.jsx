@@ -17,6 +17,7 @@ const Warning = ({ setShowWarning, gameId }) => {
     const encryptedData = UseEncryptData({
       gameId: gameId?.toString(),
       token: generatedToken,
+      ishome : false,
     });
 
     const res = await axios.post(API.liveCasinoIFrame, encryptedData, {

@@ -1,9 +1,7 @@
 import { useEffect, useState } from "react";
 import Dropdown from "./Dropdown";
-import useLiveCasino from "../../../hooks/useLiveCasino";
 import Warning from "../../../components/modal/Warning";
 import { API, Settings } from "../../../api";
-import UseLiveSlotFantasyNewTab from "../../../hooks/UseLiveSlotFantasyNewTab";
 import useContextState from "../../../hooks/useContextState";
 import axios from "axios";
 import UseTokenGenerator from "../../../hooks/UseTokenGenerator";
@@ -31,12 +29,12 @@ const LiveCasinoTab = () => {
       aura: API.auraWolf,
     };
     const getGames = async () => {
-      setLoading(true);
       const res = await axios.post(
         apiMapping[sportsType],
         {
           gameList,
           product,
+          ishome : false,
         },
         {
           headers: {
@@ -57,8 +55,9 @@ const LiveCasinoTab = () => {
     if (Settings.casinoCurrency !== "AED" || sportsType === "aura") {
       const generatedToken = UseTokenGenerator();
       const encryptedData = UseEncryptData({
-        gameId: gameId?.toString(),
+        gameId: item?.game_id?.toString(),
         token: generatedToken,
+        ishome : false,
       });
 
       const res = await axios.post(API.liveCasinoIFrame, encryptedData, {
@@ -76,7 +75,6 @@ const LiveCasinoTab = () => {
   if (loading) {
     return "Loading";
   }
-  console.log(data);
 
   return (
     <div _ngcontent-ng-c1965075897="" className="page-body">
@@ -118,7 +116,7 @@ const LiveCasinoTab = () => {
                 className="game-type-list ng-star-inserted"
               >
                 <ul _ngcontent-ng-c1965075897="">
-                  {Array.isArray(data.gameList[title]) &&
+                  {Array.isArray(data.gameList[title]) ?
                     data?.gameList[title]?.map((item, i) => {
                       return (
                         <li
@@ -174,7 +172,64 @@ const LiveCasinoTab = () => {
                           </div>
                         </li>
                       );
-                    })}
+                    }):(
+                      Object.values(data?.gameList[title]).map((item, i) => {
+                        return (
+                          <li
+                            onClick={() => handleOpenWarningModal(item)}
+                            key={i}
+                            _ngcontent-ng-c1965075897=""
+                            className="ng-star-inserted"
+                          >
+                            <a _ngcontent-ng-c1965075897="" className="active">
+                              <img
+                                _ngcontent-ng-c1965075897=""
+                                alt=""
+                                src={item?.url_thumb}
+                              />
+                            </a>
+                            <p
+                              _ngcontent-ng-c1965075897=""
+                              className="total-players"
+                            >
+                              <span
+                                _ngcontent-ng-c1965075897=""
+                                role="img"
+                                className="mat-icon notranslate material-icons mat-ligature-font mat-icon-no-color"
+                                aria-hidden="true"
+                                data-mat-icon-type="font"
+                              >
+                                group
+                              </span>{" "}
+                              {item?.active_players}
+                            </p>
+                            <div
+                              _ngcontent-ng-c1965075897=""
+                              className="game-detail"
+                            >
+                              <p
+                                _ngcontent-ng-c1965075897=""
+                                className="company-type"
+                              >
+                                {item?.product}
+                              </p>
+                              <p
+                                _ngcontent-ng-c1965075897=""
+                                className="game-name"
+                              >
+                                {item?.game_name}
+                              </p>
+                              <p
+                                _ngcontent-ng-c1965075897=""
+                                className="coins-limit ng-star-inserted"
+                              >
+                                {item?.text}
+                              </p>
+                            </div>
+                          </li>
+                        );
+                      })
+                    )}
                 </ul>
               </div>
             </div>

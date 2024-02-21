@@ -8,6 +8,7 @@ const Tabs = ({
   showIFrame,
   showScore,
   setShowScore,
+  match_odds
 }) => {
   return (
     <div className="mat-mdc-tab-header mat-tab-header">
@@ -113,7 +114,7 @@ const Tabs = ({
                       _ngcontent-ng-c942213636=""
                       mat-flat-button=""
                       className={`livetv-btn rounded mdc-button mdc-button--unelevated mat-mdc-unelevated-button ${
-                        showIFrame ? "active" : ""
+                        showIFrame && match_odds?.length > 0 &&  match_odds[0]?.hasVideo ? "active" : ""
                       } mat-unthemed mat-mdc-button-base`}
                       mat-ripple-loader-uninitialized=""
                       mat-ripple-loader-class-name="mat-mdc-button-ripple"
@@ -150,7 +151,7 @@ const Tabs = ({
                       <span className="mat-mdc-focus-indicator"></span>
                       <span className="mat-mdc-button-touch-target"></span>
                     </button>
-                    <button
+                    {/* <button
                       _ngcontent-ng-c942213636=""
                       mat-flat-button=""
                       className="livetv-btn rounded mdc-button mdc-button--unelevated mat-mdc-unelevated-button mat-unthemed mat-mdc-button-base"
@@ -167,7 +168,7 @@ const Tabs = ({
                       <span className="mdc-button__label"></span>
                       <span className="mat-mdc-focus-indicator"></span>
                       <span className="mat-mdc-button-touch-target"></span>
-                    </button>
+                    </button> */}
                   </div>{" "}
                 </span>
               </span>

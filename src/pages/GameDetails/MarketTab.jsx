@@ -15,8 +15,9 @@ const MarketTab = ({
   showIFrame,
   showScore,
   setShowScore,
+  match_odds, setMatch_odds
 }) => {
-  const [match_odds, setMatch_odds] = useState([]);
+
   const [bookmarker, setBookmarker] = useState([]);
   const [bookmarker2, setBookmarker2] = useState([]);
   const [normal, setNormal] = useState([]);
@@ -91,7 +92,7 @@ const MarketTab = ({
                     width: "100%",
                     border: "0px",
                   }}
-                  src={iFrameUrl}
+                  src={match_odds?.length > 0 && match_odds[0]?.hasVideo && iFrameUrl}
                 ></iframe>
                 {showScore &&
                   match_odds?.length > 0 &&

@@ -66,7 +66,7 @@ const Dropdown = ({
                     >
                       <span className="mat-mdc-select-value-text ng-tns-c3393473648-2 ng-star-inserted">
                         <span className="mat-mdc-select-min-line ng-tns-c3393473648-2 ng-star-inserted">
-                          All Providers
+                         {product === 'All' ? 'All Providers' : product} 
                         </span>
                       </span>
                     </div>
@@ -116,7 +116,7 @@ const Dropdown = ({
         >
           <button
             onClick={() => {
-              setProduct("ALL");
+              setProduct("All");
               setShowLeftDropdown(false);
             }}
             style={{
@@ -190,7 +190,7 @@ const Dropdown = ({
                     >
                       <span className="mat-mdc-select-value-text ng-tns-c3393473648-4 ng-star-inserted">
                         <span className="mat-mdc-select-min-line ng-tns-c3393473648-4 ng-star-inserted">
-                          All Games
+                        {gameList === 'All' ? 'All Games':gameList}
                         </span>
                       </span>
                     </div>
@@ -250,7 +250,7 @@ const Dropdown = ({
           >
             All Games
           </button>
-          {Object.keys(data?.gameList)?.map((item, i) => {
+          {data?.gameListData?.map((item, i) => {
             return (
               <button
                 onClick={() => {

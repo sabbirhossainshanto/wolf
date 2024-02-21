@@ -21,10 +21,13 @@ const GameDetails = () => {
   const [tabs, setTabs] = useState("market");
   const { myBets, refetchCurrentBets } = useCurrentBets(eventId);
   const { exposer, refetchExposure } = useExposer(eventId);
-  const { iFrameUrl } = useIFrame(eventTypeId, eventId);
+
   const { data } = useGameDetails(eventTypeId, eventId);
   const [showIFrame, setShowIFrame] = useState(true);
   const [showScore, setShowScore] = useState(false);
+  const [match_odds, setMatch_odds] = useState([]);
+  const hasVideo = match_odds?.length > 0 && match_odds[0]?.hasVideo;
+  const { iFrameUrl } = useIFrame(eventTypeId, eventId, hasVideo);
 
   return (
     <>
@@ -80,6 +83,7 @@ const GameDetails = () => {
               showIFrame={showIFrame}
               showScore={showScore}
               setShowScore={setShowScore}
+              match_odds={match_odds}
             />
             {tabs === "market" && (
               <MarketTab
@@ -90,6 +94,8 @@ const GameDetails = () => {
                 showIFrame={showIFrame}
                 showScore={showScore}
                 setShowScore={setShowScore}
+                match_odds={match_odds}
+                setMatch_odds={setMatch_odds}
               />
             )}
             {tabs === "openBets" && <OpenBetsTab myBets={myBets} />}

@@ -29,6 +29,7 @@ const LiveCasinoTab = () => {
       aura: API.auraWolf,
     };
     const getGames = async () => {
+      setLoading(true)
       const res = await axios.post(
         apiMapping[sportsType],
         {
@@ -75,7 +76,7 @@ const LiveCasinoTab = () => {
   if (loading) {
     return "Loading";
   }
-
+console.log(data);
   return (
     <div _ngcontent-ng-c1965075897="" className="page-body">
       {showWarning && (

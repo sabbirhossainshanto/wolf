@@ -81,11 +81,13 @@ const MarketTab = ({
             _ngcontent-ng-c942213636=""
             className="tab-body sports-tab ng-star-inserted"
           >
-            {showIFrame && (
+        
               <div
+              
                 _ngcontent-ng-c942213636=""
                 className="live-match-screen ng-star-inserted"
               >
+                    {showIFrame && match_odds?.length > 0 &&  match_odds[0]?.hasVideo && (
                 <iframe
                   _ngcontent-ng-c942213636=""
                   style={{
@@ -94,6 +96,7 @@ const MarketTab = ({
                   }}
                   src={match_odds?.length > 0 && match_odds[0]?.hasVideo && iFrameUrl}
                 ></iframe>
+                 )}
                 {showScore &&
                   match_odds?.length > 0 &&
                   match_odds[0]?.score?.length !== 0 &&
@@ -223,7 +226,7 @@ const MarketTab = ({
                     );
                   })}
               </div>
-            )}
+           
             <div _ngcontent-ng-c942213636="" className="mkt-tab-section">
               {match_odds && match_odds?.length > 0 && (
                 <MatchOdds

@@ -15,6 +15,7 @@ const MatchOdds = ({
   return (
     <>
       {match_odd?.map((games, i) => {
+        console.log(games);
         return (
           <div key={i} _ngcontent-ng-c942213636="" className="ng-star-inserted">
             <div
@@ -44,7 +45,7 @@ const MatchOdds = ({
               </div>
               <div _ngcontent-ng-c942213636="" className="card-header">
                 <h3 _ngcontent-ng-c942213636="" className="card-title">
-                  Min: 0 | Max: {games?.maxLiabilityPerBet}
+                  Min: {games?.minLiabilityPerBet} | Max: {games?.maxLiabilityPerBet}
                 </h3>
                 <div _ngcontent-ng-c942213636="" className="lay-back-wrap">
                   <h3 _ngcontent-ng-c942213636="" className="back-bg">

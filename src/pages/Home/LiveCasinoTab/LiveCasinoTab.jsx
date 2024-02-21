@@ -1,12 +1,11 @@
+/* eslint-disable react/no-unknown-property */
 import { useEffect, useState } from "react";
 import Dropdown from "./Dropdown";
 import Warning from "../../../components/modal/Warning";
-import { API, Settings } from "../../../api";
+import { API } from "../../../api";
 import useContextState from "../../../hooks/useContextState";
 import axios from "axios";
-import UseTokenGenerator from "../../../hooks/UseTokenGenerator";
-import UseEncryptData from "../../../hooks/UseEncryptData";
-/* eslint-disable react/no-unknown-property */
+import handleOpenWarningModal from "../../../utils/handleOpenWarningModal";
 const LiveCasinoTab = () => {
   const [showLeftDropdown, setShowLeftDropdown] = useState(false);
   const [showRightDropdown, setShowRightDropdown] = useState(false);
@@ -17,10 +16,6 @@ const LiveCasinoTab = () => {
   const { token, sportsType } = useContextState();
   const [data, setData] = useState({});
   const [loading, setLoading] = useState(true);
-  // const { data, refetchLiveCasino, isLoading } = useLiveCasino(
-  //   gameList,
-  //   product
-  // );
 
   useEffect(() => {
     const apiMapping = {
@@ -29,13 +24,13 @@ const LiveCasinoTab = () => {
       aura: API.auraWolf,
     };
     const getGames = async () => {
-      setLoading(true)
+      setLoading(true);
       const res = await axios.post(
         apiMapping[sportsType],
         {
           gameList,
           product,
-          ishome : false,
+          isHome: false,
         },
         {
           headers: {
@@ -52,31 +47,10 @@ const LiveCasinoTab = () => {
     getGames();
   }, [gameList, product, sportsType, token]);
 
-  const handleOpenWarningModal = async (item) => {
-    if (Settings.casinoCurrency !== "AED" || sportsType === "aura") {
-      const generatedToken = UseTokenGenerator();
-      const encryptedData = UseEncryptData({
-        gameId: item?.game_id?.toString(),
-        token: generatedToken,
-        ishome : false,
-      });
-
-      const res = await axios.post(API.liveCasinoIFrame, encryptedData, {
-        headers: { Authorization: `Bearer ${token}` },
-      });
-      const data = res?.data;
-      window.open(data?.gameUrl, "_blank");
-    } else {
-      setGameId("");
-      setGameId(item?.game_id);
-      setShowWarning(true);
-    }
-  };
-
   if (loading) {
     return "Loading";
   }
-console.log(data);
+
   return (
     <div _ngcontent-ng-c1965075897="" className="page-body">
       {showWarning && (
@@ -117,67 +91,20 @@ console.log(data);
                 className="game-type-list ng-star-inserted"
               >
                 <ul _ngcontent-ng-c1965075897="">
-                  {Array.isArray(data.gameList[title]) ?
-                    data?.gameList[title]?.map((item, i) => {
-                      return (
-                        <li
-                          onClick={() => handleOpenWarningModal(item)}
-                          key={i}
-                          _ngcontent-ng-c1965075897=""
-                          className="ng-star-inserted"
-                        >
-                          <a _ngcontent-ng-c1965075897="" className="active">
-                            <img
-                              _ngcontent-ng-c1965075897=""
-                              alt=""
-                              src={item?.url_thumb}
-                            />
-                          </a>
-                          <p
-                            _ngcontent-ng-c1965075897=""
-                            className="total-players"
-                          >
-                            <span
-                              _ngcontent-ng-c1965075897=""
-                              role="img"
-                              className="mat-icon notranslate material-icons mat-ligature-font mat-icon-no-color"
-                              aria-hidden="true"
-                              data-mat-icon-type="font"
-                            >
-                              group
-                            </span>{" "}
-                            {item?.active_players}
-                          </p>
-                          <div
-                            _ngcontent-ng-c1965075897=""
-                            className="game-detail"
-                          >
-                            <p
-                              _ngcontent-ng-c1965075897=""
-                              className="company-type"
-                            >
-                              {item?.product}
-                            </p>
-                            <p
-                              _ngcontent-ng-c1965075897=""
-                              className="game-name"
-                            >
-                              {item?.game_name}
-                            </p>
-                            <p
-                              _ngcontent-ng-c1965075897=""
-                              className="coins-limit ng-star-inserted"
-                            >
-                              {item?.text}
-                            </p>
-                          </div>
-                        </li>
-                      );
-                    }):(
-                      Object.values(data?.gameList[title]).map((item, i) => {
+                  {Array.isArray(data.gameList[title])
+                    ? data?.gameList[title]?.map((item, i) => {
+                        console.log(item);
                         return (
                           <li
-                            onClick={() => handleOpenWarningModal(item)}
+                            onClick={() =>
+                              handleOpenWarningModal(
+                                sportsType,
+                                item?.game_id,
+                                token,
+                                setGameId,
+                                setShowWarning
+                              )
+                            }
                             key={i}
                             _ngcontent-ng-c1965075897=""
                             className="ng-star-inserted"
@@ -230,7 +157,70 @@ console.log(data);
                           </li>
                         );
                       })
-                    )}
+                    : Object.values(data?.gameList[title]).map((item, i) => {
+                        return (
+                          <li
+                            onClick={() =>
+                              handleOpenWarningModal(
+                                sportsType,
+                                item?.game_id,
+                                token,
+                                setGameId,
+                                setShowWarning
+                              )
+                            }
+                            key={i}
+                            _ngcontent-ng-c1965075897=""
+                            className="ng-star-inserted"
+                          >
+                            <a _ngcontent-ng-c1965075897="" className="active">
+                              <img
+                                _ngcontent-ng-c1965075897=""
+                                alt=""
+                                src={item?.url_thumb}
+                              />
+                            </a>
+                            <p
+                              _ngcontent-ng-c1965075897=""
+                              className="total-players"
+                            >
+                              <span
+                                _ngcontent-ng-c1965075897=""
+                                role="img"
+                                className="mat-icon notranslate material-icons mat-ligature-font mat-icon-no-color"
+                                aria-hidden="true"
+                                data-mat-icon-type="font"
+                              >
+                                group
+                              </span>{" "}
+                              {item?.active_players}
+                            </p>
+                            <div
+                              _ngcontent-ng-c1965075897=""
+                              className="game-detail"
+                            >
+                              <p
+                                _ngcontent-ng-c1965075897=""
+                                className="company-type"
+                              >
+                                {item?.product}
+                              </p>
+                              <p
+                                _ngcontent-ng-c1965075897=""
+                                className="game-name"
+                              >
+                                {item?.game_name}
+                              </p>
+                              <p
+                                _ngcontent-ng-c1965075897=""
+                                className="coins-limit ng-star-inserted"
+                              >
+                                {item?.text}
+                              </p>
+                            </div>
+                          </li>
+                        );
+                      })}
                 </ul>
               </div>
             </div>
@@ -252,7 +242,15 @@ console.log(data);
               {data?.data?.map((item, i) => {
                 return (
                   <li
-                    onClick={() => handleOpenWarningModal(item)}
+                    onClick={() =>
+                      handleOpenWarningModal(
+                        sportsType,
+                        item?.game_id,
+                        token,
+                        setGameId,
+                        setShowWarning
+                      )
+                    }
                     key={i}
                     _ngcontent-ng-c1965075897=""
                     className="ng-star-inserted"

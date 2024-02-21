@@ -1,5 +1,6 @@
 /* eslint-disable react/no-unknown-property */
 const OpenBetsTab = ({ myBets }) => {
+  console.log(myBets);
   return (
     <div className="mat-mdc-tab-body-wrapper">
       <div
@@ -94,7 +95,7 @@ const OpenBetsTab = ({ myBets }) => {
                                       className="bs-content"
                                     >
                                       <h3 _ngcontent-ng-c942213636="">
-                                        {bet?.eventName}
+                                        {bet?.nation}
                                       </h3>
                                       <p _ngcontent-ng-c942213636="">
                                         {bet?.placeDate}

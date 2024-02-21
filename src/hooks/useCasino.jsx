@@ -3,7 +3,7 @@ import axios from "axios";
 import useContextState from "./useContextState";
 import { API } from "../api";
 
-const useLiveCasino = () => {
+const useCasino = () => {
   const { token } = useContextState();
   const {
     data,
@@ -14,7 +14,7 @@ const useLiveCasino = () => {
 
     queryFn: async () => {
       const res = await axios.post(
-        API.liveCasinoWolf,
+        API.auraWolf,
         {
           gameList: "All",
           product: "All",
@@ -35,4 +35,4 @@ const useLiveCasino = () => {
   return { data, refetchLiveCasino, isLoading };
 };
 
-export default useLiveCasino;
+export default useCasino;

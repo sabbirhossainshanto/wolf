@@ -14,9 +14,12 @@ const SinglePassbook = () => {
   for (const item of singlePassbook) {
     total = total + item.win;
   }
+  console.log(singlePassbook);
   return (
-    <div _ngcontent-ng-c3622565476="" className="page-body"
-    style={{minHeight:'100vh'}}
+    <div
+      _ngcontent-ng-c3622565476=""
+      className="page-body"
+      style={{ minHeight: "100vh" }}
     >
       <div _ngcontent-ng-c3622565476="" className="passbook-page-wrap">
         <div
@@ -162,7 +165,7 @@ const SinglePassbook = () => {
                                                     <span _ngcontent-ng-c773751984="">
                                                       {
                                                         singlePassbook[0]
-                                                          ?.eventName
+                                                          ?.winner
                                                       }
                                                     </span>
                                                   </p>
@@ -236,9 +239,7 @@ const SinglePassbook = () => {
                                                               className="allbet-content"
                                                             >
                                                               <h3 _ngcontent-ng-c773751984="">
-                                                                {
-                                                                  item?.eventName
-                                                                }
+                                                                {item?.nation}
                                                               </h3>
                                                               <p _ngcontent-ng-c773751984="">
                                                                 {item?.betType}{" "}
@@ -254,12 +255,12 @@ const SinglePassbook = () => {
                                                                   className={` ${
                                                                     item?.win >
                                                                     0
-                                                                      ? "WIN"
+                                                                      ? "WON"
                                                                       : "LOSS"
                                                                   }`}
                                                                 >
                                                                   {item?.win > 0
-                                                                    ? "  WIN"
+                                                                    ? "  WON"
                                                                     : "  LOSS"}
                                                                 </span>
                                                               </p>
@@ -276,11 +277,17 @@ const SinglePassbook = () => {
                                                               {item?.amount}
                                                             </h3>
                                                             <h3 _ngcontent-ng-c773751984="">
-                                                            {item?.amount}
+                                                              {item?.amount}
                                                             </h3>
                                                             <h3
                                                               _ngcontent-ng-c773751984=""
-                                                              className="Lost ng-star-inserted"
+                                                              className={`
+                                                             ${
+                                                               item?.win > 0
+                                                                 ? "Won "
+                                                                 : "Lost"
+                                                             }    
+                                                               ng-star-inserted`}
                                                             >
                                                               {item?.win}
                                                             </h3>

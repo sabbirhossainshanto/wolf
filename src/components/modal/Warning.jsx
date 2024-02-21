@@ -17,7 +17,7 @@ const Warning = ({ setShowWarning, gameId }) => {
     const encryptedData = UseEncryptData({
       gameId: gameId?.toString(),
       token: generatedToken,
-      ishome : false,
+      isHome: false,
     });
 
     const res = await axios.post(API.liveCasinoIFrame, encryptedData, {
@@ -56,7 +56,7 @@ const Warning = ({ setShowWarning, gameId }) => {
         <ul className="swal2-progress-steps" style={{ display: "none" }}></ul>
         <div className="swal2-icon swal2-icon-show" style={{ display: "flex" }}>
           <div className="swal2-icon-content">
-            <img src="assets/img/default_notification.svg" />
+            <img src="/assets/img/default_notification.svg" />
           </div>
         </div>
         <img className="swal2-image" style={{ display: "none" }} />

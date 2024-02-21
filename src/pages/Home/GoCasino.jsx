@@ -1,5 +1,7 @@
 /* eslint-disable react/no-unknown-property */
 
+import { useState } from "react";
+import WarningCondition from "../../components/modal/WarningCondition";
 import useContextState from "../../hooks/useContextState";
 import useGoCasino from "../../hooks/useGoCasino";
 import handleOpenWarningModal from "../../utils/handleOpenWarningModal";
@@ -7,11 +9,14 @@ import handleOpenWarningModal from "../../utils/handleOpenWarningModal";
 const GoCasino = () => {
   const { data } = useGoCasino();
   const { setSportsType, token } = useContextState();
+  const [showWarning, setShowWarning] = useState(false);
+
   return (
     <div
       _ngcontent-ng-c943649379=""
       className="casino-section go-casino game-play mt-2 mb-3 ng-star-inserted"
     >
+      {showWarning && <WarningCondition setShowWarning={setShowWarning} />}
       <div _ngcontent-ng-c943649379="" className="game-play-heading">
         <h2 _ngcontent-ng-c943649379="">Go Casino</h2>
         <a
@@ -38,7 +43,7 @@ const GoCasino = () => {
                     item?.game_code,
                     token,
                     null,
-                    null
+                    setShowWarning
                   )
                 }
                 key={i}

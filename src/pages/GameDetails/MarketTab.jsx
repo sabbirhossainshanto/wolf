@@ -15,7 +15,8 @@ const MarketTab = ({
   showIFrame,
   showScore,
   setShowScore,
-  match_odds, setMatch_odds
+  match_odds, setMatch_odds,
+  setShowLoginWarn
 }) => {
 
   const [bookmarker, setBookmarker] = useState([]);
@@ -234,6 +235,7 @@ const MarketTab = ({
                   setOpenBetSlip={setOpenBetSlip}
                   setPlaceBetValues={setPlaceBetValues}
                   exposer={exposer}
+                  setShowLoginWarn={setShowLoginWarn}
                 />
               )}
 
@@ -243,6 +245,7 @@ const MarketTab = ({
                   setOpenBetSlip={setOpenBetSlip}
                   setPlaceBetValues={setPlaceBetValues}
                   exposer={exposer}
+                  setShowLoginWarn={setShowLoginWarn}
                 />
               )}
               {bookmarker2 && bookmarker2?.length > 0 && (
@@ -251,6 +254,7 @@ const MarketTab = ({
                   setOpenBetSlip={setOpenBetSlip}
                   setPlaceBetValues={setPlaceBetValues}
                   exposer={exposer}
+                  setShowLoginWarn={setShowLoginWarn}
                 />
               )}
               {fancy1 && fancy1?.length > 0 && (
@@ -259,6 +263,7 @@ const MarketTab = ({
                   setOpenBetSlip={setOpenBetSlip}
                   setPlaceBetValues={setPlaceBetValues}
                   exposer={exposer}
+                  setShowLoginWarn={setShowLoginWarn}
                 />
               )}
 
@@ -268,6 +273,7 @@ const MarketTab = ({
                   setOpenBetSlip={setOpenBetSlip}
                   setPlaceBetValues={setPlaceBetValues}
                   exposer={exposer}
+                  setShowLoginWarn={setShowLoginWarn}
                 />
               )}
             </div>

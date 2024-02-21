@@ -7,9 +7,10 @@ import Rules from "../pages/Rules/Rules";
 import Deposit from "../pages/Deposit/Deposit";
 import Withdraw from "../pages/Withdraw/Withdraw";
 import ActiveBets from "../pages/ActiveBets/ActiveBets";
-import AccountStatement from "../pages/AccountStatement/AccountStatement";
 import Passbook from "../pages/Passbook/Passbook";
 import SinglePassbook from "../pages/Passbook/SinglePassbook";
+import WithdrawStatement from "../pages/WithdrawStatement/WithdrawStatement";
+import DepositStatement from "../pages/DepositStatement/DepositStatement";
 
 export const router = createBrowserRouter([
   {
@@ -47,7 +48,11 @@ export const router = createBrowserRouter([
       },
       {
         path: "deposit-statement",
-        element: <AccountStatement />,
+        element: <DepositStatement />,
+      },
+      {
+        path: "withdraw-statement",
+        element: <WithdrawStatement />,
       },
       {
         path: "passbook",

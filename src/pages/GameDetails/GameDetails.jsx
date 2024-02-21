@@ -10,7 +10,7 @@ import useGameDetails from "../../hooks/useGameDetails";
 import Tabs from "./Tabs";
 import OpenBetsTab from "./OpenBetsTab";
 import MarketTab from "./MarketTab";
-
+import Warning from "../../components/ui/Notification/Warning";
 /* eslint-disable react/no-unknown-property */
 const GameDetails = () => {
   const { eventId, eventTypeId } = useParams();
@@ -28,10 +28,14 @@ const GameDetails = () => {
   const [match_odds, setMatch_odds] = useState([]);
   const hasVideo = match_odds?.length > 0 && match_odds[0]?.hasVideo;
   const { iFrameUrl } = useIFrame(eventTypeId, eventId, hasVideo);
+  const [showLoginWarn, setShowLoginWarn] = useState("");
 
   return (
     <>
       <div _ngcontent-ng-c942213636="" className="page-body">
+        {showLoginWarn && (
+          <Warning message={showLoginWarn} setMessage={setShowLoginWarn} />
+        )}
         <div _ngcontent-ng-c942213636="" className="game-tab ng-star-inserted">
           <div _ngcontent-ng-c942213636="" className="pagetop-bar">
             <div
@@ -96,6 +100,7 @@ const GameDetails = () => {
                 setShowScore={setShowScore}
                 match_odds={match_odds}
                 setMatch_odds={setMatch_odds}
+                setShowLoginWarn={setShowLoginWarn}
               />
             )}
             {tabs === "openBets" && <OpenBetsTab myBets={myBets} />}

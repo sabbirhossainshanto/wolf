@@ -1,11 +1,15 @@
 /* eslint-disable react/no-unknown-property */
+import useContextState from "../../../hooks/useContextState";
 import { handlePlaceBet } from "../../../utils/handlePlaceBet";
+
 const MatchOdds = ({
   match_odd,
   setOpenBetSlip,
   setPlaceBetValues,
   exposer,
+  setShowLoginWarn
 }) => {
+  const {token} = useContextState()
   let pnlBySelection;
   if (exposer?.pnlBySelection) {
     const obj = exposer?.pnlBySelection;
@@ -14,8 +18,9 @@ const MatchOdds = ({
 
   return (
     <>
+    
       {match_odd?.map((games, i) => {
-        console.log(games);
+    
         return (
           <div key={i} _ngcontent-ng-c942213636="" className="ng-star-inserted">
             <div
@@ -45,7 +50,8 @@ const MatchOdds = ({
               </div>
               <div _ngcontent-ng-c942213636="" className="card-header">
                 <h3 _ngcontent-ng-c942213636="" className="card-title">
-                  Min: {games?.minLiabilityPerBet} | Max: {games?.maxLiabilityPerBet}
+                  Min: {games?.minLiabilityPerBet} | Max:{" "}
+                  {games?.maxLiabilityPerBet}
                 </h3>
                 <div _ngcontent-ng-c942213636="" className="lay-back-wrap">
                   <h3 _ngcontent-ng-c942213636="" className="back-bg">
@@ -105,7 +111,9 @@ const MatchOdds = ({
                               "back",
                               setOpenBetSlip,
                               setPlaceBetValues,
-                              pnlBySelection
+                              pnlBySelection,
+                              setShowLoginWarn,
+                              token
                             )
                           }
                           _ngcontent-ng-c942213636=""
@@ -134,7 +142,9 @@ const MatchOdds = ({
                               "lay",
                               setOpenBetSlip,
                               setPlaceBetValues,
-                              pnlBySelection
+                              pnlBySelection,
+                              setShowLoginWarn,
+                              token
                             )
                           }
                           _ngcontent-ng-c942213636=""

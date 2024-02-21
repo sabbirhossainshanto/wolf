@@ -1,13 +1,13 @@
 import { useState } from "react";
-import useAccountStatement from "../../hooks/useAccountStatement";
+import useDepositStatement from "../../hooks/useDepositStatement";
 import AccountStatementModal from "../../components/modal/AccountStatementModal";
 
 /* eslint-disable react/no-unknown-property */
-const AccountStatement = () => {
+const DepositStatement = () => {
   const [showModal, setShowModal] = useState(false);
   const [image, setImage] = useState("");
-  const { accountStatement } = useAccountStatement();
-  // console.log(accountStatement);
+  const { accountStatement } = useDepositStatement();
+
   return (
     <div
       _ngcontent-ng-c3622565476=""
@@ -217,4 +217,4 @@ const AccountStatement = () => {
   );
 };
 
-export default AccountStatement;
+export default DepositStatement;

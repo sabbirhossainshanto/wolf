@@ -1,11 +1,12 @@
 import { Link, useNavigate } from "react-router-dom";
 import useContextState from "../../../hooks/useContextState";
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import useCloseModalClickOutside from "../../../hooks/useCloseModalClickOutside";
 import { RiEditBoxFill } from "react-icons/ri";
 import useBonusBalance from "../../../hooks/useBonusBalance";
 import { handleLogOut } from "../../../utils/handleLogOut";
 import { Settings } from "../../../api";
+import Warning from "../Notification/Warning";
 /* eslint-disable react/no-unknown-property */
 const Sidebar = () => {
   const {
@@ -21,6 +22,7 @@ const Sidebar = () => {
   const navigate = useNavigate();
   const leftMenuRef = useRef();
   const { bonusBalanceData } = useBonusBalance();
+  const [warningMessage, setWarningMessage] = useState("");
   useCloseModalClickOutside(leftMenuRef, () => {
     setShowSidebar(false);
   });
@@ -29,6 +31,16 @@ const Sidebar = () => {
     setShowSidebar(false);
     setGetToken((prev) => !prev);
     navigate("/");
+  };
+
+  const handleAccountStatement = (link) => {
+    if (isCheckedBonusToken) {
+      setWarningMessage("Please switch to main wallet");
+      setShowSidebar(false);
+    } else {
+      navigate(link);
+      setShowSidebar(false);
+    }
   };
 
   const handleBonusToken = (e) => {
@@ -54,6 +66,9 @@ const Sidebar = () => {
 
   return (
     <>
+      {warningMessage && (
+        <Warning message={warningMessage} setMessage={setWarningMessage} />
+      )}
       <div
         className="mat-drawer-backdrop ng-star-inserted"
         style={{ visibility: `${showSidebar ? "visible" : "hidden"}` }}
@@ -275,9 +290,10 @@ const Sidebar = () => {
                       routerlinkactive="active-link"
                       className="smenu-item"
                     >
-                      <Link
-                        onClick={() => setShowSidebar(false)}
-                        to="/deposit-statement"
+                      <a
+                        onClick={() =>
+                          handleAccountStatement("/deposit-statement")
+                        }
                         _ngcontent-ng-c967272132=""
                         className="smenu-link"
                       >
@@ -289,7 +305,29 @@ const Sidebar = () => {
                         <span _ngcontent-ng-c967272132="">
                           Deposit Statement
                         </span>
-                      </Link>
+                      </a>
+                    </li>
+                    <li
+                      _ngcontent-ng-c967272132=""
+                      routerlinkactive="active-link"
+                      className="smenu-item"
+                    >
+                      <a
+                        onClick={() =>
+                          handleAccountStatement("/withdraw-statement")
+                        }
+                        _ngcontent-ng-c967272132=""
+                        className="smenu-link"
+                      >
+                        <img
+                          _ngcontent-ng-c967272132=""
+                          alt="Menu Icon"
+                          src="https://ss.manage63.com/bmk-wl/commonAssets/sidenav__ac_statement.svg"
+                        />
+                        <span _ngcontent-ng-c967272132="">
+                          Withdraw Statement
+                        </span>
+                      </a>
                     </li>
                     <li
                       _ngcontent-ng-c967272132=""

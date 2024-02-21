@@ -14,7 +14,7 @@ const SinglePassbook = () => {
   for (const item of singlePassbook) {
     total = total + item.win;
   }
-  console.log(singlePassbook);
+
   return (
     <div
       _ngcontent-ng-c3622565476=""

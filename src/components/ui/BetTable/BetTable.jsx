@@ -6,7 +6,7 @@ const BetTable = ({ data, keys }) => {
   const navigateGameList = (keys) => {
     navigate(`/game-details/${data[keys]?.eventTypeId}/${keys}`);
   };
-  // console.log(data);
+
   return (
     <>
       {data[keys]?.inPlay === 0 && (

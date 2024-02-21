@@ -10,7 +10,7 @@ const useGoCasino = () => {
     refetch: refetchLiveCasino,
     isLoading,
   } = useQuery({
-    queryKey: ["liveCasinoWolf"],
+    queryKey: ["goCasinoWolf"],
 
     queryFn: async () => {
       const res = await axios.post(

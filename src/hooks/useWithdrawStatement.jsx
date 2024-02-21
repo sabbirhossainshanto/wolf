@@ -5,15 +5,15 @@ import axios from "axios";
 import { API } from "../api";
 import useContextState from "./useContextState";
 
-const useAccountStatement = () => {
+const useWithdrawStatement = () => {
   const fromDate = new Date(new Date().setDate(new Date().getDate() - 7))
     .toISOString()
     .split("T")[0];
   const toDate = new Date().toISOString().split("T")[0];
   const { token, tokenLoading } = useContextState();
 
-  const { data: accountStatement = [] } = useQuery({
-    queryKey: ["deposit-statement"],
+  const { data: withdrawStatement = [] } = useQuery({
+    queryKey: ["withdraw-statement"],
     enabled: !tokenLoading,
     queryFn: async () => {
       const generatedToken = UseTokenGenerator();
@@ -21,7 +21,7 @@ const useAccountStatement = () => {
       const encryptedData = UseEncryptData({
         from: fromDate,
         to: toDate,
-        type: "DEPOSIT",
+        type: "WITHDRAW",
         status: "ALL",
         token: generatedToken,
       });
@@ -31,13 +31,13 @@ const useAccountStatement = () => {
         },
       });
       const data = res?.data;
-      console.log(data);
+
       if (data?.success) {
         return data?.result;
       }
     },
   });
-  return { accountStatement };
+  return { withdrawStatement };
 };
 
-export default useAccountStatement;
+export default useWithdrawStatement;

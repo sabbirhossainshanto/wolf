@@ -1,13 +1,14 @@
+import useContextState from "../../../hooks/useContextState";
 import { handlePlaceBet } from "../../../utils/handlePlaceBet";
 
 /* eslint-disable react/no-unknown-property */
-const FancyOne = ({ FancyOne, setOpenBetSlip, setPlaceBetValues, exposer }) => {
+const FancyOne = ({ FancyOne, setOpenBetSlip, setPlaceBetValues, exposer,setShowLoginWarn }) => {
   let pnlBySelection;
   if (exposer?.pnlBySelection) {
     const obj = exposer?.pnlBySelection;
     pnlBySelection = Object?.values(obj);
   }
-
+const {token} = useContextState()
 
   return (
     <div
@@ -118,7 +119,9 @@ const FancyOne = ({ FancyOne, setOpenBetSlip, setPlaceBetValues, exposer }) => {
                         "back",
                         setOpenBetSlip,
                         setPlaceBetValues,
-                        pnlBySelection
+                        pnlBySelection,
+                        setShowLoginWarn,
+                        token
                       )
                     }
                     _ngcontent-ng-c942213636=""
@@ -147,7 +150,9 @@ const FancyOne = ({ FancyOne, setOpenBetSlip, setPlaceBetValues, exposer }) => {
                         "lay",
                         setOpenBetSlip,
                         setPlaceBetValues,
-                        pnlBySelection
+                        pnlBySelection,
+                        setShowLoginWarn,
+                        token
                       )
                     }
                     _ngcontent-ng-c942213636=""

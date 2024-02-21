@@ -1,6 +1,6 @@
 /* eslint-disable react/no-unknown-property */
 const OpenBetsTab = ({ myBets }) => {
-  console.log(myBets);
+
   return (
     <div className="mat-mdc-tab-body-wrapper">
       <div
@@ -64,7 +64,7 @@ const OpenBetsTab = ({ myBets }) => {
                             className="betslip-databody"
                           >
                             {myBets?.map((bet, i) => {
-                              console.log(bet);
+                       
                               return (
                                 <div
                                   key={i}

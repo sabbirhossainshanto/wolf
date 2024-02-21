@@ -6,12 +6,12 @@ import UseTokenGenerator from "../../hooks/UseTokenGenerator";
 import UseEncryptData from "../../hooks/UseEncryptData";
 import axios from "axios";
 import { API } from "../../api";
-const Warning = ({ setShowWarning, gameId }) => {
+const WarningCondition = ({ setShowWarning, gameId }) => {
   const warningRef = useRef();
   useCloseModalClickOutside(warningRef, () => {
     setShowWarning(false);
   });
-  const { token } = useContextState();
+  const { token, setShowLogin } = useContextState();
   const handleNavigateNewTab = async () => {
     const generatedToken = UseTokenGenerator();
     const encryptedData = UseEncryptData({
@@ -56,7 +56,11 @@ const Warning = ({ setShowWarning, gameId }) => {
         <ul className="swal2-progress-steps" style={{ display: "none" }}></ul>
         <div className="swal2-icon swal2-icon-show" style={{ display: "flex" }}>
           <div className="swal2-icon-content">
-            <img src="/assets/img/default_notification.svg" />
+            <img
+              src={`/assets/img/${
+                token ? "default_notification.svg" : "warning-yellow.svg"
+              }`}
+            />
           </div>
         </div>
         <img className="swal2-image" style={{ display: "none" }} />
@@ -65,15 +69,16 @@ const Warning = ({ setShowWarning, gameId }) => {
           id="swal2-title"
           style={{ display: "block" }}
         >
-          (1 Point = ₹ 100)
+          {token && "(1 Point = ₹ 100)"}
         </h2>
         <div
           className="swal2-html-container"
           id="swal2-html-container"
           style={{ display: "block" }}
         >
-          Immerse yourself in the excitement of live casino action, an array of
-          captivating slots, and a diverse range of games.{" "}
+          {token
+            ? "Immerse yourself in the excitement of live casino action, an array of captivating slots, and a diverse range of games."
+            : "Please log in to play."}
         </div>
         <input
           id="swal2-input"
@@ -107,19 +112,38 @@ const Warning = ({ setShowWarning, gameId }) => {
         ></div>
         <div className="swal2-actions" style={{ display: "flex" }}>
           <div className="swal2-loader"></div>
-          <button
-            onClick={handleNavigateNewTab}
-            type="button"
-            className="swal2-confirm swal2-styled"
-            aria-label=""
-            style={{
-              display: "inline-flex",
-              alignItems: "center",
-              justifyContent: "center",
-            }}
-          >
-            OK
-          </button>
+          {token ? (
+            <button
+              onClick={handleNavigateNewTab}
+              type="button"
+              className="swal2-confirm swal2-styled"
+              aria-label=""
+              style={{
+                display: "inline-flex",
+                alignItems: "center",
+                justifyContent: "center",
+              }}
+            >
+              OK
+            </button>
+          ) : (
+            <button
+              onClick={() => {
+                setShowWarning(false);
+                setShowLogin(true);
+              }}
+              type="button"
+              className="swal2-confirm swal2-styled"
+              aria-label=""
+              style={{
+                display: "inline-flex",
+                alignItems: "center",
+                justifyContent: "center",
+              }}
+            >
+              OK
+            </button>
+          )}
           <button
             type="button"
             className="swal2-deny swal2-styled"
@@ -149,4 +173,4 @@ const Warning = ({ setShowWarning, gameId }) => {
   );
 };
 
-export default Warning;
+export default WarningCondition;

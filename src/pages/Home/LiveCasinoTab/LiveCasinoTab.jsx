@@ -1,7 +1,7 @@
 /* eslint-disable react/no-unknown-property */
 import { useEffect, useState } from "react";
 import Dropdown from "./Dropdown";
-import Warning from "../../../components/modal/Warning";
+import WarningCondition from "../../../components/modal/WarningCondition";
 import { API } from "../../../api";
 import useContextState from "../../../hooks/useContextState";
 import axios from "axios";
@@ -47,6 +47,11 @@ const LiveCasinoTab = () => {
     getGames();
   }, [gameList, product, sportsType, token]);
 
+  useEffect(() => {
+    setGameList("All");
+    setProduct("All");
+  }, [sportsType]);
+
   if (loading) {
     return "Loading";
   }
@@ -54,7 +59,7 @@ const LiveCasinoTab = () => {
   return (
     <div _ngcontent-ng-c1965075897="" className="page-body">
       {showWarning && (
-        <Warning gameId={gameId} setShowWarning={setShowWarning} />
+        <WarningCondition gameId={gameId} setShowWarning={setShowWarning} />
       )}
       {sportsType !== "aura" && (
         <div _ngcontent-ng-c1965075897="" className="filter-wrapper">
@@ -93,7 +98,6 @@ const LiveCasinoTab = () => {
                 <ul _ngcontent-ng-c1965075897="">
                   {Array.isArray(data.gameList[title])
                     ? data?.gameList[title]?.map((item, i) => {
-                        console.log(item);
                         return (
                           <li
                             onClick={() =>

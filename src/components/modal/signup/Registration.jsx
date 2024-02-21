@@ -84,7 +84,6 @@ const Registration = ({
       .then((res) => res.json())
 
       .then((data) => {
-        console.log(data);
         if (data?.success) {
           setSuccessRegister("User registration successful, please login.");
           setShowRegister(false);

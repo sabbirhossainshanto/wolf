@@ -4,9 +4,11 @@ export const handlePlaceBet = (
   betType,
   setOpenBetSlip,
   setPlaceBetValues,
-  pnlBySelection
+  pnlBySelection,
+  setShowLoginWarn,token
 ) => {
-  const updatedPnl = [];
+  if(token){
+    const updatedPnl = [];
   item?.runners?.forEach((runner) => {
     const pnl = pnlBySelection?.find(
       (p) => p?.RunnerId === runner?.id
@@ -36,4 +38,7 @@ export const handlePlaceBet = (
     maxLiabilityPerBet: item?.maxLiabilityPerBet,
     pnl: updatedPnl,
   });
+  }else{
+    setShowLoginWarn('Please log in to play.')
+  }
 };

@@ -32,7 +32,7 @@ const BetSlip = ({
   const [oddStakeLay1, setOddStakeLay1] = useState(null);
   const [oddStakeLay2, setOddStakeLay2] = useState(null);
 
-  console.log(placeBetValues);
+ 
   /* Set price */
   useEffect(() => {
     setPrice(placeBetValues?.price);
@@ -69,7 +69,7 @@ const BetSlip = ({
     })
       .then((res) => res.json())
       .then((data) => {
-        console.log(data);
+    
         if (data?.success) {
           refetchExposure();
           refetchBalance();
@@ -303,13 +303,6 @@ const BetSlip = ({
     updateElementClass("oddThree");
   }, [oddStake, oddStakeLay1, oddStakeLay2]);
 
-  // console.log(oddStake);
-  // console.log(totalSize);
-  // console.log(  oddStake != 0 &&
-  //   totalSize?.length > 0 &&
-  //   selectionId.includes(".1") &&
-  //   oddStake );
-  console.log(totalSize?.toString().length);
   return (
     <div className="cdk-overlay-container">
       <div className="cdk-overlay-backdrop cdk-overlay-dark-backdrop cdk-overlay-backdrop-showing"></div>

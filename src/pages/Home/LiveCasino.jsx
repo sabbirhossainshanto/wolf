@@ -3,20 +3,21 @@ import { useState } from "react";
 import useContextState from "../../hooks/useContextState";
 import handleOpenWarningModal from "../../utils/handleOpenWarningModal";
 import useLiveCasino from "../../hooks/useLiveCasino";
-import Warning from "../../components/modal/Warning";
+import WarningCondition from "../../components/modal/WarningCondition";
 
 const LiveCasino = () => {
   const { data } = useLiveCasino();
   const { setSportsType, token } = useContextState();
   const [showWarning, setShowWarning] = useState(false);
   const [gameId, setGameId] = useState("");
+
   return (
     <div
       _ngcontent-ng-c943649379=""
       className="casino-section live-casino game-play mt-2 mb-3 ng-star-inserted"
     >
       {showWarning && (
-        <Warning gameId={gameId} setShowWarning={setShowWarning} />
+        <WarningCondition gameId={gameId} setShowWarning={setShowWarning} />
       )}
       <div _ngcontent-ng-c943649379="" className="game-play-heading">
         <h2 _ngcontent-ng-c943649379="">Live Casino</h2>
@@ -36,12 +37,13 @@ const LiveCasino = () => {
       >
         <ul _ngcontent-ng-c943649379="">
           {data?.map((item, i) => {
+          
             return (
               <li
                 onClick={() =>
                   handleOpenWarningModal(
                     "live-casino",
-                    item?.game_code,
+                    item?.game_id,
                     token,
                     setGameId,
                     setShowWarning
@@ -64,11 +66,15 @@ const LiveCasino = () => {
                   {item?.active_players}
                 </p>
                 <a _ngcontent-ng-c943649379="" className="active">
-                  <img _ngcontent-ng-c943649379="" alt="" src={item?.img} />
+                  <img
+                    _ngcontent-ng-c943649379=""
+                    alt=""
+                    src={item?.url_thumb}
+                  />
                 </a>
                 <div _ngcontent-ng-c943649379="" className="game-detail">
                   <p _ngcontent-ng-c943649379="" className="company-type">
-                    {item?.provider_name}
+                    {item?.product}
                   </p>
                   <p _ngcontent-ng-c943649379="" className="game-name">
                     {item?.game_name}

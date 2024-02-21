@@ -10,11 +10,10 @@ const useCasino = () => {
     refetch: refetchLiveCasino,
     isLoading,
   } = useQuery({
-    queryKey: ["liveCasinoWolf"],
-
+    queryKey: ["casinoWolf"],
     queryFn: async () => {
       const res = await axios.post(
-        API.auraWolf,
+        API.slotWolf,
         {
           gameList: "All",
           product: "All",

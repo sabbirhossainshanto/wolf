@@ -1,8 +1,9 @@
+import useContextState from "../../../hooks/useContextState";
 import { handlePlaceBet } from "../../../utils/handlePlaceBet";
 
 /* eslint-disable react/no-unknown-property */
-const Bookmaker = ({ bookmarker, setOpenBetSlip, setPlaceBetValues,exposer }) => {
-
+const Bookmaker = ({ bookmarker, setOpenBetSlip, setPlaceBetValues,exposer, setShowLoginWarn }) => {
+const {token} = useContextState()
   let pnlBySelection;
   if (exposer?.pnlBySelection) {
     const obj = exposer?.pnlBySelection;
@@ -98,7 +99,7 @@ const Bookmaker = ({ bookmarker, setOpenBetSlip, setPlaceBetValues,exposer }) =>
                           className="count-v-wrap ng-star-inserted"
                         >
                           <button
-                          onClick={()=> handlePlaceBet(games,runner,'back',setOpenBetSlip,setPlaceBetValues,pnlBySelection)}
+                          onClick={()=> handlePlaceBet(games,runner,'back',setOpenBetSlip,setPlaceBetValues,pnlBySelection, setShowLoginWarn,token)}
                             _ngcontent-ng-c942213636=""
                             mat-flat-button=""
                             mat-ripple-loader-uninitialized=""
@@ -116,7 +117,7 @@ const Bookmaker = ({ bookmarker, setOpenBetSlip, setPlaceBetValues,exposer }) =>
                             <span className="mat-mdc-button-touch-target"></span>
                           </button>
                           <button
-                          onClick={()=> handlePlaceBet(games,runner,'lay',setOpenBetSlip,setPlaceBetValues,pnlBySelection)}
+                          onClick={()=> handlePlaceBet(games,runner,'lay',setOpenBetSlip,setPlaceBetValues,pnlBySelection,setShowLoginWarn,token)}
                             _ngcontent-ng-c942213636=""
                             mat-flat-button=""
                             mat-ripple-loader-uninitialized=""

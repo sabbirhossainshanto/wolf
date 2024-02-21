@@ -1,7 +1,21 @@
+import { useRef, useState } from "react";
+import { API } from "../../../api";
+import UseEncryptData from "../../../hooks/UseEncryptData";
+import UseTokenGenerator from "../../../hooks/UseTokenGenerator";
+import useContextState from "../../../hooks/useContextState";
+import useCloseModalClickOutside from "../../../hooks/useCloseModalClickOutside";
+
 /* eslint-disable react/no-unknown-property */
-const Fancy = ({ normal, setOpenBetSlip, setPlaceBetValues, exposer }) => {
+const Fancy = ({ normal, setOpenBetSlip, setPlaceBetValues, exposer,setShowLoginWarn }) => {
+  const [showLadder, setShowLadder] = useState(false);
+  const [ladderData, setLadderData] = useState([]);
+  const { token } = useContextState();
+  const [ladderTitle, setLadderTitle] = useState("");
+  const [ladderMarketId, setLadderMarketId] = useState("");
+ 
   const handlePlaceBet = (item, runner, betType) => {
-    setOpenBetSlip(true);
+    if(token){
+      setOpenBetSlip(true);
     setPlaceBetValues({});
     setPlaceBetValues({
       price: betType === "back" ? runner?.back[0].line : runner?.lay[0].line,
@@ -21,6 +35,9 @@ const Fancy = ({ normal, setOpenBetSlip, setPlaceBetValues, exposer }) => {
       isBettable: item?.isBettable,
       maxLiabilityPerBet: item?.maxLiabilityPerBet,
     });
+    }else{
+      setShowLoginWarn('Please log in to play.')
+    }
   };
 
   let pnlBySelection;
@@ -28,171 +45,280 @@ const Fancy = ({ normal, setOpenBetSlip, setPlaceBetValues, exposer }) => {
     const obj = exposer?.pnlBySelection;
     pnlBySelection = Object?.values(obj);
   }
+  /* Ladder api */
+  const handleLadder = (marketId) => {
+    setLadderTitle("");
+    const games = normal?.find((item) => item?.id === marketId);
+    setLadderTitle(games?.title);
+    setLadderMarketId(marketId);
+    const generatedToken = UseTokenGenerator();
+    const encryptedData = UseEncryptData(generatedToken);
+    setShowLadder(true);
+    fetch(`${API.ladder}/${marketId}`, {
+      method: "POST",
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+      body: JSON.stringify(encryptedData),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.success) {
+          setLadderData(data.result);
+        }
+      });
+  };
+
+  const ladderRef = useRef();
+  useCloseModalClickOutside(ladderRef, () => {
+    setShowLadder(false);
+  });
+
   return (
-    <div
-      _ngcontent-ng-c942213636=""
-      className={`fancy-card card-outer ng-star-inserted ${
-        normal[0]?.maxLiabilityPerBet == "1" ? "disableMo" : ""
-      }`}
-    >
-      <div _ngcontent-ng-c942213636="" className="head-wrap">
-        <h2 _ngcontent-ng-c942213636="" className="card-heading">
-          {normal[0]?.btype}
-        </h2>
-      </div>
-      <div _ngcontent-ng-c942213636="" className="fancybody-header">
-        <h3 _ngcontent-ng-c942213636="" className="card-title">
-          Min: 100 | Max: {normal[0]?.maxLiabilityPerBet}
-        </h3>
-        <div _ngcontent-ng-c942213636="" className="fb-stitle">
-          <h3 _ngcontent-ng-c942213636="" className="lay-bg">
-            No
-          </h3>
-          <h3 _ngcontent-ng-c942213636="" className="back-bg">
-            Yes
-          </h3>
+    <>
+      <div
+        _ngcontent-ng-c942213636=""
+        className={`fancy-card card-outer ng-star-inserted ${
+          normal[0]?.maxLiabilityPerBet == "1" ? "disableMo" : ""
+        }`}
+      >
+        <div _ngcontent-ng-c942213636="" className="head-wrap">
+          <h2 _ngcontent-ng-c942213636="" className="card-heading">
+            {normal[0]?.btype}
+          </h2>
         </div>
-      </div>
-      <div _ngcontent-ng-c942213636="" className="card-body">
-        {normal?.map((games, i) => {
-          const pnl = pnlBySelection?.filter(
-            (pnl) => pnl?.MarketId === games?.id
-          );
-          return (
-            <div
-              key={i}
-              _ngcontent-ng-c942213636=""
-              className="data-wrap ng-star-inserted"
-              id="7OverDSG"
-            >
-              <div _ngcontent-ng-c942213636="" className="teamlist-info">
-                <h3 _ngcontent-ng-c942213636="" className="team-title">
-                  {games?.name}
+        <div _ngcontent-ng-c942213636="" className="fancybody-header">
+          <h3 _ngcontent-ng-c942213636="" className="card-title">
+            Min: 100 | Max: {normal[0]?.maxLiabilityPerBet}
+          </h3>
+          <div _ngcontent-ng-c942213636="" className="fb-stitle">
+            <h3 _ngcontent-ng-c942213636="" className="lay-bg">
+              No
+            </h3>
+            <h3 _ngcontent-ng-c942213636="" className="back-bg">
+              Yes
+            </h3>
+          </div>
+        </div>
+        <div _ngcontent-ng-c942213636="" className="card-body">
+          {normal?.map((games, i) => {
+            const pnl = pnlBySelection?.filter(
+              (pnl) => pnl?.MarketId === games?.id
+            );
+
+            return (
+              <div
+                key={i}
+                _ngcontent-ng-c942213636=""
+                className="data-wrap ng-star-inserted"
+                id="7OverDSG"
+              >
+                <div _ngcontent-ng-c942213636="" className="teamlist-info">
+                  <h3 _ngcontent-ng-c942213636="" className="team-title">
+                    {games?.name}
+                    {pnl &&
+                      pnl?.map(({ pnl, MarketId }, i) => {
+                        return (
+                          <p
+                            onClick={() => handleLadder(MarketId)}
+                            _ngcontent-ng-c942213636=""
+                            // onClick={() => handleLader(MarketId)}
+                            key={i}
+                            className={`ng-star-inserted ${
+                              pnl > 0 ? "text-success" : "text-danger"
+                            }`}
+                            style={{
+                              cursor: "pointer",
+                            }}
+                          >
+                            {pnl}
+                          </p>
+                        );
+                      })}
+                  </h3>
                   {pnl &&
-                    pnl?.map(({ pnl, MarketId }, i) => {
+                    pnl?.map(({ MarketId }, i) => {
                       return (
-                        <p
-                          _ngcontent-ng-c942213636=""
-                          // onClick={() => handleLader(MarketId)}
+                        <button
+                          onClick={() => handleLadder(MarketId)}
                           key={i}
-                          className={`ng-star-inserted ${
-                            pnl > 0 ? "text-success" : "text-danger"
-                          }`}
-                          style={{
-                            cursor: "pointer",
-                          }}
+                          _ngcontent-ng-c942213636=""
+                          mat-flat-button=""
+                          className="bar-btn mdc-button mdc-button--unelevated mat-mdc-unelevated-button mat-unthemed mat-mdc-button-base ng-star-inserted"
+                          mat-ripple-loader-uninitialized=""
+                          mat-ripple-loader-class-name="mat-mdc-button-ripple"
                         >
-                          {pnl}
-                        </p>
+                          <span className="mat-mdc-button-persistent-ripple mdc-button__ripple"></span>
+                          <span className="mdc-button__label">
+                            <img
+                              onClick={() => handleLadder(MarketId)}
+                              key={i}
+                              _ngcontent-ng-c942213636=""
+                              alt=""
+                              className="ladder-img"
+                              src="https://ss.manage63.com/bmk-wl/commonAssets/ladder.svg"
+                            />
+                          </span>
+                          <span className="mat-mdc-focus-indicator"></span>
+                          <span className="mat-mdc-button-touch-target"></span>
+                        </button>
                       );
                     })}
-                </h3>
-                <button
+                </div>
+                {/* ladder */}
+                {pnl &&
+                  showLadder &&
+                  pnl?.map(({ MarketId }, i) => {
+                    return (
+                      <>
+                        {ladderMarketId === MarketId && (
+                          <div
+                            ref={ladderRef}
+                            key={i}
+                            _ngcontent-ng-c3799324686=""
+                            className="ladder-datawrap dropdown-content show"
+                            style={{ bottom: "auto" }}
+                          >
+                            <p
+                              _ngcontent-ng-c3799324686=""
+                              className="fancy-head"
+                            >
+                              {ladderTitle}
+                            </p>
+                            <div
+                              _ngcontent-ng-c3799324686=""
+                              className="ld-header"
+                            >
+                              <div
+                                _ngcontent-ng-c3799324686=""
+                                className="ld-data"
+                              >
+                                <h3 _ngcontent-ng-c3799324686="">Score</h3>
+                                <h3 _ngcontent-ng-c3799324686="">Win/Loss</h3>
+                              </div>
+                            </div>
+                            <div
+                              _ngcontent-ng-c3799324686=""
+                              className="ld-body"
+                            >
+                              {ladderData?.map(
+                                ({ exposure, start, end }, idx) => {
+                                  return (
+                                    <div
+                                      key={idx}
+                                      _ngcontent-ng-c3799324686=""
+                                      className="ld-data ng-star-inserted"
+                                    >
+                                      <p _ngcontent-ng-c3799324686="">
+                                        {" "}
+                                        {start}-{end}
+                                      </p>
+                                      <p
+                                        _ngcontent-ng-c3799324686=""
+                                        className={`${
+                                          exposure > 0
+                                            ? "text-success"
+                                            : "text-danger"
+                                        }`}
+                                      >
+                                        {exposure}
+                                      </p>
+                                    </div>
+                                  );
+                                }
+                              )}
+                            </div>
+                          </div>
+                        )}
+                      </>
+                    );
+                  })}
+          
+                <div
                   _ngcontent-ng-c942213636=""
-                  mat-flat-button=""
-                  className="bar-btn mdc-button mdc-button--unelevated mat-mdc-unelevated-button mat-unthemed mat-mdc-button-base ng-star-inserted"
-                  mat-ripple-loader-uninitialized=""
-                  mat-ripple-loader-class-name="mat-mdc-button-ripple"
+                  className="ladder-datawrap dropdown-content"
                 >
-                  <span className="mat-mdc-button-persistent-ripple mdc-button__ripple"></span>
-                  <span className="mdc-button__label">
-                    {pnl?.length > 0 && (
-                      <img
-                        _ngcontent-ng-c942213636=""
-                        alt=""
-                        className="ladder-img"
-                        src="https://ss.manage63.com/bmk-wl/commonAssets/ladder.svg"
-                      />
-                    )}
-                  </span>
-                  <span className="mat-mdc-focus-indicator"></span>
-                  <span className="mat-mdc-button-touch-target"></span>
-                </button>
-              </div>
-              <div
-                _ngcontent-ng-c942213636=""
-                className="ladder-datawrap dropdown-content"
-              >
-                <p _ngcontent-ng-c942213636="" className="fancy-head">
-                  7 Over DSG
-                </p>
-                <div _ngcontent-ng-c942213636="" className="ld-header">
-                  <div _ngcontent-ng-c942213636="" className="ld-data">
-                    <h3 _ngcontent-ng-c942213636="">Figure</h3>
-                    <h3 _ngcontent-ng-c942213636="">Win/Loss</h3>
+                  <p _ngcontent-ng-c942213636="" className="fancy-head">
+                    7 Over DSG
+                  </p>
+                  <div _ngcontent-ng-c942213636="" className="ld-header">
+                    <div _ngcontent-ng-c942213636="" className="ld-data">
+                      <h3 _ngcontent-ng-c942213636="">Figure</h3>
+                      <h3 _ngcontent-ng-c942213636="">Win/Loss</h3>
+                    </div>
+                  </div>
+                  <div _ngcontent-ng-c942213636="" className="ld-body"></div>
+                  <div
+                    _ngcontent-ng-c942213636=""
+                    className="fancy-loader ng-star-inserted"
+                  >
+                    <div _ngcontent-ng-c942213636="" className="loader"></div>
                   </div>
                 </div>
-                <div _ngcontent-ng-c942213636="" className="ld-body"></div>
-                <div
-                  _ngcontent-ng-c942213636=""
-                  className="fancy-loader ng-star-inserted"
-                >
-                  <div _ngcontent-ng-c942213636="" className="loader"></div>
-                </div>
+                {games?.status === "OPEN" ? (
+                  <div
+                    _ngcontent-ng-c942213636=""
+                    className="count-v-wrap ng-star-inserted"
+                  >
+                    <button
+                      onClick={() =>
+                        handlePlaceBet(games, games?.runners[0], "lay")
+                      }
+                      _ngcontent-ng-c942213636=""
+                      mat-flat-button=""
+                      mat-ripple-loader-uninitialized=""
+                      mat-ripple-loader-class-name="mat-mdc-button-ripple"
+                      className="mdc-button mdc-button--unelevated mat-mdc-unelevated-button count-value lay-count mat-unthemed mat-mdc-button-base"
+                    >
+                      <span className="mat-mdc-button-persistent-ripple mdc-button__ripple"></span>
+                      <span className="mdc-button__label">
+                        <h4 _ngcontent-ng-c942213636="">
+                          {games?.runners?.[0]?.lay[0]?.line}
+                        </h4>
+                        <p _ngcontent-ng-c942213636="">
+                          {games?.runners?.[0]?.lay[0]?.price}
+                        </p>{" "}
+                      </span>
+                      <span className="mat-mdc-focus-indicator"></span>
+                      <span className="mat-mdc-button-touch-target"></span>
+                    </button>
+                    <button
+                      onClick={() =>
+                        handlePlaceBet(games, games?.runners[0], "back")
+                      }
+                      _ngcontent-ng-c942213636=""
+                      mat-flat-button=""
+                      mat-ripple-loader-uninitialized=""
+                      mat-ripple-loader-class-name="mat-mdc-button-ripple"
+                      className="mdc-button mdc-button--unelevated mat-mdc-unelevated-button back-count count-value mat-unthemed mat-mdc-button-base"
+                    >
+                      <span className="mat-mdc-button-persistent-ripple mdc-button__ripple"></span>
+                      <span className="mdc-button__label">
+                        <h4 _ngcontent-ng-c942213636="">
+                          {games?.runners?.[0]?.back[0]?.line}
+                        </h4>
+                        <p _ngcontent-ng-c942213636="">
+                          {games?.runners?.[0]?.back[0]?.price}
+                        </p>{" "}
+                      </span>
+                      <span className="mat-mdc-focus-indicator"></span>
+                      <span className="mat-mdc-button-touch-target"></span>
+                    </button>
+                  </div>
+                ) : (
+                  <div
+                    _ngcontent-ng-c942213636=""
+                    className="suspended-wrap ng-star-inserted"
+                  >
+                    <h4 _ngcontent-ng-c942213636="">SUSPENDED</h4>
+                  </div>
+                )}
               </div>
-              {games?.status === "OPEN" ? (
-                <div
-                  _ngcontent-ng-c942213636=""
-                  className="count-v-wrap ng-star-inserted"
-                >
-                  <button
-                    onClick={() =>
-                      handlePlaceBet(games, games?.runners[0], "lay")
-                    }
-                    _ngcontent-ng-c942213636=""
-                    mat-flat-button=""
-                    mat-ripple-loader-uninitialized=""
-                    mat-ripple-loader-class-name="mat-mdc-button-ripple"
-                    className="mdc-button mdc-button--unelevated mat-mdc-unelevated-button count-value lay-count mat-unthemed mat-mdc-button-base"
-                  >
-                    <span className="mat-mdc-button-persistent-ripple mdc-button__ripple"></span>
-                    <span className="mdc-button__label">
-                      <h4 _ngcontent-ng-c942213636="">
-                        {games?.runners?.[0]?.lay[0]?.line}
-                      </h4>
-                      <p _ngcontent-ng-c942213636="">
-                        {games?.runners?.[0]?.lay[0]?.price}
-                      </p>{" "}
-                    </span>
-                    <span className="mat-mdc-focus-indicator"></span>
-                    <span className="mat-mdc-button-touch-target"></span>
-                  </button>
-                  <button
-                    onClick={() =>
-                      handlePlaceBet(games, games?.runners[0], "back")
-                    }
-                    _ngcontent-ng-c942213636=""
-                    mat-flat-button=""
-                    mat-ripple-loader-uninitialized=""
-                    mat-ripple-loader-class-name="mat-mdc-button-ripple"
-                    className="mdc-button mdc-button--unelevated mat-mdc-unelevated-button back-count count-value mat-unthemed mat-mdc-button-base"
-                  >
-                    <span className="mat-mdc-button-persistent-ripple mdc-button__ripple"></span>
-                    <span className="mdc-button__label">
-                      <h4 _ngcontent-ng-c942213636="">
-                        {games?.runners?.[0]?.back[0]?.line}
-                      </h4>
-                      <p _ngcontent-ng-c942213636="">
-                        {games?.runners?.[0]?.back[0]?.price}
-                      </p>{" "}
-                    </span>
-                    <span className="mat-mdc-focus-indicator"></span>
-                    <span className="mat-mdc-button-touch-target"></span>
-                  </button>
-                </div>
-              ) : (
-                <div
-                  _ngcontent-ng-c942213636=""
-                  className="suspended-wrap ng-star-inserted"
-                >
-                  <h4 _ngcontent-ng-c942213636="">SUSPENDED</h4>
-                </div>
-              )}
-            </div>
-          );
-        })}
+            );
+          })}
+        </div>
       </div>
-    </div>
+    </>
   );
 };
 

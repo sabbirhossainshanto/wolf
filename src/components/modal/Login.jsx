@@ -194,11 +194,12 @@ const Login = ({ setShowLogin, setErrorLogin, errorLogin, setGetToken }) => {
                             type="button"
                             style={{
                               borderRadius: "50%",
-                              fontSize: "30px",
+                              fontSize: "25px",
                               height: "25px",
                               width: "25px",
                               border: "none",
                               cursor: "pointer",
+                              color:'black'
                             }}
                           >
                             <IoClose

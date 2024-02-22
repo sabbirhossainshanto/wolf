@@ -52,10 +52,10 @@ const LiveCasinoTab = () => {
     setProduct("All");
   }, [sportsType]);
 
-  if (loading) {
-    return "Loading";
-  }
-
+  // if (loading) {
+  //   return
+  // }
+  // console.log(data);
   return (
     <div _ngcontent-ng-c1965075897="" className="page-body">
       {showWarning && (
@@ -80,8 +80,11 @@ const LiveCasinoTab = () => {
       {sportsType !== "aura" &&
       data &&
       data?.gameList &&
-      Object.values(data?.gameList) ? (
-        Object.keys(data?.gameList).map((title, i) => {
+      Object?.values(data?.gameList !== null) &&
+      data?.gameList !== null &&
+      data?.gameList !== undefined ? (
+        Object.keys(data.gameList)
+        .filter(key => data.gameList[key] !== null)?.map((title, i) => {
           return (
             <div
               key={i}
@@ -161,7 +164,7 @@ const LiveCasinoTab = () => {
                           </li>
                         );
                       })
-                    : Object.values(data?.gameList[title]).map((item, i) => {
+                    : Object?.values(data?.gameList[title])?.map((item, i) => {
                         return (
                           <li
                             onClick={() =>

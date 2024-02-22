@@ -58,7 +58,8 @@ export const API = {
   liveCasinoWolf:config?.result?.endpoint?.liveCasinoWolf,
   slotWolf:config?.result?.endpoint?.slotsWolf,
   liveCasinoIFrame:config?.result?.endpoint?.liveCasinoIframe,
-  auraWolf:config?.result?.endpoint?.auraWolf
+  auraWolf:config?.result?.endpoint?.auraWolf,
+  assets:config?.result?.endpoint?.assets
 };
 
 export const Settings = {
@@ -69,5 +70,7 @@ export const Settings = {
   demoLogin: config?.result?.settings?.demoLogin,
   disabledDevtool:config?.result?.settings?.disabledDevtool,
   otp:config?.result?.settings?.otp,
-  casinoCurrency:config?.result?.settings?.casinoCurrency
+  casinoCurrency:config?.result?.settings?.casinoCurrency,
+  siteUrl:config?.result?.settings?.siteUrl,
+  siteTitle:config?.result?.settings?.siteTitle
 };

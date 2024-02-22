@@ -17,6 +17,7 @@ const Sidebar = () => {
     token,
     setShowLogin,
     isCheckedBonusToken,
+    logo
   } = useContextState();
   const loginName = localStorage.getItem("loginName");
   const navigate = useNavigate();
@@ -114,7 +115,7 @@ const Sidebar = () => {
                   <img
                     _ngcontent-ng-c967272132=""
                     alt="logo"
-                    src="https://ss.manage63.com/bmk-wl/wl/wolf365/img/logo.svg"
+                    src={logo}
                     className="ng-star-inserted"
                   />
                 </div>

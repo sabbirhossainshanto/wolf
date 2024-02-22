@@ -5,6 +5,7 @@ import { useForm } from "react-hook-form";
 import { API, Settings } from "../../../api";
 import UseEncryptData from "../../../hooks/UseEncryptData";
 import UseTokenGenerator from "../../../hooks/UseTokenGenerator";
+import useContextState from "../../../hooks/useContextState";
 /* eslint-disable react/no-unknown-property */
 const Registration = ({
   setShowRegister,
@@ -13,6 +14,7 @@ const Registration = ({
   setSuccessRegister,
   setErrRegister,
 }) => {
+  const {logo} = useContextState()
   const registerRef = useRef();
   useCloseModalClickOutside(registerRef, () => {
     setShowRegister(false);
@@ -169,7 +171,7 @@ const Registration = ({
                             _ngcontent-ng-c1411651695=""
                             onerror="src = '../assets/img/transparent-img.svg'"
                             alt="logo"
-                            src="https://ss.manage63.com/bmk-wl/wl/wolf365/img/logo.svg"
+                            src={logo}
                             className="ng-star-inserted"
                           />
                         </div>

@@ -6,7 +6,9 @@ import UseTokenGenerator from "../../../hooks/UseTokenGenerator";
 import UseEncryptData from "../../../hooks/UseEncryptData";
 import { API, Settings } from "../../../api";
 import axios from "axios";
+import useContextState from "../../../hooks/useContextState";
 const GetOTP = ({ setShowOTP, setShowRegister, mobileNo, setMobileNo }) => {
+  const {logo} = useContextState()
   const OTPRef = useRef();
   useCloseModalClickOutside(OTPRef, () => {
     setShowOTP(false);
@@ -88,7 +90,7 @@ const GetOTP = ({ setShowOTP, setShowRegister, mobileNo, setMobileNo }) => {
                           <img
                             _ngcontent-ng-c2806737617=""
                             alt="logo"
-                            src="https://ss.manage63.com/bmk-wl/wl/wolf365/img/logo.svg"
+                            src={logo}
                             className="ng-star-inserted"
                           />
                         </div>

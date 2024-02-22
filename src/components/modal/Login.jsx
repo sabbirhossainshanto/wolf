@@ -8,7 +8,9 @@ import UseEncryptData from "../../hooks/UseEncryptData";
 import UseTokenGenerator from "../../hooks/UseTokenGenerator";
 import { API } from "../../api";
 import Warning from "../ui/Notification/Warning";
+import useContextState from "../../hooks/useContextState";
 const Login = ({ setShowLogin, setErrorLogin, errorLogin, setGetToken }) => {
+  const {logo} = useContextState()
   const { register, handleSubmit } = useForm();
   const loginRef = useRef();
   useCloseModalClickOutside(loginRef, () => {
@@ -166,7 +168,7 @@ const Login = ({ setShowLogin, setErrorLogin, errorLogin, setGetToken }) => {
                             <img
                               _ngcontent-ng-c2806737617=""
                               alt="logo"
-                              src="https://ss.manage63.com/bmk-wl/wl/wolf365/img/logo.svg"
+                              src={logo}
                               className="ng-star-inserted"
                             />{" "}
                           </div>

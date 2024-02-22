@@ -25,6 +25,7 @@ const MarketTab = ({
   const [fancy1, setFancy1] = useState([]);
   const { setPlaceBetValues } = useContextState();
 
+  
   /* Filtered all the game  */
   useEffect(() => {
     const filterMatch_odds = data?.filter(
@@ -257,7 +258,7 @@ const MarketTab = ({
                   setShowLoginWarn={setShowLoginWarn}
                 />
               )}
-              {fancy1 && fancy1?.length > 0 && (
+              {normal && normal?.length > 0 && (
                 <Fancy
                   normal={normal}
                   setOpenBetSlip={setOpenBetSlip}

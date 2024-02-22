@@ -1,4 +1,5 @@
 import { createContext, useEffect, useState } from "react";
+import { API, Settings } from "../api";
 export const StateContext = createContext(null);
 
 const StateProvider = ({ children }) => {
@@ -11,6 +12,7 @@ const StateProvider = ({ children }) => {
   const [showEditStake, setShowEditStake] = useState(false);
   const [placeBetValues, setPlaceBetValues] = useState({});
   const [isCheckedBonusToken, setIsCheckedBonusToken] = useState(false);
+  const [logo, setLogo] = useState("");
 
   useEffect(() => {
     const getToken = localStorage.getItem("token");
@@ -28,6 +30,20 @@ const StateProvider = ({ children }) => {
       setTokenLoading(false);
     }
   }, [getToken, token]);
+
+  useEffect(() => {
+    /* Dynamically append  theme css  */
+    const logo = `${API.assets}/${Settings.siteUrl}/logo.png`;
+    setLogo(logo);
+    /* Dynamically append  favicon  */
+    const FavIconLink = document.createElement("link");
+    FavIconLink.rel = "icon";
+    FavIconLink.type = "image/png";
+    FavIconLink.href = `${API.assets}/${Settings.siteUrl}/favicon.png`;
+    document.head.appendChild(FavIconLink);
+    /* Site title */
+    document.title = Settings.siteTitle;
+  }, []);
 
   const stateInfo = {
     sportsType,
@@ -48,6 +64,7 @@ const StateProvider = ({ children }) => {
     setPlaceBetValues,
     isCheckedBonusToken,
     setIsCheckedBonusToken,
+    logo, setLogo
   };
   return (
     <StateContext.Provider value={stateInfo}>{children}</StateContext.Provider>

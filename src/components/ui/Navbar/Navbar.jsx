@@ -21,6 +21,7 @@ const Navbar = () => {
     token,
     setGetToken,
     isCheckedBonusToken,
+    logo,
   } = useContextState();
   const location = useLocation();
   const navigate = useNavigate();
@@ -137,9 +138,12 @@ const Navbar = () => {
               )}
               <Link to="/">
                 <img
+                  style={{
+                    height: "20px",
+                  }}
                   _ngcontent-ng-c3243547741=""
                   alt="logo"
-                  src="https://ss.manage63.com/bmk-wl/wl/wolf365/img/logo.svg"
+                  src={logo}
                   className="ng-star-inserted"
                 />
               </Link>
@@ -299,7 +303,6 @@ const Navbar = () => {
           setShowRegister={setShowRegister}
           mobileNo={mobileNo}
           setMobileNo={setMobileNo}
-          
         />
       )}
       {showRegister && (

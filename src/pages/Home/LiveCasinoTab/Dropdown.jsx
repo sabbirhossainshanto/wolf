@@ -18,6 +18,8 @@ const Dropdown = ({
     setShowLeftDropdown(false);
     setShowRightDropdown(false);
   });
+
+  console.log(data);
   return (
     <div
       style={{ position: "relative" }}
@@ -25,7 +27,7 @@ const Dropdown = ({
       className="filter-search"
     >
       <div
-        onClick={() => setShowLeftDropdown(!showLeftDropdown)}
+       
         _ngcontent-ng-c1965075897=""
         className="select-wrap"
       >
@@ -36,7 +38,11 @@ const Dropdown = ({
           _ngcontent-ng-c1965075897=""
           className="mat-mdc-form-field mat-form-field  ng-tns-c1205077789-1 mat-mdc-form-field-type-mat-select mat-form-field-appearance-fill mat-primary ng-pristine ng-valid ng-star-inserted ng-touched"
         >
-          <div className="mat-mdc-text-field-wrapper mdc-text-field ng-tns-c1205077789-1 mdc-text-field--filled mdc-text-field--no-label">
+          <div
+           onClick={() => setShowLeftDropdown(!showLeftDropdown)}
+            style={{ backgroundColor: "#c6c6c6",borderRadius:'5px',padding:'5px'}}
+            className="mat-mdc-text-field-wrapper mdc-text-field ng-tns-c1205077789-1 mdc-text-field--filled mdc-text-field--no-label"
+          >
             <div className="mat-mdc-form-field-focus-overlay ng-tns-c1205077789-1 ng-star-inserted"></div>
 
             <div className="mat-mdc-form-field-flex ng-tns-c1205077789-1">
@@ -64,9 +70,12 @@ const Dropdown = ({
                       className="mat-mdc-select-value ng-tns-c3393473648-2"
                       id="mat-select-value-1"
                     >
-                      <span className="mat-mdc-select-value-text ng-tns-c3393473648-2 ng-star-inserted">
+                      <span
+                        
+                        className="mat-mdc-select-value-text ng-tns-c3393473648-2 ng-star-inserted"
+                      >
                         <span className="mat-mdc-select-min-line ng-tns-c3393473648-2 ng-star-inserted">
-                         {product === 'All' ? 'All Providers' : product} 
+                          {product === "All" ? "All Providers" : product}
                         </span>
                       </span>
                     </div>
@@ -138,17 +147,28 @@ const Dropdown = ({
                     item?.product === product ? "#dc4599" : "white"
                   }`,
                   color: `${item?.product === product ? "white" : "black"}`,
+                  display: "flex",
+                  alignItems: "center",
+                  gap: "10px",
                 }}
                 key={i}
               >
-                {item?.product}
+                <img
+                  style={{
+                    height: "20px",
+                    objectFit: "contain",
+                  }}
+                  src={item?.url_thumb}
+                  alt=""
+                />
+                <span> {item?.product}</span>
               </button>
             );
           })}
         </motion.div>
       )}
       <div
-        onClick={() => setShowRightDropdown(!showRightDropdown)}
+       
         _ngcontent-ng-c1965075897=""
         className="select-wrap"
       >
@@ -159,7 +179,11 @@ const Dropdown = ({
           _ngcontent-ng-c1965075897=""
           className="mat-mdc-form-field mat-form-field  ng-tns-c1205077789-3 mat-mdc-form-field-type-mat-select mat-form-field-appearance-fill mat-primary ng-pristine ng-valid ng-star-inserted ng-touched"
         >
-          <div className="mat-mdc-text-field-wrapper mdc-text-field ng-tns-c1205077789-3 mdc-text-field--filled mdc-text-field--no-label">
+          <div
+          // mdc-text-field--filled
+           onClick={() => setShowRightDropdown(!showRightDropdown)}
+           style={{ backgroundColor: "#c6c6c6",borderRadius:'5px',padding:'5px'}}
+          className="mat-mdc-text-field-wrapper mdc-text-field ng-tns-c1205077789-3 mdc-text-field--filled mdc-text-field--no-label">
             <div className="mat-mdc-form-field-focus-overlay ng-tns-c1205077789-3 ng-star-inserted"></div>
 
             <div className="mat-mdc-form-field-flex ng-tns-c1205077789-3">
@@ -190,7 +214,7 @@ const Dropdown = ({
                     >
                       <span className="mat-mdc-select-value-text ng-tns-c3393473648-4 ng-star-inserted">
                         <span className="mat-mdc-select-min-line ng-tns-c3393473648-4 ng-star-inserted">
-                        {gameList === 'All' ? 'All Games':gameList}
+                          {gameList === "All" ? "All Games" : gameList}
                         </span>
                       </span>
                     </div>
@@ -238,7 +262,7 @@ const Dropdown = ({
           transition={{ duration: 0.1 }}
           className="dropdown-container"
         >
-            <button
+          <button
             onClick={() => {
               setGameList("All");
               setShowRightDropdown(false);

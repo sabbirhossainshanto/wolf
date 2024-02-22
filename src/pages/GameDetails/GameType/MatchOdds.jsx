@@ -79,7 +79,7 @@ const MatchOdds = ({
                           {runner?.name}
                         </h3>
                         {pnl &&
-                          pnl?.map(({ pnl, MarketId }, i) => {
+                          pnl?.map(({ pnl}, i) => {
                             return (
                               <p
                                 _ngcontent-ng-c942213636=""

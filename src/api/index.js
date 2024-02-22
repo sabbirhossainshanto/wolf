@@ -59,7 +59,8 @@ export const API = {
   slotWolf:config?.result?.endpoint?.slotsWolf,
   liveCasinoIFrame:config?.result?.endpoint?.liveCasinoIframe,
   auraWolf:config?.result?.endpoint?.auraWolf,
-  assets:config?.result?.endpoint?.assets
+  assets:config?.result?.endpoint?.assets,
+  bonusClaim:config?.result?.endpoint?.bonusClaim
 };
 
 export const Settings = {

@@ -7,6 +7,7 @@ import useBonusBalance from "../../../hooks/useBonusBalance";
 import { handleLogOut } from "../../../utils/handleLogOut";
 import { Settings } from "../../../api";
 import Warning from "../Notification/Warning";
+import ClaimWarning from "../Notification/ClaimWarning";
 /* eslint-disable react/no-unknown-property */
 const Sidebar = () => {
   const {
@@ -17,13 +18,14 @@ const Sidebar = () => {
     token,
     setShowLogin,
     isCheckedBonusToken,
-    logo
+    logo,
   } = useContextState();
   const loginName = localStorage.getItem("loginName");
   const navigate = useNavigate();
   const leftMenuRef = useRef();
   const { bonusBalanceData } = useBonusBalance();
   const [warningMessage, setWarningMessage] = useState("");
+  const [showClaimWarn, setShowClaimWarn] = useState(false);
   useCloseModalClickOutside(leftMenuRef, () => {
     setShowSidebar(false);
   });
@@ -70,6 +72,9 @@ const Sidebar = () => {
       {warningMessage && (
         <Warning message={warningMessage} setMessage={setWarningMessage} />
       )}
+      {showClaimWarn && <ClaimWarning
+      setShowClaimWarn={setShowClaimWarn}
+      />}
       <div
         className="mat-drawer-backdrop ng-star-inserted"
         style={{ visibility: `${showSidebar ? "visible" : "hidden"}` }}
@@ -199,9 +204,17 @@ const Sidebar = () => {
                                     {bonusBalanceData?.claimBonus}
                                   </p>
                                   <button
+                                    onClick={() => {
+                                      setShowClaimWarn(true);
+                                      setShowSidebar(false);
+                                    }}
                                     _ngcontent-ng-c967272132=""
                                     className="btn secondary-btn"
-                                    disabled=""
+                                    disabled={
+                                      bonusBalanceData?.claimBonus < 100
+                                        ? false
+                                        : false
+                                    }
                                   >
                                     Claim
                                   </button>

@@ -76,7 +76,8 @@
       "myMarket": "https://api7.live/api/exchange/diamond/myMarket",
       "liveCasinoWolf": "https://api7.live/api/exchange/diamond/liveCasinoWolf",
       "slotsWolf": "https://api7.live/api/exchange/diamond/slotsWolf",
-      "auraWolf": "https://api7.live/api/exchange/diamond/auraWolf"
+      "auraWolf": "https://api7.live/api/exchange/diamond/auraWolf",
+      "bonusClaim": "https://api7.live/api/account/diamond/bonusClaim"
     }
   },
   "success": true

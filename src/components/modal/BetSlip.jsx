@@ -27,12 +27,10 @@ const BetSlip = ({
   const { refetchBalance } = useBalance();
   const [stakeErr, setStakeErr] = useState("");
   const [price, setPrice] = useState(null);
-  const [booksValue, setBooksValue] = useState([]);
   const [oddStake, setOddStake] = useState(null);
   const [oddStakeLay1, setOddStakeLay1] = useState(null);
   const [oddStakeLay2, setOddStakeLay2] = useState(null);
 
- 
   /* Set price */
   useEffect(() => {
     setPrice(placeBetValues?.price);
@@ -69,7 +67,6 @@ const BetSlip = ({
     })
       .then((res) => res.json())
       .then((data) => {
-    
         if (data?.success) {
           refetchExposure();
           refetchBalance();
@@ -159,56 +156,14 @@ const BetSlip = ({
           setOddStake(formatNumber(total + pnl1));
           setOddStakeLay1(formatNumber(pnl2 + -1 * totalSize));
           setOddStakeLay2(formatNumber(pnl3 + -1 * totalSize));
-          setBooksValue([
-            {
-              odd: formatNumber(total + pnl1),
-              id: placeBetValues?.runnerId[0],
-            },
-            {
-              odd: formatNumber(pnl2 + -1 * totalSize),
-              id: placeBetValues?.runnerId[1],
-            },
-            {
-              odd: formatNumber(pnl3 + -1 * totalSize),
-              id: placeBetValues?.runnerId[2],
-            },
-          ]);
         } else if (selectionId && selectionId.includes(".2")) {
           setOddStake(formatNumber(total + pnl2));
           setOddStakeLay1(formatNumber(pnl3 + -1 * totalSize));
           setOddStakeLay2(formatNumber(pnl2 + -1 * totalSize));
-          setBooksValue([
-            {
-              odd: formatNumber(pnl2 + -1 * totalSize),
-              id: placeBetValues?.runnerId[2],
-            },
-            {
-              odd: formatNumber(total + pnl2),
-              id: placeBetValues?.runnerId[1],
-            },
-            {
-              odd: formatNumber(pnl3 + -1 * totalSize),
-              id: placeBetValues?.runnerId[0],
-            },
-          ]);
         } else {
           setOddStake(formatNumber(total + pnl3));
           setOddStakeLay1(formatNumber(pnl1 + -1 * totalSize));
           setOddStakeLay2(formatNumber(pnl2 + -1 * totalSize));
-          setBooksValue([
-            {
-              odd: formatNumber(pnl1 + -1 * totalSize),
-              id: placeBetValues?.runnerId[0],
-            },
-            {
-              odd: formatNumber(pnl2 + -1 * totalSize),
-              id: placeBetValues?.runnerId[1],
-            },
-            {
-              odd: formatNumber(total + pnl3),
-              id: placeBetValues?.runnerId[2],
-            },
-          ]);
         }
       } else if (placeBetValues?.lay) {
         let total;
@@ -224,56 +179,14 @@ const BetSlip = ({
           setOddStake(formatNumber(total + pnl1));
           setOddStakeLay1(formatNumber(1 * pnl2 + 1 * totalSize));
           setOddStakeLay2(formatNumber(1 * pnl3 + 1 * totalSize));
-          setBooksValue([
-            {
-              odd: formatNumber(total + pnl1),
-              id: placeBetValues?.runnerId[0],
-            },
-            {
-              odd: formatNumber(formatNumber(1 * pnl2 + 1 * totalSize)),
-              id: placeBetValues?.runnerId[1],
-            },
-            {
-              odd: formatNumber(formatNumber(1 * pnl3 + 1 * totalSize)),
-              id: placeBetValues?.runnerId[2],
-            },
-          ]);
         } else if (selectionId && selectionId.includes(".2")) {
           setOddStake(formatNumber(total + pnl2));
           setOddStakeLay1(formatNumber(1 * pnl3 + 1 * totalSize));
           setOddStakeLay2(formatNumber(1 * pnl1 + 1 * totalSize));
-          setBooksValue([
-            {
-              odd: formatNumber(formatNumber(1 * pnl1 + 1 * totalSize)),
-              id: placeBetValues?.runnerId[2],
-            },
-            {
-              odd: formatNumber(total + pnl2),
-              id: placeBetValues?.runnerId[1],
-            },
-            {
-              odd: formatNumber(formatNumber(1 * pnl3 + 1 * totalSize)),
-              id: placeBetValues?.runnerId[0],
-            },
-          ]);
         } else {
           setOddStake(formatNumber(total + pnl3));
           setOddStakeLay1(formatNumber(1 * pnl1 + 1 * totalSize));
           setOddStakeLay2(formatNumber(1 * pnl2 + 1 * totalSize));
-          setBooksValue([
-            {
-              odd: formatNumber(formatNumber(1 * pnl1 + 1 * totalSize)),
-              id: placeBetValues?.runnerId[0],
-            },
-            {
-              odd: formatNumber(formatNumber(1 * pnl2 + 1 * totalSize)),
-              id: placeBetValues?.runnerId[1],
-            },
-            {
-              odd: formatNumber(total + pnl3),
-              id: placeBetValues?.runnerId[2],
-            },
-          ]);
         }
       }
     }
@@ -545,7 +458,7 @@ const BetSlip = ({
                                 {placeBetValues?.name[0]}
                               </strong>
                               <span
-                                  style={{fontSize:'10px',textAlign:'right'}}
+                                style={{ fontSize: "10px", textAlign: "right" }}
                                 _ngcontent-ng-c2459892542=""
                                 className={`${
                                   placeBetValues?.pnl &&
@@ -557,8 +470,9 @@ const BetSlip = ({
                                 {placeBetValues?.pnl[0]}
                               </span>
                               <span
-                              style={{fontSize:'10px',textAlign:'right'}}
-                              id="oddOne">
+                                style={{ fontSize: "10px", textAlign: "right" }}
+                                id="oddOne"
+                              >
                                 {placeBetValues?.back &&
                                   oddStake != 0 &&
                                   totalSize?.toString().length > 0 &&
@@ -607,7 +521,7 @@ const BetSlip = ({
                               </strong>
 
                               <span
-                                    style={{fontSize:'10px',textAlign:'right'}}
+                                style={{ fontSize: "10px", textAlign: "right" }}
                                 className={`${
                                   placeBetValues?.pnl &&
                                   placeBetValues?.pnl[1] > 0
@@ -619,9 +533,10 @@ const BetSlip = ({
                                   placeBetValues?.pnl[1]}
                               </span>
 
-                              <span 
-                                 style={{fontSize:'10px',textAlign:'right'}}
-                              id="oddTwo">
+                              <span
+                                style={{ fontSize: "10px", textAlign: "right" }}
+                                id="oddTwo"
+                              >
                                 {placeBetValues?.back &&
                                   oddStake !== 0 &&
                                   totalSize?.toString().length > 0 &&
@@ -671,7 +586,10 @@ const BetSlip = ({
                                 </strong>
 
                                 <span
-                                   style={{fontSize:'10px',textAlign:'right'}}
+                                  style={{
+                                    fontSize: "10px",
+                                    textAlign: "right",
+                                  }}
                                   className={`${
                                     placeBetValues?.pnl &&
                                     placeBetValues?.pnl[1] > 0
@@ -684,8 +602,12 @@ const BetSlip = ({
                                 </span>
 
                                 <span
-                                  style={{fontSize:'10px',textAlign:'right'}}
-                                id="oddThree">
+                                  style={{
+                                    fontSize: "10px",
+                                    textAlign: "right",
+                                  }}
+                                  id="oddThree"
+                                >
                                   {placeBetValues?.back &&
                                     oddStake !== 0 &&
                                     totalSize?.toString().length > 0 &&

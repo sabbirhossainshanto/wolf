@@ -545,6 +545,7 @@ const BetSlip = ({
                                 {placeBetValues?.name[0]}
                               </strong>
                               <span
+                                  style={{fontSize:'10px',textAlign:'right'}}
                                 _ngcontent-ng-c2459892542=""
                                 className={`${
                                   placeBetValues?.pnl &&
@@ -555,7 +556,9 @@ const BetSlip = ({
                               >
                                 {placeBetValues?.pnl[0]}
                               </span>
-                              <span id="oddOne">
+                              <span
+                              style={{fontSize:'10px',textAlign:'right'}}
+                              id="oddOne">
                                 {placeBetValues?.back &&
                                   oddStake != 0 &&
                                   totalSize?.toString().length > 0 &&
@@ -575,7 +578,7 @@ const BetSlip = ({
                                   oddStakeLay1}
                                 {placeBetValues?.lay &&
                                   oddStake !== 0 &&
-                                  totalSize?.length > 0 &&
+                                  totalSize?.toString().length > 0 &&
                                   selectionId.includes(".1") &&
                                   oddStake}
 
@@ -604,6 +607,7 @@ const BetSlip = ({
                               </strong>
 
                               <span
+                                    style={{fontSize:'10px',textAlign:'right'}}
                                 className={`${
                                   placeBetValues?.pnl &&
                                   placeBetValues?.pnl[1] > 0
@@ -615,7 +619,9 @@ const BetSlip = ({
                                   placeBetValues?.pnl[1]}
                               </span>
 
-                              <span id="oddTwo">
+                              <span 
+                                 style={{fontSize:'10px',textAlign:'right'}}
+                              id="oddTwo">
                                 {placeBetValues?.back &&
                                   oddStake !== 0 &&
                                   totalSize?.toString().length > 0 &&
@@ -665,6 +671,7 @@ const BetSlip = ({
                                 </strong>
 
                                 <span
+                                   style={{fontSize:'10px',textAlign:'right'}}
                                   className={`${
                                     placeBetValues?.pnl &&
                                     placeBetValues?.pnl[1] > 0
@@ -676,7 +683,9 @@ const BetSlip = ({
                                     placeBetValues?.pnl[2]}
                                 </span>
 
-                                <span id="oddThree">
+                                <span
+                                  style={{fontSize:'10px',textAlign:'right'}}
+                                id="oddThree">
                                   {placeBetValues?.back &&
                                     oddStake !== 0 &&
                                     totalSize?.toString().length > 0 &&

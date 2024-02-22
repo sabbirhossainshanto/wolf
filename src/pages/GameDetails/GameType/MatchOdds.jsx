@@ -7,9 +7,9 @@ const MatchOdds = ({
   setOpenBetSlip,
   setPlaceBetValues,
   exposer,
-  setShowLoginWarn
+  setShowLoginWarn,
 }) => {
-  const {token} = useContextState()
+  const { token } = useContextState();
   let pnlBySelection;
   if (exposer?.pnlBySelection) {
     const obj = exposer?.pnlBySelection;
@@ -18,9 +18,7 @@ const MatchOdds = ({
 
   return (
     <>
-    
       {match_odd?.map((games, i) => {
-    
         return (
           <div key={i} _ngcontent-ng-c942213636="" className="ng-star-inserted">
             <div

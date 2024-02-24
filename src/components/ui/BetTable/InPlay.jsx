@@ -6,7 +6,6 @@ const InPlay = ({ keys, data }) => {
   const navigateGameList = (keys) => {
     navigate(`/game-details/${data[keys]?.eventTypeId}/${keys}`);
   };
-
   return (
     <>
       {data[keys]?.inPlay === 1 && (

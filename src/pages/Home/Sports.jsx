@@ -10,6 +10,8 @@ import InPlay from "../../components/ui/BetTable/InPlay";
 const Sports = () => {
   const { sportsType, token } = useContextState();
   const [games, setGames] = useState(null);
+  const [categories, setCategories] = useState([]);
+  const eventName = { 4: "Cricket", 1: "Football", 2: "Tennis" };
   /* Get game events */
   useEffect(() => {
     const gameData = async () => {
@@ -25,88 +27,152 @@ const Sports = () => {
       }
     };
     gameData();
-    if (sportsType === 4 || sportsType === 1 || sportsType === 2) {
+    if (
+      sportsType === 0 ||
+      sportsType === 4 ||
+      sportsType === 1 ||
+      sportsType === 2
+    ) {
       const intervalId = setInterval(gameData, API.interval);
       return () => clearInterval(intervalId);
     }
   }, [sportsType]);
 
-  
+
+  useEffect(() => {
+    if (games) {
+      const categories = Array.from(
+        new Set(Object.values(games).map((item) => item.eventTypeId))
+      );
+
+      setCategories(categories);
+    }
+  }, [games]);
+
+  if (!games) {
+    return;
+  }
 
   return (
     <div _ngcontent-ng-c943649379="" className="cricket-tab ng-star-inserted">
-      <div _ngcontent-ng-c943649379="" className="game-play-heading">
-        <h2 _ngcontent-ng-c943649379="">
-          {sportsType === 4 ? "Cricket" : ""}
-          {sportsType === 1 ? "Football" : ""}
-          {sportsType === 2 ? "Tennis" : ""}
-        </h2>
+      {sportsType === 0 ? (
+        categories?.map((category) => {
+          const filteredData = Object.entries(games)
+            .filter(([, value]) => value.eventTypeId === category)
+            .reduce((obj, [key, value]) => {
+              obj[key] = value;
+              return obj;
+            }, {});
+          return (
+            <>
+              <div _ngcontent-ng-c943649379="" className="game-play-heading">
+                <h2 _ngcontent-ng-c943649379="">
+                  {eventName[category]}
+                </h2>
 
-        <a
-          _ngcontent-ng-c943649379=""
-          routerlinkactive="active-link"
-          className="view-all-link ng-star-inserted"
-          href=""
-        >
-          View All
-        </a>
-      </div>
-      {games && Object.values(games).length > 0 && sportsType
-        ? Object.keys(games)
-            .sort((keyA, keyB) => games[keyA].sort - games[keyB].sort)
-            .map((key, index) => <InPlay key={index} keys={key} data={games} />)
-        : null}
+                <a
+                  _ngcontent-ng-c943649379=""
+                  routerlinkactive="active-link"
+                  className="view-all-link ng-star-inserted"
+                  href=""
+                >
+                  View All
+                </a>
+              </div>
+              {games &&
+              Object.values(games).length > 0 &&
+              (sportsType || sportsType === 0)
+                ? Object.keys(filteredData)
+                    .sort((keyA, keyB) => games[keyA].sort - games[keyB].sort)
+                    .map((key, index) => {
+                      return <InPlay key={index} keys={key} data={games} />;
+                    })
+                : null}
+            </>
+          );
+        })
+      ) : (
+        <>
+          <div _ngcontent-ng-c943649379="" className="game-play-heading">
+            <h2 _ngcontent-ng-c943649379="">
+              {sportsType === 4 ? "Cricket" : ""}
+              {sportsType === 1 ? "Football" : ""}
+              {sportsType === 2 ? "Tennis" : ""}
+            </h2>
 
-      <div
-        _ngcontent-ng-c943649379=""
-        className="cricket-table notranslate ng-star-inserted"
-      >
-        <div _ngcontent-ng-c943649379="" className="table-header">
-          <h3 _ngcontent-ng-c943649379="" className="card-title">
-            <mat-icon
+            {/* <a
               _ngcontent-ng-c943649379=""
-              role="img"
-              className="mat-icon notranslate material-icons mat-ligature-font mat-icon-no-color"
-              aria-hidden="true"
-              data-mat-icon-type="font"
+              routerlinkactive="active-link"
+              className="view-all-link ng-star-inserted"
+              href=""
             >
-              <GoClock />
-            </mat-icon>
-            Upcoming Matches
-          </h3>
-          <div _ngcontent-ng-c943649379="" className="lay-back-wrap">
-            {/* <h3 _ngcontent-ng-c943649379="" className="back-bg">
+              View All
+            </a> */}
+          </div>
+          {games &&
+          Object.values(games).length > 0 &&
+          (sportsType || sportsType === 0)
+            ? Object.keys(games)
+                .sort((keyA, keyB) => games[keyA].sort - games[keyB].sort)
+                .map((key, index) => {
+                  return <InPlay key={index} keys={key} data={games} />;
+                })
+            : null}
+        </>
+      )}
+      
+      {sportsType !== 0 && (
+        <div
+          _ngcontent-ng-c943649379=""
+          className="cricket-table notranslate ng-star-inserted"
+        >
+          <div _ngcontent-ng-c943649379="" className="table-header">
+            <h3 _ngcontent-ng-c943649379="" className="card-title">
+              <mat-icon
+                _ngcontent-ng-c943649379=""
+                role="img"
+                className="mat-icon notranslate material-icons mat-ligature-font mat-icon-no-color"
+                aria-hidden="true"
+                data-mat-icon-type="font"
+              >
+                <GoClock />
+              </mat-icon>
+              Upcoming Matches
+            </h3>
+            <div _ngcontent-ng-c943649379="" className="lay-back-wrap">
+              {/* <h3 _ngcontent-ng-c943649379="" className="back-bg">
               Back
             </h3>
             <h3 _ngcontent-ng-c943649379="" className="lay-bg">
               Lay
             </h3> */}
+            </div>
+          </div>
+          <div _ngcontent-ng-c943649379="" className="table-body">
+            {games && Object.values(games).length > 0 && sportsType === 4
+              ? Object.keys(games)
+                  .sort((keyA, keyB) => games[keyA].sort - games[keyB].sort)
+                  .map((key, index) => (
+                    <BetTable key={index} keys={key} data={games} />
+                  ))
+              : null}
+            {games && Object.values(games).length > 0 && sportsType === 2
+              ? Object.keys(games)
+                  .sort((keyA, keyB) => games[keyA].sort - games[keyB].sort)
+                  .map((key, index) => (
+                    <BetTable key={index} keys={key} data={games} />
+                  ))
+              : null}
+            {games && Object.values(games).length > 0 && sportsType === 1
+              ? Object.keys(games)
+                  .sort((keyA, keyB) => games[keyA].sort - games[keyB].sort)
+                  .map((key, index) => (
+                    <BetTable key={index} keys={key} data={games} />
+                  ))
+              : null}
           </div>
         </div>
-        <div _ngcontent-ng-c943649379="" className="table-body">
-          {games && Object.values(games).length > 0 && sportsType === 4
-            ? Object.keys(games)
-                .sort((keyA, keyB) => games[keyA].sort - games[keyB].sort)
-                .map((key, index) => (
-                  <BetTable key={index} keys={key} data={games} />
-                ))
-            : null}
-          {games && Object.values(games).length > 0 && sportsType === 2
-            ? Object.keys(games)
-                .sort((keyA, keyB) => games[keyA].sort - games[keyB].sort)
-                .map((key, index) => (
-                  <BetTable key={index} keys={key} data={games} />
-                ))
-            : null}
-          {games && Object.values(games).length > 0 && sportsType === 1
-            ? Object.keys(games)
-                .sort((keyA, keyB) => games[keyA].sort - games[keyB].sort)
-                .map((key, index) => (
-                  <BetTable key={index} keys={key} data={games} />
-                ))
-            : null}
-        </div>
-      </div>
+      )}
     </div>
   );
 };

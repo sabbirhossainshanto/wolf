@@ -3,7 +3,7 @@ import { API, Settings } from "../api";
 export const StateContext = createContext(null);
 
 const StateProvider = ({ children }) => {
-  const [sportsType, setSportsType] = useState(4);
+  const [sportsType, setSportsType] = useState(0);
   const [showSidebar, setShowSidebar] = useState(false);
   const [token, setToken] = useState("");
   const [showLogin, setShowLogin] = useState(false);

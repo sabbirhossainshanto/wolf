@@ -22,6 +22,7 @@ const Navbar = () => {
     setGetToken,
     isCheckedBonusToken,
     logo,
+    setSportsType
   } = useContextState();
   const location = useLocation();
   const navigate = useNavigate();
@@ -136,7 +137,9 @@ const Navbar = () => {
                   }}
                 />
               )}
-              <Link to="/">
+              <Link
+              onClick={()=> setSportsType(0)}
+              to="/">
                 <img
                   style={{
                     height: "20px",

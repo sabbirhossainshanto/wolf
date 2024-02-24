@@ -72,9 +72,7 @@ const Sidebar = () => {
       {warningMessage && (
         <Warning message={warningMessage} setMessage={setWarningMessage} />
       )}
-      {showClaimWarn && <ClaimWarning
-      setShowClaimWarn={setShowClaimWarn}
-      />}
+      {showClaimWarn && <ClaimWarning setShowClaimWarn={setShowClaimWarn} />}
       <div
         className="mat-drawer-backdrop ng-star-inserted"
         style={{ visibility: `${showSidebar ? "visible" : "hidden"}` }}
@@ -211,8 +209,9 @@ const Sidebar = () => {
                                     _ngcontent-ng-c967272132=""
                                     className="btn secondary-btn"
                                     disabled={
+                                      bonusBalanceData &&
                                       bonusBalanceData?.claimBonus < 100
-                                        ? false
+                                        ? true
                                         : false
                                     }
                                   >

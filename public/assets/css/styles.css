@@ -7291,7 +7291,7 @@ screen and (-ms-high-contrast: none) {
 }
 
 .page-body[_ngcontent-ng-c943649379] .pagetab-body[_ngcontent-ng-c943649379] .pagetab-content[_ngcontent-ng-c943649379] .cricket-tab[_ngcontent-ng-c943649379] .cricket-table[_ngcontent-ng-c943649379] .table-body[_ngcontent-ng-c943649379] .table-item[_ngcontent-ng-c943649379] .teamlist-info[_ngcontent-ng-c943649379] .team-title[_ngcontent-ng-c943649379] {
-    text-transform: capitalize;
+    /* text-transform: capitalize; */
     font-size: 10px;
     font-family: open_semiBold;
     line-height: 1;

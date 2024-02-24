@@ -12,6 +12,8 @@ const StateProvider = ({ children }) => {
   const [showEditStake, setShowEditStake] = useState(false);
   const [placeBetValues, setPlaceBetValues] = useState({});
   const [isCheckedBonusToken, setIsCheckedBonusToken] = useState(false);
+  const [successClaimMsg, setSuccessClaimMsg] = useState("");
+  const [errClaimMsg, setErrClaimMsg] = useState("");
   const [logo, setLogo] = useState("");
 
   useEffect(() => {
@@ -64,7 +66,9 @@ const StateProvider = ({ children }) => {
     setPlaceBetValues,
     isCheckedBonusToken,
     setIsCheckedBonusToken,
-    logo, setLogo
+    logo, setLogo,
+    successClaimMsg, setSuccessClaimMsg,
+    errClaimMsg, setErrClaimMsg
   };
   return (
     <StateContext.Provider value={stateInfo}>{children}</StateContext.Provider>

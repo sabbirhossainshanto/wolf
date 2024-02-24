@@ -11,7 +11,7 @@ const ClaimWarning = ({ setShowClaimWarn }) => {
   useCloseModalClickOutside(warningRef, () => {
     setShowClaimWarn(false);
   });
-  const { token } = useContextState();
+  const { token, setSuccessClaimMsg, setErrClaimMsg } = useContextState();
   const handleBonusToMainWallet = async () => {
     const generatedToken = UseTokenGenerator();
     const encryptedData = UseEncryptData(generatedToken);
@@ -21,7 +21,13 @@ const ClaimWarning = ({ setShowClaimWarn }) => {
       },
     });
     const result = res?.data;
-    console.log(result);
+    if (result?.success) {
+      setShowClaimWarn(false);
+      setSuccessClaimMsg(result?.result?.message);
+    } else {
+      setShowClaimWarn(false);
+      setErrClaimMsg(result?.error?.errorMessage);
+    }
   };
 
   return (

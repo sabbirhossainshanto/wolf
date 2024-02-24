@@ -12,7 +12,7 @@ import { Settings } from "../../api";
 import { handleLogOut } from "../../utils/handleLogOut";
 
 const Main = () => {
-  const { showEditStake, setShowEditStake } = useContextState();
+  const { showEditStake, setShowEditStake,successClaimMsg,setSuccessClaimMsg,errClaimMsg, setErrClaimMsg } = useContextState();
   const [successEditStake, setSuccessEditStake] = useState("");
   const navigate = useNavigate();
   const disabledDevtool = Settings.disabledDevtool;
@@ -43,6 +43,20 @@ const Main = () => {
           className="mat-drawer-container mat-sidenav-container sidenav-container"
         >
           {/*   <!-- mennu start--> */}
+          {successClaimMsg && (
+            <Success 
+            message={successClaimMsg}
+            setMessage={setSuccessClaimMsg}
+            success={true}
+            />
+          )}
+          {errClaimMsg && (
+            <Success 
+            message={errClaimMsg}
+            setMessage={setErrClaimMsg}
+            success={false}
+            />
+          )}
 
           <Sidebar />
           {/*   <!-- header start--> */}

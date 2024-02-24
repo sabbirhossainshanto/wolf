@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import BetSlip from "../../components/modal/BetSlip";
 import useContextState from "../../hooks/useContextState";
@@ -6,29 +6,54 @@ import Success from "../../components/ui/Notification/Success";
 import useCurrentBets from "../../hooks/useCurrentBets";
 import useExposer from "../../hooks/useExposer";
 import useIFrame from "../../hooks/useIFrame";
-import useGameDetails from "../../hooks/useGameDetails";
+// import useGameDetails from "../../hooks/useGameDetails";
 import Tabs from "./Tabs";
 import OpenBetsTab from "./OpenBetsTab";
 import MarketTab from "./MarketTab";
 import Warning from "../../components/ui/Notification/Warning";
+import axios from "axios";
+import { API } from "../../api";
 /* eslint-disable react/no-unknown-property */
 const GameDetails = () => {
+  const [loading, setLoading] = useState(true);
+  const [data, setData] = useState([]);
   const { eventId, eventTypeId } = useParams();
   const [openBetSlip, setOpenBetSlip] = useState(false);
-  const { placeBetValues } = useContextState();
+  const { placeBetValues, token } = useContextState();
   const [successMessage, setSuccessMessage] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
   const [tabs, setTabs] = useState("market");
   const { myBets, refetchCurrentBets } = useCurrentBets(eventId);
   const { exposer, refetchExposure } = useExposer(eventId);
 
-  const { data } = useGameDetails(eventTypeId, eventId);
+  // const { data} = useGameDetails(eventTypeId, eventId);
   const [showIFrame, setShowIFrame] = useState(true);
   const [showScore, setShowScore] = useState(false);
   const [match_odds, setMatch_odds] = useState([]);
   const hasVideo = match_odds?.length > 0 && match_odds[0]?.hasVideo;
   const { iFrameUrl } = useIFrame(eventTypeId, eventId, hasVideo);
   const [showLoginWarn, setShowLoginWarn] = useState("");
+
+  useEffect(() => {
+    const getGameDetails = async () => {
+      const res = await axios.get(`${API.odds}/${eventTypeId}/${eventId}`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+      const data = res.data;
+      if (data.success) {
+        setLoading(false);
+        setData(data?.result);
+      }
+    };
+    getGameDetails();
+  }, [eventId, eventTypeId, token]);
+
+
+  if (loading) {
+    return;
+  }
 
   return (
     <>

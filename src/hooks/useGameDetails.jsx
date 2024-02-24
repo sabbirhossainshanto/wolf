@@ -19,7 +19,7 @@ const useGameDetails = (eventTypeId, eventId) => {
         return data?.result;
       }
     },
-    refetchInterval: API.interval,
+    refetchInterval: 600,
     
   });
   return { data,refetchGame };

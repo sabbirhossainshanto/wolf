@@ -27,6 +27,7 @@ const Sports = () => {
       }
     };
     gameData();
+    /* Refetch after 600 millisecond */
     if (
       sportsType === 0 ||
       sportsType === 4 ||
@@ -38,11 +39,15 @@ const Sports = () => {
     }
   }, [sportsType]);
 
+
+  /* get category for games */
   useEffect(() => {
     if (games) {
+      /* create a array with all unique category for games */
       const categories = Array.from(
         new Set(Object.values(games).map((item) => item.eventTypeId))
       );
+      /* Sort the category for cricket > tennis > football */
       const sortedCategories = categories.sort((a, b) => {
         const order = { 4: 0, 2: 1, 1: 2 };
         return order[a] - order[b];
@@ -59,6 +64,7 @@ const Sports = () => {
     <div _ngcontent-ng-c943649379="" className="cricket-tab ng-star-inserted">
       {sportsType === 0 ? (
         categories?.map((category) => {
+          /* filter games by category  */
           const filteredData = Object.entries(games)
             .filter(([, value]) => value.eventTypeId === category)
             .reduce((obj, [key, value]) => {

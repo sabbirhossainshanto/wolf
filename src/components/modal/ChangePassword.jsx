@@ -15,6 +15,7 @@ const ChangePassword = ({
   setSuccessMessage,
 }) => {
   const { token, setGetToken } = useContextState();
+  /* Close modal click outside */
   const changePassRef = useRef();
   useCloseModalClickOutside(changePassRef, () => {
     setShowChangePassModal(false);
@@ -30,7 +31,7 @@ const ChangePassword = ({
   } = useForm();
   const navigate = useNavigate();
 
-  /* Change password */
+  /* Change password function */
   const onSubmit = ({ password, newPassword, newPasswordConfirm }) => {
     const generatedToken = UseTokenGenerator();
     const encryptedData = UseEncryptData({
@@ -49,14 +50,18 @@ const ChangePassword = ({
       .then((res) => res.json())
       .then((data) => {
         if (data.success) {
+          /* After success showing success message */
           setSuccessMessage(data?.result?.message);
+          /* CLose modal */
           setShowChangePassModal(false);
+          /* Logout and navigate home */
           setTimeout(() => {
             handleLogOut()
             setGetToken((prev) => !prev);
             navigate("/");
           }, 1000);
         } else {
+          /* Showing error message during change password */
           setErrorMessage(data?.error?.oldPassword[0]?.description);
         }
       });

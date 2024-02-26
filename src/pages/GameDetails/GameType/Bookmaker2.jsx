@@ -11,6 +11,7 @@ const Bookmaker2 = ({
   setShowLoginWarn,
 }) => {
   const { token } = useContextState();
+  /* exposure */
   let pnlBySelection;
   if (exposer?.pnlBySelection) {
     const obj = exposer?.pnlBySelection;

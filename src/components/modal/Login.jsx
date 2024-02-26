@@ -10,8 +10,9 @@ import { API } from "../../api";
 import Warning from "../ui/Notification/Warning";
 import useContextState from "../../hooks/useContextState";
 const Login = ({ setShowLogin, setErrorLogin, errorLogin, setGetToken }) => {
-  const {logo} = useContextState()
+  const { logo } = useContextState();
   const { register, handleSubmit } = useForm();
+  /* Close modal click out side */
   const loginRef = useRef();
   useCloseModalClickOutside(loginRef, () => {
     setShowLogin(false);
@@ -41,27 +42,27 @@ const Login = ({ setShowLogin, setErrorLogin, errorLogin, setGetToken }) => {
         if (data.success) {
           /* Set token to localeStorage */
           localStorage.setItem("token", data.result.token);
+          /* Set bonus token in locale storage */
           localStorage.setItem("bonusToken", data?.result?.bonusToken);
           /* Set login name to locale storage */
           localStorage.setItem("loginName", data.result.loginName);
           const buttonValue = JSON.stringify(data.result.buttonValue.game);
           /* set button value to locale storage */
           localStorage.setItem("buttonValue", buttonValue);
-          const modal = [
-            { banner: data?.result?.banner },
-            { bannerTitle: data?.result?.bannerTitle },
-          ];
-          /* set modal picture to locale storage for the open modal in home page */
-          localStorage.setItem("modal", JSON.stringify(modal));
+
+          /* if in locale storage token and login name available and  data?.result?.changePassword === false */
           if (
             localStorage.getItem("token") &&
             localStorage.getItem("loginName") &&
             data?.result?.changePassword === false
           ) {
+            /* close modal */
             setShowLogin(false);
+            /* get current token from locale storage */
             setGetToken((prev) => !prev);
           }
         } else {
+          /* Show error message during login failed */
           setErrorLogin(data?.error);
         }
       });
@@ -92,21 +93,19 @@ const Login = ({ setShowLogin, setErrorLogin, errorLogin, setGetToken }) => {
         localStorage.setItem("loginName", data.result.loginName);
         /* set button value to locale storage */
         const buttonValue = JSON.stringify(data.result.buttonValue.game);
-        /* set modal picture to locale storage for the open modal in home page */
         localStorage.setItem("buttonValue", buttonValue);
-        const modal = [
-          { banner: data?.result?.banner },
-          { bannerTitle: data?.result?.bannerTitle },
-        ];
-        localStorage.setItem("modal", JSON.stringify(modal));
+        /* if in locale storage token and login name available and  data?.result?.changePassword === false */
         if (
           localStorage.getItem("token") &&
           localStorage.getItem("loginName") &&
           data?.result?.changePassword === false
         ) {
+          /* close modal */
           setShowLogin(false);
+          /* get current token from locale storage */
           setGetToken((prev) => !prev);
         } else {
+          /* Show error message during login failed */
           setErrorLogin(data?.error);
         }
       });
@@ -201,7 +200,7 @@ const Login = ({ setShowLogin, setErrorLogin, errorLogin, setGetToken }) => {
                               width: "25px",
                               border: "none",
                               cursor: "pointer",
-                              color:'black'
+                              color: "black",
                             }}
                           >
                             <IoClose
@@ -217,6 +216,9 @@ const Login = ({ setShowLogin, setErrorLogin, errorLogin, setGetToken }) => {
                         <div
                           _ngcontent-ng-c2806737617=""
                           className="body-section ng-star-inserted"
+                          style={{
+                            paddingBottom: "20px",
+                          }}
                         >
                           <form
                             onSubmit={handleSubmit(onSubmit)}
@@ -230,7 +232,9 @@ const Login = ({ setShowLogin, setErrorLogin, errorLogin, setGetToken }) => {
                               <p
                                 _ngcontent-ng-c2806737617=""
                                 className="form-title"
-                              ></p>
+                              >
+                                Username
+                              </p>
                               <div
                                 _ngcontent-ng-c2806737617=""
                                 className="form-list"
@@ -271,7 +275,12 @@ const Login = ({ setShowLogin, setErrorLogin, errorLogin, setGetToken }) => {
                                   </div>
                                 </div>
                               </div>
-
+                              <p
+                                _ngcontent-ng-c2806737617=""
+                                className="form-title"
+                              >
+                                Password
+                              </p>
                               <div
                                 _ngcontent-ng-c2806737617=""
                                 className="form-list"

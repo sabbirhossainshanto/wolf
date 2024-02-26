@@ -1,6 +1,7 @@
 import useCurrentBets from "../../hooks/useCurrentBets";
 /* eslint-disable react/no-unknown-property */
 const ActiveBets = () => {
+  /* get my bets */
   const { myBets } = useCurrentBets();
 
   return (

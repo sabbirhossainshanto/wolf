@@ -7,6 +7,7 @@ import useGoCasino from "../../hooks/useGoCasino";
 import handleOpenWarningModal from "../../utils/handleOpenWarningModal";
 
 const GoCasino = () => {
+  /* get aura casino (go casino) */
   const { data } = useGoCasino();
   const { setSportsType, token } = useContextState();
   const [showWarning, setShowWarning] = useState(false);

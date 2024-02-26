@@ -6,6 +6,7 @@ import AccountStatementModal from "../../components/modal/AccountStatementModal"
 const DepositStatement = () => {
   const [showModal, setShowModal] = useState(false);
   const [image, setImage] = useState("");
+  /* get deposit data */
   const { accountStatement } = useDepositStatement();
 
   return (

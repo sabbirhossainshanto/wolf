@@ -5,10 +5,12 @@ import UseEncryptData from "./UseEncryptData";
 import UseTokenGenerator from "./UseTokenGenerator";
 import useContextState from "./useContextState";
 
+/* My market api */
 const useMyMarket = () => {
   const { token, tokenLoading } = useContextState();
   const { data: myMarket, refetch: refetchMyMarket } = useQuery({
     queryKey: ["myMarket"],
+    /* enable when token available */
     enabled: !tokenLoading,
     queryFn: async () => {
       const generatedToken = UseTokenGenerator();

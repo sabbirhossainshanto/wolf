@@ -5,11 +5,13 @@ import useMyMarket from "../../hooks/useMyMarket";
 import { useNavigate } from "react-router-dom";
 /* eslint-disable react/no-unknown-property */
 const MyMarket = ({ setShowMyMarket }) => {
+  /* Close modal click out side */
   const marketRef = useRef();
   useCloseModalClickOutside(marketRef, () => {
     setShowMyMarket(false);
   });
   const navigate = useNavigate();
+  /* Get my market data */
   const { myMarket } = useMyMarket();
   return (
     <div className="cdk-overlay-container" style={{ zIndex: "5000" }}>

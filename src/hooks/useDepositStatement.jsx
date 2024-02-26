@@ -4,11 +4,13 @@ import UseEncryptData from "./UseEncryptData";
 import axios from "axios";
 import { API } from "../api";
 import useContextState from "./useContextState";
-
+/*  deposit statement api */
 const useDepositStatement = () => {
+  /* from date seven days earlier */
   const fromDate = new Date(new Date().setDate(new Date().getDate() - 7))
     .toISOString()
     .split("T")[0];
+    /* current date */
   const toDate = new Date().toISOString().split("T")[0];
   const { token, tokenLoading } = useContextState();
 

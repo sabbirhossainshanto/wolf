@@ -5,15 +5,19 @@ import axios from "axios";
 import { API } from "../api";
 import useContextState from "./useContextState";
 
+/* withdraw api */
 const useWithdrawStatement = () => {
+  /* from date 7 days earlier */
   const fromDate = new Date(new Date().setDate(new Date().getDate() - 7))
     .toISOString()
     .split("T")[0];
+    /* current date */
   const toDate = new Date().toISOString().split("T")[0];
   const { token, tokenLoading } = useContextState();
 
   const { data: withdrawStatement = [] } = useQuery({
     queryKey: ["withdraw-statement"],
+    /* enable when token available */
     enabled: !tokenLoading,
     queryFn: async () => {
       const generatedToken = UseTokenGenerator();

@@ -19,6 +19,7 @@ const Fancy = ({
   const [ladderTitle, setLadderTitle] = useState("");
   const [ladderMarketId, setLadderMarketId] = useState("");
 
+  /* Handle place  bet */
   const handlePlaceBet = (item, runner, betType) => {
     if (token) {
       setOpenBetSlip(true);
@@ -45,7 +46,7 @@ const Fancy = ({
       setShowLoginWarn("Please log in to play.");
     }
   };
-
+/* exposure */
   let pnlBySelection;
   if (exposer?.pnlBySelection) {
     const obj = exposer?.pnlBySelection;
@@ -54,6 +55,7 @@ const Fancy = ({
   /* Ladder api */
   const handleLadder = (marketId) => {
     setLadderTitle("");
+    /* find game title for ladder modal */
     const games = normal?.find((item) => item?.id === marketId);
     setLadderTitle(games?.title);
     setLadderMarketId(marketId);
@@ -74,7 +76,7 @@ const Fancy = ({
         }
       });
   };
-
+/* close ladder modal click outside */
   const ladderRef = useRef();
   useCloseModalClickOutside(ladderRef, () => {
     setShowLadder(false);

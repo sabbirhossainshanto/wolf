@@ -4,11 +4,12 @@ import axios from "axios";
 import UseTokenGenerator from "./UseTokenGenerator";
 import UseEncryptData from "./UseEncryptData";
 import { API } from "../api";
-
+/* Iframe  api  */
 const useIFrame = (eventTypeId, eventId, hasVideo) => {
   const { token } = useContextState();
   const { data: iFrameUrl } = useQuery({
     queryKey: ["iframeVideo"],
+    /* match odds hasvideo = true then enable */
     enabled: hasVideo,
     queryFn: async () => {
       const generatedToken = UseTokenGenerator();

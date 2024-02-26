@@ -17,23 +17,29 @@ import { API, Settings } from "../../api";
 const GameDetails = () => {
   const [loading, setLoading] = useState(true);
   const [data, setData] = useState([]);
+  /* get params */
   const { eventId, eventTypeId } = useParams();
   const [openBetSlip, setOpenBetSlip] = useState(false);
   const { placeBetValues, token } = useContextState();
   const [successMessage, setSuccessMessage] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
   const [tabs, setTabs] = useState("market");
+  /* get my bets */
   const { myBets, refetchCurrentBets } = useCurrentBets(eventId);
+  /* get exposure */
   const { exposer, refetchExposure } = useExposer(eventId);
 
   // const { data} = useGameDetails(eventTypeId, eventId);
   const [showIFrame, setShowIFrame] = useState(true);
   const [showScore, setShowScore] = useState(false);
   const [match_odds, setMatch_odds] = useState([]);
+  /* has video boolean for iframe api enable or not*/
   const hasVideo = match_odds?.length > 0 && match_odds[0]?.hasVideo;
+  /* get iframe */
   const { iFrameUrl } = useIFrame(eventTypeId, eventId, hasVideo);
   const [showLoginWarn, setShowLoginWarn] = useState("");
 
+  /* get game details */
   useEffect(() => {
     const getGameDetails = async () => {
       const res = await axios.get(`${API.odds}/${eventTypeId}/${eventId}`, {
@@ -48,6 +54,7 @@ const GameDetails = () => {
       }
     };
     getGameDetails();
+    /* refetch after some millisecond */
     const intervalId = setInterval(getGameDetails, Settings.interval);
     return () => clearInterval(intervalId);
   }, [eventId, eventTypeId, token]);
@@ -60,6 +67,7 @@ const GameDetails = () => {
   return (
     <>
       <div _ngcontent-ng-c942213636="" className="page-body">
+        {/* Warning modal */}
         {showLoginWarn && (
           <Warning message={showLoginWarn} setMessage={setShowLoginWarn} />
         )}

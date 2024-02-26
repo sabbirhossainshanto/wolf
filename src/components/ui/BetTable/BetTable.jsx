@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 /* eslint-disable react/no-unknown-property */
 const BetTable = ({ data, keys }) => {
   const navigate = useNavigate();
+  /* Navigate to game details page */
   const navigateGameList = (keys) => {
     navigate(`/game-details/${data[keys]?.eventTypeId}/${keys}`);
   };

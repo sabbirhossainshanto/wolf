@@ -1,3 +1,4 @@
+/* Random token generator */
 const UseTokenGenerator = () => {
   const currentTimestamp = Math.floor(new Date().getTime() / 1000);
   const multipliedTimestamp = currentTimestamp * 247;

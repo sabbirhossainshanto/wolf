@@ -9,6 +9,7 @@ const useCurrentBets = (eventId) => {
   /* Fetch Current Bets */
   const { data: myBets = [], refetch: refetchCurrentBets } = useQuery({
     queryKey: ["currentBets"],
+    /* Enable when  token available */
     enabled: !tokenLoading,
     queryFn: async () => {
       try {

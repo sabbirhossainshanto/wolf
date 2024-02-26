@@ -7,11 +7,13 @@ import UseEncryptData from "../../hooks/UseEncryptData";
 import axios from "axios";
 import { API } from "../../api";
 const WarningCondition = ({ setShowWarning, gameId }) => {
+  /* Close modal click out side */
   const warningRef = useRef();
   useCloseModalClickOutside(warningRef, () => {
     setShowWarning(false);
   });
   const { token, setShowLogin } = useContextState();
+  /* Handle navigate casino video in new tab */
   const handleNavigateNewTab = async () => {
     const generatedToken = UseTokenGenerator();
     const encryptedData = UseEncryptData({
@@ -24,7 +26,9 @@ const WarningCondition = ({ setShowWarning, gameId }) => {
       headers: { Authorization: `Bearer ${token}` },
     });
     const data = res?.data;
+    /* Navigate new tab */
     window.open(data?.gameUrl, "_blank");
+    /* Close warning modal */
     setShowWarning(false);
   };
   return (

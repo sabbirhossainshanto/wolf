@@ -4,6 +4,7 @@ import { useRef } from "react";
 import useCloseModalClickOutside from "../../hooks/useCloseModalClickOutside";
 
 const AccountStatementModal = ({ setShowModal,image }) => {
+  /* Close modal click outside */
   const modalRef = useRef();
   useCloseModalClickOutside(modalRef, () => {
     setShowModal(false);

@@ -16,7 +16,8 @@ const Main = () => {
   const [successEditStake, setSuccessEditStake] = useState("");
   const navigate = useNavigate();
   const disabledDevtool = Settings.disabledDevtool;
-  /* Disabled devtool */
+
+  /* Disabled devtool based on settings */
   useEffect(() => {
     if (disabledDevtool) {
       disableDevtool({
@@ -43,6 +44,7 @@ const Main = () => {
           className="mat-drawer-container mat-sidenav-container sidenav-container"
         >
           {/*   <!-- mennu start--> */}
+          {/* After successfully transfer claim bonus to main wallet success message */}
           {successClaimMsg && (
             <Success 
             message={successClaimMsg}
@@ -50,6 +52,7 @@ const Main = () => {
             success={true}
             />
           )}
+            {/* Error message during transfer claim bonus to main wallet*/}
           {errClaimMsg && (
             <Success 
             message={errClaimMsg}
@@ -60,12 +63,14 @@ const Main = () => {
 
           <Sidebar />
           {/*   <!-- header start--> */}
+          {/* Edit stake modal */}
           {showEditStake && (
             <EditStake
               setShowEditStake={setShowEditStake}
               setSuccessEditStake={setSuccessEditStake}
             />
           )}
+          {/* Success message after edit stake */}
           {successEditStake && (
             <Success
               message={successEditStake}

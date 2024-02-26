@@ -10,15 +10,21 @@ const Footer = () => {
   const navigate = useNavigate();
   const { setGetToken, token, setShowLogin } = useContextState();
   const [showMyMarket, setShowMyMarket] = useState(false);
+  /* Handle logout */
   const handleLogout = () => {
+    /* Logout function */
     handleLogOut();
+    /* Get updated token from local storage */
     setGetToken((prev) => !prev);
+    /* Navigate home page */
     navigate("/");
   };
 
   return (
     <>
+    {/* My market modal */}
       {showMyMarket && <MyMarket setShowMyMarket={setShowMyMarket} />}
+      {/* Render html based on path */}
       {!location?.pathname?.includes("/game-details") && (
         <div _ngcontent-ng-c943649379="" className="page-footer">
           {location?.pathname === "/profile" && token && (

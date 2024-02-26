@@ -9,14 +9,16 @@ import axios from "axios";
 import useContextState from "../../../hooks/useContextState";
 const GetOTP = ({ setShowOTP, setShowRegister, mobileNo, setMobileNo }) => {
   const {logo} = useContextState()
+  /* Close otp modal click outside */
   const OTPRef = useRef();
   useCloseModalClickOutside(OTPRef, () => {
     setShowOTP(false);
   });
 
-  /* Get whats app api */
+ 
   const getOtp = async (e) => {
     e.preventDefault();
+     /* Get Otp based on settings*/
     if (Settings.otp) {
       const generatedToken = UseTokenGenerator();
       const otpData = {
@@ -27,11 +29,15 @@ const GetOTP = ({ setShowOTP, setShowRegister, mobileNo, setMobileNo }) => {
       const res = await axios.post(API.otp, encryptedData);
       const data = res.data;
       if (data?.success) {
+        /* Close opt modal */
         setShowOTP(false);
+        /* Show register modal after success */
         setShowRegister(true);
       }
     } else {
+      /* Close otp modal */
       setShowOTP(false);
+      /* show register modal */
       setShowRegister(true);
     }
   };
@@ -140,6 +146,7 @@ const GetOTP = ({ setShowOTP, setShowRegister, mobileNo, setMobileNo }) => {
                       <div
                         _ngcontent-ng-c2806737617=""
                         className="body-section ng-star-inserted"
+                        style={{paddingBottom:'20px'}}
                       >
                         <form
                           onSubmit={getOtp}

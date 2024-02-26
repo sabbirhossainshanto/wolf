@@ -2,7 +2,7 @@ import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 import useContextState from "./useContextState";
 import { API } from "../api";
-
+/* Get casino */
 const useCasino = () => {
   const { token } = useContextState();
   const {

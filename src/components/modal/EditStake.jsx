@@ -7,10 +7,12 @@ import { API } from "../../api";
 
 /* eslint-disable react/no-unknown-property */
 const EditStake = ({ setShowEditStake,setSuccessEditStake }) => {
+  /* Close modal click out side */
   const stakeRef = useRef();
   useCloseModalClickOutside(stakeRef, () => {
     setShowEditStake(false);
   });
+  /* Get button values from locale storage */
   const buttonGameValue = JSON.parse(localStorage.getItem("buttonValue"));
   const { register, handleSubmit } = useForm();
   const { token } = useContextState();
@@ -70,6 +72,7 @@ const EditStake = ({ setShowEditStake,setSuccessEditStake }) => {
       .then((res) => res.json())
       .then((data) => {
         if (data.success) {
+          /* Show success message after successfully edit stake */
           setSuccessEditStake(data?.result?.message);
           localStorage.removeItem("buttonValue");
           const gameButtonsValues = [

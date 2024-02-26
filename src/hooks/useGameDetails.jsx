@@ -3,6 +3,7 @@ import useContextState from "./useContextState";
 import axios from "axios";
 import { API } from "../api";
 
+/* Game details api we are not using in this project */
 const useGameDetails = (eventTypeId, eventId) => {
   const { token} = useContextState();
   const { data,refetch:refetchGame } = useQuery({

@@ -17,10 +17,12 @@ const BetSlip = ({
   refetchCurrentBets,
 }) => {
   const { token } = useContextState();
+  /* Close modal click outside */
   const betSlipRef = useRef();
   useCloseModalClickOutside(betSlipRef, () => {
     setOpenBetSlip(false);
   });
+  /* Button values from locale storage */
   const buttonGameValue = JSON.parse(localStorage.getItem("buttonValue"));
   const [totalSize, setTotalSize] = useState("");
   const [loader, setLoader] = useState(false);

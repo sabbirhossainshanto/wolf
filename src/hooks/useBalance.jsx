@@ -24,14 +24,16 @@ const useBalance = () => {
         },
       });
       if (res?.data?.success === false && token) {
+        /* Logout if success false  */
         handleLogOut()
+        /* Get current token */
         setGetToken((prev) => !prev);
       } else if (res?.data?.success && token) {
         const data = res.data?.result;
         return data;
       }
     },
-
+/* Refetch after 6 second */
     refetchInterval: 6000,
   });
 

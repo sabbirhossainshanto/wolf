@@ -15,6 +15,7 @@ import { useEffect } from "react";
 /* eslint-disable react/no-unknown-property */
 const Home = () => {
   const { sportsType } = useContextState();
+  /* get whats app link */
   const { data: whatsAppLink } = useQuery({
     queryKey: ["whatsApp"],
     queryFn: async () => {
@@ -33,9 +34,11 @@ const Home = () => {
     },
   });
 
+  /* on click whats app navigate in new tab */
   const navigateWhatsApp = () => {
     window.open(whatsAppLink, "_blank");
   };
+  /* Reset scroll */
   useEffect(()=> {
     window.scrollTo(0,0)
   },[sportsType])

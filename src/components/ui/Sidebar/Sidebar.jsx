@@ -26,26 +26,38 @@ const Sidebar = () => {
   const { bonusBalanceData } = useBonusBalance();
   const [warningMessage, setWarningMessage] = useState("");
   const [showClaimWarn, setShowClaimWarn] = useState(false);
+  /* Close sidebar click outside */
   useCloseModalClickOutside(leftMenuRef, () => {
     setShowSidebar(false);
   });
+  /* Handle logout */
   const handleLogout = () => {
+    /* Logout function */
     handleLogOut();
+    /* Close sidebar */
     setShowSidebar(false);
+    /* get current token */
     setGetToken((prev) => !prev);
+    /* Navigate gome */
     navigate("/");
   };
 
+  /* navigate account statement */
   const handleAccountStatement = (link) => {
+    /* If checkbox is checked then set warning message */
     if (isCheckedBonusToken) {
       setWarningMessage("Please switch to main wallet");
+      /* Close sidebar */
       setShowSidebar(false);
     } else {
+      /* Other wise navigate to account statement  */
       navigate(link);
+      /* Close sidebar */
       setShowSidebar(false);
     }
   };
 
+  /* Handle checkbox true or false */
   const handleBonusToken = (e) => {
     const bonusTokenChecked = e.target.checked;
     if (bonusTokenChecked) {
@@ -53,9 +65,11 @@ const Sidebar = () => {
     } else {
       localStorage.removeItem("checkedBonusToken");
     }
+    /* Get current token */
     setGetToken((prev) => !prev);
   };
 
+  /* When sidebar open disabling scroll */
   useEffect(() => {
     if (showSidebar) {
       document.body.classList.add("disable-scroll");
@@ -69,9 +83,11 @@ const Sidebar = () => {
 
   return (
     <>
+    {/* Warning modal */}
       {warningMessage && (
         <Warning message={warningMessage} setMessage={setWarningMessage} />
       )}
+      {/* Claim warning modal */}
       {showClaimWarn && <ClaimWarning setShowClaimWarn={setShowClaimWarn} />}
       <div
         className="mat-drawer-backdrop ng-star-inserted"
@@ -143,8 +159,10 @@ const Sidebar = () => {
             </div>
             <div _ngcontent-ng-c967272132="" className="sidemenu-list">
               <ul _ngcontent-ng-c967272132="" className="smenu-wrap top">
+                {/* If token avail able then showing this html */}
                 {token && (
                   <>
+                  {/* If bonus true in setting then showing bonus html */}
                     {Settings.bonus && (
                       <li
                         _ngcontent-ng-c967272132=""

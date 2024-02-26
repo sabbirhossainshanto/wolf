@@ -12,6 +12,7 @@ const Bookmaker = ({
 }) => {
   const { token } = useContextState();
   let pnlBySelection;
+  /* Exposure */
   if (exposer?.pnlBySelection) {
     const obj = exposer?.pnlBySelection;
     pnlBySelection = Object?.values(obj);

@@ -6,6 +6,7 @@ import useLiveCasino from "../../hooks/useLiveCasino";
 import WarningCondition from "../../components/modal/WarningCondition";
 
 const LiveCasino = () => {
+  /* get live casino */
   const { data } = useLiveCasino();
   const { setSportsType, token } = useContextState();
   const [showWarning, setShowWarning] = useState(false);

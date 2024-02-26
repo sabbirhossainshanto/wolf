@@ -22,11 +22,12 @@ const Navbar = () => {
     setGetToken,
     isCheckedBonusToken,
     logo,
-    setSportsType
+    setSportsType,
   } = useContextState();
   const location = useLocation();
   const navigate = useNavigate();
   const loginName = localStorage.getItem("loginName");
+  /* Get balance data */
   const { balanceData } = useBalance();
   const [showWarning, setShowWarning] = useState("");
 
@@ -73,14 +74,18 @@ const Navbar = () => {
           localStorage.getItem("loginName") &&
           data?.result?.changePassword === false
         ) {
+          /* Get current token from locale storage */
           setGetToken((prev) => !prev);
         } else {
+          /* set  error message during login failed   */
           setErrorLogin(data?.error);
         }
       });
   };
 
+  /* Handle navigate deposit page */
   const handleNavigateDeposit = () => {
+    /* If checked bonus token true then set warning message */
     if (isCheckedBonusToken) {
       setShowWarning("Please switch to main wallet for deposit.");
     } else {
@@ -90,31 +95,19 @@ const Navbar = () => {
 
   return (
     <>
+      {/* Show warning message */}
       {showWarning && (
         <Warning message={showWarning} setMessage={setShowWarning} />
       )}
 
-      {}
-
-      <div
-        style={
-          {
-            //   position:'fixed',
-            //   width:'100%',
-            //   zIndex:'1040',
-            //   minHeight:'auto',
-            // boxSizing:'border-box'
-          }
-        }
-        _ngcontent-ng-c943649379=""
-        className="page-header"
-      >
+      <div _ngcontent-ng-c943649379="" className="page-header">
         <div _ngcontent-ng-c943649379="" _nghost-ng-c3243547741="">
           <div
             _ngcontent-ng-c3243547741=""
             className="header-wrapper top-header"
           >
             <div _ngcontent-ng-c3243547741="" className="logo">
+              {/* Showing sidebar button in only home page */}
               {location?.pathname === "/" ? (
                 <span
                   onClick={() => setShowSidebar(true)}
@@ -132,14 +125,17 @@ const Navbar = () => {
                   size={25}
                   color="#fff"
                   style={{ cursor: "pointer" }}
+                  /* Navigate back */
                   onClick={() => {
                     navigate(-1);
                   }}
                 />
               )}
               <Link
-              onClick={()=> setSportsType(0)}
-              to="/">
+                /* Set sports type to inplay */
+                onClick={() => setSportsType(0)}
+                to="/"
+              >
                 <img
                   style={{
                     height: "20px",
@@ -151,6 +147,7 @@ const Navbar = () => {
                 />
               </Link>
             </div>
+            {/* If token available then showing below html else----> */}
             {token ? (
               <div _ngcontent-ng-c3243547741="" className="header-right-cont">
                 <div
@@ -196,6 +193,7 @@ const Navbar = () => {
                       </span>
                     </div>
                   </div>
+                  {/* If deposit true in settings then showing deposit button  */}
                   {Settings.deposit && (
                     <button
                       onClick={handleNavigateDeposit}
@@ -232,6 +230,7 @@ const Navbar = () => {
                     <span className="mat-mdc-button-touch-target"></span>
                     <span className="mat-ripple mat-mdc-button-ripple"></span>
                   </button>
+                  {/* If registration true in settings then showing registration button  */}
                   {Settings.register && (
                     <button
                       onClick={() => setShowOTP(true)}
@@ -247,7 +246,7 @@ const Navbar = () => {
                       <span className="mat-ripple mat-mdc-button-ripple"></span>
                     </button>
                   )}
-
+                  {/* If demo login true in settings then showing demologin button  */}
                   {Settings.demoLogin && (
                     <button
                       onClick={loginWithDemo}
@@ -268,6 +267,7 @@ const Navbar = () => {
             )}
           </div>
         </div>
+        {/* Render html in condition */}
         {loginName === "demo" && (
           <div _ngcontent-ng-c943649379="" _nghost-ng-c3660323651="">
             <div
@@ -292,6 +292,7 @@ const Navbar = () => {
           </div>
         )}
       </div>
+      {/* Login modal */}
       {showLogin && (
         <Login
           setShowLogin={setShowLogin}
@@ -300,6 +301,7 @@ const Navbar = () => {
           setGetToken={setGetToken}
         />
       )}
+      {/* Opt modal */}
       {showOTP && (
         <GetOTP
           setShowOTP={setShowOTP}
@@ -308,6 +310,7 @@ const Navbar = () => {
           setMobileNo={setMobileNo}
         />
       )}
+      {/* Registration modal */}
       {showRegister && (
         <Registration
           setShowRegister={setShowRegister}
@@ -317,6 +320,7 @@ const Navbar = () => {
           setSuccessRegister={setSuccessRegister}
         />
       )}
+      {/* Success message after registration */}
       {successRegister && (
         <Success
           message={successRegister}
@@ -324,6 +328,7 @@ const Navbar = () => {
           success={true}
         />
       )}
+      {/* Error message after failed registration */}
       {errRegister && (
         <Success
           message={errRegister}

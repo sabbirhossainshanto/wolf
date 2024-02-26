@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 
 const InPlay = ({ keys, data }) => {
   const navigate = useNavigate();
+  /* Navigate game details page */
   const navigateGameList = (keys) => {
     navigate(`/game-details/${data[keys]?.eventTypeId}/${keys}`);
   };

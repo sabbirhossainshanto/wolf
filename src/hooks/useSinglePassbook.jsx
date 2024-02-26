@@ -4,11 +4,12 @@ import { API } from "../api";
 import UseTokenGenerator from "./UseTokenGenerator";
 import UseEncryptData from "./UseEncryptData";
 import useContextState from "./useContextState";
-
+/* single passbook */
 const useSinglePassbook = (marketId) => {
   const { token, tokenLoading } = useContextState();
   const { data: singlePassbook } = useQuery({
     queryKey: ["singlePassbook"],
+    /* enable when token available */
     enabled: !tokenLoading,
     queryFn: async () => {
       const generatedToken = UseTokenGenerator();

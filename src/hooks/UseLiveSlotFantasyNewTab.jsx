@@ -4,7 +4,7 @@ import UseTokenGenerator from "./UseTokenGenerator";
 
 import { API } from "../api";
 import useContextState from "./useContextState";
-
+/* open casino iframe in new tab */
 const UseLiveSlotFantasyNewTab = async (id) => {
   const { token } = useContextState();
   const generatedToken = UseTokenGenerator();

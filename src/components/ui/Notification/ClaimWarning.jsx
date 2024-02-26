@@ -8,10 +8,12 @@ import UseEncryptData from "../../../hooks/UseEncryptData";
 import useContextState from "../../../hooks/useContextState";
 const ClaimWarning = ({ setShowClaimWarn }) => {
   const warningRef = useRef();
+  /*  close warning modal click out side*/
   useCloseModalClickOutside(warningRef, () => {
     setShowClaimWarn(false);
   });
   const { token, setSuccessClaimMsg, setErrClaimMsg } = useContextState();
+  /* Handle bonus to main wallet */
   const handleBonusToMainWallet = async () => {
     const generatedToken = UseTokenGenerator();
     const encryptedData = UseEncryptData(generatedToken);
@@ -22,10 +24,14 @@ const ClaimWarning = ({ setShowClaimWarn }) => {
     });
     const result = res?.data;
     if (result?.success) {
+      /* After success close claim warning modal */
       setShowClaimWarn(false);
+      /* set success message  */
       setSuccessClaimMsg(result?.result?.message);
     } else {
+       /* After failed close claim warning modal */
       setShowClaimWarn(false);
+         /* set error message  */
       setErrClaimMsg(result?.error?.errorMessage);
     }
   };

@@ -6,6 +6,7 @@ import handleOpenWarningModal from "../../utils/handleOpenWarningModal";
 import WarningCondition from "../../components/modal/WarningCondition";
 
 const Casino = () => {
+  /* get casino data */
   const { data } = useCasino();
   const { setSportsType, token } = useContextState();
   const [showWarning, setShowWarning] = useState(false);

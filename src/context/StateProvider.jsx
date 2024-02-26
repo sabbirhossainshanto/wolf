@@ -3,6 +3,8 @@ import { API, Settings } from "../api";
 export const StateContext = createContext(null);
 
 const StateProvider = ({ children }) => {
+  /* Global state this states we are using in full project */
+
   const [sportsType, setSportsType] = useState(0);
   const [showSidebar, setShowSidebar] = useState(false);
   const [token, setToken] = useState("");
@@ -16,19 +18,26 @@ const StateProvider = ({ children }) => {
   const [errClaimMsg, setErrClaimMsg] = useState("");
   const [logo, setLogo] = useState("");
 
+  /* Get token from locale storage */
   useEffect(() => {
     const getToken = localStorage.getItem("token");
     const getBonusToken = localStorage.getItem("bonusToken");
     const getCheckedBonusToken = localStorage.getItem("checkedBonusToken");
+    /* If check box true of bonus token and bonus token available then using bonus token in authorization headers */
     if (getCheckedBonusToken && getBonusToken) {
+      /* Set bonus token */
       setToken(getBonusToken);
+      /* Check box true of bonus */
       setIsCheckedBonusToken(true);
     } else {
+      /* Set default token */
       setToken(getToken);
+      /* Checkbox box false */
       setIsCheckedBonusToken(false);
     }
 
     if (token && (getToken === token || getBonusToken === token)) {
+      /* handle loading for save crash website` */
       setTokenLoading(false);
     }
   }, [getToken, token]);

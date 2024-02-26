@@ -10,7 +10,7 @@ import { handleLogOut } from "../utils/handleLogOut";
 const useBonusBalance = () => {
   const { setGetToken, isCheckedBonusToken } = useContextState();
   const bonusToken = localStorage.getItem("bonusToken");
-
+/* Bonus balance api */
   const { data: bonusBalanceData, refetch: bonusRefetchBalance } = useQuery({
     queryKey: ["bonusBalance"],
     enabled: isCheckedBonusToken,
@@ -22,6 +22,7 @@ const useBonusBalance = () => {
           Authorization: `Bearer ${bonusToken}`,
         },
       });
+      /* Logout if success false */
       if (res?.data?.success === false && bonusToken) {
         handleLogOut();
         setGetToken((prev) => !prev);
@@ -30,7 +31,7 @@ const useBonusBalance = () => {
         return data;
       }
     },
-
+    /* Refetch after 6 second */
     refetchInterval: 6000,
   });
 

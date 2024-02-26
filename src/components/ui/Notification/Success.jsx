@@ -1,5 +1,6 @@
 /* eslint-disable react/no-unknown-property */
 const Success = ({message, setMessage,success }) => {
+  /* Remove message after 3 second */
     setTimeout(() => {
         setMessage("");
       }, 3000);

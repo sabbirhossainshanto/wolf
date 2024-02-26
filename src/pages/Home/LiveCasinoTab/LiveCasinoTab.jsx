@@ -15,8 +15,8 @@ const LiveCasinoTab = () => {
   const [gameId, setGameId] = useState("");
   const { token, sportsType } = useContextState();
   const [data, setData] = useState({});
-  const [loading, setLoading] = useState(true);
-
+ 
+/* casino thumbnail for 3 tabs */
   useEffect(() => {
     const apiMapping = {
       "live-casino": API.liveCasinoWolf,
@@ -24,7 +24,7 @@ const LiveCasinoTab = () => {
       aura: API.auraWolf,
     };
     const getGames = async () => {
-      setLoading(true);
+    
       const res = await axios.post(
         apiMapping[sportsType],
         {
@@ -41,7 +41,7 @@ const LiveCasinoTab = () => {
       if (res?.status === 200) {
         const result = res?.data;
         setData(result);
-        setLoading(false);
+     
       }
     };
     getGames();

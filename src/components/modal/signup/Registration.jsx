@@ -14,7 +14,8 @@ const Registration = ({
   setSuccessRegister,
   setErrRegister,
 }) => {
-  const {logo} = useContextState()
+  const { logo } = useContextState();
+  /* Close modal click outside */
   const registerRef = useRef();
   useCloseModalClickOutside(registerRef, () => {
     setShowRegister(false);
@@ -26,42 +27,9 @@ const Registration = ({
     mobileNo: "",
     otp: "",
   });
-  //   const [password, setPassword] = useState("");
-  //   const [mobile, setMobile] = useState("");
-  //   const [userName, setUserName] = useState("");
-  //   const [otpField, setOtpField] = useState("");
-  //   const [confirmPasswordErr, setConfirmPasswordErr] = useState("");
-
   const { handleSubmit } = useForm();
   /* Handle register */
   const onSubmit = () => {
-    // setConfirmPasswordErr("");
-    // setPassword("");
-    // setMobile("");
-    // setUserName("");
-    // setOtpField("");
-    // if (user?.userName === "") {
-    //   return setUserName("User name is required !");
-    // }
-    // if (
-    //   user?.password !== user?.confirmPassword &&
-    //   user?.confirmPassword?.length > 0
-    // ) {
-    //   return setConfirmPasswordErr("Password did not match !");
-    // } else if (user?.password === "") {
-    //   return setPassword("Password is required !");
-    // } else if (user?.confirmPassword === "") {
-    //   return setConfirmPasswordErr("Confirm password is required !");
-    // } else if (user?.mobileNo === "") {
-    //   setMobile("Mobile no is required !");
-    // } else if (user?.mobileNo?.length > 10 || user?.mobileNo?.length < 10) {
-    //   return setMobile("Enter ten digit mobile no !");
-    // } else if (user?.otp === "") {
-    //   return setOtpField("OTP is required");
-    // } else if (user?.otp?.length > 4 || user?.otp?.length < 4) {
-    //   return setOtpField("Enter four digit OTP no");
-    // }
-    /* Get random token */
     const generatedToken = UseTokenGenerator();
     const registerData = {
       username: user?.userName,
@@ -87,11 +55,14 @@ const Registration = ({
 
       .then((data) => {
         if (data?.success) {
+          /* Show success message */
           setSuccessRegister("User registration successful, please login.");
+          /* Close modal */
           setShowRegister(false);
         } else if (!data?.success) {
+          /* Show error message during registration */
           setErrRegister(data?.error?.description);
-          // setShowRegister(false)
+    
         }
       });
   };

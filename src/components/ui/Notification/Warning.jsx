@@ -1,4 +1,5 @@
 const Warning = ({ message, setMessage }) => {
+  /* Remove message after 3 second */
   setTimeout(() => {
     setMessage("");
   }, 3000);

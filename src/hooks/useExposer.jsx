@@ -5,6 +5,7 @@ import UseEncryptData from "./UseEncryptData";
 import axios from "axios";
 import { API } from "../api";
 
+/* exposure api */
 const useExposer = (eventId) => {
   const { token, tokenLoading } = useContextState();
   const { data: exposer = [], refetch: refetchExposure } = useQuery({

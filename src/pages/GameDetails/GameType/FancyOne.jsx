@@ -3,6 +3,7 @@ import { handlePlaceBet } from "../../../utils/handlePlaceBet";
 
 /* eslint-disable react/no-unknown-property */
 const FancyOne = ({ FancyOne, setOpenBetSlip, setPlaceBetValues, exposer,setShowLoginWarn }) => {
+  /* exposure */
   let pnlBySelection;
   if (exposer?.pnlBySelection) {
     const obj = exposer?.pnlBySelection;

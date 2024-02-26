@@ -13,13 +13,14 @@ const Dropdown = ({
   product,
   gameList,
 }) => {
+  /* Close drop down click out side */
   const dropdownRef = useRef();
   useCloseModalClickOutside(dropdownRef, () => {
     setShowLeftDropdown(false);
     setShowRightDropdown(false);
   });
 
-  console.log(data);
+ 
   return (
     <div
       style={{ position: "relative" }}

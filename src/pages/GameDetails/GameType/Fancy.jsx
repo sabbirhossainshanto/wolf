@@ -6,37 +6,43 @@ import useContextState from "../../../hooks/useContextState";
 import useCloseModalClickOutside from "../../../hooks/useCloseModalClickOutside";
 
 /* eslint-disable react/no-unknown-property */
-const Fancy = ({ normal, setOpenBetSlip, setPlaceBetValues, exposer,setShowLoginWarn }) => {
+const Fancy = ({
+  normal,
+  setOpenBetSlip,
+  setPlaceBetValues,
+  exposer,
+  setShowLoginWarn,
+}) => {
   const [showLadder, setShowLadder] = useState(false);
   const [ladderData, setLadderData] = useState([]);
   const { token } = useContextState();
   const [ladderTitle, setLadderTitle] = useState("");
   const [ladderMarketId, setLadderMarketId] = useState("");
- 
+
   const handlePlaceBet = (item, runner, betType) => {
-    if(token){
+    if (token) {
       setOpenBetSlip(true);
-    setPlaceBetValues({});
-    setPlaceBetValues({
-      price: betType === "back" ? runner?.back[0].line : runner?.lay[0].line,
-      side: betType === "back" ? 0 : 1,
-      selectionId: runner?.id,
-      btype: item?.btype,
-      eventTypeId: item?.eventTypeId,
-      betDelay: item?.betDelay,
-      marketId: item?.id,
-      lay: betType === "lay",
-      back: betType === "back",
-      selectedBetName: runner?.name,
-      name: item.runners.map((runner) => runner.name),
-      runnerId: item.runners.map((runner) => runner.id),
-      isWeak: item?.isWeak,
-      maxLiabilityPerMarket: item?.maxLiabilityPerMarket,
-      isBettable: item?.isBettable,
-      maxLiabilityPerBet: item?.maxLiabilityPerBet,
-    });
-    }else{
-      setShowLoginWarn('Please log in to play.')
+      setPlaceBetValues({});
+      setPlaceBetValues({
+        price: betType === "back" ? runner?.back[0].line : runner?.lay[0].line,
+        side: betType === "back" ? 0 : 1,
+        selectionId: runner?.id,
+        btype: item?.btype,
+        eventTypeId: item?.eventTypeId,
+        betDelay: item?.betDelay,
+        marketId: item?.id,
+        lay: betType === "lay",
+        back: betType === "back",
+        selectedBetName: runner?.name,
+        name: item.runners.map((runner) => runner.name),
+        runnerId: item.runners.map((runner) => runner.id),
+        isWeak: item?.isWeak,
+        maxLiabilityPerMarket: item?.maxLiabilityPerMarket,
+        isBettable: item?.isBettable,
+        maxLiabilityPerBet: item?.maxLiabilityPerBet,
+      });
+    } else {
+      setShowLoginWarn("Please log in to play.");
     }
   };
 
@@ -233,7 +239,7 @@ const Fancy = ({ normal, setOpenBetSlip, setPlaceBetValues, exposer,setShowLogin
                       </>
                     );
                   })}
-          
+
                 <div
                   _ngcontent-ng-c942213636=""
                   className="ladder-datawrap dropdown-content"

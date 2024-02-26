@@ -73,5 +73,6 @@ export const Settings = {
   otp:config?.result?.settings?.otp,
   casinoCurrency:config?.result?.settings?.casinoCurrency,
   siteUrl:config?.result?.settings?.siteUrl,
-  siteTitle:config?.result?.settings?.siteTitle
+  siteTitle:config?.result?.settings?.siteTitle,
+  interval: config?.result?.settings?.interval,
 };

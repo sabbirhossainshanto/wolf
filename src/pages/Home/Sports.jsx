@@ -8,7 +8,7 @@ import { GoClock } from "react-icons/go";
 import InPlay from "../../components/ui/BetTable/InPlay";
 
 const Sports = () => {
-  const { sportsType, token } = useContextState();
+  const { sportsType, token, setSportsType } = useContextState();
   const [games, setGames] = useState(null);
   const [categories, setCategories] = useState([]);
   const eventName = { 4: "Cricket", 1: "Football", 2: "Tennis" };
@@ -38,7 +38,6 @@ const Sports = () => {
     }
   }, [sportsType]);
 
-
   useEffect(() => {
     if (games) {
       const categories = Array.from(
@@ -66,15 +65,13 @@ const Sports = () => {
           return (
             <>
               <div _ngcontent-ng-c943649379="" className="game-play-heading">
-                <h2 _ngcontent-ng-c943649379="">
-                  {eventName[category]}
-                </h2>
+                <h2 _ngcontent-ng-c943649379="">{eventName[category]}</h2>
 
                 <a
                   _ngcontent-ng-c943649379=""
                   routerlinkactive="active-link"
                   className="view-all-link ng-star-inserted"
-                  href=""
+                  onClick={() => setSportsType(category)}
                 >
                   View All
                 </a>
@@ -94,11 +91,7 @@ const Sports = () => {
       ) : (
         <>
           <div _ngcontent-ng-c943649379="" className="game-play-heading">
-            <h2 _ngcontent-ng-c943649379="">
-              {sportsType === 4 ? "Cricket" : ""}
-              {sportsType === 1 ? "Football" : ""}
-              {sportsType === 2 ? "Tennis" : ""}
-            </h2>
+            <h2 _ngcontent-ng-c943649379="">{eventName[sportsType]}</h2>
 
             {/* <a
               _ngcontent-ng-c943649379=""
@@ -120,7 +113,7 @@ const Sports = () => {
             : null}
         </>
       )}
-      
+
       {sportsType !== 0 && (
         <div
           _ngcontent-ng-c943649379=""

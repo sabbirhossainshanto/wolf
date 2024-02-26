@@ -12,7 +12,7 @@ import OpenBetsTab from "./OpenBetsTab";
 import MarketTab from "./MarketTab";
 import Warning from "../../components/ui/Notification/Warning";
 import axios from "axios";
-import { API } from "../../api";
+import { API, Settings } from "../../api";
 /* eslint-disable react/no-unknown-property */
 const GameDetails = () => {
   const [loading, setLoading] = useState(true);
@@ -48,13 +48,15 @@ const GameDetails = () => {
       }
     };
     getGameDetails();
+    const intervalId = setInterval(getGameDetails, Settings.interval);
+    return () => clearInterval(intervalId);
   }, [eventId, eventTypeId, token]);
 
 
   if (loading) {
     return;
   }
-
+ 
   return (
     <>
       <div _ngcontent-ng-c942213636="" className="page-body">

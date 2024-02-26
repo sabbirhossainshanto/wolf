@@ -11,7 +11,7 @@ const Sports = () => {
   const { sportsType, token, setSportsType } = useContextState();
   const [games, setGames] = useState(null);
   const [categories, setCategories] = useState([]);
-  const eventName = { 4: "Cricket", 1: "Football", 2: "Tennis" };
+  const eventName = { 4: "Cricket", 2: "Tennis", 1: "Football" };
   /* Get game events */
   useEffect(() => {
     const gameData = async () => {
@@ -43,8 +43,11 @@ const Sports = () => {
       const categories = Array.from(
         new Set(Object.values(games).map((item) => item.eventTypeId))
       );
-
-      setCategories(categories);
+      const sortedCategories = categories.sort((a, b) => {
+        const order = { 4: 0, 2: 1, 1: 2 };
+        return order[a] - order[b];
+      });
+      setCategories(sortedCategories);
     }
   }, [games]);
 

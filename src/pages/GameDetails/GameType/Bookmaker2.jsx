@@ -99,13 +99,12 @@ const Bookmaker2 = ({
                             );
                           })}
                       </div>
-                      {games?.status === "OPEN" ? (
+                      {games?.status === "OPEN" && runner?.status === "OPEN" ? (
                         <div
                           _ngcontent-ng-c942213636=""
                           className="count-v-wrap ng-star-inserted"
                         >
-                          {
-                            runner?.status === 'OPEN' ? (
+                        
                               <button
                               onClick={() =>
                                 handlePlaceBet(
@@ -135,13 +134,7 @@ const Bookmaker2 = ({
                               <span className="mat-mdc-focus-indicator"></span>
                               <span className="mat-mdc-button-touch-target"></span>
                             </button>
-                            ):(
-                              <Suspended/>
-                            )
-                          }
                         
-                        {
-                          runner?.status === 'OPEN' ? (
                             <button
                             onClick={() =>
                               handlePlaceBet(
@@ -171,10 +164,7 @@ const Bookmaker2 = ({
                             <span className="mat-mdc-focus-indicator"></span>
                             <span className="mat-mdc-button-touch-target"></span>
                           </button>
-                          ):(
-                            <Suspended/>
-                          )
-                        }
+                      
                         </div>
                       ) : (
                         <Suspended />

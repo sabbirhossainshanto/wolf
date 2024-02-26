@@ -172,7 +172,7 @@ const Sidebar = () => {
                               type="checkbox"
                               name="bonus"
                               id="bonus"
-                              checked={isCheckedBonusToken ? true : false}
+                              defaultChecked={isCheckedBonusToken ? true : true}
                             ></input>
                             <label htmlFor="bonus"> Bonus Wallet</label>
                           </span>

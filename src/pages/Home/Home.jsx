@@ -10,6 +10,7 @@ import { API } from "../../api";
 import axios from "axios";
 import useContextState from "../../hooks/useContextState";
 import LiveCasinoTab from "./LiveCasinoTab/LiveCasinoTab";
+import { useEffect } from "react";
 
 /* eslint-disable react/no-unknown-property */
 const Home = () => {
@@ -35,6 +36,9 @@ const Home = () => {
   const navigateWhatsApp = () => {
     window.open(whatsAppLink, "_blank");
   };
+  useEffect(()=> {
+    window.scrollTo(0,0)
+  },[sportsType])
 
   return (
     <div

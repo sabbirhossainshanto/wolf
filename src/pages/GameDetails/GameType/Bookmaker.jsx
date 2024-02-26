@@ -81,7 +81,7 @@ const Bookmaker = ({
                           {runner?.name}
                         </h3>
                         {pnl &&
-                          pnl?.map(({ pnl, MarketId }, i) => {
+                          pnl?.map(({ pnl }, i) => {
                             return (
                               <p
                                 _ngcontent-ng-c942213636=""
@@ -99,77 +99,70 @@ const Bookmaker = ({
                             );
                           })}
                       </div>
-                      {games?.status === "OPEN" ? (
+                      {games?.status === "OPEN" && runner?.status === "OPEN" ? (
                         <div
                           _ngcontent-ng-c942213636=""
                           className="count-v-wrap ng-star-inserted"
                         >
-                          {runner?.status === "OPEN" ? (
-                            <button
-                              onClick={() =>
-                                handlePlaceBet(
-                                  games,
-                                  runner,
-                                  "back",
-                                  setOpenBetSlip,
-                                  setPlaceBetValues,
-                                  pnlBySelection,
-                                  setShowLoginWarn,
-                                  token
-                                )
-                              }
-                              _ngcontent-ng-c942213636=""
-                              mat-flat-button=""
-                              mat-ripple-loader-uninitialized=""
-                              mat-ripple-loader-class-name="mat-mdc-button-ripple"
-                              className="mdc-button mdc-button--unelevated mat-mdc-unelevated-button back-count count-value mat-unthemed mat-mdc-button-base ng-star-inserted"
-                              id="d67e0042e8277600f888897d3a4a8849:f05bb1104e8a7ec43d261c1c0e408764back1"
-                            >
-                              <span className="mat-mdc-button-persistent-ripple mdc-button__ripple"></span>
-                              <span className="mdc-button__label">
-                                <h4 _ngcontent-ng-c942213636="">
-                                  {runner?.back[0]?.price}
-                                </h4>{" "}
-                              </span>
-                              <span className="mat-mdc-focus-indicator"></span>
-                              <span className="mat-mdc-button-touch-target"></span>
-                            </button>
-                          ) : (
-                            <Suspended />
-                          )}
-                          {runner?.status === "OPEN" ? (
-                            <button
-                              onClick={() =>
-                                handlePlaceBet(
-                                  games,
-                                  runner,
-                                  "lay",
-                                  setOpenBetSlip,
-                                  setPlaceBetValues,
-                                  pnlBySelection,
-                                  setShowLoginWarn,
-                                  token
-                                )
-                              }
-                              _ngcontent-ng-c942213636=""
-                              mat-flat-button=""
-                              mat-ripple-loader-uninitialized=""
-                              mat-ripple-loader-class-name="mat-mdc-button-ripple"
-                              className="mdc-button mdc-button--unelevated mat-mdc-unelevated-button count-value lay-count mat-unthemed mat-mdc-button-base ng-star-inserted"
-                              id="d67e0042e8277600f888897d3a4a8849:f05bb1104e8a7ec43d261c1c0e408764lay1"
-                            >
-                              <span className="mat-mdc-button-persistent-ripple mdc-button__ripple"></span>
-                              <span className="mdc-button__label">
-                                <h4 _ngcontent-ng-c942213636="">
-                                  {runner?.lay[0]?.price}
-                                </h4>{" "}
-                              </span>
-                              <span className="mat-mdc-focus-indicator"></span>
-                              <span className="mat-mdc-button-touch-target"></span>
-                            </button>
-                          ) : (
-                            <Suspended />
-                          )}
+                          <button
+                            onClick={() =>
+                              handlePlaceBet(
+                                games,
+                                runner,
+                                "back",
+                                setOpenBetSlip,
+                                setPlaceBetValues,
+                                pnlBySelection,
+                                setShowLoginWarn,
+                                token
+                              )
+                            }
+                            _ngcontent-ng-c942213636=""
+                            mat-flat-button=""
+                            mat-ripple-loader-uninitialized=""
+                            mat-ripple-loader-class-name="mat-mdc-button-ripple"
+                            className="mdc-button mdc-button--unelevated mat-mdc-unelevated-button back-count count-value mat-unthemed mat-mdc-button-base ng-star-inserted"
+                            id="d67e0042e8277600f888897d3a4a8849:f05bb1104e8a7ec43d261c1c0e408764back1"
+                          >
+                            <span className="mat-mdc-button-persistent-ripple mdc-button__ripple"></span>
+                            <span className="mdc-button__label">
+                              <h4 _ngcontent-ng-c942213636="">
+                                {runner?.back[0]?.price}
+                              </h4>{" "}
+                            </span>
+                            <span className="mat-mdc-focus-indicator"></span>
+                            <span className="mat-mdc-button-touch-target"></span>
+                          </button>
+
+                          <button
+                            onClick={() =>
+                              handlePlaceBet(
+                                games,
+                                runner,
+                                "lay",
+                                setOpenBetSlip,
+                                setPlaceBetValues,
+                                pnlBySelection,
+                                setShowLoginWarn,
+                                token
+                              )
+                            }
+                            _ngcontent-ng-c942213636=""
+                            mat-flat-button=""
+                            mat-ripple-loader-uninitialized=""
+                            mat-ripple-loader-class-name="mat-mdc-button-ripple"
+                            className="mdc-button mdc-button--unelevated mat-mdc-unelevated-button count-value lay-count mat-unthemed mat-mdc-button-base ng-star-inserted"
+                            id="d67e0042e8277600f888897d3a4a8849:f05bb1104e8a7ec43d261c1c0e408764lay1"
+                          >
+                            <span className="mat-mdc-button-persistent-ripple mdc-button__ripple"></span>
+                            <span className="mdc-button__label">
+                              <h4 _ngcontent-ng-c942213636="">
+                                {runner?.lay[0]?.price}
+                              </h4>{" "}
+                            </span>
+                            <span className="mat-mdc-focus-indicator"></span>
+                            <span className="mat-mdc-button-touch-target"></span>
+                          </button>
                         </div>
                       ) : (
                         <Suspended />

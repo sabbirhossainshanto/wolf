@@ -51,7 +51,7 @@ const {token} = useContextState()
                 <h3 _ngcontent-ng-c942213636="" className="team-title">
                   {games?.name}
                   {pnl &&
-                    pnl?.map(({ pnl, MarketId }, i) => {
+                    pnl?.map(({ pnl}, i) => {
                       
                       return (
                         <p

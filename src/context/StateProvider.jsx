@@ -44,6 +44,12 @@ const StateProvider = ({ children }) => {
 
   useEffect(() => {
     /* Dynamically append  theme css  */
+    const link = document.createElement("link");
+    link.rel = "stylesheet";
+    link.type = "text/css";
+    link.href = `${API.assets}/${Settings.siteUrl}/theme.css`;
+    document.head.appendChild(link);
+    /*Dynamically append Logo */
     const logo = `${API.assets}/${Settings.siteUrl}/logo.png`;
     setLogo(logo);
     /* Dynamically append  favicon  */
@@ -75,9 +81,12 @@ const StateProvider = ({ children }) => {
     setPlaceBetValues,
     isCheckedBonusToken,
     setIsCheckedBonusToken,
-    logo, setLogo,
-    successClaimMsg, setSuccessClaimMsg,
-    errClaimMsg, setErrClaimMsg
+    logo,
+    setLogo,
+    successClaimMsg,
+    setSuccessClaimMsg,
+    errClaimMsg,
+    setErrClaimMsg,
   };
   return (
     <StateContext.Provider value={stateInfo}>{children}</StateContext.Provider>

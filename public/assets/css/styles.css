@@ -285,7 +285,7 @@ body[color-theme=sunglow] {
     --tabIcon-filter: invert(0)
 }
 
-body[color-theme=raspberry-pink] {
+/* body[color-theme=raspberry-pink] {
     --secondary-color: #db469a;
     --secondary-color-contrast: #ffffff;
     --primary-color: #000000;
@@ -294,7 +294,7 @@ body[color-theme=raspberry-pink] {
     --primary-color-contrast: #ffffff;
     --highlight-color: #db469a;
     --tabIcon-filter: invert(0)
-}
+} */
 
 body[color-theme=bright-gold] {
     --secondary-color: #FFCB00;

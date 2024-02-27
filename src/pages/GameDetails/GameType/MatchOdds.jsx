@@ -169,7 +169,7 @@ const MatchOdds = ({
                           </button>
                         </div>
                       ) : (
-                        <Suspended />
+                        <Suspended statusLabel={games?.statusLabel} />
                       )}
                     </div>
                   );

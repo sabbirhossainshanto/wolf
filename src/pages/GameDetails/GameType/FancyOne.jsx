@@ -1,15 +1,22 @@
 import useContextState from "../../../hooks/useContextState";
 import { handlePlaceBet } from "../../../utils/handlePlaceBet";
+import Suspended from "../Suspended";
 
 /* eslint-disable react/no-unknown-property */
-const FancyOne = ({ FancyOne, setOpenBetSlip, setPlaceBetValues, exposer,setShowLoginWarn }) => {
+const FancyOne = ({
+  FancyOne,
+  setOpenBetSlip,
+  setPlaceBetValues,
+  exposer,
+  setShowLoginWarn,
+}) => {
   /* exposure */
   let pnlBySelection;
   if (exposer?.pnlBySelection) {
     const obj = exposer?.pnlBySelection;
     pnlBySelection = Object?.values(obj);
   }
-const {token} = useContextState()
+  const { token } = useContextState();
 
   return (
     <div
@@ -52,8 +59,7 @@ const {token} = useContextState()
                 <h3 _ngcontent-ng-c942213636="" className="team-title">
                   {games?.name}
                   {pnl &&
-                    pnl?.map(({ pnl}, i) => {
-                      
+                    pnl?.map(({ pnl }, i) => {
                       return (
                         <p
                           _ngcontent-ng-c942213636=""
@@ -79,9 +85,7 @@ const {token} = useContextState()
                   mat-ripple-loader-class-name="mat-mdc-button-ripple"
                 >
                   <span className="mat-mdc-button-persistent-ripple mdc-button__ripple"></span>
-                  <span className="mdc-button__label">
-                 
-                  </span>
+                  <span className="mdc-button__label"></span>
                   <span className="mat-mdc-focus-indicator"></span>
                   <span className="mat-mdc-button-touch-target"></span>
                 </button>
@@ -176,12 +180,7 @@ const {token} = useContextState()
                   </button>
                 </div>
               ) : (
-                <div
-                  _ngcontent-ng-c942213636=""
-                  className="suspended-wrap ng-star-inserted"
-                >
-                  <h4 _ngcontent-ng-c942213636="">SUSPENDED</h4>
-                </div>
+                <Suspended statusLabel={games?.statusLabel} />
               )}
             </div>
           );

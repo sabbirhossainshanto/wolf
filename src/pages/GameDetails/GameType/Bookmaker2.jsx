@@ -168,7 +168,7 @@ const Bookmaker2 = ({
                       
                         </div>
                       ) : (
-                        <Suspended />
+                        <Suspended statusLabel={games?.statusLabel} />
                       )}
                     </div>
                   );

@@ -4,6 +4,7 @@ import UseEncryptData from "../../../hooks/UseEncryptData";
 import UseTokenGenerator from "../../../hooks/UseTokenGenerator";
 import useContextState from "../../../hooks/useContextState";
 import useCloseModalClickOutside from "../../../hooks/useCloseModalClickOutside";
+import Suspended from "../Suspended";
 
 /* eslint-disable react/no-unknown-property */
 const Fancy = ({
@@ -314,12 +315,7 @@ const Fancy = ({
                     </button>
                   </div>
                 ) : (
-                  <div
-                    _ngcontent-ng-c942213636=""
-                    className="suspended-wrap ng-star-inserted"
-                  >
-                    <h4 _ngcontent-ng-c942213636="">SUSPENDED</h4>
-                  </div>
+                  <Suspended statusLabel={games?.statusLabel} />
                 )}
               </div>
             );

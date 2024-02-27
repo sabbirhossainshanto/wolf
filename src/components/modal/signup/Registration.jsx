@@ -14,7 +14,7 @@ const Registration = ({
   setSuccessRegister,
   setErrRegister,
 }) => {
-  const { logo } = useContextState();
+  const { logo,setGetToken } = useContextState();
   /* Close modal click outside */
   const registerRef = useRef();
   useCloseModalClickOutside(registerRef, () => {
@@ -55,14 +55,33 @@ const Registration = ({
 
       .then((data) => {
         if (data?.success) {
-          /* Show success message */
-          setSuccessRegister("User registration successful, please login.");
-          /* Close modal */
-          setShowRegister(false);
-        } else if (!data?.success) {
-          /* Show error message during registration */
+          console.log(data);
+          /* Set token to localeStorage */
+          localStorage.setItem("token", data.result.token);
+          /* Set bonus token in locale storage */
+          localStorage.setItem("bonusToken", data?.result?.bonusToken);
+          /* Set login name to locale storage */
+          localStorage.setItem("loginName", data.result.loginName);
+          const buttonValue = JSON.stringify(data.result.buttonValue.game);
+          /* set button value to locale storage */
+          localStorage.setItem("buttonValue", buttonValue);
+
+          /* if in locale storage token and login name available and  data?.result?.changePassword === false */
+          if (
+            localStorage.getItem("token") &&
+            localStorage.getItem("loginName") &&
+            data?.result?.changePassword === false
+          ) {
+            setGetToken((prev) => !prev);
+            /* Show success message */
+            setSuccessRegister("User registration successful!");
+            /* Close modal */
+            setShowRegister(false);
+          } else {
+            setErrRegister(data?.error?.description);
+          }
+        } else {
           setErrRegister(data?.error?.description);
-    
         }
       });
   };

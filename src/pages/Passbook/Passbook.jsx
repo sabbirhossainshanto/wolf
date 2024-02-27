@@ -3,6 +3,7 @@ import usePassbook from "../../hooks/usePassbook";
 
 /* eslint-disable react/no-unknown-property */
 const Passbook = () => {
+  /* get passbook data */
   const { passbook } = usePassbook();
   const navigate = useNavigate();
   return (

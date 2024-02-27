@@ -7,10 +7,12 @@ import useContextState from "../../hooks/useContextState";
 import LiveCasinoTab from "./LiveCasinoTab/LiveCasinoTab";
 import { useEffect } from "react";
 import SliderImage from "./SliderImage";
+import useBannerImage from "../../hooks/useBannerImage";
 
 /* eslint-disable react/no-unknown-property */
 const Home = () => {
   const { sportsType } = useContextState();
+  const {bannerImage} = useBannerImage();
 
   /* Reset scroll */
   useEffect(() => {
@@ -32,7 +34,7 @@ const Home = () => {
         className="hydrated"
         // style="--offset-top: 0px; --offset-bottom: 0px"
       >
-       <SliderImage/>
+        {sportsType === 0 && bannerImage?.length > 0 &&  <SliderImage bannerImage={bannerImage} />}
         <div
           _ngcontent-ng-c943649379=""
           slot="fixed"

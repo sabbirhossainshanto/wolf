@@ -3,17 +3,14 @@ import useContextState from "../../../hooks/useContextState";
 import { handleLogOut } from "../../../utils/handleLogOut";
 import MyMarket from "../../modal/MyMarket";
 import { useState } from "react";
-import axios from "axios";
-import { API } from "../../../api";
-import UseEncryptData from "../../../hooks/UseEncryptData";
-import UseTokenGenerator from "../../../hooks/UseTokenGenerator";
-import { useQuery } from "@tanstack/react-query";
+import useGetSocialLink from "../../../hooks/useGetSocialLink";
 
 /* eslint-disable react/no-unknown-property */
 const Footer = () => {
+  const { socialLink } = useGetSocialLink();
   const location = useLocation();
   const navigate = useNavigate();
-  const { setGetToken, token, setShowLogin } = useContextState();
+  const { setGetToken, token, setShowLogin, icon } = useContextState();
   const [showMyMarket, setShowMyMarket] = useState(false);
   /* Handle logout */
   const handleLogout = () => {
@@ -25,28 +22,9 @@ const Footer = () => {
     navigate("/");
   };
 
-  /* get whats app link */
-  const { data: whatsAppLink } = useQuery({
-    queryKey: ["whatsApp"],
-    queryFn: async () => {
-      /* random token function */
-      const generatedToken = UseTokenGenerator();
-      /* Encryption post data */
-      const encryptedVideoData = UseEncryptData({
-        site: API.siteUrl,
-        token: generatedToken,
-      });
-      const res = await axios.post(API.whatsApp, encryptedVideoData);
-      const data = res.data;
-      if (data?.success) {
-        return data?.result?.link;
-      }
-    },
-  });
-
   /* on click whats app navigate in new tab */
   const navigateWhatsApp = () => {
-    window.open(whatsAppLink, "_blank");
+    window.open(socialLink?.link, "_blank");
   };
 
   return (
@@ -56,11 +34,12 @@ const Footer = () => {
       {/* Render html based on path */}
       {!location?.pathname?.includes("/game-details") && (
         <div _ngcontent-ng-c943649379="" className="page-footer">
-          {whatsAppLink && location.pathname === '/' && (
+          {socialLink?.link && location.pathname === "/" && (
             <div
               onClick={navigateWhatsApp}
               _ngcontent-ng-c943649379=""
               className="floating-btns"
+              style={{ cursor: "pointer" }}
             >
               <div
                 _ngcontent-ng-c943649379=""
@@ -132,8 +111,7 @@ const Footer = () => {
                     src="/assets/img/transparent-img.svg"
                     alt="Tab Icon"
                     style={{
-                      backgroundImage:
-                        'url("https://ss.manage63.com/bmk-wl/wl/wolf365/img/sprite-img/nav-sprite.svg")',
+                      backgroundImage: `url(${icon})`,
                     }}
                   />
                   <p _ngcontent-ng-c2125492905="" className="notranslate">
@@ -159,8 +137,7 @@ const Footer = () => {
                     src="/assets/img/transparent-img.svg"
                     alt="Tab Icon"
                     style={{
-                      backgroundImage:
-                        'url("https://ss.manage63.com/bmk-wl/wl/wolf365/img/sprite-img/nav-sprite.svg")',
+                      backgroundImage: `url(${icon})`,
                     }}
                   />
                   <p _ngcontent-ng-c2125492905="" className="notranslate">
@@ -191,8 +168,7 @@ const Footer = () => {
                     src="/assets/img/transparent-img.svg"
                     alt="Tab Icon"
                     style={{
-                      backgroundImage:
-                        'url("https://ss.manage63.com/bmk-wl/wl/wolf365/img/sprite-img/nav-sprite.svg")',
+                      backgroundImage: `url(${icon})`,
                     }}
                   />
                   <p _ngcontent-ng-c2125492905="" className="notranslate">
@@ -223,8 +199,7 @@ const Footer = () => {
                     src="/assets/img/transparent-img.svg"
                     alt="Tab Icon"
                     style={{
-                      backgroundImage:
-                        'url("https://ss.manage63.com/bmk-wl/wl/wolf365/img/sprite-img/nav-sprite.svg")',
+                      backgroundImage: `url(${icon})`,
                     }}
                   />
                   <p _ngcontent-ng-c2125492905="" className="notranslate">

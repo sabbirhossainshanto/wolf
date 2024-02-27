@@ -17,6 +17,9 @@ const StateProvider = ({ children }) => {
   const [successClaimMsg, setSuccessClaimMsg] = useState("");
   const [errClaimMsg, setErrClaimMsg] = useState("");
   const [logo, setLogo] = useState("");
+  const [promoSuccessMsg, setPromoSuccessMsg] = useState("");
+  const [promoErrMsg, setPromoErrMgs] = useState("");
+  const [icon,setIcon] = useState('')
 
   /* Get token from locale storage */
   useEffect(() => {
@@ -43,6 +46,10 @@ const StateProvider = ({ children }) => {
   }, [getToken, token]);
 
   useEffect(() => {
+     /* Dynamically get  footer logo  */
+     const icon = `${API.assets}/${Settings.siteUrl}/nav-sprite.svg`;
+     setIcon(icon);
+
     /* Dynamically append  theme css  */
     const link = document.createElement("link");
     link.rel = "stylesheet";
@@ -87,6 +94,9 @@ const StateProvider = ({ children }) => {
     setSuccessClaimMsg,
     errClaimMsg,
     setErrClaimMsg,
+    promoSuccessMsg, setPromoSuccessMsg,
+    promoErrMsg, setPromoErrMgs,
+    icon,setIcon
   };
   return (
     <StateContext.Provider value={stateInfo}>{children}</StateContext.Provider>

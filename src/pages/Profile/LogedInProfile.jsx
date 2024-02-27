@@ -1,6 +1,7 @@
 import { Link, useNavigate } from "react-router-dom";
 import useContextState from "../../hooks/useContextState";
 import { Settings } from "../../api";
+import useGetSocialLink from "../../hooks/useGetSocialLink";
 
 /* eslint-disable react/no-unknown-property */
 const LoggedInProfile = ({
@@ -10,6 +11,11 @@ const LoggedInProfile = ({
 }) => {
   const navigate = useNavigate();
   const { isCheckedBonusToken } = useContextState();
+  const { socialLink } = useGetSocialLink();
+
+  const handleNavigateSocialLink = (link) => {
+    window.open(link, "_blank");
+  };
   return (
     <>
       <div _ngcontent-ng-c2865632707="" className="user-details-wrap">
@@ -238,35 +244,52 @@ const LoggedInProfile = ({
             </a>
           </li> */}
         </ul>
-        {/* <div
+        <div
           _ngcontent-ng-c2865632707=""
           className="social-links-wrap ng-star-inserted"
         >
           <label _ngcontent-ng-c2865632707="">Join us Now</label>
           <div _ngcontent-ng-c2865632707="" className="social-links">
-            <a _ngcontent-ng-c2865632707="" className="ng-star-inserted">
+            {/* <a _ngcontent-ng-c2865632707="" className="ng-star-inserted">
               <img
                 _ngcontent-ng-c2865632707=""
                 alt=""
                 src="https://ss.manage63.com/bmk-wl/commonAssets/icon_dark_facebook.svg"
               />
-            </a>
-            <a _ngcontent-ng-c2865632707="" className="ng-star-inserted">
-              <img
+            </a> */}
+            {socialLink?.instagramLink && (
+              <a
+                onClick={() =>
+                  handleNavigateSocialLink(socialLink?.instagramLink)
+                }
                 _ngcontent-ng-c2865632707=""
-                alt=""
-                src="https://ss.manage63.com/bmk-wl/commonAssets/icon_dark_instagram.svg"
-              />
-            </a>
-            <a _ngcontent-ng-c2865632707="" className="ng-star-inserted">
-              <img
+                className="ng-star-inserted"
+              >
+                <img
+                  _ngcontent-ng-c2865632707=""
+                  alt=""
+                  src="https://ss.manage63.com/bmk-wl/commonAssets/icon_dark_instagram.svg"
+                />
+              </a>
+            )}
+
+            {socialLink?.telegramLink && (
+              <a
+                onClick={() =>
+                  handleNavigateSocialLink(socialLink?.telegramLink)
+                }
                 _ngcontent-ng-c2865632707=""
-                alt=""
-                src="https://ss.manage63.com/bmk-wl/commonAssets/icon_dark_telegram.svg"
-              />
-            </a>
+                className="ng-star-inserted"
+              >
+                <img
+                  _ngcontent-ng-c2865632707=""
+                  alt=""
+                  src="https://ss.manage63.com/bmk-wl/commonAssets/icon_dark_telegram.svg"
+                />
+              </a>
+            )}
           </div>
-        </div> */}
+        </div>
       </div>
     </>
   );

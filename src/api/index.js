@@ -60,7 +60,9 @@ export const API = {
   liveCasinoIFrame:config?.result?.endpoint?.liveCasinoIframe,
   auraWolf:config?.result?.endpoint?.auraWolf,
   assets:config?.result?.endpoint?.assets,
-  bonusClaim:config?.result?.endpoint?.bonusClaim
+  bonusClaim:config?.result?.endpoint?.bonusClaim,
+  referralCode:config?.result?.endpoint?.referralCode,
+  banner:config?.result?.endpoint?.banner
 };
 
 export const Settings = {

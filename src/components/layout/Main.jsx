@@ -12,7 +12,18 @@ import { Settings } from "../../api";
 import { handleLogOut } from "../../utils/handleLogOut";
 
 const Main = () => {
-  const { showEditStake, setShowEditStake,successClaimMsg,setSuccessClaimMsg,errClaimMsg, setErrClaimMsg } = useContextState();
+  const {
+    showEditStake,
+    setShowEditStake,
+    successClaimMsg,
+    setSuccessClaimMsg,
+    errClaimMsg,
+    setErrClaimMsg,
+    promoSuccessMsg,
+    setPromoSuccessMsg,
+    promoErrMsg,
+    setPromoErrMgs,
+  } = useContextState();
   const [successEditStake, setSuccessEditStake] = useState("");
   const navigate = useNavigate();
   const disabledDevtool = Settings.disabledDevtool;
@@ -46,18 +57,33 @@ const Main = () => {
           {/*   <!-- mennu start--> */}
           {/* After successfully transfer claim bonus to main wallet success message */}
           {successClaimMsg && (
-            <Success 
-            message={successClaimMsg}
-            setMessage={setSuccessClaimMsg}
-            success={true}
+            <Success
+              message={successClaimMsg}
+              setMessage={setSuccessClaimMsg}
+              success={true}
             />
           )}
-            {/* Error message during transfer claim bonus to main wallet*/}
+          {/* Error message during transfer claim bonus to main wallet*/}
           {errClaimMsg && (
-            <Success 
-            message={errClaimMsg}
-            setMessage={setErrClaimMsg}
-            success={false}
+            <Success
+              message={errClaimMsg}
+              setMessage={setErrClaimMsg}
+              success={false}
+            />
+          )}
+
+          {promoSuccessMsg && (
+            <Success
+              message={promoSuccessMsg}
+              setMessage={setPromoSuccessMsg}
+              success={true}
+            />
+          )}
+            {promoErrMsg && (
+            <Success
+              message={promoErrMsg}
+              setMessage={setPromoErrMgs}
+              success={false}
             />
           )}
 

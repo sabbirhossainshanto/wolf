@@ -49,7 +49,11 @@ const Login = ({ setShowLogin, setErrorLogin, errorLogin, setGetToken }) => {
           const buttonValue = JSON.stringify(data.result.buttonValue.game);
           /* set button value to locale storage */
           localStorage.setItem("buttonValue", buttonValue);
-
+          const referralCode = data.result.referralCode;
+          localStorage.setItem(
+            "referralCode",
+            referralCode == null ? "show" : referralCode
+          );
           /* if in locale storage token and login name available and  data?.result?.changePassword === false */
           if (
             localStorage.getItem("token") &&

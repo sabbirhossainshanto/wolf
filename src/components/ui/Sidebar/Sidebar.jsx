@@ -5,9 +5,13 @@ import useCloseModalClickOutside from "../../../hooks/useCloseModalClickOutside"
 import { RiEditBoxFill } from "react-icons/ri";
 import useBonusBalance from "../../../hooks/useBonusBalance";
 import { handleLogOut } from "../../../utils/handleLogOut";
-import { Settings } from "../../../api";
+import { API, Settings } from "../../../api";
 import Warning from "../Notification/Warning";
 import ClaimWarning from "../Notification/ClaimWarning";
+import axios from "axios";
+import UseTokenGenerator from "../../../hooks/UseTokenGenerator";
+import UseEncryptData from "../../../hooks/UseEncryptData";
+import useGetSocialLink from "../../../hooks/useGetSocialLink";
 /* eslint-disable react/no-unknown-property */
 const Sidebar = () => {
   const {
@@ -19,6 +23,8 @@ const Sidebar = () => {
     setShowLogin,
     isCheckedBonusToken,
     logo,
+    setPromoErrMgs,
+    setPromoSuccessMsg,
   } = useContextState();
   const loginName = localStorage.getItem("loginName");
   const navigate = useNavigate();
@@ -26,6 +32,14 @@ const Sidebar = () => {
   const { bonusBalanceData } = useBonusBalance();
   const [warningMessage, setWarningMessage] = useState("");
   const [showClaimWarn, setShowClaimWarn] = useState(false);
+  const [promoCode, setPromoCode] = useState("");
+  const [referralCode, setReferralCode] = useState("");
+  const { socialLink } = useGetSocialLink();
+
+  const handleNavigateSocialLink = (link) => {
+    window.open(link, "_blank");
+    setShowSidebar(false);
+  };
   /* Close sidebar click outside */
   useCloseModalClickOutside(leftMenuRef, () => {
     setShowSidebar(false);
@@ -81,9 +95,41 @@ const Sidebar = () => {
     };
   }, [showSidebar]);
 
+  useEffect(() => {
+    const referralCode = localStorage.getItem("referralCode");
+    setReferralCode(referralCode);
+  }, [referralCode]);
+
+  /* Handle referral code */
+  const handlePromoSubmit = async () => {
+    /* Random token generator */
+    const generatedToken = UseTokenGenerator();
+    const postData = {
+      code: promoCode,
+      token: generatedToken,
+    };
+    /* Encrypted the post data */
+    const encryptedData = UseEncryptData(postData);
+    const res = await axios.post(API.referralCode, encryptedData, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+    const data = res?.data;
+    if (data?.success) {
+      localStorage.setItem("referralCode", "hide");
+      const referralCode = localStorage.getItem("referralCode");
+      setReferralCode(referralCode);
+      setPromoSuccessMsg(data?.result?.message);
+      setShowSidebar(false);
+    } else {
+      setPromoErrMgs(data?.error?.errorMessage);
+    }
+  };
+
   return (
     <>
-    {/* Warning modal */}
+      {/* Warning modal */}
       {warningMessage && (
         <Warning message={warningMessage} setMessage={setWarningMessage} />
       )}
@@ -162,7 +208,7 @@ const Sidebar = () => {
                 {/* If token avail able then showing this html */}
                 {token && (
                   <>
-                  {/* If bonus true in setting then showing bonus html */}
+                    {/* If bonus true in setting then showing bonus html */}
                     {Settings.bonus && (
                       <li
                         _ngcontent-ng-c967272132=""
@@ -190,7 +236,9 @@ const Sidebar = () => {
                               type="checkbox"
                               name="bonus"
                               id="bonus"
-                              defaultChecked={isCheckedBonusToken ? true : false}
+                              defaultChecked={
+                                isCheckedBonusToken ? true : false
+                              }
                             ></input>
                             <label htmlFor="bonus"> Bonus Wallet</label>
                           </span>
@@ -249,42 +297,47 @@ const Sidebar = () => {
                       </li>
                     )}
 
-                    <li
-                      _ngcontent-ng-c967272132=""
-                      hidden=""
-                      className="smenu-item"
-                    >
-                      <a _ngcontent-ng-c967272132="" className="smenu-link">
-                        <img
-                          _ngcontent-ng-c967272132=""
-                          alt="Menu Icon"
-                          src="https://ss.manage63.com/bmk-wl/commonAssets/sidenav-reward.svg"
-                        />
-                        <span _ngcontent-ng-c967272132="">
-                          Have a promo/refer code
-                        </span>
-                      </a>
-                      <div _ngcontent-ng-c967272132="" className="refer-code">
-                        <input
-                          _ngcontent-ng-c967272132=""
-                          type="text"
-                          placeholder="Enter Promo/Refer code"
-                        />
-                        <p
-                          _ngcontent-ng-c967272132=""
-                          className="timer text-danger"
-                          style={{ display: "none" }}
-                        >
-                          23:03
-                        </p>
-                        <button
-                          _ngcontent-ng-c967272132=""
-                          className="btn secondary-btn"
-                        >
-                          Submit
-                        </button>
-                      </div>
-                    </li>
+                    {referralCode == "show" && (
+                      <li
+                        _ngcontent-ng-c967272132=""
+                        hidden=""
+                        className="smenu-item"
+                      >
+                        <a _ngcontent-ng-c967272132="" className="smenu-link">
+                          <img
+                            _ngcontent-ng-c967272132=""
+                            alt="Menu Icon"
+                            src="https://ss.manage63.com/bmk-wl/commonAssets/sidenav-reward.svg"
+                          />
+                          <span _ngcontent-ng-c967272132="">
+                            Have a promo/refer code
+                          </span>
+                        </a>
+                        <div _ngcontent-ng-c967272132="" className="refer-code">
+                          <input
+                            onChange={(e) => setPromoCode(e.target.value)}
+                            _ngcontent-ng-c967272132=""
+                            type="text"
+                            placeholder="Enter Promo/Refer code"
+                          />
+                          <p
+                            _ngcontent-ng-c967272132=""
+                            className="timer text-danger"
+                            style={{ display: "none" }}
+                          >
+                            23:03
+                          </p>
+                          <button
+                            onClick={handlePromoSubmit}
+                            _ngcontent-ng-c967272132=""
+                            className="btn secondary-btn"
+                          >
+                            Submit
+                          </button>
+                        </div>
+                      </li>
+                    )}
+
                     <li _ngcontent-ng-c967272132="" className="smenu-item">
                       <Link
                         to="/profile"
@@ -438,36 +491,53 @@ const Sidebar = () => {
                 </li> */}
               </ul>
               <ul _ngcontent-ng-c967272132="" className="smenu-wrap bottom">
+                <li
+                  _ngcontent-ng-c967272132=""
+                  className="smenu-item social-links-wrap ng-star-inserted"
+                >
+                  <label _ngcontent-ng-c967272132="">Join us Now</label>
+                  <div _ngcontent-ng-c967272132="" className="social-links">
+                    {/* <a _ngcontent-ng-c967272132="" className="ng-star-inserted">
+                      <img
+                        _ngcontent-ng-c967272132=""
+                        alt=""
+                        src="https://ss.manage63.com/bmk-wl/commonAssets/icon_dark_facebook.svg"
+                      />
+                    </a> */}
+                    {socialLink?.instagramLink && (
+                      <a
+                        onClick={() =>
+                          handleNavigateSocialLink(socialLink?.instagramLink)
+                        }
+                        _ngcontent-ng-c2865632707=""
+                        className="ng-star-inserted"
+                      >
+                        <img
+                          _ngcontent-ng-c2865632707=""
+                          alt=""
+                          src="https://ss.manage63.com/bmk-wl/commonAssets/icon_dark_instagram.svg"
+                        />
+                      </a>
+                    )}
+
+                    {socialLink?.telegramLink && (
+                      <a
+                        onClick={() =>
+                          handleNavigateSocialLink(socialLink?.telegramLink)
+                        }
+                        _ngcontent-ng-c2865632707=""
+                        className="ng-star-inserted"
+                      >
+                        <img
+                          _ngcontent-ng-c2865632707=""
+                          alt=""
+                          src="https://ss.manage63.com/bmk-wl/commonAssets/icon_dark_telegram.svg"
+                        />
+                      </a>
+                    )}
+                  </div>
+                </li>
                 {/* <li
-                _ngcontent-ng-c967272132=""
-                className="smenu-item social-links-wrap ng-star-inserted"
-              >
-                <label _ngcontent-ng-c967272132="">Join us Now</label>
-                <div _ngcontent-ng-c967272132="" className="social-links">
-                  <a _ngcontent-ng-c967272132="" className="ng-star-inserted">
-                    <img
-                      _ngcontent-ng-c967272132=""
-                      alt=""
-                      src="https://ss.manage63.com/bmk-wl/commonAssets/icon_dark_facebook.svg"
-                    />
-                  </a>
-                  <a _ngcontent-ng-c967272132="" className="ng-star-inserted">
-                    <img
-                      _ngcontent-ng-c967272132=""
-                      alt=""
-                      src="https://ss.manage63.com/bmk-wl/commonAssets/icon_dark_instagram.svg"
-                    />
-                  </a>
-                  <a _ngcontent-ng-c967272132="" className="ng-star-inserted">
-                    <img
-                      _ngcontent-ng-c967272132=""
-                      alt=""
-                      src="https://ss.manage63.com/bmk-wl/commonAssets/icon_dark_telegram.svg"
-                    />
-                  </a>
-                </div>
-              </li>
-              <li
                 _ngcontent-ng-c967272132=""
                 className="smenu-item ng-star-inserted"
               >

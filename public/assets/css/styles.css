@@ -217,10 +217,10 @@ textarea.cdk-textarea-autosize-measuring-firefox {
     --grey-900: #1c1c1c;
     --header-dark-color: #181E25;
     --footer-grey-color: #D9D9D9;
-      --primary-color: #000000;
+      /* --primary-color: #000000;
     --primary-color-shade: #ffffff;
     --primary-color-tint: #ffffff;
-    --primary-color-contrast: #ffffff;
+    --primary-color-contrast: #ffffff; */
     --black-color: #000;
     --bg-grey: #f7f9f9;
     --red-color: #C44141;
@@ -239,17 +239,18 @@ textarea.cdk-textarea-autosize-measuring-firefox {
     --white-color: #ffffff;
     --back-light: #D4E8F8;
     --lay-light: #F7E7EB;
-    --tabIcon-filter: invert(1)
 
 
-    --secondary-color: #db469a;
-    --secondary-color-contrast: #ffffff;
-    --primary-color: #000000;
-    --primary-color-shade: #141414;
-    --primary-color-tint: #222222;
-    --primary-color-contrast: #ffffff;
-    --highlight-color: #db469a;
-    --tabIcon-filter: invert(0)
+
+  
+    /* --tabIcon-filter: invert(1) */
+    /* --secondary-color-contrast: #ffffff; */
+    /* --primary-color: #000000;
+    --primary-color-shade: #141414; */
+    /* --primary-color-tint: #222222;
+    --primary-color-contrast: #ffffff; */
+    /* --highlight-color: #db469a;
+    --tabIcon-filter: invert(0) */
 }
 
 body[color-theme=default] {

@@ -6,6 +6,7 @@ import Tabs from "./Tabs";
 import useContextState from "../../hooks/useContextState";
 import LiveCasinoTab from "./LiveCasinoTab/LiveCasinoTab";
 import { useEffect } from "react";
+import SliderImage from "./SliderImage";
 
 /* eslint-disable react/no-unknown-property */
 const Home = () => {
@@ -31,6 +32,7 @@ const Home = () => {
         className="hydrated"
         // style="--offset-top: 0px; --offset-bottom: 0px"
       >
+       <SliderImage/>
         <div
           _ngcontent-ng-c943649379=""
           slot="fixed"

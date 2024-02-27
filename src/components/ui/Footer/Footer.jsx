@@ -3,6 +3,11 @@ import useContextState from "../../../hooks/useContextState";
 import { handleLogOut } from "../../../utils/handleLogOut";
 import MyMarket from "../../modal/MyMarket";
 import { useState } from "react";
+import axios from "axios";
+import { API } from "../../../api";
+import UseEncryptData from "../../../hooks/UseEncryptData";
+import UseTokenGenerator from "../../../hooks/UseTokenGenerator";
+import { useQuery } from "@tanstack/react-query";
 
 /* eslint-disable react/no-unknown-property */
 const Footer = () => {
@@ -20,13 +25,57 @@ const Footer = () => {
     navigate("/");
   };
 
+  /* get whats app link */
+  const { data: whatsAppLink } = useQuery({
+    queryKey: ["whatsApp"],
+    queryFn: async () => {
+      /* random token function */
+      const generatedToken = UseTokenGenerator();
+      /* Encryption post data */
+      const encryptedVideoData = UseEncryptData({
+        site: API.siteUrl,
+        token: generatedToken,
+      });
+      const res = await axios.post(API.whatsApp, encryptedVideoData);
+      const data = res.data;
+      if (data?.success) {
+        return data?.result?.link;
+      }
+    },
+  });
+
+  /* on click whats app navigate in new tab */
+  const navigateWhatsApp = () => {
+    window.open(whatsAppLink, "_blank");
+  };
+
   return (
     <>
-    {/* My market modal */}
+      {/* My market modal */}
       {showMyMarket && <MyMarket setShowMyMarket={setShowMyMarket} />}
       {/* Render html based on path */}
       {!location?.pathname?.includes("/game-details") && (
         <div _ngcontent-ng-c943649379="" className="page-footer">
+          {whatsAppLink && location.pathname === '/' && (
+            <div
+              onClick={navigateWhatsApp}
+              _ngcontent-ng-c943649379=""
+              className="floating-btns"
+            >
+              <div
+                _ngcontent-ng-c943649379=""
+                className="btn-item ng-star-inserted"
+              >
+                <div _ngcontent-ng-c943649379="" className="btn-wrap whatsapp">
+                  <img
+                    _ngcontent-ng-c943649379=""
+                    alt="WhatsApp"
+                    src="https://ss.manage63.com/bmk-wl/commonAssets/whatsapp-icon.svg"
+                  />
+                </div>
+              </div>
+            </div>
+          )}
           {location?.pathname === "/profile" && token && (
             <div
               onClick={handleLogout}
@@ -96,7 +145,7 @@ const Footer = () => {
               </button>
 
               <button
-              onClick={()=> setShowMyMarket(true)}
+                onClick={() => setShowMyMarket(true)}
                 _ngcontent-ng-c2125492905=""
                 mat-flat-button=""
                 className="market mdc-button mdc-button--unelevated mat-mdc-unelevated-button mat-unthemed mat-mdc-button-base ng-star-inserted"

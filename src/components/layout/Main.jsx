@@ -23,6 +23,7 @@ const Main = () => {
     setPromoSuccessMsg,
     promoErrMsg,
     setPromoErrMgs,
+    setGetToken
   } = useContextState();
   const [successEditStake, setSuccessEditStake] = useState("");
   const navigate = useNavigate();
@@ -36,6 +37,7 @@ const Main = () => {
           const info = "devtool opened!; type =" + type;
           if (info) {
             handleLogOut();
+            setGetToken((prev) => !prev);
             navigate("/");
           }
         },
@@ -79,7 +81,7 @@ const Main = () => {
               success={true}
             />
           )}
-            {promoErrMsg && (
+          {promoErrMsg && (
             <Success
               message={promoErrMsg}
               setMessage={setPromoErrMgs}

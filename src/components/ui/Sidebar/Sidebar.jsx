@@ -413,6 +413,26 @@ const Sidebar = () => {
                         </span>
                       </a>
                     </li>
+                 
+                    <li
+                      _ngcontent-ng-c967272132=""
+                      routerlinkactive="active-link"
+                      className="smenu-item"
+                    >
+                      <Link
+                      onClick={() => setShowSidebar(false)}
+                       to='/my-bank-details'
+                        _ngcontent-ng-c967272132=""
+                        className="smenu-link"
+                      >
+                      <img _ngcontent-ng-c2865632707=""
+                            alt="Menu Icon" src="https://ss.manage63.com/bmk-wl/commonAssets/sidenav_bank.svg"/>
+                        <span _ngcontent-ng-c967272132="">
+                         My Bank Details
+                        </span>
+                      </Link>
+                    </li>
+                 
                     <li
                       _ngcontent-ng-c967272132=""
                       routerlinkactive="active-link"

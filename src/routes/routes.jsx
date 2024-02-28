@@ -11,6 +11,7 @@ import Passbook from "../pages/Passbook/Passbook";
 import SinglePassbook from "../pages/Passbook/SinglePassbook";
 import WithdrawStatement from "../pages/WithdrawStatement/WithdrawStatement";
 import DepositStatement from "../pages/DepositStatement/DepositStatement";
+import MyBankDetails from "../pages/MyBankDetails/MyBankDetails";
 
 export const router = createBrowserRouter([
   {
@@ -61,6 +62,10 @@ export const router = createBrowserRouter([
       {
         path: "passbook/:marketId",
         element: <SinglePassbook />,
+      },
+      {
+        path: "my-bank-details",
+        element: <MyBankDetails />,
       },
     ],
   },

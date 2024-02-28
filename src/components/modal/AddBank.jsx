@@ -1,12 +1,54 @@
 /* eslint-disable react/no-unknown-property */
 import { motion } from "framer-motion";
-import { useRef } from "react";
+import { useRef, useState } from "react";
 import useCloseModalClickOutside from "../../hooks/useCloseModalClickOutside";
-const AddBank = ({ setShowAddBank }) => {
+import UseTokenGenerator from "../../hooks/UseTokenGenerator";
+import axios from "axios";
+import { API } from "../../api";
+import useContextState from "../../hooks/useContextState";
+const AddBank = ({
+  setShowAddBank,
+  setSuccessCrudMsg,
+  refetchBankData,
+  setErrCrudMsg,
+}) => {
+  const { token } = useContextState();
+  const [addBank, setAddBank] = useState({
+    accountName: "",
+    ifsc: "",
+    accountNumber: "",
+  });
   const addBankRef = useRef();
   useCloseModalClickOutside(addBankRef, () => {
     setShowAddBank(false);
   });
+
+  const handleBankCrud = async (e) => {
+    e.preventDefault();
+    const generatedToken = UseTokenGenerator();
+    const bankData = {
+      accountName: addBank.accountName,
+      ifsc: addBank.ifsc,
+      accountNumber: addBank.accountNumber,
+      type: "addBankAccount",
+      token: generatedToken,
+    };
+
+    const res = await axios.post(API.bankAccount, bankData, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+    const data = res?.data;
+    if (data?.success) {
+      setSuccessCrudMsg(data?.result?.message);
+      refetchBankData();
+      setShowAddBank(false);
+    } else {
+      setErrCrudMsg(data?.result?.message);
+ 
+    }
+  };
   return (
     <div className="cdk-overlay-container">
       <div className="cdk-overlay-backdrop cdk-overlay-dark-backdrop cdk-overlay-backdrop-showing"></div>
@@ -78,6 +120,7 @@ const AddBank = ({ setShowAddBank }) => {
                       </button>
                     </div>
                     <form
+                      onSubmit={handleBankCrud}
                       _ngcontent-ng-c1372444345=""
                       className="ng-untouched ng-pristine ng-invalid"
                     >
@@ -91,6 +134,12 @@ const AddBank = ({ setShowAddBank }) => {
                               Account holder name*
                             </label>
                             <input
+                              onChange={(e) => {
+                                setAddBank({
+                                  ...addBank,
+                                  accountName: e.target.value,
+                                });
+                              }}
                               _ngcontent-ng-c1372444345=""
                               placeholder="Enter account holder name"
                               type="text"
@@ -106,6 +155,12 @@ const AddBank = ({ setShowAddBank }) => {
                               Account number*
                             </label>
                             <input
+                              onChange={(e) => {
+                                setAddBank({
+                                  ...addBank,
+                                  accountNumber: e.target.value,
+                                });
+                              }}
                               _ngcontent-ng-c1372444345=""
                               placeholder="Enter Account Number"
                               type="number"
@@ -121,6 +176,12 @@ const AddBank = ({ setShowAddBank }) => {
                               IFSC code*
                             </label>{" "}
                             <input
+                              onChange={(e) => {
+                                setAddBank({
+                                  ...addBank,
+                                  ifsc: e.target.value,
+                                });
+                              }}
                               _ngcontent-ng-c1372444345=""
                               placeholder="Enter bank iFSC"
                               type="text"

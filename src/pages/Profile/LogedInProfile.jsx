@@ -2,6 +2,9 @@ import { Link, useNavigate } from "react-router-dom";
 import useContextState from "../../hooks/useContextState";
 import { Settings } from "../../api";
 import useGetSocialLink from "../../hooks/useGetSocialLink";
+import { useState } from "react";
+import Withdraw from "../../components/modal/Withdraw";
+import Success from "../../components/ui/Notification/Success";
 
 /* eslint-disable react/no-unknown-property */
 const LoggedInProfile = ({
@@ -12,12 +15,37 @@ const LoggedInProfile = ({
   const navigate = useNavigate();
   const { isCheckedBonusToken } = useContextState();
   const { socialLink } = useGetSocialLink();
+  const [showWithdraw, setSHowWithdraw] = useState(false);
+  const [withdrawCoinSuccess, setWithdrawCoinSuccess] = useState("");
+  const [withdrawCoinErr, setWithdrawCoinErr] = useState("");
 
   const handleNavigateSocialLink = (link) => {
     window.open(link, "_blank");
   };
   return (
     <>
+      {showWithdraw && (
+        <Withdraw
+          setSHowWithdraw={setSHowWithdraw}
+          setWithdrawCoinErr={setWithdrawCoinErr}
+          setWithdrawCoinSuccess={setWithdrawCoinSuccess}
+        />
+      )}
+
+      {withdrawCoinSuccess && (
+        <Success
+          message={withdrawCoinSuccess}
+          setMessage={setWithdrawCoinSuccess}
+          success={true}
+        />
+      )}
+      {withdrawCoinErr && (
+        <Success
+          message={withdrawCoinErr}
+          setMessage={setWithdrawCoinErr}
+          success={false}
+        />
+      )}
       <div _ngcontent-ng-c2865632707="" className="user-details-wrap">
         <div
           _ngcontent-ng-c2865632707=""
@@ -88,7 +116,7 @@ const LoggedInProfile = ({
                 {Settings.withdraw && (
                   <button
                     onClick={() => {
-                      navigate("/profile/withdraw");
+                      setSHowWithdraw(true);
                     }}
                     _ngcontent-ng-c2865632707=""
                     mat-flat-button=""

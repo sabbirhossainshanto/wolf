@@ -1,9 +1,9 @@
 /* eslint-disable react/no-unknown-property */
-const Success = ({message, setMessage,success }) => {
+const Success = ({ message, setMessage, success }) => {
   /* Remove message after 3 second */
-    setTimeout(() => {
-        setMessage("");
-      }, 3000);
+  setTimeout(() => {
+    setMessage("");
+  }, 3000);
   return (
     <div className="cdk-overlay-container">
       <div
@@ -14,10 +14,12 @@ const Success = ({message, setMessage,success }) => {
         <div
           id="cdk-overlay-3"
           className="cdk-overlay-pane mat-mdc-snack-bar-handset"
-          style={{ position: "static", marginBottom: "0px" }}
+          style={{ position: "static", marginBottom: "0px"}}
         >
           <div
-            className={`mdc-snackbar mat-mdc-snack-bar-container mdc-snackbar--open ng-tns-c3293340843-2 ng-trigger ng-trigger-state ${success ? 'success-snackbar':'fail-snackbar'} ng-star-inserted`}
+            className={`mdc-snackbar mat-mdc-snack-bar-container mdc-snackbar--open ng-tns-c3293340843-2 ng-trigger ng-trigger-state ${
+              success ? "success-snackbar" : "fail-snackbar"
+            } ng-star-inserted`}
             style={{ transform: "scale(1)", opacity: 1 }}
           >
             <div className="mdc-snackbar__surface ng-tns-c3293340843-2">
@@ -34,14 +36,14 @@ const Success = ({message, setMessage,success }) => {
                         className="mat-mdc-snack-bar-label mdc-snackbar__label"
                       >
                         {" "}
-                      {message}
+                        {message}
                       </div>
                       <div
                         matsnackbaractions=""
                         className="mat-mdc-snack-bar-actions mdc-snackbar__actions ng-star-inserted"
                       >
                         <button
-                        onClick={()=> setMessage('')}
+                          onClick={() => setMessage("")}
                           mat-button=""
                           matsnackbaraction=""
                           className="mat-mdc-snack-bar-action mdc-snackbar__action mdc-button mat-mdc-button mat-unthemed mat-mdc-button-base"

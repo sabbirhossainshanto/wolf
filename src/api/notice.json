@@ -15,7 +15,7 @@
       "deposit": true,
       "bonus": true,
       "withdraw": true,
-      "disabledDevtool": true,
+      "disabledDevtool": false,
       "casinoCurrency": "AED",
       "otp": false
     },
@@ -79,7 +79,8 @@
       "auraWolf": "https://api7.live/api/exchange/diamond/auraWolf",
       "bonusClaim": "https://api7.live/api/exchange/diamond/bonusClaim",
       "referralCode": "https://api7.live/api/exchange/diamond/referralCode",
-      "banner":"https://api7.live/api/exchange/diamond/banner"
+      "banner":"https://api7.live/api/exchange/diamond/banner",
+      "bankAccount": "https://api7.live/api/exchange/diamond/bankAccount"
     }
   },
   "success": true

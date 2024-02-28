@@ -1,10 +1,17 @@
 /* eslint-disable react/no-unknown-property */
-
 import { useState } from "react";
 import AddBank from "../../components/modal/AddBank";
+import useBankAccount from "../../hooks/useBankAccount";
+
 
 const MyBankDetails = () => {
   const [showAddBank, setShowAddBank] = useState(false);
+  const [visibleBankDetail, setVisibleBankDetails] = useState(true);
+  const { bankData,isLoading } = useBankAccount();
+  console.log(isLoading);
+  console.log(bankData);
+
+
   return (
     <>
       <div
@@ -221,6 +228,9 @@ const MyBankDetails = () => {
                                   delete
                                 </span>
                                 <span
+                                  onClick={() =>
+                                    setVisibleBankDetails(!visibleBankDetail)
+                                  }
                                   _ngcontent-ng-c3542240159=""
                                   role="img"
                                   className="mat-icon notranslate material-icons mat-ligature-font mat-icon-no-color ng-star-inserted"
@@ -234,7 +244,9 @@ const MyBankDetails = () => {
                           </div>
                           <div
                             role="region"
-                            className="mat-expansion-panel-content ng-tns-c1859850774-4 ng-trigger ng-trigger-bodyExpansion"
+                            className={`mat-expansion-panel-content ng-tns-c1859850774-4 ng-trigger ng-trigger-bodyExpansion ${
+                              visibleBankDetail ? "" : "invisibleBankDEtails"
+                            }`}
                             id="cdk-accordion-child-0"
                             aria-labelledby="mat-expansion-panel-header-0"
                           >

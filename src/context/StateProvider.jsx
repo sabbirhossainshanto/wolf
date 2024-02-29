@@ -19,9 +19,11 @@ const StateProvider = ({ children }) => {
   const [logo, setLogo] = useState("");
   const [promoSuccessMsg, setPromoSuccessMsg] = useState("");
   const [promoErrMsg, setPromoErrMgs] = useState("");
-  const [icon,setIcon] = useState('')
-  const [paymentAmount,setPaymentAmount] = useState(null)
+  const [icon, setIcon] = useState("");
+  const [paymentAmount, setPaymentAmount] = useState(null);
   const [showDeposit, setSHowDeposit] = useState(false);
+  const [copyTextSuccess, setCopyTextSuccess] = useState("");
+  const [showHelpModal,setShowHelpModal] = useState(false)
 
   /* Get token from locale storage */
   useEffect(() => {
@@ -48,9 +50,9 @@ const StateProvider = ({ children }) => {
   }, [getToken, token]);
 
   useEffect(() => {
-     /* Dynamically get  footer logo  */
-     const icon = `${API.assets}/${Settings.siteUrl}/nav-sprite.svg`;
-     setIcon(icon);
+    /* Dynamically get  footer logo  */
+    const icon = `${API.assets}/${Settings.siteUrl}/nav-sprite.svg`;
+    setIcon(icon);
 
     /* Dynamically append  theme css  */
     const link = document.createElement("link");
@@ -96,11 +98,19 @@ const StateProvider = ({ children }) => {
     setSuccessClaimMsg,
     errClaimMsg,
     setErrClaimMsg,
-    promoSuccessMsg, setPromoSuccessMsg,
-    promoErrMsg, setPromoErrMgs,
-    icon,setIcon,
-    paymentAmount,setPaymentAmount,
-    showDeposit, setSHowDeposit
+    promoSuccessMsg,
+    setPromoSuccessMsg,
+    promoErrMsg,
+    setPromoErrMgs,
+    icon,
+    setIcon,
+    paymentAmount,
+    setPaymentAmount,
+    showDeposit,
+    setSHowDeposit,
+    copyTextSuccess,
+    setCopyTextSuccess,
+    showHelpModal,setShowHelpModal
   };
   return (
     <StateContext.Provider value={stateInfo}>{children}</StateContext.Provider>

@@ -11,6 +11,7 @@ import disableDevtool from "disable-devtool";
 import { Settings } from "../../api";
 import { handleLogOut } from "../../utils/handleLogOut";
 import Deposit from "../modal/Deposit";
+import Help from "../modal/Help";
 
 const Main = () => {
   const {
@@ -27,6 +28,7 @@ const Main = () => {
     setGetToken,
     showDeposit,
     setSHowDeposit,
+    showHelpModal,
   } = useContextState();
   const [successEditStake, setSuccessEditStake] = useState("");
   const navigate = useNavigate();
@@ -110,6 +112,9 @@ const Main = () => {
               setMessage={setSuccessEditStake}
             />
           )}
+
+          {showHelpModal && <Help />}
+
           <div
             className="cdk-visually-hidden cdk-focus-trap-anchor"
             aria-hidden="true"

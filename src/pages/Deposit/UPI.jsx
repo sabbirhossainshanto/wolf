@@ -1,6 +1,10 @@
-/* eslint-disable react/no-unknown-property */
+import useContextState from "../../hooks/useContextState";
+import { handleCopyToClipBoard } from "../../utils/handleCopyToClipBoard";
 
+/* eslint-disable react/no-unknown-property */
 const UPI = ({ depositData }) => {
+  const {setCopyTextSuccess} = useContextState()
+
   return (
     <div
       _ngcontent-ng-c3816252360=""
@@ -30,7 +34,10 @@ const UPI = ({ depositData }) => {
           </div>
           <p _ngcontent-ng-c3816252360="">
             <span _ngcontent-ng-c3816252360="">{depositData?.upiId}</span>
-            <a _ngcontent-ng-c3816252360="">
+            <a
+              onClick={() => handleCopyToClipBoard(depositData?.upiId,setCopyTextSuccess)}
+              _ngcontent-ng-c3816252360=""
+            >
               <span
                 _ngcontent-ng-c3816252360=""
                 role="img"
@@ -43,7 +50,9 @@ const UPI = ({ depositData }) => {
             </a>
           </p>
         </li>
-        {/* <li _ngcontent-ng-c3816252360="" className="ng-star-inserted">
+        <li
+         onClick={() => handleCopyToClipBoard(depositData?.upiId,setCopyTextSuccess)}
+        _ngcontent-ng-c3816252360="" className="ng-star-inserted">
               <div _ngcontent-ng-c3816252360="" className="list-left-side">
                 <div _ngcontent-ng-c3816252360="" className="pay-mode img-wrap">
                   <img
@@ -51,10 +60,10 @@ const UPI = ({ depositData }) => {
                     src="https://ss.manage63.com/south247/uploads/payment/google_pay.png"
                   />
                 </div>
-                <label _ngcontent-ng-c3816252360="">MALAKAR TRADING</label>
+                <label _ngcontent-ng-c3816252360=""> {depositData?.upiAccountName}</label>
               </div>
               <p _ngcontent-ng-c3816252360="">
-                <span _ngcontent-ng-c3816252360="">9093100843@centralbank</span>
+                <span _ngcontent-ng-c3816252360="">{depositData?.upiId}</span>
                 <a _ngcontent-ng-c3816252360="">
                   <span
                     _ngcontent-ng-c3816252360=""
@@ -68,7 +77,9 @@ const UPI = ({ depositData }) => {
                 </a>
               </p>
             </li>
-            <li _ngcontent-ng-c3816252360="" className="ng-star-inserted">
+            <li 
+             onClick={() => handleCopyToClipBoard(depositData?.upiId,setCopyTextSuccess)}
+            _ngcontent-ng-c3816252360="" className="ng-star-inserted">
               <div _ngcontent-ng-c3816252360="" className="list-left-side">
                 <div _ngcontent-ng-c3816252360="" className="pay-mode img-wrap">
                   <img
@@ -76,10 +87,10 @@ const UPI = ({ depositData }) => {
                     src="https://ss.manage63.com/south247/uploads/payment/paytm_upi.png"
                   />
                 </div>
-                <label _ngcontent-ng-c3816252360="">MALAKAR TRADING</label>
+                <label _ngcontent-ng-c3816252360=""> {depositData?.upiAccountName}</label>
               </div>
               <p _ngcontent-ng-c3816252360="">
-                <span _ngcontent-ng-c3816252360="">9093100843@centralbank</span>
+                <span _ngcontent-ng-c3816252360="">{depositData?.upiId}</span>
                 <a _ngcontent-ng-c3816252360="">
                   <span
                     _ngcontent-ng-c3816252360=""
@@ -92,7 +103,7 @@ const UPI = ({ depositData }) => {
                   </span>
                 </a>
               </p>
-            </li> */}
+            </li>
       </ul>
     </div>
   );

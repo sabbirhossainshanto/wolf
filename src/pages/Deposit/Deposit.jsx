@@ -1,5 +1,5 @@
 /* eslint-disable react/no-unknown-property */
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import QRCode from "./QRCode";
 import UPI from "./UPI";
 import Bank from "./Bank";
@@ -9,17 +9,26 @@ import axios from "axios";
 import { API } from "../../api";
 import UseTokenGenerator from "../../hooks/UseTokenGenerator";
 import useContextState from "../../hooks/useContextState";
+import Success from "../../components/ui/Notification/Success";
+import { useNavigate } from "react-router-dom";
 
 const Deposit = () => {
-  const { token } = useContextState();
+  const { token, copyTextSuccess, setCopyTextSuccess } = useContextState();
   const paymentAmount = localStorage.getItem("paymentAmount");
   const [tabs, setTabs] = useState("");
+  const [paymentId, setPaymentId] = useState("");
+  const [utr, setUtr] = useState(null);
   const [depositData, setDepositData] = useState({});
   const { bankData: depositMethods } = useBankAccount(depositMethodsPost);
-  const [image,setImage] = useState('')
+  const [image, setImage] = useState(null);
+  const [depositRequestSuccess, setDepositRequestSuccess] = useState("");
+  const [depositRequestErr, setDepositRequestErr] = useState("");
+  const navigate = useNavigate();
+  const [uploadedImage, setUploadedImage] = useState(null);
 
   const handleVisibleBankMethod = async (method) => {
     setTabs(method?.type);
+    setPaymentId(method?.paymentId);
     const generatedToken = UseTokenGenerator();
     const depositDetail = {
       type: "depositDetails",
@@ -37,24 +46,86 @@ const Deposit = () => {
     }
   };
 
-console.log(image?.name);
-
-const handleSubmitImage = async () => {
-  const formData = new FormData()
-  formData.append('image',image)
-  const res = await axios.post('https://b2c.bet/deposit/up.php',formData,{
-    headers:{
-      Authorization:`Bearer ${token}`
+  useEffect(() => {
+    if (image) {
+      const handleSubmitImage = async () => {
+        const formData = new FormData();
+        formData.append("image", image);
+        const res = await axios.post(API.uploadScreenshot, formData, {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        });
+        const data = res.data;
+        if (data?.success) {
+          setUploadedImage(data?.fileName);
+        }
+      };
+      handleSubmitImage();
     }
-  })
-  const data = res.data;
-  console.log(data);
-}
+  }, [image, token]);
+
+  const handleDepositSubmit = async () => {
+    if (uploadedImage || utr) {
+      const generatedToken = UseTokenGenerator();
+      const screenshotPostData = {
+        type: "depositSubmit",
+        paymentId,
+        amount: paymentAmount,
+        fileName: uploadedImage,
+        utr: utr,
+        token: generatedToken,
+      };
+      const res = await axios.post(API.bankAccount, screenshotPostData, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+      const result = res?.data;
+      if (result?.success) {
+        setImage(null);
+        setDepositRequestSuccess(result?.result?.message);
+        setTimeout(() => {
+          navigate("/");
+        }, 2000);
+      } else {
+        setImage(null);
+        setDepositRequestErr(result?.error?.errorMessage);
+      }
+    }
+  };
 
   return (
-    <div _ngcontent-ng-c3816252360="" className="page-body"
-    style={{minHeight:'100vh'}}
+    <div
+      _ngcontent-ng-c3816252360=""
+      className="page-body"
+      style={{ minHeight: "100vh" }}
     >
+      {/* Copy to clipboard notification */}
+      {copyTextSuccess && (
+        <Success
+          message={copyTextSuccess}
+          setMessage={setCopyTextSuccess}
+          success={true}
+        />
+      )}
+
+      {/* Deposit request notification */}
+      {depositRequestSuccess && (
+        <Success
+          message={depositRequestSuccess}
+          setMessage={setDepositRequestSuccess}
+          success={true}
+        />
+      )}
+      {depositRequestErr && (
+        <Success
+          message={depositRequestErr}
+          setMessage={setDepositRequestErr}
+          success={false}
+        />
+      )}
+
       <div
         _ngcontent-ng-c3816252360=""
         className="select-method-wrap ng-star-inserted"
@@ -96,160 +167,157 @@ const handleSubmitImage = async () => {
             })}
         </div>
 
-
         {tabs === "qr" && <QRCode depositData={depositData} />}
         {tabs === "upi" && <UPI depositData={depositData} />}
         {tabs === "bank" && <Bank depositData={depositData} />}
 
-        {
-  tabs && (
-    <>
-    
-    <div
-          _ngcontent-ng-c3816252360=""
-          className="mat-expansion-panel payment-confirm-panel ng-tns-c1859850774-3 ng-star-inserted mat-expanded"
-        >
-          <div
-            _ngcontent-ng-c3816252360=""
-            role="button"
-            className="mat-expansion-panel-header mat-focus-indicator ng-tns-c2690051721-4 ng-tns-c1859850774-3 ng-star-inserted mat-expanded"
-            id="mat-expansion-panel-header-1"
-            aria-controls="cdk-accordion-child-1"
-            aria-expanded="true"
-            aria-disabled="false"
-          >
-            <span className="mat-content ng-tns-c2690051721-4">
+        {tabs && (
+          <>
+            <div
+              _ngcontent-ng-c3816252360=""
+              className="mat-expansion-panel payment-confirm-panel ng-tns-c1859850774-3 ng-star-inserted mat-expanded"
+            >
               <div
                 _ngcontent-ng-c3816252360=""
-                className="mat-expansion-panel-header-title ng-tns-c2690051721-4"
+                role="button"
+                className="mat-expansion-panel-header mat-focus-indicator ng-tns-c2690051721-4 ng-tns-c1859850774-3 ng-star-inserted mat-expanded"
+                id="mat-expansion-panel-header-1"
+                aria-controls="cdk-accordion-child-1"
+                aria-expanded="true"
+                aria-disabled="false"
               >
-                {" "}
-                Upload Payment Screenshot
-              </div>
-            </span>
-          </div>
-          <div
-            role="region"
-            className="mat-expansion-panel-content ng-tns-c1859850774-3 ng-trigger ng-trigger-bodyExpansion"
-            id="cdk-accordion-child-1"
-            aria-labelledby="mat-expansion-panel-header-1"
-          >
-            <div className="mat-expansion-panel-body ng-tns-c1859850774-3">
-              <div
-                _ngcontent-ng-c3816252360=""
-                className="panel-content ng-tns-c1859850774-3"
-              >
-                <div
-                  _ngcontent-ng-c3816252360=""
-                  className="upload-screenshot-wrap ng-star-inserted"
-                >
+                <span className="mat-content ng-tns-c2690051721-4">
                   <div
                     _ngcontent-ng-c3816252360=""
-                    className="screenshot-wrapper"
+                    className="mat-expansion-panel-header-title ng-tns-c2690051721-4"
+                  >
+                    {" "}
+                    Upload Payment Screenshot
+                  </div>
+                </span>
+              </div>
+              <div
+                role="region"
+                className="mat-expansion-panel-content ng-tns-c1859850774-3 ng-trigger ng-trigger-bodyExpansion"
+                id="cdk-accordion-child-1"
+                aria-labelledby="mat-expansion-panel-header-1"
+              >
+                <div className="mat-expansion-panel-body ng-tns-c1859850774-3">
+                  <div
+                    _ngcontent-ng-c3816252360=""
+                    className="panel-content ng-tns-c1859850774-3"
                   >
                     <div
                       _ngcontent-ng-c3816252360=""
-                      className="upload-screenshot"
+                      className="upload-screenshot-wrap ng-star-inserted"
                     >
-                      <label _ngcontent-ng-c3816252360="">
-                        <input
-                        onChange={(e) => setImage(e.target.files[0])}
+                      <div
+                        _ngcontent-ng-c3816252360=""
+                        className="screenshot-wrapper"
+                      >
+                        <div
                           _ngcontent-ng-c3816252360=""
-                          type="file"
-                          name="img"
-                          accept="image/*"
-                          id="upload_screenshot"
-                          hidden=""
-                          className="ng-untouched ng-pristine ng-valid"
-                        />
-                        <a
-                          _ngcontent-ng-c3816252360=""
-                          className="ng-star-inserted"
+                          className="upload-screenshot"
                         >
-                          <span
-                            _ngcontent-ng-c3816252360=""
-                            role="img"
-                            className="mat-icon notranslate material-icons mat-ligature-font mat-icon-no-color"
-                            aria-hidden="true"
-                            data-mat-icon-type="font"
-                          >
-                            add_circle
-                          </span>
-                        </a>
-                        <p
-                          _ngcontent-ng-c3816252360=""
-                          className="ng-star-inserted"
-                        >
-                          Click here to upload payment screenshot
-                        </p>
-                      </label>
+                          <label _ngcontent-ng-c3816252360="">
+                            <input
+                              onChange={(e) => setImage(e.target.files[0])}
+                              _ngcontent-ng-c3816252360=""
+                              type="file"
+                              name="img"
+                              accept="image/*"
+                              id="upload_screenshot"
+                              hidden
+                              className="ng-untouched ng-pristine ng-valid"
+                            />
+                            <a
+                              _ngcontent-ng-c3816252360=""
+                              className="ng-star-inserted"
+                            >
+                              <span
+                                _ngcontent-ng-c3816252360=""
+                                role="img"
+                                className="mat-icon notranslate material-icons mat-ligature-font mat-icon-no-color"
+                                aria-hidden="true"
+                                data-mat-icon-type="font"
+                              >
+                                add_circle
+                              </span>
+                            </a>
+                            <p
+                              _ngcontent-ng-c3816252360=""
+                              className="ng-star-inserted"
+                            >
+                              Click here to upload payment screenshot
+                            </p>
+                          </label>
+                        </div>
+                      </div>
                     </div>
                   </div>
                 </div>
               </div>
             </div>
-          </div>
-        </div>
 
-        <p _ngcontent-ng-c3816252360="" className="separator">
-          OR
-        </p>
-        <div
-          _ngcontent-ng-c3816252360=""
-          className="mat-expansion-panel payment-confirm-panel ng-tns-c1859850774-1 ng-star-inserted"
-        >
-          <div
-            _ngcontent-ng-c3816252360=""
-            role="button"
-            className="mat-expansion-panel-header mat-focus-indicator ng-tns-c2690051721-2 ng-tns-c1859850774-1 ng-star-inserted"
-            id="mat-expansion-panel-header-0"
-            aria-controls="cdk-accordion-child-0"
-            aria-expanded="false"
-            aria-disabled="false"
-          >
-            <span className="mat-content ng-tns-c2690051721-2">
+            <p _ngcontent-ng-c3816252360="" className="separator">
+              OR
+            </p>
+            <div
+              _ngcontent-ng-c3816252360=""
+              className="mat-expansion-panel payment-confirm-panel ng-tns-c1859850774-1 ng-star-inserted"
+            >
               <div
                 _ngcontent-ng-c3816252360=""
-                className="mat-expansion-panel-header-title ng-tns-c2690051721-2"
+                role="button"
+                className="mat-expansion-panel-header mat-focus-indicator ng-tns-c2690051721-2 ng-tns-c1859850774-1 ng-star-inserted"
+                id="mat-expansion-panel-header-0"
+                aria-controls="cdk-accordion-child-0"
+                aria-expanded="false"
+                aria-disabled="false"
               >
-                {" "}
-                Enter Payment UTR
-              </div>
-            </span>
-          </div>
-          <div
-            role="region"
-            className="mat-expansion-panel-content ng-tns-c1859850774-1 ng-trigger ng-trigger-bodyExpansion"
-            id="cdk-accordion-child-0"
-            aria-labelledby="mat-expansion-panel-header-0"
-          >
-            <div className="mat-expansion-panel-body ng-tns-c1859850774-1">
-              <div
-                _ngcontent-ng-c3816252360=""
-                className="panel-content ng-tns-c1859850774-1"
-              >
-                <div _ngcontent-ng-c3816252360="" className="input-wrap">
-                  <input
+                <span className="mat-content ng-tns-c2690051721-2">
+                  <div
                     _ngcontent-ng-c3816252360=""
-                    placeholder="Enter payment UTR here"
-                    type="text"
-                  />
+                    className="mat-expansion-panel-header-title ng-tns-c2690051721-2"
+                  >
+                    {" "}
+                    Enter Payment UTR
+                  </div>
+                </span>
+              </div>
+              <div
+                role="region"
+                className="mat-expansion-panel-content ng-tns-c1859850774-1 ng-trigger ng-trigger-bodyExpansion"
+                id="cdk-accordion-child-0"
+                aria-labelledby="mat-expansion-panel-header-0"
+              >
+                <div className="mat-expansion-panel-body ng-tns-c1859850774-1">
+                  <div
+                    _ngcontent-ng-c3816252360=""
+                    className="panel-content ng-tns-c1859850774-1"
+                  >
+                    <div _ngcontent-ng-c3816252360="" className="input-wrap">
+                      <input
+                        onChange={(e) => setUtr(e.target.value)}
+                        _ngcontent-ng-c3816252360=""
+                        placeholder="Enter payment UTR here"
+                        type="text"
+                      />
+                    </div>
+                    <button
+                      onClick={handleDepositSubmit}
+                      disabled={!image && !utr}
+                      _ngcontent-ng-c3816252360=""
+                      className="btn secondary-btn"
+                    >
+                      Submit
+                    </button>
+                  </div>
                 </div>
-                <button
-                onClick={handleSubmitImage}
-                  _ngcontent-ng-c3816252360=""
-                  className="btn secondary-btn"
-                >
-                  Submit
-                </button>
               </div>
             </div>
-          </div>
-        </div>
-    </>
-  )
-}
-
+          </>
+        )}
       </div>
     </div>
   );

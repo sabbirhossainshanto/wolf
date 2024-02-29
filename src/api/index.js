@@ -63,7 +63,8 @@ export const API = {
   bonusClaim:config?.result?.endpoint?.bonusClaim,
   referralCode:config?.result?.endpoint?.referralCode,
   banner:config?.result?.endpoint?.banner,
-  bankAccount:config?.result?.endpoint?.bankAccount
+  bankAccount:config?.result?.endpoint?.bankAccount,
+  uploadScreenshot:config?.result?.endpoint?.uploadScreenshot
 };
 
 export const Settings = {

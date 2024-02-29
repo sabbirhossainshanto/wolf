@@ -1,6 +1,9 @@
 /* eslint-disable react/no-unknown-property */
-
+import { saveAs } from "file-saver";
 const QRCode = ({ depositData }) => {
+  const handleDownload = (url) => {
+    saveAs(url, "qrCode.png");
+  };
   return (
     <div
       _ngcontent-ng-c3816252360=""
@@ -17,16 +20,18 @@ const QRCode = ({ depositData }) => {
             <p _ngcontent-ng-c3816252360="">{depositData?.qrDisplayName}</p>
           </div>
           <button
+            download="your_image_name"
+            onClick={() => handleDownload(depositData?.qrCodeLink)}
             _ngcontent-ng-c3816252360=""
             className="btn secondary-btn mb-2"
           >
             {" "}
             Download QR
           </button>
-          <button _ngcontent-ng-c3816252360="" className="btn secondary-btn">
+          {/* <button _ngcontent-ng-c3816252360="" className="btn secondary-btn">
             {" "}
             Open QR{" "}
-          </button>
+          </button> */}
         </li>
       </ul>
     </div>

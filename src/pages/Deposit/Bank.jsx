@@ -1,5 +1,9 @@
+import useContextState from "../../hooks/useContextState";
+import { handleCopyToClipBoard } from "../../utils/handleCopyToClipBoard";
+
 /* eslint-disable react/no-unknown-property */
 const Bank = ({ depositData }) => {
+  const { setCopyTextSuccess } = useContextState();
   return (
     <div
       _ngcontent-ng-c3816252360=""
@@ -11,7 +15,15 @@ const Bank = ({ depositData }) => {
           <label _ngcontent-ng-c3816252360="">Account holder name</label>
           <p _ngcontent-ng-c3816252360="">
             {depositData?.accountName}{" "}
-            <a _ngcontent-ng-c3816252360="">
+            <a
+              onClick={() =>
+                handleCopyToClipBoard(
+                  depositData?.accountName,
+                  setCopyTextSuccess
+                )
+              }
+              _ngcontent-ng-c3816252360=""
+            >
               <span
                 _ngcontent-ng-c3816252360=""
                 role="img"
@@ -28,7 +40,15 @@ const Bank = ({ depositData }) => {
           <label _ngcontent-ng-c3816252360="">Account number</label>
           <p _ngcontent-ng-c3816252360="">
             {depositData?.accountNumber}{" "}
-            <a _ngcontent-ng-c3816252360="">
+            <a
+              onClick={() =>
+                handleCopyToClipBoard(
+                  depositData?.accountNumber,
+                  setCopyTextSuccess
+                )
+              }
+              _ngcontent-ng-c3816252360=""
+            >
               <span
                 _ngcontent-ng-c3816252360=""
                 role="img"
@@ -45,7 +65,12 @@ const Bank = ({ depositData }) => {
           <label _ngcontent-ng-c3816252360="">IFSC Code</label>
           <p _ngcontent-ng-c3816252360="">
             {depositData?.ifsc}{" "}
-            <a _ngcontent-ng-c3816252360="">
+            <a
+              onClick={() =>
+                handleCopyToClipBoard(depositData?.ifsc, setCopyTextSuccess)
+              }
+              _ngcontent-ng-c3816252360=""
+            >
               <span
                 _ngcontent-ng-c3816252360=""
                 role="img"
@@ -62,7 +87,12 @@ const Bank = ({ depositData }) => {
           <label _ngcontent-ng-c3816252360="">Bank Name</label>
           <p _ngcontent-ng-c3816252360="">
             {depositData?.bankName}
-            <a _ngcontent-ng-c3816252360="">
+            <a
+              onClick={() =>
+                handleCopyToClipBoard(depositData?.bankName, setCopyTextSuccess)
+              }
+              _ngcontent-ng-c3816252360=""
+            >
               <span
                 _ngcontent-ng-c3816252360=""
                 role="img"

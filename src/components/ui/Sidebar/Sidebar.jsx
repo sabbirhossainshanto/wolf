@@ -25,6 +25,7 @@ const Sidebar = () => {
     logo,
     setPromoErrMgs,
     setPromoSuccessMsg,
+    setShowHelpModal
   } = useContextState();
   const loginName = localStorage.getItem("loginName");
   const navigate = useNavigate();
@@ -496,11 +497,16 @@ const Sidebar = () => {
                     <span _ngcontent-ng-c967272132="">Rules</span>
                   </Link>
                 </li>
-                {/* <li
+                <li
                   _ngcontent-ng-c967272132=""
                   className="smenu-item ng-star-inserted"
                 >
-                  <a _ngcontent-ng-c967272132="" className="smenu-link">
+                  <a
+                  onClick={()=> {
+                    setShowHelpModal(true)
+                    setShowSidebar(false)
+                  }}
+                  _ngcontent-ng-c967272132="" className="smenu-link">
                     <img
                       _ngcontent-ng-c967272132=""
                       alt="Menu Icon"
@@ -508,7 +514,7 @@ const Sidebar = () => {
                     />
                     <span _ngcontent-ng-c967272132="">Help</span>
                   </a>
-                </li> */}
+                </li>
               </ul>
               <ul _ngcontent-ng-c967272132="" className="smenu-wrap bottom">
                 <li

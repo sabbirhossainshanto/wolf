@@ -31,12 +31,14 @@ const GameDetails = () => {
 
   // const { data} = useGameDetails(eventTypeId, eventId);
   const [showIFrame, setShowIFrame] = useState(true);
-  const [showScore, setShowScore] = useState(false);
+  const [showScore, setShowScore] = useState(true);
   const [match_odds, setMatch_odds] = useState([]);
   /* has video boolean for iframe api enable or not*/
   const hasVideo = match_odds?.length > 0 && match_odds[0]?.hasVideo;
+  const isHasVideo = hasVideo ? true : false
+
   /* get iframe */
-  const { iFrameUrl } = useIFrame(eventTypeId, eventId, hasVideo);
+  const { iFrameUrl } = useIFrame(eventTypeId, eventId, isHasVideo);
   const [showLoginWarn, setShowLoginWarn] = useState("");
 
   /* get game details */

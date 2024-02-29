@@ -14,7 +14,6 @@ const MarketTab = ({
   setOpenBetSlip,
   showIFrame,
   showScore,
-  setShowScore,
   match_odds, setMatch_odds,
   setShowLoginWarn
 }) => {
@@ -55,15 +54,6 @@ const MarketTab = ({
   }, [data]);
 
   
-  useEffect(() => {
-    if (
-      match_odds &&
-      match_odds?.length > 0 &&
-      match_odds[0]?.score?.length > 0
-    ) {
-      setShowScore(true);
-    }
-  }, [match_odds, setShowScore]);
 
 
   return (

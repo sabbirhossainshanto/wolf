@@ -32,7 +32,8 @@ const Footer = () => {
       {/* My market modal */}
       {showMyMarket && <MyMarket setShowMyMarket={setShowMyMarket} />}
       {/* Render html based on path */}
-      {!location?.pathname?.includes("/game-details") && (
+      {!location?.pathname?.includes("/game-details") &&
+      location.pathname !== "/profile/deposit" ? (
         <div _ngcontent-ng-c943649379="" className="page-footer">
           {socialLink?.link && location.pathname === "/" && (
             <div
@@ -212,7 +213,7 @@ const Footer = () => {
             </div>
           </div>
         </div>
-      )}
+      ) : null}
     </>
   );
 };

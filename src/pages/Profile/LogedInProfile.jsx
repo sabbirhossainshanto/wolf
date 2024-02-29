@@ -5,7 +5,6 @@ import useGetSocialLink from "../../hooks/useGetSocialLink";
 import { useState } from "react";
 import Withdraw from "../../components/modal/Withdraw";
 import Success from "../../components/ui/Notification/Success";
-import Deposit from "../../components/modal/Deposit";
 
 /* eslint-disable react/no-unknown-property */
 const LoggedInProfile = ({
@@ -13,11 +12,10 @@ const LoggedInProfile = ({
   setShowChangePassModal,
   balanceData,
 }) => {
-
-  const { isCheckedBonusToken } = useContextState();
+  const { isCheckedBonusToken, setSHowDeposit } = useContextState();
   const { socialLink } = useGetSocialLink();
   const [showWithdraw, setSHowWithdraw] = useState(false);
-  const [showDeposit, setSHowDeposit] = useState(false);
+
   const [withdrawCoinSuccess, setWithdrawCoinSuccess] = useState("");
   const [withdrawCoinErr, setWithdrawCoinErr] = useState("");
 
@@ -33,12 +31,6 @@ const LoggedInProfile = ({
           setWithdrawCoinSuccess={setWithdrawCoinSuccess}
         />
       )}
-
-  {showDeposit && (
-        <Deposit
-        setSHowDeposit={setSHowDeposit}
-        />
-  )}
 
       {withdrawCoinSuccess && (
         <Success
@@ -107,7 +99,7 @@ const LoggedInProfile = ({
                 {Settings.deposit && (
                   <button
                     onClick={() => {
-                      setSHowDeposit(true)
+                      setSHowDeposit(true);
                     }}
                     _ngcontent-ng-c2865632707=""
                     mat-flat-button=""

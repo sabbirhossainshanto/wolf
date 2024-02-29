@@ -21,6 +21,7 @@ const StateProvider = ({ children }) => {
   const [promoErrMsg, setPromoErrMgs] = useState("");
   const [icon,setIcon] = useState('')
   const [paymentAmount,setPaymentAmount] = useState(null)
+  const [showDeposit, setSHowDeposit] = useState(false);
 
   /* Get token from locale storage */
   useEffect(() => {
@@ -98,7 +99,8 @@ const StateProvider = ({ children }) => {
     promoSuccessMsg, setPromoSuccessMsg,
     promoErrMsg, setPromoErrMgs,
     icon,setIcon,
-    paymentAmount,setPaymentAmount
+    paymentAmount,setPaymentAmount,
+    showDeposit, setSHowDeposit
   };
   return (
     <StateContext.Provider value={stateInfo}>{children}</StateContext.Provider>

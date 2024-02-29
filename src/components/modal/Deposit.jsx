@@ -2,9 +2,9 @@
 import { motion } from "framer-motion";
 import { useRef } from "react";
 import useCloseModalClickOutside from "../../hooks/useCloseModalClickOutside";
-import useBankAccount from "../../hooks/useBankAccount";
 import useContextState from "../../hooks/useContextState";
 import { useNavigate } from "react-router-dom";
+import useGetCoin from "../../hooks/BankAccount/useGetCoin";
 const Deposit = ({ setSHowDeposit }) => {
   const { paymentAmount, setPaymentAmount } = useContextState();
   const withdrawRef = useRef();
@@ -16,7 +16,7 @@ const Deposit = ({ setSHowDeposit }) => {
   const depositPostData = {
     type: "availableCoins",
   };
-  const { bankData: depositData } = useBankAccount(depositPostData);
+  const { depositData } = useGetCoin(depositPostData);
 
   const handleNavigateDeposit = (e) => {
     e.preventDefault();

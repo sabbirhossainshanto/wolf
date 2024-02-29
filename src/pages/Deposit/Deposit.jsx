@@ -37,7 +37,9 @@ const Deposit = () => {
   };
 
   return (
-    <div _ngcontent-ng-c3816252360="" className="page-body">
+    <div _ngcontent-ng-c3816252360="" className="page-body"
+    style={{minHeight:'100vh'}}
+    >
       <div
         _ngcontent-ng-c3816252360=""
         className="select-method-wrap ng-star-inserted"
@@ -79,11 +81,16 @@ const Deposit = () => {
             })}
         </div>
 
+
         {tabs === "qr" && <QRCode depositData={depositData} />}
         {tabs === "upi" && <UPI depositData={depositData} />}
         {tabs === "bank" && <Bank depositData={depositData} />}
 
-        <div
+        {
+  tabs && (
+    <>
+    
+    <div
           _ngcontent-ng-c3816252360=""
           className="mat-expansion-panel payment-confirm-panel ng-tns-c1859850774-3 ng-star-inserted mat-expanded"
         >
@@ -222,6 +229,10 @@ const Deposit = () => {
             </div>
           </div>
         </div>
+    </>
+  )
+}
+
       </div>
     </div>
   );

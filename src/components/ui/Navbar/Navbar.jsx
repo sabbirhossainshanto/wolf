@@ -23,6 +23,7 @@ const Navbar = () => {
     isCheckedBonusToken,
     logo,
     setSportsType,
+    setSHowDeposit,
   } = useContextState();
   const location = useLocation();
   const navigate = useNavigate();
@@ -89,7 +90,7 @@ const Navbar = () => {
     if (isCheckedBonusToken) {
       setShowWarning("Please switch to main wallet for deposit.");
     } else {
-      navigate("/profile/deposit");
+      setSHowDeposit(true);
     }
   };
 

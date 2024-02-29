@@ -10,6 +10,7 @@ import Success from "../ui/Notification/Success";
 import disableDevtool from "disable-devtool";
 import { Settings } from "../../api";
 import { handleLogOut } from "../../utils/handleLogOut";
+import Deposit from "../modal/Deposit";
 
 const Main = () => {
   const {
@@ -23,7 +24,9 @@ const Main = () => {
     setPromoSuccessMsg,
     promoErrMsg,
     setPromoErrMgs,
-    setGetToken
+    setGetToken,
+    showDeposit,
+    setSHowDeposit,
   } = useContextState();
   const [successEditStake, setSuccessEditStake] = useState("");
   const navigate = useNavigate();
@@ -56,6 +59,8 @@ const Main = () => {
           ngskiphydration=""
           className="mat-drawer-container mat-sidenav-container sidenav-container"
         >
+          {/* Show deposit */}
+          {showDeposit && <Deposit setSHowDeposit={setSHowDeposit} />}
           {/*   <!-- mennu start--> */}
           {/* After successfully transfer claim bonus to main wallet success message */}
           {successClaimMsg && (

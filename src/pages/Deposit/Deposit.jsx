@@ -16,6 +16,7 @@ const Deposit = () => {
   const [tabs, setTabs] = useState("");
   const [depositData, setDepositData] = useState({});
   const { bankData: depositMethods } = useBankAccount(depositMethodsPost);
+  const [image,setImage] = useState('')
 
   const handleVisibleBankMethod = async (method) => {
     setTabs(method?.type);
@@ -35,6 +36,20 @@ const Deposit = () => {
       setDepositData(data?.result);
     }
   };
+
+console.log(image?.name);
+
+const handleSubmitImage = async () => {
+  const formData = new FormData()
+  formData.append('image',image)
+  const res = await axios.post('https://b2c.bet/deposit/up.php',formData,{
+    headers:{
+      Authorization:`Bearer ${token}`
+    }
+  })
+  const data = res.data;
+  console.log(data);
+}
 
   return (
     <div _ngcontent-ng-c3816252360="" className="page-body"
@@ -138,6 +153,7 @@ const Deposit = () => {
                     >
                       <label _ngcontent-ng-c3816252360="">
                         <input
+                        onChange={(e) => setImage(e.target.files[0])}
                           _ngcontent-ng-c3816252360=""
                           type="file"
                           name="img"
@@ -220,6 +236,7 @@ const Deposit = () => {
                   />
                 </div>
                 <button
+                onClick={handleSubmitImage}
                   _ngcontent-ng-c3816252360=""
                   className="btn secondary-btn"
                 >

@@ -5,7 +5,9 @@ const Success = ({ message, setMessage, success }) => {
     setMessage("");
   }, 3000);
   return (
-    <div className="cdk-overlay-container">
+    <div className="cdk-overlay-container"
+    style={{zIndex:99999}}
+    >
       <div
         className="cdk-global-overlay-wrapper"
         dir="ltr"

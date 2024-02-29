@@ -20,6 +20,7 @@ const StateProvider = ({ children }) => {
   const [promoSuccessMsg, setPromoSuccessMsg] = useState("");
   const [promoErrMsg, setPromoErrMgs] = useState("");
   const [icon,setIcon] = useState('')
+  const [paymentAmount,setPaymentAmount] = useState(null)
 
   /* Get token from locale storage */
   useEffect(() => {
@@ -96,7 +97,8 @@ const StateProvider = ({ children }) => {
     setErrClaimMsg,
     promoSuccessMsg, setPromoSuccessMsg,
     promoErrMsg, setPromoErrMgs,
-    icon,setIcon
+    icon,setIcon,
+    paymentAmount,setPaymentAmount
   };
   return (
     <StateContext.Provider value={stateInfo}>{children}</StateContext.Provider>

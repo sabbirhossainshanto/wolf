@@ -30,7 +30,6 @@ const Withdraw = ({
   useEffect(() => {
     refetchWithdrawData();
   }, [refetchWithdrawData, bankId]);
-
   const handleCoinSubmit = async (e) => {
     e.preventDefault();
     if (amount?.length > 0 && bankId) {

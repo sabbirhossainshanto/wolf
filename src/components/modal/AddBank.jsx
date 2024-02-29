@@ -46,7 +46,6 @@ const AddBank = ({
       setShowAddBank(false);
     } else {
       setErrCrudMsg(data?.result?.message);
- 
     }
   };
   return (

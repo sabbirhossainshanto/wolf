@@ -55,7 +55,7 @@ const MyBankDetails = () => {
     refetchBankData();
   }, [refetchBankData, activeTab]);
   console.log(errCrudMsg);
-
+console.log(bankData);
   return (
     <>
       {/* Move to default account start */}
@@ -264,7 +264,7 @@ const MyBankDetails = () => {
                       _ngcontent-ng-c3542240159=""
                       className="banks-list-wrap ng-star-inserted"
                     >
-                      {bankData?.map((data, i) => {
+                      { Array.isArray(bankData) && bankData?.map((data, i) => {
                         return (
                           <div
                             key={i}

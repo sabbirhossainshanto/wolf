@@ -15,31 +15,36 @@ const Tabs = () => {
       className="ng-star-inserted"
     >
       <div _ngcontent-ng-c2582205232="" className="pagetab-wrapper">
-        <div
-          _ngcontent-ng-c2582205232=""
-          className="latest-events ng-star-inserted"
-        >
-          {latestEvents?.map((item, i) => {
-            return (
-              <div
-                onClick={() => {
-                  navigate(
-                    `/game-details/${item?.eventTypeId}/${item?.eventId}`
-                  );
-                }}
-                key={i}
-                _ngcontent-ng-c2582205232=""
-                className="le-item ng-star-inserted"
-              >
-                <h2 _ngcontent-ng-c2582205232="" className="ng-star-inserted">
-                  <span _ngcontent-ng-c2582205232="" className="blink-it">
-                    {item?.eventName}
-                  </span>
-                </h2>
-              </div>
-            );
-          })}
-        </div>
+        {
+          latestEvents?.length > 0 && (
+            <div
+            _ngcontent-ng-c2582205232=""
+            className="latest-events ng-star-inserted"
+          >
+            {latestEvents?.map((item, i) => {
+              return (
+                <div
+                  onClick={() => {
+                    navigate(
+                      `/game-details/${item?.eventTypeId}/${item?.eventId}`
+                    );
+                  }}
+                  key={i}
+                  _ngcontent-ng-c2582205232=""
+                  className="le-item ng-star-inserted"
+                >
+                  <h2 _ngcontent-ng-c2582205232="" className="ng-star-inserted">
+                    <span _ngcontent-ng-c2582205232="" className="blink-it">
+                      {item?.eventName}
+                    </span>
+                  </h2>
+                </div>
+              );
+            })}
+          </div>
+          )
+        }
+    
         <div _ngcontent-ng-c2582205232="" className="pagetab-header">
           <div
             onClick={() => setSportsType(4)}

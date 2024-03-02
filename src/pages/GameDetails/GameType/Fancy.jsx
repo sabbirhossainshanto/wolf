@@ -47,7 +47,7 @@ const Fancy = ({
       setShowLoginWarn("Please log in to play.");
     }
   };
-/* exposure */
+  /* exposure */
   let pnlBySelection;
   if (exposer?.pnlBySelection) {
     const obj = exposer?.pnlBySelection;
@@ -77,7 +77,7 @@ const Fancy = ({
         }
       });
   };
-/* close ladder modal click outside */
+  /* close ladder modal click outside */
   const ladderRef = useRef();
   useCloseModalClickOutside(ladderRef, () => {
     setShowLadder(false);
@@ -93,7 +93,7 @@ const Fancy = ({
       >
         <div _ngcontent-ng-c942213636="" className="head-wrap">
           <h2 _ngcontent-ng-c942213636="" className="card-heading">
-            {normal[0]?.btype}
+            {normal[0]?.eventTypeId == 4 ? normal[0]?.btype : normal[0]?.name}
           </h2>
         </div>
         <div _ngcontent-ng-c942213636="" className="fancybody-header">

@@ -18,7 +18,9 @@ const InPlay = ({ keys, data }) => {
         >
           <div _ngcontent-ng-c943649379="" className="card-header">
             <h3 _ngcontent-ng-c943649379="" className="card-title">
-              <MdOutlineSmartDisplay size={18} color="red" />
+              <MdOutlineSmartDisplay 
+              size={15}
+               color="#eb5050" />
 
               {data[keys]?.eventName}
             </h3>

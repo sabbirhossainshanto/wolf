@@ -57,19 +57,14 @@ const Help = () => {
                     <div
                       _ngcontent-ng-c1325205117=""
                       className="modal-header"
-                      style={{
-                        position: " relative",
-                        padding: "10px 0",
-                        minHeight: "50px",
-                        display: "flex",
-                        alignItems: "center",
-                        justifyContent: "center",
-                      }}
+                    
                     >
+                      <div>
                       <h2 _ngcontent-ng-c1325205117="">Help</h2>
                       <p _ngcontent-ng-c1325205117="">
                         Need Help! Feel free to contact.
                       </p>
+                      </div>
                       <button
                         onClick={() => setShowHelpModal(false)}
                         _ngcontent-ng-c1325205117=""
@@ -133,15 +128,19 @@ const Help = () => {
                           _ngcontent-ng-c1325205117=""
                           type="button"
                           className="btn secondary-btn ng-star-inserted"
+                          style={{display:'flex',alignItems:'center',justifyContent:'center',gap:'20px'}}
+
                         >
-                          {" "}
-                          Chat with us on{" "}
+                      
+                      <span>    Chat with us on{" "}</span>
                           <img
+                          style={{height:'30px',objectFit:'contain'}}
                             _ngcontent-ng-c1325205117=""
                             onerror="src='../assets/img/whatsapp-icon.svg'"
                             alt="WhatsApp Icon"
-                            src="https://ss.manage63.com/bmk-wl/commonAssets/whatsapp-icon.svg"
+                            src="/public/assets/img/wp_support.webp"
                           />
+                          {/* https://ss.manage63.com/bmk-wl/commonAssets/whatsapp-icon.svg */}
                         </button>
                       </div>
                     </div>

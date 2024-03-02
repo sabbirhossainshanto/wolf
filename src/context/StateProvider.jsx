@@ -25,6 +25,7 @@ const StateProvider = ({ children }) => {
   const [copyTextSuccess, setCopyTextSuccess] = useState("");
   const [showHelpModal,setShowHelpModal] = useState(false)
   const [showReferral,setShowReferral] = useState(false)
+  const [showBonusRule,setShowBonusRule] = useState(false)
 
   /* Get token from locale storage */
   useEffect(() => {
@@ -112,7 +113,8 @@ const StateProvider = ({ children }) => {
     copyTextSuccess,
     setCopyTextSuccess,
     showHelpModal,setShowHelpModal,
-    showReferral,setShowReferral
+    showReferral,setShowReferral,
+    showBonusRule,setShowBonusRule
   };
   return (
     <StateContext.Provider value={stateInfo}>{children}</StateContext.Provider>

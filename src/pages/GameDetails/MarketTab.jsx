@@ -60,7 +60,7 @@ const MarketTab = ({
     );
     setOverByOver(overByOverFilter);
   }, [data]);
-  console.log(overByOver);
+  console.log(data);
   return (
     <div className="mat-mdc-tab-body-wrapper">
       <div

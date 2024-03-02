@@ -6,6 +6,7 @@ import { API, Settings } from "../../../api";
 import UseEncryptData from "../../../hooks/UseEncryptData";
 import UseTokenGenerator from "../../../hooks/UseTokenGenerator";
 import useContextState from "../../../hooks/useContextState";
+import handleDepositMethod from "../../../utils/handleDepositMethod";
 /* eslint-disable react/no-unknown-property */
 const Registration = ({
   setShowRegister,
@@ -29,7 +30,7 @@ const Registration = ({
   });
   const { handleSubmit } = useForm();
   /* Handle register */
-  const onSubmit = () => {
+  const onSubmit = async () => {
     const generatedToken = UseTokenGenerator();
     const registerData = {
       username: user?.userName,
@@ -44,56 +45,61 @@ const Registration = ({
 
     /* Encrypted post data */
     const encryptedData = UseEncryptData(registerData);
-    fetch(API.register, {
+    const res = await fetch(API.register, {
       method: "POST",
       headers: {
         "content-type": "application/json",
       },
       body: JSON.stringify(encryptedData),
-    })
-      .then((res) => res.json())
+    });
 
-      .then((data) => {
-        if (data?.success) {
-          console.log(data);
-          /* Set token to localeStorage */
-          localStorage.setItem("token", data.result.token);
-          /* Set bonus token in locale storage */
-          localStorage.setItem("bonusToken", data?.result?.bonusToken);
-          /* Set login name to locale storage */
-          localStorage.setItem("loginName", data.result.loginName);
-          const buttonValue = JSON.stringify(data.result.buttonValue.game);
-          /* set button value to locale storage */
-          localStorage.setItem("buttonValue", buttonValue);
+    const data = await res.json();
 
-          /* if in locale storage token and login name available and  data?.result?.changePassword === false */
-          if (
-            localStorage.getItem("token") &&
-            localStorage.getItem("loginName") &&
-            data?.result?.changePassword === false
-          ) {
-            setGetToken((prev) => !prev);
-            /* Show success message */
-            setSuccessRegister("User registration successful!");
-            /* Close modal */
-            setShowRegister(false);
-          } else {
-            setErrRegister(data?.error?.description);
-          }
-        } else {
-          setErrRegister(data?.error?.description);
+    if (data?.success) {
+      if (Settings.deposit) {
+        const handleDeposit = handleDepositMethod(data.result.token);
+        const res = await handleDeposit();
+        if (res?.success) {
+          localStorage.setItem("depositMethod", JSON.stringify(res?.result));
         }
-      });
+      }
+      console.log(data);
+      /* Set token to localeStorage */
+      localStorage.setItem("token", data.result.token);
+      /* Set bonus token in locale storage */
+      localStorage.setItem("bonusToken", data?.result?.bonusToken);
+      /* Set login name to locale storage */
+      localStorage.setItem("loginName", data.result.loginName);
+      const buttonValue = JSON.stringify(data.result.buttonValue.game);
+      /* set button value to locale storage */
+      localStorage.setItem("buttonValue", buttonValue);
+
+      /* if in locale storage token and login name available and  data?.result?.changePassword === false */
+      if (
+        localStorage.getItem("token") &&
+        localStorage.getItem("loginName") &&
+        data?.result?.changePassword === false
+      ) {
+        setGetToken((prev) => !prev);
+        /* Show success message */
+        setSuccessRegister("User registration successful!");
+        /* Close modal */
+        setShowRegister(false);
+      } else {
+        setErrRegister(data?.error?.description);
+      }
+    } else {
+      setErrRegister(data?.error?.description);
+    }
   };
   return (
-    <div className="cdk-overlay-container" >
+    <div className="cdk-overlay-container">
       <div
         className="cdk-global-overlay-wrapper"
         dir="ltr"
         style={{
           justifyContent: "center",
           alignItems: "flex-end",
-       
         }}
       >
         <motion.div
@@ -109,7 +115,6 @@ const Registration = ({
             maxWidth: "500px",
             position: "static",
             marginBottom: "10px",
-          
           }}
           ref={registerRef}
         >

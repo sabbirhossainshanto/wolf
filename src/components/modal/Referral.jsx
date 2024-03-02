@@ -2,11 +2,14 @@
 import { motion } from "framer-motion";
 import { useRef } from "react";
 import useCloseModalClickOutside from "../../hooks/useCloseModalClickOutside";
+import useBankAccount from "../../hooks/useBankAccount";
+import { myReferralCodePost } from "../../constant/constant";
 const Referral = ({ setShowReferral }) => {
   const referralRef = useRef();
   useCloseModalClickOutside(referralRef, () => {
     setShowReferral(false);
   });
+  const { bankData: myReferralCode } = useBankAccount(myReferralCodePost);
 
   return (
     <div className="cdk-overlay-container">
@@ -56,8 +59,7 @@ const Referral = ({ setShowReferral }) => {
                         />
                       </div>
                       <button
-                      onClick={()=> setShowReferral(false)}
-                    
+                        onClick={() => setShowReferral(false)}
                         _ngcontent-ng-c526813732=""
                         mat-button=""
                         mat-dialog-close=""
@@ -69,7 +71,7 @@ const Referral = ({ setShowReferral }) => {
                         <span
                           style={{
                             marginLeft: "4.5px",
-                        
+
                             fontWeight: "600",
                           }}
                           _ngcontent-ng-c526813732=""
@@ -102,7 +104,7 @@ const Referral = ({ setShowReferral }) => {
                           _ngcontent-ng-c526813732=""
                           className="refer-code-text"
                         >
-                          CWBST
+                          {myReferralCode?.code}
                         </p>
                         <button
                           _ngcontent-ng-c526813732=""

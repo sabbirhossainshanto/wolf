@@ -32,7 +32,7 @@ const MatchOdds = ({
             >
               <div _ngcontent-ng-c942213636="" className="head-wrap">
                 <h2 _ngcontent-ng-c942213636="" className="card-heading">
-                  {games?.name.toUpperCase()}
+                { games?.eventTypeId == 4 ? games?.btype : games?.name}
                 </h2>
                 {/* <button
                   _ngcontent-ng-c942213636=""

@@ -48,9 +48,10 @@ const Footer = () => {
               >
                 <div _ngcontent-ng-c943649379="" className="btn-wrap whatsapp">
                   <img
+          
                     _ngcontent-ng-c943649379=""
                     alt="WhatsApp"
-                    src="https://ss.manage63.com/bmk-wl/commonAssets/whatsapp-icon.svg"
+                    src="/assets/img/wp_support.webp"
                   />
                 </div>
               </div>

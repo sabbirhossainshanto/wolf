@@ -6,9 +6,10 @@ import { motion } from "framer-motion";
 import { useForm } from "react-hook-form";
 import UseEncryptData from "../../hooks/UseEncryptData";
 import UseTokenGenerator from "../../hooks/UseTokenGenerator";
-import { API } from "../../api";
+import { API, Settings } from "../../api";
 import Warning from "../ui/Notification/Warning";
 import useContextState from "../../hooks/useContextState";
+import handleDepositMethod from "../../utils/handleDepositMethod";
 const Login = ({ setShowLogin, setErrorLogin, errorLogin, setGetToken }) => {
   const { logo } = useContextState();
   const { register, handleSubmit } = useForm();
@@ -19,7 +20,7 @@ const Login = ({ setShowLogin, setErrorLogin, errorLogin, setGetToken }) => {
   });
 
   /* handle login user */
-  const onSubmit = ({ username, password }) => {
+  const onSubmit = async ({ username, password }) => {
     /* Random token generator */
     const generatedToken = UseTokenGenerator();
     const loginData = {
@@ -29,47 +30,54 @@ const Login = ({ setShowLogin, setErrorLogin, errorLogin, setGetToken }) => {
     };
     /* Encrypted the post data */
     const encryptedData = UseEncryptData(loginData);
-    fetch(API.login, {
+    const res = await fetch(API.login, {
       method: "POST",
       headers: {
         "content-type": "application/json",
       },
       body: JSON.stringify(encryptedData),
-    })
-      .then((res) => res.json())
-      .then((data) => {
-        console.log(data);
-        if (data.success) {
-          /* Set token to localeStorage */
-          localStorage.setItem("token", data.result.token);
-          /* Set bonus token in locale storage */
-          localStorage.setItem("bonusToken", data?.result?.bonusToken);
-          /* Set login name to locale storage */
-          localStorage.setItem("loginName", data.result.loginName);
-          const buttonValue = JSON.stringify(data.result.buttonValue.game);
-          /* set button value to locale storage */
-          localStorage.setItem("buttonValue", buttonValue);
-          const referralCode = data.result.referralCode;
-          localStorage.setItem(
-            "referralCode",
-            referralCode == null ? "show" : referralCode
-          );
-          /* if in locale storage token and login name available and  data?.result?.changePassword === false */
-          if (
-            localStorage.getItem("token") &&
-            localStorage.getItem("loginName") &&
-            data?.result?.changePassword === false
-          ) {
-            /* close modal */
-            setShowLogin(false);
-            /* get current token from locale storage */
-            setGetToken((prev) => !prev);
-          }
-        } else {
-          /* Show error message during login failed */
-          setErrorLogin(data?.error);
+    });
+
+    const data = await res.json();
+    console.log(data);
+    if (data.success) {
+      if (Settings.deposit) {
+        const handleDeposit = handleDepositMethod(data.result.token);
+        const res = await handleDeposit();
+        if (res?.success) {
+          localStorage.setItem("depositMethod", JSON.stringify(res?.result));
         }
-      });
+        console.log(res);
+      }
+      /* Set token to localeStorage */
+      localStorage.setItem("token", data.result.token);
+      /* Set bonus token in locale storage */
+      localStorage.setItem("bonusToken", data?.result?.bonusToken);
+      /* Set login name to locale storage */
+      localStorage.setItem("loginName", data.result.loginName);
+      const buttonValue = JSON.stringify(data.result.buttonValue.game);
+      /* set button value to locale storage */
+      localStorage.setItem("buttonValue", buttonValue);
+      const referralCode = data.result.referralCode;
+      localStorage.setItem(
+        "referralCode",
+        referralCode == null ? "show" : referralCode
+      );
+      /* if in locale storage token and login name available and  data?.result?.changePassword === false */
+      if (
+        localStorage.getItem("token") &&
+        localStorage.getItem("loginName") &&
+        data?.result?.changePassword === false
+      ) {
+        /* close modal */
+        setShowLogin(false);
+        /* get current token from locale storage */
+        setGetToken((prev) => !prev);
+      }
+    } else {
+      /* Show error message during login failed */
+      setErrorLogin(data?.error);
+    }
   };
 
   /* handle login demo user */
@@ -117,9 +125,7 @@ const Login = ({ setShowLogin, setErrorLogin, errorLogin, setGetToken }) => {
 
   return (
     <>
-      <div className="cdk-overlay-container"
-       
-      >
+      <div className="cdk-overlay-container">
         <div className="cdk-overlay-backdrop cdk-overlay-dark-backdrop cdk-overlay-backdrop-showing"></div>
         <div
           className="cdk-global-overlay-wrapper"

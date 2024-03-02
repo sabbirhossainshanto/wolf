@@ -34,7 +34,8 @@ const Bookmaker2 = ({
                   _ngcontent-ng-c942213636=""
                   className="card-heading ng-star-inserted"
                 >
-                  {games?.btype}
+                  
+                  { games?.eventTypeId == 4 ? games?.btype : games?.name}
                 </h2>
                 {/* <button
                   _ngcontent-ng-c942213636=""

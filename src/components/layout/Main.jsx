@@ -13,6 +13,9 @@ import { handleLogOut } from "../../utils/handleLogOut";
 import Deposit from "../modal/Deposit";
 import Help from "../modal/Help";
 import Referral from "../modal/Referral";
+import BonusRules from "../modal/BonusRules";
+import handleDepositMethod from "../../utils/handleDepositMethod";
+import Warning from "../ui/Notification/Warning";
 
 const Main = () => {
   const {
@@ -30,11 +33,17 @@ const Main = () => {
     showDeposit,
     setSHowDeposit,
     showHelpModal,
-    showReferral,setShowReferral
+    showReferral,
+    setShowReferral,
+    showBonusRule,
+    setShowBonusRule,
+    token,
+    tokenLoading,
   } = useContextState();
   const [successEditStake, setSuccessEditStake] = useState("");
   const navigate = useNavigate();
   const disabledDevtool = Settings.disabledDevtool;
+  const [verifyDeposit, setVerifyDeposit] = useState("");
 
   /* Disabled devtool based on settings */
   useEffect(() => {
@@ -51,6 +60,28 @@ const Main = () => {
       });
     }
   }, [navigate, disabledDevtool]);
+
+  useEffect(() => {
+    if (Settings.deposit && !tokenLoading) {
+      const checkDepositMethodSimilarity = async () => {
+        const storedMethods = localStorage.getItem("depositMethod");
+        const depositMethod = handleDepositMethod(token);
+        const res = await depositMethod();
+        if (res?.success) {
+          const currentMethods = JSON.stringify(res?.result);
+          if (storedMethods !== currentMethods) {
+            setVerifyDeposit(
+              "Our deposit bank details are updated. Please verify our bank accounts before depositing money."
+            );
+            localStorage.setItem("depositMethod", currentMethods);
+          }
+        }
+      };
+      checkDepositMethodSimilarity();
+      const intervalId = setInterval(checkDepositMethodSimilarity, 1000 * 60);
+      return () => clearInterval(intervalId);
+    }
+  }, [tokenLoading, token]);
   return (
     <>
       <div
@@ -107,12 +138,7 @@ const Main = () => {
               setSuccessEditStake={setSuccessEditStake}
             />
           )}
-          {
-            showReferral &&
-            <Referral
-            setShowReferral={setShowReferral}
-            />
-          }
+          {showReferral && <Referral setShowReferral={setShowReferral} />}
           {/* Success message after edit stake */}
           {successEditStake && (
             <Success
@@ -121,9 +147,13 @@ const Main = () => {
             />
           )}
 
-          {showHelpModal && <Help 
-          />}
-
+          {showHelpModal && <Help />}
+          {showBonusRule && Settings.bonus && (
+            <BonusRules setShowBonusRule={setShowBonusRule} />
+          )}
+          {verifyDeposit && (
+            <Warning message={verifyDeposit} setMessage={setVerifyDeposit} />
+          )}
           <div
             className="cdk-visually-hidden cdk-focus-trap-anchor"
             aria-hidden="true"

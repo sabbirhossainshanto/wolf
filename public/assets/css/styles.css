@@ -10393,8 +10393,9 @@ ion-refresher-content {
 .floating-btns[_ngcontent-ng-c943649379]
   .btn-wrap.whatsapp[_ngcontent-ng-c943649379]
   img[_ngcontent-ng-c943649379] {
-  width: 40px;
-  height: 40px;
+  width: 60px;
+  height: 60px;
+  object-fit: contain;
 }
 
 .floating-btns[_ngcontent-ng-c943649379]

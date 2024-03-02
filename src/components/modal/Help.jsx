@@ -54,7 +54,18 @@ const Help = () => {
               <div className="mat-mdc-dialog-surface mdc-dialog__surface">
                 <div _nghost-ng-c1325205117="" className="ng-star-inserted">
                   <div _ngcontent-ng-c1325205117="" className="help-modal">
-                    <div _ngcontent-ng-c1325205117="" className="modal-header">
+                    <div
+                      _ngcontent-ng-c1325205117=""
+                      className="modal-header"
+                      style={{
+                        position: " relative",
+                        padding: "10px 0",
+                        minHeight: "50px",
+                        display: "flex",
+                        alignItems: "center",
+                        justifyContent: "center",
+                      }}
+                    >
                       <h2 _ngcontent-ng-c1325205117="">Help</h2>
                       <p _ngcontent-ng-c1325205117="">
                         Need Help! Feel free to contact.

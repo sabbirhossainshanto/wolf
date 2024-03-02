@@ -24,6 +24,7 @@ const StateProvider = ({ children }) => {
   const [showDeposit, setSHowDeposit] = useState(false);
   const [copyTextSuccess, setCopyTextSuccess] = useState("");
   const [showHelpModal,setShowHelpModal] = useState(false)
+  const [showReferral,setShowReferral] = useState(false)
 
   /* Get token from locale storage */
   useEffect(() => {
@@ -110,7 +111,8 @@ const StateProvider = ({ children }) => {
     setSHowDeposit,
     copyTextSuccess,
     setCopyTextSuccess,
-    showHelpModal,setShowHelpModal
+    showHelpModal,setShowHelpModal,
+    showReferral,setShowReferral
   };
   return (
     <StateContext.Provider value={stateInfo}>{children}</StateContext.Provider>

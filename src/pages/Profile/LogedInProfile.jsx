@@ -5,6 +5,9 @@ import useGetSocialLink from "../../hooks/useGetSocialLink";
 import { useState } from "react";
 import Withdraw from "../../components/modal/Withdraw";
 import Success from "../../components/ui/Notification/Success";
+import useBankAccount from "../../hooks/useBankAccount";
+import AddBank from "../../components/modal/AddBank";
+import useGetBankAccountName from "../../hooks/BankAccount/useGetBankAccountName";
 
 /* eslint-disable react/no-unknown-property */
 const LoggedInProfile = ({
@@ -13,25 +16,56 @@ const LoggedInProfile = ({
   balanceData,
 }) => {
   const { isCheckedBonusToken, setSHowDeposit } = useContextState();
+  /* Social link */
   const { socialLink } = useGetSocialLink();
   const [showWithdraw, setSHowWithdraw] = useState(false);
 
   const [withdrawCoinSuccess, setWithdrawCoinSuccess] = useState("");
   const [withdrawCoinErr, setWithdrawCoinErr] = useState("");
 
+  /* Handle navigate in new tab */
   const handleNavigateSocialLink = (link) => {
     window.open(link, "_blank");
   };
+  const [bankId, setBankId] = useState(null);
+  const withDrawPostData = {
+    bankId,
+    type: "withdrawForm",
+  };
+  /* Get bank data */
+  const { bankData: withdrawData, refetchBankData: refetchWithdrawData } =
+    useBankAccount(withDrawPostData);
+  const bankDataPostBody = {
+    type: "getBankAccounts",
+    status: 1,
+  };
+  /* Get bank name for if length > 0 then open withdraw modal else open  add bank modal for add bank  */
+  const { refetchBankData } = useGetBankAccountName(bankDataPostBody);
   return (
     <>
-      {showWithdraw && (
+      {/* Withdraw modal */}
+      {showWithdraw && withdrawData?.allBanks?.length > 0 && (
         <Withdraw
           setSHowWithdraw={setSHowWithdraw}
           setWithdrawCoinErr={setWithdrawCoinErr}
           setWithdrawCoinSuccess={setWithdrawCoinSuccess}
+          bankId={bankId}
+          refetchWithdrawData={refetchWithdrawData}
+          setBankId={setBankId}
+          withdrawData={withdrawData}
+        />
+      )}
+      {/* Add bank modal */}
+      {showWithdraw && withdrawData?.allBanks?.length < 1 && (
+        <AddBank
+          refetchBankData={refetchBankData}
+          setErrCrudMsg={setWithdrawCoinErr}
+          setShowAddBank={setSHowWithdraw}
+          setSuccessCrudMsg={setWithdrawCoinSuccess}
         />
       )}
 
+      {/* Withdraw and add bank state */}
       {withdrawCoinSuccess && (
         <Success
           message={withdrawCoinSuccess}
@@ -39,6 +73,7 @@ const LoggedInProfile = ({
           success={true}
         />
       )}
+      {/* Withdraw and add bank state */}
       {withdrawCoinErr && (
         <Success
           message={withdrawCoinErr}

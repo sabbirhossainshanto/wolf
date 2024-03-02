@@ -12,6 +12,7 @@ import { Settings } from "../../api";
 import { handleLogOut } from "../../utils/handleLogOut";
 import Deposit from "../modal/Deposit";
 import Help from "../modal/Help";
+import Referral from "../modal/Referral";
 
 const Main = () => {
   const {
@@ -29,6 +30,7 @@ const Main = () => {
     showDeposit,
     setSHowDeposit,
     showHelpModal,
+    showReferral,setShowReferral
   } = useContextState();
   const [successEditStake, setSuccessEditStake] = useState("");
   const navigate = useNavigate();
@@ -105,6 +107,12 @@ const Main = () => {
               setSuccessEditStake={setSuccessEditStake}
             />
           )}
+          {
+            showReferral &&
+            <Referral
+            setShowReferral={setShowReferral}
+            />
+          }
           {/* Success message after edit stake */}
           {successEditStake && (
             <Success
@@ -113,7 +121,8 @@ const Main = () => {
             />
           )}
 
-          {showHelpModal && <Help />}
+          {showHelpModal && <Help 
+          />}
 
           <div
             className="cdk-visually-hidden cdk-focus-trap-anchor"

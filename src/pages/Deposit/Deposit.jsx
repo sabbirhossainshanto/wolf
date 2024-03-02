@@ -57,6 +57,7 @@ const Deposit = () => {
           },
         });
         const data = res.data;
+        console.log(data);
         if (data?.success) {
           setUploadedImage(data?.fileName);
         }
@@ -82,6 +83,7 @@ const Deposit = () => {
         },
       });
       const result = res?.data;
+      console.log(result);
       if (result?.success) {
         setImage(null);
         setDepositRequestSuccess(result?.result?.message);
@@ -90,7 +92,7 @@ const Deposit = () => {
         }, 2000);
       } else {
         setImage(null);
-        setDepositRequestErr(result?.error?.errorMessage);
+        setDepositRequestErr(result?.result?.message);
       }
     }
   };

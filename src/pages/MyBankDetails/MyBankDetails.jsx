@@ -1,7 +1,6 @@
 /* eslint-disable react/no-unknown-property */
 import { useEffect, useState } from "react";
 import AddBank from "../../components/modal/AddBank";
-import useBankAccount from "../../hooks/useBankAccount";
 import Warning from "../../components/modal/Warning";
 import { IoMdArrowDropdown, IoMdArrowDropright } from "react-icons/io";
 import UseTokenGenerator from "../../hooks/UseTokenGenerator";
@@ -10,6 +9,7 @@ import { API } from "../../api";
 import useContextState from "../../hooks/useContextState";
 import { handleVisibleBankDetails } from "../../utils/handleVisibleBankDetails";
 import Success from "../../components/ui/Notification/Success";
+import useGetBankAccountName from "../../hooks/BankAccount/useGetBankAccountName";
 
 const MyBankDetails = () => {
   const [showAddBank, setShowAddBank] = useState(false);
@@ -24,7 +24,7 @@ const MyBankDetails = () => {
     type: "getBankAccounts",
     status: activeTab,
   };
-  const { bankData, refetchBankData } = useBankAccount(bankDataPostBody);
+  const { bankData, refetchBankData } = useGetBankAccountName(bankDataPostBody);
   const handleBankCrud = async (type, setShowWarning) => {
     const generatedToken = UseTokenGenerator();
     const bankData = {

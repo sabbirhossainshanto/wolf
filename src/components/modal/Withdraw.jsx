@@ -2,7 +2,7 @@
 import { motion } from "framer-motion";
 import { useEffect, useRef, useState } from "react";
 import useCloseModalClickOutside from "../../hooks/useCloseModalClickOutside";
-import useBankAccount from "../../hooks/useBankAccount";
+
 import UseTokenGenerator from "../../hooks/UseTokenGenerator";
 import axios from "axios";
 import { API } from "../../api";
@@ -12,24 +12,27 @@ const Withdraw = ({
   setSHowWithdraw,
   setWithdrawCoinErr,
   setWithdrawCoinSuccess,
+  bankId,
+  refetchWithdrawData,
+  withdrawData,
+  setBankId
 }) => {
   const { token } = useContextState();
-  const [bankId, setBankId] = useState(null);
+
   const [amount, setAmount] = useState("");
   const withdrawRef = useRef();
   useCloseModalClickOutside(withdrawRef, () => {
     setSHowWithdraw(false);
   });
-  const withDrawPostData = {
-    bankId,
-    type: "withdrawForm",
-  };
-  const { bankData: withdrawData, refetchBankData: refetchWithdrawData } =
-    useBankAccount(withDrawPostData);
+
+ 
 
   useEffect(() => {
     refetchWithdrawData();
   }, [refetchWithdrawData, bankId]);
+
+
+
   const handleCoinSubmit = async (e) => {
     e.preventDefault();
     if (amount?.length > 0 && bankId) {
@@ -47,8 +50,8 @@ const Withdraw = ({
         },
       });
       const data = res?.data;
+      console.log(data);
       if (data?.success) {
-        console.log(data);
         setWithdrawCoinSuccess(data?.result?.message);
         setSHowWithdraw(false);
       } else {
@@ -285,6 +288,7 @@ const Withdraw = ({
                                 name=""
                                 id=""
                               >
+                                <option selected value="">Change Bank</option>
                                 {withdrawData?.allBanks?.map((item) => {
                                   return (
                                     <option

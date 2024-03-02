@@ -14,7 +14,7 @@ const Registration = ({
   setSuccessRegister,
   setErrRegister,
 }) => {
-  const { logo,setGetToken } = useContextState();
+  const { logo, setGetToken } = useContextState();
   /* Close modal click outside */
   const registerRef = useRef();
   useCloseModalClickOutside(registerRef, () => {
@@ -86,11 +86,15 @@ const Registration = ({
       });
   };
   return (
-    <div className="cdk-overlay-container">
+    <div className="cdk-overlay-container" >
       <div
         className="cdk-global-overlay-wrapper"
         dir="ltr"
-        style={{ justifyContent: "center", alignItems: "flex-end" }}
+        style={{
+          justifyContent: "center",
+          alignItems: "flex-end",
+       
+        }}
       >
         <motion.div
           initial={{ scale: 0.9 }}
@@ -105,6 +109,7 @@ const Registration = ({
             maxWidth: "500px",
             position: "static",
             marginBottom: "10px",
+          
           }}
           ref={registerRef}
         >

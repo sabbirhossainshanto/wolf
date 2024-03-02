@@ -5,6 +5,7 @@ import Bookmaker2 from "./GameType/Bookmaker2";
 import Fancy from "./GameType/Fancy";
 import FancyOne from "./GameType/FancyOne";
 import MatchOdds from "./GameType/MatchOdds";
+import OverByOver from "./GameType/OverByOver";
 
 /* eslint-disable react/no-unknown-property */
 const MarketTab = ({
@@ -14,17 +15,17 @@ const MarketTab = ({
   setOpenBetSlip,
   showIFrame,
   showScore,
-  match_odds, setMatch_odds,
-  setShowLoginWarn
+  match_odds,
+  setMatch_odds,
+  setShowLoginWarn,
 }) => {
-
   const [bookmarker, setBookmarker] = useState([]);
   const [bookmarker2, setBookmarker2] = useState([]);
   const [normal, setNormal] = useState([]);
   const [fancy1, setFancy1] = useState([]);
+  const [overByOver, setOverByOver] = useState([]);
   const { setPlaceBetValues } = useContextState();
 
-  
   /* Filtered all the game  */
   useEffect(() => {
     const filterMatch_odds = data?.filter(
@@ -51,11 +52,15 @@ const MarketTab = ({
       (fancy1) => fancy1.btype === "ODDS" && fancy1.tabGroupName === "Fancy1"
     );
     setFancy1(fancy1Filter);
+
+    const overByOverFilter = data?.filter(
+      (overByOver) =>
+        overByOver.btype === "FANCY" &&
+        overByOver.tabGroupName === "Over By Over"
+    );
+    setOverByOver(overByOverFilter);
   }, [data]);
-
-  
-
-
+  console.log(overByOver);
   return (
     <div className="mat-mdc-tab-body-wrapper">
       <div
@@ -73,60 +78,58 @@ const MarketTab = ({
             _ngcontent-ng-c942213636=""
             className="tab-body sports-tab ng-star-inserted"
           >
-        
-              <div
-              
-                _ngcontent-ng-c942213636=""
-                className="live-match-screen ng-star-inserted"
-              >
-                    {showIFrame && match_odds?.length > 0 &&  match_odds[0]?.hasVideo && (
-                <iframe
-                  _ngcontent-ng-c942213636=""
-                  style={{
-                    width: "100%",
-                    border: "0px",
-                  }}
-                  src={match_odds?.length > 0 && match_odds[0]?.hasVideo && iFrameUrl}
-                ></iframe>
-                 )}
-                {showScore &&
-                  match_odds?.length > 0 &&
-                  match_odds[0]?.score?.length !== 0 &&
-                  match_odds[0]?.score?.map((team, i) => {
-                    return (
-                      <div
-                        key={i}
-                        _ngcontent-ng-c3799324686=""
-                        class="live-score-section ng-star-inserted"
-                      >
-                        <div _ngcontent-ng-c3799324686="" class="score-wrap">
-                          <span
-                            _ngcontent-ng-c3799324686=""
-                            class="bowling-team"
-                          >
-                            <span class="small" _ngcontent-ng-c3799324686="">
-                              {team?.team1Name}: {team?.team1Score}
-                            </span>
-
-                            <span
-                              class="small"
-                              _ngcontent-ng-c3799324686=""
-                              // class="theme-text"
-                            >
-                              {team?.runRate}
-                            </span>
+            <div
+              _ngcontent-ng-c942213636=""
+              className="live-match-screen ng-star-inserted"
+            >
+              {showIFrame &&
+                match_odds?.length > 0 &&
+                match_odds[0]?.hasVideo && (
+                  <iframe
+                    _ngcontent-ng-c942213636=""
+                    style={{
+                      width: "100%",
+                      border: "0px",
+                    }}
+                    src={
+                      match_odds?.length > 0 &&
+                      match_odds[0]?.hasVideo &&
+                      iFrameUrl
+                    }
+                  ></iframe>
+                )}
+              {showScore &&
+                match_odds?.length > 0 &&
+                match_odds[0]?.score?.length !== 0 &&
+                match_odds[0]?.score?.map((team, i) => {
+                  return (
+                    <div
+                      key={i}
+                      _ngcontent-ng-c3799324686=""
+                      class="live-score-section ng-star-inserted"
+                    >
+                      <div _ngcontent-ng-c3799324686="" class="score-wrap">
+                        <span _ngcontent-ng-c3799324686="" class="bowling-team">
+                          <span class="small" _ngcontent-ng-c3799324686="">
+                            {team?.team1Name}: {team?.team1Score}
                           </span>
 
                           <span
+                            class="small"
                             _ngcontent-ng-c3799324686=""
-                            class="batting-team"
+                            // class="theme-text"
                           >
-                            <span class="small" _ngcontent-ng-c3799324686="">
-                              {team?.team2Name}: {team?.team2Score}
-                            </span>
+                            {team?.runRate}
                           </span>
-                        </div>
-                        {/* <div
+                        </span>
+
+                        <span _ngcontent-ng-c3799324686="" class="batting-team">
+                          <span class="small" _ngcontent-ng-c3799324686="">
+                            {team?.team2Name}: {team?.team2Score}
+                          </span>
+                        </span>
+                      </div>
+                      {/* <div
                     _ngcontent-ng-c3799324686=""
                     class="score-overlay ng-star-inserted"
                   >
@@ -134,43 +137,37 @@ const MarketTab = ({
                       Stumps
                     </p>
                   </div> */}
-                        <div
-                          _ngcontent-ng-c3799324686=""
-                          class="score-overlay ng-star-inserted"
-                          style={{ height: "1px" }}
-                        ></div>
-                        <div
-                          _ngcontent-ng-c3799324686=""
-                          class="last-balls-record multiple-overs"
-                        >
-                          <div
-                            _ngcontent-ng-c3799324686=""
-                            class="previous-over"
-                          >
-                            <span
-                              _ngcontent-ng-c3799324686=""
-                              class="mat-label"
-                            >
-                              Recent Over
-                            </span>
-                            <ul _ngcontent-ng-c3799324686="">
-                              {team?.recent?.map((run, i) => (
-                                <li
-                                  key={i}
+                      <div
+                        _ngcontent-ng-c3799324686=""
+                        class="score-overlay ng-star-inserted"
+                        style={{ height: "1px" }}
+                      ></div>
+                      <div
+                        _ngcontent-ng-c3799324686=""
+                        class="last-balls-record multiple-overs"
+                      >
+                        <div _ngcontent-ng-c3799324686="" class="previous-over">
+                          <span _ngcontent-ng-c3799324686="" class="mat-label">
+                            Recent Over
+                          </span>
+                          <ul _ngcontent-ng-c3799324686="">
+                            {team?.recent?.map((run, i) => (
+                              <li
+                                key={i}
+                                _ngcontent-ng-c3799324686=""
+                                class="ng-star-inserted"
+                              >
+                                <p
+                                  className={`_${run > 0 ? "4" : ""}`}
                                   _ngcontent-ng-c3799324686=""
-                                  class="ng-star-inserted"
                                 >
-                                  <p
-                                    className={`_${run > 0 ? "4" : ""}`}
-                                    _ngcontent-ng-c3799324686=""
-                                  >
-                                    {run}
-                                  </p>
-                                </li>
-                              ))}
-                            </ul>
-                          </div>
-                          {/* <div _ngcontent-ng-c3799324686="" class="current-over">
+                                  {run}
+                                </p>
+                              </li>
+                            ))}
+                          </ul>
+                        </div>
+                        {/* <div _ngcontent-ng-c3799324686="" class="current-over">
                       <span _ngcontent-ng-c3799324686="" class="mat-label">
                         Over 35
                       </span>
@@ -213,12 +210,12 @@ const MarketTab = ({
                         </li>
                       </ul>
                     </div> */}
-                        </div>
                       </div>
-                    );
-                  })}
-              </div>
-           
+                    </div>
+                  );
+                })}
+            </div>
+
             <div _ngcontent-ng-c942213636="" className="mkt-tab-section">
               {match_odds && match_odds?.length > 0 && (
                 <MatchOdds
@@ -261,6 +258,15 @@ const MarketTab = ({
               {fancy1 && fancy1?.length > 0 && (
                 <FancyOne
                   FancyOne={fancy1}
+                  setOpenBetSlip={setOpenBetSlip}
+                  setPlaceBetValues={setPlaceBetValues}
+                  exposer={exposer}
+                  setShowLoginWarn={setShowLoginWarn}
+                />
+              )}
+              {overByOver && overByOver?.length > 0 && (
+                <OverByOver
+                  normal={overByOver}
                   setOpenBetSlip={setOpenBetSlip}
                   setPlaceBetValues={setPlaceBetValues}
                   exposer={exposer}

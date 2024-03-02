@@ -55,7 +55,7 @@ const MyBankDetails = () => {
     refetchBankData();
   }, [refetchBankData, activeTab]);
   console.log(errCrudMsg);
-console.log(bankData);
+  console.log(bankData);
   return (
     <>
       {/* Move to default account start */}
@@ -252,93 +252,45 @@ console.log(bankData);
                         Add New Bank
                       </button>
                     </div>
-                    <div
-                      _ngcontent-ng-c3542240159=""
-                      className="title-bar ng-star-inserted"
-                    >
-                      <h2 _ngcontent-ng-c3542240159="" className="title">
-                        Bank Details
-                      </h2>
-                    </div>
+                    {bankData?.length > 0 && (
+                      <div
+                        _ngcontent-ng-c3542240159=""
+                        className="title-bar ng-star-inserted"
+                      >
+                        <h2 _ngcontent-ng-c3542240159="" className="title">
+                          Bank Details
+                        </h2>
+                      </div>
+                    )}
+
                     <div
                       _ngcontent-ng-c3542240159=""
                       className="banks-list-wrap ng-star-inserted"
                     >
-                      { Array.isArray(bankData) && bankData?.map((data, i) => {
-                        return (
-                          <div
-                            key={i}
-                            _ngcontent-ng-c3542240159=""
-                            className="mat-accordion ng-star-inserted"
-                          >
+                      {Array.isArray(bankData) && bankData?.length > 0 ? (
+                        bankData?.map((data, i) => {
+                          return (
                             <div
+                              key={i}
                               _ngcontent-ng-c3542240159=""
-                              hidetoggle=""
-                              className="mat-expansion-panel mat-exp-bank-item ng-tns-c1859850774-4 ng-star-inserted mat-expanded mat-expansion-panel-spacing"
+                              className="mat-accordion ng-star-inserted"
                             >
                               <div
                                 _ngcontent-ng-c3542240159=""
-                                role="button"
-                                className="mat-expansion-panel-header mat-focus-indicator ng-tns-c2690051721-5 ng-tns-c1859850774-4 mat-expansion-toggle-indicator-after ng-star-inserted mat-expanded"
-                                id="mat-expansion-panel-header-0"
-                                aria-controls="cdk-accordion-child-0"
-                                aria-expanded="true"
-                                aria-disabled="false"
+                                hidetoggle=""
+                                className="mat-expansion-panel mat-exp-bank-item ng-tns-c1859850774-4 ng-star-inserted mat-expanded mat-expansion-panel-spacing"
                               >
-                                <span className="mat-content ng-tns-c2690051721-5 mat-content-hide-toggle">
-                                  <div
-                                    onClick={() =>
-                                      handleVisibleBankDetails(
-                                        data?.bankId,
-                                        bankId,
-                                        setBankId
-                                      )
-                                    }
-                                    _ngcontent-ng-c3542240159=""
-                                    className="mat-expansion-panel-header-title ng-tns-c2690051721-5"
-                                  >
+                                <div
+                                  _ngcontent-ng-c3542240159=""
+                                  role="button"
+                                  className="mat-expansion-panel-header mat-focus-indicator ng-tns-c2690051721-5 ng-tns-c1859850774-4 mat-expansion-toggle-indicator-after ng-star-inserted mat-expanded"
+                                  id="mat-expansion-panel-header-0"
+                                  aria-controls="cdk-accordion-child-0"
+                                  aria-expanded="true"
+                                  aria-disabled="false"
+                                >
+                                  <span className="mat-content ng-tns-c2690051721-5 mat-content-hide-toggle">
                                     <div
-                                      _ngcontent-ng-c3542240159=""
-                                      className="img-wrap"
-                                    >
-                                      <img
-                                        _ngcontent-ng-c3542240159=""
-                                        alt="Bank Icon"
-                                        src={`/assets/img/${data?.bankCode}.png`}
-                                      />
-                                    </div>
-                                    <h2 _ngcontent-ng-c3542240159="">
-                                      {data?.bankName}
-                                      {data?.isDefault === 1 && (
-                                        <span
-                                          _ngcontent-ng-c3542240159=""
-                                          className="preffered ng-star-inserted"
-                                        >
-                                          Default
-                                        </span>
-                                      )}
-                                    </h2>
-                                  </div>
-                                  <div
-                                    _ngcontent-ng-c3542240159=""
-                                    className="mat-expansion-panel-header-description ng-tns-c2690051721-5"
-                                  >
-                                    {activeTab === 1 && (
-                                      <span
-                                        onClick={() => {
-                                          setShowDeleteWarning(true);
-                                          setBankId(data?.bankId);
-                                        }}
-                                        _ngcontent-ng-c3542240159=""
-                                        role="img"
-                                        className="mat-icon notranslate material-symbols delete-icon material-icons mat-ligature-font mat-icon-no-color ng-star-inserted"
-                                        aria-hidden="true"
-                                        data-mat-icon-type="font"
-                                      >
-                                        delete
-                                      </span>
-                                    )}
-                                    <span
                                       onClick={() =>
                                         handleVisibleBankDetails(
                                           data?.bankId,
@@ -347,103 +299,172 @@ console.log(bankData);
                                         )
                                       }
                                       _ngcontent-ng-c3542240159=""
-                                      role="img"
-                                      className="mat-icon notranslate material-icons mat-ligature-font mat-icon-no-color ng-star-inserted"
-                                      aria-hidden="true"
-                                      data-mat-icon-type="font"
+                                      className="mat-expansion-panel-header-title ng-tns-c2690051721-5"
                                     >
-                                      {bankId ? (
-                                        <IoMdArrowDropdown />
-                                      ) : (
-                                        <IoMdArrowDropright />
-                                      )}
-                                    </span>
-                                  </div>
-                                </span>
-                              </div>
-                              <div
-                                role="region"
-                                className={`mat-expansion-panel-content ng-tns-c1859850774-4 ng-trigger ng-trigger-bodyExpansion ${
-                                  bankId === data?.bankId
-                                    ? ""
-                                    : "invisibleBankDEtails"
-                                }`}
-                                id="cdk-accordion-child-0"
-                                aria-labelledby="mat-expansion-panel-header-0"
-                              >
-                                {/* <!-- style="height: 0px; visibility: hidden;" --> */}
-                                <div className="mat-expansion-panel-body ng-tns-c1859850774-4">
-                                  <div
-                                    _ngcontent-ng-c3542240159=""
-                                    className="banks-details ng-tns-c1859850774-4"
-                                  >
-                                    <ul _ngcontent-ng-c3542240159="">
-                                      <li _ngcontent-ng-c3542240159="">
-                                        <label _ngcontent-ng-c3542240159="">
-                                          Account holder name
-                                        </label>
-                                        <p _ngcontent-ng-c3542240159="">
-                                          {data?.bankAccountName}
-                                        </p>
-                                      </li>
-                                      <li _ngcontent-ng-c3542240159="">
-                                        <label _ngcontent-ng-c3542240159="">
-                                          Account number
-                                        </label>
-                                        <p _ngcontent-ng-c3542240159="">
-                                          {data?.accountNumber}
-                                        </p>
-                                      </li>
-                                      <li _ngcontent-ng-c3542240159="">
-                                        <label _ngcontent-ng-c3542240159="">
-                                          IFSC Code
-                                        </label>
-                                        <p _ngcontent-ng-c3542240159="">
-                                          {data?.ifsc}
-                                        </p>
-                                      </li>
-                                      <li _ngcontent-ng-c3542240159="">
-                                        <label _ngcontent-ng-c3542240159="">
-                                          Bank Branch
-                                        </label>
-                                        <p _ngcontent-ng-c3542240159="">
-                                          {data?.bankBranch}
-                                        </p>
-                                      </li>
-                                      <li _ngcontent-ng-c3542240159="">
-                                        <label _ngcontent-ng-c3542240159="">
-                                          Account added on
-                                        </label>
-                                        <p _ngcontent-ng-c3542240159="">
-                                          {data?.dateAdded}
-                                        </p>
-                                      </li>
-                                    </ul>
-                                    {data?.isDefault === 0 &&
-                                      activeTab === 1 && (
-                                        <div
+                                      <div
+                                        _ngcontent-ng-c3542240159=""
+                                        className="img-wrap"
+                                      >
+                                        <img
                                           _ngcontent-ng-c3542240159=""
-                                          className="action-btn ng-star-inserted"
-                                        >
-                                          <button
-                                            onClick={() =>
-                                              setShowDefaultWarning(true)
-                                            }
+                                          alt="Bank Icon"
+                                          src={`/assets/img/${data?.bankCode}.png`}
+                                        />
+                                      </div>
+                                      <h2 _ngcontent-ng-c3542240159="">
+                                        {data?.bankName}
+                                        {data?.isDefault === 1 && (
+                                          <span
                                             _ngcontent-ng-c3542240159=""
-                                            type="button"
-                                            className="btn secondary-btn"
+                                            className="preffered ng-star-inserted"
                                           >
                                             Default
-                                          </button>
-                                        </div>
+                                          </span>
+                                        )}
+                                      </h2>
+                                    </div>
+                                    <div
+                                      _ngcontent-ng-c3542240159=""
+                                      className="mat-expansion-panel-header-description ng-tns-c2690051721-5"
+                                    >
+                                      {activeTab === 1 && (
+                                        <span
+                                          onClick={() => {
+                                            setShowDeleteWarning(true);
+                                            setBankId(data?.bankId);
+                                          }}
+                                          _ngcontent-ng-c3542240159=""
+                                          role="img"
+                                          className="mat-icon notranslate material-symbols delete-icon material-icons mat-ligature-font mat-icon-no-color ng-star-inserted"
+                                          aria-hidden="true"
+                                          data-mat-icon-type="font"
+                                        >
+                                          delete
+                                        </span>
                                       )}
+                                      <span
+                                        onClick={() =>
+                                          handleVisibleBankDetails(
+                                            data?.bankId,
+                                            bankId,
+                                            setBankId
+                                          )
+                                        }
+                                        _ngcontent-ng-c3542240159=""
+                                        role="img"
+                                        className="mat-icon notranslate material-icons mat-ligature-font mat-icon-no-color ng-star-inserted"
+                                        aria-hidden="true"
+                                        data-mat-icon-type="font"
+                                      >
+                                        {bankId ? (
+                                          <IoMdArrowDropdown />
+                                        ) : (
+                                          <IoMdArrowDropright />
+                                        )}
+                                      </span>
+                                    </div>
+                                  </span>
+                                </div>
+                                <div
+                                  role="region"
+                                  className={`mat-expansion-panel-content ng-tns-c1859850774-4 ng-trigger ng-trigger-bodyExpansion ${
+                                    bankId === data?.bankId
+                                      ? ""
+                                      : "invisibleBankDEtails"
+                                  }`}
+                                  id="cdk-accordion-child-0"
+                                  aria-labelledby="mat-expansion-panel-header-0"
+                                >
+                                  {/* <!-- style="height: 0px; visibility: hidden;" --> */}
+                                  <div className="mat-expansion-panel-body ng-tns-c1859850774-4">
+                                    <div
+                                      _ngcontent-ng-c3542240159=""
+                                      className="banks-details ng-tns-c1859850774-4"
+                                    >
+                                      <ul _ngcontent-ng-c3542240159="">
+                                        <li _ngcontent-ng-c3542240159="">
+                                          <label _ngcontent-ng-c3542240159="">
+                                            Account holder name
+                                          </label>
+                                          <p _ngcontent-ng-c3542240159="">
+                                            {data?.bankAccountName}
+                                          </p>
+                                        </li>
+                                        <li _ngcontent-ng-c3542240159="">
+                                          <label _ngcontent-ng-c3542240159="">
+                                            Account number
+                                          </label>
+                                          <p _ngcontent-ng-c3542240159="">
+                                            {data?.accountNumber}
+                                          </p>
+                                        </li>
+                                        <li _ngcontent-ng-c3542240159="">
+                                          <label _ngcontent-ng-c3542240159="">
+                                            IFSC Code
+                                          </label>
+                                          <p _ngcontent-ng-c3542240159="">
+                                            {data?.ifsc}
+                                          </p>
+                                        </li>
+                                        <li _ngcontent-ng-c3542240159="">
+                                          <label _ngcontent-ng-c3542240159="">
+                                            Bank Branch
+                                          </label>
+                                          <p _ngcontent-ng-c3542240159="">
+                                            {data?.bankBranch}
+                                          </p>
+                                        </li>
+                                        <li _ngcontent-ng-c3542240159="">
+                                          <label _ngcontent-ng-c3542240159="">
+                                            Account added on
+                                          </label>
+                                          <p _ngcontent-ng-c3542240159="">
+                                            {data?.dateAdded}
+                                          </p>
+                                        </li>
+                                      </ul>
+                                      {data?.isDefault === 0 &&
+                                        activeTab === 1 && (
+                                          <div
+                                            _ngcontent-ng-c3542240159=""
+                                            className="action-btn ng-star-inserted"
+                                          >
+                                            <button
+                                              onClick={() =>
+                                                setShowDefaultWarning(true)
+                                              }
+                                              _ngcontent-ng-c3542240159=""
+                                              type="button"
+                                              className="btn secondary-btn"
+                                            >
+                                              Default
+                                            </button>
+                                          </div>
+                                        )}
+                                    </div>
                                   </div>
                                 </div>
                               </div>
                             </div>
-                          </div>
-                        );
-                      })}
+                          );
+                        })
+                      ) : (
+                        <div
+                          class=" ng-star-inserted"
+                          style={{
+                            fontWeight: "300",
+                            fontSize: "10px",
+                            opacity: ".6",
+                            marginTop: "10px",
+                            padding: "0 5px",
+                          }}
+                        >
+                          <p _ngcontent-ng-c3542240159="">
+                            No Bank Details found! Adding Bank Details is
+                            mandatory for processing withdrawals
+                          </p>
+                        </div>
+                      )}
                     </div>
                   </div>
                 </div>

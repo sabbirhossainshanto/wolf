@@ -1,9 +1,13 @@
 /* eslint-disable react/no-unknown-property */
 
+import { useNavigate } from "react-router-dom";
 import useContextState from "../../hooks/useContextState";
+import useLatestEvent from "../../hooks/useLatestEvent";
 
 const Tabs = () => {
   const { setSportsType, sportsType } = useContextState();
+  const { latestEvents } = useLatestEvent();
+  const navigate = useNavigate();
   return (
     <div
       _ngcontent-ng-c943649379=""
@@ -11,21 +15,31 @@ const Tabs = () => {
       className="ng-star-inserted"
     >
       <div _ngcontent-ng-c2582205232="" className="pagetab-wrapper">
-        {/* <div
+        <div
           _ngcontent-ng-c2582205232=""
           className="latest-events ng-star-inserted"
         >
-          <div
-            _ngcontent-ng-c2582205232=""
-            className="le-item ng-star-inserted"
-          >
-            <h2 _ngcontent-ng-c2582205232="" className="ng-star-inserted">
-              <span _ngcontent-ng-c2582205232="" className="blink-it">
-                Lok Sabha 2024
-              </span>
-            </h2>
-          </div>
-        </div> */}
+          {latestEvents?.map((item, i) => {
+            return (
+              <div
+                onClick={() => {
+                  navigate(
+                    `/game-details/${item?.eventTypeId}/${item?.eventId}`
+                  );
+                }}
+                key={i}
+                _ngcontent-ng-c2582205232=""
+                className="le-item ng-star-inserted"
+              >
+                <h2 _ngcontent-ng-c2582205232="" className="ng-star-inserted">
+                  <span _ngcontent-ng-c2582205232="" className="blink-it">
+                    {item?.eventName}
+                  </span>
+                </h2>
+              </div>
+            );
+          })}
+        </div>
         <div _ngcontent-ng-c2582205232="" className="pagetab-header">
           <div
             onClick={() => setSportsType(4)}
@@ -100,17 +114,20 @@ const Tabs = () => {
             </div>
           </div>
           <div
-           onClick={() => setSportsType('aura')}
+            onClick={() => setSportsType("aura")}
             _ngcontent-ng-c2582205232=""
             routerlink="/casino-bmk-lobby"
             routerlinkactive="active-link"
             className={`pagetab-item ng-star-inserted   ${
-              sportsType === 'aura' ? "active-link" : ""
+              sportsType === "aura" ? "active-link" : ""
             }`}
           >
-            <div _ngcontent-ng-c2582205232=""  className={`icon-wrap ${
-                sportsType === 'aura' ? "rotate-animation" : ""
-              }`}>
+            <div
+              _ngcontent-ng-c2582205232=""
+              className={`icon-wrap ${
+                sportsType === "aura" ? "rotate-animation" : ""
+              }`}
+            >
               <img
                 _ngcontent-ng-c2582205232=""
                 alt="Tab Icon"
@@ -122,17 +139,20 @@ const Tabs = () => {
             </div>
           </div>
           <div
-             onClick={() => setSportsType('live-casino')}
+            onClick={() => setSportsType("live-casino")}
             _ngcontent-ng-c2582205232=""
             routerlink="/live-casino-lobby/live_casino"
             routerlinkactive="active-link"
             className={`pagetab-item ng-star-inserted   ${
-              sportsType === 'live-casino' ? "active-link" : ""
+              sportsType === "live-casino" ? "active-link" : ""
             }`}
           >
-            <div _ngcontent-ng-c2582205232=""   className={`icon-wrap ${
-                sportsType === 'live-casino' ? "rotate-animation" : ""
-              }`}>
+            <div
+              _ngcontent-ng-c2582205232=""
+              className={`icon-wrap ${
+                sportsType === "live-casino" ? "rotate-animation" : ""
+              }`}
+            >
               <img
                 _ngcontent-ng-c2582205232=""
                 alt="Tab Icon"
@@ -143,19 +163,22 @@ const Tabs = () => {
               Live Casino
             </div>
           </div>
-      
+
           <div
-            onClick={() => setSportsType('casino')}
+            onClick={() => setSportsType("casino")}
             _ngcontent-ng-c2582205232=""
             routerlink="/casino-lobby/casino"
             routerlinkactive="active-link"
             className={`pagetab-item ng-star-inserted ${
-              sportsType === 'casino' ? "active-link" : ""
+              sportsType === "casino" ? "active-link" : ""
             }`}
           >
-            <div _ngcontent-ng-c2582205232="" className={`icon-wrap ${
-                sportsType === 'casino' ? "rotate-animation" : ""
-              }`}>
+            <div
+              _ngcontent-ng-c2582205232=""
+              className={`icon-wrap ${
+                sportsType === "casino" ? "rotate-animation" : ""
+              }`}
+            >
               <img
                 _ngcontent-ng-c2582205232=""
                 alt="Tab Icon"
@@ -166,7 +189,6 @@ const Tabs = () => {
               Casino
             </div>
           </div>
-      
         </div>
       </div>
     </div>

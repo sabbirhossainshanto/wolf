@@ -62,6 +62,7 @@ const LoggedInProfile = ({
           setErrCrudMsg={setWithdrawCoinErr}
           setShowAddBank={setSHowWithdraw}
           setSuccessCrudMsg={setWithdrawCoinSuccess}
+          refetchWithdrawData={refetchWithdrawData}
         />
       )}
 

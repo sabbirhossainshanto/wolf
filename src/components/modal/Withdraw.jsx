@@ -15,7 +15,7 @@ const Withdraw = ({
   bankId,
   refetchWithdrawData,
   withdrawData,
-  setBankId
+  setBankId,
 }) => {
   const { token } = useContextState();
 
@@ -25,13 +25,9 @@ const Withdraw = ({
     setSHowWithdraw(false);
   });
 
- 
-
   useEffect(() => {
     refetchWithdrawData();
   }, [refetchWithdrawData, bankId]);
-
-
 
   const handleCoinSubmit = async (e) => {
     e.preventDefault();
@@ -284,11 +280,14 @@ const Withdraw = ({
                                   width: "50%",
                                   padding: "5px",
                                   borderRadius: "20px",
+                                  fontSize: "10px",
                                 }}
                                 name=""
                                 id=""
                               >
-                                <option selected value="">Change Bank</option>
+                                <option selected value="">
+                                  Change Bank
+                                </option>
                                 {withdrawData?.allBanks?.map((item) => {
                                   return (
                                     <option

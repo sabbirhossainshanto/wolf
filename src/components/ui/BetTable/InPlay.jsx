@@ -1,6 +1,6 @@
 /* eslint-disable react/no-unknown-property */
 import { useNavigate } from "react-router-dom";
-
+import { MdOutlineSmartDisplay } from "react-icons/md";
 const InPlay = ({ keys, data }) => {
   const navigate = useNavigate();
   /* Navigate game details page */
@@ -18,15 +18,8 @@ const InPlay = ({ keys, data }) => {
         >
           <div _ngcontent-ng-c943649379="" className="card-header">
             <h3 _ngcontent-ng-c943649379="" className="card-title">
-              <span
-                _ngcontent-ng-c943649379=""
-                role="img"
-                className="mat-icon notranslate material-icons mat-ligature-font mat-icon-no-color"
-                aria-hidden="true"
-                data-mat-icon-type="font"
-              >
-                play_arrow
-              </span>
+              <MdOutlineSmartDisplay size={18} color="red" />
+
               {data[keys]?.eventName}
             </h3>
             <div _ngcontent-ng-c943649379="" className="lay-back-wrap">

@@ -14,7 +14,7 @@ import { useLocation } from "react-router-dom";
 const Home = () => {
   const { sportsType } = useContextState();
   const { bannerImage } = useBannerImage();
-const location = useLocation()
+  const location = useLocation();
   /* Reset scroll */
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -80,14 +80,16 @@ const location = useLocation()
             )}
           </div>
         </div>
+
+        {location.pathname === "/" && (
+          <div  style={{ backgroundColor: "#323232", textAlign: "center" }}>
+            <img
+              src="/assets/img/payment_types.png"
+              style={{ padding: "5px 0px 50px 0px" }}
+            />
+          </div>
+        )}
       </div>
-     {
-      location.pathname === '/' && (
-        <div _ style={{backgroundColor:'#323232',textAlign:'center'}}>
-        <img src="/assets/img/payment_types.png" style={{padding:'0px 0px 60px 0px'}} />
-      </div>
-      )
-     }
     </>
   );
 };

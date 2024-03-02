@@ -72,7 +72,7 @@ const Sports = () => {
               return obj;
             }, {});
           return (
-            <>
+            <div key={category}>
               <div _ngcontent-ng-c943649379="" className="game-play-heading">
                 <h2 _ngcontent-ng-c943649379="">{eventName[category]}</h2>
 
@@ -94,7 +94,7 @@ const Sports = () => {
                       return <InPlay key={index} keys={key} data={games} />;
                     })
                 : null}
-            </>
+            </div>
           );
         })
       ) : (

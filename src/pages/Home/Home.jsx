@@ -82,10 +82,10 @@ const Home = () => {
         </div>
 
         {location.pathname === "/" && (
-          <div  style={{ backgroundColor: "#323232", textAlign: "center" }}>
+          <div style={{ backgroundColor: "#323232", textAlign: "center" }}>
             <img
+              className="paymentTypesPadding"
               src="/assets/img/payment_types.png"
-              style={{ padding: "5px 0px 50px 0px" }}
             />
           </div>
         )}

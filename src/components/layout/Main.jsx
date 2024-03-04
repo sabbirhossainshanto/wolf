@@ -39,6 +39,7 @@ const Main = () => {
     setShowBonusRule,
     token,
     tokenLoading,
+    isCheckedBonusToken,
   } = useContextState();
   const [successEditStake, setSuccessEditStake] = useState("");
   const navigate = useNavigate();
@@ -62,13 +63,14 @@ const Main = () => {
   }, [navigate, disabledDevtool]);
 
   useEffect(() => {
-    if (Settings.deposit && !tokenLoading) {
+    if (Settings.deposit && !tokenLoading && !isCheckedBonusToken) {
       const checkDepositMethodSimilarity = async () => {
         const storedMethods = localStorage.getItem("depositMethod");
         const depositMethod = handleDepositMethod(token);
         const res = await depositMethod();
         if (res?.success) {
           const currentMethods = JSON.stringify(res?.result);
+          console.log({ currentMethods }, { storedMethods });
           if (storedMethods !== currentMethods) {
             setVerifyDeposit(
               "Our deposit bank details are updated. Please verify our bank accounts before depositing money."

@@ -32,7 +32,7 @@ const ClaimWarning = ({ setShowClaimWarn }) => {
        /* After failed close claim warning modal */
       setShowClaimWarn(false);
          /* set error message  */
-      setErrClaimMsg(result?.error?.errorMessage);
+      setErrClaimMsg(result?.result?.message);
     }
   };
 

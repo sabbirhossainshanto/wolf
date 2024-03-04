@@ -75,8 +75,6 @@ const GameDetails = () => {
     footballScore = match_odds[0]?.score;
   }
 
- 
-
   return (
     <>
       <div _ngcontent-ng-c942213636="" className="page-body">
@@ -133,34 +131,44 @@ const GameDetails = () => {
                   {/* score end */}
                 </table>
               )}
+              {!footballScore && (
+                <div _ngcontent-ng-c942213636="" className="playing-teams">
+                  <button
+                    _ngcontent-ng-c942213636=""
+                    mat-icon-button=""
+                    mattooltipposition="below"
+                    mattooltiphidedelay="1000"
+                    tooltiptouchgestures="on"
+                    className="mat-mdc-tooltip-trigger mdc-icon-button mat-mdc-icon-button mat-unthemed mat-mdc-button-base"
+                    mat-ripple-loader-uninitialized=""
+                    mat-ripple-loader-class-name="mat-mdc-button-ripple"
+                    mat-ripple-loader-centered=""
+                    aria-describedby="cdk-describedby-message-ng-1-2"
+                    cdk-describedby-host="ng-1"
+                  >
+                    <span className="mat-mdc-button-persistent-ripple mdc-icon-button__ripple"></span>
+                    i <span className="mat-mdc-focus-indicator"></span>
+                    <span className="mat-mdc-button-touch-target"></span>
+                  </button>
 
-              <div _ngcontent-ng-c942213636="" className="playing-teams">
-                <button
-                  _ngcontent-ng-c942213636=""
-                  mat-icon-button=""
-                  mattooltipposition="below"
-                  mattooltiphidedelay="1000"
-                  tooltiptouchgestures="on"
-                  className="mat-mdc-tooltip-trigger mdc-icon-button mat-mdc-icon-button mat-unthemed mat-mdc-button-base"
-                  mat-ripple-loader-uninitialized=""
-                  mat-ripple-loader-class-name="mat-mdc-button-ripple"
-                  mat-ripple-loader-centered=""
-                  aria-describedby="cdk-describedby-message-ng-1-2"
-                  cdk-describedby-host="ng-1"
-                >
-                  <span className="mat-mdc-button-persistent-ripple mdc-icon-button__ripple"></span>
-                  i <span className="mat-mdc-focus-indicator"></span>
-                  <span className="mat-mdc-button-touch-target"></span>
-                </button>
-                <span _ngcontent-ng-c942213636="" className="ng-star-inserted">
-                  {data?.length > 0 && data[0]?.eventName}
-                </span>
-              </div>
-              <div _ngcontent-ng-c942213636="" className="playing-teams">
-                <span _ngcontent-ng-c942213636="" className="ng-star-inserted">
-                  {data?.length > 0 && data[0]?.openDate}
-                </span>
-              </div>
+                  <span
+                    _ngcontent-ng-c942213636=""
+                    className="ng-star-inserted"
+                  >
+                    {data?.length > 0 && data[0]?.eventName}
+                  </span>
+                </div>
+              )}
+              {!footballScore && (
+                <div _ngcontent-ng-c942213636="" className="playing-teams">
+                  <span
+                    _ngcontent-ng-c942213636=""
+                    className="ng-star-inserted"
+                  >
+                    {data?.length > 0 && data[0]?.openDate}
+                  </span>
+                </div>
+              )}
             </div>
           </div>
           <div

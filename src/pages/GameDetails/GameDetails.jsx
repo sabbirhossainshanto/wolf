@@ -35,7 +35,7 @@ const GameDetails = () => {
   const [match_odds, setMatch_odds] = useState([]);
   /* has video boolean for iframe api enable or not*/
   const hasVideo = match_odds?.length > 0 && match_odds[0]?.hasVideo;
-  const isHasVideo = hasVideo ? true : false
+  const isHasVideo = hasVideo ? true : false;
 
   /* get iframe */
   const { iFrameUrl } = useIFrame(eventTypeId, eventId, isHasVideo);
@@ -61,11 +61,22 @@ const GameDetails = () => {
     return () => clearInterval(intervalId);
   }, [eventId, eventTypeId, token]);
 
-
   if (loading) {
     return;
   }
+
+  let footballScore;
+  if (
+    showScore &&
+    match_odds?.length > 0 &&
+    match_odds?.[0]?.eventTypeId == 1 &&
+    match_odds[0]?.score !== null
+  ) {
+    footballScore = match_odds[0]?.score;
+  }
+
  
+
   return (
     <>
       <div _ngcontent-ng-c942213636="" className="page-body">
@@ -79,6 +90,50 @@ const GameDetails = () => {
               _ngcontent-ng-c942213636=""
               className="team-play-bar title-bar"
             >
+              {/* score */}
+              {footballScore !== undefined && (
+                <table style={{ fontSize: "10px", color: "white" }}>
+                  <tbody>
+                    <tr>
+                      <td rowspan="2" style={{ color: "greenyellow" }}>
+                        {" "}
+                        {footballScore?.inplay_status === "HT" && "HT"}
+                        {footballScore?.additional_time == null &&
+                          footballScore?.inplay_status !== "HT" &&
+                          footballScore?.current_time}
+                        {footballScore?.additional_time !== null &&
+                          footballScore?.inplay_status !== "HT" &&
+                          `${footballScore?.current_time} + ${footballScore?.additional_time}`}
+                      </td>
+
+                      <td
+                        style={{
+                          width: "15px",
+                          height: "10px",
+                          textAlign: "right",
+                        }}
+                      >
+                        {footballScore?.hscore}
+                      </td>
+                      <td style={{ height: "10px" }}>{footballScore?.ht}</td>
+                    </tr>
+                    <tr>
+                      <td
+                        style={{
+                          width: "15px",
+                          height: "10px",
+                          textAlign: "right",
+                        }}
+                      >
+                        {footballScore?.ascore}
+                      </td>
+                      <td style={{ height: "10px" }}>{footballScore?.at}</td>
+                    </tr>
+                  </tbody>
+                  {/* score end */}
+                </table>
+              )}
+
               <div _ngcontent-ng-c942213636="" className="playing-teams">
                 <button
                   _ngcontent-ng-c942213636=""

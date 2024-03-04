@@ -86,7 +86,7 @@ const BetSlip = ({
         }
       });
   };
-
+console.log(placeBetValues);
   /* Increase price bets */
   const handleIncreasePrice = () => {
     if (price == 1000 || placeBetValues?.isWeak === true) {

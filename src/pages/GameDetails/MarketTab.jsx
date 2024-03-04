@@ -60,7 +60,8 @@ const MarketTab = ({
     );
     setOverByOver(overByOverFilter);
   }, [data]);
-  console.log(data);
+  // console.log(data);
+
   return (
     <div className="mat-mdc-tab-body-wrapper">
       <div
@@ -100,8 +101,9 @@ const MarketTab = ({
                 )}
               {showScore &&
                 match_odds?.length > 0 &&
+                match_odds?.[0]?.eventTypeId == 4 &&
                 match_odds[0]?.score?.length !== 0 &&
-                match_odds[0]?.score?.map((team, i) => {
+                match_odds?.[0]?.score?.map((team, i) => {
                   return (
                     <div
                       key={i}

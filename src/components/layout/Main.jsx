@@ -70,7 +70,7 @@ const Main = () => {
         const res = await depositMethod();
         if (res?.success) {
           const currentMethods = JSON.stringify(res?.result);
-          console.log({ currentMethods }, { storedMethods });
+          // console.log({ currentMethods }, { storedMethods });
           if (storedMethods !== currentMethods) {
             setVerifyDeposit(
               "Our deposit bank details are updated. Please verify our bank accounts before depositing money."

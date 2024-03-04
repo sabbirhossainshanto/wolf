@@ -6,7 +6,8 @@ import { API } from "../../../api";
 import UseTokenGenerator from "../../../hooks/UseTokenGenerator";
 import UseEncryptData from "../../../hooks/UseEncryptData";
 import useContextState from "../../../hooks/useContextState";
-const ClaimWarning = ({ setShowClaimWarn }) => {
+const ClaimWarning = ({ setShowClaimWarn, bonusRefetchBalance,
+  refetchBalance }) => {
   const warningRef = useRef();
   /*  close warning modal click out side*/
   useCloseModalClickOutside(warningRef, () => {
@@ -24,6 +25,8 @@ const ClaimWarning = ({ setShowClaimWarn }) => {
     });
     const result = res?.data;
     if (result?.success) {
+      refetchBalance()
+      bonusRefetchBalance()
       /* After success close claim warning modal */
       setShowClaimWarn(false);
       /* set success message  */

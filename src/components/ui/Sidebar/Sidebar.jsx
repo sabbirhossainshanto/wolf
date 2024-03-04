@@ -12,6 +12,7 @@ import axios from "axios";
 import UseTokenGenerator from "../../../hooks/UseTokenGenerator";
 import UseEncryptData from "../../../hooks/UseEncryptData";
 import useGetSocialLink from "../../../hooks/useGetSocialLink";
+import useBalance from "../../../hooks/useBalance";
 /* eslint-disable react/no-unknown-property */
 const Sidebar = () => {
   const {
@@ -32,7 +33,8 @@ const Sidebar = () => {
   const loginName = localStorage.getItem("loginName");
   const navigate = useNavigate();
   const leftMenuRef = useRef();
-  const { bonusBalanceData } = useBonusBalance();
+  const { bonusBalanceData,bonusRefetchBalance } = useBonusBalance();
+  const {refetchBalance} = useBalance()
   const [warningMessage, setWarningMessage] = useState("");
   const [showClaimWarn, setShowClaimWarn] = useState(false);
   const [promoCode, setPromoCode] = useState("");
@@ -137,7 +139,10 @@ const Sidebar = () => {
         <Warning message={warningMessage} setMessage={setWarningMessage} />
       )}
       {/* Claim warning modal */}
-      {showClaimWarn && <ClaimWarning setShowClaimWarn={setShowClaimWarn} />}
+      {showClaimWarn && <ClaimWarning setShowClaimWarn={setShowClaimWarn}
+      bonusRefetchBalance={bonusRefetchBalance}
+      refetchBalance={refetchBalance}
+      />}
       <div
         className="mat-drawer-backdrop ng-star-inserted"
         style={{ visibility: `${showSidebar ? "visible" : "hidden"}` }}

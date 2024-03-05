@@ -55,13 +55,7 @@ const MyBankDetails = () => {
     refetchBankData();
   }, [refetchBankData, activeTab]);
 
-  if (Array.isArray(bankData) && bankData?.length > 0) {
-    bankData?.forEach((item) => {
-      if(item?.isDefault == 1){
-        localStorage.setItem('defaultBankId',item?.bankId)
-      }
-    });
-  }
+
 
   return (
     <>

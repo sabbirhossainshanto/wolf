@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 import useContextState from "../../hooks/useContextState";
 import { Settings } from "../../api";
 import useGetSocialLink from "../../hooks/useGetSocialLink";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Withdraw from "../../components/modal/Withdraw";
 import Success from "../../components/ui/Notification/Success";
 import useBankAccount from "../../hooks/useBankAccount";
@@ -27,8 +27,8 @@ const LoggedInProfile = ({
   const handleNavigateSocialLink = (link) => {
     window.open(link, "_blank");
   };
-  const defaultBankId = localStorage.getItem("defaultBankId");
-  const [bankId, setBankId] = useState(defaultBankId);
+
+  const [bankId, setBankId] = useState(null);
 
   const withDrawPostData = {
     bankId,
@@ -43,6 +43,11 @@ const LoggedInProfile = ({
   };
   /* Get bank name for if length > 0 then open withdraw modal else open  add bank modal for add bank  */
   const { refetchBankData } = useGetBankAccountName(bankDataPostBody);
+
+/* Set default bank account id */
+  useEffect(()=> {
+    setBankId(withdrawData?.defaultBank?.bankId)
+  },[withdrawData?.defaultBank?.bankId])
   return (
     <>
       {/* Withdraw modal */}

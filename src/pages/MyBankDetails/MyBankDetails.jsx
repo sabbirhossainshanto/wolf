@@ -54,8 +54,15 @@ const MyBankDetails = () => {
   useEffect(() => {
     refetchBankData();
   }, [refetchBankData, activeTab]);
-  console.log(errCrudMsg);
-  console.log(bankData);
+
+  if (Array.isArray(bankData) && bankData?.length > 0) {
+    bankData?.forEach((item) => {
+      if(item?.isDefault == 1){
+        localStorage.setItem('defaultBankId',item?.bankId)
+      }
+    });
+  }
+
   return (
     <>
       {/* Move to default account start */}

@@ -23278,54 +23278,11 @@ mat-icon {
 
 
 
-.modal-header[_ngcontent-ng-c526813732]{display:flex;flex-direction:column;align-items:center;justify-content:center;background-color:var(--primary-color);}
-.modal-header[_ngcontent-ng-c526813732]   .img-wrap[_ngcontent-ng-c526813732]{margin-top:15px;margin-bottom:15px;}
-.modal-header[_ngcontent-ng-c526813732]   .img-wrap[_ngcontent-ng-c526813732]   img[_ngcontent-ng-c526813732]{width:175px;max-height:70px;height:auto;min-width:auto;object-fit:contain;}
-.modal-header[_ngcontent-ng-c526813732]   .modal-close-btn[_ngcontent-ng-c526813732]{background:var(--primary-color-contrast)!important;color:var(--primary-color);}
-.modal-header[_ngcontent-ng-c526813732]   .modal-close-btn[_ngcontent-ng-c526813732]   mat-icon[_ngcontent-ng-c526813732]{color:var(--primary-color);}
-.modal-body[_ngcontent-ng-c526813732]   h3[_ngcontent-ng-c526813732]{font-size:18px;font-family:open_bold;margin:0;}
-.modal-body[_ngcontent-ng-c526813732]   p[_ngcontent-ng-c526813732]{font-size:12px;margin:0;}
-.modal-body[_ngcontent-ng-c526813732]   .referral-code[_ngcontent-ng-c526813732]{background-color:var(--grey-00);border-radius:6px;padding:10px;position:relative;height:45px;margin-top:15px;display:flex;align-items:center;}
-.modal-body[_ngcontent-ng-c526813732]   .referral-code[_ngcontent-ng-c526813732]   p[_ngcontent-ng-c526813732]{font-size:14px;text-transform:uppercase;}
-.modal-body[_ngcontent-ng-c526813732]   .referral-code[_ngcontent-ng-c526813732]   button[_ngcontent-ng-c526813732]{position:absolute;right:0;width:30px;height:45px;top:0;}
-.modal-body[_ngcontent-ng-c526813732]   .sharing[_ngcontent-ng-c526813732]{margin-top:15px;padding:10px 5px;background-color:var(--grey-00);border-radius:10px;}
-.modal-body[_ngcontent-ng-c526813732]   .sharing[_ngcontent-ng-c526813732]   .icon-list[_ngcontent-ng-c526813732]{display:flex;}
-.modal-body[_ngcontent-ng-c526813732]   .sharing[_ngcontent-ng-c526813732]   .icon-list[_ngcontent-ng-c526813732]   .icon-item[_ngcontent-ng-c526813732]{width:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;}
-.modal-body[_ngcontent-ng-c526813732]   .sharing[_ngcontent-ng-c526813732]   .icon-list[_ngcontent-ng-c526813732]   .icon-item[_ngcontent-ng-c526813732]   .icon-wrap[_ngcontent-ng-c526813732]{width:30px;height:30px;display:flex;align-items:center;justify-content:center;}
-.modal-body[_ngcontent-ng-c526813732]   .sharing[_ngcontent-ng-c526813732]   .icon-list[_ngcontent-ng-c526813732]   .icon-item[_ngcontent-ng-c526813732]   .icon-wrap.more[_ngcontent-ng-c526813732]{background-color:var(--header-dark-color);border-radius:50%;}
-.modal-body[_ngcontent-ng-c526813732]   .sharing[_ngcontent-ng-c526813732]   .icon-list[_ngcontent-ng-c526813732]   .icon-item[_ngcontent-ng-c526813732]   .icon-wrap[_ngcontent-ng-c526813732]   img[_ngcontent-ng-c526813732]{width:25px;height:25px;display:block;margin:auto;}
-.modal-body[_ngcontent-ng-c526813732]   .sharing[_ngcontent-ng-c526813732]   .icon-list[_ngcontent-ng-c526813732]   .icon-item[_ngcontent-ng-c526813732]   .icon-wrap[_ngcontent-ng-c526813732]   mat-icon[_ngcontent-ng-c526813732]{width:25px;height:25px;display:flex;align-items:center;justify-content:center;border-radius:50%;color:var(--white-color);font-size:20px;}
-.modal-body[_ngcontent-ng-c526813732]   .sharing[_ngcontent-ng-c526813732]   .icon-list[_ngcontent-ng-c526813732]   .icon-item[_ngcontent-ng-c526813732]   p[_ngcontent-ng-c526813732]{font-size:10px!important;text-align:center;}
 
 
 
 
 
-.help-page-wrap[_ngcontent-ng-c1325205117]   button[_ngcontent-ng-c1325205117]{min-height:40px;margin:10px 0;display:flex;align-items:center;justify-content:center;column-gap:10px;font-family:open_regular;}
-.help-page-wrap[_ngcontent-ng-c1325205117]   button[_ngcontent-ng-c1325205117]   img[_ngcontent-ng-c1325205117]{width:24px;height:24px;} */
-
-
-
-
-
-.modal-header[_ngcontent-ng-c526813732]{display:flex;flex-direction:column;align-items:center;justify-content:center;background-color:var(--primary-color);}
-.modal-header[_ngcontent-ng-c526813732]   .img-wrap[_ngcontent-ng-c526813732]{margin-top:15px;margin-bottom:15px;}
-.modal-header[_ngcontent-ng-c526813732]   .img-wrap[_ngcontent-ng-c526813732]   img[_ngcontent-ng-c526813732]{width:175px;max-height:70px;height:auto;min-width:auto;object-fit:contain;}
-.modal-header[_ngcontent-ng-c526813732]   .modal-close-btn[_ngcontent-ng-c526813732]{background:var(--primary-color-contrast)!important;color:var(--primary-color);}
-.modal-header[_ngcontent-ng-c526813732]   .modal-close-btn[_ngcontent-ng-c526813732]   mat-icon[_ngcontent-ng-c526813732]{color:var(--primary-color);}
-.modal-body[_ngcontent-ng-c526813732]   h3[_ngcontent-ng-c526813732]{font-size:18px;font-family:open_bold;margin:0;}
-.modal-body[_ngcontent-ng-c526813732]   p[_ngcontent-ng-c526813732]{font-size:12px;margin:0;}
-.modal-body[_ngcontent-ng-c526813732]   .referral-code[_ngcontent-ng-c526813732]{background-color:var(--grey-00);border-radius:6px;padding:10px;position:relative;height:45px;margin-top:15px;display:flex;align-items:center;}
-.modal-body[_ngcontent-ng-c526813732]   .referral-code[_ngcontent-ng-c526813732]   p[_ngcontent-ng-c526813732]{font-size:14px;text-transform:uppercase;}
-.modal-body[_ngcontent-ng-c526813732]   .referral-code[_ngcontent-ng-c526813732]   button[_ngcontent-ng-c526813732]{position:absolute;right:0;width:30px;height:45px;top:0;}
-.modal-body[_ngcontent-ng-c526813732]   .sharing[_ngcontent-ng-c526813732]{margin-top:15px;padding:10px 5px;background-color:var(--grey-00);border-radius:10px;}
-.modal-body[_ngcontent-ng-c526813732]   .sharing[_ngcontent-ng-c526813732]   .icon-list[_ngcontent-ng-c526813732]{display:flex;}
-.modal-body[_ngcontent-ng-c526813732]   .sharing[_ngcontent-ng-c526813732]   .icon-list[_ngcontent-ng-c526813732]   .icon-item[_ngcontent-ng-c526813732]{width:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;}
-.modal-body[_ngcontent-ng-c526813732]   .sharing[_ngcontent-ng-c526813732]   .icon-list[_ngcontent-ng-c526813732]   .icon-item[_ngcontent-ng-c526813732]   .icon-wrap[_ngcontent-ng-c526813732]{width:30px;height:30px;display:flex;align-items:center;justify-content:center;}
-.modal-body[_ngcontent-ng-c526813732]   .sharing[_ngcontent-ng-c526813732]   .icon-list[_ngcontent-ng-c526813732]   .icon-item[_ngcontent-ng-c526813732]   .icon-wrap.more[_ngcontent-ng-c526813732]{background-color:var(--header-dark-color);border-radius:50%;}
-.modal-body[_ngcontent-ng-c526813732]   .sharing[_ngcontent-ng-c526813732]   .icon-list[_ngcontent-ng-c526813732]   .icon-item[_ngcontent-ng-c526813732]   .icon-wrap[_ngcontent-ng-c526813732]   img[_ngcontent-ng-c526813732]{width:25px;height:25px;display:block;margin:auto;}
-.modal-body[_ngcontent-ng-c526813732]   .sharing[_ngcontent-ng-c526813732]   .icon-list[_ngcontent-ng-c526813732]   .icon-item[_ngcontent-ng-c526813732]   .icon-wrap[_ngcontent-ng-c526813732]   mat-icon[_ngcontent-ng-c526813732]{width:25px;height:25px;display:flex;align-items:center;justify-content:center;border-radius:50%;color:var(--white-color);font-size:20px;}
-.modal-body[_ngcontent-ng-c526813732]   .sharing[_ngcontent-ng-c526813732]   .icon-list[_ngcontent-ng-c526813732]   .icon-item[_ngcontent-ng-c526813732]   p[_ngcontent-ng-c526813732]{font-size:10px!important;text-align:center;}
 
 
 

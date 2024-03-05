@@ -289,6 +289,7 @@ const Withdraw = ({
                                   Change Bank
                                 </option>
                                 {withdrawData?.allBanks?.map((item) => {
+                                  console.log(item);
                                   return (
                                     <option
                                       key={item?.bankId}

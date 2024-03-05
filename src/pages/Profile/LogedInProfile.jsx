@@ -27,7 +27,9 @@ const LoggedInProfile = ({
   const handleNavigateSocialLink = (link) => {
     window.open(link, "_blank");
   };
-  const [bankId, setBankId] = useState(null);
+  const defaultBankId = localStorage.getItem("defaultBankId");
+  const [bankId, setBankId] = useState(defaultBankId);
+
   const withDrawPostData = {
     bankId,
     type: "withdrawForm",

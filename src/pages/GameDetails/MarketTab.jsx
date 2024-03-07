@@ -60,7 +60,6 @@ const MarketTab = ({
     );
     setOverByOver(overByOverFilter);
   }, [data]);
-  // console.log(data);
 
   return (
     <div className="mat-mdc-tab-body-wrapper">
@@ -95,7 +94,10 @@ const MarketTab = ({
                     src={
                       match_odds?.length > 0 &&
                       match_odds[0]?.hasVideo &&
-                      iFrameUrl
+                      iFrameUrl?.url
+                    }
+                    referrerPolicy={
+                      iFrameUrl?.ref === false ? "no-referrer" : "no-referrer"
                     }
                   ></iframe>
                 )}

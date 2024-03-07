@@ -56,7 +56,7 @@ const ChangePassword = ({
           setShowChangePassModal(false);
           /* Logout and navigate home */
           setTimeout(() => {
-            handleLogOut()
+            handleLogOut();
             setGetToken((prev) => !prev);
             navigate("/");
           }, 1000);
@@ -144,7 +144,6 @@ const ChangePassword = ({
                     <form
                       onSubmit={handleSubmit(onSubmit)}
                       _ngcontent-ng-c2641381007=""
-                
                       className="ng-untouched ng-pristine ng-invalid"
                     >
                       <div _ngcontent-ng-c2641381007="" className="modal-body">

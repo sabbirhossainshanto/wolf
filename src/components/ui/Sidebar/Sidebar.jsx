@@ -478,23 +478,27 @@ const Sidebar = () => {
                         <span _ngcontent-ng-c967272132="">Edit Stakes</span>
                       </a>
                     </li>
+                 {
+                  Settings.referral && (
                     <li
+                    _ngcontent-ng-c967272132=""
+                    routerlinkactive="active-link"
+                    className="smenu-item"
+                  >
+                    <a
+                      onClick={() => {
+                        setShowReferral(true);
+                        setShowSidebar(false);
+                      }}
                       _ngcontent-ng-c967272132=""
-                      routerlinkactive="active-link"
-                      className="smenu-item"
+                      className="smenu-link"
                     >
-                      <a
-                        onClick={() => {
-                          setShowReferral(true);
-                          setShowSidebar(false);
-                        }}
-                        _ngcontent-ng-c967272132=""
-                        className="smenu-link"
-                      >
-                        <RiEditBoxFill size={18} color="#3d3d3d" />
-                        <span _ngcontent-ng-c967272132="">Referral</span>
-                      </a>
-                    </li>
+                      <RiEditBoxFill size={18} color="#3d3d3d" />
+                      <span _ngcontent-ng-c967272132="">Referral</span>
+                    </a>
+                  </li>
+                  )
+                 }
                   </>
                 )}
                 <li _ngcontent-ng-c967272132="" className="smenu-item">

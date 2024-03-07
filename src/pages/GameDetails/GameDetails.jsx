@@ -40,7 +40,7 @@ const GameDetails = () => {
   /* get iframe */
   const { iFrameUrl } = useIFrame(eventTypeId, eventId, isHasVideo);
   const [showLoginWarn, setShowLoginWarn] = useState("");
-console.log({eventTypeId},{eventId});
+
   /* get game details */
   useEffect(() => {
     const getGameDetails = async () => {

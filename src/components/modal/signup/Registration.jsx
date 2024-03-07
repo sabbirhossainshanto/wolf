@@ -63,7 +63,7 @@ const Registration = ({
           localStorage.setItem("depositMethod", JSON.stringify(res?.result));
         }
       }
-      console.log(data);
+
       /* Set token to localeStorage */
       localStorage.setItem("token", data.result.token);
       /* Set bonus token in locale storage */

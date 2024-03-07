@@ -46,7 +46,7 @@ const Withdraw = ({
         },
       });
       const data = res?.data;
-      console.log(data);
+  
       if (data?.success) {
         setWithdrawCoinSuccess(data?.result?.message);
         setSHowWithdraw(false);
@@ -290,7 +290,7 @@ const Withdraw = ({
                                   Change Bank
                                 </option>
                                 {withdrawData?.allBanks?.map((item) => {
-                                  console.log(item);
+                            
                                   return (
                                     <option
                                       key={item?.bankId}

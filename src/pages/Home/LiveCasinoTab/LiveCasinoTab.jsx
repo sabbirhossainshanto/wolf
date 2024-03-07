@@ -55,7 +55,7 @@ const LiveCasinoTab = () => {
   // if (loading) {
   //   return
   // }
-  // console.log(data);
+
   return (
     <div _ngcontent-ng-c1965075897="" className="page-body">
       {showWarning && (

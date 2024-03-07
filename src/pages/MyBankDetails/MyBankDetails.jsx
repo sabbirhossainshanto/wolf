@@ -40,7 +40,7 @@ const MyBankDetails = () => {
     });
     const data = res?.data;
     if (data?.success) {
-      console.log(data);
+
       setSuccessCrudMsg(data?.result?.message);
       refetchBankData();
       setShowWarning(false);

@@ -1,10 +1,15 @@
 /* eslint-disable react/no-unknown-property */
 import { motion } from "framer-motion";
-import { useRef } from "react";
+import { useRef, useState } from "react";
 import useCloseModalClickOutside from "../../hooks/useCloseModalClickOutside";
 import useBankAccount from "../../hooks/useBankAccount";
 import { myReferralCodePost } from "../../constant/constant";
+import useContextState from "../../hooks/useContextState";
+import { handleCopyToClipBoard } from "../../utils/handleCopyToClipBoard";
+import Success from "../ui/Notification/Success";
 const Referral = ({ setShowReferral }) => {
+  const [successCopy,setSuccessCopy] = useState('')
+  const {logo} = useContextState()
   const referralRef = useRef();
   useCloseModalClickOutside(referralRef, () => {
     setShowReferral(false);
@@ -13,6 +18,9 @@ const Referral = ({ setShowReferral }) => {
 
   return (
     <div className="cdk-overlay-container">
+   {successCopy && (
+       <Success message={successCopy} setMessage={setSuccessCopy} success={true}/>
+   )}
       <div className="cdk-overlay-backdrop cdk-overlay-dark-backdrop cdk-overlay-backdrop-showing"></div>
       <div
         className="cdk-global-overlay-wrapper"
@@ -54,7 +62,7 @@ const Referral = ({ setShowReferral }) => {
                           _ngcontent-ng-c526813732=""
                           onerror="src = '../assets/img/transparent-img.svg'"
                           alt="logo"
-                          src="https://ss.manage63.com/bmk-wl/wl/wolf365/img/logo.svg"
+                          src={logo}
                           className="ng-star-inserted"
                         />
                       </div>
@@ -107,6 +115,7 @@ const Referral = ({ setShowReferral }) => {
                           {myReferralCode?.code}
                         </p>
                         <button
+                        onClick={()=> handleCopyToClipBoard(myReferralCode?.code,setSuccessCopy)}
                           _ngcontent-ng-c526813732=""
                           className="btn secondary-btn"
                         >

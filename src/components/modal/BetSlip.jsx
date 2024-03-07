@@ -49,7 +49,7 @@ const BetSlip = ({
         btype: placeBetValues?.btype,
         eventTypeId: placeBetValues?.eventTypeId,
         marketId: placeBetValues?.marketId,
-        price: placeBetValues?.price,
+        price: price,
         selectionId: placeBetValues?.selectionId,
         side: placeBetValues?.side,
         totalSize: totalSize,
@@ -77,7 +77,7 @@ const BetSlip = ({
           setOpenBetSlip(false);
           setSuccessMessage("Bet Place Successfully !");
         } else {
-          setErrorMessage(data?.error?.status[0]?.description);
+          setErrorMessage(data?.error?.status?.[0]?.description || data?.error?.errorMessage);
           setLoader(false);
           setOpenBetSlip(false);
           refetchExposure();
@@ -86,7 +86,7 @@ const BetSlip = ({
         }
       });
   };
-console.log(placeBetValues);
+
   /* Increase price bets */
   const handleIncreasePrice = () => {
     if (price == 1000 || placeBetValues?.isWeak === true) {

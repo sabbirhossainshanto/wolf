@@ -39,7 +39,7 @@ const Login = ({ setShowLogin, setErrorLogin, errorLogin, setGetToken }) => {
     });
 
     const data = await res.json();
-    console.log(data);
+
     if (data.success) {
       if (Settings.deposit) {
         const handleDeposit = handleDepositMethod(data.result.token);
@@ -47,7 +47,7 @@ const Login = ({ setShowLogin, setErrorLogin, errorLogin, setGetToken }) => {
         if (res?.success) {
           localStorage.setItem("depositMethod", JSON.stringify(res?.result));
         }
-        console.log(res);
+
       }
       /* Set token to localeStorage */
       localStorage.setItem("token", data.result.token);
@@ -58,11 +58,13 @@ const Login = ({ setShowLogin, setErrorLogin, errorLogin, setGetToken }) => {
       const buttonValue = JSON.stringify(data.result.buttonValue.game);
       /* set button value to locale storage */
       localStorage.setItem("buttonValue", buttonValue);
+    if(Settings.referral){
       const referralCode = data.result.referralCode;
       localStorage.setItem(
         "referralCode",
         referralCode == null ? "show" : referralCode
       );
+    }
       /* if in locale storage token and login name available and  data?.result?.changePassword === false */
       if (
         localStorage.getItem("token") &&

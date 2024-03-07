@@ -1,11 +1,14 @@
 import { useState } from "react";
 import useDepositStatement from "../../hooks/useDepositStatement";
 import AccountStatementModal from "../../components/modal/AccountStatementModal";
+import { handleVisibleBankDetails } from "../../utils/handleVisibleBankDetails";
+import { IoMdArrowDropdown, IoMdArrowDropright } from "react-icons/io";
 
 /* eslint-disable react/no-unknown-property */
 const DepositStatement = () => {
   const [showModal, setShowModal] = useState(false);
   const [image, setImage] = useState("");
+  const [accordion, setAccordion] = useState("");
   /* get deposit data */
   const { accountStatement } = useDepositStatement();
 
@@ -65,6 +68,13 @@ const DepositStatement = () => {
                               className="transaction-item ng-star-inserted"
                             >
                               <div
+                                onClick={() =>
+                                  handleVisibleBankDetails(
+                                    i + 1,
+                                    accordion,
+                                    setAccordion
+                                  )
+                                }
                                 _ngcontent-ng-c2945624842=""
                                 className="wrapper"
                               >
@@ -95,7 +105,15 @@ const DepositStatement = () => {
                                         className={`${
                                           data?.status === "APPROVED"
                                             ? "Approved status"
-                                            : "Rejected status"
+                                            : ""
+                                        } ${
+                                          data?.status === "REJECTED"
+                                            ? "Rejected status"
+                                            : ""
+                                        } ${
+                                          data?.status === "PENDING"
+                                            ? "Pending status"
+                                            : ""
                                         }`}
                                       >
                                         {data?.status}
@@ -110,12 +128,21 @@ const DepositStatement = () => {
                                   aria-hidden="true"
                                   data-mat-icon-type="font"
                                 >
-                                  arrow_drop_down
+                                  {accordion ? (
+                                    <IoMdArrowDropdown />
+                                  ) : (
+                                    <IoMdArrowDropright />
+                                  )}
                                 </span>
                               </div>
                               <div
+                                /* hidden */
                                 _ngcontent-ng-c2945624842=""
-                                className="txn-detail ng-star-inserted"
+                                className={`txn-detail ng-star-inserted ${
+                                  accordion == i + 1
+                                    ? ""
+                                    : "invisibleBankDEtails"
+                                }`}
                               >
                                 <div
                                   _ngcontent-ng-c2945624842=""
@@ -151,6 +178,21 @@ const DepositStatement = () => {
                                       {data?.date}
                                     </span>
                                   </p>
+                               {
+                                data?.remark && (
+                                  <p
+                                  _ngcontent-ng-c2945624842=""
+                                  className="ng-star-inserted"
+                                >
+                                  <span _ngcontent-ng-c2945624842="">
+                                    Remark
+                                  </span>
+                                  <span _ngcontent-ng-c2945624842="">
+                                    {data?.remark}
+                                  </span>
+                                </p>
+                                )
+                               }
                                 </div>
                                 <div
                                   _ngcontent-ng-c2945624842=""
@@ -160,21 +202,23 @@ const DepositStatement = () => {
                                     _ngcontent-ng-c2945624842=""
                                     className="txn-screenshot ng-star-inserted"
                                   >
-                                    <div
-                                      _ngcontent-ng-c2945624842=""
-                                      className="Approved img-wrap"
-                                    >
-                                      <img
-                                        onClick={() => {
-                                          setShowModal(true);
-                                          setImage("");
-                                          setImage(data?.image);
-                                        }}
+                                    {data?.image && (
+                                      <div
                                         _ngcontent-ng-c2945624842=""
-                                        alt="Screenshot"
-                                        src={data?.image}
-                                      />
-                                    </div>
+                                        className="Approved img-wrap"
+                                      >
+                                        <img
+                                          onClick={() => {
+                                            setShowModal(true);
+                                            setImage("");
+                                            setImage(data?.image);
+                                          }}
+                                          _ngcontent-ng-c2945624842=""
+                                          alt="Screenshot"
+                                          src={data?.image}
+                                        />
+                                      </div>
+                                    )}
                                     <p
                                       _ngcontent-ng-c2945624842=""
                                       className="status"

@@ -314,7 +314,7 @@ const Login = ({ setShowLogin, setErrorLogin, errorLogin, setGetToken }) => {
                                             required: true,
                                           })}
                                           _ngcontent-ng-c2806737617=""
-                                          type="password"
+                                          type="text"
                                           name="password"
                                           appnumericonly=""
                                           matinput=""

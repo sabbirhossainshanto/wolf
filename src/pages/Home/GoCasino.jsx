@@ -1,25 +1,45 @@
 /* eslint-disable react/no-unknown-property */
-
 import { useState } from "react";
 import WarningCondition from "../../components/modal/WarningCondition";
 import useContextState from "../../hooks/useContextState";
 import useGoCasino from "../../hooks/useGoCasino";
-import handleOpenWarningModal from "../../utils/handleOpenWarningModal";
+import { useNavigate } from "react-router-dom";
+import Warning from "../../components/ui/Notification/Warning";
 
 const GoCasino = () => {
   /* get aura casino (go casino) */
   const { data } = useGoCasino();
-  const { setSportsType, token } = useContextState();
+  const { setSportsType, token, isCheckedBonusToken } = useContextState();
   const [showWarning, setShowWarning] = useState(false);
+  const [warnMessage, setWarnMessage] = useState(false);
+  const navigate = useNavigate();
+
+  const handleCasino = (code, name) => {
+    if (token) {
+      if (isCheckedBonusToken) {
+        return setWarnMessage("Bonus wallet is available only on sports.");
+      } else {
+        navigate(`/casino/${name.replace(/ /g, "")}/${code}`);
+      }
+    } else {
+      setShowWarning(true);
+    }
+  };
 
   return (
     <div
       _ngcontent-ng-c943649379=""
       className="casino-section go-casino game-play mt-2 mb-3 ng-star-inserted"
     >
+      {/* Wanning based on condition */}
       {showWarning && <WarningCondition setShowWarning={setShowWarning} />}
+
+      {/* Bonus wallet message */}
+      {warnMessage && (
+        <Warning message={warnMessage} setMessage={setWarnMessage} />
+      )}
       <div _ngcontent-ng-c943649379="" className="game-play-heading">
-        <h2 _ngcontent-ng-c943649379="">Go Casino</h2>
+        <h2 _ngcontent-ng-c943649379="">Card Games</h2>
         <a
           _ngcontent-ng-c943649379=""
           routerlink="/casino-bmk-lobby"
@@ -36,17 +56,10 @@ const GoCasino = () => {
       >
         <ul _ngcontent-ng-c943649379="">
           {data?.map((item, i) => {
+   
             return (
               <li
-                onClick={() =>
-                  handleOpenWarningModal(
-                    "aura",
-                    item?.game_code,
-                    token,
-                    null,
-                    setShowWarning
-                  )
-                }
+                onClick={() => handleCasino(item?.game_code, item?.game_name)}
                 key={i}
                 _ngcontent-ng-c943649379=""
                 className="ng-star-inserted"

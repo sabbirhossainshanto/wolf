@@ -33,7 +33,7 @@ const Footer = () => {
       {showMyMarket && <MyMarket setShowMyMarket={setShowMyMarket} />}
       {/* Render html based on path */}
       {!location?.pathname?.includes("/game-details") &&
-      location.pathname !== "/profile/deposit" ? (
+      location.pathname !== "/profile/deposit" && !location.pathname?.includes("/casino") ? (
         <div _ngcontent-ng-c943649379="" className="page-footer">
           {socialLink?.link && location.pathname === "/" && (
             <div

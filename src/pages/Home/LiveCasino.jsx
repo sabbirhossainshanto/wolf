@@ -1,16 +1,37 @@
 /* eslint-disable react/no-unknown-property */
 import { useState } from "react";
 import useContextState from "../../hooks/useContextState";
-import handleOpenWarningModal from "../../utils/handleOpenWarningModal";
 import useLiveCasino from "../../hooks/useLiveCasino";
 import WarningCondition from "../../components/modal/WarningCondition";
+import { Settings } from "../../api";
+import { useNavigate } from "react-router-dom";
+import Warning from "../../components/ui/Notification/Warning";
 
 const LiveCasino = () => {
   /* get live casino */
   const { data } = useLiveCasino();
-  const { setSportsType, token } = useContextState();
+  const { setSportsType, token, isCheckedBonusToken } = useContextState();
   const [showWarning, setShowWarning] = useState(false);
-  const [gameId, setGameId] = useState("");
+  const [gameInfo, setGameInfo] = useState({ gameName: "", gameId: "" });
+  const [warnMessage, setWarnMessage] = useState('');
+  const navigate = useNavigate();
+
+  const handleCasino = (id, name) => {
+    if (token) {
+      if (isCheckedBonusToken) {
+        return setWarnMessage("Bonus wallet is available only on sports.");
+      }
+      if (Settings.casinoCurrency !== "AED") {
+        navigate(`/casino/${name.replace(/ /g, "")}/${id}`);
+      } else {
+        setGameInfo({ gameName: "", gameId: "" });
+        setGameInfo({ gameName: name, gameId: id });
+        setShowWarning(true);
+      }
+    } else {
+      setShowWarning(true);
+    }
+  };
 
   return (
     <div
@@ -18,7 +39,12 @@ const LiveCasino = () => {
       className="casino-section live-casino game-play mt-2 mb-3 ng-star-inserted"
     >
       {showWarning && (
-        <WarningCondition gameId={gameId} setShowWarning={setShowWarning} />
+        <WarningCondition gameInfo={gameInfo} setShowWarning={setShowWarning} />
+      )}
+
+      {/* Warning message for bonus wallet */}
+      {warnMessage && (
+        <Warning message={warnMessage} setMessage={setWarnMessage} />
       )}
       <div _ngcontent-ng-c943649379="" className="game-play-heading">
         <h2 _ngcontent-ng-c943649379="">Live Casino</h2>
@@ -41,15 +67,7 @@ const LiveCasino = () => {
           
             return (
               <li
-                onClick={() =>
-                  handleOpenWarningModal(
-                    "live-casino",
-                    item?.game_id,
-                    token,
-                    setGameId,
-                    setShowWarning
-                  )
-                }
+                onClick={() => handleCasino(item?.game_id, item?.game_name)}
                 key={i}
                 _ngcontent-ng-c943649379=""
                 className="ng-star-inserted"

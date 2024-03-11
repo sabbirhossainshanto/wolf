@@ -1,34 +1,17 @@
-import axios from "axios";
-import { API, Settings } from "../api";
-import UseTokenGenerator from "../hooks/UseTokenGenerator";
-import UseEncryptData from "../hooks/UseEncryptData";
+import { Settings } from "../api";
 
 const handleOpenWarningModal = async (
   sportsType,
   id,
+  name,
   token,
+  navigate,
   setGameId,
   setShowWarning
 ) => {
   if (token) {
     if (Settings.casinoCurrency !== "AED" || sportsType === "aura") {
-      const generatedToken = UseTokenGenerator();
-      const encryptedData = UseEncryptData({
-        gameId: id?.toString(),
-        token: generatedToken,
-        isHome: false,
-      });
-
-      try {
-        const res = await axios.post(API.liveCasinoIFrame, encryptedData, {
-          headers: { Authorization: `Bearer ${token}` },
-        });
-        const data = res?.data;
-        window.open(data?.gameUrl, "_blank");
-      } catch (error) {
-        console.error("Error opening casino game:", error);
-        // Handle error as needed
-      }
+      navigate(`/casino/${name.replace(/ /g, "")}/${id}`);
     } else {
       setGameId("");
       setGameId(id);

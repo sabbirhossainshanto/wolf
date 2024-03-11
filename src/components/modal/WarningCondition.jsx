@@ -2,32 +2,21 @@ import { useRef } from "react";
 import useCloseModalClickOutside from "../../hooks/useCloseModalClickOutside";
 import { motion } from "framer-motion";
 import useContextState from "../../hooks/useContextState";
-import UseTokenGenerator from "../../hooks/UseTokenGenerator";
-import UseEncryptData from "../../hooks/UseEncryptData";
-import axios from "axios";
-import { API } from "../../api";
-const WarningCondition = ({ setShowWarning, gameId }) => {
+import { useNavigate } from "react-router-dom";
+
+const WarningCondition = ({ setShowWarning, gameInfo }) => {
   /* Close modal click out side */
   const warningRef = useRef();
+  const navigate = useNavigate();
   useCloseModalClickOutside(warningRef, () => {
     setShowWarning(false);
   });
   const { token, setShowLogin } = useContextState();
   /* Handle navigate casino video in new tab */
   const handleNavigateNewTab = async () => {
-    const generatedToken = UseTokenGenerator();
-    const encryptedData = UseEncryptData({
-      gameId: gameId?.toString(),
-      token: generatedToken,
-      isHome: false,
-    });
-
-    const res = await axios.post(API.liveCasinoIFrame, encryptedData, {
-      headers: { Authorization: `Bearer ${token}` },
-    });
-    const data = res?.data;
-    /* Navigate new tab */
-    window.open(data?.gameUrl, "_blank");
+    navigate(
+      `/casino/${gameInfo?.gameName.replace(/ /g, "")}/${gameInfo?.gameId}`
+    );
     /* Close warning modal */
     setShowWarning(false);
   };

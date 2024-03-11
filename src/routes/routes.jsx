@@ -12,6 +12,7 @@ import SinglePassbook from "../pages/Passbook/SinglePassbook";
 import WithdrawStatement from "../pages/WithdrawStatement/WithdrawStatement";
 import DepositStatement from "../pages/DepositStatement/DepositStatement";
 import MyBankDetails from "../pages/MyBankDetails/MyBankDetails";
+import Casino from "../pages/Casino/Casino";
 
 export const router = createBrowserRouter([
   {
@@ -21,6 +22,10 @@ export const router = createBrowserRouter([
       {
         path: "/",
         element: <Home />,
+      },
+      {
+        path: "casino/:name/:id",
+        element: <Casino />,
       },
       {
         path: "game-details/:eventTypeId/:eventId",
@@ -69,4 +74,5 @@ export const router = createBrowserRouter([
       },
     ],
   },
+ 
 ]);

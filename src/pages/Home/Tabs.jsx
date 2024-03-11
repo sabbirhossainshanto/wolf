@@ -140,7 +140,7 @@ const Tabs = () => {
               />
             </div>
             <div _ngcontent-ng-c2582205232="" className="tab-label">
-              Go Casino
+             Card Games
             </div>
           </div>
           <div

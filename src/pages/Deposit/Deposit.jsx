@@ -20,11 +20,13 @@ const Deposit = () => {
   const [utr, setUtr] = useState(null);
   const [depositData, setDepositData] = useState({});
   const { bankData: depositMethods } = useBankAccount(depositMethodsPost);
+
   const [image, setImage] = useState(null);
   const [depositRequestSuccess, setDepositRequestSuccess] = useState("");
   const [depositRequestErr, setDepositRequestErr] = useState("");
   const navigate = useNavigate();
   const [uploadedImage, setUploadedImage] = useState(null);
+  const [filePath,setFilePath] = useState('')
 
   const handleVisibleBankMethod = async (method) => {
     setTabs(method?.type);
@@ -43,6 +45,7 @@ const Deposit = () => {
     const data = res?.data;
     if (data?.success) {
       setDepositData(data?.result);
+ 
     }
   };
 
@@ -57,9 +60,10 @@ const Deposit = () => {
           },
         });
         const data = res.data;
-  
+
         if (data?.success) {
           setUploadedImage(data?.fileName);
+          setFilePath(data?.filePath)
         }
       };
       handleSubmitImage();
@@ -83,20 +87,22 @@ const Deposit = () => {
         },
       });
       const result = res?.data;
-    
+
       if (result?.success) {
+        setUtr(null)
         setImage(null);
         setDepositRequestSuccess(result?.result?.message);
         setTimeout(() => {
           navigate("/");
         }, 2000);
       } else {
+        setUtr(null)
         setImage(null);
         setDepositRequestErr(result?.result?.message);
       }
     }
   };
-
+// console.log(uploadedImage);
   return (
     <div
       _ngcontent-ng-c3816252360=""
@@ -200,60 +206,119 @@ const Deposit = () => {
               </div>
               <div
                 role="region"
-                className="mat-expansion-panel-content ng-tns-c1859850774-3 ng-trigger ng-trigger-bodyExpansion"
+                class="mat-expansion-panel-content ng-tns-c1859850774-3 ng-trigger ng-trigger-bodyExpansion"
                 id="cdk-accordion-child-1"
                 aria-labelledby="mat-expansion-panel-header-1"
               >
-                <div className="mat-expansion-panel-body ng-tns-c1859850774-3">
+                <div class="mat-expansion-panel-body ng-tns-c1859850774-3">
                   <div
                     _ngcontent-ng-c3816252360=""
-                    className="panel-content ng-tns-c1859850774-3"
+                    class="panel-content ng-tns-c1859850774-3"
                   >
                     <div
                       _ngcontent-ng-c3816252360=""
-                      className="upload-screenshot-wrap ng-star-inserted"
+                      class="upload-screenshot-wrap ng-star-inserted"
                     >
                       <div
                         _ngcontent-ng-c3816252360=""
-                        className="screenshot-wrapper"
+                        class="screenshot-wrapper"
                       >
+                     {
+                      !filePath ? (
+                        <div
+                        _ngcontent-ng-c3816252360=""
+                        class="upload-screenshot"
+                      >
+                        <label
+                          _ngcontent-ng-c3816252360=""
+                          for="upload_screenshot"
+                        >
+                          <input
+                            onChange={(e) => setImage(e.target.files[0])}
+                            _ngcontent-ng-c3816252360=""
+                            type="file"
+                            name="img"
+                            accept="image/*"
+                            id="upload_screenshot"
+                            hidden
+                            class="ng-untouched ng-pristine ng-valid"
+                          />
+                          <a
+                            _ngcontent-ng-c3816252360=""
+                            class="ng-star-inserted"
+                          >
+                            <span
+                              _ngcontent-ng-c3816252360=""
+                              role="img"
+                              class="mat-icon notranslate material-icons mat-ligature-font mat-icon-no-color"
+                              aria-hidden="true"
+                              data-mat-icon-type="font"
+                            >
+                              add_circle
+                            </span>
+                          </a>
+                          <p
+                            _ngcontent-ng-c3816252360=""
+                            class="ng-star-inserted"
+                          >
+                            Click here to upload payment screenshot
+                          </p>
+                        </label>
+                      </div>
+                      ):(
+                        <div
+                        _ngcontent-ng-c3816252360=""
+                        class="upload-screenshot"
+                      >
+                        <label
+                          _ngcontent-ng-c3816252360=""
+                          for="upload_screenshot"
+                        >
+                          <input
+                            hidden
+                            _ngcontent-ng-c3816252360=""
+                            type="file"
+                            name="img"
+                            accept="image/*"
+                            id="upload_screenshot"
+                            class="ng-untouched ng-valid ng-dirty"
+                          />
+                        </label>
                         <div
                           _ngcontent-ng-c3816252360=""
-                          className="upload-screenshot"
+                          class="image-container ng-star-inserted"
                         >
-                          <label _ngcontent-ng-c3816252360="">
-                            <input
-                              onChange={(e) => setImage(e.target.files[0])}
+                          <img
+                            _ngcontent-ng-c3816252360=""
+                            onerror="src = '../../assets/img/default-img.svg'"
+                            class="fit-image"
+                            src={filePath}
+                          />
+                          <a 
+                          onClick={()=> {
+                            setFilePath('')
+                            setUploadedImage(null)
+                            setImage(null)
+                          }}
+                          _ngcontent-ng-c3816252360="">
+                            <span
                               _ngcontent-ng-c3816252360=""
-                              type="file"
-                              name="img"
-                              accept="image/*"
-                              id="upload_screenshot"
-                              hidden
-                              className="ng-untouched ng-pristine ng-valid"
-                            />
-                            <a
-                              _ngcontent-ng-c3816252360=""
-                              className="ng-star-inserted"
+                              role="img"
+                              class="mat-icon notranslate material-icons mat-ligature-font mat-icon-no-color"
+                              aria-hidden="true"
+                              data-mat-icon-type="font"
                             >
-                              <span
-                                _ngcontent-ng-c3816252360=""
-                                role="img"
-                                className="mat-icon notranslate material-icons mat-ligature-font mat-icon-no-color"
-                                aria-hidden="true"
-                                data-mat-icon-type="font"
-                              >
-                                add_circle
-                              </span>
-                            </a>
-                            <p
-                              _ngcontent-ng-c3816252360=""
-                              className="ng-star-inserted"
-                            >
-                              Click here to upload payment screenshot
-                            </p>
-                          </label>
+                              close
+                            </span>
+                          </a>
                         </div>
+                      </div>
+                      )
+                     }
+
+                     
+
+
                       </div>
                     </div>
                   </div>

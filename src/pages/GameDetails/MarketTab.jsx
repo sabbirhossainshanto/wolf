@@ -6,9 +6,11 @@ import Fancy from "./GameType/Fancy";
 import FancyOne from "./GameType/FancyOne";
 import MatchOdds from "./GameType/MatchOdds";
 import OverByOver from "./GameType/OverByOver";
+import SportsBook from "./GameType/SportsBook/SportsBook";
 
 /* eslint-disable react/no-unknown-property */
 const MarketTab = ({
+  sportsBook,
   data,
   iFrameUrl,
   exposer,
@@ -25,7 +27,7 @@ const MarketTab = ({
   const [fancy1, setFancy1] = useState([]);
   const [overByOver, setOverByOver] = useState([]);
   const { setPlaceBetValues } = useContextState();
-
+  // console.log(sportsBook);
   /* Filtered all the game  */
   useEffect(() => {
     const filterMatch_odds = data?.filter(
@@ -268,6 +270,8 @@ const MarketTab = ({
                   setShowLoginWarn={setShowLoginWarn}
                 />
               )}
+              {sportsBook && <SportsBook sportsBook={sportsBook} />}
+
               {overByOver && overByOver?.length > 0 && (
                 <OverByOver
                   normal={overByOver}

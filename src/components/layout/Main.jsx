@@ -16,6 +16,7 @@ import Referral from "../modal/Referral";
 import BonusRules from "../modal/BonusRules";
 import handleDepositMethod from "../../utils/handleDepositMethod";
 import Warning from "../ui/Notification/Warning";
+import ChangePassword from "../modal/ChangePassword";
 
 const Main = () => {
   const {
@@ -40,11 +41,15 @@ const Main = () => {
     token,
     tokenLoading,
     isCheckedBonusToken,
+    showChangePassModal,
+    setShowChangePassModal,
   } = useContextState();
   const [successEditStake, setSuccessEditStake] = useState("");
   const navigate = useNavigate();
   const disabledDevtool = Settings.disabledDevtool;
   const [verifyDeposit, setVerifyDeposit] = useState("");
+  const [errorMessage, setErrorMessage] = useState("");
+  const [successMessage, setSuccessMessage] = useState("");
 
   /* Disabled devtool based on settings */
   useEffect(() => {
@@ -154,6 +159,19 @@ const Main = () => {
           )}
           {verifyDeposit && (
             <Warning message={verifyDeposit} setMessage={setVerifyDeposit} />
+          )}
+          {showChangePassModal && (
+            <ChangePassword
+              setShowChangePassModal={setShowChangePassModal}
+              setErrorMessage={setErrorMessage}
+              setSuccessMessage={setSuccessMessage}
+            />
+          )}
+          {successMessage && (
+            <Success message={successMessage} setMessage={setSuccessMessage} success={true} />
+          )}
+          {errorMessage && (
+            <Warning message={errorMessage} setMessage={setErrorMessage} />
           )}
           <div
             className="cdk-visually-hidden cdk-focus-trap-anchor"

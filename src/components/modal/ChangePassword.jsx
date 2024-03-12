@@ -8,7 +8,7 @@ import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import useContextState from "../../hooks/useContextState";
 import { motion } from "framer-motion";
-import { handleLogOut } from "../../utils/handleLogOut";
+
 const ChangePassword = ({
   setShowChangePassModal,
   setErrorMessage,
@@ -33,6 +33,7 @@ const ChangePassword = ({
 
   /* Change password function */
   const onSubmit = ({ password, newPassword, newPasswordConfirm }) => {
+    console.log(password,newPassword,newPasswordConfirm);
     const generatedToken = UseTokenGenerator();
     const encryptedData = UseEncryptData({
       oldPassword: password,
@@ -49,6 +50,7 @@ const ChangePassword = ({
     })
       .then((res) => res.json())
       .then((data) => {
+        console.log(data);
         if (data.success) {
           /* After success showing success message */
           setSuccessMessage(data?.result?.message);
@@ -56,13 +58,13 @@ const ChangePassword = ({
           setShowChangePassModal(false);
           /* Logout and navigate home */
           setTimeout(() => {
-            handleLogOut();
+            // handleLogOut();
             setGetToken((prev) => !prev);
             navigate("/");
           }, 1000);
         } else {
           /* Showing error message during change password */
-          setErrorMessage(data?.error?.oldPassword[0]?.description);
+          setErrorMessage(data?.error?.errorMessage);
         }
       });
   };

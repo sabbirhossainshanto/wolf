@@ -10,10 +10,10 @@ import useContextState from "../../hooks/useContextState";
 const Profile = () => {
   const loginName = localStorage.getItem("loginName");
   const { balanceData } = useBalance();
-  const [showChangePassModal, setShowChangePassModal] = useState(false);
+  
   const [errorMessage, setErrorMessage] = useState("");
   const [successMessage, setSuccessMessage] = useState("");
-  const { token } = useContextState();
+  const { token,showChangePassModal, setShowChangePassModal } = useContextState();
   return (
     <div
       style={{ minHeight: "100vh" }}

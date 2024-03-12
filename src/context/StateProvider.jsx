@@ -26,6 +26,7 @@ const StateProvider = ({ children }) => {
   const [showHelpModal,setShowHelpModal] = useState(false)
   const [showReferral,setShowReferral] = useState(false)
   const [showBonusRule,setShowBonusRule] = useState(false)
+  const [showChangePassModal, setShowChangePassModal] = useState(false);
 
   /* Get token from locale storage */
   useEffect(() => {
@@ -114,7 +115,8 @@ const StateProvider = ({ children }) => {
     setCopyTextSuccess,
     showHelpModal,setShowHelpModal,
     showReferral,setShowReferral,
-    showBonusRule,setShowBonusRule
+    showBonusRule,setShowBonusRule,
+    showChangePassModal, setShowChangePassModal
   };
   return (
     <StateContext.Provider value={stateInfo}>{children}</StateContext.Provider>

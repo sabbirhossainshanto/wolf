@@ -11,7 +11,7 @@ import Warning from "../ui/Notification/Warning";
 import useContextState from "../../hooks/useContextState";
 import handleDepositMethod from "../../utils/handleDepositMethod";
 const Login = ({ setShowLogin, setErrorLogin, errorLogin, setGetToken }) => {
-  const { logo } = useContextState();
+  const { logo, setShowChangePassModal } = useContextState();
   const { register, handleSubmit } = useForm();
   /* Close modal click out side */
   const loginRef = useRef();
@@ -39,7 +39,7 @@ const Login = ({ setShowLogin, setErrorLogin, errorLogin, setGetToken }) => {
     });
 
     const data = await res.json();
-
+    console.log(data);
     if (data.success) {
       if (Settings.deposit) {
         const handleDeposit = handleDepositMethod(data.result.token);
@@ -47,7 +47,6 @@ const Login = ({ setShowLogin, setErrorLogin, errorLogin, setGetToken }) => {
         if (res?.success) {
           localStorage.setItem("depositMethod", JSON.stringify(res?.result));
         }
-
       }
       /* Set token to localeStorage */
       localStorage.setItem("token", data.result.token);
@@ -58,13 +57,13 @@ const Login = ({ setShowLogin, setErrorLogin, errorLogin, setGetToken }) => {
       const buttonValue = JSON.stringify(data.result.buttonValue.game);
       /* set button value to locale storage */
       localStorage.setItem("buttonValue", buttonValue);
-    if(Settings.referral){
-      const referralCode = data.result.referralCode;
-      localStorage.setItem(
-        "referralCode",
-        referralCode == null ? "show" : referralCode
-      );
-    }
+      if (Settings.referral) {
+        const referralCode = data.result.referralCode;
+        localStorage.setItem(
+          "referralCode",
+          referralCode == null ? "show" : referralCode
+        );
+      }
       /* if in locale storage token and login name available and  data?.result?.changePassword === false */
       if (
         localStorage.getItem("token") &&
@@ -75,6 +74,11 @@ const Login = ({ setShowLogin, setErrorLogin, errorLogin, setGetToken }) => {
         setShowLogin(false);
         /* get current token from locale storage */
         setGetToken((prev) => !prev);
+      }
+      if (data?.result?.changePassword) {
+        setGetToken((prev) => !prev);
+        setShowLogin(false);
+        setShowChangePassModal(true);
       }
     } else {
       /* Show error message during login failed */

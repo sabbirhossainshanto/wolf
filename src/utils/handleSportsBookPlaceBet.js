@@ -19,5 +19,7 @@ export const handleSportsBookPlaceBet = (
     maxLiabilityPerMarket: sportsBook?.maxLiabilityPerMarket,
     maxLiabilityPerBet: sportsBook?.maxLiabilityPerBet,
     isBettable: sportsBook?.isBettable,
+    isWeak: sportsBook?.isWeak,
+    marketName:item?.Name
   });
 };

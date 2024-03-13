@@ -72,7 +72,6 @@ const BetSlip = ({
     }
   }
 
-  console.log(payload);
   /* Handle bets */
   const handleOrderBets = () => {
     if (totalSize < 100) {
@@ -82,34 +81,10 @@ const BetSlip = ({
     const encryptedData = UseEncryptData([
       {
         ...payload,
-        // betDelay: placeBetValues?.betDelay,
-        // btype: placeBetValues?.btype,
-        // eventTypeId: placeBetValues?.eventTypeId,
-        // marketId: placeBetValues?.marketId,
-        // price: price,
-        // selectionId: placeBetValues?.selectionId,
-        // side: placeBetValues?.side,
-        // totalSize: totalSize,
         token: generatedToken,
-        // maxLiabilityPerMarket: placeBetValues?.maxLiabilityPerMarket,
-        // isBettable: placeBetValues?.isBettable,
-        // maxLiabilityPerBet: placeBetValues?.maxLiabilityPerBet,
       },
     ]);
-    // console.log(   {
-    //   betDelay: placeBetValues?.betDelay,
-    //   btype: placeBetValues?.btype,
-    //   eventTypeId: placeBetValues?.eventTypeId,
-    //   marketId: placeBetValues?.marketId,
-    //   price: price,
-    //   selectionId: placeBetValues?.selectionId,
-    //   side: placeBetValues?.side,
-    //   totalSize: totalSize,
-    //   token: generatedToken,
-    //   maxLiabilityPerMarket: placeBetValues?.maxLiabilityPerMarket,
-    //   isBettable: placeBetValues?.isBettable,
-    //   maxLiabilityPerBet: placeBetValues?.maxLiabilityPerBet,
-    // },);
+
     setLoader(true);
     fetch(API.order, {
       method: "POST",
@@ -315,7 +290,7 @@ const BetSlip = ({
                       <h2 _ngcontent-ng-c2459892542=""></h2>
                       <h2 _ngcontent-ng-c2459892542=""></h2>
                       <h2 _ngcontent-ng-c2459892542="">
-                        Place Bet | {placeBetValues?.btype}
+                        Place Bet | {placeBetValues?.marketName}
                       </h2>
                       <div _ngcontent-ng-c2459892542="" className="action-btns">
                         <button
@@ -366,7 +341,7 @@ const BetSlip = ({
                         >
                           <h2 _ngcontent-ng-c2459892542="">
                             {placeBetValues?.selectedBetName ||
-                              placeBetValues?.placeName}{" "}
+                              placeBetValues?.marketName}{" "}
                           </h2>
                         </div>
                         <div
@@ -383,29 +358,32 @@ const BetSlip = ({
                               type="number"
                               numbersonly=""
                               name=""
+                              readOnly={placeBetValues?.isWeak}
                               className="rate-inp"
                               defaultValue={price}
                             />
-                            <div
-                              style={{
-                                position: "absolute",
-                                top: 3,
-                                right: 5,
-                                display: "flex",
-                                flexDirection: "column",
-                              }}
-                            >
-                              <MdKeyboardArrowUp
-                                onClick={handleIncreasePrice}
-                                style={{ cursor: "pointer" }}
-                                size={15}
-                              />
-                              <MdKeyboardArrowDown
-                                onClick={handleDecreasePrice}
-                                style={{ cursor: "pointer" }}
-                                size={15}
-                              />
-                            </div>
+                            {!placeBetValues?.isWeak && (
+                              <div
+                                style={{
+                                  position: "absolute",
+                                  top: 3,
+                                  right: 5,
+                                  display: "flex",
+                                  flexDirection: "column",
+                                }}
+                              >
+                                <MdKeyboardArrowUp
+                                  onClick={handleIncreasePrice}
+                                  style={{ cursor: "pointer" }}
+                                  size={15}
+                                />
+                                <MdKeyboardArrowDown
+                                  onClick={handleDecreasePrice}
+                                  style={{ cursor: "pointer" }}
+                                  size={15}
+                                />
+                              </div>
+                            )}
                           </div>
                           <div
                             _ngcontent-ng-c2459892542=""
@@ -482,7 +460,8 @@ const BetSlip = ({
                             );
                           })}
                         </div>
-                        {placeBetValues?.btype === "FANCY" && (
+                        {placeBetValues?.btype === "FANCY" ||
+                        placeBetValues?.btype === "SPORTSBOOK" ? (
                           <div
                             _ngcontent-ng-c2459892542=""
                             className="range-text-row"
@@ -498,7 +477,7 @@ const BetSlip = ({
                               </span>
                             </h2>
                           </div>
-                        )}
+                        ) : null}
                         {placeBetValues?.btype === "MATCH_ODDS" ||
                         placeBetValues?.btype === "BOOKMAKER" ||
                         placeBetValues?.btype === "BOOKMAKER2" ? (

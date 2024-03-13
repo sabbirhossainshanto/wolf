@@ -6,6 +6,7 @@ const Passbook = () => {
   /* get passbook data */
   const { passbook } = usePassbook();
   const navigate = useNavigate();
+
   return (
     <div
       _ngcontent-ng-c3622565476=""
@@ -20,7 +21,10 @@ const Passbook = () => {
           className="mat-mdc-tab-group mat-tab-group passbook-tabs-group mat-primary mat-mdc-tab-group-stretch-tabs"
           //   style="--mat-tab-animation-duration: 0ms;"
         >
-          <div className="mat-mdc-tab-body-wrapper">
+          <div
+            className="mat-mdc-tab-body-wrapper mobileMarginBottom"
+       
+          >
             <div
               role="tabpanel"
               className="mat-mdc-tab-body ng-tns-c737557735-66 mat-tab-body ng-star-inserted mat-mdc-tab-body-active"

@@ -13,7 +13,7 @@ const ColumnThree = ({ item, isOpen, sportsBook }) => {
   const rightColumn = item?.Items?.filter(
     (column) => column?.MobileColumnNum === 3
   );
-
+// console.log({item},{sportsBook});
   return (
     <>
       {isOpen && (

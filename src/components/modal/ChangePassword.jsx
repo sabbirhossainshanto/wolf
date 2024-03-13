@@ -33,7 +33,7 @@ const ChangePassword = ({
 
   /* Change password function */
   const onSubmit = ({ password, newPassword, newPasswordConfirm }) => {
-    console.log(password,newPassword,newPasswordConfirm);
+
     const generatedToken = UseTokenGenerator();
     const encryptedData = UseEncryptData({
       oldPassword: password,
@@ -50,7 +50,7 @@ const ChangePassword = ({
     })
       .then((res) => res.json())
       .then((data) => {
-        console.log(data);
+      
         if (data.success) {
           /* After success showing success message */
           setSuccessMessage(data?.result?.message);

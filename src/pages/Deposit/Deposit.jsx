@@ -102,7 +102,7 @@ const Deposit = () => {
       }
     }
   };
-// console.log(uploadedImage);
+
   return (
     <div
       _ngcontent-ng-c3816252360=""

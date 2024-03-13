@@ -27,7 +27,7 @@ const MarketTab = ({
   const [fancy1, setFancy1] = useState([]);
   const [overByOver, setOverByOver] = useState([]);
   const { setPlaceBetValues } = useContextState();
-  // console.log(sportsBook);
+
   /* Filtered all the game  */
   useEffect(() => {
     const filterMatch_odds = data?.filter(

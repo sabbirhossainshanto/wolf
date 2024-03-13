@@ -23450,3 +23450,8 @@ mat-icon {
     height: 100%;
   }
 }
+@media only screen and (max-width: 360px) {
+  .mobileMarginBottom {
+  margin-bottom: 75px;
+  }
+}

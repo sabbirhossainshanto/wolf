@@ -2,7 +2,7 @@
 import { useEffect, useState } from "react";
 import Dropdown from "./Dropdown";
 import WarningCondition from "../../../components/modal/WarningCondition";
-import LazyLoad from "react-lazy-load";
+
 import { API, Settings } from "../../../api";
 import useContextState from "../../../hooks/useContextState";
 import axios from "axios";
@@ -150,13 +150,13 @@ const LiveCasinoTab = () => {
                                   _ngcontent-ng-c1965075897=""
                                   className="active"
                                 >
-                                  <LazyLoad offset={300}>
+                                 
                                     <img
                                       _ngcontent-ng-c1965075897=""
                                       alt=""
                                       src={item?.url_thumb}
                                     />
-                                  </LazyLoad>
+                              
                                 </a>
                                 <p
                                   _ngcontent-ng-c1965075897=""

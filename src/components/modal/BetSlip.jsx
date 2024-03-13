@@ -341,7 +341,7 @@ const BetSlip = ({
                         >
                           <h2 _ngcontent-ng-c2459892542="">
                             {placeBetValues?.selectedBetName ||
-                              placeBetValues?.marketName}{" "}
+                              placeBetValues?.placeName}{" "}
                           </h2>
                         </div>
                         <div

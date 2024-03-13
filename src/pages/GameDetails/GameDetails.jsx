@@ -17,7 +17,7 @@ import { API, Settings } from "../../api";
 const GameDetails = () => {
   const [loading, setLoading] = useState(true);
   const [data, setData] = useState([]);
-  const [sportsBook,setSportsBook] = useState({})
+  const [sportsBook, setSportsBook] = useState({});
   /* get params */
   const { eventId, eventTypeId } = useParams();
   const [openBetSlip, setOpenBetSlip] = useState(false);
@@ -51,10 +51,11 @@ const GameDetails = () => {
         },
       });
       const data = res.data;
+
       if (data.success) {
         setLoading(false);
         setData(data?.result);
-        setSportsBook(data?.sportsbook?.Result)
+        setSportsBook(data?.sportsbook?.Result);
       }
     };
     getGameDetails();
@@ -193,7 +194,7 @@ const GameDetails = () => {
             />
             {tabs === "market" && (
               <MarketTab
-               sportsBook={sportsBook}
+                sportsBook={sportsBook}
                 data={data}
                 setOpenBetSlip={setOpenBetSlip}
                 exposer={exposer}

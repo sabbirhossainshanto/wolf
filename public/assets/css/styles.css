@@ -23440,3 +23440,7 @@ mat-icon {
 .image-container[_ngcontent-ng-c3816252360]   a[_ngcontent-ng-c3816252360]{position:absolute;right:6px;top:8px;width:20px;height:20px;border-radius:4px;background-color:var(--red-color);display:flex;align-items:center;justify-content:center;cursor:pointer;}
 .image-container[_ngcontent-ng-c3816252360]   a[_ngcontent-ng-c3816252360]   mat-icon[_ngcontent-ng-c3816252360]{color:var(--white-color)!important;font-size:16px;display:flex;align-items:center;justify-content:center;}
 .fit-image[_ngcontent-ng-c3816252360]{width:100%;height:100%;object-fit:cover;}
+
+._asb_price-block-content-label{color:#636363;font-size:10px;}
+
+._asb_items-tabs-tab--simple-button-selected{color:var(--secondary-color);}

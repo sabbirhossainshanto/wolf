@@ -24,7 +24,7 @@ const Tabs = ({ sportsBook, tabs, setTabs }) => {
 
                 <div className="_asb_items-tabs-indicator"></div>
               </div>
-              {sportsBook?.MarketGroups?.map((group, i) => {
+              {sportsBook?.map((group, i) => {
                 return (
                   <div
                     onClick={() => setTabs(group?.Name)}

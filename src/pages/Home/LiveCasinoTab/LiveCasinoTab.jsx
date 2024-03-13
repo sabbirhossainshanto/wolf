@@ -2,11 +2,13 @@
 import { useEffect, useState } from "react";
 import Dropdown from "./Dropdown";
 import WarningCondition from "../../../components/modal/WarningCondition";
+import LazyLoad from "react-lazy-load";
 import { API, Settings } from "../../../api";
 import useContextState from "../../../hooks/useContextState";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import Warning from "../../../components/ui/Notification/Warning";
+
 const LiveCasinoTab = () => {
   const [showLeftDropdown, setShowLeftDropdown] = useState(false);
   const [showRightDropdown, setShowRightDropdown] = useState(false);
@@ -65,7 +67,6 @@ const LiveCasinoTab = () => {
     }
   };
 
-  
   const handleLiveSlotCasino = (id, name) => {
     if (token) {
       if (isCheckedBonusToken) {
@@ -87,8 +88,8 @@ const LiveCasinoTab = () => {
       {showWarning && (
         <WarningCondition gameInfo={gameInfo} setShowWarning={setShowWarning} />
       )}
-         {/* Warning message for bonus wallet */}
-         {warnMessage && (
+      {/* Warning message for bonus wallet */}
+      {warnMessage && (
         <Warning message={warnMessage} setMessage={setWarnMessage} />
       )}
       {sportsType !== "aura" && (
@@ -132,73 +133,75 @@ const LiveCasinoTab = () => {
                   <ul _ngcontent-ng-c1965075897="">
                     {Array.isArray(data.gameList[title])
                       ? data?.gameList[title]?.map((item, i) => {
-                
                           return (
-                            <li
-                              onClick={() =>
-                                handleLiveSlotCasino(
-                                  item?.game_id,
-                                  item?.game_name
-                                )
-                              }
-                              key={i}
-                              _ngcontent-ng-c1965075897=""
-                              className="ng-star-inserted"
-                            >
-                              <a
+                            <>
+                              <li
+                                onClick={() =>
+                                  handleLiveSlotCasino(
+                                    item?.game_id,
+                                    item?.game_name
+                                  )
+                                }
+                                key={i}
                                 _ngcontent-ng-c1965075897=""
-                                className="active"
+                                className="ng-star-inserted"
                               >
-                                <img
+                                <a
                                   _ngcontent-ng-c1965075897=""
-                                  alt=""
-                                  src={item?.url_thumb}
-                                />
-                              </a>
-                              <p
-                                _ngcontent-ng-c1965075897=""
-                                className="total-players"
-                              >
-                                <span
-                                  _ngcontent-ng-c1965075897=""
-                                  role="img"
-                                  className="mat-icon notranslate material-icons mat-ligature-font mat-icon-no-color"
-                                  aria-hidden="true"
-                                  data-mat-icon-type="font"
+                                  className="active"
                                 >
-                                  group
-                                </span>{" "}
-                                {item?.active_players}
-                              </p>
-                              <div
-                                _ngcontent-ng-c1965075897=""
-                                className="game-detail"
-                              >
+                                  <LazyLoad offset={300}>
+                                    <img
+                                      _ngcontent-ng-c1965075897=""
+                                      alt=""
+                                      src={item?.url_thumb}
+                                    />
+                                  </LazyLoad>
+                                </a>
                                 <p
                                   _ngcontent-ng-c1965075897=""
-                                  className="company-type"
+                                  className="total-players"
                                 >
-                                  {item?.product}
+                                  <span
+                                    _ngcontent-ng-c1965075897=""
+                                    role="img"
+                                    className="mat-icon notranslate material-icons mat-ligature-font mat-icon-no-color"
+                                    aria-hidden="true"
+                                    data-mat-icon-type="font"
+                                  >
+                                    group
+                                  </span>{" "}
+                                  {item?.active_players}
                                 </p>
-                                <p
+                                <div
                                   _ngcontent-ng-c1965075897=""
-                                  className="game-name"
+                                  className="game-detail"
                                 >
-                                  {item?.game_name}
-                                </p>
-                                <p
-                                  _ngcontent-ng-c1965075897=""
-                                  className="coins-limit ng-star-inserted"
-                                >
-                                  {item?.text}
-                                </p>
-                              </div>
-                            </li>
+                                  <p
+                                    _ngcontent-ng-c1965075897=""
+                                    className="company-type"
+                                  >
+                                    {item?.product}
+                                  </p>
+                                  <p
+                                    _ngcontent-ng-c1965075897=""
+                                    className="game-name"
+                                  >
+                                    {item?.game_name}
+                                  </p>
+                                  <p
+                                    _ngcontent-ng-c1965075897=""
+                                    className="coins-limit ng-star-inserted"
+                                  >
+                                    {item?.text}
+                                  </p>
+                                </div>
+                              </li>
+                            </>
                           );
                         })
                       : Object?.values(data?.gameList[title])?.map(
                           (item, i) => {
-                      
                             return (
                               <li
                                 onClick={() =>

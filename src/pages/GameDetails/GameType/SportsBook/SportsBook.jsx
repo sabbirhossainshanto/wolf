@@ -5,12 +5,18 @@ import SportsColumn from "./SportsColumn";
 
 const SportsBook = ({ sportsBook }) => {
   const [tabs, setTabs] = useState("Main");
+  const filteredSportsBook = sportsBook?.MarketGroups?.filter(
+    (group) =>
+      group?.Name !== "Bet Builder" &&
+      group?.Name !== "Fast Markets" &&
+      group?.Name !== "Player Specials"
+  );
 
   let sports;
   if (tabs === "ALL") {
-    sports = sportsBook?.MarketGroups;
+    sports = filteredSportsBook;
   } else {
-    const filterSports = sportsBook?.MarketGroups?.filter(
+    const filterSports = filteredSportsBook?.filter(
       (group) => group?.Name === tabs
     );
     sports = filterSports;
@@ -34,14 +40,12 @@ const SportsBook = ({ sportsBook }) => {
 
       <div className="">
         <div className="_asb_event-details-markets">
-          <Tabs setTabs={setTabs} sportsBook={sportsBook} tabs={tabs} />
+          <Tabs setTabs={setTabs} sportsBook={filteredSportsBook} tabs={tabs} />
           <div className="_asb_items-tabs-content">
             <div className="asb-cut">
               <div>
                 <div className="_asb_event-details-markets-group">
-                  <SportsColumn
-                  tabs={tabs}
-                  sports={sports} />
+                  <SportsColumn tabs={tabs} sports={sports} />
                 </div>
               </div>
             </div>

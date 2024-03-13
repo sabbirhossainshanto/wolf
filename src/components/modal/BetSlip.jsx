@@ -59,6 +59,20 @@ const BetSlip = ({
         maxLiabilityPerBet: placeBetValues?.maxLiabilityPerBet,
       },
     ]);
+    // console.log(   {
+    //   betDelay: placeBetValues?.betDelay,
+    //   btype: placeBetValues?.btype,
+    //   eventTypeId: placeBetValues?.eventTypeId,
+    //   marketId: placeBetValues?.marketId,
+    //   price: price,
+    //   selectionId: placeBetValues?.selectionId,
+    //   side: placeBetValues?.side,
+    //   totalSize: totalSize,
+    //   token: generatedToken,
+    //   maxLiabilityPerMarket: placeBetValues?.maxLiabilityPerMarket,
+    //   isBettable: placeBetValues?.isBettable,
+    //   maxLiabilityPerBet: placeBetValues?.maxLiabilityPerBet,
+    // },);
     setLoader(true);
     fetch(API.order, {
       method: "POST",

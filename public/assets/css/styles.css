@@ -23444,3 +23444,9 @@ mat-icon {
 ._asb_price-block-content-label{color:#636363;font-size:10px;}
 
 ._asb_items-tabs-tab--simple-button-selected{color:var(--secondary-color);}
+
+@media only screen and (min-width: 360px) {
+  .banner[_ngcontent-jfw-c112] {
+    height: 100%;
+  }
+}

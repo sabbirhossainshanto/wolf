@@ -37,14 +37,26 @@ const BetSlip = ({
   useEffect(() => {
     setPrice(placeBetValues?.price);
   }, [placeBetValues]);
-  /* Handle bets */
-  const handleOrderBets = () => {
-    if (totalSize < 100) {
-      return setStakeErr("Min bet amount is 100");
-    }
-    const generatedToken = UseTokenGenerator();
-    const encryptedData = UseEncryptData([
-      {
+
+  let payload = {};
+  if (price) {
+    if (placeBetValues?.btype === "SPORTSBOOK") {
+      payload = {
+        price: price,
+        side: placeBetValues?.side,
+        selectionId: placeBetValues?.selectionId,
+        btype: placeBetValues?.btype,
+        placeName: placeBetValues?.placeName,
+        eventTypeId: placeBetValues?.eventTypeId,
+        betDelay: placeBetValues?.betDelay,
+        marketId: placeBetValues?.marketId,
+        maxLiabilityPerMarket: placeBetValues?.maxLiabilityPerMarket,
+        maxLiabilityPerBet: placeBetValues?.maxLiabilityPerBet,
+        totalSize: totalSize,
+        isBettable: placeBetValues?.isBettable,
+      };
+    } else {
+      payload = {
         betDelay: placeBetValues?.betDelay,
         btype: placeBetValues?.btype,
         eventTypeId: placeBetValues?.eventTypeId,
@@ -53,10 +65,35 @@ const BetSlip = ({
         selectionId: placeBetValues?.selectionId,
         side: placeBetValues?.side,
         totalSize: totalSize,
-        token: generatedToken,
         maxLiabilityPerMarket: placeBetValues?.maxLiabilityPerMarket,
         isBettable: placeBetValues?.isBettable,
         maxLiabilityPerBet: placeBetValues?.maxLiabilityPerBet,
+      };
+    }
+  }
+
+  console.log(payload);
+  /* Handle bets */
+  const handleOrderBets = () => {
+    if (totalSize < 100) {
+      return setStakeErr("Min bet amount is 100");
+    }
+    const generatedToken = UseTokenGenerator();
+    const encryptedData = UseEncryptData([
+      {
+        ...payload,
+        // betDelay: placeBetValues?.betDelay,
+        // btype: placeBetValues?.btype,
+        // eventTypeId: placeBetValues?.eventTypeId,
+        // marketId: placeBetValues?.marketId,
+        // price: price,
+        // selectionId: placeBetValues?.selectionId,
+        // side: placeBetValues?.side,
+        // totalSize: totalSize,
+        token: generatedToken,
+        // maxLiabilityPerMarket: placeBetValues?.maxLiabilityPerMarket,
+        // isBettable: placeBetValues?.isBettable,
+        // maxLiabilityPerBet: placeBetValues?.maxLiabilityPerBet,
       },
     ]);
     // console.log(   {
@@ -91,7 +128,9 @@ const BetSlip = ({
           setOpenBetSlip(false);
           setSuccessMessage("Bet Place Successfully !");
         } else {
-          setErrorMessage(data?.error?.status?.[0]?.description || data?.error?.errorMessage);
+          setErrorMessage(
+            data?.error?.status?.[0]?.description || data?.error?.errorMessage
+          );
           setLoader(false);
           setOpenBetSlip(false);
           refetchExposure();
@@ -326,7 +365,8 @@ const BetSlip = ({
                           className="betslip-toprow"
                         >
                           <h2 _ngcontent-ng-c2459892542="">
-                            {placeBetValues?.selectedBetName}{" "}
+                            {placeBetValues?.selectedBetName ||
+                              placeBetValues?.placeName}{" "}
                           </h2>
                         </div>
                         <div

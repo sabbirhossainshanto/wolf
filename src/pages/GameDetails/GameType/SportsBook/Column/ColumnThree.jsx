@@ -1,6 +1,9 @@
 import { FaLock } from "react-icons/fa";
 import { isRunnerSuspended } from "../../../../../utils/isRunnerSuspended";
-const ColumnThree = ({ item, isOpen }) => {
+import useContextState from "../../../../../hooks/useContextState";
+import { handleSportsBookPlaceBet } from "../../../../../utils/handleSportsBookPlaceBet";
+const ColumnThree = ({ item, isOpen, sportsBook }) => {
+  const { setPlaceBetValues, setOpenBetSlip } = useContextState();
   const leftColumn = item?.Items?.filter(
     (column) => column?.MobileColumnNum === 1
   );
@@ -18,7 +21,19 @@ const ColumnThree = ({ item, isOpen }) => {
           <div className="asb-flex-col asb-full-width asb-shrink asb-cut _asb_prices-column">
             {leftColumn?.map((column, idx) => {
               return (
-                <div key={idx} className="asb-pos-tall _asb_prices-column-item">
+                <div
+                  onClick={() =>
+                    handleSportsBookPlaceBet(
+                      column,
+                      item,
+                      sportsBook,
+                      setOpenBetSlip,
+                      setPlaceBetValues
+                    )
+                  }
+                  key={idx}
+                  className="asb-pos-tall _asb_prices-column-item"
+                >
                   <div className="asb-full-width">
                     <div className="asb-pos-wide asb-full-width _asb_price-block">
                       <div className="asb-flex-cc asb-cut _asb_simple-button _asb_simple-button-pointer">
@@ -49,7 +64,19 @@ const ColumnThree = ({ item, isOpen }) => {
           <div className="asb-flex-col asb-full-width asb-shrink asb-cut _asb_prices-column">
             {middleColumn?.map((column, idx) => {
               return (
-                <div key={idx} className="asb-pos-tall _asb_prices-column-item">
+                <div
+                  onClick={() =>
+                    handleSportsBookPlaceBet(
+                      column,
+                      item,
+                      sportsBook,
+                      setOpenBetSlip,
+                      setPlaceBetValues
+                    )
+                  }
+                  key={idx}
+                  className="asb-pos-tall _asb_prices-column-item"
+                >
                   <div className="asb-full-width">
                     <div className="asb-pos-wide asb-full-width _asb_price-block">
                       <div className="asb-flex-cc asb-cut _asb_simple-button _asb_simple-button-pointer">
@@ -80,7 +107,19 @@ const ColumnThree = ({ item, isOpen }) => {
           <div className="asb-flex-col asb-full-width asb-shrink asb-cut _asb_prices-column">
             {rightColumn?.map((column, idx) => {
               return (
-                <div key={idx} className="asb-pos-tall _asb_prices-column-item">
+                <div
+                  onClick={() =>
+                    handleSportsBookPlaceBet(
+                      column,
+                      item,
+                      sportsBook,
+                      setOpenBetSlip,
+                      setPlaceBetValues
+                    )
+                  }
+                  key={idx}
+                  className="asb-pos-tall _asb_prices-column-item"
+                >
                   <div className="asb-full-width">
                     <div className="asb-pos-wide asb-full-width _asb_price-block">
                       <div className="asb-flex-cc asb-cut _asb_simple-button _asb_simple-button-pointer">

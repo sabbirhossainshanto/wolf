@@ -4,7 +4,7 @@ import ColumnThree from "./Column/ColumnThree";
 import ColumnTwo from "./Column/ColumnTwo";
 import { FaChevronUp, FaChevronDown } from "react-icons/fa";
 
-const SportsColumn = ({ sports, tabs }) => {
+const SportsColumn = ({ sports, tabs, sportsBook }) => {
   const itemsLengthArray = sports?.map((group) => group?.Items?.length) || [];
   const [openItems, setOpenItems] = useState(
     new Array(itemsLengthArray[0] || 0).fill(false).map((_, index) => index < 5)
@@ -22,7 +22,7 @@ const SportsColumn = ({ sports, tabs }) => {
         .fill(false)
         .map((_, index) => index < 5)
     );
-  }, [tabs])
+  }, [tabs]);
   return (
     <>
       {sports?.map((group) =>
@@ -67,13 +67,25 @@ const SportsColumn = ({ sports, tabs }) => {
               >
                 <div className="asb-flex _asb_event-details-market--prices-columns asb-flex">
                   {item?.MColumnCount === 3 && (
-                    <ColumnThree item={item} isOpen={isOpen} />
+                    <ColumnThree
+                      item={item}
+                      isOpen={isOpen}
+                      sportsBook={sportsBook}
+                    />
                   )}
                   {item?.MColumnCount === 2 && (
-                    <ColumnTwo item={item} isOpen={isOpen} />
+                    <ColumnTwo
+                      item={item}
+                      isOpen={isOpen}
+                      sportsBook={sportsBook}
+                    />
                   )}
                   {item?.MColumnCount === 1 && (
-                    <ColumnOne item={item} isOpen={isOpen} />
+                    <ColumnOne
+                      item={item}
+                      isOpen={isOpen}
+                      sportsBook={sportsBook}
+                    />
                   )}
                 </div>
               </div>

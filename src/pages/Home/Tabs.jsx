@@ -50,7 +50,9 @@ const Tabs = () => {
             onClick={() => setSportsType(4)}
             _ngcontent-ng-c2582205232=""
             routerlinkactive="active-link"
-            className="pagetab-item ng-star-inserted"
+            className={`pagetab-item ng-star-inserted   ${
+              sportsType === 4 ? "active-link" : ""
+            }`}
           >
             <div
               _ngcontent-ng-c2582205232=""
@@ -72,7 +74,9 @@ const Tabs = () => {
             onClick={() => setSportsType(1)}
             _ngcontent-ng-c2582205232=""
             routerlinkactive="active-link"
-            className="pagetab-item ng-star-inserted"
+            className={`pagetab-item ng-star-inserted   ${
+              sportsType === 1 ? "active-link" : ""
+            }`}
           >
             <div
               _ngcontent-ng-c2582205232=""
@@ -94,7 +98,9 @@ const Tabs = () => {
             onClick={() => setSportsType(2)}
             _ngcontent-ng-c2582205232=""
             routerlinkactive="active-link"
-            className="pagetab-item ng-star-inserted"
+            className={`pagetab-item ng-star-inserted   ${
+              sportsType === 2 ? "active-link" : ""
+            }`}
           >
             {/* <p
               _ngcontent-ng-c2582205232=""
@@ -143,6 +149,8 @@ const Tabs = () => {
              Card Games
             </div>
           </div>
+
+
           <div
             onClick={() => setSportsType("live-casino")}
             _ngcontent-ng-c2582205232=""

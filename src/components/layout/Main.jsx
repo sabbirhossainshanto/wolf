@@ -41,9 +41,8 @@ const Main = () => {
     token,
     tokenLoading,
     isCheckedBonusToken,
-    showChangePassModal,
-    setShowChangePassModal,
   } = useContextState();
+  const [showChangePassModal, setShowChangePassModal] = useState("");
   const [successEditStake, setSuccessEditStake] = useState("");
   const navigate = useNavigate();
   const disabledDevtool = Settings.disabledDevtool;

@@ -26,7 +26,7 @@ const StateProvider = ({ children }) => {
   const [showHelpModal,setShowHelpModal] = useState(false)
   const [showReferral,setShowReferral] = useState(false)
   const [showBonusRule,setShowBonusRule] = useState(false)
-  const [showChangePassModal, setShowChangePassModal] = useState(false);
+  const [openBetSlip, setOpenBetSlip] = useState(false);
 
   /* Get token from locale storage */
   useEffect(() => {
@@ -116,7 +116,7 @@ const StateProvider = ({ children }) => {
     showHelpModal,setShowHelpModal,
     showReferral,setShowReferral,
     showBonusRule,setShowBonusRule,
-    showChangePassModal, setShowChangePassModal
+    openBetSlip, setOpenBetSlip
   };
   return (
     <StateContext.Provider value={stateInfo}>{children}</StateContext.Provider>

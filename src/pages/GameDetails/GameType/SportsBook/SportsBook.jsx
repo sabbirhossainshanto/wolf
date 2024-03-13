@@ -12,6 +12,7 @@ const SportsBook = ({ sportsBook }) => {
       group?.Name !== "Player Specials"
   );
 
+
   let sports;
   if (tabs === "ALL") {
     sports = filteredSportsBook;
@@ -34,7 +35,8 @@ const SportsBook = ({ sportsBook }) => {
       </div>
       <div _ngcontent-ng-c942213636="" className="fancybody-header">
         <h3 _ngcontent-ng-c942213636="" className="card-title">
-          Min: 100 | Max: 1L
+          Min: {sportsBook?.minLiabilityPerBet} | Max:{" "}
+          {sportsBook?.maxLiabilityPerBet}
         </h3>
       </div>
 
@@ -45,7 +47,11 @@ const SportsBook = ({ sportsBook }) => {
             <div className="asb-cut">
               <div>
                 <div className="_asb_event-details-markets-group">
-                  <SportsColumn tabs={tabs} sports={sports} />
+                  <SportsColumn 
+                  tabs={tabs} 
+                  sports={sports}
+                  sportsBook={sportsBook}
+                  />
                 </div>
               </div>
             </div>

@@ -270,7 +270,8 @@ const MarketTab = ({
                   setShowLoginWarn={setShowLoginWarn}
                 />
               )}
-              {sportsBook && <SportsBook sportsBook={sportsBook} />}
+              {sportsBook && <SportsBook
+              sportsBook={sportsBook} />}
 
               {overByOver && overByOver?.length > 0 && (
                 <OverByOver

@@ -20,8 +20,8 @@ const GameDetails = () => {
   const [sportsBook, setSportsBook] = useState({});
   /* get params */
   const { eventId, eventTypeId } = useParams();
-  const [openBetSlip, setOpenBetSlip] = useState(false);
-  const { placeBetValues, token } = useContextState();
+
+  const { placeBetValues, token,openBetSlip, setOpenBetSlip } = useContextState();
   const [successMessage, setSuccessMessage] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
   const [tabs, setTabs] = useState("market");

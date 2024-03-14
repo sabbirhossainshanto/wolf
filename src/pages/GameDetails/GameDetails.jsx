@@ -21,7 +21,7 @@ const GameDetails = () => {
   /* get params */
   const { eventId, eventTypeId } = useParams();
 
-  const { placeBetValues, token,openBetSlip, setOpenBetSlip } = useContextState();
+  const { placeBetValues, token,openBetSlip, setOpenBetSlip, } = useContextState();
   const [successMessage, setSuccessMessage] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
   const [tabs, setTabs] = useState("market");
@@ -64,6 +64,8 @@ const GameDetails = () => {
     return () => clearInterval(intervalId);
   }, [eventId, eventTypeId, token]);
 
+
+
   if (loading) {
     return;
   }
@@ -77,6 +79,8 @@ const GameDetails = () => {
   ) {
     footballScore = match_odds[0]?.score;
   }
+
+
 
   return (
     <>
@@ -197,7 +201,7 @@ const GameDetails = () => {
                 sportsBook={sportsBook}
                 data={data}
                 setOpenBetSlip={setOpenBetSlip}
-                exposer={exposer}
+                exposer={token && exposer}
                 iFrameUrl={iFrameUrl}
                 showIFrame={showIFrame}
                 showScore={showScore}

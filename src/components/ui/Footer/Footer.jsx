@@ -10,12 +10,13 @@ const Footer = () => {
   const { socialLink } = useGetSocialLink();
   const location = useLocation();
   const navigate = useNavigate();
-  const { setGetToken, token, setShowLogin, icon } = useContextState();
+  const { setGetToken, token, setShowLogin, icon,setTokenLoading } = useContextState();
   const [showMyMarket, setShowMyMarket] = useState(false);
   /* Handle logout */
   const handleLogout = () => {
     /* Logout function */
     handleLogOut();
+    setTokenLoading(true)
     /* Get updated token from local storage */
     setGetToken((prev) => !prev);
     /* Navigate home page */

@@ -138,7 +138,7 @@ const Help = () => {
                             _ngcontent-ng-c1325205117=""
                             onerror="src='../assets/img/whatsapp-icon.svg'"
                             alt="WhatsApp Icon"
-                            src="/public/assets/img/wp_support.webp"
+                            src="/assets/img/wp_support.webp"
                           />
                           {/* https://ss.manage63.com/bmk-wl/commonAssets/whatsapp-icon.svg */}
                         </button>

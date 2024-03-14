@@ -8,7 +8,7 @@ import { useEffect } from "react";
 import { handleLogOut } from "../utils/handleLogOut";
 
 const useBonusBalance = () => {
-  const { setGetToken, isCheckedBonusToken } = useContextState();
+  const { setGetToken, isCheckedBonusToken,setTokenLoading } = useContextState();
   const bonusToken = localStorage.getItem("bonusToken");
 /* Bonus balance api */
   const { data: bonusBalanceData, refetch: bonusRefetchBalance } = useQuery({
@@ -25,6 +25,7 @@ const useBonusBalance = () => {
       /* Logout if success false */
       if (res?.data?.success === false && bonusToken) {
         handleLogOut();
+        setTokenLoading(true)
         setGetToken((prev) => !prev);
       } else if (res?.data?.success && bonusToken) {
         const data = res.data?.result;

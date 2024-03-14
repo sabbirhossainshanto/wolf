@@ -8,7 +8,7 @@ import { useEffect } from "react";
 import { handleLogOut } from "../utils/handleLogOut";
 /* Balance api */
 const useBalance = () => {
-  const { token, setGetToken, tokenLoading } = useContextState();
+  const { token, setGetToken, tokenLoading,setTokenLoading } = useContextState();
   const { data: balanceData, refetch: refetchBalance } = useQuery({
     queryKey: ["balance"],
     enabled:!tokenLoading,
@@ -26,6 +26,7 @@ const useBalance = () => {
       if (res?.data?.success === false && token) {
         /* Logout if success false  */
         handleLogOut()
+        setTokenLoading(true)
         /* Get current token */
         setGetToken((prev) => !prev);
       } else if (res?.data?.success && token) {

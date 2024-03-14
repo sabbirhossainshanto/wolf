@@ -41,6 +41,7 @@ const Main = () => {
     token,
     tokenLoading,
     isCheckedBonusToken,
+    setTokenLoading
   } = useContextState();
   const [showChangePassModal, setShowChangePassModal] = useState("");
   const [successEditStake, setSuccessEditStake] = useState("");
@@ -58,6 +59,7 @@ const Main = () => {
           const info = "devtool opened!; type =" + type;
           if (info) {
             handleLogOut();
+            setTokenLoading(true)
             setGetToken((prev) => !prev);
             navigate("/");
           }

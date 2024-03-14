@@ -29,6 +29,7 @@ const Sidebar = () => {
     setShowHelpModal,
     setShowReferral,
     setShowBonusRule,
+    setTokenLoading
   } = useContextState();
   const loginName = localStorage.getItem("loginName");
   const navigate = useNavigate();
@@ -53,6 +54,7 @@ const Sidebar = () => {
   const handleLogout = () => {
     /* Logout function */
     handleLogOut();
+    setTokenLoading(true)
     /* Close sidebar */
     setShowSidebar(false);
     /* get current token */

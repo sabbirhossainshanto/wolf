@@ -9,19 +9,18 @@ const BetTable = ({ data, keys }) => {
     navigate(`/game-details/${data[keys]?.eventTypeId}/${keys}`);
   };
 
-
-
   const formatDate = (data, key) => {
     const dateString = data?.[key]?.date;
-    const date = moment(dateString, 'DD/MM/YYYY');
-    const today = moment().startOf('day');
-    const tomorrow = moment().startOf('day').add(1, 'day');
-    if (date.isSame(today, 'day')) {
-    return 'Today'
-    } else if (date.isSame(tomorrow, 'day')) {
-      return 'Tomorrow'
+    const [, time] = dateString.split(" ");
+    const date = moment(dateString, "DD/MM/YYYY");
+    const today = moment().startOf("day");
+    const tomorrow = moment().startOf("day").add(1, "day");
+    if (date.isSame(today, "day")) {
+      return `Today ${time}`;
+    } else if (date.isSame(tomorrow, "day")) {
+      return `Tomorrow ${time}`;
     } else {
-     return data?.[key]?.date
+      return data?.[key]?.date;
     }
   };
 

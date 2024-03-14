@@ -1,3 +1,4 @@
+import moment from "moment";
 import { useNavigate } from "react-router-dom";
 // import { FaStar } from "react-icons/fa";
 /* eslint-disable react/no-unknown-property */
@@ -8,11 +9,27 @@ const BetTable = ({ data, keys }) => {
     navigate(`/game-details/${data[keys]?.eventTypeId}/${keys}`);
   };
 
+
+
+  const formatDate = (data, key) => {
+    const dateString = data?.[key]?.date;
+    const date = moment(dateString, 'DD/MM/YYYY');
+    const today = moment().startOf('day');
+    const tomorrow = moment().startOf('day').add(1, 'day');
+    if (date.isSame(today, 'day')) {
+    return 'Today'
+    } else if (date.isSame(tomorrow, 'day')) {
+      return 'Tomorrow'
+    } else {
+     return data?.[key]?.date
+    }
+  };
+
   return (
     <>
       {data[keys]?.inPlay === 0 && (
         <div
-        style={{cursor:'pointer'}} 
+          style={{ cursor: "pointer" }}
           onClick={() => navigateGameList(keys)}
           _ngcontent-ng-c943649379=""
           className="table-item ng-star-inserted"
@@ -32,7 +49,7 @@ const BetTable = ({ data, keys }) => {
             </p>
           )} */}
               <p _ngcontent-ng-c943649379="" className=" ng-star-inserted">
-                {data[keys]?.date}
+                {formatDate(data, keys)}
               </p>
             </div>
 

@@ -1,5 +1,5 @@
 /* eslint-disable react/no-unknown-property */
-import { Outlet, useNavigate } from "react-router-dom";
+import { Outlet, useLocation, useNavigate } from "react-router-dom";
 import Footer from "../ui/Footer/Footer";
 import Navbar from "../ui/Navbar/Navbar";
 import Sidebar from "../ui/Sidebar/Sidebar";
@@ -41,7 +41,7 @@ const Main = () => {
     token,
     tokenLoading,
     isCheckedBonusToken,
-    setTokenLoading
+    setTokenLoading,
   } = useContextState();
   const [showChangePassModal, setShowChangePassModal] = useState("");
   const [successEditStake, setSuccessEditStake] = useState("");
@@ -50,7 +50,7 @@ const Main = () => {
   const [verifyDeposit, setVerifyDeposit] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
   const [successMessage, setSuccessMessage] = useState("");
-
+  const location = useLocation();
   /* Disabled devtool based on settings */
   useEffect(() => {
     if (disabledDevtool) {
@@ -59,7 +59,7 @@ const Main = () => {
           const info = "devtool opened!; type =" + type;
           if (info) {
             handleLogOut();
-            setTokenLoading(true)
+            setTokenLoading(true);
             setGetToken((prev) => !prev);
             navigate("/");
           }
@@ -89,6 +89,16 @@ const Main = () => {
       return () => clearInterval(intervalId);
     }
   }, [tokenLoading, token]);
+
+  useEffect(() => {
+    if (window.location.hostname != "localhost") {
+      if (window.location.protocol !== "https:") {
+        window.location.replace(
+          `https://${window.location.hostname}${window.location.pathname}`
+        );
+      }
+    }
+  }, [location]);
   return (
     <>
       <div
@@ -169,7 +179,11 @@ const Main = () => {
             />
           )}
           {successMessage && (
-            <Success message={successMessage} setMessage={setSuccessMessage} success={true} />
+            <Success
+              message={successMessage}
+              setMessage={setSuccessMessage}
+              success={true}
+            />
           )}
           {errorMessage && (
             <Warning message={errorMessage} setMessage={setErrorMessage} />

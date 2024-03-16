@@ -1,5 +1,5 @@
 /* eslint-disable react/no-unknown-property */
-import { useRef } from "react";
+import { useRef, useState } from "react";
 import { IoClose } from "react-icons/io5";
 import useCloseModalClickOutside from "../../hooks/useCloseModalClickOutside";
 import { motion } from "framer-motion";
@@ -13,6 +13,7 @@ import handleDepositMethod from "../../utils/handleDepositMethod";
 const Login = ({ setShowLogin, setErrorLogin, errorLogin, setGetToken }) => {
   const { logo, setShowChangePassModal } = useContextState();
   const { register, handleSubmit } = useForm();
+  const [disable, setDisable] = useState(false);
   /* Close modal click out side */
   const loginRef = useRef();
   useCloseModalClickOutside(loginRef, () => {
@@ -21,6 +22,7 @@ const Login = ({ setShowLogin, setErrorLogin, errorLogin, setGetToken }) => {
 
   /* handle login user */
   const onSubmit = async ({ username, password }) => {
+    setDisable(true);
     /* Random token generator */
     const generatedToken = UseTokenGenerator();
     const loginData = {
@@ -41,6 +43,7 @@ const Login = ({ setShowLogin, setErrorLogin, errorLogin, setGetToken }) => {
     const data = await res.json();
 
     if (data.success) {
+      setDisable(false);
       if (Settings.deposit) {
         const handleDeposit = handleDepositMethod(data.result.token);
         const res = await handleDeposit();
@@ -82,12 +85,14 @@ const Login = ({ setShowLogin, setErrorLogin, errorLogin, setGetToken }) => {
       }
     } else {
       /* Show error message during login failed */
+      setDisable(false);
       setErrorLogin(data?.error);
     }
   };
 
   /* handle login demo user */
   const loginWithDemo = () => {
+    setDisable(true);
     /* Random token generator */
     const generatedToken = UseTokenGenerator();
     /* Encrypted the post data */
@@ -105,6 +110,7 @@ const Login = ({ setShowLogin, setErrorLogin, errorLogin, setGetToken }) => {
     })
       .then((res) => res.json())
       .then((data) => {
+        setDisable(false);
         /* Set token to localeStorage */
         localStorage.setItem("token", data.result.token);
         /* Set login name to locale storage */
@@ -124,6 +130,7 @@ const Login = ({ setShowLogin, setErrorLogin, errorLogin, setGetToken }) => {
           setGetToken((prev) => !prev);
         } else {
           /* Show error message during login failed */
+          setDisable(false);
           setErrorLogin(data?.error);
         }
       });
@@ -349,6 +356,7 @@ const Login = ({ setShowLogin, setErrorLogin, errorLogin, setGetToken }) => {
                                 className="form-btn"
                               >
                                 <button
+                                  disabled={disable}
                                   _ngcontent-ng-c2806737617=""
                                   type="submit"
                                   className="btn secondary-btn"
@@ -367,6 +375,7 @@ const Login = ({ setShowLogin, setErrorLogin, errorLogin, setGetToken }) => {
                                 >
                                   {" "}
                                   <button
+                                    disabled={disable}
                                     onClick={loginWithDemo}
                                     _ngcontent-ng-c2806737617=""
                                     type="button"

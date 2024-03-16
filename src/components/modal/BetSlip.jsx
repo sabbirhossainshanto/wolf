@@ -201,7 +201,7 @@ const BetSlip = ({
           total = -1 * (price * totalSize - totalSize);
         }
         if (placeBetValues?.btype === "BOOKMAKER") {
-          const bookmaker = 1 + price / totalSize;
+          const bookmaker = 1 + price / 100;
           total = -1 * (bookmaker * totalSize - totalSize);
         }
 

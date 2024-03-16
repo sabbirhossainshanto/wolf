@@ -10,13 +10,14 @@ const Footer = () => {
   const { socialLink } = useGetSocialLink();
   const location = useLocation();
   const navigate = useNavigate();
-  const { setGetToken, token, setShowLogin, icon,setTokenLoading } = useContextState();
+  const { setGetToken, token, setShowLogin, icon, setTokenLoading } =
+    useContextState();
   const [showMyMarket, setShowMyMarket] = useState(false);
   /* Handle logout */
   const handleLogout = () => {
     /* Logout function */
     handleLogOut();
-    setTokenLoading(true)
+    setTokenLoading(true);
     /* Get updated token from local storage */
     setGetToken((prev) => !prev);
     /* Navigate home page */
@@ -34,8 +35,10 @@ const Footer = () => {
       {showMyMarket && <MyMarket setShowMyMarket={setShowMyMarket} />}
       {/* Render html based on path */}
       {!location?.pathname?.includes("/game-details") &&
-      location.pathname !== "/profile/deposit" && !location.pathname?.includes("/casino") ? (
+      location.pathname !== "/profile/deposit" &&
+      !location.pathname?.includes("/casino") ? (
         <div _ngcontent-ng-c943649379="" className="page-footer">
+         
           {socialLink?.link && location.pathname === "/" && (
             <div
               onClick={navigateWhatsApp}
@@ -49,7 +52,6 @@ const Footer = () => {
               >
                 <div _ngcontent-ng-c943649379="" className="btn-wrap whatsapp">
                   <img
-          
                     _ngcontent-ng-c943649379=""
                     alt="WhatsApp"
                     src="/assets/img/wp_support.webp"

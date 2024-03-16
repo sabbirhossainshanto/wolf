@@ -81,15 +81,29 @@ const Home = () => {
           </div>
         </div>
 
-        {location.pathname === "/" && (
+        {/* {location.pathname === "/" && (
           <div style={{ backgroundColor: "#323232", textAlign: "center" }}>
             <img
               className="paymentTypesPadding"
               src="/assets/img/payment_types.png"
             />
           </div>
-        )}
+        )} */}
       </div>
+      {location.pathname === "/" && (
+        <div
+          style={{
+            backgroundColor: "#323232",
+            textAlign: "center",
+            marginBottom: "50px",
+          }}
+        >
+          <img
+            className="paymentTypesPadding"
+            src="/assets/img/payment_types.png"
+          />
+        </div>
+      )}
     </>
   );
 };

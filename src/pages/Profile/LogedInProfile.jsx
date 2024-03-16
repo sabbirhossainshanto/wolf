@@ -15,7 +15,8 @@ const LoggedInProfile = ({
   setShowChangePassModal,
   balanceData,
 }) => {
-  const { isCheckedBonusToken, setSHowDeposit } = useContextState();
+  const { isCheckedBonusToken, setSHowDeposit, setShowBonusRule } =
+    useContextState();
   /* Social link */
   const { socialLink } = useGetSocialLink();
   const [showWithdraw, setSHowWithdraw] = useState(false);
@@ -44,10 +45,10 @@ const LoggedInProfile = ({
   /* Get bank name for if length > 0 then open withdraw modal else open  add bank modal for add bank  */
   const { refetchBankData } = useGetBankAccountName(bankDataPostBody);
 
-/* Set default bank account id */
-  useEffect(()=> {
-    setBankId(withdrawData?.defaultBank?.bankId)
-  },[withdrawData?.defaultBank?.bankId])
+  /* Set default bank account id */
+  useEffect(() => {
+    setBankId(withdrawData?.defaultBank?.bankId);
+  }, [withdrawData?.defaultBank?.bankId]);
   return (
     <>
       {/* Withdraw modal */}
@@ -298,6 +299,29 @@ const LoggedInProfile = ({
               </div>
             </Link>
           </li>
+          {Settings.bonus && (
+            <li
+              _ngcontent-ng-c2865632707=""
+              routerlink="/rules"
+              routerlinkactive="active-link"
+              className="smenu-item"
+            >
+              <a
+                onClick={() => setShowBonusRule(true)}
+                _ngcontent-ng-c2865632707=""
+                className="smenu-link"
+              >
+                <div _ngcontent-ng-c2865632707="" className="label-wrap">
+                  <img
+                    _ngcontent-ng-c2865632707=""
+                    alt="Menu Icon"
+                    src="https://ss.manage63.com/bmk-wl/commonAssets/sidenav_rules.svg"
+                  />
+                  <span _ngcontent-ng-c2865632707="">Bonus Rules</span>
+                </div>
+              </a>
+            </li>
+          )}
           {/* <li
             _ngcontent-ng-c2865632707=""
             routerlinkactive="active-link"
@@ -315,52 +339,54 @@ const LoggedInProfile = ({
             </a>
           </li> */}
         </ul>
-        <div
-          _ngcontent-ng-c2865632707=""
-          className="social-links-wrap ng-star-inserted"
-        >
-          <label _ngcontent-ng-c2865632707="">Join us Now</label>
-          <div _ngcontent-ng-c2865632707="" className="social-links">
-            {/* <a _ngcontent-ng-c2865632707="" className="ng-star-inserted">
-              <img
-                _ngcontent-ng-c2865632707=""
-                alt=""
-                src="https://ss.manage63.com/bmk-wl/commonAssets/icon_dark_facebook.svg"
-              />
-            </a> */}
-            {socialLink?.instagramLink && (
-              <a
-                onClick={() =>
-                  handleNavigateSocialLink(socialLink?.instagramLink)
-                }
-                _ngcontent-ng-c2865632707=""
-                className="ng-star-inserted"
-              >
+        {socialLink?.instagramLink || socialLink?.telegramLink ? (
+          <div
+            _ngcontent-ng-c2865632707=""
+            className="social-links-wrap ng-star-inserted"
+          >
+            <label _ngcontent-ng-c2865632707="">Join us Now</label>
+            <div _ngcontent-ng-c2865632707="" className="social-links">
+              {/* <a _ngcontent-ng-c2865632707="" className="ng-star-inserted">
                 <img
                   _ngcontent-ng-c2865632707=""
                   alt=""
-                  src="https://ss.manage63.com/bmk-wl/commonAssets/icon_dark_instagram.svg"
+                  src="https://ss.manage63.com/bmk-wl/commonAssets/icon_dark_facebook.svg"
                 />
-              </a>
-            )}
+              </a> */}
+              {socialLink?.instagramLink && (
+                <a
+                  onClick={() =>
+                    handleNavigateSocialLink(socialLink?.instagramLink)
+                  }
+                  _ngcontent-ng-c2865632707=""
+                  className="ng-star-inserted"
+                >
+                  <img
+                    _ngcontent-ng-c2865632707=""
+                    alt=""
+                    src="https://ss.manage63.com/bmk-wl/commonAssets/icon_dark_instagram.svg"
+                  />
+                </a>
+              )}
 
-            {socialLink?.telegramLink && (
-              <a
-                onClick={() =>
-                  handleNavigateSocialLink(socialLink?.telegramLink)
-                }
-                _ngcontent-ng-c2865632707=""
-                className="ng-star-inserted"
-              >
-                <img
+              {socialLink?.telegramLink && (
+                <a
+                  onClick={() =>
+                    handleNavigateSocialLink(socialLink?.telegramLink)
+                  }
                   _ngcontent-ng-c2865632707=""
-                  alt=""
-                  src="https://ss.manage63.com/bmk-wl/commonAssets/icon_dark_telegram.svg"
-                />
-              </a>
-            )}
+                  className="ng-star-inserted"
+                >
+                  <img
+                    _ngcontent-ng-c2865632707=""
+                    alt=""
+                    src="https://ss.manage63.com/bmk-wl/commonAssets/icon_dark_telegram.svg"
+                  />
+                </a>
+              )}
+            </div>
           </div>
-        </div>
+        ) : null}
       </div>
     </>
   );

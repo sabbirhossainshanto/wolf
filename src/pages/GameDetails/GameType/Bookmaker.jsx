@@ -10,14 +10,15 @@ const Bookmaker = ({
   exposer,
   setShowLoginWarn,
 }) => {
-  const { token  } = useContextState();
+  // console.log(bookmarker);
+  const { token } = useContextState();
   let pnlBySelection;
   /* Exposure */
   if (exposer?.pnlBySelection) {
     const obj = exposer?.pnlBySelection;
     pnlBySelection = Object?.values(obj);
   }
-  
+
   return (
     <>
       {bookmarker?.map((games, i) => {
@@ -35,7 +36,8 @@ const Bookmaker = ({
                   _ngcontent-ng-c942213636=""
                   className="card-heading ng-star-inserted"
                 >
-                  { games?.eventTypeId == 4 ? games?.btype : games?.name}
+                  {/* { games?.eventTypeId == 4 ? games?.btype : games?.name} */}
+                  {games?.name}
                 </h2>
                 {/* <button
                   _ngcontent-ng-c942213636=""

@@ -528,25 +528,28 @@ const Sidebar = () => {
                     <span _ngcontent-ng-c967272132="">Rules</span>
                   </Link>
                 </li>
-                <li _ngcontent-ng-c967272132="" className="smenu-item">
-                  <a
-                    onClick={() => {
-                      setShowBonusRule(true);
-                      setShowSidebar(false);
-                    }}
-                    to="/rules"
-                    _ngcontent-ng-c967272132=""
-                    className="smenu-link"
-                  >
-                    <img
-                      _ngcontent-ng-c967272132=""
-                      alt="Menu Icon"
-                      src="https://ss.manage63.com/bmk-wl/commonAssets/sidenav_rules.svg"
-                    />
-                    <span _ngcontent-ng-c967272132="">Bonus Rules</span>
-                  </a>
-                </li>
-                <li
+             {Settings.bonus && (
+                 <li _ngcontent-ng-c967272132="" className="smenu-item">
+                 <a
+                   onClick={() => {
+                     setShowBonusRule(true);
+                     setShowSidebar(false);
+                   }}
+                   to="/rules"
+                   _ngcontent-ng-c967272132=""
+                   className="smenu-link"
+                 >
+                   <img
+                     _ngcontent-ng-c967272132=""
+                     alt="Menu Icon"
+                     src="https://ss.manage63.com/bmk-wl/commonAssets/sidenav_rules.svg"
+                   />
+                   <span _ngcontent-ng-c967272132="">Bonus Rules</span>
+                 </a>
+               </li>
+             )}
+              {socialLink?.link && (
+                  <li
                   _ngcontent-ng-c967272132=""
                   className="smenu-item ng-star-inserted"
                 >
@@ -566,6 +569,7 @@ const Sidebar = () => {
                     <span _ngcontent-ng-c967272132="">Help</span>
                   </a>
                 </li>
+              )}
               </ul>
               <ul _ngcontent-ng-c967272132="" className="smenu-wrap bottom">
                 <li

@@ -93,7 +93,8 @@ const Fancy = ({
       >
         <div _ngcontent-ng-c942213636="" className="head-wrap">
           <h2 _ngcontent-ng-c942213636="" className="card-heading">
-            {normal[0]?.eventTypeId == 4 ? normal[0]?.btype : normal[0]?.name}
+            {normal[0]?.btype == "FANCY" ? "FANCY" : normal[0]?.name}
+            {/* {normal[0]?.eventTypeId == 4 ? normal[0]?.btype : normal[0]?.name} */}
           </h2>
         </div>
         <div _ngcontent-ng-c942213636="" className="fancybody-header">

@@ -159,6 +159,7 @@ const Main = () => {
           {/* Success message after edit stake */}
           {successEditStake && (
             <Success
+              success={true}
               message={successEditStake}
               setMessage={setSuccessEditStake}
             />

@@ -15,9 +15,12 @@ const Login = ({ setShowLogin, setErrorLogin, errorLogin, setGetToken }) => {
   const { register, handleSubmit } = useForm();
   const [disable, setDisable] = useState(false);
   /* Close modal click out side */
+  const warningRef = useRef();
   const loginRef = useRef();
   useCloseModalClickOutside(loginRef, () => {
-    setShowLogin(false);
+    if (!warningRef.current) {
+      setShowLogin(false);
+    }
   });
 
   /* handle login user */
@@ -402,7 +405,11 @@ const Login = ({ setShowLogin, setErrorLogin, errorLogin, setGetToken }) => {
         </div>
       </div>
       {errorLogin && (
-        <Warning message={errorLogin} setMessage={setErrorLogin} />
+        <Warning
+          message={errorLogin}
+          setMessage={setErrorLogin}
+          warningRef={warningRef}
+        />
       )}
     </>
   );

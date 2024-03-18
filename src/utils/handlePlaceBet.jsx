@@ -37,6 +37,9 @@ export const handlePlaceBet = (
       maxLiabilityPerBet: item?.maxLiabilityPerBet,
       pnl: updatedPnl,
       marketName: item?.name,
+      eventId:item?.eventId
+
+
     });
   } else {
     setShowLoginWarn("Please log in to play.");

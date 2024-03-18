@@ -21,6 +21,7 @@ const MatchOdds = ({
   return (
     <>
       {match_odd?.map((games, i) => {
+      
         return (
           <div key={i} _ngcontent-ng-c942213636="" className="ng-star-inserted">
             <div

@@ -42,6 +42,7 @@ const Fancy = ({
         maxLiabilityPerMarket: item?.maxLiabilityPerMarket,
         isBettable: item?.isBettable,
         maxLiabilityPerBet: item?.maxLiabilityPerBet,
+        eventId:item?.eventId
       });
     } else {
       setShowLoginWarn("Please log in to play.");

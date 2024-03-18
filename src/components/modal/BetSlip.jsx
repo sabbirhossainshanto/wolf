@@ -37,7 +37,7 @@ const BetSlip = ({
   useEffect(() => {
     setPrice(placeBetValues?.price);
   }, [placeBetValues]);
-
+// console.log(placeBetValues);
   let payload = {};
   if (price) {
     if (placeBetValues?.btype === "SPORTSBOOK") {
@@ -54,6 +54,7 @@ const BetSlip = ({
         maxLiabilityPerBet: placeBetValues?.maxLiabilityPerBet,
         totalSize: totalSize,
         isBettable: placeBetValues?.isBettable,
+        eventId:placeBetValues?.eventId
       };
     } else {
       payload = {
@@ -68,6 +69,7 @@ const BetSlip = ({
         maxLiabilityPerMarket: placeBetValues?.maxLiabilityPerMarket,
         isBettable: placeBetValues?.isBettable,
         maxLiabilityPerBet: placeBetValues?.maxLiabilityPerBet,
+        eventId:placeBetValues?.eventId
       };
     }
   }

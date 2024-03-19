@@ -1,11 +1,39 @@
 import { useParams } from "react-router-dom";
-import useSinglePassbook from "../../hooks/useSinglePassbook";
 import moment from "moment";
+import { useEffect, useState } from "react";
+import UseTokenGenerator from "../../hooks/UseTokenGenerator";
+import UseEncryptData from "../../hooks/UseEncryptData";
+import axios from "axios";
+import { API } from "../../api";
+import useContextState from "../../hooks/useContextState";
 
 /* eslint-disable react/no-unknown-property */
 const SinglePassbook = () => {
   const { marketId } = useParams();
-  const { singlePassbook } = useSinglePassbook(marketId);
+  const { token } = useContextState();
+  const [singlePassbook, setSinglePassbook] = useState([]);
+  // const { singlePassbook } = useSinglePassbook(marketId);
+  useEffect(() => {
+    const getSinglePassbook = async () => {
+      const generatedToken = UseTokenGenerator();
+      const encryptedData = UseEncryptData(generatedToken);
+      const res = await axios.post(
+        `${API.settledBets}/${marketId}`,
+        encryptedData,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+      const data = res.data;
+      if (data?.success) {
+        setSinglePassbook(data?.result);
+        // return data?.result;
+      }
+    };
+    getSinglePassbook();
+  }, [marketId, token]);
 
   if (!singlePassbook) {
     return;

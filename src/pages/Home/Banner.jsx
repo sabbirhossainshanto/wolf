@@ -37,7 +37,7 @@ const Banner = () => {
             trackswipe=""
             className="banner"
             alt="Instant Games"
-            src="/public/assets/img/banner1.png"
+            src="/assets/img/banner1.png"
           />
         </div>
       </SwiperSlide>
@@ -50,7 +50,7 @@ const Banner = () => {
             trackswipe=""
             className="banner"
             alt="Instant Games"
-            src="/public/assets/img/banner1.png"
+            src="/assets/img/banner1.png"
           />
         </div>
       </SwiperSlide>
@@ -63,7 +63,7 @@ const Banner = () => {
             trackswipe=""
             className="banner"
             alt="Instant Games"
-            src="/public/assets/img/banner1.png"
+            src="/assets/img/banner1.png"
           />
         </div>
       </SwiperSlide>

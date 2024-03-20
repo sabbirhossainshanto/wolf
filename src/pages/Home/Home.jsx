@@ -9,6 +9,7 @@ import { useEffect } from "react";
 import SliderImage from "./SliderImage";
 import useBannerImage from "../../hooks/useBannerImage";
 import { useLocation } from "react-router-dom";
+import Banner from "./Banner";
 
 /* eslint-disable react/no-unknown-property */
 const Home = () => {
@@ -39,6 +40,13 @@ const Home = () => {
           {sportsType === 0 && bannerImage?.length > 0 && (
             <SliderImage bannerImage={bannerImage} />
           )}
+          <div
+            style={{
+              margin: "20px 0px 20px 0px",
+            }}
+          >
+            <Banner />
+          </div>
           <div
             _ngcontent-ng-c943649379=""
             slot="fixed"

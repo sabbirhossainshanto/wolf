@@ -28,7 +28,9 @@ const useSinglePassbook = (marketId) => {
         return data?.result;
       }
     },
+    gcTime:0,
   });
+
   return { singlePassbook };
 };
 

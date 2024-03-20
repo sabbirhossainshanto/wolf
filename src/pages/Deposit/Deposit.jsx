@@ -78,7 +78,7 @@ const Deposit = () => {
         paymentId,
         amount: paymentAmount,
         fileName: uploadedImage,
-        utr: utr,
+        utr: parseFloat(utr),
         token: generatedToken,
       };
       const res = await axios.post(API.bankAccount, screenshotPostData, {
@@ -368,7 +368,7 @@ const Deposit = () => {
                         onChange={(e) => setUtr(e.target.value)}
                         _ngcontent-ng-c3816252360=""
                         placeholder="Enter payment UTR here"
-                        type="text"
+                        type="number"
                       />
                     </div>
                     <button

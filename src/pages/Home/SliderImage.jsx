@@ -1,22 +1,10 @@
 /* eslint-disable react/no-unknown-property */
-import { useEffect } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
 import { Autoplay, Pagination, Navigation } from "swiper/modules";
 const SliderImage = ({ bannerImage }) => {
-  useEffect(() => {
-    const leftArrow = document.getElementsByClassName("swiper-button-prev");
-    Array?.from(leftArrow)?.forEach((item) => {
-      item?.remove();
-    });
-    const rightArrow = document.getElementsByClassName("swiper-button-next");
-    Array?.from(rightArrow)?.forEach((item) => {
-      item?.remove();
-    });
-  }, []);
-
   return (
     <>
       <Swiper

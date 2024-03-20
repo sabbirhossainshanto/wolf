@@ -22,6 +22,16 @@ const Home = () => {
     window.scrollTo(0, 0);
   }, [sportsType]);
 
+  useEffect(() => {
+    const leftArrow = document.getElementsByClassName("swiper-button-prev");
+    Array?.from(leftArrow)?.forEach((item) => {
+      item?.remove();
+    });
+    const rightArrow = document.getElementsByClassName("swiper-button-next");
+    Array?.from(rightArrow)?.forEach((item) => {
+      item?.remove();
+    });
+  }, [bannerImage]);
   return (
     <>
       <div
@@ -38,9 +48,16 @@ const Home = () => {
           className="hydrated"
           // style="--offset-top: 0px; --offset-bottom: 0px"
         >
-          {sportsType === 0 && bannerImage?.banner?.length > 0 && (
-            <SliderImage bannerImage={bannerImage?.banner} />
-          )}
+          <div
+            style={{
+              margin: "10px 0px 10px 0px",
+              padding: "0px 10px",
+            }}
+          >
+            {sportsType === 0 && bannerImage?.banner?.length > 0 && (
+              <SliderImage bannerImage={bannerImage?.banner} />
+            )}
+          </div>
           <div
             style={{
               margin: "10px 0px 10px 0px",

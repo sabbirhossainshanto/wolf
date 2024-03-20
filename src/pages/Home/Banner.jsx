@@ -1,26 +1,23 @@
 /* eslint-disable react/no-unknown-property */
-import { useEffect } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
 import { Pagination, Navigation } from "swiper/modules";
+import { useNavigate } from "react-router-dom";
 
-const Banner = () => {
-  useEffect(() => {
-    const leftArrow = document.getElementsByClassName("swiper-button-prev");
-    Array?.from(leftArrow)?.forEach((item) => {
-      item?.remove();
-    });
-    const rightArrow = document.getElementsByClassName("swiper-button-next");
-    Array?.from(rightArrow)?.forEach((item) => {
-      item?.remove();
-    });
-  }, []);
+const Banner = ({ card }) => {
+  const navigate = useNavigate();
+
+  const handleNavigate = (item) => {
+    if (item?.link) {
+      navigate(`/game-details/${item?.link}`);
+    }
+  };
   return (
     <Swiper
-      spaceBetween={20}
-      slidesPerView={2}
+      spaceBetween={10}
+      slidesPerView={1.5}
       pagination={{
         clickable: true,
       }}
@@ -28,45 +25,26 @@ const Banner = () => {
       modules={[Pagination, Navigation]}
       className="mySwiper"
     >
-      <SwiperSlide style={{ borderRadius: "10px", overflow: "hidden" }}>
-        {" "}
-        <div _ngcontent-jfw-c80="">
-          <img
-            _ngcontent-jfw-c112=""
-            apptrackclick=""
-            trackswipe=""
-            className="banner"
-            alt="Instant Games"
-            src="/assets/img/banner1.png"
-          />
-        </div>
-      </SwiperSlide>
-      <SwiperSlide style={{ borderRadius: "10px", overflow: "hidden" }}>
-        {" "}
-        <div _ngcontent-jfw-c80="">
-          <img
-            _ngcontent-jfw-c112=""
-            apptrackclick=""
-            trackswipe=""
-            className="banner"
-            alt="Instant Games"
-            src="/assets/img/banner1.png"
-          />
-        </div>
-      </SwiperSlide>
-      <SwiperSlide style={{ borderRadius: "10px", overflow: "hidden" }}>
-        {" "}
-        <div _ngcontent-jfw-c80="">
-          <img
-            _ngcontent-jfw-c112=""
-            apptrackclick=""
-            trackswipe=""
-            className="banner"
-            alt="Instant Games"
-            src="/assets/img/banner1.png"
-          />
-        </div>
-      </SwiperSlide>
+      {card?.map((item, i) => {
+        return (
+          <SwiperSlide
+            onClick={() => handleNavigate(item)}
+            key={i}
+            style={{ borderRadius: "10px", overflow: "hidden" }}
+          >
+            <div _ngcontent-jfw-c80="">
+              <img
+                _ngcontent-jfw-c112=""
+                apptrackclick=""
+                trackswipe=""
+                className="banner"
+                alt="Instant Games"
+                src={item?.image}
+              />
+            </div>
+          </SwiperSlide>
+        );
+      })}
     </Swiper>
   );
 };

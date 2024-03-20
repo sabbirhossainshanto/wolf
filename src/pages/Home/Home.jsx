@@ -37,15 +37,16 @@ const Home = () => {
           className="hydrated"
           // style="--offset-top: 0px; --offset-bottom: 0px"
         >
-          {sportsType === 0 && bannerImage?.length > 0 && (
-            <SliderImage bannerImage={bannerImage} />
+          {sportsType === 0 && bannerImage?.banner?.length > 0 && (
+            <SliderImage bannerImage={bannerImage?.banner} />
           )}
           <div
             style={{
-              margin: "20px 0px 20px 0px",
+              margin: "10px 0px 10px 0px",
+              padding: "0px 10px",
             }}
           >
-            <Banner />
+            <Banner card={bannerImage?.card} />
           </div>
           <div
             _ngcontent-ng-c943649379=""

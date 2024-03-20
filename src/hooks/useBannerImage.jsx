@@ -23,7 +23,7 @@ const useBannerImage = () => {
       });
       const data = res?.data;
       if (data?.success) {
-        return data?.result?.homepage?.banner;
+        return data?.result?.homepage;
       }
     },
   });

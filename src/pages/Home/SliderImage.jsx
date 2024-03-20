@@ -5,7 +5,7 @@ import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
 import { Autoplay, Pagination, Navigation } from "swiper/modules";
-const SliderImage = ({bannerImage}) => {
+const SliderImage = ({ bannerImage }) => {
   useEffect(() => {
     const leftArrow = document.getElementsByClassName("swiper-button-prev");
     Array?.from(leftArrow)?.forEach((item) => {
@@ -33,22 +33,22 @@ const SliderImage = ({bannerImage}) => {
         modules={[Autoplay, Pagination, Navigation]}
         className="mySwiper"
       >
-        {bannerImage?.map((image,i )=> {
+        {bannerImage?.map((image, i) => {
           return (
             <SwiperSlide key={i}>
-            {" "}
-            <div _ngcontent-jfw-c80="">
-              <img
-                _ngcontent-jfw-c112=""
-                apptrackclick=""
-                trackswipe=""
-                className="banner"
-                alt="Instant Games"
-                src={image}
-              />
-            </div>
-          </SwiperSlide>
-          )
+              {" "}
+              <div _ngcontent-jfw-c80="">
+                <img
+                  _ngcontent-jfw-c112=""
+                  apptrackclick=""
+                  trackswipe=""
+                  className="banner"
+                  alt="Instant Games"
+                  src={image}
+                />
+              </div>
+            </SwiperSlide>
+          );
         })}
       </Swiper>
     </>

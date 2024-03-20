@@ -122,7 +122,6 @@
   object-fit: cover;
 }
 
-
 .swiper-pagination-bullet {
   /* background-color: rgba(156, 156, 156, 0.305) !important;
   opacity: 100% !important; */
@@ -152,5 +151,85 @@
 @media only screen and (min-width: 769px) {
   .paymentTypesPadding {
     padding: 5px 0px 30px 0px;
+  }
+}
+
+/* my matches */
+.d-flex {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.my-match-btn {
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border: none;
+  color: var(--grey-500);
+  font-size: 12px;
+  font-weight: 400;
+  padding: 0px;
+}
+.my-match-title {
+  font-size: 12px;
+  color: black;
+  font-weight: 500;
+}
+.my-match-card-container {
+  display: flex;
+  flex-direction: column;
+  background-color: #fff;
+  border: 1px solid var(--grey-500);
+  padding: 10px 10px 0px 10px;
+  border-radius: 10px;
+}
+
+.my-match-img {
+  height: 60px;
+  width: 60px;
+  object-fit: contain;
+}
+.my-match-country {
+  color: black;
+  font-size: 20px;
+  font-weight: 800;
+}
+.my-match-completed {
+  color: rgb(98, 98, 98);
+  font-size: 17px;
+  font-weight: 800;
+  margin: 0px;
+  margin-bottom: 5px;
+}
+.my-match-date {
+  color: rgb(130, 130, 130);
+  margin: 0px;
+}
+.my-match-team-won-container {
+}
+.my-match-won {
+  color: rgb(0, 146, 0);
+  font-weight: 600;
+  font-size: 1em;
+  margin-bottom: 5px;
+}
+
+.my-match-team-contest {
+  margin-bottom: 5px;
+  color: rgb(87, 87, 87);
+}
+
+@media only screen and (max-width: 400px) {
+  .my-match-completed {
+    font-size: 13px;
+  }
+  .my-match-country {
+    font-size: 13px;
+  }
+  .my-match-img {
+    height: 40px;
+    width: 40px;
   }
 }

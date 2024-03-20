@@ -10,7 +10,7 @@ import SliderImage from "./SliderImage";
 import useBannerImage from "../../hooks/useBannerImage";
 import { useLocation } from "react-router-dom";
 import Banner from "./Banner";
-import MyMatches from "./MyMatches";
+// import MyMatches from "./MyMatches";
 
 /* eslint-disable react/no-unknown-property */
 const Home = () => {
@@ -47,7 +47,9 @@ const Home = () => {
               padding: "0px 10px",
             }}
           >
-            <Banner card={bannerImage?.card} />
+            {sportsType === 0 && bannerImage?.card?.length > 0 && (
+              <Banner card={bannerImage?.card} />
+            )}
           </div>
           <div
             style={{
@@ -55,7 +57,7 @@ const Home = () => {
               padding: "0px 10px 0px 10px",
             }}
           >
-            <MyMatches />
+            {/* <MyMatches /> */}
           </div>
           <div
             _ngcontent-ng-c943649379=""

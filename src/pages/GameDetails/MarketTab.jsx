@@ -125,7 +125,7 @@ const MarketTab = ({
                             _ngcontent-ng-c3799324686=""
                             // class="theme-text"
                           >
-                            {team?.runRate}
+                            {/* {team?.runRate} */}
                           </span>
                         </span>
 
@@ -270,8 +270,7 @@ const MarketTab = ({
                   setShowLoginWarn={setShowLoginWarn}
                 />
               )}
-              {sportsBook && <SportsBook
-              sportsBook={sportsBook} />}
+              {sportsBook && <SportsBook sportsBook={sportsBook} />}
 
               {overByOver && overByOver?.length > 0 && (
                 <OverByOver

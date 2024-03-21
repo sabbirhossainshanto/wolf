@@ -29,7 +29,7 @@ const DemoProfile = () => {
               <div _ngcontent-ng-c2865632707="" className="label-wrap">
                 <img
                   _ngcontent-ng-c2865632707=""
-                  onerror="src = '../assets/img/default-logo-icon.svg'"
+           
                   alt="Menu Icon"
                   src="https://ss.manage63.com/bmk-wl/commonAssets/sidenav_rules.svg"
                 />

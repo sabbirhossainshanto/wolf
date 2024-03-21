@@ -24,6 +24,7 @@ const Navbar = () => {
     logo,
     setSportsType,
     setSHowDeposit,
+    showOTP, setShowOTP
   } = useContextState();
   const location = useLocation();
   const navigate = useNavigate();
@@ -31,9 +32,8 @@ const Navbar = () => {
   /* Get balance data */
   const { balanceData } = useBalance();
   const [showWarning, setShowWarning] = useState("");
-
-  const [showOTP, setShowOTP] = useState(false);
   const [showRegister, setShowRegister] = useState(false);
+
   const [mobileNo, setMobileNo] = useState("");
   const [errRegister, setErrRegister] = useState("");
   const [successRegister, setSuccessRegister] = useState("");

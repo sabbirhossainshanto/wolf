@@ -28,6 +28,7 @@ const StateProvider = ({ children }) => {
   const [showBonusRule,setShowBonusRule] = useState(false)
   const [openBetSlip, setOpenBetSlip] = useState(false);
 
+  const [showOTP, setShowOTP] = useState(false);
   /* Get token from locale storage */
   useEffect(() => {
     const getToken = localStorage.getItem("token");
@@ -116,7 +117,8 @@ const StateProvider = ({ children }) => {
     showHelpModal,setShowHelpModal,
     showReferral,setShowReferral,
     showBonusRule,setShowBonusRule,
-    openBetSlip, setOpenBetSlip
+    openBetSlip, setOpenBetSlip,
+    showOTP, setShowOTP
   };
   return (
     <StateContext.Provider value={stateInfo}>{children}</StateContext.Provider>

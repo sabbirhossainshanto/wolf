@@ -169,7 +169,7 @@ const Registration = ({
                         <div _ngcontent-ng-c1411651695="" className="logo">
                           <img
                             _ngcontent-ng-c1411651695=""
-                            onerror="src = '../assets/img/transparent-img.svg'"
+                           
                             alt="logo"
                             src={logo}
                             className="ng-star-inserted"
@@ -224,7 +224,7 @@ const Registration = ({
                         <form
                           onSubmit={handleSubmit(onSubmit)}
                           _ngcontent-ng-c1411651695=""
-                          novalidate=""
+                        
                           className="ng-untouched ng-pristine ng-valid"
                         >
                           <div
@@ -262,7 +262,7 @@ const Registration = ({
                                             _ngcontent-ng-c1411651695=""
                                             type="tel"
                                             matinput=""
-                                            autocomplete="new-password"
+                                      
                                             maxLength={4}
                                             appnumericonly=""
                                             formcontrolname="otp"

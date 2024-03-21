@@ -60,7 +60,7 @@ const Referral = ({ setShowReferral }) => {
                       <div _ngcontent-ng-c526813732="" className="img-wrap">
                         <img
                           _ngcontent-ng-c526813732=""
-                          onerror="src = '../assets/img/transparent-img.svg'"
+                     
                           alt="logo"
                           src={logo}
                           className="ng-star-inserted"
@@ -134,7 +134,7 @@ const Referral = ({ setShowReferral }) => {
                             >
                               <img
                                 _ngcontent-ng-c526813732=""
-                                onerror="src = '../assets/img/whatsapp-icon.svg'"
+                             
                                 alt="WhatsApp"
                                 src="https://ss.manage63.com/bmk-wl/commonAssets/whatsapp-icon.svg"
                               />
@@ -151,7 +151,7 @@ const Referral = ({ setShowReferral }) => {
                             >
                               <img
                                 _ngcontent-ng-c526813732=""
-                                onerror="src = '../assets/img/wa_business.svg'"
+                           
                                 alt="WhatsApp"
                                 src="https://ss.manage63.com/bmk-wl/commonAssets/wa_business.svg"
                               />
@@ -168,7 +168,7 @@ const Referral = ({ setShowReferral }) => {
                             >
                               <img
                                 _ngcontent-ng-c526813732=""
-                                onerror="src = '../assets/img/telegram.svg'"
+                            
                                 alt="WhatsApp"
                                 src="https://ss.manage63.com/bmk-wl/commonAssets/telegram.svg"
                               />

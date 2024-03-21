@@ -13,11 +13,13 @@ import WithdrawStatement from "../pages/WithdrawStatement/WithdrawStatement";
 import DepositStatement from "../pages/DepositStatement/DepositStatement";
 import MyBankDetails from "../pages/MyBankDetails/MyBankDetails";
 import Casino from "../pages/Casino/Casino";
+import NotFound from "../pages/NotFound/NotFound";
 
 export const router = createBrowserRouter([
   {
     path: "/",
     element: <Main />,
+    errorElement:<NotFound/>,
     children: [
       {
         path: "/",

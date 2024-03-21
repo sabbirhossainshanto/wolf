@@ -190,8 +190,8 @@ const EditStake = ({ setShowEditStake,setSuccessEditStake }) => {
                       <form
                         onSubmit={handleSubmit(onSubmit)}
                         _ngcontent-ng-c2718167310=""
-                        novalidate=""
-                        autocomplete="off"
+                      
+                    
                         className="ng-untouched ng-pristine ng-valid"
                       >
                         <div

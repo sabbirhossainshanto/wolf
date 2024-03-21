@@ -102,7 +102,7 @@ const Deposit = ({ setSHowDeposit }) => {
                     <form
                       onSubmit={handleNavigateDeposit}
                       _ngcontent-ng-c2000663781=""
-                      novalidate=""
+                 
                       className="ng-untouched ng-pristine ng-invalid"
                     >
                       <div _ngcontent-ng-c2000663781="" className="modal-body">

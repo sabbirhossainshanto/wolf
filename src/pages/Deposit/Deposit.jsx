@@ -290,7 +290,7 @@ const Deposit = () => {
                         >
                           <img
                             _ngcontent-ng-c3816252360=""
-                            onerror="src = '../../assets/img/default-img.svg'"
+                       
                             class="fit-image"
                             src={filePath}
                           />

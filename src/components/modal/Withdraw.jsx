@@ -46,7 +46,7 @@ const Withdraw = ({
         },
       });
       const data = res?.data;
-  
+  console.log(data);
       if (data?.success) {
         setWithdrawCoinSuccess(data?.result?.message);
         setSHowWithdraw(false);
@@ -134,7 +134,7 @@ const Withdraw = ({
                     <form
                       onSubmit={handleCoinSubmit}
                       _ngcontent-ng-c2000663781=""
-                      novalidate=""
+                  
                       className="ng-invalid ng-touched ng-dirty"
                     >
                       <div _ngcontent-ng-c2000663781="" className="modal-body">
@@ -357,6 +357,7 @@ const Withdraw = ({
                         className="modal-footer"
                       >
                         <button
+                        disabled={parseFloat(amount) > 100 &&  parseFloat(withdrawData?.withdrawableCoins) > parseFloat(amount) ? false:true}
                           _ngcontent-ng-c2000663781=""
                           mat-button=""
                           className="btn secondary-btn mdc-button mat-mdc-button mat-unthemed mat-mdc-button-base"

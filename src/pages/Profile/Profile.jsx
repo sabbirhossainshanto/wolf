@@ -29,10 +29,10 @@ const Profile = () => {
         />
       )}
       {successMessage && (
-        <Success message={successMessage} setMessage={setSuccessMessage} />
+        <Success message={successMessage} setMessage={setSuccessMessage} success={true}/>
       )}
       {errorMessage && (
-        <Warning message={errorMessage} setMessage={setErrorMessage} />
+        <Warning message={errorMessage} setMessage={setErrorMessage}  />
       )}
       {token ? (
         <LoggedInProfile

@@ -27,6 +27,7 @@ const Registration = ({
     confirmPassword: "",
     mobileNo: "",
     otp: "",
+    referralCode:""
   });
   const { handleSubmit } = useForm();
   /* Handle register */
@@ -41,6 +42,7 @@ const Registration = ({
       token: generatedToken,
       otp: user?.otp,
       isOtpAvailable: Settings.otp,
+      referralCode:user.referralCode
     };
 
     /* Encrypted post data */
@@ -390,7 +392,53 @@ const Registration = ({
                                 </div>
                               </div>
                             </div>
+                            <p
+                              _ngcontent-ng-c1411651695=""
+                              className="form-title ng-star-inserted"
+                            >
+                              Referral Code
+                            </p>
+                            <div
+                              _ngcontent-ng-c2806737617=""
+                              className="form-list"
+                            >
+                              <div
+                                _ngcontent-ng-c2806737617=""
+                                appearance="fill"
+                                className="mat-mdc-form-field mat-form-field example-full-width ng-tns-c1205077789-3 mat-mdc-form-field-type-mat-input mat-form-field-appearance-fill mat-primary ng-untouched ng-pristine ng-invalid ng-star-inserted"
+                              >
+                                <div className="mat-mdc-text-field-wrapper mdc-text-field ng-tns-c1205077789-3 mdc-text-field--filled mdc-text-field--no-label">
+                                  <div className="mat-mdc-form-field-focus-overlay ng-tns-c1205077789-3 ng-star-inserted"></div>
+                                  <div className="mat-mdc-form-field-flex ng-tns-c1205077789-3">
+                                    <div className="mat-mdc-form-field-infix ng-tns-c1205077789-3">
+                                      {" "}
+                                      <input
+                                        onChange={(e) => {
+                                          setUser({
+                                            ...user,
+                                            referralCode: e.target.value,
+                                          });
+                                        }}
+                                        _ngcontent-ng-c2806737617=""
+                                        type="text"
+                                        appnumericonly=""
+                                        matinput=""
+                                        placeholder="Referral"
+                                        formcontrolname="phone"
+                                        className="mat-mdc-input-element ng-tns-c1205077789-3 ng-untouched ng-pristine ng-invalid mat-mdc-form-field-input-control mdc-text-field__input cdk-text-field-autofill-monitored"
+                                        id="mat-input-0"
+                                        aria-required="true"
+                                      />
+                                    </div>
+                                  </div>
 
+                                  <div
+                                    matformfieldlineripple=""
+                                    className="mdc-line-ripple ng-tns-c1205077789-3 mdc-line-ripple--deactivating ng-star-inserted"
+                                  ></div>
+                                </div>
+                              </div>
+                            </div>
                             <div
                               _ngcontent-ng-c1411651695=""
                               className="form-btn"

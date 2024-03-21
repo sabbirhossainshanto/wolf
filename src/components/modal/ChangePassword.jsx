@@ -13,12 +13,15 @@ const ChangePassword = ({
   setShowChangePassModal,
   setErrorMessage,
   setSuccessMessage,
+  warningRef,
 }) => {
   const { token, setGetToken } = useContextState();
   /* Close modal click outside */
   const changePassRef = useRef();
   useCloseModalClickOutside(changePassRef, () => {
-    setShowChangePassModal(false);
+    if (!warningRef.current) {
+      setShowChangePassModal(false);
+    }
   });
   const [passwordType, setPasswordType] = useState(true);
   const [newPasswordType, setNewPasswordType] = useState(true);
@@ -33,7 +36,6 @@ const ChangePassword = ({
 
   /* Change password function */
   const onSubmit = ({ password, newPassword, newPasswordConfirm }) => {
-
     const generatedToken = UseTokenGenerator();
     const encryptedData = UseEncryptData({
       oldPassword: password,
@@ -50,7 +52,6 @@ const ChangePassword = ({
     })
       .then((res) => res.json())
       .then((data) => {
-      
         if (data.success) {
           /* After success showing success message */
           setSuccessMessage(data?.result?.message);

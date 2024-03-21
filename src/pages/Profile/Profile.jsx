@@ -1,5 +1,5 @@
 /* eslint-disable react/no-unknown-property */
-import { useState } from "react";
+import { useRef, useState } from "react";
 import ChangePassword from "../../components/modal/ChangePassword";
 import useBalance from "../../hooks/useBalance";
 import Success from "../../components/ui/Notification/Success";
@@ -15,6 +15,7 @@ const Profile = () => {
   const [successMessage, setSuccessMessage] = useState("");
   const { token } = useContextState();
   const [showChangePassModal, setShowChangePassModal] = useState("");
+  const warningRef = useRef();
   return (
     <div
       style={{ minHeight: "100vh" }}
@@ -26,13 +27,14 @@ const Profile = () => {
           setShowChangePassModal={setShowChangePassModal}
           setErrorMessage={setErrorMessage}
           setSuccessMessage={setSuccessMessage}
+          warningRef={warningRef}
         />
       )}
       {successMessage && (
         <Success message={successMessage} setMessage={setSuccessMessage} success={true}/>
       )}
       {errorMessage && (
-        <Warning message={errorMessage} setMessage={setErrorMessage}  />
+        <Warning message={errorMessage} setMessage={setErrorMessage} warningRef={warningRef}  />
       )}
       {token ? (
         <LoggedInProfile

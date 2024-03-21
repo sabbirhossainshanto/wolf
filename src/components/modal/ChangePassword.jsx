@@ -71,7 +71,9 @@ const ChangePassword = ({
   };
 
   return (
-    <div className="cdk-overlay-container">
+    <div className="cdk-overlay-container"
+    style={{zIndex:5000}}
+    >
       <div className="cdk-overlay-backdrop cdk-overlay-dark-backdrop cdk-overlay-backdrop-showing"></div>
       <div
         className="cdk-global-overlay-wrapper"

@@ -14,7 +14,7 @@ const Referral = ({ setShowReferral }) => {
   useCloseModalClickOutside(referralRef, () => {
     setShowReferral(false);
   });
-  const { bankData: myReferralCode } = useBankAccount(myReferralCodePost,true);
+  const { bankData: myReferralCode } = useBankAccount(myReferralCodePost);
 
   return (
     <div className="cdk-overlay-container">

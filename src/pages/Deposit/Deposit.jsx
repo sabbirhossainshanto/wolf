@@ -19,7 +19,7 @@ const Deposit = () => {
   const [paymentId, setPaymentId] = useState("");
   const [utr, setUtr] = useState(null);
   const [depositData, setDepositData] = useState({});
-  const { bankData: depositMethods } = useBankAccount(depositMethodsPost, true);
+  const { bankData: depositMethods } = useBankAccount(depositMethodsPost);
 
   const [image, setImage] = useState(null);
   const [depositRequestSuccess, setDepositRequestSuccess] = useState("");

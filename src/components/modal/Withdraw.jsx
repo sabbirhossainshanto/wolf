@@ -1,6 +1,6 @@
 /* eslint-disable react/no-unknown-property */
 import { motion } from "framer-motion";
-import { useEffect, useRef, useState } from "react";
+import {  useRef, useState } from "react";
 import useCloseModalClickOutside from "../../hooks/useCloseModalClickOutside";
 
 import UseTokenGenerator from "../../hooks/UseTokenGenerator";
@@ -13,7 +13,7 @@ const Withdraw = ({
   setWithdrawCoinErr,
   setWithdrawCoinSuccess,
   bankId,
-  refetchWithdrawData,
+  // refetchWithdrawData,
   withdrawData,
   setBankId,
 }) => {
@@ -25,9 +25,9 @@ const Withdraw = ({
     setSHowWithdraw(false);
   });
 
-  useEffect(() => {
-    refetchWithdrawData();
-  }, [refetchWithdrawData, bankId]);
+  // useEffect(() => {
+  //   refetchWithdrawData();
+  // }, [refetchWithdrawData, bankId]);
 
   const handleCoinSubmit = async (e) => {
     e.preventDefault();

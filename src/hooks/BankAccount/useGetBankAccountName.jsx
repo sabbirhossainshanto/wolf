@@ -4,11 +4,11 @@ import useContextState from "../useContextState";
 import UseTokenGenerator from "../UseTokenGenerator";
 import { API } from "../../api";
 
-const useGetBankAccountName = (payload,callApi) => {
+const useGetBankAccountName = (payload) => {
   const { token, tokenLoading } = useContextState();
   const { data: bankData, refetch: refetchBankData } = useQuery({
     queryKey: ["bankAccountName"],
-    enabled: !tokenLoading && callApi,
+    enabled: !tokenLoading,
     queryFn: async () => {
       const generatedToken = UseTokenGenerator();
       const bankData = {

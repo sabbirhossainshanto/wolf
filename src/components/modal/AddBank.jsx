@@ -11,7 +11,7 @@ const AddBank = ({
   setSuccessCrudMsg,
   refetchBankData,
   setErrCrudMsg,
-  refetchWithdrawData
+  refetchWithdrawData,
 }) => {
   const { token } = useContextState();
   const [addBank, setAddBank] = useState({
@@ -43,9 +43,11 @@ const AddBank = ({
     const data = res?.data;
     if (data?.success) {
       setSuccessCrudMsg(data?.result?.message);
-      refetchBankData();
-      if(refetchWithdrawData){
-        refetchWithdrawData()
+      if (refetchBankData) {
+        refetchBankData();
+      }
+      if (refetchWithdrawData) {
+        refetchWithdrawData();
       }
       setShowAddBank(false);
     } else {

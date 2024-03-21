@@ -1,13 +1,13 @@
 import { Link } from "react-router-dom";
 import useContextState from "../../hooks/useContextState";
-import { Settings } from "../../api";
+import { API, Settings } from "../../api";
 import useGetSocialLink from "../../hooks/useGetSocialLink";
 import { useEffect, useState } from "react";
 import Withdraw from "../../components/modal/Withdraw";
 import Success from "../../components/ui/Notification/Success";
-import useBankAccount from "../../hooks/useBankAccount";
 import AddBank from "../../components/modal/AddBank";
-import useGetBankAccountName from "../../hooks/BankAccount/useGetBankAccountName";
+import UseTokenGenerator from "../../hooks/UseTokenGenerator";
+import axios from "axios";
 
 /* eslint-disable react/no-unknown-property */
 const LoggedInProfile = ({
@@ -15,43 +15,45 @@ const LoggedInProfile = ({
   setShowChangePassModal,
   balanceData,
 }) => {
-  const { isCheckedBonusToken, setSHowDeposit, setShowBonusRule } =
+  const { isCheckedBonusToken, setSHowDeposit, setShowBonusRule, token } =
     useContextState();
-  /* Social link */
   const { socialLink } = useGetSocialLink();
   const [showWithdraw, setSHowWithdraw] = useState(false);
   const [withdrawCoinSuccess, setWithdrawCoinSuccess] = useState("");
   const [withdrawCoinErr, setWithdrawCoinErr] = useState("");
-  const [callWithdrawApi, setCallWithdrawApi] = useState(false);
+  const [withdrawData, setWithdrawData] = useState([]);
   /* Handle navigate in new tab */
   const handleNavigateSocialLink = (link) => {
     window.open(link, "_blank");
   };
   const [bankId, setBankId] = useState(null);
-  const withDrawPostData = {
-    bankId,
-    type: "withdrawForm",
-  };
-  /* Get bank data */
-  const { bankData: withdrawData, refetchBankData: refetchWithdrawData } =
-    useBankAccount(withDrawPostData, callWithdrawApi);
-  const bankDataPostBody = {
-    type: "getBankAccounts",
-    status: 1,
-  };
-  /* Get bank name for if length > 0 then open withdraw modal else open  add bank modal for add bank  */
-  const { refetchBankData } = useGetBankAccountName(
-    bankDataPostBody,
-    callWithdrawApi
-  );
+
 
   /* Set default bank account id */
   useEffect(() => {
-    // if (withdrawData) {
-    //   setCallWithdrawApi(false);
-    // }
     setBankId(withdrawData?.defaultBank?.bankId);
   }, [withdrawData]);
+
+  
+/* Handle Withdraw data */
+  const handleWithdrawData = async () => {
+    const generatedToken = UseTokenGenerator();
+    const bankData = {
+      bankId,
+      type: "withdrawForm",
+      token: generatedToken,
+    };
+    const res = await axios.post(API.bankAccount, bankData, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+    const data = res?.data;
+    if (data?.success) {
+      setWithdrawData(data?.result);
+      setSHowWithdraw(true);
+    }
+  };
 
   return (
     <>
@@ -62,7 +64,7 @@ const LoggedInProfile = ({
           setWithdrawCoinErr={setWithdrawCoinErr}
           setWithdrawCoinSuccess={setWithdrawCoinSuccess}
           bankId={bankId}
-          refetchWithdrawData={refetchWithdrawData}
+          refetchWithdrawData={handleWithdrawData}
           setBankId={setBankId}
           withdrawData={withdrawData}
         />
@@ -70,11 +72,9 @@ const LoggedInProfile = ({
       {/* Add bank modal */}
       {showWithdraw && withdrawData?.allBanks?.length < 1 && (
         <AddBank
-          refetchBankData={refetchBankData}
           setErrCrudMsg={setWithdrawCoinErr}
           setShowAddBank={setSHowWithdraw}
           setSuccessCrudMsg={setWithdrawCoinSuccess}
-          refetchWithdrawData={refetchWithdrawData}
         />
       )}
 
@@ -163,10 +163,7 @@ const LoggedInProfile = ({
                 )}
                 {Settings.withdraw && (
                   <button
-                    onClick={() => {
-                      setSHowWithdraw(true);
-                      setCallWithdrawApi(true);
-                    }}
+                    onClick={ handleWithdrawData}
                     _ngcontent-ng-c2865632707=""
                     mat-flat-button=""
                     className="notranslate mdc-button mdc-button--unelevated mat-mdc-unelevated-button mat-unthemed mat-mdc-button-base"

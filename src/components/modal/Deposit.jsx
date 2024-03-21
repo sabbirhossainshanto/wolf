@@ -170,7 +170,7 @@ const Deposit = ({ setSHowDeposit }) => {
             </div>
           </div>
           <div
-            tabindex="0"
+        
             className="cdk-visually-hidden cdk-focus-trap-anchor"
             aria-hidden="true"
           ></div>

@@ -22,6 +22,7 @@ const useGetCoin = (payload) => {
         },
       });
       const data = res?.data;
+     
       if (data?.success) {
         return data?.result;
       }

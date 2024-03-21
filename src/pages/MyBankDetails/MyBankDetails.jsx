@@ -24,7 +24,7 @@ const MyBankDetails = () => {
     type: "getBankAccounts",
     status: activeTab,
   };
-  const { bankData, refetchBankData } = useGetBankAccountName(bankDataPostBody);
+  const { bankData, refetchBankData } = useGetBankAccountName(bankDataPostBody,true);
   const handleBankCrud = async (type, setShowWarning) => {
     const generatedToken = UseTokenGenerator();
     const bankData = {

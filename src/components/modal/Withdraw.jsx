@@ -46,7 +46,7 @@ const Withdraw = ({
         },
       });
       const data = res?.data;
-  console.log(data);
+
       if (data?.success) {
         setWithdrawCoinSuccess(data?.result?.message);
         setSHowWithdraw(false);
@@ -223,7 +223,7 @@ const Withdraw = ({
                                         className="mat-mdc-select ng-tns-c3393473648-47 ng-tns-c1205077789-46 ng-valid ng-star-inserted ng-touched ng-dirty mat-mdc-select-empty"
                                         aria-labelledby="mat-select-value-3"
                                         id="mat-select-2"
-                                        tabindex="0"
+                                     
                                         aria-expanded="false"
                                         aria-required="false"
                                         aria-disabled="false"
@@ -380,7 +380,7 @@ const Withdraw = ({
             </div>
           </div>
           <div
-            tabindex="0"
+          
             className="cdk-visually-hidden cdk-focus-trap-anchor"
             aria-hidden="true"
           ></div>

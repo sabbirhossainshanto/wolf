@@ -20,35 +20,39 @@ const LoggedInProfile = ({
   /* Social link */
   const { socialLink } = useGetSocialLink();
   const [showWithdraw, setSHowWithdraw] = useState(false);
-
   const [withdrawCoinSuccess, setWithdrawCoinSuccess] = useState("");
   const [withdrawCoinErr, setWithdrawCoinErr] = useState("");
-
+  const [callWithdrawApi, setCallWithdrawApi] = useState(false);
   /* Handle navigate in new tab */
   const handleNavigateSocialLink = (link) => {
     window.open(link, "_blank");
   };
-
   const [bankId, setBankId] = useState(null);
-
   const withDrawPostData = {
     bankId,
     type: "withdrawForm",
   };
   /* Get bank data */
   const { bankData: withdrawData, refetchBankData: refetchWithdrawData } =
-    useBankAccount(withDrawPostData);
+    useBankAccount(withDrawPostData, callWithdrawApi);
   const bankDataPostBody = {
     type: "getBankAccounts",
     status: 1,
   };
   /* Get bank name for if length > 0 then open withdraw modal else open  add bank modal for add bank  */
-  const { refetchBankData } = useGetBankAccountName(bankDataPostBody);
+  const { refetchBankData } = useGetBankAccountName(
+    bankDataPostBody,
+    callWithdrawApi
+  );
 
   /* Set default bank account id */
   useEffect(() => {
+    // if (withdrawData) {
+    //   setCallWithdrawApi(false);
+    // }
     setBankId(withdrawData?.defaultBank?.bankId);
-  }, [withdrawData?.defaultBank?.bankId]);
+  }, [withdrawData]);
+
   return (
     <>
       {/* Withdraw modal */}
@@ -161,6 +165,7 @@ const LoggedInProfile = ({
                   <button
                     onClick={() => {
                       setSHowWithdraw(true);
+                      setCallWithdrawApi(true);
                     }}
                     _ngcontent-ng-c2865632707=""
                     mat-flat-button=""

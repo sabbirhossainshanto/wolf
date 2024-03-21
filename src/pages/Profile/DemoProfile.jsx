@@ -19,7 +19,7 @@ const DemoProfile = () => {
             routerlink="/rules"
             routerlinkactive="active-link"
             className="smenu-item"
-            tabindex="0"
+       
           >
             <Link
               to="/rules"

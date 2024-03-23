@@ -17,6 +17,8 @@ import BonusRules from "../modal/BonusRules";
 import handleDepositMethod from "../../utils/handleDepositMethod";
 import Warning from "../ui/Notification/Warning";
 import ChangePassword from "../modal/ChangePassword";
+import useGetVersion from "../../hooks/useGetVersion";
+import VersionChange from "../modal/Warning";
 
 const Main = () => {
   const {
@@ -51,6 +53,8 @@ const Main = () => {
   const [errorMessage, setErrorMessage] = useState("");
   const [successMessage, setSuccessMessage] = useState("");
   const location = useLocation();
+  const { version, refetchVersion } = useGetVersion();
+  const [showVersionChange, setShowVersionChange] = useState(false);
   /* Disabled devtool based on settings */
   useEffect(() => {
     if (disabledDevtool) {
@@ -134,6 +138,24 @@ const Main = () => {
     }
   }, []);
 
+  const oldVersion = Settings?.buildVersion;
+
+
+  useEffect(() => {
+    localStorage.setItem("siteVersion", version?.version);
+    const storedVersion = localStorage.getItem("siteVersion");
+    if (parseFloat(oldVersion) > parseFloat(storedVersion)) {
+      refetchVersion();
+      setShowVersionChange(true);
+    }
+  }, [version, oldVersion, refetchVersion]);
+
+  const handleSubmit = () => {
+    localStorage.setItem("siteVersion", version?.version);
+    setShowVersionChange(false)
+    window.location.reload();
+    
+  };
   return (
     <>
       <div
@@ -146,6 +168,14 @@ const Main = () => {
           ngskiphydration=""
           className="mat-drawer-container mat-sidenav-container sidenav-container"
         >
+          {showVersionChange && (
+            <VersionChange
+              buttonInnerText="Update"
+              title="New version available"
+              description="Please update to the new version to experience latest feature"
+              handleSubmit={handleSubmit}
+            />
+          )}
           {/* Show deposit */}
           {showDeposit && <Deposit setSHowDeposit={setSHowDeposit} />}
           {/*   <!-- mennu start--> */}

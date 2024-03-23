@@ -66,6 +66,7 @@ export const API = {
   bankAccount: config?.result?.endpoint?.bankAccount,
   uploadScreenshot: config?.result?.endpoint?.uploadScreenshot,
   latestEvents: config?.result?.endpoint?.latestEvents,
+  siteSetting: config?.result?.endpoint?.siteSettings,
 };
 
 export const Settings = {
@@ -80,6 +81,7 @@ export const Settings = {
   siteUrl: config?.result?.settings?.siteUrl,
   siteTitle: config?.result?.settings?.siteTitle,
   interval: config?.result?.settings?.interval,
-  referral:config?.result?.settings?.referral,
-  metaPixelCode:config?.result?.settings?.metaPixelCode
+  referral: config?.result?.settings?.referral,
+  metaPixelCode: config?.result?.settings?.metaPixelCode,
+  buildVersion: config?.result?.settings?.buildVersion,
 };

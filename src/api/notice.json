@@ -19,7 +19,8 @@
       "casinoCurrency": "AED",
       "otp": true,
       "referral": true,
-      "metaPixelCode": "3099295900203427"
+      "metaPixelCode": "3099295900203427",
+      "buildVersion": 1.01
     },
 
     "endpoint": {
@@ -84,7 +85,8 @@
       "banner": "https://api7.live/api/exchange/diamond/banner",
       "bankAccount": "https://api7.live/api/exchange/diamond/bankAccount",
       "uploadScreenshot": "https://b2c.bet/deposit/up.php",
-      "latestEvents": "https://api7.live/api/exchange/diamond/latestEvents"
+      "latestEvents": "https://api7.live/api/exchange/diamond/latestEvents",
+      "siteSettings": "https://cache7.live/api/exchange/diamond/settings"
     }
   },
   "success": true

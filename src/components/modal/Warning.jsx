@@ -2,11 +2,26 @@ import { motion } from "framer-motion";
 import { useRef } from "react";
 import useCloseModalClickOutside from "../../hooks/useCloseModalClickOutside";
 
-const Warning = ({ setShowWarning, handleSubmit,buttonInnerText,title,description }) => {
+const Warning = ({
+  setShowWarning,
+  handleSubmit,
+  buttonInnerText,
+  title,
+  description,
+}) => {
   const warningRef = useRef();
+
   useCloseModalClickOutside(warningRef, () => {
-    setShowWarning(false);
+    if (setShowWarning) {
+      setShowWarning(false);
+    }
   });
+
+  const handleClose = () => {
+    if (setShowWarning) {
+      setShowWarning(false);
+    }
+  };
   return (
     <div
       className="swal2-container swal2-bottom swal2-backdrop-show"
@@ -36,21 +51,20 @@ const Warning = ({ setShowWarning, handleSubmit,buttonInnerText,title,descriptio
           id="swal2-title"
           style={{ display: "block" }}
         >
-       {title}
+          {title}
         </h2>
         <div
           className="swal2-html-container"
           id="swal2-html-container"
           style={{ display: "block" }}
         >
-        {description}
+          {description}
         </div>
 
         <div className="swal2-actions" style={{ display: "flex" }}>
           <div className="swal2-loader"></div>
 
           <button
-          
             onClick={handleSubmit}
             type="button"
             className="swal2-confirm swal2-styled"
@@ -59,14 +73,14 @@ const Warning = ({ setShowWarning, handleSubmit,buttonInnerText,title,descriptio
               display: "inline-flex",
               alignItems: "center",
               justifyContent: "center",
-              cursor:'pointer'
+              cursor: "pointer",
             }}
           >
-          {buttonInnerText}
+            {buttonInnerText}
           </button>
           <button
-          style={{cursor:'pointer'}}
-            onClick={() => setShowWarning(false)}
+            style={{ cursor: "pointer" }}
+            onClick={handleClose}
             type="button"
             className="swal2-cancel swal2-styled"
             aria-label=""

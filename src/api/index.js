@@ -80,5 +80,6 @@ export const Settings = {
   siteUrl: config?.result?.settings?.siteUrl,
   siteTitle: config?.result?.settings?.siteTitle,
   interval: config?.result?.settings?.interval,
-  referral:config?.result?.settings?.referral
+  referral:config?.result?.settings?.referral,
+  metaPixelCode:config?.result?.settings?.metaPixelCode
 };

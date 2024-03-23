@@ -35,7 +35,7 @@ const ClaimWarning = ({ setShowClaimWarn, bonusRefetchBalance,
        /* After failed close claim warning modal */
       setShowClaimWarn(false);
          /* set error message  */
-      setErrClaimMsg(result?.result?.message);
+      setErrClaimMsg(result?.error?.errorMessage);
     }
   };
 

@@ -8,6 +8,11 @@ const Passbook = () => {
   const { passbook } = usePassbook();
   const navigate = useNavigate();
   const { token } = useContextState();
+  const handleNavigateSinglePassbook = (item) => {
+    if (item?.plDetails) {
+      navigate(`/passbook/${item?.marketId}`);
+    }
+  };
 
   return (
     <div
@@ -78,11 +83,9 @@ const Passbook = () => {
                                   passbook?.map((item, i) => {
                                     return (
                                       <div
-                                        onClick={() => {
-                                          navigate(
-                                            `/passbook/${item?.marketId}`
-                                          );
-                                        }}
+                                        onClick={() =>
+                                          handleNavigateSinglePassbook(item)
+                                        }
                                         key={i}
                                         _ngcontent-ng-c773751984=""
                                         hidetoggle="true"

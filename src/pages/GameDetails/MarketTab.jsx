@@ -108,7 +108,6 @@ const MarketTab = ({
                 match_odds?.[0]?.eventTypeId == 4 &&
                 match_odds[0]?.score?.length !== 0 &&
                 match_odds?.[0]?.score?.map((team, i) => {
-                  console.log(team);
                   return (
                     <div
                       key={i}
@@ -149,7 +148,8 @@ const MarketTab = ({
                         class="score-overlay ng-star-inserted"
                         style={{
                           height: `${team?.commentary ? "20px" : "1px"}`,
-                          fontSize: `${team?.commentary ? "10px" : "0px"}`,
+                          fontSize: `${team?.commentary ? "12px" : "0px"}`,
+                          fontFamily: "open_bold",
                         }}
                       >
                         {team?.commentary}
@@ -181,7 +181,7 @@ const MarketTab = ({
                         </div>
                         <span _ngcontent-ng-c3799324686="" class="batting-team">
                           <span
-                            style={{ color: "white",fontSize:'12px' }}
+                            style={{ color: "white", fontSize: "12px" }}
                             class="small"
                             _ngcontent-ng-c3799324686=""
                           >

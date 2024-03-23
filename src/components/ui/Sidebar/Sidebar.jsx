@@ -29,13 +29,13 @@ const Sidebar = () => {
     setShowHelpModal,
     setShowReferral,
     setShowBonusRule,
-    setTokenLoading
+    setTokenLoading,
   } = useContextState();
   const loginName = localStorage.getItem("loginName");
   const navigate = useNavigate();
   const leftMenuRef = useRef();
-  const { bonusBalanceData,bonusRefetchBalance } = useBonusBalance();
-  const {refetchBalance} = useBalance()
+  const { bonusBalanceData, bonusRefetchBalance } = useBonusBalance();
+  const { refetchBalance } = useBalance();
   const [warningMessage, setWarningMessage] = useState("");
   const [showClaimWarn, setShowClaimWarn] = useState(false);
   const [promoCode, setPromoCode] = useState("");
@@ -54,7 +54,7 @@ const Sidebar = () => {
   const handleLogout = () => {
     /* Logout function */
     handleLogOut();
-    setTokenLoading(true)
+    setTokenLoading(true);
     /* Close sidebar */
     setShowSidebar(false);
     /* get current token */
@@ -141,10 +141,13 @@ const Sidebar = () => {
         <Warning message={warningMessage} setMessage={setWarningMessage} />
       )}
       {/* Claim warning modal */}
-      {showClaimWarn && <ClaimWarning setShowClaimWarn={setShowClaimWarn}
-      bonusRefetchBalance={bonusRefetchBalance}
-      refetchBalance={refetchBalance}
-      />}
+      {showClaimWarn && (
+        <ClaimWarning
+          setShowClaimWarn={setShowClaimWarn}
+          bonusRefetchBalance={bonusRefetchBalance}
+          refetchBalance={refetchBalance}
+        />
+      )}
       <div
         className="mat-drawer-backdrop ng-star-inserted"
         style={{ visibility: `${showSidebar ? "visible" : "hidden"}` }}
@@ -429,9 +432,10 @@ const Sidebar = () => {
                       routerlinkactive="active-link"
                       className="smenu-item"
                     >
-                      <Link
-                        onClick={() => setShowSidebar(false)}
-                        to="/my-bank-details"
+                      <a
+                        onClick={() =>
+                          handleAccountStatement("/my-bank-details")
+                        }
                         _ngcontent-ng-c967272132=""
                         className="smenu-link"
                       >
@@ -441,7 +445,7 @@ const Sidebar = () => {
                           src="https://ss.manage63.com/bmk-wl/commonAssets/sidenav_bank.svg"
                         />
                         <span _ngcontent-ng-c967272132="">My Bank Details</span>
-                      </Link>
+                      </a>
                     </li>
 
                     <li
@@ -480,27 +484,25 @@ const Sidebar = () => {
                         <span _ngcontent-ng-c967272132="">Edit Stakes</span>
                       </a>
                     </li>
-                 {
-                  Settings.referral && (
-                    <li
-                    _ngcontent-ng-c967272132=""
-                    routerlinkactive="active-link"
-                    className="smenu-item"
-                  >
-                    <a
-                      onClick={() => {
-                        setShowReferral(true);
-                        setShowSidebar(false);
-                      }}
-                      _ngcontent-ng-c967272132=""
-                      className="smenu-link"
-                    >
-                      <RiEditBoxFill size={18} color="#3d3d3d" />
-                      <span _ngcontent-ng-c967272132="">Referral</span>
-                    </a>
-                  </li>
-                  )
-                 }
+                    {Settings.referral && (
+                      <li
+                        _ngcontent-ng-c967272132=""
+                        routerlinkactive="active-link"
+                        className="smenu-item"
+                      >
+                        <a
+                          onClick={() => {
+                            setShowReferral(true);
+                            setShowSidebar(false);
+                          }}
+                          _ngcontent-ng-c967272132=""
+                          className="smenu-link"
+                        >
+                          <RiEditBoxFill size={18} color="#3d3d3d" />
+                          <span _ngcontent-ng-c967272132="">Referral</span>
+                        </a>
+                      </li>
+                    )}
                   </>
                 )}
                 <li _ngcontent-ng-c967272132="" className="smenu-item">
@@ -528,48 +530,48 @@ const Sidebar = () => {
                     <span _ngcontent-ng-c967272132="">Rules</span>
                   </Link>
                 </li>
-             {Settings.bonus && (
-                 <li _ngcontent-ng-c967272132="" className="smenu-item">
-                 <a
-                   onClick={() => {
-                     setShowBonusRule(true);
-                     setShowSidebar(false);
-                   }}
-                   to="/rules"
-                   _ngcontent-ng-c967272132=""
-                   className="smenu-link"
-                 >
-                   <img
-                     _ngcontent-ng-c967272132=""
-                     alt="Menu Icon"
-                     src="https://ss.manage63.com/bmk-wl/commonAssets/sidenav_rules.svg"
-                   />
-                   <span _ngcontent-ng-c967272132="">Bonus Rules</span>
-                 </a>
-               </li>
-             )}
-              {socialLink?.link && (
-                  <li
-                  _ngcontent-ng-c967272132=""
-                  className="smenu-item ng-star-inserted"
-                >
-                  <a
-                    onClick={() => {
-                      setShowHelpModal(true);
-                      setShowSidebar(false);
-                    }}
-                    _ngcontent-ng-c967272132=""
-                    className="smenu-link"
-                  >
-                    <img
+                {Settings.bonus && (
+                  <li _ngcontent-ng-c967272132="" className="smenu-item">
+                    <a
+                      onClick={() => {
+                        setShowBonusRule(true);
+                        setShowSidebar(false);
+                      }}
+                      to="/rules"
                       _ngcontent-ng-c967272132=""
-                      alt="Menu Icon"
-                      src="https://ss.manage63.com/bmk-wl/commonAssets/sidenav_help.svg"
-                    />
-                    <span _ngcontent-ng-c967272132="">Help</span>
-                  </a>
-                </li>
-              )}
+                      className="smenu-link"
+                    >
+                      <img
+                        _ngcontent-ng-c967272132=""
+                        alt="Menu Icon"
+                        src="https://ss.manage63.com/bmk-wl/commonAssets/sidenav_rules.svg"
+                      />
+                      <span _ngcontent-ng-c967272132="">Bonus Rules</span>
+                    </a>
+                  </li>
+                )}
+                {socialLink?.link && (
+                  <li
+                    _ngcontent-ng-c967272132=""
+                    className="smenu-item ng-star-inserted"
+                  >
+                    <a
+                      onClick={() => {
+                        setShowHelpModal(true);
+                        setShowSidebar(false);
+                      }}
+                      _ngcontent-ng-c967272132=""
+                      className="smenu-link"
+                    >
+                      <img
+                        _ngcontent-ng-c967272132=""
+                        alt="Menu Icon"
+                        src="https://ss.manage63.com/bmk-wl/commonAssets/sidenav_help.svg"
+                      />
+                      <span _ngcontent-ng-c967272132="">Help</span>
+                    </a>
+                  </li>
+                )}
               </ul>
               <ul _ngcontent-ng-c967272132="" className="smenu-wrap bottom">
                 <li

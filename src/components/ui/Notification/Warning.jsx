@@ -6,7 +6,7 @@ const Warning = ({ message, setMessage, warningRef }) => {
   useEffect(() => {
     setTimeout(() => {
       setMessage("");
-    }, 300000);
+    }, 3000);
   }, [setMessage]);
 
   useCloseModalClickOutside(warningRef, () => {

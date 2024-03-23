@@ -46,6 +46,7 @@ const Login = ({ setShowLogin, setErrorLogin, errorLogin, setGetToken }) => {
     const data = await res.json();
 
     if (data.success) {
+      console.log(data);
       setDisable(false);
       if (Settings.deposit) {
         const handleDeposit = handleDepositMethod(data.result.token);

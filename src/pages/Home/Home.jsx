@@ -8,7 +8,6 @@ import LiveCasinoTab from "./LiveCasinoTab/LiveCasinoTab";
 import { useEffect } from "react";
 import SliderImage from "./SliderImage";
 import useBannerImage from "../../hooks/useBannerImage";
-import { useLocation } from "react-router-dom";
 import Banner from "./Banner";
 // import MyMatches from "./MyMatches";
 
@@ -16,7 +15,7 @@ import Banner from "./Banner";
 const Home = () => {
   const { sportsType } = useContextState();
   const { bannerImage } = useBannerImage();
-  const location = useLocation();
+  // const location = useLocation();
   /* Reset scroll */
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -127,7 +126,7 @@ const Home = () => {
           </div>
         )} */}
       </div>
-      {location.pathname === "/" && (
+      {/* {location.pathname === "/" && (
         <div
           style={{
             backgroundColor: "#323232",
@@ -140,7 +139,7 @@ const Home = () => {
             src="/assets/img/payment_types.png"
           />
         </div>
-      )}
+      )} */}
     </>
   );
 };

@@ -45,11 +45,7 @@ const GameDetails = () => {
   /* get game details */
   useEffect(() => {
     const getGameDetails = async () => {
-      const res = await axios.get(`${API.odds}/${eventTypeId}/${eventId}`, {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      });
+      const res = await axios.get(`${API.odds}/${eventTypeId}/${eventId}`);
       const data = res.data;
 
       if (data.success) {
@@ -62,7 +58,7 @@ const GameDetails = () => {
     /* refetch after some millisecond */
     const intervalId = setInterval(getGameDetails, Settings.interval);
     return () => clearInterval(intervalId);
-  }, [eventId, eventTypeId, token]);
+  }, [eventId, eventTypeId]);
 
 
 

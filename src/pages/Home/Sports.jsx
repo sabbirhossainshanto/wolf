@@ -8,7 +8,7 @@ import { GoClock } from "react-icons/go";
 import InPlay from "../../components/ui/BetTable/InPlay";
 
 const Sports = () => {
-  const { sportsType, token, setSportsType } = useContextState();
+  const { sportsType, setSportsType } = useContextState();
   const [games, setGames] = useState(null);
   const [categories, setCategories] = useState([]);
   const eventName = { 4: "Cricket", 2: "Tennis", 1: "Football" };
@@ -17,11 +17,7 @@ const Sports = () => {
     const gameData = async () => {
       if (sportsType !== null) {
         const apiUrl = `${API.group}/${sportsType}`;
-        const res = await axios.get(apiUrl, {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        });
+        const res = await axios.get(apiUrl);
         const data = res.data;
         setGames(data);
       }

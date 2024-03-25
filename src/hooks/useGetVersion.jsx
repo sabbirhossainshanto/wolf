@@ -2,14 +2,10 @@ import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 import { API, Settings } from "../api";
 import UseTokenGenerator from "./UseTokenGenerator";
-import useContextState from "./useContextState";
 import UseEncryptData from "./UseEncryptData";
-
 const useGetVersion = () => {
-  const { token, tokenLoading } = useContextState();
   const { data: version, refetch: refetchVersion } = useQuery({
     queryKey: ["version"],
-    enabled: !tokenLoading,
     queryFn: async () => {
       const generatedToken = UseTokenGenerator();
       const postData = {
@@ -17,11 +13,7 @@ const useGetVersion = () => {
         token: generatedToken,
       };
       const encryptedData = UseEncryptData(postData);
-      const res = await axios.post(API.siteSetting, encryptedData, {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      });
+      const res = await axios.post(API.siteSetting, encryptedData);
       const data = res?.data;
       if (data?.success) {
         return data?.result;

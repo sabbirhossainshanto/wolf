@@ -35,11 +35,6 @@ const LiveCasinoTab = () => {
           gameList,
           product,
           isHome: false,
-        },
-        {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
         }
       );
       if (res?.status === 200) {

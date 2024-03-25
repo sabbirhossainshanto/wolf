@@ -154,7 +154,7 @@ const Main = () => {
       function gtag(){dataLayer.push(arguments)}
       gtag('js', new Date())
   
-      gtag('config', ${version.googleTag})`;
+      gtag('config', ${JSON.stringify(version.googleTag)})`;
       document.body.appendChild(scriptForDataLayer);
       /* --------------------------- */
       return () => {

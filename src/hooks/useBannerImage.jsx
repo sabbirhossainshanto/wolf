@@ -26,6 +26,7 @@ const useBannerImage = () => {
         return data?.result?.homepage;
       }
     },
+    refetchOnWindowFocus:false
   });
   return { bannerImage };
 };

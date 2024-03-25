@@ -28,6 +28,7 @@ const useGetSocialLink = () => {
         return data?.result;
       }
     },
+    refetchOnWindowFocus:false
   });
   return { socialLink };
 };

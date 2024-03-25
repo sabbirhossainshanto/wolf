@@ -19,6 +19,7 @@ const useGetVersion = () => {
         return data?.result;
       }
     },
+    refetchOnWindowFocus:false
   });
   return { version, refetchVersion };
 };

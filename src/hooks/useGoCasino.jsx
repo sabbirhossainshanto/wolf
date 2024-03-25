@@ -32,6 +32,7 @@ const useGoCasino = () => {
         return result?.data;
       }
     },
+    refetchOnWindowFocus:false
   });
   return { data, refetchLiveCasino, isLoading };
 };

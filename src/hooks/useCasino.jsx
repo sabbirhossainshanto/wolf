@@ -30,6 +30,7 @@ const useCasino = () => {
         return result?.data;
       }
     },
+    refetchOnWindowFocus:false
   });
   return { data, refetchLiveCasino, isLoading };
 };

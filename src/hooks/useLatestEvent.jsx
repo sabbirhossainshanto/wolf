@@ -25,6 +25,7 @@ const useLatestEvent = () => {
         return data?.result;
       }
     },
+    refetchOnWindowFocus:false
   });
   return { latestEvents };
 };

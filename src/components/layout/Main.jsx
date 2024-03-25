@@ -103,9 +103,9 @@ const Main = () => {
       }
     }
   }, [location]);
-
+  console.log(version);
   useEffect(() => {
-    if (Settings?.metaPixelCode) {
+    if (version?.metaPixel) {
       const script = document.createElement("script");
       script.innerHTML = `
         !function(f,b,e,v,n,t,s)
@@ -116,10 +116,11 @@ const Main = () => {
         t.src=v;s=b.getElementsByTagName(e)[0];
         s.parentNode.insertBefore(t,s)}(window, document,'script',
         'https://connect.facebook.net/en_US/fbevents.js');
-        fbq('init', ${Settings?.metaPixelCode});
+        fbq('init', ${version?.metaPixel});
         fbq('track', 'PageView');
       `;
       document.body.appendChild(script);
+      /* --------------------------- */
       const noscript = document.createElement("noscript");
       const img = document.createElement("img");
       img.setAttribute("height", "1");
@@ -127,19 +128,41 @@ const Main = () => {
       img.setAttribute("style", "display:none");
       img.setAttribute(
         "src",
-        `https://www.facebook.com/tr?id=${Settings?.metaPixelCode}&ev=PageView&noscript=1`
+        `https://www.facebook.com/tr?id=${version?.metaPixel}&ev=PageView&noscript=1`
       );
       noscript.appendChild(img);
       document.body.appendChild(noscript);
+      /* --------------------------- */
       return () => {
         document.body.removeChild(script);
         document.body.removeChild(noscript);
       };
     }
-  }, []);
+  }, [version]);
+  useEffect(() => {
+    if (version?.googleTag) {
+      const scriptForGoogle = document.createElement("script");
+      scriptForGoogle.src = `https://www.googletagmanager.com/gtag/js?id=${version?.googleTag}
+        `;
+      scriptForGoogle.setAttribute("async", "");
+      document.body.appendChild(scriptForGoogle);
+      /* --------------------------- */
+      const scriptForDataLayer = document.createElement("script");
+      scriptForDataLayer.innerHTML = `window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+  
+      gtag('config', ${version.googleTag || '' }); `;
+      document.body.appendChild(scriptForDataLayer);
+      /* --------------------------- */
+      return () => {
+        document.body.removeChild(scriptForGoogle);
+        document.body.removeChild(scriptForDataLayer);
+      };
+    }
+  }, [version]);
 
   const oldVersion = Settings?.buildVersion;
-
 
   useEffect(() => {
     localStorage.setItem("siteVersion", version?.version);
@@ -152,9 +175,8 @@ const Main = () => {
 
   const handleSubmit = () => {
     localStorage.setItem("siteVersion", version?.version);
-    setShowVersionChange(false)
+    setShowVersionChange(false);
     window.location.reload();
-    
   };
   return (
     <>

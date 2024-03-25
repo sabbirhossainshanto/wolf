@@ -16,7 +16,7 @@
       "bonus": true,
       "withdraw": true,
       "disabledDevtool": false,
-      "casinoCurrency": "AED",
+      "casinoCurrency": "INR",
       "otp": true,
       "referral": true,
       "buildVersion": 1.01

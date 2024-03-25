@@ -147,17 +147,17 @@ const Main = () => {
       scriptForGoogle.setAttribute("async", "");
       document.body.appendChild(scriptForGoogle);
       /* --------------------------- */
-      const scriptForDataLayer = document.createElement("script");
-      scriptForDataLayer.innerHTML = `window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
+      // const scriptForDataLayer = document.createElement("script");
+      // scriptForDataLayer.innerHTML = `window.dataLayer = window.dataLayer || [];
+      // function gtag(){dataLayer.push(arguments)}
+      // gtag('js', new Date())
   
-      gtag('config', ${version.googleTag || '' }); `;
-      document.body.appendChild(scriptForDataLayer);
+      // gtag('config', ${version.googleTag || '' }) `;
+      // document.body.appendChild(scriptForDataLayer);
       /* --------------------------- */
       return () => {
         document.body.removeChild(scriptForGoogle);
-        document.body.removeChild(scriptForDataLayer);
+        // document.body.removeChild(scriptForDataLayer);
       };
     }
   }, [version]);

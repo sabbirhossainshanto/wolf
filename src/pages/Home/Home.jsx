@@ -37,7 +37,7 @@ const Home = () => {
         _ngcontent-ng-c943649379=""
         className="page-body demoID"
         style={{
-          minHeight: "100vh",
+          height: "100vh",
         }}
       >
         <Tabs />

@@ -9,12 +9,12 @@ const Withdraw = () => {
   }
   return (
     <div _ngcontent-ng-c943649379="" className="page-body demoID"
-    style={{minHeight:'100vh'}}
+    style={{height:'100vh'}}
     >
       <iframe
         allow="fullscreen;"
         src={`${API?.withdraw}/${API?.siteUrl}/${token}`}
-        style={{ width: "100%", minHeight: "100vh", border: "0px" }}
+        style={{ width: "100%", height: "100vh", border: "0px" }}
       ></iframe>
       <div _ngcontent-ng-c943649379="" className="floating-btns">
         <div _ngcontent-ng-c943649379="" className="btn-item ng-star-inserted">

@@ -49,7 +49,7 @@ const Casino = () => {
     <div
       _ngcontent-ng-c943649379=""
       class="page-body"
-      style={{ minHeight: "100vh",backgroundColor:'black' }}
+      style={{ height: "100vh",backgroundColor:'black' }}
     >
       <iframe
         allow="fullscreen;"

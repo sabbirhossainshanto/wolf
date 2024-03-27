@@ -18,7 +18,7 @@ const Passbook = () => {
     <div
       _ngcontent-ng-c3622565476=""
       className="page-body"
-      style={{ minHeight: "100vh" }}
+      style={{ minHeight: "100vh"}}
     >
       <div _ngcontent-ng-c3622565476="" className="passbook-page-wrap">
         <div

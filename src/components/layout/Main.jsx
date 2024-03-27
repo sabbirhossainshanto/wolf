@@ -283,6 +283,8 @@ const Main = () => {
             aria-hidden="true"
           ></div>
           <div
+
+          // style={{backgroundColor:`${location.pathname === '/passbook' ? 'var(--grey-00)':''}`}}
             _ngcontent-ng-c967272132=""
             ngskiphydration=""
             className="mat-drawer-content mat-sidenav-content"

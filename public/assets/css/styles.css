@@ -1077,7 +1077,7 @@ ion-content ion-refresher .refresher-refreshing-icon ion-spinner {
 
 .container {
   box-sizing: border-box;
-  overflow: auto;
+  overflow-y: auto;
   background-color: var(--grey-00);
   max-width: 768px;
   margin: auto;
@@ -2736,7 +2736,7 @@ input[type="number"] {
 @media all and (max-width: 768px) {
   .container {
     padding: 0;
-    height: calc(var(--vh, 1vh) * 100);
+    /* height: calc(var(--vh, 1vh) * 100); */
     width: 100%;
   }
 }
@@ -7139,8 +7139,9 @@ p.report-issue[_ngcontent-ng-c942213636] .link-text[_ngcontent-ng-c942213636] {
 
 .mat-mdc-tab-body-wrapper {
   position: relative;
-  overflow: hidden;
-  display: flex;
+  /* overflow: hidden; */
+  /* display: flex; */
+
   transition: height 500ms cubic-bezier(0.35, 0, 0.25, 1);
 }
 
@@ -17253,8 +17254,8 @@ mat-icon {
 }
 .mat-mdc-tab-body-wrapper {
   position: relative;
-  overflow: hidden;
-  display: flex;
+  /* overflow: hidden; */
+  /* display: flex; */
   transition: height 500ms cubic-bezier(0.35, 0, 0.25, 1);
 }
 
@@ -18722,8 +18723,8 @@ mat-icon {
 
 .mat-mdc-tab-body-wrapper {
   position: relative;
-  overflow: hidden;
-  display: flex;
+  /* overflow: hidden; */
+  /* display: flex; */
   transition: height 500ms cubic-bezier(0.35, 0, 0.25, 1);
 }
 
@@ -19383,7 +19384,7 @@ mat-icon {
   @media all and (max-width: 768px) {
     .container {
       padding: 0;
-      height: calc(var(--vh, 1vh) * 100);
+      /* height: calc(var(--vh, 1vh) * 100); */
       width: 100%;
     }
   }

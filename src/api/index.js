@@ -83,4 +83,5 @@ export const Settings = {
   interval: config?.result?.settings?.interval,
   referral: config?.result?.settings?.referral,
   buildVersion: config?.result?.settings?.buildVersion,
+  balanceApiLoop:config?.result?.settings?.balanceApiLoop
 };

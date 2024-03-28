@@ -19,7 +19,8 @@
       "casinoCurrency": "INR",
       "otp": true,
       "referral": true,
-      "buildVersion": 1.01
+      "buildVersion": 1.01,
+      "balanceApiLoop": true
     },
 
     "endpoint": {

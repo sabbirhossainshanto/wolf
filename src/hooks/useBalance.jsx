@@ -3,15 +3,16 @@ import axios from "axios";
 import UseEncryptData from "./UseEncryptData";
 import UseTokenGenerator from "./UseTokenGenerator";
 import useContextState from "./useContextState";
-import { API } from "../api";
+import { API, Settings } from "../api";
 import { useEffect } from "react";
 import { handleLogOut } from "../utils/handleLogOut";
 /* Balance api */
 const useBalance = () => {
-  const { token, setGetToken, tokenLoading,setTokenLoading } = useContextState();
+  const { token, setGetToken, tokenLoading, setTokenLoading } =
+    useContextState();
   const { data: balanceData, refetch: refetchBalance } = useQuery({
     queryKey: ["balance"],
-    enabled:!tokenLoading,
+    enabled: !tokenLoading,
     queryFn: async () => {
       if (!token) {
         return;
@@ -25,8 +26,8 @@ const useBalance = () => {
       });
       if (res?.data?.success === false && token) {
         /* Logout if success false  */
-        handleLogOut()
-        setTokenLoading(true)
+        handleLogOut();
+        setTokenLoading(true);
         /* Get current token */
         setGetToken((prev) => !prev);
       } else if (res?.data?.success && token) {
@@ -34,8 +35,8 @@ const useBalance = () => {
         return data;
       }
     },
-/* Refetch after 6 second */
-    refetchInterval: 6000,
+    /* Refetch after 6 second */
+    refetchInterval: Settings?.balanceApiLoop ? 6000 : null,
   });
 
   useEffect(() => {

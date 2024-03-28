@@ -22,7 +22,7 @@ const GameDetails = () => {
   /* get params */
   const { eventId, eventTypeId } = useParams();
 
-  const { placeBetValues, token, openBetSlip, setOpenBetSlip,tokenLoading } =
+  const { placeBetValues, token, openBetSlip, setOpenBetSlip, tokenLoading } =
     useContextState();
   const [successMessage, setSuccessMessage] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
@@ -46,7 +46,7 @@ const GameDetails = () => {
   const { refetchBalance } = useBalance();
 
   useEffect(() => {
-    if (!tokenLoading) {
+    if (!tokenLoading && !Settings.balanceApiLoop) {
       refetchBalance();
     }
   }, []);

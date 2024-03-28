@@ -10,6 +10,7 @@ import SliderImage from "./SliderImage";
 import useBannerImage from "../../hooks/useBannerImage";
 import Banner from "./Banner";
 import useBalance from "../../hooks/useBalance";
+import { Settings } from "../../api";
 // import MyMatches from "./MyMatches";
 
 /* eslint-disable react/no-unknown-property */
@@ -24,7 +25,7 @@ const Home = () => {
   }, [sportsType]);
 
   useEffect(() => {
-    if (!tokenLoading) {
+    if (!tokenLoading && !Settings.balanceApiLoop) {
       refetchBalance();
     }
   }, []);

@@ -4,13 +4,12 @@ import UseEncryptData from "./UseEncryptData";
 import UseTokenGenerator from "./UseTokenGenerator";
 import useContextState from "./useContextState";
 import { API, Settings } from "../api";
-import { useEffect } from "react";
 import { handleLogOut } from "../utils/handleLogOut";
 /* Balance api */
 const useBalance = () => {
   const { token, setGetToken, tokenLoading, setTokenLoading } =
     useContextState();
-  const { data: balanceData, refetch: refetchBalance } = useQuery({
+  const { data: balanceData = {}, refetch: refetchBalance } = useQuery({
     queryKey: ["balance"],
     enabled: !tokenLoading,
     queryFn: async () => {
@@ -30,7 +29,8 @@ const useBalance = () => {
         setTokenLoading(true);
         /* Get current token */
         setGetToken((prev) => !prev);
-      } else if (res?.data?.success && token) {
+      } 
+      if (res?.data?.success && token) {
         const data = res.data?.result;
         return data;
       }
@@ -38,12 +38,6 @@ const useBalance = () => {
     /* Refetch after 6 second */
     refetchInterval: Settings?.balanceApiLoop ? 6000 : null,
   });
-
-  useEffect(() => {
-    if (token) {
-      refetchBalance();
-    }
-  }, [token, refetchBalance]);
 
   return { balanceData, refetchBalance };
 };

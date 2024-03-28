@@ -20,7 +20,7 @@
       "otp": true,
       "referral": true,
       "buildVersion": 1.01,
-      "balanceApiLoop": true
+      "balanceApiLoop": false
     },
 
     "endpoint": {

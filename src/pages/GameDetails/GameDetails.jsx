@@ -13,6 +13,7 @@ import MarketTab from "./MarketTab";
 import Warning from "../../components/ui/Notification/Warning";
 import axios from "axios";
 import { API, Settings } from "../../api";
+import useBalance from "../../hooks/useBalance";
 /* eslint-disable react/no-unknown-property */
 const GameDetails = () => {
   const [loading, setLoading] = useState(true);
@@ -21,7 +22,8 @@ const GameDetails = () => {
   /* get params */
   const { eventId, eventTypeId } = useParams();
 
-  const { placeBetValues, token,openBetSlip, setOpenBetSlip, } = useContextState();
+  const { placeBetValues, token, openBetSlip, setOpenBetSlip,tokenLoading } =
+    useContextState();
   const [successMessage, setSuccessMessage] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
   const [tabs, setTabs] = useState("market");
@@ -41,7 +43,13 @@ const GameDetails = () => {
   /* get iframe */
   const { iFrameUrl } = useIFrame(eventTypeId, eventId, isHasVideo);
   const [showLoginWarn, setShowLoginWarn] = useState("");
+  const { refetchBalance } = useBalance();
 
+  useEffect(() => {
+    if (!tokenLoading) {
+      refetchBalance();
+    }
+  }, []);
   /* get game details */
   useEffect(() => {
     const getGameDetails = async () => {
@@ -60,8 +68,6 @@ const GameDetails = () => {
     return () => clearInterval(intervalId);
   }, [eventId, eventTypeId]);
 
-
-
   if (loading) {
     return;
   }
@@ -75,8 +81,6 @@ const GameDetails = () => {
   ) {
     footballScore = match_odds[0]?.score;
   }
-
-
 
   return (
     <>

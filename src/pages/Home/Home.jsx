@@ -9,17 +9,25 @@ import { useEffect } from "react";
 import SliderImage from "./SliderImage";
 import useBannerImage from "../../hooks/useBannerImage";
 import Banner from "./Banner";
+import useBalance from "../../hooks/useBalance";
 // import MyMatches from "./MyMatches";
 
 /* eslint-disable react/no-unknown-property */
 const Home = () => {
-  const { sportsType } = useContextState();
+  const { sportsType, tokenLoading } = useContextState();
   const { bannerImage } = useBannerImage();
+  const { refetchBalance } = useBalance();
   // const location = useLocation();
   /* Reset scroll */
   useEffect(() => {
     window.scrollTo(0, 0);
   }, [sportsType]);
+
+  useEffect(() => {
+    if (!tokenLoading) {
+      refetchBalance();
+    }
+  }, []);
 
   useEffect(() => {
     const leftArrow = document.getElementsByClassName("swiper-button-prev");

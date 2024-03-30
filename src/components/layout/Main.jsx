@@ -19,6 +19,7 @@ import Warning from "../ui/Notification/Warning";
 import ChangePassword from "../modal/ChangePassword";
 import useGetVersion from "../../hooks/useGetVersion";
 import VersionChange from "../modal/Warning";
+import useBalance from "../../hooks/useBalance";
 
 const Main = () => {
   const {
@@ -55,6 +56,7 @@ const Main = () => {
   const location = useLocation();
   const { version, refetchVersion } = useGetVersion();
   const [showVersionChange, setShowVersionChange] = useState(false);
+  const { refetchBalance } = useBalance();
   /* Disabled devtool based on settings */
   useEffect(() => {
     if (disabledDevtool) {
@@ -141,7 +143,6 @@ const Main = () => {
   }, [version]);
   useEffect(() => {
     if (version?.googleTag) {
-    
       const scriptForGoogle = document.createElement("script");
       scriptForGoogle.src = `https://www.googletagmanager.com/gtag/js?id=${version?.googleTag}
         `;
@@ -149,7 +150,7 @@ const Main = () => {
       document.body.appendChild(scriptForGoogle);
       /* --------------------------- */
       const scriptForDataLayer = document.createElement("script");
-    
+
       scriptForDataLayer.innerHTML = `window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments)}
       gtag('js', new Date())
@@ -180,6 +181,11 @@ const Main = () => {
     setShowVersionChange(false);
     window.location.reload();
   };
+
+  /* If token change then refetch balance */
+  useEffect(() => {
+    refetchBalance();
+  }, [token, refetchBalance]);
   return (
     <>
       <div
@@ -283,8 +289,7 @@ const Main = () => {
             aria-hidden="true"
           ></div>
           <div
-
-          // style={{backgroundColor:`${location.pathname === '/passbook' ? 'var(--grey-00)':''}`}}
+            // style={{backgroundColor:`${location.pathname === '/passbook' ? 'var(--grey-00)':''}`}}
             _ngcontent-ng-c967272132=""
             ngskiphydration=""
             className="mat-drawer-content mat-sidenav-content"

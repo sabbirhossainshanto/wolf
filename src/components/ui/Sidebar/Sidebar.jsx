@@ -83,12 +83,15 @@ const Sidebar = () => {
     const bonusTokenChecked = e.target.checked;
     if (bonusTokenChecked) {
       localStorage.setItem("checkedBonusToken", "true");
+    
     } else {
       localStorage.removeItem("checkedBonusToken");
+  
     }
-    refetchBalance()
+ 
     /* Get current token */
     setGetToken((prev) => !prev);
+
   };
 
   /* When sidebar open disabling scroll */

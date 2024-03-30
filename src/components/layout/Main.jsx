@@ -57,6 +57,12 @@ const Main = () => {
   const { version, refetchVersion } = useGetVersion();
   const [showVersionChange, setShowVersionChange] = useState(false);
   const { refetchBalance } = useBalance();
+    /* If token change then refetch balance */
+    useEffect(() => {
+      refetchBalance();
+    }, [token, refetchBalance]);
+
+
   /* Disabled devtool based on settings */
   useEffect(() => {
     if (disabledDevtool) {
@@ -141,6 +147,8 @@ const Main = () => {
       };
     }
   }, [version]);
+
+
   useEffect(() => {
     if (version?.googleTag) {
       const scriptForGoogle = document.createElement("script");
@@ -182,10 +190,9 @@ const Main = () => {
     window.location.reload();
   };
 
-  /* If token change then refetch balance */
-  useEffect(() => {
-    refetchBalance();
-  }, [token, refetchBalance]);
+
+  console.log(version);
+
   return (
     <>
       <div

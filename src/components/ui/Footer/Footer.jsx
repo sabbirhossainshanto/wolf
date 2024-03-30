@@ -2,11 +2,13 @@ import { useLocation, useNavigate } from "react-router-dom";
 import useContextState from "../../../hooks/useContextState";
 import { handleLogOut } from "../../../utils/handleLogOut";
 import MyMarket from "../../modal/MyMarket";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import useGetSocialLink from "../../../hooks/useGetSocialLink";
+import useGetVersion from "../../../hooks/useGetVersion";
 
 /* eslint-disable react/no-unknown-property */
 const Footer = () => {
+  const { version } = useGetVersion();
   const { socialLink } = useGetSocialLink();
   const location = useLocation();
   const navigate = useNavigate();
@@ -29,6 +31,43 @@ const Footer = () => {
     window.open(socialLink?.link, "_blank");
   };
 
+  useEffect(() => {
+    if (version?.chaport?.isChaportEnabled) {
+      const script = document.createElement("script");
+      script.setAttribute("type", "text/javascript");
+      script.innerHTML = `
+        (function(w,d,v3){
+          w.chaportConfig = {
+            appId: '${version?.chaport?.chaportAppId}',
+            appearance: {
+              windowColor: '#25d366',
+              teamName: 'Customer Care',
+              onlineWelcome: 'Hello, we are online!',
+              offlineWelcome: 'We are not online.',
+              position: ['right', 0, 50],
+              textStatuses: true,
+            },
+            launcher: {
+              show: false,
+            },
+          };
+          
+          if(w.chaport)return;v3=w.chaport={};v3._q=[];v3._l={};v3.q=function(){v3._q.push(arguments)};v3.on=function(e,fn){if(!v3._l[e])v3._l[e]=[];v3._l[e].push(fn)};var s=d.createElement('script');s.type='text/javascript';s.async=true;s.src='https://app.chaport.com/javascripts/insert.js';var ss=d.getElementsByTagName('script')[0];ss.parentNode.insertBefore(s,ss);
+        })(window, document);
+      `;
+      document.body.appendChild(script);
+
+      return () => {
+        document.body.removeChild(script);
+      };
+    }
+  }, [version]);
+
+  const openChaportOnClick = () => {
+    window.chaport.on("ready", function () {
+      window.chaport.open();
+    });
+  };
   return (
     <>
       {/* My market modal */}
@@ -38,28 +77,37 @@ const Footer = () => {
       location.pathname !== "/profile/deposit" &&
       !location.pathname?.includes("/casino") ? (
         <div _ngcontent-ng-c943649379="" className="page-footer">
-         
-          {socialLink?.link && location.pathname === "/" && (
+          <div
+            _ngcontent-ng-c943649379=""
+            className="floating-btns"
+            style={{ cursor: "pointer" }}
+          >
             <div
-              onClick={navigateWhatsApp}
               _ngcontent-ng-c943649379=""
-              className="floating-btns"
-              style={{ cursor: "pointer" }}
+              className="btn-item ng-star-inserted"
             >
-              <div
-                _ngcontent-ng-c943649379=""
-                className="btn-item ng-star-inserted"
-              >
-                <div _ngcontent-ng-c943649379="" className="btn-wrap whatsapp">
+              <div _ngcontent-ng-c943649379="" className="btn-wrap whatsapp">
+                {version?.chaport?.isChaportVisible && (
                   <img
+                    onClick={navigateWhatsApp}
+                    style={{ height: "40px", width: "40px" }}
+                    _ngcontent-ng-c943649379=""
+                    alt="WhatsApp"
+                    src="/assets/img/whatsapp.png"
+                  />
+                )}
+                {socialLink?.link && location.pathname === "/" && (
+                  <img
+                    onClick={openChaportOnClick}
                     _ngcontent-ng-c943649379=""
                     alt="WhatsApp"
                     src="/assets/img/wp_support.webp"
                   />
-                </div>
+                )}
               </div>
             </div>
-          )}
+          </div>
+
           {location?.pathname === "/profile" && token && (
             <div
               onClick={handleLogout}

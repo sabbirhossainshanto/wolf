@@ -87,7 +87,7 @@ const Footer = () => {
               className="btn-item ng-star-inserted"
             >
               <div _ngcontent-ng-c943649379="" className="btn-wrap whatsapp">
-                {version?.chaport?.isChaportVisible && (
+                {socialLink?.link && location.pathname === "/"  && (
                   <img
                     onClick={navigateWhatsApp}
                     style={{ height: "40px", width: "40px" }}
@@ -96,7 +96,7 @@ const Footer = () => {
                     src="/assets/img/whatsapp.png"
                   />
                 )}
-                {socialLink?.link && location.pathname === "/" && (
+                {version?.chaport?.isChaportVisible && (
                   <img
                     onClick={openChaportOnClick}
                     _ngcontent-ng-c943649379=""

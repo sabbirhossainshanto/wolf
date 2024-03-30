@@ -41,6 +41,7 @@ const StateProvider = ({ children }) => {
       /* Check box true of bonus */
       setIsCheckedBonusToken(true);
     } else {
+
       /* Set default token */
       setToken(getToken);
       /* Checkbox box false */

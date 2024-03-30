@@ -86,6 +86,7 @@ const Sidebar = () => {
     } else {
       localStorage.removeItem("checkedBonusToken");
     }
+    refetchBalance()
     /* Get current token */
     setGetToken((prev) => !prev);
   };

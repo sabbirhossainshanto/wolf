@@ -191,7 +191,7 @@ const Main = () => {
   };
 
 
-  console.log(version);
+
 
   return (
     <>

@@ -31,7 +31,7 @@ const GameDetails = () => {
   const { myBets, refetchCurrentBets } = useCurrentBets(eventId);
   /* get exposure */
   const { exposer, refetchExposure } = useExposer(eventId);
-  // console.log(eventId);
+
   // const { data} = useGameDetails(eventTypeId, eventId);
   const [showIFrame, setShowIFrame] = useState(true);
   const [showScore, setShowScore] = useState(true);

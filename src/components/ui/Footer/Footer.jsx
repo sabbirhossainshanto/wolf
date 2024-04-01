@@ -96,7 +96,7 @@ const Footer = () => {
                     src="/assets/img/whatsapp.png"
                   />
                 )}
-                {version?.chaport?.isChaportVisible && (
+                {version?.chaport?.isChaportVisible && location.pathname === "/"  && (
                   <img
                     onClick={openChaportOnClick}
                     _ngcontent-ng-c943649379=""

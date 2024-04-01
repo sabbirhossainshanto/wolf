@@ -17,7 +17,7 @@ const MatchOdds = ({
     const obj = exposer?.pnlBySelection;
     pnlBySelection = Object?.values(obj);
   }
-// console.log(match_odd);
+
   return (
     <>
       {match_odd?.map((games, i) => {

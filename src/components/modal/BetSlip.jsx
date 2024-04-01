@@ -37,7 +37,7 @@ const BetSlip = ({
   useEffect(() => {
     setPrice(placeBetValues?.price);
   }, [placeBetValues]);
-// console.log(placeBetValues);
+
   let payload = {};
   if (price) {
     if (placeBetValues?.btype === "SPORTSBOOK") {
@@ -97,13 +97,14 @@ const BetSlip = ({
     })
       .then((res) => res.json())
       .then((data) => {
+
         if (data?.success) {
           refetchExposure();
           refetchBalance();
           refetchCurrentBets();
           setLoader(false);
           setOpenBetSlip(false);
-          setSuccessMessage("Bet Place Successfully !");
+          setSuccessMessage(data?.result?.result?.placed?.[0]?.message);
         } else {
           setErrorMessage(
             data?.error?.status?.[0]?.description || data?.error?.errorMessage

@@ -10,7 +10,7 @@ const Bookmaker = ({
   exposer,
   setShowLoginWarn,
 }) => {
-  // console.log(bookmarker);
+
   const { token } = useContextState();
   let pnlBySelection;
   /* Exposure */

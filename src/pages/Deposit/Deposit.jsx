@@ -70,6 +70,7 @@ const Deposit = () => {
           setFilePath(data?.filePath);
           setImage(null);
         }else{
+          setLoading(false);
           setUtr(null);
           setImage(null);
           setFilePath("");

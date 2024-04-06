@@ -59,10 +59,10 @@ const Deposit = () => {
           },
         });
         const data = res.data;
-
         if (data?.success) {
           setUploadedImage(data?.fileName);
           setFilePath(data?.filePath);
+          setImage(null);
         }
       };
       handleSubmitImage();
@@ -100,6 +100,11 @@ const Deposit = () => {
         setDepositRequestErr(result?.result?.message);
       }
     }
+  };
+
+  const handleImageChange = (e) => {
+    setImage(e.target.files[0]);
+    e.target.value = null;
   };
 
   return (
@@ -232,7 +237,7 @@ const Deposit = () => {
                               for="upload_screenshot"
                             >
                               <input
-                                onChange={(e) => setImage(e.target.files[0])}
+                                onChange={(e) => handleImageChange(e)}
                                 _ngcontent-ng-c3816252360=""
                                 type="file"
                                 name="img"

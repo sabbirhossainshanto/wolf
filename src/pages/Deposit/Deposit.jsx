@@ -11,6 +11,7 @@ import UseTokenGenerator from "../../hooks/UseTokenGenerator";
 import useContextState from "../../hooks/useContextState";
 import Success from "../../components/ui/Notification/Success";
 import { useNavigate } from "react-router-dom";
+import { FaSpinner } from "react-icons/fa";
 
 const Deposit = () => {
   const { token, copyTextSuccess, setCopyTextSuccess } = useContextState();
@@ -22,11 +23,13 @@ const Deposit = () => {
   const { bankData: depositMethods } = useBankAccount(depositMethodsPost);
 
   const [image, setImage] = useState(null);
+  const [loading, setLoading] = useState(false);
   const [depositRequestSuccess, setDepositRequestSuccess] = useState("");
   const [depositRequestErr, setDepositRequestErr] = useState("");
   const navigate = useNavigate();
   const [uploadedImage, setUploadedImage] = useState(null);
   const [filePath, setFilePath] = useState("");
+
 
   const handleVisibleBankMethod = async (method) => {
     setTabs(method?.type);
@@ -50,6 +53,7 @@ const Deposit = () => {
 
   useEffect(() => {
     if (image) {
+      setLoading(true);
       const handleSubmitImage = async () => {
         const formData = new FormData();
         formData.append("image", image);
@@ -59,10 +63,18 @@ const Deposit = () => {
           },
         });
         const data = res.data;
+        console.log(data);
         if (data?.success) {
+          setLoading(false);
           setUploadedImage(data?.fileName);
           setFilePath(data?.filePath);
           setImage(null);
+        }else{
+          setUtr(null);
+          setImage(null);
+          setFilePath("");
+          setUploadedImage(null);
+          setDepositRequestErr(data?.error);
         }
       };
       handleSubmitImage();
@@ -97,7 +109,9 @@ const Deposit = () => {
       } else {
         setUtr(null);
         setImage(null);
-        setDepositRequestErr(result?.result?.message);
+        setFilePath("");
+        setUploadedImage(null);
+        setDepositRequestErr(result?.error?.errorMessage);
       }
     }
   };
@@ -227,7 +241,7 @@ const Deposit = () => {
                         _ngcontent-ng-c3816252360=""
                         class="screenshot-wrapper"
                       >
-                        {!filePath ? (
+                        {!filePath && !loading && (
                           <div
                             _ngcontent-ng-c3816252360=""
                             class="upload-screenshot"
@@ -268,7 +282,8 @@ const Deposit = () => {
                               </p>
                             </label>
                           </div>
-                        ) : (
+                        )}
+                        {filePath && !loading && (
                           <div
                             _ngcontent-ng-c3816252360=""
                             class="upload-screenshot"
@@ -315,6 +330,20 @@ const Deposit = () => {
                                 </span>
                               </a>
                             </div>
+                          </div>
+                        )}
+                        {loading && (
+                          <div
+                            _ngcontent-ng-c3816252360=""
+                            class="upload-screenshot"
+                          >
+                            <FaSpinner
+                              style={{
+                                width: "100%",
+                              }}
+                              className="animate-spin"
+                              size={30}
+                            />
                           </div>
                         )}
                       </div>
@@ -367,7 +396,9 @@ const Deposit = () => {
                         _ngcontent-ng-c3816252360=""
                         placeholder="Enter payment UTR here"
                         type="number"
+                        value={utr}
                       />
+                      
                     </div>
                     <button
                       onClick={handleDepositSubmit}

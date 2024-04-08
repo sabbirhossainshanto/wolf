@@ -39,7 +39,6 @@ const GameDetails = () => {
   /* has video boolean for iframe api enable or not*/
   const hasVideo = match_odds?.length > 0 && match_odds[0]?.hasVideo;
   const isHasVideo = hasVideo ? true : false;
-
   /* get iframe */
   const { iFrameUrl } = useIFrame(eventTypeId, eventId, isHasVideo);
   const [showLoginWarn, setShowLoginWarn] = useState("");

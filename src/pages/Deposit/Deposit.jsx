@@ -355,7 +355,7 @@ const Deposit = () => {
             </div>
 
             <p _ngcontent-ng-c3816252360="" className="separator">
-              OR
+            And
             </p>
             <div
               _ngcontent-ng-c3816252360=""
@@ -403,7 +403,7 @@ const Deposit = () => {
                     </div>
                     <button
                       onClick={handleDepositSubmit}
-                      disabled={!image && !utr}
+                      disabled={!filePath || !utr}
                       _ngcontent-ng-c3816252360=""
                       className="btn secondary-btn"
                     >

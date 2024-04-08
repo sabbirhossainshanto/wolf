@@ -21,7 +21,7 @@ const Deposit = ({ setSHowDeposit }) => {
   const handleNavigateDeposit = (e) => {
     e.preventDefault();
     if (paymentAmount) {
-      localStorage.setItem('paymentAmount',paymentAmount)
+      localStorage.setItem("paymentAmount", paymentAmount);
       navigate("/profile/deposit");
       setSHowDeposit(false);
     }
@@ -102,7 +102,6 @@ const Deposit = ({ setSHowDeposit }) => {
                     <form
                       onSubmit={handleNavigateDeposit}
                       _ngcontent-ng-c2000663781=""
-                 
                       className="ng-untouched ng-pristine ng-invalid"
                     >
                       <div _ngcontent-ng-c2000663781="" className="modal-body">
@@ -148,6 +147,7 @@ const Deposit = ({ setSHowDeposit }) => {
                         className="modal-footer"
                       >
                         <button
+                          disabled={paymentAmount < 100}
                           _ngcontent-ng-c2000663781=""
                           type="submit"
                           mat-button=""
@@ -170,7 +170,6 @@ const Deposit = ({ setSHowDeposit }) => {
             </div>
           </div>
           <div
-        
             className="cdk-visually-hidden cdk-focus-trap-anchor"
             aria-hidden="true"
           ></div>

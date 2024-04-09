@@ -39,7 +39,7 @@ const Home = () => {
     Array?.from(rightArrow)?.forEach((item) => {
       item?.remove();
     });
-  }, [bannerImage]);
+  }, [bannerImage,sportsType]);
   return (
     <>
       <div

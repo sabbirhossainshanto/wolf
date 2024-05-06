@@ -74,6 +74,8 @@ export const router = createBrowserRouter([
         path: "my-bank-details",
         element: <MyBankDetails />,
       },
+ 
+  
     ],
   },
  

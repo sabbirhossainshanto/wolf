@@ -11,6 +11,7 @@ const ColumnOne = ({ item, isOpen, sportsBook }) => {
         <div className="asb-pos-wide asb-flex">
           <div className="asb-flex-col asb-full-width asb-shrink asb-cut _asb_prices-column">
             {item?.Items?.map((column, idx) => {
+             
               return (
                 <div
                   onClick={() =>

@@ -122,6 +122,8 @@ const Deposit = () => {
     e.target.value = null;
   };
 
+
+  console.log(depositData);
   return (
     <div
       _ngcontent-ng-c3816252360=""

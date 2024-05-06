@@ -32,6 +32,7 @@ const Login = ({ setShowLogin, setErrorLogin, errorLogin, setGetToken }) => {
       username: username,
       password: password,
       token: generatedToken,
+      site:Settings.siteUrl
     };
     /* Encrypted the post data */
     const encryptedData = UseEncryptData(loginData);
@@ -103,6 +104,7 @@ const Login = ({ setShowLogin, setErrorLogin, errorLogin, setGetToken }) => {
       username: "demo",
       password: "",
       token: generatedToken,
+      site:Settings.siteUrl
     });
     fetch(API.login, {
       method: "POST",

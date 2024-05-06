@@ -7,6 +7,7 @@ import useContextState from "../../hooks/useContextState";
 import useBalance from "../../hooks/useBalance";
 import { FaSpinner } from "react-icons/fa";
 import { MdKeyboardArrowUp, MdKeyboardArrowDown } from "react-icons/md";
+
 /* eslint-disable react/no-unknown-property */
 const BetSlip = ({
   setOpenBetSlip,

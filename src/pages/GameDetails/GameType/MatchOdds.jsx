@@ -21,7 +21,6 @@ const MatchOdds = ({
   return (
     <>
       {match_odd?.map((games, i) => {
-      
         return (
           <div key={i} _ngcontent-ng-c942213636="" className="ng-star-inserted">
             <div
@@ -33,7 +32,7 @@ const MatchOdds = ({
             >
               <div _ngcontent-ng-c942213636="" className="head-wrap">
                 <h2 _ngcontent-ng-c942213636="" className="card-heading">
-                { games?.eventTypeId == 4 ? games?.btype : games?.name}
+                  {games?.eventTypeId == 4 ? games?.btype : games?.name}
                 </h2>
                 {/* <button
                   _ngcontent-ng-c942213636=""

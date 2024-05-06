@@ -119,7 +119,7 @@ const Fancy = ({
 
             return (
               <div
-                key={i}
+              key={i}
                 _ngcontent-ng-c942213636=""
                 className="data-wrap ng-star-inserted"
                 id="7OverDSG"

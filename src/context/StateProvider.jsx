@@ -1,6 +1,7 @@
 import { createContext, useEffect, useState } from "react";
 import { API, Settings } from "../api";
 export const StateContext = createContext(null);
+import { getSetApis } from "../api/config";
 
 const StateProvider = ({ children }) => {
   /* Global state this states we are using in full project */
@@ -23,60 +24,73 @@ const StateProvider = ({ children }) => {
   const [paymentAmount, setPaymentAmount] = useState(null);
   const [showDeposit, setSHowDeposit] = useState(false);
   const [copyTextSuccess, setCopyTextSuccess] = useState("");
-  const [showHelpModal,setShowHelpModal] = useState(false)
-  const [showReferral,setShowReferral] = useState(false)
-  const [showBonusRule,setShowBonusRule] = useState(false)
+  const [showHelpModal, setShowHelpModal] = useState(false);
+  const [showReferral, setShowReferral] = useState(false);
+  const [showBonusRule, setShowBonusRule] = useState(false);
   const [openBetSlip, setOpenBetSlip] = useState(false);
-
   const [showOTP, setShowOTP] = useState(false);
+
+  const [noticeLoaded, setNoticeLoaded] = useState(false);
+
+  useEffect(() => {
+    getSetApis(setNoticeLoaded);
+  }, [noticeLoaded]);
+
   /* Get token from locale storage */
   useEffect(() => {
-    const getToken = localStorage.getItem("token");
-    const getBonusToken = localStorage.getItem("bonusToken");
-    const getCheckedBonusToken = localStorage.getItem("checkedBonusToken");
-    /* If check box true of bonus token and bonus token available then using bonus token in authorization headers */
-    if (getCheckedBonusToken && getBonusToken) {
-      /* Set bonus token */
-      setToken(getBonusToken);
-      /* Check box true of bonus */
-      setIsCheckedBonusToken(true);
-    } else {
+    if (noticeLoaded) {
+      const getToken = localStorage.getItem("token");
+      const getBonusToken = localStorage.getItem("bonusToken");
+      const getCheckedBonusToken = localStorage.getItem("checkedBonusToken");
+      /* If check box true of bonus token and bonus token available then using bonus token in authorization headers */
+      if (getCheckedBonusToken && getBonusToken) {
+        /* Set bonus token */
+        setToken(getBonusToken);
+        /* Check box true of bonus */
+        setIsCheckedBonusToken(true);
+      } else {
+        /* Set default token */
+        setToken(getToken);
+        /* Checkbox box false */
+        setIsCheckedBonusToken(false);
+      }
 
-      /* Set default token */
-      setToken(getToken);
-      /* Checkbox box false */
-      setIsCheckedBonusToken(false);
+      if (token && (getToken === token || getBonusToken === token)) {
+        /* handle loading for save crash website` */
+        setTokenLoading(false);
+      }
     }
-
-    if (token && (getToken === token || getBonusToken === token)) {
-      /* handle loading for save crash website` */
-      setTokenLoading(false);
-    }
-  }, [getToken, token]);
+  }, [getToken, token, noticeLoaded]);
 
   useEffect(() => {
-    /* Dynamically get  footer logo  */
-    const icon = `${API.assets}/${Settings.siteUrl}/nav-sprite.svg`;
-    setIcon(icon);
+    if (noticeLoaded) {
+      /* Dynamically get  footer logo  */
+      const icon = `${API.assets}/${Settings.siteUrl}/nav-sprite.svg`;
+      setIcon(icon);
 
-    /* Dynamically append  theme css  */
-    const link = document.createElement("link");
-    link.rel = "stylesheet";
-    link.type = "text/css";
-    link.href = `${API.assets}/${Settings.siteUrl}/theme.css`;
-    document.head.appendChild(link);
-    /*Dynamically append Logo */
-    const logo = `${API.assets}/${Settings.siteUrl}/logo.png`;
-    setLogo(logo);
-    /* Dynamically append  favicon  */
-    const FavIconLink = document.createElement("link");
-    FavIconLink.rel = "icon";
-    FavIconLink.type = "image/png";
-    FavIconLink.href = `${API.assets}/${Settings.siteUrl}/favicon.png`;
-    document.head.appendChild(FavIconLink);
-    /* Site title */
-    document.title = Settings.siteTitle;
-  }, []);
+      /* Dynamically append  theme css  */
+      const link = document.createElement("link");
+      link.rel = "stylesheet";
+      link.type = "text/css";
+      link.href = `${API.assets}/${Settings.siteUrl}/theme.css`;
+      document.head.appendChild(link);
+      /*Dynamically append Logo */
+      const logo = `${API.assets}/${Settings.siteUrl}/logo.png`;
+      setLogo(logo);
+      /* Dynamically append  favicon  */
+      const FavIconLink = document.createElement("link");
+      FavIconLink.rel = "icon";
+      FavIconLink.type = "image/png";
+      FavIconLink.href = `${API.assets}/${Settings.siteUrl}/favicon.png`;
+      document.head.appendChild(FavIconLink);
+      /* Site title */
+      document.title = Settings.siteTitle;
+    }
+  }, [noticeLoaded]);
+
+  if (!noticeLoaded) {
+    return;
+  }
 
   const stateInfo = {
     sportsType,
@@ -115,11 +129,16 @@ const StateProvider = ({ children }) => {
     setSHowDeposit,
     copyTextSuccess,
     setCopyTextSuccess,
-    showHelpModal,setShowHelpModal,
-    showReferral,setShowReferral,
-    showBonusRule,setShowBonusRule,
-    openBetSlip, setOpenBetSlip,
-    showOTP, setShowOTP
+    showHelpModal,
+    setShowHelpModal,
+    showReferral,
+    setShowReferral,
+    showBonusRule,
+    setShowBonusRule,
+    openBetSlip,
+    setOpenBetSlip,
+    showOTP,
+    setShowOTP,
   };
   return (
     <StateContext.Provider value={stateInfo}>{children}</StateContext.Provider>

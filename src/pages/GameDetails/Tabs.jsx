@@ -8,19 +8,10 @@ const Tabs = ({
   showIFrame,
   showScore,
   setShowScore,
+  score,
 }) => {
   return (
-    <div className="mat-mdc-tab-header mat-tab-header"
- 
-    >
-      <button
-        aria-hidden="true"
-        type="button"
-        mat-ripple=""
-        className="mat-ripple mat-mdc-tab-header-pagination mat-mdc-tab-header-pagination-before mat-mdc-tab-header-pagination-disabled"
-      >
-        <div className="mat-mdc-tab-header-pagination-chevron"></div>
-      </button>
+    <div className="mat-mdc-tab-header mat-tab-header">
       <div className="mat-mdc-tab-label-container">
         <div role="tablist" className="mat-mdc-tab-list">
           <div className="mat-mdc-tab-labels">
@@ -87,114 +78,90 @@ const Tabs = ({
                 <span className="mdc-tab-indicator__content mdc-tab-indicator__content--underline"></span>
               </span>
             </div>
-            <div
-              role="tab"
-              mattablabelwrapper=""
-              cdkmonitorelementfocus=""
-              className="mdc-tab mat-mdc-tab mat-mdc-focus-indicator mat-mdc-tab-disabled ng-star-inserted"
-              id="mat-tab-label-0-2"
-              aria-posinset="3"
-              aria-setsize="3"
-              aria-controls="mat-tab-content-0-2"
-              aria-selected="false"
-              aria-disabled="true"
-            >
-              <span className="mdc-tab__ripple"></span>
+            {score?.hasVideo || score?.tracker ? (
               <div
-                mat-ripple=""
-                className="mat-ripple mat-mdc-tab-ripple"
-              ></div>
-              <span className="mdc-tab__content">
-                <span className="mdc-tab__text-label">
-                  <div
-                    _ngcontent-ng-c942213636=""
-                    className="livetv-tab ng-star-inserted"
-                  >
-                    <button
-                    // active class
-                      onClick={() => {
-                        setShowIFrame((prev) => !prev)
-                        setShowScore(false)
-                      }}
+                role="tab"
+                mattablabelwrapper=""
+                cdkmonitorelementfocus=""
+                className="mdc-tab mat-mdc-tab mat-mdc-focus-indicator mat-mdc-tab-disabled ng-star-inserted"
+                id="mat-tab-label-0-2"
+                aria-posinset="3"
+                aria-setsize="3"
+                aria-controls="mat-tab-content-0-2"
+                aria-selected="false"
+                aria-disabled="true"
+              >
+                <span className="mdc-tab__ripple"></span>
+                <div
+                  mat-ripple=""
+                  className="mat-ripple mat-mdc-tab-ripple"
+                ></div>
+                <span className="mdc-tab__content">
+                  <span className="mdc-tab__text-label">
+                    <div
                       _ngcontent-ng-c942213636=""
-                      mat-flat-button=""
-                      className={`livetv-btn rounded mdc-button mdc-button--unelevated mat-mdc-unelevated-button ${
-                        showIFrame  ? "" : ""
-                      } mat-unthemed mat-mdc-button-base`}
-                      mat-ripple-loader-uninitialized=""
-                      mat-ripple-loader-class-name="mat-mdc-button-ripple"
+                      className="livetv-tab ng-star-inserted"
                     >
-                      <span className="mat-mdc-button-persistent-ripple mdc-button__ripple"></span>
-                      <span
+                      <button
+                        // active class
+                        onClick={() => {
+                          setShowIFrame((prev) => !prev);
+                          setShowScore(false);
+                        }}
                         _ngcontent-ng-c942213636=""
-                        className="material-icons"
+                        mat-flat-button=""
+                        className={`livetv-btn rounded mdc-button mdc-button--unelevated mat-mdc-unelevated-button ${
+                          showIFrame ? "" : ""
+                        } mat-unthemed mat-mdc-button-base`}
+                        mat-ripple-loader-uninitialized=""
+                        mat-ripple-loader-class-name="mat-mdc-button-ripple"
                       >
-                        live_tv
-                      </span>
-                      <span className="mdc-button__label"></span>
-                      <span className="mat-mdc-focus-indicator"></span>
-                      <span className="mat-mdc-button-touch-target"></span>
-                    </button>
-                    <button
-                      onClick={() => {
-                        setShowScore((prev) => !prev)
-                        setShowIFrame(false)
-                      }}
-                      _ngcontent-ng-c942213636=""
-                      mat-flat-button=""
-                      className={`livetv-btn rounded mdc-button mdc-button--unelevated mat-mdc-unelevated-button mat-unthemed mat-mdc-button-base ${
-                        showScore ? "" : ""
-                      }`}
-                      mat-ripple-loader-uninitialized=""
-                      mat-ripple-loader-class-name="mat-mdc-button-ripple"
-                    >
-                      <span className="mat-mdc-button-persistent-ripple mdc-button__ripple"></span>
-                      <span
+                        <span className="mat-mdc-button-persistent-ripple mdc-button__ripple"></span>
+                        <span
+                          _ngcontent-ng-c942213636=""
+                          className="material-icons"
+                        >
+                          live_tv
+                        </span>
+                        <span className="mdc-button__label"></span>
+                        <span className="mat-mdc-focus-indicator"></span>
+                        <span className="mat-mdc-button-touch-target"></span>
+                      </button>
+                      <button
+                        onClick={() => {
+                          setShowScore((prev) => !prev);
+                          setShowIFrame(false);
+                        }}
                         _ngcontent-ng-c942213636=""
-                        className="material-icons"
+                        mat-flat-button=""
+                        className={`livetv-btn rounded mdc-button mdc-button--unelevated mat-mdc-unelevated-button mat-unthemed mat-mdc-button-base ${
+                          showScore ? "" : ""
+                        }`}
+                        mat-ripple-loader-uninitialized=""
+                        mat-ripple-loader-class-name="mat-mdc-button-ripple"
                       >
-                        sports_score
-                      </span>
-                      <span className="mdc-button__label"></span>
-                      <span className="mat-mdc-focus-indicator"></span>
-                      <span className="mat-mdc-button-touch-target"></span>
-                    </button>
-                    {/* <button
-                      _ngcontent-ng-c942213636=""
-                      mat-flat-button=""
-                      className="livetv-btn rounded mdc-button mdc-button--unelevated mat-mdc-unelevated-button mat-unthemed mat-mdc-button-base"
-                      mat-ripple-loader-uninitialized=""
-                      mat-ripple-loader-class-name="mat-mdc-button-ripple"
-                    >
-                      <span className="mat-mdc-button-persistent-ripple mdc-button__ripple"></span>
-                      <span
-                        _ngcontent-ng-c942213636=""
-                        className="material-icons"
-                      >
-                        bar_chart
-                      </span>
-                      <span className="mdc-button__label"></span>
-                      <span className="mat-mdc-focus-indicator"></span>
-                      <span className="mat-mdc-button-touch-target"></span>
-                    </button> */}
-                  </div>{" "}
+                        <span className="mat-mdc-button-persistent-ripple mdc-button__ripple"></span>
+                        <span
+                          _ngcontent-ng-c942213636=""
+                          className="material-icons"
+                        >
+                          sports_score
+                        </span>
+                        <span className="mdc-button__label"></span>
+                        <span className="mat-mdc-focus-indicator"></span>
+                        <span className="mat-mdc-button-touch-target"></span>
+                      </button>
+                    </div>{" "}
+                  </span>
                 </span>
-              </span>
-              <span className="mdc-tab-indicator">
-                <span className="mdc-tab-indicator__content mdc-tab-indicator__content--underline"></span>
-              </span>
-            </div>
+                <span className="mdc-tab-indicator">
+                  <span className="mdc-tab-indicator__content mdc-tab-indicator__content--underline"></span>
+                </span>
+              </div>
+            ) : null}
           </div>
         </div>
       </div>
-      <button
-        aria-hidden="true"
-        type="button"
-        mat-ripple=""
-        className="mat-ripple mat-mdc-tab-header-pagination mat-mdc-tab-header-pagination-after mat-mdc-tab-header-pagination-disabled"
-      >
-        <div className="mat-mdc-tab-header-pagination-chevron"></div>
-      </button>
     </div>
   );
 };

@@ -176,6 +176,7 @@ const GameDetails = () => {
               showIFrame={showIFrame}
               showScore={showScore}
               setShowScore={setShowScore}
+              score={score}
             />
             {tabs === "market" && (
               <MarketTab

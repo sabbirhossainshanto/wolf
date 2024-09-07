@@ -8,7 +8,6 @@ const Tabs = ({
   showIFrame,
   showScore,
   setShowScore,
-  match_odds
 }) => {
   return (
     <div className="mat-mdc-tab-header mat-tab-header"
@@ -112,11 +111,15 @@ const Tabs = ({
                     className="livetv-tab ng-star-inserted"
                   >
                     <button
-                      onClick={() => setShowIFrame((prev) => !prev)}
+                    // active class
+                      onClick={() => {
+                        setShowIFrame((prev) => !prev)
+                        setShowScore(false)
+                      }}
                       _ngcontent-ng-c942213636=""
                       mat-flat-button=""
                       className={`livetv-btn rounded mdc-button mdc-button--unelevated mat-mdc-unelevated-button ${
-                        showIFrame && match_odds?.length > 0 &&  match_odds[0]?.hasVideo ? "active" : ""
+                        showIFrame  ? "" : ""
                       } mat-unthemed mat-mdc-button-base`}
                       mat-ripple-loader-uninitialized=""
                       mat-ripple-loader-class-name="mat-mdc-button-ripple"
@@ -133,11 +136,14 @@ const Tabs = ({
                       <span className="mat-mdc-button-touch-target"></span>
                     </button>
                     <button
-                      onClick={() => setShowScore((prev) => !prev)}
+                      onClick={() => {
+                        setShowScore((prev) => !prev)
+                        setShowIFrame(false)
+                      }}
                       _ngcontent-ng-c942213636=""
                       mat-flat-button=""
                       className={`livetv-btn rounded mdc-button mdc-button--unelevated mat-mdc-unelevated-button mat-unthemed mat-mdc-button-base ${
-                        showScore ? "active" : ""
+                        showScore ? "" : ""
                       }`}
                       mat-ripple-loader-uninitialized=""
                       mat-ripple-loader-class-name="mat-mdc-button-ripple"

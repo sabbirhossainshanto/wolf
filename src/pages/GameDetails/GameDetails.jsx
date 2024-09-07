@@ -5,8 +5,6 @@ import useContextState from "../../hooks/useContextState";
 import Success from "../../components/ui/Notification/Success";
 import useCurrentBets from "../../hooks/useCurrentBets";
 import useExposer from "../../hooks/useExposer";
-import useIFrame from "../../hooks/useIFrame";
-// import useGameDetails from "../../hooks/useGameDetails";
 import Tabs from "./Tabs";
 import OpenBetsTab from "./OpenBetsTab";
 import MarketTab from "./MarketTab";
@@ -17,31 +15,21 @@ import useBalance from "../../hooks/useBalance";
 import handleDecryptData from "../../utils/handleDecryptData";
 /* eslint-disable react/no-unknown-property */
 const GameDetails = () => {
+  const { eventId, eventTypeId } = useParams();
   const [loading, setLoading] = useState(true);
   const [data, setData] = useState([]);
+  const [score, setScore] = useState({});
   const [sportsBook, setSportsBook] = useState({});
-  /* get params */
-  const { eventId, eventTypeId } = useParams();
-
   const { placeBetValues, token, openBetSlip, setOpenBetSlip, tokenLoading } =
     useContextState();
   const [successMessage, setSuccessMessage] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
   const [tabs, setTabs] = useState("market");
-  /* get my bets */
   const { myBets, refetchCurrentBets } = useCurrentBets(eventId);
-  /* get exposure */
   const { exposer, refetchExposure } = useExposer(eventId);
-
-  // const { data} = useGameDetails(eventTypeId, eventId);
-  const [showIFrame, setShowIFrame] = useState(true);
-  const [showScore, setShowScore] = useState(true);
+  const [showIFrame, setShowIFrame] = useState(false);
+  const [showScore, setShowScore] = useState(false);
   const [match_odds, setMatch_odds] = useState([]);
-  /* has video boolean for iframe api enable or not*/
-  const hasVideo = match_odds?.length > 0 && match_odds[0]?.hasVideo;
-  const isHasVideo = hasVideo ? true : false;
-  /* get iframe */
-  const { iFrameUrl } = useIFrame(eventTypeId, eventId, isHasVideo);
   const [showLoginWarn, setShowLoginWarn] = useState("");
   const { refetchBalance } = useBalance();
 
@@ -50,6 +38,8 @@ const GameDetails = () => {
       refetchBalance();
     }
   }, []);
+
+
   /* get game details */
   useEffect(() => {
     const getGameDetails = async () => {
@@ -59,6 +49,7 @@ const GameDetails = () => {
       if (decryptionData?.success) {
         setLoading(false);
         setData(decryptionData?.result);
+        setScore(decryptionData?.score);
         setSportsBook(decryptionData?.sportsbook?.Result);
       }
     };
@@ -72,15 +63,7 @@ const GameDetails = () => {
     return;
   }
 
-  let footballScore;
-  if (
-    showScore &&
-    match_odds?.length > 0 &&
-    match_odds?.[0]?.eventTypeId == 1 &&
-    match_odds[0]?.score !== null
-  ) {
-    footballScore = match_odds[0]?.score;
-  }
+
 
   return (
     <>
@@ -96,8 +79,8 @@ const GameDetails = () => {
               className="team-play-bar title-bar"
             >
               {/* score */}
-              {footballScore !== undefined && (
-                <table style={{ fontSize: "10px", color: "white" }}>
+             
+                {/* <table style={{ fontSize: "10px", color: "white" }}>
                   <tbody>
                     <tr>
                       <td rowspan="2" style={{ color: "greenyellow" }}>
@@ -135,10 +118,9 @@ const GameDetails = () => {
                       <td style={{ height: "10px" }}>{footballScore?.at}</td>
                     </tr>
                   </tbody>
-                  {/* score end */}
-                </table>
-              )}
-              {!footballScore && (
+                </table> */}
+          
+            
                 <div _ngcontent-ng-c942213636="" className="playing-teams">
                   <button
                     _ngcontent-ng-c942213636=""
@@ -165,8 +147,8 @@ const GameDetails = () => {
                     {data?.length > 0 && data[0]?.eventName}
                   </span>
                 </div>
-              )}
-              {!footballScore && (
+         
+            
                 <div _ngcontent-ng-c942213636="" className="playing-teams">
                   <span
                     _ngcontent-ng-c942213636=""
@@ -175,7 +157,7 @@ const GameDetails = () => {
                     {data?.length > 0 && data[0]?.openDate}
                   </span>
                 </div>
-              )}
+       
             </div>
           </div>
           <div
@@ -194,15 +176,14 @@ const GameDetails = () => {
               showIFrame={showIFrame}
               showScore={showScore}
               setShowScore={setShowScore}
-              match_odds={match_odds}
             />
             {tabs === "market" && (
               <MarketTab
+                score={score}
                 sportsBook={sportsBook}
                 data={data}
                 setOpenBetSlip={setOpenBetSlip}
                 exposer={token && exposer}
-                iFrameUrl={iFrameUrl}
                 showIFrame={showIFrame}
                 showScore={showScore}
                 setShowScore={setShowScore}

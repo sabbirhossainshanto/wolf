@@ -7,12 +7,13 @@ import FancyOne from "./GameType/FancyOne";
 import MatchOdds from "./GameType/MatchOdds";
 import OverByOver from "./GameType/OverByOver";
 import SportsBook from "./GameType/SportsBook/SportsBook";
+import { useParams } from "react-router-dom";
+import useIFrame from "../../hooks/useIFrame";
 
 /* eslint-disable react/no-unknown-property */
 const MarketTab = ({
   sportsBook,
   data,
-  iFrameUrl,
   exposer,
   setOpenBetSlip,
   showIFrame,
@@ -20,6 +21,7 @@ const MarketTab = ({
   match_odds,
   setMatch_odds,
   setShowLoginWarn,
+  score,
 }) => {
   const [bookmarker, setBookmarker] = useState([]);
   const [bookmarker2, setBookmarker2] = useState([]);
@@ -27,7 +29,8 @@ const MarketTab = ({
   const [fancy1, setFancy1] = useState([]);
   const [overByOver, setOverByOver] = useState([]);
   const { setPlaceBetValues } = useContextState();
-
+  const { eventId, eventTypeId } = useParams();
+  const { iFrameUrl } = useIFrame(eventTypeId, eventId);
   /* Filtered all the game  */
   useEffect(() => {
     const filterMatch_odds = data?.filter(
@@ -63,6 +66,8 @@ const MarketTab = ({
     setOverByOver(overByOverFilter);
   }, [data]);
 
+
+ 
   return (
     <div className="mat-mdc-tab-body-wrapper">
       <div
@@ -84,26 +89,30 @@ const MarketTab = ({
               _ngcontent-ng-c942213636=""
               className="live-match-screen ng-star-inserted"
             >
-              {showIFrame &&
-                match_odds?.length > 0 &&
-                match_odds[0]?.hasVideo && (
-                  <iframe
-                    _ngcontent-ng-c942213636=""
-                    style={{
-                      width: "100%",
-                      border: "0px",
-                    }}
-                    src={
-                      match_odds?.length > 0 &&
-                      match_odds[0]?.hasVideo &&
-                      iFrameUrl?.url
-                    }
-                    referrerPolicy={
-                      iFrameUrl?.ref === false ? "no-referrer" : "no-referrer"
-                    }
-                  ></iframe>
-                )}
-              {showScore &&
+              {showIFrame && score?.hasVideo && (
+                <iframe
+                  _ngcontent-ng-c942213636=""
+                  style={{
+                    width: "100%",
+                    border: "0px",
+                  }}
+                  src={iFrameUrl?.url}
+                  referrerPolicy={
+                    iFrameUrl?.ref === false ? "no-referrer" : "no-referrer"
+                  }
+                ></iframe>
+              )}
+              {showScore && score?.tracker && (
+                <iframe
+                  _ngcontent-ng-c942213636=""
+                  style={{
+                    width: "100%",
+                    border: "0px",
+                  }}
+                  src={score?.tracker}
+                ></iframe>
+              )}
+              {/* {showScore &&
                 match_odds?.length > 0 &&
                 match_odds?.[0]?.eventTypeId == 4 &&
                 match_odds[0]?.score?.length !== 0 &&
@@ -123,9 +132,9 @@ const MarketTab = ({
                           <span
                             class="small"
                             _ngcontent-ng-c3799324686=""
-                            // class="theme-text"
+                        
                           >
-                            {/* {team?.runRate} */}
+                         
                           </span>
                         </span>
 
@@ -135,14 +144,7 @@ const MarketTab = ({
                           </span>
                         </span>
                       </div>
-                      {/* <div
-                    _ngcontent-ng-c3799324686=""
-                    class="score-overlay ng-star-inserted"
-                  >
-                    <p _ngcontent-ng-c3799324686="" class="current-ball">
-                      Stumps
-                    </p>
-                  </div> */}
+              
                       <div
                         _ngcontent-ng-c3799324686=""
                         class="score-overlay ng-star-inserted"
@@ -188,53 +190,11 @@ const MarketTab = ({
                             {team?.target}
                           </span>
                         </span>
-                        {/* <div _ngcontent-ng-c3799324686="" class="current-over">
-                      <span _ngcontent-ng-c3799324686="" class="mat-label">
-                        Over 35
-                      </span>
-                      <ul _ngcontent-ng-c3799324686="" class="ng-star-inserted">
-                        <li
-                          _ngcontent-ng-c3799324686=""
-                          class="ng-star-inserted"
-                        >
-                          <p _ngcontent-ng-c3799324686="">0</p>
-                        </li>
-                        <li
-                          _ngcontent-ng-c3799324686=""
-                          class="ng-star-inserted"
-                        >
-                          <p _ngcontent-ng-c3799324686="">0</p>
-                        </li>
-                        <li
-                          _ngcontent-ng-c3799324686=""
-                          class="ng-star-inserted"
-                        >
-                          <p _ngcontent-ng-c3799324686="">0</p>
-                        </li>
-                        <li
-                          _ngcontent-ng-c3799324686=""
-                          class="ng-star-inserted"
-                        >
-                          <p _ngcontent-ng-c3799324686="">0</p>
-                        </li>
-                        <li
-                          _ngcontent-ng-c3799324686=""
-                          class="ng-star-inserted"
-                        >
-                          <p _ngcontent-ng-c3799324686="">0</p>
-                        </li>
-                        <li
-                          _ngcontent-ng-c3799324686=""
-                          class="ng-star-inserted"
-                        >
-                          <p _ngcontent-ng-c3799324686="">1</p>
-                        </li>
-                      </ul>
-                    </div> */}
+              
                       </div>
                     </div>
                   );
-                })}
+                })} */}
             </div>
 
             <div _ngcontent-ng-c942213636="" className="mkt-tab-section">
@@ -300,38 +260,7 @@ const MarketTab = ({
           </div>
         </div>
       </div>
-      <div
-        role="tabpanel"
-        className="mat-mdc-tab-body mat-tab-body ng-tns-c737557735-2 ng-star-inserted"
-        id="mat-tab-content-0-1"
-        aria-labelledby="mat-tab-label-0-1"
-      >
-        <div
-          cdkscrollable=""
-          className="mat-mdc-tab-body-content ng-tns-c737557735-2 ng-trigger ng-trigger-translateTab"
-          style={{
-            transform: "translate3d(100%, 0px, 0px)",
-            minHeight: "1px",
-            visibility: "hidden",
-          }}
-        ></div>
-      </div>
-      <div
-        role="tabpanel"
-        className="mat-mdc-tab-body mat-tab-body ng-tns-c737557735-3 ng-star-inserted"
-        id="mat-tab-content-0-2"
-        aria-labelledby="mat-tab-label-0-2"
-      >
-        <div
-          cdkscrollable=""
-          className="mat-mdc-tab-body-content ng-tns-c737557735-3 ng-trigger ng-trigger-translateTab"
-          style={{
-            transform: "translate3d(100%, 0px, 0px)",
-            minHeight: "1px",
-            visibility: "hidden",
-          }}
-        ></div>
-      </div>
+
     </div>
   );
 };

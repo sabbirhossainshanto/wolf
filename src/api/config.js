@@ -51,12 +51,13 @@ export const getSetApis = (setNoticeLoaded) => {
         API.bankAccount = data?.result?.endpoint?.bankAccount;
         API.uploadScreenshot = data?.result?.endpoint?.uploadScreenshot;
         API.latestEvents = data?.result?.endpoint?.latestEvents;
-        API.siteSetting = data?.result?.endpoint?.siteSetting;
+        API.siteSetting = data?.result?.endpoint?.siteSettings;
         API.cache = data?.result?.endpoint?.cache;
         API.assets = data?.result?.endpoint?.assets;
 
-
-
+        Settings.logoFormat = data?.result?.logo?.format;
+        Settings.logoHeight = data?.result?.logo?.height;
+        Settings.logoWidth = data?.result?.logo?.width;
         Settings.bonus = data?.result?.settings?.bonus;
         Settings.deposit = data?.result?.settings?.deposit;
         Settings.withdraw = data?.result?.settings?.withdraw;

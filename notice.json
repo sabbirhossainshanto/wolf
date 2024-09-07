@@ -6,7 +6,7 @@
   "result": {
     "settings": {
       "siteTitle": "A23Money",
-      "siteUrl": "a23money.com",
+      "siteUrl": "11xgame.com",
       "interval": 800,
       "casino": "diamond",
       "registration": true,
@@ -16,11 +16,16 @@
       "bonus": true,
       "withdraw": true,
       "disabledDevtool": false,
-      "casinoCurrency": "INR",
+      "casinoCurrency": "AED",
       "otp": true,
       "referral": true,
       "buildVersion": 1.01,
       "balanceApiLoop": false
+    },
+    "logo": {
+      "height": 55,
+      "width": 125,
+      "format": "png"
     },
 
     "endpoint": {

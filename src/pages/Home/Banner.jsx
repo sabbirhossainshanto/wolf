@@ -17,11 +17,10 @@ const Banner = ({ card }) => {
   return (
     <Swiper
       spaceBetween={10}
-      slidesPerView={1.5}
+      slidesPerView="auto"
       pagination={{
         clickable: true,
       }}
-      navigation={true}
       modules={[Pagination, Navigation]}
       className="mySwiper"
     >
@@ -30,7 +29,7 @@ const Banner = ({ card }) => {
           <SwiperSlide
             onClick={() => handleNavigate(item)}
             key={i}
-            style={{ borderRadius: "10px", overflow: "hidden" }}
+            style={{ width: "270px", borderRadius: "10px", overflow: "hidden" }}
           >
             <div _ngcontent-jfw-c80="">
               <img

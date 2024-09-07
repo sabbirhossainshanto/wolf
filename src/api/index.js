@@ -61,4 +61,8 @@ export const Settings = {
   referral: "",
   buildVersion: "",
   balanceApiLoop: "",
+  logoFormat:"",
+  logoHeight:"",
+  logoWidth:"",
+ 
 };

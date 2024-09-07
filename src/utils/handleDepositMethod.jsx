@@ -3,6 +3,8 @@ import { API } from "../api";
 import UseTokenGenerator from "../hooks/UseTokenGenerator";
 
 const handleDepositMethod = (token) => {
+
+
   const handleDeposit = async () => {
     const generatedToken = UseTokenGenerator();
     const bankData = {

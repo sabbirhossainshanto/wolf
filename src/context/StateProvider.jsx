@@ -74,8 +74,9 @@ const StateProvider = ({ children }) => {
       link.type = "text/css";
       link.href = `${API.assets}/${Settings.siteUrl}/theme.css`;
       document.head.appendChild(link);
+      console.log(link);
       /*Dynamically append Logo */
-      const logo = `${API.assets}/${Settings.siteUrl}/logo.png`;
+      const logo = `${API.assets}/${Settings.siteUrl}/logo.${Settings.logoFormat}`;
       setLogo(logo);
       /* Dynamically append  favicon  */
       const FavIconLink = document.createElement("link");

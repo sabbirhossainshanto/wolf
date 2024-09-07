@@ -12,8 +12,10 @@ const useGetVersion = () => {
         site: Settings.siteUrl,
         token: generatedToken,
       };
+    
       const encryptedData = UseEncryptData(postData);
       const res = await axios.post(API.siteSetting, encryptedData);
+      console.log(res);
       const data = res?.data;
       if (data?.success) {
         return data?.result;

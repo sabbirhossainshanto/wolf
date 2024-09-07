@@ -195,6 +195,11 @@ const Login = ({ setShowLogin, setErrorLogin, errorLogin, setGetToken }) => {
                           <div _ngcontent-ng-c2806737617="" className="logo">
                             {" "}
                             <img
+                                style={{
+                                  height: `${Settings.logoHeight}px`,
+                                  width: `${Settings.logoWidth}px`,
+                                  objectFit:'contain'
+                                }}
                               _ngcontent-ng-c2806737617=""
                               alt="logo"
                               src={logo}

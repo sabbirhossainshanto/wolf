@@ -68,6 +68,7 @@ const LiveCasinoTab = () => {
         return setWarnMessage("Bonus wallet is available only on sports.");
       }
       if (Settings.casinoCurrency !== "AED") {
+        console.log('ok');
         navigate(`/casino/${name.replace(/ /g, "")}/${id}`);
       } else {
         setGameInfo({ gameName: "", gameId: "" });
@@ -220,6 +221,7 @@ const LiveCasinoTab = () => {
                                   />
                                 </a>
                                 <p
+                                
                                   _ngcontent-ng-c1965075897=""
                                   className="total-players"
                                 >

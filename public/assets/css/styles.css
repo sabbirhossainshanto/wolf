@@ -34,7 +34,7 @@
   /* theme css */
   --primary-color: #000000;
   --secondary-color: #9b0505;
-  --button-primary: #141414
+  --page-topBar: #141414
   --bg-primary90: #0b3b90e6;
   --text-primary: #ffffff;
   --bg-secondary: #202020;
@@ -5055,6 +5055,7 @@ input[type="number"] {
 
 .game-tab[_ngcontent-ng-c942213636] .pagetop-bar[_ngcontent-ng-c942213636] {
   position: sticky;
+  background-color: var(--page-topBar);
   top: 44px;
   z-index: 1000;
 }
@@ -8046,7 +8047,7 @@ ion-refresher-content {
 .page-header[_ngcontent-ng-c943649379] .header-right-cont .not-loggedIn button {
   min-width: auto;
   width: auto;
-  height: 25px;
+height: 25px;
   max-width: 90px;
   font-size: 10px;
   background: var(--color1);

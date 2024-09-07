@@ -11,7 +11,9 @@ const Tabs = ({
   match_odds
 }) => {
   return (
-    <div className="mat-mdc-tab-header mat-tab-header">
+    <div className="mat-mdc-tab-header mat-tab-header"
+ 
+    >
       <button
         aria-hidden="true"
         type="button"

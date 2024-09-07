@@ -130,7 +130,7 @@ const Dropdown = ({
               setShowLeftDropdown(false);
             }}
             style={{
-              backgroundColor: `${product === "All" ? "#dc4599" : "white"}`,
+              backgroundColor: `${product === "All" ? "var(--primary-color)" : "white"}`,
               color: `${product === "All" ? "white" : "black"}`,
             }}
           >
@@ -145,7 +145,7 @@ const Dropdown = ({
                 }}
                 style={{
                   backgroundColor: `${
-                    item?.product === product ? "#dc4599" : "white"
+                    item?.product === product ? "var(--primary-color)" : "white"
                   }`,
                   color: `${item?.product === product ? "white" : "black"}`,
                   display: "flex",
@@ -269,7 +269,7 @@ const Dropdown = ({
               setShowRightDropdown(false);
             }}
             style={{
-              backgroundColor: `${gameList === "All" ? "#dc4599" : "white"}`,
+              backgroundColor: `${gameList === "All" ? "var(--primary-color)" : "white"}`,
               color: `${gameList === "All" ? "white" : "black"}`,
             }}
           >
@@ -283,7 +283,7 @@ const Dropdown = ({
                   setShowRightDropdown(false);
                 }}
                 style={{
-                  backgroundColor: `${item === gameList ? "#dc4599" : "white"}`,
+                  backgroundColor: `${item === gameList ? "var(--primary-color)" : "white"}`,
                   color: `${item === gameList ? "white" : "black"}`,
                 }}
                 key={i}

@@ -69,12 +69,14 @@ const StateProvider = ({ children }) => {
       setIcon(icon);
 
       /* Dynamically append  theme css  */
-      const link = document.createElement("link");
-      link.rel = "stylesheet";
-      link.type = "text/css";
-      link.href = `${API.assets}/${Settings.siteUrl}/theme.css`;
-      document.head.appendChild(link);
-      console.log(link);
+      // const link = document.createElement("link");
+      // link.rel = "stylesheet";
+      // link.type = "text/css";
+      // link.href = `${API.assets}/${Settings.siteUrl}/theme.css`;
+      // document.head.appendChild(link);
+      // console.log(link);
+
+      
       /*Dynamically append Logo */
       const logo = `${API.assets}/${Settings.siteUrl}/logo.${Settings.logoFormat}`;
       setLogo(logo);

@@ -255,8 +255,9 @@ const Navbar = () => {
                       onClick={loginWithDemo}
                       _ngcontent-ng-c3243547741=""
                       mat-flat-button=""
-                      className="btn dark-outlined-btn demo-btn mdc-button mdc-button--unelevated mat-mdc-unelevated-button mat-unthemed mat-mdc-button-base"
+                      className="btn dark-outlined-btn demo-btn mdc-button mdc-button--unelevated mat-mdc-unelevated-button mat-unthemed mat-mdc-button-base primary-button"
                       mat-ripple-loader-class-name="mat-mdc-button-ripple"
+                      
                     >
                       <span className="mat-mdc-button-persistent-ripple mdc-button__ripple"></span>
                       <span className="mdc-button__label">Demo ID</span>

@@ -9,7 +9,7 @@
       "siteUrl": "11xgame.com",
       "interval": 800,
       "casino": "diamond",
-      "registration": true,
+      "register": true,
       "forceLogin": false,
       "demoLogin": true,
       "deposit": true,

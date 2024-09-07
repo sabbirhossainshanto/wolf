@@ -102,55 +102,59 @@ const Tabs = ({
                       _ngcontent-ng-c942213636=""
                       className="livetv-tab ng-star-inserted"
                     >
-                      <button
-                        // active class
-                        onClick={() => {
-                          setShowIFrame((prev) => !prev);
-                          setShowScore(false);
-                        }}
-                        _ngcontent-ng-c942213636=""
-                        mat-flat-button=""
-                        className={`livetv-btn rounded mdc-button mdc-button--unelevated mat-mdc-unelevated-button ${
-                          showIFrame ? "" : ""
-                        } mat-unthemed mat-mdc-button-base`}
-                        mat-ripple-loader-uninitialized=""
-                        mat-ripple-loader-class-name="mat-mdc-button-ripple"
-                      >
-                        <span className="mat-mdc-button-persistent-ripple mdc-button__ripple"></span>
-                        <span
+                      {score?.hasVideo && (
+                        <button
+                          // active class
+                          onClick={() => {
+                            setShowIFrame((prev) => !prev);
+                            setShowScore(false);
+                          }}
                           _ngcontent-ng-c942213636=""
-                          className="material-icons"
+                          mat-flat-button=""
+                          className={`livetv-btn rounded mdc-button mdc-button--unelevated mat-mdc-unelevated-button ${
+                            showIFrame ? "" : ""
+                          } mat-unthemed mat-mdc-button-base`}
+                          mat-ripple-loader-uninitialized=""
+                          mat-ripple-loader-class-name="mat-mdc-button-ripple"
                         >
-                          live_tv
-                        </span>
-                        <span className="mdc-button__label"></span>
-                        <span className="mat-mdc-focus-indicator"></span>
-                        <span className="mat-mdc-button-touch-target"></span>
-                      </button>
-                      <button
-                        onClick={() => {
-                          setShowScore((prev) => !prev);
-                          setShowIFrame(false);
-                        }}
-                        _ngcontent-ng-c942213636=""
-                        mat-flat-button=""
-                        className={`livetv-btn rounded mdc-button mdc-button--unelevated mat-mdc-unelevated-button mat-unthemed mat-mdc-button-base ${
-                          showScore ? "" : ""
-                        }`}
-                        mat-ripple-loader-uninitialized=""
-                        mat-ripple-loader-class-name="mat-mdc-button-ripple"
-                      >
-                        <span className="mat-mdc-button-persistent-ripple mdc-button__ripple"></span>
-                        <span
+                          <span className="mat-mdc-button-persistent-ripple mdc-button__ripple"></span>
+                          <span
+                            _ngcontent-ng-c942213636=""
+                            className="material-icons"
+                          >
+                            live_tv
+                          </span>
+                          <span className="mdc-button__label"></span>
+                          <span className="mat-mdc-focus-indicator"></span>
+                          <span className="mat-mdc-button-touch-target"></span>
+                        </button>
+                      )}
+                      {score?.tracker && (
+                        <button
+                          onClick={() => {
+                            setShowScore((prev) => !prev);
+                            setShowIFrame(false);
+                          }}
                           _ngcontent-ng-c942213636=""
-                          className="material-icons"
+                          mat-flat-button=""
+                          className={`livetv-btn rounded mdc-button mdc-button--unelevated mat-mdc-unelevated-button mat-unthemed mat-mdc-button-base ${
+                            showScore ? "" : ""
+                          }`}
+                          mat-ripple-loader-uninitialized=""
+                          mat-ripple-loader-class-name="mat-mdc-button-ripple"
                         >
-                          sports_score
-                        </span>
-                        <span className="mdc-button__label"></span>
-                        <span className="mat-mdc-focus-indicator"></span>
-                        <span className="mat-mdc-button-touch-target"></span>
-                      </button>
+                          <span className="mat-mdc-button-persistent-ripple mdc-button__ripple"></span>
+                          <span
+                            _ngcontent-ng-c942213636=""
+                            className="material-icons"
+                          >
+                            sports_score
+                          </span>
+                          <span className="mdc-button__label"></span>
+                          <span className="mat-mdc-focus-indicator"></span>
+                          <span className="mat-mdc-button-touch-target"></span>
+                        </button>
+                      )}
                     </div>{" "}
                   </span>
                 </span>

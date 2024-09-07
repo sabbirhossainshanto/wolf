@@ -112,7 +112,7 @@ const MarketTab = ({
                   src={score?.tracker}
                 ></iframe>
               )}
-              {/* {showScore &&
+              {
                 match_odds?.length > 0 &&
                 match_odds?.[0]?.eventTypeId == 4 &&
                 match_odds[0]?.score?.length !== 0 &&
@@ -194,7 +194,7 @@ const MarketTab = ({
                       </div>
                     </div>
                   );
-                })} */}
+                })}
             </div>
 
             <div _ngcontent-ng-c942213636="" className="mkt-tab-section">

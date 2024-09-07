@@ -9,6 +9,7 @@ export const getSetApis = (setNoticeLoaded, baseUrl) => {
     .then((res) => {
       const data = res.data;
       if (data?.result?.endpoint) {
+        API.otpless = data?.result?.endpoint?.otpless;
         API.accessToken = data?.result?.endpoint?.accessToken;
         API.balance = data?.result?.endpoint?.balance;
         API.changePassword = data?.result?.endpoint?.changePassword;
@@ -41,7 +42,7 @@ export const getSetApis = (setNoticeLoaded, baseUrl) => {
         API.accountStatement = data?.result?.endpoint?.accountStatement;
         API.settledBets = data?.result?.endpoint?.settledBets;
         API.siteUrl = data?.result?.settings?.siteUrl;
-        API.whatsApp = data?.result?.endpoint?.whatsApp;
+        API.whatsApp = data?.result?.endpoint?.whatsapp;
         API.otp = data?.result?.endpoint?.otp;
         API.liveCasinoWolf = data?.result?.endpoint?.liveCasinoWolf;
         API.slotWolf = data?.result?.endpoint?.slotWolf;
@@ -74,6 +75,7 @@ export const getSetApis = (setNoticeLoaded, baseUrl) => {
         Settings.buildVersion = data?.result?.settings?.buildVersion;
         Settings.balanceApiLoop = data?.result?.settings?.balanceApiLoop;
         Settings.baseUrl = data?.result?.settings?.baseUrl;
+        Settings.otpless = data?.result?.settings?.otpless;
 
         setNoticeLoaded(true);
       }

@@ -30,7 +30,6 @@ const Deposit = () => {
   const [uploadedImage, setUploadedImage] = useState(null);
   const [filePath, setFilePath] = useState("");
 
-
   const handleVisibleBankMethod = async (method) => {
     setTabs(method?.type);
     setPaymentId(method?.paymentId);
@@ -69,7 +68,7 @@ const Deposit = () => {
           setUploadedImage(data?.fileName);
           setFilePath(data?.filePath);
           setImage(null);
-        }else{
+        } else {
           setLoading(false);
           setUtr(null);
           setImage(null);
@@ -122,7 +121,6 @@ const Deposit = () => {
     e.target.value = null;
   };
 
-
   console.log(depositData);
   return (
     <div
@@ -167,9 +165,9 @@ const Deposit = () => {
             5-10 minutes
           </p>
         </div>
-        <div _ngcontent-ng-c3816252360="" className="select-method-card">
-          {Array.isArray(depositMethods) &&
-            depositMethods?.map((method) => {
+        {Array.isArray(depositMethods) && depositMethods?.length > 0 ? (
+          <div _ngcontent-ng-c3816252360="" className="select-method-card">
+            {depositMethods?.map((method) => {
               return (
                 <div
                   key={method?.paymentId}
@@ -194,7 +192,12 @@ const Deposit = () => {
                 </div>
               );
             })}
-        </div>
+          </div>
+        ) : (
+          <div style={{ textAlign: "center" }}>
+            No deposit methods available right now.
+          </div>
+        )}
 
         {tabs === "qr" && <QRCode depositData={depositData} />}
         {tabs === "upi" && <UPI depositData={depositData} />}
@@ -357,7 +360,7 @@ const Deposit = () => {
             </div>
 
             <p _ngcontent-ng-c3816252360="" className="separator">
-            And
+              And
             </p>
             <div
               _ngcontent-ng-c3816252360=""
@@ -401,7 +404,6 @@ const Deposit = () => {
                         type="number"
                         value={utr}
                       />
-                      
                     </div>
                     <button
                       onClick={handleDepositSubmit}

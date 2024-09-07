@@ -14,6 +14,7 @@ const Registration = ({
   mobileNo,
   setSuccessRegister,
   setErrRegister,
+  orderId,
 }) => {
   const { logo, setGetToken } = useContextState();
   /* Close modal click outside */
@@ -27,7 +28,7 @@ const Registration = ({
     confirmPassword: "",
     mobileNo: "",
     otp: "",
-    referralCode:""
+    referralCode: "",
   });
   const { handleSubmit } = useForm();
   /* Handle register */
@@ -42,7 +43,9 @@ const Registration = ({
       token: generatedToken,
       otp: user?.otp,
       isOtpAvailable: Settings.otp,
-      referralCode:user.referralCode
+      referralCode: user.referralCode,
+      orderId: orderId.orderId,
+      otpMethod: orderId.otpMethod,
     };
 
     /* Encrypted post data */
@@ -171,7 +174,6 @@ const Registration = ({
                         <div _ngcontent-ng-c1411651695="" className="logo">
                           <img
                             _ngcontent-ng-c1411651695=""
-                           
                             alt="logo"
                             src={logo}
                             className="ng-star-inserted"
@@ -226,7 +228,6 @@ const Registration = ({
                         <form
                           onSubmit={handleSubmit(onSubmit)}
                           _ngcontent-ng-c1411651695=""
-                        
                           className="ng-untouched ng-pristine ng-valid"
                         >
                           <div
@@ -264,7 +265,6 @@ const Registration = ({
                                             _ngcontent-ng-c1411651695=""
                                             type="tel"
                                             matinput=""
-                                      
                                             maxLength={4}
                                             appnumericonly=""
                                             formcontrolname="otp"

@@ -89,7 +89,7 @@ const InPlay = ({ keys, data }) => {
                 ) : (
                   <div
                     _ngcontent-ng-c943649379=""
-                    class="suspended-wrap ng-star-inserted"
+                    className="suspended-wrap ng-star-inserted"
                   >
                     <h4 _ngcontent-ng-c943649379="">Suspended</h4>
                   </div>
@@ -151,7 +151,7 @@ const InPlay = ({ keys, data }) => {
                 ) : (
                   <div
                     _ngcontent-ng-c943649379=""
-                    class="suspended-wrap ng-star-inserted"
+                    className="suspended-wrap ng-star-inserted"
                   >
                     <h4 _ngcontent-ng-c943649379="">Suspended</h4>
                   </div>
@@ -213,7 +213,7 @@ const InPlay = ({ keys, data }) => {
                 ) : (
                   <div
                     _ngcontent-ng-c943649379=""
-                    class="suspended-wrap ng-star-inserted"
+                    className="suspended-wrap ng-star-inserted"
                   >
                     <h4 _ngcontent-ng-c943649379="">Suspended</h4>
                   </div>

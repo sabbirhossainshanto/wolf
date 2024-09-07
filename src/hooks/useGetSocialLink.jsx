@@ -7,6 +7,7 @@ import axios from "axios";
 
 const useGetSocialLink = () => {
   const { token } = useContextState();
+
   /* get whats app link */
   const { data: socialLink } = useQuery({
     queryKey: ["whatsApp"],
@@ -23,6 +24,7 @@ const useGetSocialLink = () => {
           Authorization: `bearer ${token}`,
         },
       });
+      console.log({res});
       const data = res.data;
       if (data?.success) {
         return data?.result;

@@ -8,7 +8,15 @@ import { API, Settings } from "../../../api";
 import axios from "axios";
 import useContextState from "../../../hooks/useContextState";
 import Success from "../../ui/Notification/Success";
-const GetOTP = ({ setShowOTP, setShowRegister, mobileNo, setMobileNo }) => {
+import getOtpOnWhatsapp from "../../../utils/getOtpOnWhatsapp";
+import toast from "react-hot-toast";
+const GetOTP = ({
+  setShowOTP,
+  setShowRegister,
+  mobileNo,
+  setMobileNo,
+  setOrderId,
+}) => {
   const { logo } = useContextState();
   const [err, setErr] = useState("");
   /* Close otp modal click outside */
@@ -28,11 +36,16 @@ const GetOTP = ({ setShowOTP, setShowRegister, mobileNo, setMobileNo }) => {
         site: Settings?.siteUrl,
       };
       const encryptedData = UseEncryptData(otpData);
-      const res = await axios.post(API.otp,encryptedData);
+      const res = await axios.post(API.otp, encryptedData);
       const data = res.data;
-   
+
       if (data?.success) {
         /* Close opt modal */
+        setOrderId({
+          orderId: data?.result?.orderId,
+          otpMethod: "sms",
+        });
+        toast.success(data?.result?.message);
         setShowOTP(false);
         /* Show register modal after success */
         setShowRegister(true);
@@ -44,6 +57,16 @@ const GetOTP = ({ setShowOTP, setShowRegister, mobileNo, setMobileNo }) => {
       setShowOTP(false);
       /* show register modal */
       setShowRegister(true);
+    }
+  };
+
+  const handleGetOtpOnWhatsapp = async () => {
+    await getOtpOnWhatsapp(mobileNo, setOrderId, setShowRegister);
+  };
+
+  const handleMobileNo = (e) => {
+    if (e.target.value.length <= 10) {
+      setMobileNo(e.target.value);
     }
   };
 
@@ -250,9 +273,8 @@ const GetOTP = ({ setShowOTP, setShowRegister, mobileNo, setMobileNo }) => {
                                   <div className="mat-mdc-form-field-flex ng-tns-c1205077789-3">
                                     <div className="mat-mdc-form-field-infix ng-tns-c1205077789-3">
                                       <input
-                                        onChange={(e) =>
-                                          setMobileNo(e.target.value)
-                                        }
+                                        onChange={(e) => handleMobileNo(e)}
+                                        value={mobileNo}
                                         _ngcontent-ng-c2806737617=""
                                         type="number"
                                         appnumericonly=""
@@ -289,30 +311,39 @@ const GetOTP = ({ setShowOTP, setShowRegister, mobileNo, setMobileNo }) => {
                               className="form-btn"
                             >
                               <button
+                                disabled={Settings.otp && mobileNo?.length < 10}
                                 _ngcontent-ng-c2806737617=""
                                 type="submit"
                                 className="btn secondary-btn"
                               >
-                                {Settings.otp ? " Get OTP" : "Proceed"}
+                                {Settings.otp
+                                  ? " Get OTP On Message"
+                                  : "Proceed"}
                               </button>
-                              <p
-                                _ngcontent-ng-c2806737617=""
-                                className="separator ng-star-inserted"
-                              >
-                                OR
-                              </p>
-                              <div
-                                _ngcontent-ng-c2806737617=""
-                                className="extra-btns"
-                              >
-                                <button
-                                  _ngcontent-ng-c2806737617=""
-                                  type="button"
-                                  className="btn secondary-btn ng-star-inserted"
-                                >
-                                  Login with Demo ID
-                                </button>
-                              </div>
+                              {Settings?.otpless && (
+                                <>
+                                  <p
+                                    _ngcontent-ng-c2806737617=""
+                                    className="separator ng-star-inserted"
+                                  >
+                                    OR
+                                  </p>
+                                  <div
+                                    onClick={() => handleGetOtpOnWhatsapp}
+                                    _ngcontent-ng-c2806737617=""
+                                    className="extra-btns"
+                                  >
+                                    <button
+                                      disabled={mobileNo?.length < 10}
+                                      _ngcontent-ng-c2806737617=""
+                                      type="button"
+                                      className="btn secondary-btn ng-star-inserted"
+                                    >
+                                      Get OTP on WhatsApp
+                                    </button>
+                                  </div>
+                                </>
+                              )}
                             </div>
                           </div>
                         </form>

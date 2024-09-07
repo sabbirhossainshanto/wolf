@@ -21,12 +21,13 @@
       "referral": true,
       "buildVersion": 1.01,
       "balanceApiLoop": false,
+      "otpless":"",
       "baseUrl": ""
     },
     "logo": {
       "height": 55,
       "width": 125,
-      "format": "png"
+      "format": "svg"
     },
 
     "endpoint": {
@@ -93,7 +94,8 @@
       "bankAccount": "https://api7.live/api/exchange/diamond/bankAccount",
       "uploadScreenshot": "https://b2c.bet/deposit/up.php",
       "latestEvents": "https://api7.live/api/exchange/diamond/latestEvents",
-      "siteSettings": "https://cache7.live/api/exchange/diamond/settings"
+      "siteSettings": "https://cache7.live/api/exchange/diamond/settings",
+      "otpless": "https://api7.live/api/exchange/diamond/otpless"
     }
   },
   "success": true

@@ -13,6 +13,10 @@ import GetOTP from "../../modal/signup/GetOTP";
 import Registration from "../../modal/signup/Registration";
 import Success from "../Notification/Success";
 const Navbar = () => {
+  const [orderId, setOrderId] = useState({
+    orderId: "",
+    otpMethod: "",
+  });
   const [errorLogin, setErrorLogin] = useState("");
   const {
     setShowSidebar,
@@ -308,6 +312,7 @@ const Navbar = () => {
       {/* Opt modal */}
       {showOTP && (
         <GetOTP
+        setOrderId={setOrderId}
           setShowOTP={setShowOTP}
           setShowRegister={setShowRegister}
           mobileNo={mobileNo}
@@ -317,6 +322,7 @@ const Navbar = () => {
       {/* Registration modal */}
       {showRegister && (
         <Registration
+        orderId={orderId}
           setShowRegister={setShowRegister}
           setShowOTP={setShowOTP}
           mobileNo={mobileNo}

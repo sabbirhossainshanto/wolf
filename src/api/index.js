@@ -44,6 +44,7 @@ export const API = {
   uploadScreenshot: "",
   latestEvents: "",
   siteSetting: "",
+  otpless: "",
 };
 
 export const Settings = {
@@ -61,8 +62,9 @@ export const Settings = {
   referral: "",
   buildVersion: "",
   balanceApiLoop: "",
-  logoFormat:"",
-  logoHeight:"",
-  logoWidth:"",
-   baseUrl:""
+  logoFormat: "",
+  logoHeight: "",
+  logoWidth: "",
+  baseUrl: "",
+  otpless: "",
 };

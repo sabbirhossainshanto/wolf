@@ -1548,7 +1548,7 @@ button .mat-mdc-button-touch-target {
 
 .login-dialog div.mdc-dialog__surface {
   border-radius: 20px;
-  background-color: var(--primary-color);
+  background-color: var(--primary-bg);
 }
 
 .login-dialog div.mdc-dialog__surface .login-section {
@@ -1880,7 +1880,7 @@ button .mat-mdc-button-touch-target {
 
 .swal2-popup.alert-dialog {
   background-color: var(--white-color);
-  border-top: 5px solid var(--primary-color);
+  border-top: 5px solid var(--primary-bg);
   max-width: 390px;
   padding: 15px 0 0;
   width: 100%;
@@ -1928,7 +1928,7 @@ button .mat-mdc-button-touch-target {
 }
 
 .swal2-popup.alert-dialog .swal2-actions .swal2-styled.swal2-confirm {
-  background-color: var(--primary-color) !important;
+  background-color: var(--primary-bg) !important;
   margin: 0 0 4px;
   border-radius: 30px;
   width: 55%;
@@ -14542,7 +14542,7 @@ div.mat-mdc-select-panel {
 }
 
 .login-section[_ngcontent-ng-c1411651695] {
-  background: var(--primary-color);
+  background: var(--primary-bg);
   background-image: none !important;
 }
 
@@ -14987,7 +14987,7 @@ div:where(.swal2-container) button:where(.swal2-styled).swal2-confirm {
 }
 
 .swal2-popup.alert-dialog .swal2-actions .swal2-styled.swal2-confirm {
-  background-color: var(--primary-color) !important;
+  background-color: var(--primary-bg) !important;
   margin: 0 0 4px;
   border-radius: 30px;
   width: 55%;
@@ -18677,7 +18677,7 @@ mat-icon {
   }
   .login-dialog div.mdc-dialog__surface {
     border-radius: 20px;
-    background-color: var(--primary-color);
+    background-color: var(--primary-bg);
   }
   .login-dialog div.mdc-dialog__surface .login-section {
     height: 100%;

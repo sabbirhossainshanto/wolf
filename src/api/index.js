@@ -64,5 +64,5 @@ export const Settings = {
   logoFormat:"",
   logoHeight:"",
   logoWidth:"",
- 
+   baseUrl:""
 };

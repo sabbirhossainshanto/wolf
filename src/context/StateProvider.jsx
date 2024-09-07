@@ -2,7 +2,7 @@ import { createContext, useEffect, useState } from "react";
 import { API, Settings } from "../api";
 export const StateContext = createContext(null);
 import { getSetApis } from "../api/config";
-
+import notice from '../../notice.json'
 const StateProvider = ({ children }) => {
   /* Global state this states we are using in full project */
 
@@ -31,10 +31,10 @@ const StateProvider = ({ children }) => {
   const [showOTP, setShowOTP] = useState(false);
 
   const [noticeLoaded, setNoticeLoaded] = useState(false);
-
+  const baseUrl = notice?.result?.settings?.baseUrl;
   useEffect(() => {
-    getSetApis(setNoticeLoaded);
-  }, [noticeLoaded]);
+    getSetApis(setNoticeLoaded,baseUrl);
+  }, [noticeLoaded,baseUrl]);
 
   /* Get token from locale storage */
   useEffect(() => {

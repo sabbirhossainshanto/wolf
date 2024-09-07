@@ -14,6 +14,7 @@ import Warning from "../../components/ui/Notification/Warning";
 import axios from "axios";
 import { API, Settings } from "../../api";
 import useBalance from "../../hooks/useBalance";
+import handleDecryptData from "../../utils/handleDecryptData";
 /* eslint-disable react/no-unknown-property */
 const GameDetails = () => {
   const [loading, setLoading] = useState(true);
@@ -54,11 +55,11 @@ const GameDetails = () => {
     const getGameDetails = async () => {
       const res = await axios.get(`${API.odds}/${eventTypeId}/${eventId}`);
       const data = res.data;
-
-      if (data.success) {
+      const decryptionData = await handleDecryptData(JSON.stringify(data));
+      if (decryptionData?.success) {
         setLoading(false);
-        setData(data?.result);
-        setSportsBook(data?.sportsbook?.Result);
+        setData(decryptionData?.result);
+        setSportsBook(decryptionData?.sportsbook?.Result);
       }
     };
     getGameDetails();

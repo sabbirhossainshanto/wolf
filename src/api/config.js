@@ -1,9 +1,11 @@
 import axios from "axios";
 import { API, Settings } from "./index";
 
-export const getSetApis = (setNoticeLoaded) => {
+export const getSetApis = (setNoticeLoaded, baseUrl) => {
+  const url = baseUrl ? `${baseUrl}/notice.json` : "/notice.json";
+
   axios
-    .get("/notice.json")
+    .get(url)
     .then((res) => {
       const data = res.data;
       if (data?.result?.endpoint) {
@@ -71,6 +73,7 @@ export const getSetApis = (setNoticeLoaded) => {
         Settings.referral = data?.result?.settings?.referral;
         Settings.buildVersion = data?.result?.settings?.buildVersion;
         Settings.balanceApiLoop = data?.result?.settings?.balanceApiLoop;
+        Settings.baseUrl = data?.result?.settings?.baseUrl;
 
         setNoticeLoaded(true);
       }

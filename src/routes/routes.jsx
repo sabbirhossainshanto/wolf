@@ -15,68 +15,70 @@ import MyBankDetails from "../pages/MyBankDetails/MyBankDetails";
 import Casino from "../pages/Casino/Casino";
 import NotFound from "../pages/NotFound/NotFound";
 
-export const router = createBrowserRouter([
-  {
-    path: "/",
-    element: <Main />,
-    errorElement:<NotFound/>,
-    children: [
-      {
-        path: "/",
-        element: <Home />,
-      },
-      {
-        path: "casino/:name/:id",
-        element: <Casino />,
-      },
-      {
-        path: "game-details/:eventTypeId/:eventId",
-        element: <GameDetails />,
-      },
-      {
-        path: "profile",
-        element: <Profile />,
-      },
-      {
-        path: "profile/deposit",
-        element: <Deposit />,
-      },
-      {
-        path: "profile/withdraw",
-        element: <Withdraw />,
-      },
+export const router = createBrowserRouter(
+  [
+    {
+      path: "/",
+      element: <Main />,
+      errorElement: <NotFound />,
+      children: [
+        {
+          path: "/",
+          element: <Home />,
+        },
+        {
+          path: "casino/:name/:id",
+          element: <Casino />,
+        },
+        {
+          path: "game-details/:eventTypeId/:eventId",
+          element: <GameDetails />,
+        },
+        {
+          path: "profile",
+          element: <Profile />,
+        },
+        {
+          path: "profile/deposit",
+          element: <Deposit />,
+        },
+        {
+          path: "profile/withdraw",
+          element: <Withdraw />,
+        },
 
-      {
-        path: "rules",
-        element: <Rules />,
-      },
-      {
-        path: "active-bets",
-        element: <ActiveBets />,
-      },
-      {
-        path: "deposit-statement",
-        element: <DepositStatement />,
-      },
-      {
-        path: "withdraw-statement",
-        element: <WithdrawStatement />,
-      },
-      {
-        path: "passbook",
-        element: <Passbook />,
-      },
-      {
-        path: "passbook/:marketId",
-        element: <SinglePassbook />,
-      },
-      {
-        path: "my-bank-details",
-        element: <MyBankDetails />,
-      },
- 
-  
-    ],
-  },
- 
-]);
+        {
+          path: "rules",
+          element: <Rules />,
+        },
+        {
+          path: "active-bets",
+          element: <ActiveBets />,
+        },
+        {
+          path: "deposit-statement",
+          element: <DepositStatement />,
+        },
+        {
+          path: "withdraw-statement",
+          element: <WithdrawStatement />,
+        },
+        {
+          path: "passbook",
+          element: <Passbook />,
+        },
+        {
+          path: "passbook/:marketId",
+          element: <SinglePassbook />,
+        },
+        {
+          path: "my-bank-details",
+          element: <MyBankDetails />,
+        },
+      ],
+    },
+  ],
+  {
+    basename: import.meta.env.BASE_URL ?? "/",
+  }
+);

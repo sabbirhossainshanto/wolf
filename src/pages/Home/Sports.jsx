@@ -6,6 +6,7 @@ import { API } from "../../api";
 import BetTable from "../../components/ui/BetTable/BetTable";
 import { GoClock } from "react-icons/go";
 import InPlay from "../../components/ui/BetTable/InPlay";
+import handleDecryptData from "../../utils/handleDecryptData";
 
 const Sports = () => {
   const { sportsType, setSportsType } = useContextState();
@@ -19,7 +20,8 @@ const Sports = () => {
         const apiUrl = `${API.group}/${sportsType}`;
         const res = await axios.get(apiUrl);
         const data = res.data;
-        setGames(data);
+        const decryptionData = await handleDecryptData(JSON.stringify(data));
+        setGames(decryptionData);
       }
     };
     gameData();

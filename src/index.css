@@ -234,8 +234,6 @@
   }
 }
 
-
-
 /* Loader start*/
 
 .animate-spin {
@@ -251,3 +249,15 @@
   }
 }
 /* Loader end*/
+
+.active_service {
+  width: 8px;
+  height: 8px;
+  background: #7ed321;
+  border-radius: 50%;
+}
+.deActive_service {
+  width: 8px;
+  height: 8px;
+
+}

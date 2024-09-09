@@ -11,7 +11,7 @@ const InPlay = ({ keys, data }) => {
   };
 
   const defineGrid = (sportsType, score) => {
-    if (sportsType == 2 && score) {
+    if ((sportsType == 2 || sportsType == 1) && score) {
       return "2fr 2fr 2fr";
     } else {
       return "4fr 2fr";
@@ -98,6 +98,31 @@ const InPlay = ({ keys, data }) => {
                       }}
                     >
                       {data[keys]?.score?.totalSet1}
+                    </span>
+                  </div>
+                )}
+                {sportsType == 1 && data?.[keys]?.score && (
+                  <div
+                    style={{
+                      display: "flex",
+                      alignItems: "center",
+                      gap: "10px",
+                      fontSize: "12px",
+                      margin: "0px",
+                      lineHeight: "0px",
+                      justifyContent: "end",
+                    }}
+                  >
+                    <span
+                      style={{
+                        border: `${
+                          data[keys]?.score?.total_1 ? "1px solid gray" : "none"
+                        }`,
+                        padding: "7px 4px",
+                        borderRadius: "2px",
+                      }}
+                    >
+                      {data[keys]?.score?.total_1}
                     </span>
                   </div>
                 )}
@@ -206,6 +231,31 @@ const InPlay = ({ keys, data }) => {
                       }}
                     >
                       {data[keys]?.score?.totalSet2}
+                    </span>
+                  </div>
+                )}
+                {sportsType == 1 && data?.[keys]?.score && (
+                  <div
+                    style={{
+                      display: "flex",
+                      alignItems: "center",
+                      gap: "10px",
+                      fontSize: "12px",
+                      margin: "0px",
+                      lineHeight: "0px",
+                      justifyContent: "end",
+                    }}
+                  >
+                    <span
+                      style={{
+                        border: `${
+                          data[keys]?.score?.total_2 ? "1px solid gray" : "none"
+                        }`,
+                        padding: "7px 4px",
+                        borderRadius: "2px",
+                      }}
+                    >
+                      {data[keys]?.score?.total_2}
                     </span>
                   </div>
                 )}

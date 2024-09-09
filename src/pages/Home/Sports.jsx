@@ -21,7 +21,6 @@ const Sports = () => {
         const res = await axios.get(apiUrl);
         const data = res.data;
         const decryptionData = await handleDecryptData(JSON.stringify(data));
-        console.log(decryptionData);
         setGames(decryptionData);
       }
     };

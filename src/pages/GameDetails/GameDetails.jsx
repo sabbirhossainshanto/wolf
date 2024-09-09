@@ -46,6 +46,7 @@ const GameDetails = () => {
       const res = await axios.get(`${API.odds}/${eventTypeId}/${eventId}`);
       const data = res.data;
       const decryptionData = await handleDecryptData(JSON.stringify(data));
+      console.log(decryptionData);
       if (decryptionData?.success) {
         setLoading(false);
         setData(decryptionData?.result);
@@ -76,14 +77,21 @@ const GameDetails = () => {
           <Warning message={showLoginWarn} setMessage={setShowLoginWarn} />
         )}
         <div _ngcontent-ng-c942213636="" className="game-tab ng-star-inserted">
-          <div _ngcontent-ng-c942213636="" className="pagetop-bar">
+          <div
+            _ngcontent-ng-c942213636=""
+            className="pagetop-bar"
+            style={{
+              paddingTop: "2px",
+              paddingBottom: "2px",
+            }}
+          >
             <div
               _ngcontent-ng-c942213636=""
               className="team-play-bar title-bar"
             >
               {/* score */}
-              {eventTypeId == 2 ? (
-                <Score score={score} />
+              {eventTypeId == 2 || eventTypeId == 1 ? (
+                <Score score={score} eventTypeId={eventTypeId} />
               ) : (
                 <>
                   {footballScore && (

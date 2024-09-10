@@ -1,12 +1,13 @@
 /* eslint-disable react/no-unknown-property */
 import { motion } from "framer-motion";
-import {  useRef, useState } from "react";
+import { useRef, useState } from "react";
 import useCloseModalClickOutside from "../../hooks/useCloseModalClickOutside";
 
 import UseTokenGenerator from "../../hooks/UseTokenGenerator";
 import axios from "axios";
 import { API } from "../../api";
 import useContextState from "../../hooks/useContextState";
+import UseEncryptData from "../../hooks/UseEncryptData";
 
 const Withdraw = ({
   setSHowWithdraw,
@@ -39,8 +40,8 @@ const Withdraw = ({
         bankId,
         token: generatedToken,
       };
-
-      const res = await axios.post(API.bankAccount, bankData, {
+      const encryptedData = UseEncryptData(bankData);
+      const res = await axios.post(API.bankAccount, encryptedData, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -55,7 +56,6 @@ const Withdraw = ({
       }
     }
   };
-
 
   return (
     <div className="cdk-overlay-container">
@@ -134,7 +134,6 @@ const Withdraw = ({
                     <form
                       onSubmit={handleCoinSubmit}
                       _ngcontent-ng-c2000663781=""
-                  
                       className="ng-invalid ng-touched ng-dirty"
                     >
                       <div _ngcontent-ng-c2000663781="" className="modal-body">
@@ -290,7 +289,6 @@ const Withdraw = ({
                                   Change Bank
                                 </option>
                                 {withdrawData?.allBanks?.map((item) => {
-                            
                                   return (
                                     <option
                                       key={item?.bankId}
@@ -357,7 +355,13 @@ const Withdraw = ({
                         className="modal-footer"
                       >
                         <button
-                        disabled={parseFloat(amount) >= 100 &&  parseFloat(withdrawData?.withdrawableCoins) >= parseFloat(amount) ? false:true}
+                          disabled={
+                            parseFloat(amount) >= 100 &&
+                            parseFloat(withdrawData?.withdrawableCoins) >=
+                              parseFloat(amount)
+                              ? false
+                              : true
+                          }
                           _ngcontent-ng-c2000663781=""
                           mat-button=""
                           className="btn secondary-btn mdc-button mat-mdc-button mat-unthemed mat-mdc-button-base"
@@ -380,7 +384,6 @@ const Withdraw = ({
             </div>
           </div>
           <div
-          
             className="cdk-visually-hidden cdk-focus-trap-anchor"
             aria-hidden="true"
           ></div>

@@ -8,6 +8,7 @@ import Success from "../../components/ui/Notification/Success";
 import AddBank from "../../components/modal/AddBank";
 import UseTokenGenerator from "../../hooks/UseTokenGenerator";
 import axios from "axios";
+import UseEncryptData from "../../hooks/UseEncryptData";
 
 /* eslint-disable react/no-unknown-property */
 const LoggedInProfile = ({
@@ -28,14 +29,12 @@ const LoggedInProfile = ({
   };
   const [bankId, setBankId] = useState(null);
 
-
   /* Set default bank account id */
   useEffect(() => {
     setBankId(withdrawData?.defaultBank?.bankId);
   }, [withdrawData]);
 
-  
-/* Handle Withdraw data */
+  /* Handle Withdraw data */
   const handleWithdrawData = async () => {
     const generatedToken = UseTokenGenerator();
     const bankData = {
@@ -43,7 +42,8 @@ const LoggedInProfile = ({
       type: "withdrawForm",
       token: generatedToken,
     };
-    const res = await axios.post(API.bankAccount, bankData, {
+    const encryptedData = UseEncryptData(bankData)
+    const res = await axios.post(API.bankAccount, encryptedData, {
       headers: {
         Authorization: `Bearer ${token}`,
       },
@@ -163,7 +163,7 @@ const LoggedInProfile = ({
                 )}
                 {Settings.withdraw && (
                   <button
-                    onClick={ handleWithdrawData}
+                    onClick={handleWithdrawData}
                     _ngcontent-ng-c2865632707=""
                     mat-flat-button=""
                     className="notranslate mdc-button mdc-button--unelevated mat-mdc-unelevated-button mat-unthemed mat-mdc-button-base"

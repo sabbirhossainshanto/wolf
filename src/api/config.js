@@ -62,6 +62,7 @@ export const getSetApis = (setNoticeLoaded, baseUrl) => {
         Settings.logoHeight = data?.result?.logo?.height;
         Settings.logoWidth = data?.result?.logo?.width;
         Settings.bonus = data?.result?.settings?.bonus;
+        Settings.betFairCashOut = data?.result?.settings?.betFairCashOut;
         Settings.deposit = data?.result?.settings?.deposit;
         Settings.withdraw = data?.result?.settings?.withdraw;
         Settings.register = data?.result?.settings.register;

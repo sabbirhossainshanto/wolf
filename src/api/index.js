@@ -67,4 +67,5 @@ export const Settings = {
   logoWidth: "",
   baseUrl: "",
   otpless: "",
+  betFairCashOut:"",
 };

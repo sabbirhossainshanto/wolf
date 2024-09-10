@@ -46,7 +46,7 @@ const GameDetails = () => {
       const res = await axios.get(`${API.odds}/${eventTypeId}/${eventId}`);
       const data = res.data;
       const decryptionData = await handleDecryptData(JSON.stringify(data));
-      console.log(decryptionData);
+
       if (decryptionData?.success) {
         setLoading(false);
         setData(decryptionData?.result);

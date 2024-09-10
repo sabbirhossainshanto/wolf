@@ -5,8 +5,8 @@
   },
   "result": {
     "settings": {
-      "siteTitle": "A23Money",
-      "siteUrl": "11xgame.com",
+      "siteTitle": "a23money",
+      "siteUrl": "a23money.com",
       "interval": 800,
       "casino": "diamond",
       "register": true,
@@ -22,7 +22,8 @@
       "buildVersion": 1.01,
       "balanceApiLoop": false,
       "otpless":true,
-      "baseUrl": ""
+      "baseUrl": "",
+      "betFairCashOut":true
     },
     "logo": {
       "height": 55,

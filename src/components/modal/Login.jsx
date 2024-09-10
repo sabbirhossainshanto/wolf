@@ -32,7 +32,8 @@ const Login = ({ setShowLogin, setErrorLogin, errorLogin, setGetToken }) => {
       username: username,
       password: password,
       token: generatedToken,
-      site:Settings.siteUrl
+      site:Settings.siteUrl,
+      b2c: true,
     };
     /* Encrypted the post data */
     const encryptedData = UseEncryptData(loginData);

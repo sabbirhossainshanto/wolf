@@ -61,6 +61,7 @@ const GetOTP = ({
   };
 
   const handleGetOtpOnWhatsapp = async () => {
+   
     await getOtpOnWhatsapp(mobileNo, setOrderId, setShowRegister);
   };
 
@@ -329,11 +330,11 @@ const GetOTP = ({
                                     OR
                                   </p>
                                   <div
-                                    onClick={() => handleGetOtpOnWhatsapp}
                                     _ngcontent-ng-c2806737617=""
                                     className="extra-btns"
                                   >
                                     <button
+                                      onClick={handleGetOtpOnWhatsapp}
                                       disabled={mobileNo?.length < 10}
                                       _ngcontent-ng-c2806737617=""
                                       type="button"

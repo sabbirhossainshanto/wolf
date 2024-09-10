@@ -21,7 +21,7 @@
       "referral": true,
       "buildVersion": 1.01,
       "balanceApiLoop": false,
-      "otpless":"",
+      "otpless":true,
       "baseUrl": ""
     },
     "logo": {

@@ -192,12 +192,12 @@ const Navbar = () => {
                       >
                         {balanceData?.deductedExposure}
                       </p>
-                      <span
+                      {/* <span
                         style={{ color: "white", fontSize: "10px" }}
                         _ngcontent-ng-c3243547741=""
                       >
                         {loginName}
-                      </span>
+                      </span> */}
                     </div>
                   </div>
                   {/* If deposit true in settings then showing deposit button  */}

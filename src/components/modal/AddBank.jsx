@@ -6,6 +6,7 @@ import UseTokenGenerator from "../../hooks/UseTokenGenerator";
 import axios from "axios";
 import { API } from "../../api";
 import useContextState from "../../hooks/useContextState";
+import UseEncryptData from "../../hooks/UseEncryptData";
 const AddBank = ({
   setShowAddBank,
   setSuccessCrudMsg,
@@ -34,8 +35,8 @@ const AddBank = ({
       type: "addBankAccount",
       token: generatedToken,
     };
-
-    const res = await axios.post(API.bankAccount, bankData, {
+const encryptedData = UseEncryptData(bankData)
+    const res = await axios.post(API.bankAccount, encryptedData, {
       headers: {
         Authorization: `Bearer ${token}`,
       },

@@ -3,6 +3,7 @@ import axios from "axios";
 import { API } from "../api";
 import UseTokenGenerator from "./UseTokenGenerator";
 import useContextState from "./useContextState";
+import UseEncryptData from "./UseEncryptData";
 
 const useBankAccount = (payload) => {
   const { token, tokenLoading } = useContextState();
@@ -15,8 +16,8 @@ const useBankAccount = (payload) => {
         ...payload,
         token: generatedToken,
       };
-      //   const encryptedData = UseEncryptData(bankData);
-      const res = await axios.post(API.bankAccount, bankData, {
+        const encryptedData = UseEncryptData(bankData);
+      const res = await axios.post(API.bankAccount, encryptedData, {
         headers: {
           Authorization: `Bearer ${token}`,
         },

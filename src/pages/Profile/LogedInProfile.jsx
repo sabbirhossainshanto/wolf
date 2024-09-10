@@ -264,6 +264,28 @@ const LoggedInProfile = ({
               </div>
             </Link>
           </li>
+          
+          <li
+            _ngcontent-ng-c2865632707=""
+            routerlinkactive="active-link"
+            className="smenu-item"
+          >
+            <Link
+              to="/my-bank-details"
+              _ngcontent-ng-c2865632707=""
+              className="smenu-link"
+            >
+              <div _ngcontent-ng-c2865632707="" className="label-wrap">
+                <img
+                  _ngcontent-ng-c2865632707=""
+                  alt="Menu Icon"
+                  src="https://ss.manage63.com/bmk-wl/commonAssets/sidenav_bank.svg"
+                />
+                <span _ngcontent-ng-c2865632707="">My Bank Details</span>
+              </div>
+            </Link>
+          </li>
+
           <li
             _ngcontent-ng-c2865632707=""
             routerlinkactive="active-link"

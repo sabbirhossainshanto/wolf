@@ -10,6 +10,7 @@ import useContextState from "../../hooks/useContextState";
 import { handleVisibleBankDetails } from "../../utils/handleVisibleBankDetails";
 import Success from "../../components/ui/Notification/Success";
 import useGetBankAccountName from "../../hooks/BankAccount/useGetBankAccountName";
+import UseEncryptData from "../../hooks/UseEncryptData";
 
 const MyBankDetails = () => {
   const [showAddBank, setShowAddBank] = useState(false);
@@ -32,8 +33,8 @@ const MyBankDetails = () => {
       bankId,
       token: generatedToken,
     };
-
-    const res = await axios.post(API.bankAccount, bankData, {
+    const encryptedData = UseEncryptData(bankData)
+    const res = await axios.post(API.bankAccount, encryptedData, {
       headers: {
         Authorization: `Bearer ${token}`,
       },

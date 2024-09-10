@@ -12,6 +12,7 @@ import useContextState from "../../hooks/useContextState";
 import Success from "../../components/ui/Notification/Success";
 import { useNavigate } from "react-router-dom";
 import { FaSpinner } from "react-icons/fa";
+import UseEncryptData from "../../hooks/UseEncryptData";
 
 const Deposit = () => {
   const { token, copyTextSuccess, setCopyTextSuccess } = useContextState();
@@ -39,7 +40,8 @@ const Deposit = () => {
       paymentId: method?.paymentId,
       token: generatedToken,
     };
-    const res = await axios.post(API.bankAccount, depositDetail, {
+    const encryptedData = UseEncryptData(depositDetail)
+    const res = await axios.post(API.bankAccount, encryptedData, {
       headers: {
         Authorization: `Bearer ${token}`,
       },
@@ -92,7 +94,8 @@ const Deposit = () => {
         utr: parseFloat(utr),
         token: generatedToken,
       };
-      const res = await axios.post(API.bankAccount, screenshotPostData, {
+      const encryptedData = UseEncryptData(screenshotPostData)
+      const res = await axios.post(API.bankAccount, encryptedData, {
         headers: {
           Authorization: `Bearer ${token}`,
         },

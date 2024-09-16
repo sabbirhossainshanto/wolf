@@ -13,10 +13,10 @@ import handleDepositMethod from "../../utils/handleDepositMethod";
 const Login = ({ setShowLogin, setErrorLogin, errorLogin, setGetToken }) => {
   const { logo, setShowChangePassModal } = useContextState();
   const { register, handleSubmit } = useForm({
-    defaultValues:{
-      username:'8888884000',
-      password:'avinya123'
-    }
+    // defaultValues:{
+    //   username:'8888884000',
+    //   password:'avinya123'
+    // }
   });
   const [disable, setDisable] = useState(false);
   /* Close modal click out side */

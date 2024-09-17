@@ -61,7 +61,7 @@ const encryptedData = UseEncryptData(bankData)
       <div
         className="cdk-global-overlay-wrapper"
         dir="ltr"
-        style={{ justifyContent: "center", alignItems: "flex-end" }}
+        style={{ justifyContent: "center", alignItems: "center" }}
       >
         <motion.div
           ref={addBankRef}

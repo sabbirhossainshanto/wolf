@@ -72,13 +72,12 @@ const ChangePassword = ({
 
   return (
     <div className="cdk-overlay-container"
-    style={{zIndex:5000}}
     >
       <div className="cdk-overlay-backdrop cdk-overlay-dark-backdrop cdk-overlay-backdrop-showing"></div>
       <div
         className="cdk-global-overlay-wrapper"
         dir="ltr"
-        style={{ justifyContent: "center", alignItems: "flex-end" }}
+        style={{ justifyContent: "center", alignItems: "center" }}
       >
         <motion.div
           initial={{ scale: 0.9 }}

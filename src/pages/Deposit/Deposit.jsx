@@ -67,6 +67,7 @@ const Deposit = () => {
         console.log(data);
         if (data?.success) {
           setLoading(false);
+          setUtr(data?.utr);
           setUploadedImage(data?.fileName);
           setFilePath(data?.filePath);
           setImage(null);

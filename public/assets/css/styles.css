@@ -1189,7 +1189,7 @@ button .mat-mdc-button-touch-target {
   position: fixed;
   bottom: 0;
   width: 100%;
-  z-index: 1000;
+  z-index: 999;
   max-width: 768px;
   margin: auto;
   left: 50%;

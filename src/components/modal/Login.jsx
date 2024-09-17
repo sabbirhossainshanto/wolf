@@ -10,7 +10,13 @@ import { API, Settings } from "../../api";
 import Warning from "../ui/Notification/Warning";
 import useContextState from "../../hooks/useContextState";
 import handleDepositMethod from "../../utils/handleDepositMethod";
-const Login = ({ setShowLogin, setErrorLogin, errorLogin, setGetToken }) => {
+const Login = ({
+  setShowLogin,
+  setErrorLogin,
+  errorLogin,
+  setGetToken,
+  setShowForgotOTP,
+}) => {
   const { logo, setShowChangePassModal } = useContextState();
   const { register, handleSubmit } = useForm({
     // defaultValues:{
@@ -37,7 +43,7 @@ const Login = ({ setShowLogin, setErrorLogin, errorLogin, setGetToken }) => {
       username: username,
       password: password,
       token: generatedToken,
-      site:Settings.siteUrl,
+      site: Settings.siteUrl,
       b2c: true,
     };
     /* Encrypted the post data */
@@ -110,7 +116,7 @@ const Login = ({ setShowLogin, setErrorLogin, errorLogin, setGetToken }) => {
       username: "demo",
       password: "",
       token: generatedToken,
-      site:Settings.siteUrl
+      site: Settings.siteUrl,
     });
     fetch(API.login, {
       method: "POST",
@@ -201,11 +207,11 @@ const Login = ({ setShowLogin, setErrorLogin, errorLogin, setGetToken }) => {
                           <div _ngcontent-ng-c2806737617="" className="logo">
                             {" "}
                             <img
-                                style={{
-                                  height: `${Settings.logoHeight}px`,
-                                  width: `${Settings.logoWidth}px`,
-                                  objectFit:'contain'
-                                }}
+                              style={{
+                                height: `${Settings.logoHeight}px`,
+                                width: `${Settings.logoWidth}px`,
+                                objectFit: "contain",
+                              }}
                               _ngcontent-ng-c2806737617=""
                               alt="logo"
                               src={logo}
@@ -327,6 +333,7 @@ const Login = ({ setShowLogin, setErrorLogin, errorLogin, setGetToken }) => {
                                 className="form-list"
                               >
                                 <div
+                                  style={{ marginBottom: "0px" }}
                                   _ngcontent-ng-c2806737617=""
                                   appearance="fill"
                                   className="mat-mdc-form-field mat-form-field example-full-width ng-tns-c1205077789-3 mat-mdc-form-field-type-mat-input mat-form-field-appearance-fill mat-primary ng-untouched ng-pristine ng-invalid ng-star-inserted"
@@ -360,6 +367,35 @@ const Login = ({ setShowLogin, setErrorLogin, errorLogin, setGetToken }) => {
                                     ></div>
                                   </div>
                                 </div>
+                              </div>
+                            </div>
+                            <div
+                              _ngcontent-ng-c2806737617=""
+                              className="login-form"
+                            >
+                              <div
+                                _ngcontent-ng-c2806737617=""
+                                className="form-btn"
+                              >
+                                <button
+                                  onClick={() => {
+                                    setShowLogin(false);
+                                    setShowForgotOTP(true);
+                                  }}
+                                  _ngcontent-ng-c2806737617=""
+                                  className="btn "
+                                  style={{
+                                    textAlign: "end",
+                                    marginRight: "10px",
+                                    backgroundColor: "black",
+                                    color: "white",
+                                    fontSize: "11px",
+                                    minHeight: "30px",
+                                    marginBottom: "10px",
+                                  }}
+                                >
+                                  Forgot Password ?
+                                </button>
                               </div>
                             </div>
 

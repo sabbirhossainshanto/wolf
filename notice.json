@@ -96,7 +96,8 @@
       "uploadScreenshot": "https://b2c.bet/deposit/up.php",
       "latestEvents": "https://api7.live/api/exchange/diamond/latestEvents",
       "siteSettings": "https://cache7.live/api/exchange/diamond/settings",
-      "otpless": "https://api7.live/api/exchange/diamond/otpless"
+      "otpless": "https://api7.live/api/exchange/diamond/otpless",
+      "forgotPassword": "https://api7.live/api/exchange/diamond/forgotPassword"
     }
   },
   "success": true

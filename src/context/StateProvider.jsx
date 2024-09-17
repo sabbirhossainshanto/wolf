@@ -10,6 +10,7 @@ const StateProvider = ({ children }) => {
   const [showSidebar, setShowSidebar] = useState(false);
   const [token, setToken] = useState("");
   const [showLogin, setShowLogin] = useState(false);
+ 
   const [getToken, setGetToken] = useState(false);
   const [tokenLoading, setTokenLoading] = useState(true);
   const [showEditStake, setShowEditStake] = useState(false);

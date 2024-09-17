@@ -45,6 +45,7 @@ export const API = {
   latestEvents: "",
   siteSetting: "",
   otpless: "",
+  forgotPassword:""
 };
 
 export const Settings = {

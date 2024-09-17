@@ -12,6 +12,8 @@ import Warning from "../Notification/Warning";
 import GetOTP from "../../modal/signup/GetOTP";
 import Registration from "../../modal/signup/Registration";
 import Success from "../Notification/Success";
+import GetForgotOTP from "../../modal/forgotPassword/GetForgotOTP";
+import ForgotPassword from "../../modal/forgotPassword/ForgotPassword";
 const Navbar = () => {
   const [orderId, setOrderId] = useState({
     orderId: "",
@@ -28,8 +30,13 @@ const Navbar = () => {
     logo,
     setSportsType,
     setSHowDeposit,
-    showOTP, setShowOTP
+    showOTP,
+    setShowOTP,
   } = useContextState();
+
+  const [showForgotPassword, setShowForgotPassword] = useState(false);
+  const [showForgotOTP, setShowForgotOTP] = useState(false);
+
   const location = useLocation();
   const navigate = useNavigate();
   const loginName = localStorage.getItem("loginName");
@@ -39,8 +46,8 @@ const Navbar = () => {
   const [showRegister, setShowRegister] = useState(false);
 
   const [mobileNo, setMobileNo] = useState("");
-  const [errRegister, setErrRegister] = useState("");
-  const [successRegister, setSuccessRegister] = useState("");
+  const [errMsg, setErrMsg] = useState("");
+  const [successMsg, setSuccessMsg] = useState("");
 
   /* handle login demo user */
   const loginWithDemo = () => {
@@ -145,7 +152,7 @@ const Navbar = () => {
                   style={{
                     height: `${Settings.logoHeight}px`,
                     width: `${Settings.logoWidth}px`,
-                    objectFit:'contain'
+                    objectFit: "contain",
                   }}
                   _ngcontent-ng-c3243547741=""
                   alt="logo"
@@ -261,7 +268,6 @@ const Navbar = () => {
                       mat-flat-button=""
                       className="btn dark-outlined-btn demo-btn mdc-button mdc-button--unelevated mat-mdc-unelevated-button mat-unthemed mat-mdc-button-base primary-button"
                       mat-ripple-loader-class-name="mat-mdc-button-ripple"
-                      
                     >
                       <span className="mat-mdc-button-persistent-ripple mdc-button__ripple"></span>
                       <span className="mdc-button__label">Demo ID</span>
@@ -307,12 +313,33 @@ const Navbar = () => {
           errorLogin={errorLogin}
           setErrorLogin={setErrorLogin}
           setGetToken={setGetToken}
+          setShowForgotOTP={setShowForgotOTP}
         />
       )}
-      {/* Opt modal */}
+{/* forgot password */}
+      {showForgotOTP && (
+        <GetForgotOTP
+          setOrderId={setOrderId}
+          setShowForgotOTP={setShowForgotOTP}
+          setShowForgotPassword={setShowForgotPassword}
+          mobileNo={mobileNo}
+          setMobileNo={setMobileNo}
+        />
+      )}
+      {showForgotPassword && (
+        <ForgotPassword
+        orderId={orderId}
+        setShowForgotPassword={setShowForgotPassword}
+        setShowForgotOTP={setShowForgotOTP}
+        mobileNo={mobileNo}
+        setErrMsg={setErrMsg}
+        setSuccessMsg={setSuccessMsg}
+        />
+      )}
+      {/* Opt register modal */}
       {showOTP && (
         <GetOTP
-        setOrderId={setOrderId}
+          setOrderId={setOrderId}
           setShowOTP={setShowOTP}
           setShowRegister={setShowRegister}
           mobileNo={mobileNo}
@@ -322,27 +349,27 @@ const Navbar = () => {
       {/* Registration modal */}
       {showRegister && (
         <Registration
-        orderId={orderId}
+          orderId={orderId}
           setShowRegister={setShowRegister}
           setShowOTP={setShowOTP}
           mobileNo={mobileNo}
-          setErrRegister={setErrRegister}
-          setSuccessRegister={setSuccessRegister}
+          setErrRegister={setErrMsg}
+          setSuccessRegister={setSuccessMsg}
         />
       )}
       {/* Success message after registration */}
-      {successRegister && (
+      {successMsg && (
         <Success
-          message={successRegister}
-          setMessage={setSuccessRegister}
+          message={successMsg}
+          setMessage={setSuccessMsg}
           success={true}
         />
       )}
       {/* Error message after failed registration */}
-      {errRegister && (
+      {errMsg && (
         <Success
-          message={errRegister}
-          setMessage={setErrRegister}
+          message={errMsg}
+          setMessage={setErrMsg}
           success={false}
         />
       )}

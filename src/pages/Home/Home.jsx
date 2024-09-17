@@ -8,7 +8,7 @@ import LiveCasinoTab from "./LiveCasinoTab/LiveCasinoTab";
 import { useEffect } from "react";
 import SliderImage from "./SliderImage";
 import useBannerImage from "../../hooks/useBannerImage";
-import Banner from "./Banner";
+// import Banner from "./Banner";
 import useBalance from "../../hooks/useBalance";
 import { Settings } from "../../api";
 // import MyMatches from "./MyMatches";
@@ -39,7 +39,7 @@ const Home = () => {
     Array?.from(rightArrow)?.forEach((item) => {
       item?.remove();
     });
-  }, [bannerImage,sportsType]);
+  }, [bannerImage, sportsType]);
   return (
     <>
       <div
@@ -66,7 +66,7 @@ const Home = () => {
               <SliderImage bannerImage={bannerImage?.banner} />
             )}
           </div>
-          <div
+          {/* <div
             style={{
               margin: "10px 0px 10px 0px",
               padding: "0px 10px",
@@ -75,7 +75,7 @@ const Home = () => {
             {sportsType === 0 && bannerImage?.card?.length > 0 && (
               <Banner card={bannerImage?.card} />
             )}
-          </div>
+          </div> */}
           <div
             style={{
               margin: "10px 0px 10px 0px",

@@ -46,7 +46,7 @@ export const getSetApis = (setNoticeLoaded, baseUrl) => {
         API.whatsApp = data?.result?.endpoint?.whatsapp;
         API.otp = data?.result?.endpoint?.otp;
         API.liveCasinoWolf = data?.result?.endpoint?.liveCasinoWolf;
-        API.slotWolf = data?.result?.endpoint?.slotWolf;
+        API.slotWolf = data?.result?.endpoint?.slotsWolf;
         API.liveCasinoIFrame = data?.result?.endpoint?.liveCasinoIframe;
         API.auraWolf = data?.result?.endpoint?.auraWolf;
         API.bonusClaim = data?.result?.endpoint?.bonusClaim;
@@ -78,6 +78,7 @@ export const getSetApis = (setNoticeLoaded, baseUrl) => {
         Settings.balanceApiLoop = data?.result?.settings?.balanceApiLoop;
         Settings.baseUrl = data?.result?.settings?.baseUrl;
         Settings.otpless = data?.result?.settings?.otpless;
+        Settings.casinoCurrency = data?.result?.settings?.casinoCurrency;
 
         setNoticeLoaded(true);
       }

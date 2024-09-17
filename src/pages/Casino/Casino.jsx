@@ -4,7 +4,7 @@ import UseTokenGenerator from "../../hooks/UseTokenGenerator";
 import UseEncryptData from "../../hooks/UseEncryptData";
 import { useParams } from "react-router-dom";
 import axios from "axios";
-import { API } from "../../api";
+import { API, Settings } from "../../api";
 import useContextState from "../../hooks/useContextState";
 import Loader from "../../components/ui/Loader/Loader";
 
@@ -23,8 +23,8 @@ const Casino = () => {
         token: generatedToken,
         isHome: false,
         mobileOnly: true,
+        casinoCurrency:Settings.casinoCurrency
       });
-
       try {
         const res = await axios.post(API.liveCasinoIFrame, encryptedData, {
           headers: { Authorization: `Bearer ${token}` },

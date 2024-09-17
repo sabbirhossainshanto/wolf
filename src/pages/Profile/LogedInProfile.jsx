@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import useContextState from "../../hooks/useContextState";
 import { API, Settings } from "../../api";
 import useGetSocialLink from "../../hooks/useGetSocialLink";
@@ -9,6 +9,7 @@ import AddBank from "../../components/modal/AddBank";
 import UseTokenGenerator from "../../hooks/UseTokenGenerator";
 import axios from "axios";
 import UseEncryptData from "../../hooks/UseEncryptData";
+import { handleLogOut } from "../../utils/handleLogOut";
 
 /* eslint-disable react/no-unknown-property */
 const LoggedInProfile = ({
@@ -16,8 +17,15 @@ const LoggedInProfile = ({
   setShowChangePassModal,
   balanceData,
 }) => {
-  const { isCheckedBonusToken, setSHowDeposit, setShowBonusRule, token } =
-    useContextState();
+  const {
+    isCheckedBonusToken,
+    setSHowDeposit,
+    setShowBonusRule,
+    token,
+    setTokenLoading,
+    setGetToken,
+  } = useContextState();
+  const navigate = useNavigate();
   const { socialLink } = useGetSocialLink();
   const [showWithdraw, setSHowWithdraw] = useState(false);
   const [withdrawCoinSuccess, setWithdrawCoinSuccess] = useState("");
@@ -42,7 +50,7 @@ const LoggedInProfile = ({
       type: "withdrawForm",
       token: generatedToken,
     };
-    const encryptedData = UseEncryptData(bankData)
+    const encryptedData = UseEncryptData(bankData);
     const res = await axios.post(API.bankAccount, encryptedData, {
       headers: {
         Authorization: `Bearer ${token}`,
@@ -53,6 +61,16 @@ const LoggedInProfile = ({
       setWithdrawData(data?.result);
       setSHowWithdraw(true);
     }
+  };
+
+  const handleLogout = () => {
+    /* Logout function */
+    handleLogOut();
+    setTokenLoading(true);
+    /* Get updated token from local storage */
+    setGetToken((prev) => !prev);
+    /* Navigate home page */
+    navigate("/");
   };
 
   return (
@@ -264,7 +282,7 @@ const LoggedInProfile = ({
               </div>
             </Link>
           </li>
-          
+
           <li
             _ngcontent-ng-c2865632707=""
             routerlinkactive="active-link"
@@ -346,22 +364,35 @@ const LoggedInProfile = ({
               </a>
             </li>
           )}
-          {/* <li
+        {
+          token && (
+            <li
             _ngcontent-ng-c2865632707=""
             routerlinkactive="active-link"
             className="smenu-item"
+            onClick={handleLogout}
           >
-            <a _ngcontent-ng-c2865632707="" className="smenu-link">
-              <div _ngcontent-ng-c2865632707="" className="label-wrap">
-                <img
+            <a
+              style={{ backgroundColor: "black" }}
+              _ngcontent-ng-c2865632707=""
+              className="smenu-link"
+            >
+              <div
+                _ngcontent-ng-c2865632707=""
+                className="label-wrap"
+                style={{ textAlign: "center", width: "100%" }}
+              >
+                <span
+                  style={{ textAlign: "center", width: "100%", color: "white" }}
                   _ngcontent-ng-c2865632707=""
-                  alt="Menu Icon"
-                  src="https://ss.manage63.com/bmk-wl/commonAssets/sidenav_bank.svg"
-                />
-                <span _ngcontent-ng-c2865632707="">Banking</span>
+                >
+                  Logout
+                </span>
               </div>
             </a>
-          </li> */}
+          </li>
+          )
+        }
         </ul>
         {socialLink?.instagramLink || socialLink?.telegramLink ? (
           <div

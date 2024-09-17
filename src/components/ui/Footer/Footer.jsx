@@ -1,6 +1,5 @@
 import { useLocation, useNavigate } from "react-router-dom";
 import useContextState from "../../../hooks/useContextState";
-import { handleLogOut } from "../../../utils/handleLogOut";
 import MyMarket from "../../modal/MyMarket";
 import { useEffect, useState } from "react";
 import useGetSocialLink from "../../../hooks/useGetSocialLink";
@@ -12,19 +11,11 @@ const Footer = () => {
   const { socialLink } = useGetSocialLink();
   const location = useLocation();
   const navigate = useNavigate();
-  const { setGetToken, token, setShowLogin, icon, setTokenLoading } =
+  const { token, setShowLogin, icon,  } =
     useContextState();
   const [showMyMarket, setShowMyMarket] = useState(false);
   /* Handle logout */
-  const handleLogout = () => {
-    /* Logout function */
-    handleLogOut();
-    setTokenLoading(true);
-    /* Get updated token from local storage */
-    setGetToken((prev) => !prev);
-    /* Navigate home page */
-    navigate("/");
-  };
+
 
   /* on click whats app navigate in new tab */
   const navigateWhatsApp = () => {
@@ -108,7 +99,7 @@ const Footer = () => {
             </div>
           </div>
 
-          {location?.pathname === "/profile" && token && (
+          {/* {location?.pathname === "/profile" && token && (
             <div
               onClick={handleLogout}
               _ngcontent-ng-c2865632707=""
@@ -122,7 +113,7 @@ const Footer = () => {
                 Logout
               </button>
             </div>
-          )}
+          )} */}
           {location?.pathname === "/profile" && !token && (
             <div
               onClick={() => {

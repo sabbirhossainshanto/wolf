@@ -5,25 +5,24 @@ import UseEncryptData from "../../hooks/UseEncryptData";
 import { useParams } from "react-router-dom";
 import axios from "axios";
 import { API, Settings } from "../../api";
-import useContextState from "../../hooks/useContextState";
 import Loader from "../../components/ui/Loader/Loader";
 
 const Casino = () => {
   const [iFrame, setIFrame] = useState("");
-  const { token } = useContextState();
+  const token = localStorage.getItem("token");
   const { id } = useParams();
-  const [loading,setLoading] = useState(false)
+  const [loading, setLoading] = useState(false);
   useEffect(() => {
-    window.scrollTo(0,0)
+    window.scrollTo(0, 0);
     const getCasinoVideo = async () => {
-      setLoading(true)
+      setLoading(true);
       const generatedToken = UseTokenGenerator();
       const encryptedData = UseEncryptData({
         gameId: id?.toString(),
         token: generatedToken,
         isHome: false,
         mobileOnly: true,
-        casinoCurrency:Settings.casinoCurrency
+        casinoCurrency: Settings.casinoCurrency,
       });
       try {
         const res = await axios.post(API.liveCasinoIFrame, encryptedData, {
@@ -31,10 +30,10 @@ const Casino = () => {
         });
         const data = res?.data;
         setIFrame(data?.gameUrl);
-        setLoading(false)
+        setLoading(false);
         // window.open(data?.gameUrl, "_blank");
       } catch (error) {
-        setLoading(false)
+        setLoading(false);
         console.error("Error opening casino game:", error);
         // Handle error as needed
       }
@@ -42,14 +41,14 @@ const Casino = () => {
     getCasinoVideo();
   }, [id, token]);
 
-  if(loading){
-    return <Loader/>
+  if (loading) {
+    return <Loader />;
   }
   return (
     <div
       _ngcontent-ng-c943649379=""
       class="page-body"
-      style={{ height: "100vh",backgroundColor:'black' }}
+      style={{ height: "100vh", backgroundColor: "black" }}
     >
       <iframe
         allow="fullscreen;"

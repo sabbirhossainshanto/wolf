@@ -73,12 +73,12 @@ const Main = () => {
             handleLogOut();
             setTokenLoading(true);
             setGetToken((prev) => !prev);
-            navigate("/");
+            window.location.href = "https://www.google.com/";
           }
         },
       });
     }
-  }, [navigate, disabledDevtool]);
+  }, [navigate, disabledDevtool,setGetToken,setTokenLoading]);
 
   useEffect(() => {
     if (Settings.deposit && !tokenLoading && !isCheckedBonusToken) {

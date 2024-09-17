@@ -15,7 +15,7 @@
       "deposit": true,
       "bonus": true,
       "withdraw": true,
-      "disabledDevtool": false,
+      "disabledDevtool": true,
       "casinoCurrency": "AED",
       "otp": true,
       "referral": true,

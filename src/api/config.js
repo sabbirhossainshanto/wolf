@@ -47,7 +47,7 @@ export const getSetApis = (setNoticeLoaded, baseUrl) => {
         API.otp = data?.result?.endpoint?.otp;
         API.liveCasinoWolf = data?.result?.endpoint?.liveCasinoWolf;
         API.slotWolf = data?.result?.endpoint?.slotWolf;
-        API.liveCasinoIFrame = data?.result?.endpoint?.liveCasinoIFrame;
+        API.liveCasinoIFrame = data?.result?.endpoint?.liveCasinoIframe;
         API.auraWolf = data?.result?.endpoint?.auraWolf;
         API.bonusClaim = data?.result?.endpoint?.bonusClaim;
         API.referralCode = data?.result?.endpoint?.referralCode;

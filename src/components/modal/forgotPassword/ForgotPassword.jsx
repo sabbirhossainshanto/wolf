@@ -43,6 +43,7 @@ const ForgotPassword = ({
       otp: user.otp,
       orderId: orderId.orderId,
       otpMethod: orderId.otpMethod,
+      mobileType:'username'
     };
 
     /* Encrypted post data */

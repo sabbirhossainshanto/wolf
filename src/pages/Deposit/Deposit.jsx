@@ -102,7 +102,6 @@ const Deposit = () => {
         },
       });
       const result = res?.data;
-
       if (result?.success) {
         setUtr(null);
         setImage(null);
@@ -111,11 +110,11 @@ const Deposit = () => {
           navigate("/");
         }, 2000);
       } else {
-        setUtr(null);
-        setImage(null);
-        setFilePath("");
-        setUploadedImage(null);
-        setDepositRequestErr(result?.error?.errorMessage);
+        // setUtr(null);
+        // setImage(null);
+        // setFilePath("");
+        // setUploadedImage(null);
+        setDepositRequestErr(result?.result?.message);
       }
     }
   };
@@ -125,7 +124,6 @@ const Deposit = () => {
     e.target.value = null;
   };
 
-  console.log(depositData);
   return (
     <div
       _ngcontent-ng-c3816252360=""

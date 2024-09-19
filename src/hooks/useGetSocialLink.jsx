@@ -24,7 +24,7 @@ const useGetSocialLink = () => {
           Authorization: `bearer ${token}`,
         },
       });
-      console.log({res});
+
       const data = res.data;
       if (data?.success) {
         return data?.result;

@@ -280,7 +280,7 @@ const Login = ({
                                 _ngcontent-ng-c2806737617=""
                                 className="form-title"
                               >
-                                Username
+                              User ID / Mobile Number
                               </p>
                               <div
                                 _ngcontent-ng-c2806737617=""
@@ -305,7 +305,7 @@ const Login = ({
                                           name="username"
                                           appnumericonly=""
                                           matinput=""
-                                          placeholder="Username"
+                                         placeholder="Enter User ID / Mobile Number"
                                           formcontrolname="phone"
                                           className="mat-mdc-input-element ng-tns-c1205077789-3 ng-untouched ng-pristine ng-invalid mat-mdc-form-field-input-control mdc-text-field__input cdk-text-field-autofill-monitored"
                                           id="mat-input-0"

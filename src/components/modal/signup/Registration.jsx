@@ -297,7 +297,7 @@ const Registration = ({
                               </>
                             )}
 
-                            <p
+                            {/* <p
                               _ngcontent-ng-c1411651695=""
                               className="form-title ng-star-inserted"
                             >
@@ -343,7 +343,7 @@ const Registration = ({
                                   ></div>
                                 </div>
                               </div>
-                            </div>
+                            </div> */}
 
                             <p
                               _ngcontent-ng-c1411651695=""

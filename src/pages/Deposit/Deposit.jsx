@@ -4,7 +4,6 @@ import QRCode from "./QRCode";
 import UPI from "./UPI";
 import Bank from "./Bank";
 import useBankAccount from "../../hooks/useBankAccount";
-import { depositMethodsPost } from "../../constant/constant";
 import axios from "axios";
 import { API } from "../../api";
 import UseTokenGenerator from "../../hooks/UseTokenGenerator";
@@ -21,7 +20,10 @@ const Deposit = () => {
   const [paymentId, setPaymentId] = useState("");
   const [utr, setUtr] = useState(null);
   const [depositData, setDepositData] = useState({});
-  const { bankData: depositMethods } = useBankAccount(depositMethodsPost);
+  const { bankData: depositMethods } = useBankAccount({
+    type: "depositMethods",
+    amount: paymentAmount,
+  });
 
   const [image, setImage] = useState(null);
   const [loading, setLoading] = useState(false);
@@ -40,7 +42,7 @@ const Deposit = () => {
       paymentId: method?.paymentId,
       token: generatedToken,
     };
-    const encryptedData = UseEncryptData(depositDetail)
+    const encryptedData = UseEncryptData(depositDetail);
     const res = await axios.post(API.bankAccount, encryptedData, {
       headers: {
         Authorization: `Bearer ${token}`,
@@ -95,7 +97,7 @@ const Deposit = () => {
         utr: parseFloat(utr),
         token: generatedToken,
       };
-      const encryptedData = UseEncryptData(screenshotPostData)
+      const encryptedData = UseEncryptData(screenshotPostData);
       const res = await axios.post(API.bankAccount, encryptedData, {
         headers: {
           Authorization: `Bearer ${token}`,

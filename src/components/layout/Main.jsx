@@ -14,7 +14,7 @@ import Deposit from "../modal/Deposit";
 import Help from "../modal/Help";
 import Referral from "../modal/Referral";
 import BonusRules from "../modal/BonusRules";
-import handleDepositMethod from "../../utils/handleDepositMethod";
+// import handleDepositMethod from "../../utils/handleDepositMethod";
 import Warning from "../ui/Notification/Warning";
 import ChangePassword from "../modal/ChangePassword";
 import useGetVersion from "../../hooks/useGetVersion";
@@ -42,26 +42,25 @@ const Main = () => {
     showBonusRule,
     setShowBonusRule,
     token,
-    tokenLoading,
-    isCheckedBonusToken,
+    // tokenLoading,
+    // isCheckedBonusToken,
     setTokenLoading,
   } = useContextState();
   const [showChangePassModal, setShowChangePassModal] = useState("");
   const [successEditStake, setSuccessEditStake] = useState("");
   const navigate = useNavigate();
   const disabledDevtool = Settings.disabledDevtool;
-  const [verifyDeposit, setVerifyDeposit] = useState("");
+  // const [verifyDeposit, setVerifyDeposit] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
   const [successMessage, setSuccessMessage] = useState("");
   const location = useLocation();
   const { version, refetchVersion } = useGetVersion();
   const [showVersionChange, setShowVersionChange] = useState(false);
   const { refetchBalance } = useBalance();
-    /* If token change then refetch balance */
-    useEffect(() => {
-      refetchBalance();
-    }, [token, refetchBalance]);
-
+  /* If token change then refetch balance */
+  useEffect(() => {
+    refetchBalance();
+  }, [token, refetchBalance]);
 
   /* Disabled devtool based on settings */
   useEffect(() => {
@@ -78,29 +77,29 @@ const Main = () => {
         },
       });
     }
-  }, [navigate, disabledDevtool,setGetToken,setTokenLoading]);
+  }, [navigate, disabledDevtool, setGetToken, setTokenLoading]);
 
-  useEffect(() => {
-    if (Settings.deposit && !tokenLoading && !isCheckedBonusToken) {
-      const checkDepositMethodSimilarity = async () => {
-        const storedMethods = localStorage.getItem("depositMethod");
-        const depositMethod = handleDepositMethod(token);
-        const res = await depositMethod();
-        if (res?.success) {
-          const currentMethods = JSON.stringify(res?.result);
-          if (storedMethods !== currentMethods) {
-            setVerifyDeposit(
-              "Our deposit bank details are updated. Please verify our bank accounts before depositing money."
-            );
-            localStorage.setItem("depositMethod", currentMethods);
-          }
-        }
-      };
-      checkDepositMethodSimilarity();
-      const intervalId = setInterval(checkDepositMethodSimilarity, 1000 * 60);
-      return () => clearInterval(intervalId);
-    }
-  }, [tokenLoading, token]);
+  // useEffect(() => {
+  //   if (Settings.deposit && !tokenLoading && !isCheckedBonusToken) {
+  //     const checkDepositMethodSimilarity = async () => {
+  //       const storedMethods = localStorage.getItem("depositMethod");
+  //       const depositMethod = handleDepositMethod(token);
+  //       const res = await depositMethod();
+  //       if (res?.success) {
+  //         const currentMethods = JSON.stringify(res?.result);
+  //         if (storedMethods !== currentMethods) {
+  //           setVerifyDeposit(
+  //             "Our deposit bank details are updated. Please verify our bank accounts before depositing money."
+  //           );
+  //           localStorage.setItem("depositMethod", currentMethods);
+  //         }
+  //       }
+  //     };
+  //     checkDepositMethodSimilarity();
+  //     const intervalId = setInterval(checkDepositMethodSimilarity, 1000 * 60);
+  //     return () => clearInterval(intervalId);
+  //   }
+  // }, [tokenLoading, token]);
 
   useEffect(() => {
     if (window.location.hostname != "localhost") {
@@ -148,7 +147,6 @@ const Main = () => {
     }
   }, [version]);
 
-
   useEffect(() => {
     if (version?.googleTag) {
       const scriptForGoogle = document.createElement("script");
@@ -189,9 +187,6 @@ const Main = () => {
     setShowVersionChange(false);
     window.location.reload();
   };
-
-
-
 
   return (
     <>
@@ -271,9 +266,9 @@ const Main = () => {
           {showBonusRule && Settings.bonus && (
             <BonusRules setShowBonusRule={setShowBonusRule} />
           )}
-          {verifyDeposit && (
+          {/* {verifyDeposit && (
             <Warning message={verifyDeposit} setMessage={setVerifyDeposit} />
-          )}
+          )} */}
           {showChangePassModal && (
             <ChangePassword
               setShowChangePassModal={setShowChangePassModal}

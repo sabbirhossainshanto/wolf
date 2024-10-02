@@ -16,7 +16,7 @@ const useBankAccount = (payload) => {
         ...payload,
         token: generatedToken,
       };
-        const encryptedData = UseEncryptData(bankData);
+      const encryptedData = UseEncryptData(bankData);
       const res = await axios.post(API.bankAccount, encryptedData, {
         headers: {
           Authorization: `Bearer ${token}`,
@@ -28,8 +28,7 @@ const useBankAccount = (payload) => {
         return data?.result;
       }
     },
-    refetchOnMount:false,
-    refetchOnWindowFocus:false
+    gcTime: 0,
   });
   return { bankData, refetchBankData };
 };

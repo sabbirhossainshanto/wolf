@@ -43,7 +43,7 @@ const Registration = ({
       token: generatedToken,
       otp: user?.otp,
       isOtpAvailable: Settings.otp,
-      referralCode: user.referralCode,
+      // referralCode: user.referralCode,
       orderId: orderId.orderId,
       otpMethod: orderId.otpMethod,
     };
@@ -392,13 +392,13 @@ const Registration = ({
                                 </div>
                               </div>
                             </div>
-                            <p
+                            {/* <p
                               _ngcontent-ng-c1411651695=""
                               className="form-title ng-star-inserted"
                             >
                               Referral Code
-                            </p>
-                            <div
+                            </p> */}
+                            {/* <div
                               _ngcontent-ng-c2806737617=""
                               className="form-list"
                             >
@@ -438,7 +438,7 @@ const Registration = ({
                                   ></div>
                                 </div>
                               </div>
-                            </div>
+                            </div> */}
                             <div
                               _ngcontent-ng-c1411651695=""
                               className="form-btn"

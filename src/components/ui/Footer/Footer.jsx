@@ -9,17 +9,16 @@ import useGetVersion from "../../../hooks/useGetVersion";
 const Footer = () => {
   const { version } = useGetVersion();
   const { socialLink } = useGetSocialLink();
+
   const location = useLocation();
   const navigate = useNavigate();
-  const { token, setShowLogin, icon,  } =
-    useContextState();
+  const { token, setShowLogin, icon } = useContextState();
   const [showMyMarket, setShowMyMarket] = useState(false);
   /* Handle logout */
 
-
   /* on click whats app navigate in new tab */
   const navigateWhatsApp = () => {
-    window.open(socialLink?.link, "_blank");
+    window.open(socialLink?.whatsapplink, "_blank");
   };
 
   useEffect(() => {
@@ -78,7 +77,7 @@ const Footer = () => {
               className="btn-item ng-star-inserted"
             >
               <div _ngcontent-ng-c943649379="" className="btn-wrap whatsapp">
-                {socialLink?.link && location.pathname === "/"  && (
+                {socialLink?.whatsapplink && location.pathname === "/" && (
                   <img
                     onClick={navigateWhatsApp}
                     style={{ height: "40px", width: "40px" }}
@@ -87,14 +86,15 @@ const Footer = () => {
                     src="/assets/img/whatsapp.png"
                   />
                 )}
-                {version?.chaport?.isChaportVisible && location.pathname === "/"  && (
-                  <img
-                    onClick={openChaportOnClick}
-                    _ngcontent-ng-c943649379=""
-                    alt="WhatsApp"
-                    src="/assets/img/wp_support.webp"
-                  />
-                )}
+                {version?.chaport?.isChaportVisible &&
+                  location.pathname === "/" && (
+                    <img
+                      onClick={openChaportOnClick}
+                      _ngcontent-ng-c943649379=""
+                      alt="WhatsApp"
+                      src="/assets/img/wp_support.webp"
+                    />
+                  )}
               </div>
             </div>
           </div>

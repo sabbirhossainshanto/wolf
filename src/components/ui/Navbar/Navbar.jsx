@@ -5,7 +5,7 @@ import Login from "../../modal/Login";
 import UseTokenGenerator from "../../../hooks/UseTokenGenerator";
 import UseEncryptData from "../../../hooks/UseEncryptData";
 import { API, Settings } from "../../../api";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import useBalance from "../../../hooks/useBalance";
 import { IoArrowBack } from "react-icons/io5";
 import Warning from "../Notification/Warning";
@@ -14,6 +14,8 @@ import Registration from "../../modal/signup/Registration";
 import Success from "../Notification/Success";
 import GetForgotOTP from "../../modal/forgotPassword/GetForgotOTP";
 import ForgotPassword from "../../modal/forgotPassword/ForgotPassword";
+import AppPopup from "./AppPopUp";
+import { AndroidView } from "react-device-detect";
 const Navbar = () => {
   const [orderId, setOrderId] = useState({
     orderId: "",
@@ -33,7 +35,7 @@ const Navbar = () => {
     showOTP,
     setShowOTP,
   } = useContextState();
-
+  const [isModalOpen, setIsModalOpen] = useState(false);
   const [showForgotPassword, setShowForgotPassword] = useState(false);
   const [showForgotOTP, setShowForgotOTP] = useState(false);
 
@@ -105,8 +107,22 @@ const Navbar = () => {
     }
   };
 
+  useEffect(() => {
+    const expiryTime = localStorage.getItem("installPromptExpiryTime");
+    const currentTime = new Date().getTime();
+    if (!expiryTime || currentTime > expiryTime) {
+      localStorage.removeItem("installPromptExpiryTime");
+      setIsModalOpen(true);
+    }
+  }, [isModalOpen]);
+
   return (
     <>
+      {Settings?.apkLink && isModalOpen && (
+        <AndroidView>
+          <AppPopup setIsModalOpen={setIsModalOpen} />
+        </AndroidView>
+      )}
       {/* Show warning message */}
       {showWarning && (
         <Warning message={showWarning} setMessage={setShowWarning} />
@@ -316,7 +332,7 @@ const Navbar = () => {
           setShowForgotOTP={setShowForgotOTP}
         />
       )}
-{/* forgot password */}
+      {/* forgot password */}
       {showForgotOTP && (
         <GetForgotOTP
           setOrderId={setOrderId}
@@ -328,12 +344,12 @@ const Navbar = () => {
       )}
       {showForgotPassword && (
         <ForgotPassword
-        orderId={orderId}
-        setShowForgotPassword={setShowForgotPassword}
-        setShowForgotOTP={setShowForgotOTP}
-        mobileNo={mobileNo}
-        setErrMsg={setErrMsg}
-        setSuccessMsg={setSuccessMsg}
+          orderId={orderId}
+          setShowForgotPassword={setShowForgotPassword}
+          setShowForgotOTP={setShowForgotOTP}
+          mobileNo={mobileNo}
+          setErrMsg={setErrMsg}
+          setSuccessMsg={setSuccessMsg}
         />
       )}
       {/* Opt register modal */}
@@ -367,11 +383,7 @@ const Navbar = () => {
       )}
       {/* Error message after failed registration */}
       {errMsg && (
-        <Success
-          message={errMsg}
-          setMessage={setErrMsg}
-          success={false}
-        />
+        <Success message={errMsg} setMessage={setErrMsg} success={false} />
       )}
     </>
   );

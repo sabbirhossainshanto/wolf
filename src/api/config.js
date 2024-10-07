@@ -79,6 +79,7 @@ export const getSetApis = (setNoticeLoaded, baseUrl) => {
         Settings.baseUrl = data?.result?.settings?.baseUrl;
         Settings.otpless = data?.result?.settings?.otpless;
         Settings.casinoCurrency = data?.result?.settings?.casinoCurrency;
+        Settings.apkLink = data?.result?.settings?.apkLink;
 
         setNoticeLoaded(true);
       }

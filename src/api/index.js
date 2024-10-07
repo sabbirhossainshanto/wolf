@@ -45,10 +45,11 @@ export const API = {
   latestEvents: "",
   siteSetting: "",
   otpless: "",
-  forgotPassword:""
+  forgotPassword: "",
 };
 
 export const Settings = {
+  apkLink: "",
   bonus: "",
   deposit: "",
   withdraw: "",
@@ -68,5 +69,5 @@ export const Settings = {
   logoWidth: "",
   baseUrl: "",
   otpless: "",
-  betFairCashOut:"",
+  betFairCashOut: "",
 };

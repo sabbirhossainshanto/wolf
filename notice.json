@@ -21,9 +21,10 @@
       "referral": true,
       "buildVersion": 1.01,
       "balanceApiLoop": false,
-      "otpless":true,
+      "otpless": true,
       "baseUrl": "",
-      "betFairCashOut":true
+      "betFairCashOut": true,
+      "apkLink": "https://11xgame.vip/11xgame.apk"
     },
     "logo": {
       "height": 55,

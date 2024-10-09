@@ -29,14 +29,11 @@ const LiveCasinoTab = () => {
       aura: API.auraWolf,
     };
     const getGames = async () => {
-      const res = await axios.post(
-        apiMapping[sportsType],
-        {
-          gameList,
-          product,
-          isHome: false,
-        }
-      );
+      const res = await axios.post(apiMapping[sportsType], {
+        gameList,
+        product,
+        isHome: false,
+      });
       if (res?.status === 200) {
         const result = res?.data;
         setData(result);
@@ -68,7 +65,7 @@ const LiveCasinoTab = () => {
         return setWarnMessage("Bonus wallet is available only on sports.");
       }
       if (Settings.casinoCurrency !== "AED") {
-        console.log('ok');
+        console.log("ok");
         navigate(`/casino/${name.replace(/ /g, "")}/${id}`);
       } else {
         setGameInfo({ gameName: "", gameId: "" });
@@ -126,7 +123,7 @@ const LiveCasinoTab = () => {
                   _ngcontent-ng-c1965075897=""
                   className="game-type-list ng-star-inserted"
                 >
-                  <ul _ngcontent-ng-c1965075897="">
+                  <ul _ngcontent-ng-c1965075897="" className="casino-container">
                     {Array.isArray(data.gameList[title])
                       ? data?.gameList[title]?.map((item, i) => {
                           return (
@@ -146,13 +143,11 @@ const LiveCasinoTab = () => {
                                   _ngcontent-ng-c1965075897=""
                                   className="active"
                                 >
-                                 
-                                    <img
-                                      _ngcontent-ng-c1965075897=""
-                                      alt=""
-                                      src={item?.url_thumb}
-                                    />
-                              
+                                  <img
+                                    _ngcontent-ng-c1965075897=""
+                                    alt=""
+                                    src={item?.url_thumb}
+                                  />
                                 </a>
                                 <p
                                   _ngcontent-ng-c1965075897=""
@@ -221,7 +216,6 @@ const LiveCasinoTab = () => {
                                   />
                                 </a>
                                 <p
-                                
                                   _ngcontent-ng-c1965075897=""
                                   className="total-players"
                                 >

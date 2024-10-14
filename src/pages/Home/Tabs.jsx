@@ -15,9 +15,8 @@ const Tabs = () => {
       className="ng-star-inserted"
     >
       <div _ngcontent-ng-c2582205232="" className="pagetab-wrapper">
-        {
-          latestEvents?.length > 0 && (
-            <div
+        {latestEvents?.length > 0 && (
+          <div
             _ngcontent-ng-c2582205232=""
             className="latest-events ng-star-inserted"
           >
@@ -42,9 +41,8 @@ const Tabs = () => {
               );
             })}
           </div>
-          )
-        }
-    
+        )}
+
         <div _ngcontent-ng-c2582205232="" className="pagetab-header">
           <div
             onClick={() => setSportsType(4)}
@@ -63,7 +61,7 @@ const Tabs = () => {
               <img
                 _ngcontent-ng-c2582205232=""
                 alt="Tab Icon"
-                src="https://cdnimg.manage63.com/games_icon/ball.svg"
+                src="/assets/img/ball.svg"
               />
             </div>
             <div _ngcontent-ng-c2582205232="" className="tab-label">
@@ -87,7 +85,7 @@ const Tabs = () => {
               <img
                 _ngcontent-ng-c2582205232=""
                 alt="Tab Icon"
-                src="https://cdnimg.manage63.com/games_icon/soccer.svg"
+                src="/assets/img/soccer.svg"
               />
             </div>
             <div _ngcontent-ng-c2582205232="" className="tab-label">
@@ -117,7 +115,7 @@ const Tabs = () => {
               <img
                 _ngcontent-ng-c2582205232=""
                 alt="Tab Icon"
-                src="https://cdnimg.manage63.com/games_icon/tennis.svg"
+                src="/assets/img/tennis.svg"
               />
             </div>
             <div _ngcontent-ng-c2582205232="" className="tab-label">
@@ -142,14 +140,13 @@ const Tabs = () => {
               <img
                 _ngcontent-ng-c2582205232=""
                 alt="Tab Icon"
-                src="https://ss.manage63.com/bmk-wl/commonAssets/cards-header-icon.svg"
+                src="/assets/img/cards-header-icon.svg"
               />
             </div>
             <div _ngcontent-ng-c2582205232="" className="tab-label">
-             Card Games
+              Card Games
             </div>
           </div>
-
 
           <div
             onClick={() => setSportsType("live-casino")}
@@ -169,7 +166,7 @@ const Tabs = () => {
               <img
                 _ngcontent-ng-c2582205232=""
                 alt="Tab Icon"
-                src="https://ss.manage63.com/bmk-wl/commonAssets/chips-header-icon.svg"
+                src="/assets/img/chips-header-icon.svg"
               />
             </div>
             <div _ngcontent-ng-c2582205232="" className="tab-label">
@@ -195,7 +192,7 @@ const Tabs = () => {
               <img
                 _ngcontent-ng-c2582205232=""
                 alt="Tab Icon"
-                src="https://ss.manage63.com/bmk-wl/commonAssets/dice-header-icon.svg"
+                src="/assets/img/dice-header-icon.svg"
               />
             </div>
             <div _ngcontent-ng-c2582205232="" className="tab-label">

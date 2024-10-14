@@ -1,12 +1,11 @@
 import { useQuery } from "@tanstack/react-query";
-import useContextState from "./useContextState";
 import UseTokenGenerator from "./UseTokenGenerator";
 import { API, Settings } from "../api";
 import UseEncryptData from "./UseEncryptData";
 import axios from "axios";
 
 const useGetSocialLink = () => {
-  const { token } = useContextState();
+  const token = localStorage.getItem("token");
 
   /* get whats app link */
   const { data: socialLink } = useQuery({
@@ -21,7 +20,7 @@ const useGetSocialLink = () => {
       });
       const res = await axios.post(API.whatsApp, encryptedVideoData, {
         headers: {
-          Authorization: `bearer ${token}`,
+          Authorization: `Bearer ${token}`,
         },
       });
 
@@ -30,7 +29,7 @@ const useGetSocialLink = () => {
         return data?.result;
       }
     },
-    refetchOnWindowFocus:false
+    refetchOnWindowFocus: false,
   });
   return { socialLink };
 };

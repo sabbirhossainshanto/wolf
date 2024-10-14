@@ -61,7 +61,6 @@ const GetForgotOTP = ({
   };
 
   const handleGetOtpOnWhatsapp = async () => {
-   
     await getOtpOnWhatsapp(mobileNo, setOrderId, setShowForgotPassword);
   };
 
@@ -113,10 +112,6 @@ const GetForgotOTP = ({
                     <div
                       _ngcontent-ng-c2806737617=""
                       className="container login-section"
-                      style={{
-                        backgroundImage:
-                          "url('https://ss.manage63.com/bmk-wl/wl/wolf365/img/login-pattern.png')",
-                      }}
                     >
                       <div
                         _ngcontent-ng-c2806737617=""

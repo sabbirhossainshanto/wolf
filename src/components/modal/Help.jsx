@@ -54,16 +54,12 @@ const Help = () => {
               <div className="mat-mdc-dialog-surface mdc-dialog__surface">
                 <div _nghost-ng-c1325205117="" className="ng-star-inserted">
                   <div _ngcontent-ng-c1325205117="" className="help-modal">
-                    <div
-                      _ngcontent-ng-c1325205117=""
-                      className="modal-header"
-                    
-                    >
+                    <div _ngcontent-ng-c1325205117="" className="modal-header">
                       <div>
-                      <h2 _ngcontent-ng-c1325205117="">Help</h2>
-                      <p _ngcontent-ng-c1325205117="">
-                        Need Help! Feel free to contact.
-                      </p>
+                        <h2 _ngcontent-ng-c1325205117="">Help</h2>
+                        <p _ngcontent-ng-c1325205117="">
+                          Need Help! Feel free to contact.
+                        </p>
                       </div>
                       <button
                         onClick={() => setShowHelpModal(false)}
@@ -128,19 +124,20 @@ const Help = () => {
                           _ngcontent-ng-c1325205117=""
                           type="button"
                           className="btn secondary-btn ng-star-inserted"
-                          style={{display:'flex',alignItems:'center',justifyContent:'center',gap:'20px'}}
-
+                          style={{
+                            display: "flex",
+                            alignItems: "center",
+                            justifyContent: "center",
+                            gap: "20px",
+                          }}
                         >
-                      
-                      <span>    Chat with us on{" "}</span>
+                          <span> Chat with us on </span>
                           <img
-                          style={{height:'30px',objectFit:'contain'}}
+                            style={{ height: "30px", objectFit: "contain" }}
                             _ngcontent-ng-c1325205117=""
-                       
                             alt="WhatsApp Icon"
                             src="/assets/img/wp_support.webp"
                           />
-                          {/* https://ss.manage63.com/bmk-wl/commonAssets/whatsapp-icon.svg */}
                         </button>
                       </div>
                     </div>

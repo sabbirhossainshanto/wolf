@@ -4,12 +4,14 @@ import useContextState from "../../hooks/useContextState";
 
 const Withdraw = () => {
   const { token } = useContextState();
-  if(!token){
-    return
+  if (!token) {
+    return;
   }
   return (
-    <div _ngcontent-ng-c943649379="" className="page-body demoID"
-    style={{height:'100vh'}}
+    <div
+      _ngcontent-ng-c943649379=""
+      className="page-body demoID"
+      style={{ height: "100vh" }}
     >
       <iframe
         allow="fullscreen;"
@@ -22,7 +24,7 @@ const Withdraw = () => {
             <img
               _ngcontent-ng-c943649379=""
               alt="WhatsApp"
-              src="https://ss.manage63.com/bmk-wl/commonAssets/whatsapp-icon.svg"
+              src="/assets/img/whatsapp-icon.svg"
             />
           </div>
         </div>

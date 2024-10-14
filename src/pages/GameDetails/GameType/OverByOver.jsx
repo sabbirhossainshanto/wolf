@@ -42,7 +42,7 @@ const OverByOver = ({
         maxLiabilityPerMarket: item?.maxLiabilityPerMarket,
         isBettable: item?.isBettable,
         maxLiabilityPerBet: item?.maxLiabilityPerBet,
-        eventId:item?.eventId
+        eventId: item?.eventId,
       });
     } else {
       setShowLoginWarn("Please log in to play.");
@@ -94,7 +94,9 @@ const OverByOver = ({
       >
         <div _ngcontent-ng-c942213636="" className="head-wrap">
           <h2 _ngcontent-ng-c942213636="" className="card-heading">
-          {normal[0]?.eventTypeId == 4 ? normal[0]?.tabGroupName : normal[0]?.name}
+            {normal[0]?.eventTypeId == 4
+              ? normal[0]?.tabGroupName
+              : normal[0]?.name}
           </h2>
         </div>
         <div _ngcontent-ng-c942213636="" className="fancybody-header">
@@ -166,7 +168,7 @@ const OverByOver = ({
                               _ngcontent-ng-c942213636=""
                               alt=""
                               className="ladder-img"
-                              src="https://ss.manage63.com/bmk-wl/commonAssets/ladder.svg"
+                              src="/assets/img/ladder.svg"
                             />
                           </span>
                           <span className="mat-mdc-focus-indicator"></span>

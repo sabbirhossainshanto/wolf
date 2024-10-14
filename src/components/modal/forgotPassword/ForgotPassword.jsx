@@ -43,7 +43,7 @@ const ForgotPassword = ({
       otp: user.otp,
       orderId: orderId.orderId,
       otpMethod: orderId.otpMethod,
-      mobileType:'username'
+      mobileType: "username",
     };
 
     /* Encrypted post data */
@@ -110,10 +110,6 @@ const ForgotPassword = ({
                     <div
                       _ngcontent-ng-c1411651695=""
                       className="container login-section"
-                      style={{
-                        backgroundImage:
-                          "url('https://ss.manage63.com/bmk-wl/wl/wolf365/img/login-pattern.png')",
-                      }}
                     >
                       <div
                         _ngcontent-ng-c1411651695=""

@@ -232,7 +232,7 @@ const Sidebar = () => {
                           <img
                             _ngcontent-ng-c967272132=""
                             alt="Menu Icon"
-                            src="https://ss.manage63.com/bmk-wl/commonAssets/sidenav_bonus.svg"
+                            src="/assets/img/sidenav-reward.svg"
                           />
                           <span _ngcontent-ng-c967272132="">Bonus</span>
                           <span
@@ -321,7 +321,7 @@ const Sidebar = () => {
                           <img
                             _ngcontent-ng-c967272132=""
                             alt="Menu Icon"
-                            src="https://ss.manage63.com/bmk-wl/commonAssets/sidenav-reward.svg"
+                            src="/assets/img/sidenav-reward.svg"
                           />
                           <span _ngcontent-ng-c967272132="">
                             Have a promo/refer code
@@ -362,7 +362,7 @@ const Sidebar = () => {
                         <img
                           _ngcontent-ng-c967272132=""
                           alt="Menu Icon"
-                          src="https://ss.manage63.com/bmk-wl/commonAssets/sidenav_profile.svg"
+                          src="/assets/img/sidenav_profile.svg"
                         />
                         <span _ngcontent-ng-c967272132="">Profile</span>
                       </Link>
@@ -398,7 +398,7 @@ const Sidebar = () => {
                         <img
                           _ngcontent-ng-c967272132=""
                           alt="Menu Icon"
-                          src="https://ss.manage63.com/bmk-wl/commonAssets/sidenav__ac_statement.svg"
+                          src="/assets/img/sidenav__ac_statement.svg"
                         />
                         <span _ngcontent-ng-c967272132="">
                           Deposit Statement
@@ -420,7 +420,7 @@ const Sidebar = () => {
                         <img
                           _ngcontent-ng-c967272132=""
                           alt="Menu Icon"
-                          src="https://ss.manage63.com/bmk-wl/commonAssets/sidenav__ac_statement.svg"
+                          src="/assets/img/sidenav__ac_statement.svg"
                         />
                         <span _ngcontent-ng-c967272132="">
                           Withdraw Statement
@@ -443,7 +443,7 @@ const Sidebar = () => {
                         <img
                           _ngcontent-ng-c2865632707=""
                           alt="Menu Icon"
-                          src="https://ss.manage63.com/bmk-wl/commonAssets/sidenav_bank.svg"
+                          src="/assets/img/sidenav_bank.svg"
                         />
                         <span _ngcontent-ng-c967272132="">My Bank Details</span>
                       </a>
@@ -463,7 +463,7 @@ const Sidebar = () => {
                         <img
                           _ngcontent-ng-c967272132=""
                           alt="Menu Icon"
-                          src="https://ss.manage63.com/bmk-wl/commonAssets/sidenav_activebets.svg"
+                          src="/assets/img/sidenav_activebets.svg"
                         />
                         <span _ngcontent-ng-c967272132="">Active Bets</span>
                       </Link>
@@ -511,7 +511,7 @@ const Sidebar = () => {
                     <img
                       _ngcontent-ng-c967272132=""
                       alt="Menu Icon"
-                      src="https://ss.manage63.com/bmk-wl/commonAssets/sidenav_notification.svg"
+                      src="/assets/img/sidenav_notification.svg"
                     />
                     <span _ngcontent-ng-c967272132="">Notifications</span>
                   </a>
@@ -526,7 +526,7 @@ const Sidebar = () => {
                     <img
                       _ngcontent-ng-c967272132=""
                       alt="Menu Icon"
-                      src="https://ss.manage63.com/bmk-wl/commonAssets/sidenav_rules.svg"
+                      src="/assets/img/sidenav_rules.svg"
                     />
                     <span _ngcontent-ng-c967272132="">Rules</span>
                   </Link>
@@ -545,7 +545,7 @@ const Sidebar = () => {
                       <img
                         _ngcontent-ng-c967272132=""
                         alt="Menu Icon"
-                        src="https://ss.manage63.com/bmk-wl/commonAssets/sidenav_rules.svg"
+                        src="/assets/img/sidenav_rules.svg"
                       />
                       <span _ngcontent-ng-c967272132="">Bonus Rules</span>
                     </a>
@@ -567,7 +567,7 @@ const Sidebar = () => {
                       <img
                         _ngcontent-ng-c967272132=""
                         alt="Menu Icon"
-                        src="https://ss.manage63.com/bmk-wl/commonAssets/sidenav_help.svg"
+                        src="/assets/img/sidenav_help.svg"
                       />
                       <span _ngcontent-ng-c967272132="">Help</span>
                     </a>
@@ -599,7 +599,7 @@ const Sidebar = () => {
                         <img
                           _ngcontent-ng-c2865632707=""
                           alt=""
-                          src="https://ss.manage63.com/bmk-wl/commonAssets/icon_dark_instagram.svg"
+                          src="/assets/img/icon_dark_instagram.svg"
                         />
                       </a>
                     )}
@@ -615,7 +615,7 @@ const Sidebar = () => {
                         <img
                           _ngcontent-ng-c2865632707=""
                           alt=""
-                          src="https://ss.manage63.com/bmk-wl/commonAssets/icon_dark_telegram.svg"
+                          src="/assets/img/icon_dark_telegram.svg"
                         />
                       </a>
                     )}

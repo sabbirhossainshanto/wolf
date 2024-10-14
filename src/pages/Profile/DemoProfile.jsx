@@ -19,7 +19,6 @@ const DemoProfile = () => {
             routerlink="/rules"
             routerlinkactive="active-link"
             className="smenu-item"
-       
           >
             <Link
               to="/rules"
@@ -29,9 +28,8 @@ const DemoProfile = () => {
               <div _ngcontent-ng-c2865632707="" className="label-wrap">
                 <img
                   _ngcontent-ng-c2865632707=""
-           
                   alt="Menu Icon"
-                  src="https://ss.manage63.com/bmk-wl/commonAssets/sidenav_rules.svg"
+                  src="/assets/img/sidenav_rules.svg"
                 />
                 <span _ngcontent-ng-c2865632707="">Rules</span>
               </div>

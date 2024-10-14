@@ -256,7 +256,7 @@ const LoggedInProfile = ({
                 <img
                   _ngcontent-ng-c2865632707=""
                   alt="Menu Icon"
-                  src="https://ss.manage63.com/bmk-wl/commonAssets/sidenav_activebets.svg"
+                  src="/assets/img/sidenav_activebets.svg"
                 />
                 <span _ngcontent-ng-c2865632707="">Active Bets</span>
               </div>
@@ -276,7 +276,7 @@ const LoggedInProfile = ({
                 <img
                   _ngcontent-ng-c2865632707=""
                   alt="Menu Icon"
-                  src="https://ss.manage63.com/bmk-wl/commonAssets/sidenav__ac_statement.svg"
+                  src="/assets/img/sidenav__ac_statement.svg"
                 />
                 <span _ngcontent-ng-c2865632707="">Deposit Statement</span>
               </div>
@@ -297,7 +297,7 @@ const LoggedInProfile = ({
                 <img
                   _ngcontent-ng-c2865632707=""
                   alt="Menu Icon"
-                  src="https://ss.manage63.com/bmk-wl/commonAssets/sidenav_bank.svg"
+                  src="/assets/img/sidenav_bank.svg"
                 />
                 <span _ngcontent-ng-c2865632707="">My Bank Details</span>
               </div>
@@ -314,7 +314,7 @@ const LoggedInProfile = ({
                 <img
                   _ngcontent-ng-c2865632707=""
                   alt="Menu Icon"
-                  src="https://ss.manage63.com/bmk-wl/commonAssets/dice.svg"
+                  src="/assets/img/dice.svg"
                 />
                 <span _ngcontent-ng-c2865632707="">Casino Result</span>
               </div>
@@ -335,7 +335,7 @@ const LoggedInProfile = ({
                 <img
                   _ngcontent-ng-c2865632707=""
                   alt="Menu Icon"
-                  src="https://ss.manage63.com/bmk-wl/commonAssets/sidenav_rules.svg"
+                  src="/assets/img/sidenav_rules.svg"
                 />
                 <span _ngcontent-ng-c2865632707="">Rules</span>
               </div>
@@ -357,42 +357,44 @@ const LoggedInProfile = ({
                   <img
                     _ngcontent-ng-c2865632707=""
                     alt="Menu Icon"
-                    src="https://ss.manage63.com/bmk-wl/commonAssets/sidenav_rules.svg"
+                    src="/assets/img/sidenav_rules.svg"
                   />
                   <span _ngcontent-ng-c2865632707="">Bonus Rules</span>
                 </div>
               </a>
             </li>
           )}
-        {
-          token && (
+          {token && (
             <li
-            _ngcontent-ng-c2865632707=""
-            routerlinkactive="active-link"
-            className="smenu-item"
-            onClick={handleLogout}
-          >
-            <a
-              style={{ backgroundColor: "black" }}
               _ngcontent-ng-c2865632707=""
-              className="smenu-link"
+              routerlinkactive="active-link"
+              className="smenu-item"
+              onClick={handleLogout}
             >
-              <div
+              <a
+                style={{ backgroundColor: "black" }}
                 _ngcontent-ng-c2865632707=""
-                className="label-wrap"
-                style={{ textAlign: "center", width: "100%" }}
+                className="smenu-link"
               >
-                <span
-                  style={{ textAlign: "center", width: "100%", color: "white" }}
+                <div
                   _ngcontent-ng-c2865632707=""
+                  className="label-wrap"
+                  style={{ textAlign: "center", width: "100%" }}
                 >
-                  Logout
-                </span>
-              </div>
-            </a>
-          </li>
-          )
-        }
+                  <span
+                    style={{
+                      textAlign: "center",
+                      width: "100%",
+                      color: "white",
+                    }}
+                    _ngcontent-ng-c2865632707=""
+                  >
+                    Logout
+                  </span>
+                </div>
+              </a>
+            </li>
+          )}
         </ul>
         {socialLink?.instagramLink || socialLink?.telegramLink ? (
           <div
@@ -419,7 +421,7 @@ const LoggedInProfile = ({
                   <img
                     _ngcontent-ng-c2865632707=""
                     alt=""
-                    src="https://ss.manage63.com/bmk-wl/commonAssets/icon_dark_instagram.svg"
+                    src="/assets/img/icon_dark_instagram.svg"
                   />
                 </a>
               )}
@@ -435,7 +437,7 @@ const LoggedInProfile = ({
                   <img
                     _ngcontent-ng-c2865632707=""
                     alt=""
-                    src="https://ss.manage63.com/bmk-wl/commonAssets/icon_dark_telegram.svg"
+                    src="/assets/img/icon_dark_telegram.svg"
                   />
                 </a>
               )}

@@ -141,10 +141,10 @@ const Registration = ({
                     <div
                       _ngcontent-ng-c1411651695=""
                       className="container login-section"
-                      style={{
-                        backgroundImage:
-                          "url('https://ss.manage63.com/bmk-wl/wl/wolf365/img/login-pattern.png')",
-                      }}
+                      // style={{
+                      //   backgroundImage:
+                      //     "url('https://ss.manage63.com/bmk-wl/wl/wolf365/img/login-pattern.png')",
+                      // }}
                     >
                       <div
                         _ngcontent-ng-c1411651695=""

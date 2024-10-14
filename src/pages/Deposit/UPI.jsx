@@ -3,7 +3,7 @@ import { handleCopyToClipBoard } from "../../utils/handleCopyToClipBoard";
 
 /* eslint-disable react/no-unknown-property */
 const UPI = ({ depositData }) => {
-  const {setCopyTextSuccess} = useContextState()
+  const { setCopyTextSuccess } = useContextState();
 
   return (
     <div
@@ -25,7 +25,7 @@ const UPI = ({ depositData }) => {
             <div _ngcontent-ng-c3816252360="" className="pay-mode img-wrap">
               <img
                 _ngcontent-ng-c3816252360=""
-                src="https://ss.manage63.com/south247/uploads/payment/phone_pe.png"
+                src="/assets/img/phone_pe.png"
               />
             </div>
             <label _ngcontent-ng-c3816252360="">
@@ -35,7 +35,9 @@ const UPI = ({ depositData }) => {
           <p _ngcontent-ng-c3816252360="">
             <span _ngcontent-ng-c3816252360="">{depositData?.upiId}</span>
             <a
-              onClick={() => handleCopyToClipBoard(depositData?.upiId,setCopyTextSuccess)}
+              onClick={() =>
+                handleCopyToClipBoard(depositData?.upiId, setCopyTextSuccess)
+              }
               _ngcontent-ng-c3816252360=""
             >
               <span
@@ -51,59 +53,73 @@ const UPI = ({ depositData }) => {
           </p>
         </li>
         <li
-         onClick={() => handleCopyToClipBoard(depositData?.upiId,setCopyTextSuccess)}
-        _ngcontent-ng-c3816252360="" className="ng-star-inserted">
-              <div _ngcontent-ng-c3816252360="" className="list-left-side">
-                <div _ngcontent-ng-c3816252360="" className="pay-mode img-wrap">
-                  <img
-                    _ngcontent-ng-c3816252360=""
-                    src="https://ss.manage63.com/south247/uploads/payment/google_pay.png"
-                  />
-                </div>
-                <label _ngcontent-ng-c3816252360=""> {depositData?.upiAccountName}</label>
-              </div>
-              <p _ngcontent-ng-c3816252360="">
-                <span _ngcontent-ng-c3816252360="">{depositData?.upiId}</span>
-                <a _ngcontent-ng-c3816252360="">
-                  <span
-                    _ngcontent-ng-c3816252360=""
-                    role="img"
-                    className="mat-icon notranslate material-icons mat-ligature-font mat-icon-no-color"
-                    aria-hidden="true"
-                    data-mat-icon-type="font"
-                  >
-                    content_copy
-                  </span>
-                </a>
-              </p>
-            </li>
-            <li 
-             onClick={() => handleCopyToClipBoard(depositData?.upiId,setCopyTextSuccess)}
-            _ngcontent-ng-c3816252360="" className="ng-star-inserted">
-              <div _ngcontent-ng-c3816252360="" className="list-left-side">
-                <div _ngcontent-ng-c3816252360="" className="pay-mode img-wrap">
-                  <img
-                    _ngcontent-ng-c3816252360=""
-                    src="https://ss.manage63.com/south247/uploads/payment/paytm_upi.png"
-                  />
-                </div>
-                <label _ngcontent-ng-c3816252360=""> {depositData?.upiAccountName}</label>
-              </div>
-              <p _ngcontent-ng-c3816252360="">
-                <span _ngcontent-ng-c3816252360="">{depositData?.upiId}</span>
-                <a _ngcontent-ng-c3816252360="">
-                  <span
-                    _ngcontent-ng-c3816252360=""
-                    role="img"
-                    className="mat-icon notranslate material-icons mat-ligature-font mat-icon-no-color"
-                    aria-hidden="true"
-                    data-mat-icon-type="font"
-                  >
-                    content_copy
-                  </span>
-                </a>
-              </p>
-            </li>
+          onClick={() =>
+            handleCopyToClipBoard(depositData?.upiId, setCopyTextSuccess)
+          }
+          _ngcontent-ng-c3816252360=""
+          className="ng-star-inserted"
+        >
+          <div _ngcontent-ng-c3816252360="" className="list-left-side">
+            <div _ngcontent-ng-c3816252360="" className="pay-mode img-wrap">
+              <img
+                _ngcontent-ng-c3816252360=""
+                src="/assets/img/google_pay.png"
+              />
+            </div>
+            <label _ngcontent-ng-c3816252360="">
+              {" "}
+              {depositData?.upiAccountName}
+            </label>
+          </div>
+          <p _ngcontent-ng-c3816252360="">
+            <span _ngcontent-ng-c3816252360="">{depositData?.upiId}</span>
+            <a _ngcontent-ng-c3816252360="">
+              <span
+                _ngcontent-ng-c3816252360=""
+                role="img"
+                className="mat-icon notranslate material-icons mat-ligature-font mat-icon-no-color"
+                aria-hidden="true"
+                data-mat-icon-type="font"
+              >
+                content_copy
+              </span>
+            </a>
+          </p>
+        </li>
+        <li
+          onClick={() =>
+            handleCopyToClipBoard(depositData?.upiId, setCopyTextSuccess)
+          }
+          _ngcontent-ng-c3816252360=""
+          className="ng-star-inserted"
+        >
+          <div _ngcontent-ng-c3816252360="" className="list-left-side">
+            <div _ngcontent-ng-c3816252360="" className="pay-mode img-wrap">
+              <img
+                _ngcontent-ng-c3816252360=""
+                src="/assets/img/paytm_upi.png"
+              />
+            </div>
+            <label _ngcontent-ng-c3816252360="">
+              {" "}
+              {depositData?.upiAccountName}
+            </label>
+          </div>
+          <p _ngcontent-ng-c3816252360="">
+            <span _ngcontent-ng-c3816252360="">{depositData?.upiId}</span>
+            <a _ngcontent-ng-c3816252360="">
+              <span
+                _ngcontent-ng-c3816252360=""
+                role="img"
+                className="mat-icon notranslate material-icons mat-ligature-font mat-icon-no-color"
+                aria-hidden="true"
+                data-mat-icon-type="font"
+              >
+                content_copy
+              </span>
+            </a>
+          </p>
+        </li>
       </ul>
     </div>
   );

@@ -119,7 +119,7 @@ const Fancy = ({
 
             return (
               <div
-              key={i}
+                key={i}
                 _ngcontent-ng-c942213636=""
                 className="data-wrap ng-star-inserted"
                 id="7OverDSG"
@@ -167,7 +167,7 @@ const Fancy = ({
                               _ngcontent-ng-c942213636=""
                               alt=""
                               className="ladder-img"
-                              src="https://ss.manage63.com/bmk-wl/commonAssets/ladder.svg"
+                              src="/assets/img/ladder.svg"
                             />
                           </span>
                           <span className="mat-mdc-focus-indicator"></span>

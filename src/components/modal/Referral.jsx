@@ -8,8 +8,8 @@ import useContextState from "../../hooks/useContextState";
 import { handleCopyToClipBoard } from "../../utils/handleCopyToClipBoard";
 import Success from "../ui/Notification/Success";
 const Referral = ({ setShowReferral }) => {
-  const [successCopy,setSuccessCopy] = useState('')
-  const {logo} = useContextState()
+  const [successCopy, setSuccessCopy] = useState("");
+  const { logo } = useContextState();
   const referralRef = useRef();
   useCloseModalClickOutside(referralRef, () => {
     setShowReferral(false);
@@ -18,9 +18,13 @@ const Referral = ({ setShowReferral }) => {
 
   return (
     <div className="cdk-overlay-container">
-   {successCopy && (
-       <Success message={successCopy} setMessage={setSuccessCopy} success={true}/>
-   )}
+      {successCopy && (
+        <Success
+          message={successCopy}
+          setMessage={setSuccessCopy}
+          success={true}
+        />
+      )}
       <div className="cdk-overlay-backdrop cdk-overlay-dark-backdrop cdk-overlay-backdrop-showing"></div>
       <div
         className="cdk-global-overlay-wrapper"
@@ -60,7 +64,6 @@ const Referral = ({ setShowReferral }) => {
                       <div _ngcontent-ng-c526813732="" className="img-wrap">
                         <img
                           _ngcontent-ng-c526813732=""
-                     
                           alt="logo"
                           src={logo}
                           className="ng-star-inserted"
@@ -115,7 +118,12 @@ const Referral = ({ setShowReferral }) => {
                           {myReferralCode?.code}
                         </p>
                         <button
-                        onClick={()=> handleCopyToClipBoard(myReferralCode?.code,setSuccessCopy)}
+                          onClick={() =>
+                            handleCopyToClipBoard(
+                              myReferralCode?.code,
+                              setSuccessCopy
+                            )
+                          }
                           _ngcontent-ng-c526813732=""
                           className="btn secondary-btn"
                         >
@@ -134,9 +142,8 @@ const Referral = ({ setShowReferral }) => {
                             >
                               <img
                                 _ngcontent-ng-c526813732=""
-                             
                                 alt="WhatsApp"
-                                src="https://ss.manage63.com/bmk-wl/commonAssets/whatsapp-icon.svg"
+                                src="/assets/img/whatsapp-icon.svg"
                               />
                             </div>
                             <p _ngcontent-ng-c526813732="">WhatsApp</p>
@@ -151,9 +158,8 @@ const Referral = ({ setShowReferral }) => {
                             >
                               <img
                                 _ngcontent-ng-c526813732=""
-                           
                                 alt="WhatsApp"
-                                src="https://ss.manage63.com/bmk-wl/commonAssets/wa_business.svg"
+                                src="/assets/img/wa_business.svg"
                               />
                             </div>
                             <p _ngcontent-ng-c526813732="">WA Business</p>
@@ -168,9 +174,8 @@ const Referral = ({ setShowReferral }) => {
                             >
                               <img
                                 _ngcontent-ng-c526813732=""
-                            
                                 alt="WhatsApp"
-                                src="https://ss.manage63.com/bmk-wl/commonAssets/telegram.svg"
+                                src="/assets/img/icon_dark_telegram.svg"
                               />
                             </div>
                             <p _ngcontent-ng-c526813732="">Telegram</p>

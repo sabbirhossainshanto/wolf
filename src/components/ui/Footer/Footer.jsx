@@ -18,7 +18,11 @@ const Footer = () => {
 
   /* on click whats app navigate in new tab */
   const navigateWhatsApp = () => {
-    window.open(socialLink?.whatsapplink, "_blank");
+    if (token && socialLink?.branchWhatsapplink) {
+      window.open(socialLink?.branchWhatsapplink, "_blank");
+    } else {
+      window.open(socialLink?.whatsapplink, "_blank");
+    }
   };
 
   useEffect(() => {
@@ -77,7 +81,8 @@ const Footer = () => {
               className="btn-item ng-star-inserted"
             >
               <div _ngcontent-ng-c943649379="" className="btn-wrap whatsapp">
-                {socialLink?.whatsapplink && location.pathname === "/" && (
+                {(socialLink?.whatsapplink || socialLink?.branchWhatsapplink) &&
+                location.pathname === "/" ? (
                   <img
                     onClick={navigateWhatsApp}
                     style={{ height: "40px", width: "40px" }}
@@ -85,7 +90,7 @@ const Footer = () => {
                     alt="WhatsApp"
                     src="/assets/img/whatsapp.png"
                   />
-                )}
+                ) : null}
                 {version?.chaport?.isChaportVisible &&
                   location.pathname === "/" && (
                     <img

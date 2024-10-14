@@ -73,6 +73,10 @@ const LoggedInProfile = ({
     navigate("/");
   };
 
+  const navigateWhatsApp = (link) => {
+    window.open(link, "_blank");
+  };
+
   return (
     <>
       {/* Withdraw modal */}
@@ -364,6 +368,54 @@ const LoggedInProfile = ({
               </a>
             </li>
           )}
+
+          {socialLink?.whatsapplink && (
+            <li
+              _ngcontent-ng-c2865632707=""
+              routerlink="/rules"
+              routerlinkactive="active-link"
+              className="smenu-item"
+            >
+              <a
+                onClick={() => navigateWhatsApp(socialLink?.whatsapplink)}
+                _ngcontent-ng-c2865632707=""
+                className="smenu-link"
+              >
+                <div _ngcontent-ng-c2865632707="" className="label-wrap">
+                  <img
+                    _ngcontent-ng-c2865632707=""
+                    alt="Menu Icon"
+                    src="/assets/img/whatsapp.png"
+                  />
+                  <span _ngcontent-ng-c2865632707="">All Support</span>
+                </div>
+              </a>
+            </li>
+          )}
+          {socialLink?.branchWhatsapplink && (
+            <li
+              _ngcontent-ng-c2865632707=""
+              routerlink="/rules"
+              routerlinkactive="active-link"
+              className="smenu-item"
+            >
+              <a
+                onClick={() => navigateWhatsApp(socialLink?.branchWhatsapplink)}
+                _ngcontent-ng-c2865632707=""
+                className="smenu-link"
+              >
+                <div _ngcontent-ng-c2865632707="" className="label-wrap">
+                  <img
+                    _ngcontent-ng-c2865632707=""
+                    alt="Menu Icon"
+                    src="/assets/img/whatsapp.png"
+                  />
+                  <span _ngcontent-ng-c2865632707=""> Deposit Support</span>
+                </div>
+              </a>
+            </li>
+          )}
+
           {token && (
             <li
               _ngcontent-ng-c2865632707=""

@@ -261,6 +261,7 @@
   height: 8px;
 }
 
+/* App pop up */
 .android-popup {
   width: 100%;
   font-family: "Inter";
@@ -392,3 +393,5 @@
   letter-spacing: 0.3px;
   z-index: 10;
 }
+
+/* App pop up */

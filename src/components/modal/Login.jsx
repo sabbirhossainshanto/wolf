@@ -10,6 +10,7 @@ import { API, Settings } from "../../api";
 import Warning from "../ui/Notification/Warning";
 import useContextState from "../../hooks/useContextState";
 import handleDepositMethod from "../../utils/handleDepositMethod";
+import useGetSocialLink from "../../hooks/useGetSocialLink";
 const Login = ({
   setShowLogin,
   setErrorLogin,
@@ -17,6 +18,7 @@ const Login = ({
   setGetToken,
   setShowForgotOTP,
 }) => {
+  const { refetchSocialLinks } = useGetSocialLink();
   const { logo, setShowChangePassModal } = useContextState();
   const { register, handleSubmit } = useForm({
     // defaultValues:{
@@ -93,6 +95,7 @@ const Login = ({
         setShowLogin(false);
         /* get current token from locale storage */
         setGetToken((prev) => !prev);
+        refetchSocialLinks();
       }
       if (data?.result?.changePassword) {
         setGetToken((prev) => !prev);

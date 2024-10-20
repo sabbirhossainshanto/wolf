@@ -7,6 +7,7 @@ import UseEncryptData from "../../../hooks/UseEncryptData";
 import UseTokenGenerator from "../../../hooks/UseTokenGenerator";
 import useContextState from "../../../hooks/useContextState";
 import handleDepositMethod from "../../../utils/handleDepositMethod";
+import useGetSocialLink from "../../../hooks/useGetSocialLink";
 /* eslint-disable react/no-unknown-property */
 const Registration = ({
   setShowRegister,
@@ -16,6 +17,7 @@ const Registration = ({
   setErrRegister,
   orderId,
 }) => {
+  const { refetchSocialLinks } = useGetSocialLink();
   const { logo, setGetToken } = useContextState();
   /* Close modal click outside */
   const registerRef = useRef();
@@ -86,6 +88,7 @@ const Registration = ({
         data?.result?.changePassword === false
       ) {
         setGetToken((prev) => !prev);
+        refetchSocialLinks();
         /* Show success message */
         setSuccessRegister("User registration successful!");
         /* Close modal */

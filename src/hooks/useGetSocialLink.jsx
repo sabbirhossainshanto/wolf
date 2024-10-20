@@ -8,7 +8,7 @@ const useGetSocialLink = () => {
   const token = localStorage.getItem("token");
 
   /* get whats app link */
-  const { data: socialLink } = useQuery({
+  const { data: socialLink, refetch: refetchSocialLinks } = useQuery({
     queryKey: ["whatsApp"],
     queryFn: async () => {
       /* random token function */
@@ -31,7 +31,7 @@ const useGetSocialLink = () => {
     },
     refetchOnWindowFocus: false,
   });
-  return { socialLink };
+  return { socialLink, refetchSocialLinks };
 };
 
 export default useGetSocialLink;

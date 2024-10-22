@@ -12,7 +12,7 @@ const Sports = () => {
   const { sportsType, setSportsType } = useContextState();
   const [games, setGames] = useState(null);
   const [categories, setCategories] = useState([]);
-  const eventName = { 4: "Cricket", 2: "Tennis", 1: "Football" };
+  const eventName = { 4: "Cricket", 2: "Tennis", 1: "Football", 5: "Kabbadi" };
   /* Get game events */
   useEffect(() => {
     const gameData = async () => {
@@ -21,6 +21,7 @@ const Sports = () => {
         const res = await axios.get(apiUrl);
         const data = res.data;
         const decryptionData = await handleDecryptData(JSON.stringify(data));
+        console.log(decryptionData);
         setGames(decryptionData);
       }
     };
@@ -30,13 +31,13 @@ const Sports = () => {
       sportsType === 0 ||
       sportsType === 4 ||
       sportsType === 1 ||
-      sportsType === 2
+      sportsType === 2 ||
+      sportsType === 5
     ) {
       const intervalId = setInterval(gameData, API.interval);
       return () => clearInterval(intervalId);
     }
   }, [sportsType]);
-
 
   /* get category for games */
   useEffect(() => {
@@ -47,7 +48,7 @@ const Sports = () => {
       );
       /* Sort the category for cricket > tennis > football */
       const sortedCategories = categories.sort((a, b) => {
-        const order = { 4: 0, 2: 1, 1: 2 };
+        const order = { 4: 0, 2: 1, 1: 2, 5: 3 };
         return order[a] - order[b];
       });
       setCategories(sortedCategories);
@@ -164,6 +165,13 @@ const Sports = () => {
                   ))
               : null}
             {games && Object.values(games).length > 0 && sportsType === 1
+              ? Object.keys(games)
+                  .sort((keyA, keyB) => games[keyA].sort - games[keyB].sort)
+                  .map((key, index) => (
+                    <BetTable key={index} keys={key} data={games} />
+                  ))
+              : null}
+            {games && Object.values(games).length > 0 && sportsType === 5
               ? Object.keys(games)
                   .sort((keyA, keyB) => games[keyA].sort - games[keyB].sort)
                   .map((key, index) => (

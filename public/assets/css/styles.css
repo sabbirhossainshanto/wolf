@@ -740,7 +740,7 @@ button .mat-mdc-button-touch-target {
   row-gap: 5px;
   cursor: pointer;
   position: relative;
-  min-width: 15.3846153846%;
+  /* min-width: 15.3846153846%; */
 }
 
 .page-body .pagetab-header .pagetab-item.active:after,

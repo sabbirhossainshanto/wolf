@@ -114,7 +114,10 @@ const Home = () => {
             ) : (
               <div _ngcontent-ng-c943649379="" className="pagetab-content">
                 <Sports />
-                {sportsType !== 4 && sportsType !== 2 && sportsType !== 1 ? (
+                {sportsType !== 4 &&
+                sportsType !== 2 &&
+                sportsType !== 1 &&
+                sportsType !== 5 ? (
                   <>
                     <GoCasino />
                     <LiveCasino />

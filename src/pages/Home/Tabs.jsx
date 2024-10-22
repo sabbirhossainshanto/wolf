@@ -123,6 +123,36 @@ const Tabs = () => {
             </div>
           </div>
           <div
+            onClick={() => setSportsType(5)}
+            _ngcontent-ng-c2582205232=""
+            routerlinkactive="active-link"
+            className={`pagetab-item ng-star-inserted   ${
+              sportsType === 5 ? "active-link" : ""
+            }`}
+          >
+            {/* <p
+              _ngcontent-ng-c2582205232=""
+              className="newgame ng-star-inserted"
+            >
+              Started
+            </p> */}
+            <div
+              _ngcontent-ng-c2582205232=""
+              className={`icon-wrap ${
+                sportsType === 5 ? "rotate-animation" : ""
+              }`}
+            >
+              <img
+                _ngcontent-ng-c2582205232=""
+                alt="Tab Icon"
+                src="/public/assets/img/kabbadi.svg"
+              />
+            </div>
+            <div _ngcontent-ng-c2582205232="" className="tab-label">
+              Kabbadi
+            </div>
+          </div>
+          <div
             onClick={() => setSportsType("aura")}
             _ngcontent-ng-c2582205232=""
             routerlink="/casino-bmk-lobby"

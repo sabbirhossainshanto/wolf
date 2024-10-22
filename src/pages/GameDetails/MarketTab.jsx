@@ -100,18 +100,22 @@ const MarketTab = ({
                   }
                 ></iframe>
               )}
-              <div style={{ height: "125px", overflow: "hidden" }}>
-                {showScore && score?.tracker && (
+
+              {showScore && score?.tracker && (
+                <div
+                  style={{ height: "125px", width: "100%", overflow: "hidden" }}
+                >
                   <iframe
-                    _ngcontent-ng-c942213636=""
+                    // _ngcontent-ng-c942213636=""
                     style={{
                       width: "100%",
                       border: "0px",
                     }}
                     src={score?.tracker}
                   ></iframe>
-                )}
-              </div>
+                </div>
+              )}
+
               {match_odds?.length > 0 &&
                 match_odds?.[0]?.eventTypeId == 4 &&
                 match_odds[0]?.score?.length !== 0 &&

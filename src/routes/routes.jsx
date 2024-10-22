@@ -14,6 +14,7 @@ import DepositStatement from "../pages/DepositStatement/DepositStatement";
 import MyBankDetails from "../pages/MyBankDetails/MyBankDetails";
 import Casino from "../pages/Casino/Casino";
 import NotFound from "../pages/NotFound/NotFound";
+import APK from "../pages/APK/APK";
 
 export const router = createBrowserRouter(
   [
@@ -74,6 +75,10 @@ export const router = createBrowserRouter(
         {
           path: "my-bank-details",
           element: <MyBankDetails />,
+        },
+        {
+          path: "apk",
+          element: <APK />,
         },
       ],
     },

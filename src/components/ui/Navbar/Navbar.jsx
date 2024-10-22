@@ -15,7 +15,7 @@ import Success from "../Notification/Success";
 import GetForgotOTP from "../../modal/forgotPassword/GetForgotOTP";
 import ForgotPassword from "../../modal/forgotPassword/ForgotPassword";
 import AppPopup from "./AppPopUp";
-import { AndroidView } from "react-device-detect";
+// import { AndroidView } from "react-device-detect";
 const Navbar = () => {
   const [orderId, setOrderId] = useState({
     orderId: "",
@@ -38,7 +38,7 @@ const Navbar = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [showForgotPassword, setShowForgotPassword] = useState(false);
   const [showForgotOTP, setShowForgotOTP] = useState(false);
-
+  const [windowWidth, setWindowWidth] = useState(window.innerWidth);
   const location = useLocation();
   const navigate = useNavigate();
   const loginName = localStorage.getItem("loginName");
@@ -108,20 +108,46 @@ const Navbar = () => {
   };
 
   useEffect(() => {
-    const expiryTime = localStorage.getItem("installPromptExpiryTime");
-    const currentTime = new Date().getTime();
-    if (!expiryTime || currentTime > expiryTime) {
+    const handleResize = () => {
+      setWindowWidth(window.innerWidth);
+    };
+
+    window.addEventListener("resize", handleResize);
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
+
+  // useEffect(() => {
+  //   const expiryTime = localStorage.getItem("installPromptExpiryTime");
+  //   const currentTime = new Date().getTime();
+  //   if (!expiryTime || currentTime > expiryTime) {
+  //     localStorage.removeItem("installPromptExpiryTime");
+  //     setIsModalOpen(true);
+  //   }
+  // }, [isModalOpen]);
+
+  useEffect(() => {
+    const closePopupForForever = localStorage.getItem("closePopupForForever");
+    if (location?.state?.pathname === "/apk" || location.pathname === "/apk") {
+      localStorage.setItem("closePopupForForever", true);
       localStorage.removeItem("installPromptExpiryTime");
-      setIsModalOpen(true);
+    } else {
+      if (!closePopupForForever) {
+        const expiryTime = localStorage.getItem("installPromptExpiryTime");
+        const currentTime = new Date().getTime();
+
+        if (!expiryTime || currentTime > expiryTime) {
+          setIsModalOpen(true);
+        }
+      }
     }
-  }, [isModalOpen]);
+  }, [windowWidth, isModalOpen, location?.state?.pathname, location.pathname]);
 
   return (
     <>
-      {Settings?.apkLink && isModalOpen && (
-        <AndroidView>
-          <AppPopup setIsModalOpen={setIsModalOpen} />
-        </AndroidView>
+      {Settings?.apkLink && isModalOpen && windowWidth < 550 && (
+        <AppPopup setIsModalOpen={setIsModalOpen} />
       )}
       {/* Show warning message */}
       {showWarning && (

@@ -66,8 +66,6 @@ const MarketTab = ({
     setOverByOver(overByOverFilter);
   }, [data]);
 
-
- 
   return (
     <div className="mat-mdc-tab-body-wrapper">
       <div
@@ -102,18 +100,19 @@ const MarketTab = ({
                   }
                 ></iframe>
               )}
-              {showScore && score?.tracker && (
-                <iframe
-                  _ngcontent-ng-c942213636=""
-                  style={{
-                    width: "100%",
-                    border: "0px",
-                  }}
-                  src={score?.tracker}
-                ></iframe>
-              )}
-              {
-                match_odds?.length > 0 &&
+              <div style={{ height: "125px", overflow: "hidden" }}>
+                {showScore && score?.tracker && (
+                  <iframe
+                    _ngcontent-ng-c942213636=""
+                    style={{
+                      width: "100%",
+                      border: "0px",
+                    }}
+                    src={score?.tracker}
+                  ></iframe>
+                )}
+              </div>
+              {match_odds?.length > 0 &&
                 match_odds?.[0]?.eventTypeId == 4 &&
                 match_odds[0]?.score?.length !== 0 &&
                 match_odds?.[0]?.score?.map((team, i) => {
@@ -132,10 +131,7 @@ const MarketTab = ({
                           <span
                             class="small"
                             _ngcontent-ng-c3799324686=""
-                        
-                          >
-                         
-                          </span>
+                          ></span>
                         </span>
 
                         <span _ngcontent-ng-c3799324686="" class="batting-team">
@@ -144,7 +140,7 @@ const MarketTab = ({
                           </span>
                         </span>
                       </div>
-              
+
                       <div
                         _ngcontent-ng-c3799324686=""
                         class="score-overlay ng-star-inserted"
@@ -190,7 +186,6 @@ const MarketTab = ({
                             {team?.target}
                           </span>
                         </span>
-              
                       </div>
                     </div>
                   );
@@ -260,7 +255,6 @@ const MarketTab = ({
           </div>
         </div>
       </div>
-
     </div>
   );
 };

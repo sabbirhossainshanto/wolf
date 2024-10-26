@@ -26,7 +26,7 @@ const BetTable = ({ data, keys }) => {
 
   return (
     <>
-      {data[keys]?.inPlay === 0 && (
+      {data[keys]?.inPlay === 0 && data[keys]?.visible && (
         <div
           style={{ cursor: "pointer" }}
           onClick={() => navigateGameList(keys)}

@@ -17,10 +17,10 @@ const InPlay = ({ keys, data }) => {
       return "4fr 2fr";
     }
   };
-
+  console.log(data[keys]);
   return (
     <>
-      {data[keys]?.inPlay === 1 && (
+      {data[keys]?.inPlay === 1 && data[keys]?.visible && (
         <div
           onClick={() => navigateGameList(keys)}
           style={{ cursor: "pointer" }}

@@ -164,20 +164,13 @@ const Sports = () => {
                     <BetTable key={index} keys={key} data={games} />
                   ))
               : null}
-            {games && Object.values(games).length > 0 && sportsType === 1
+            {/* {games && Object.values(games).length > 0 && sportsType === 1
               ? Object.keys(games)
                   .sort((keyA, keyB) => games[keyA].sort - games[keyB].sort)
                   .map((key, index) => (
                     <BetTable key={index} keys={key} data={games} />
                   ))
-              : null}
-            {games && Object.values(games).length > 0 && sportsType === 5
-              ? Object.keys(games)
-                  .sort((keyA, keyB) => games[keyA].sort - games[keyB].sort)
-                  .map((key, index) => (
-                    <BetTable key={index} keys={key} data={games} />
-                  ))
-              : null}
+              : null} */}
           </div>
         </div>
       )}

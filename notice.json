@@ -12,6 +12,7 @@
       "register": true,
       "forceLogin": false,
       "demoLogin": true,
+      "registrationWhatsapp": true,
       "deposit": true,
       "bonus": true,
       "withdraw": true,

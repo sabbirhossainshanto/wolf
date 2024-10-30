@@ -15,8 +15,10 @@ import Success from "../Notification/Success";
 import GetForgotOTP from "../../modal/forgotPassword/GetForgotOTP";
 import ForgotPassword from "../../modal/forgotPassword/ForgotPassword";
 import AppPopup from "./AppPopUp";
+import useGetSocialLink from "../../../hooks/useGetSocialLink";
 // import { AndroidView } from "react-device-detect";
 const Navbar = () => {
+  const { socialLink } = useGetSocialLink();
   const [orderId, setOrderId] = useState({
     orderId: "",
     otpMethod: "",
@@ -143,6 +145,12 @@ const Navbar = () => {
       }
     }
   }, [windowWidth, isModalOpen, location?.state?.pathname, location.pathname]);
+
+  const openWhatsapp = () => {
+    if (socialLink?.whatsapplink) {
+      window.open(socialLink?.whatsapplink, "_blank");
+    }
+  };
 
   return (
     <>
@@ -302,6 +310,22 @@ const Navbar = () => {
                       <span className="mat-ripple mat-mdc-button-ripple"></span>
                     </button>
                   )}
+                  {Settings.registrationWhatsapp &&
+                    socialLink?.whatsapplink && (
+                      <button
+                        onClick={openWhatsapp}
+                        _ngcontent-ng-c3243547741=""
+                        mat-flat-button=""
+                        className="btn dark-outlined-btn mdc-button mdc-button--unelevated mat-mdc-unelevated-button mat-unthemed mat-mdc-button-base"
+                        mat-ripple-loader-class-name="mat-mdc-button-ripple"
+                      >
+                        <span className="mat-mdc-button-persistent-ripple mdc-button__ripple"></span>
+                        <span className="mdc-button__label">Get Id</span>
+                        <span className="mat-mdc-focus-indicator"></span>
+                        <span className="mat-mdc-button-touch-target"></span>
+                        <span className="mat-ripple mat-mdc-button-ripple"></span>
+                      </button>
+                    )}
                   {/* If demo login true in settings then showing demologin button  */}
                   {Settings.demoLogin && (
                     <button

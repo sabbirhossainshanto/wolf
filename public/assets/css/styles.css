@@ -7,24 +7,11 @@
   --page-topBar: #141414;
   --footerBG: #fff;
   --color1: #fff;
-  --color2: #9b0505;
-  --bg-primary90: #0b3b90e6;
-  --text-primary: #ffffff;
-  --bg-secondary: #202020;
-  --bg-secondary70: #0f2039b3;
-  --bg-secondary85: #0f2039d9;
-  --text-secondary: #ffffff;
+
+  /* theme */
   --primary-color-shade: #ffffff;
   --primary-color-tint: #ffffff;
   --primary-color-contrast: #000;
-
-  --headerBG: #000;
-  --headerText: #fff;
-  --footerText: #616161;
-  --footerIcon: #a91414;
-  --footerCircle: #262626;
-  /* theme */
-
   --grey-00: #eeeeee;
   --grey-50: #e8e8e8;
   --grey-100: #c6c6c6;

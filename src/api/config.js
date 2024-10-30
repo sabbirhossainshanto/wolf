@@ -65,6 +65,8 @@ export const getSetApis = (setNoticeLoaded, baseUrl) => {
         Settings.bonus = data?.result?.settings?.bonus;
         Settings.betFairCashOut = data?.result?.settings?.betFairCashOut;
         Settings.deposit = data?.result?.settings?.deposit;
+        Settings.registrationWhatsapp =
+          data?.result?.settings?.registrationWhatsapp;
         Settings.withdraw = data?.result?.settings?.withdraw;
         Settings.register = data?.result?.settings.register;
         Settings.demoLogin = data?.result?.settings?.demoLogin;

@@ -125,7 +125,7 @@ const GetOTP = ({
                             className="ng-star-inserted"
                           />
                         </div>
-                        <div
+                        {/* <div
                           _ngcontent-ng-c2806737617=""
                           className="welcome-text"
                         >
@@ -135,7 +135,7 @@ const GetOTP = ({
                           >
                             Signup
                           </h2>
-                        </div>
+                        </div> */}
                         <button
                           onClick={() => setShowOTP(false)}
                           _ngcontent-ng-c2806737617=""

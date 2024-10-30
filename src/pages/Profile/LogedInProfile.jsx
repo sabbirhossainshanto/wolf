@@ -424,7 +424,7 @@ const LoggedInProfile = ({
               onClick={handleLogout}
             >
               <a
-                style={{ backgroundColor: "black" }}
+                style={{ backgroundColor: "var(--primary-color)" }}
                 _ngcontent-ng-c2865632707=""
                 className="smenu-link"
               >

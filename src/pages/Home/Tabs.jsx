@@ -145,7 +145,7 @@ const Tabs = () => {
               <img
                 _ngcontent-ng-c2582205232=""
                 alt="Tab Icon"
-                src="/public/assets/img/kabbadi.svg"
+                src="/assets/img/kabbadi.svg"
               />
             </div>
             <div _ngcontent-ng-c2582205232="" className="tab-label">

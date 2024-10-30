@@ -14508,7 +14508,7 @@ div.mat-mdc-select-panel {
 }
 
 .login-section[_ngcontent-ng-c1411651695] {
-  background: var(--primary-bg);
+  background: var(--modal-bg);
   background-image: none !important;
 }
 
@@ -22004,7 +22004,7 @@ button.btn:disabled {
   cursor: not-allowed;
 }
 button.btn.secondary-btn {
-  background-color: var(--primary-bg);
+  background-color: var(--primary-color);
   color: var(--secondary-color);
 }
 .page-body {

@@ -217,7 +217,7 @@ const Login = ({
                               className="ng-star-inserted"
                             />{" "}
                           </div>
-                          <div
+                          {/* <div
                             _ngcontent-ng-c2806737617=""
                             className="welcome-text"
                           >
@@ -227,7 +227,7 @@ const Login = ({
                             >
                               Login{" "}
                             </h2>
-                          </div>
+                          </div> */}
 
                           <button
                             onClick={() => setShowLogin(false)}

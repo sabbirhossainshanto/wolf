@@ -1,17 +1,13 @@
 :root {
-  
-  
   /* theme css */
   --primary-color: #488feb;
   --secondary-color: #fff;
   --primary-bg: #000000;
   --secondary-bg: #fff;
   --page-topBar: #141414;
-
   --footerBG: #fff;
   --color1: #fff;
   --color2: #9b0505;
-
   --bg-primary90: #0b3b90e6;
   --text-primary: #ffffff;
   --bg-secondary: #202020;
@@ -21,15 +17,13 @@
   --primary-color-shade: #ffffff;
   --primary-color-tint: #ffffff;
   --primary-color-contrast: #000;
-  
+
   --headerBG: #000;
   --headerText: #fff;
   --footerText: #616161;
   --footerIcon: #a91414;
   --footerCircle: #262626;
   /* theme */
-
-
 
   --grey-00: #eeeeee;
   --grey-50: #e8e8e8;
@@ -62,13 +56,9 @@
   --white-color: #ffffff;
   --back-light: #d4e8f8;
   --lay-light: #f7e7eb;
-
-
-
 }
 
-
-.primary-button{
+.primary-button {
   background-color: var(--primary-button) !important;
 }
 
@@ -282,7 +272,6 @@ textarea.cdk-textarea-autosize-measuring-firefox {
 .cdk-high-contrast-active {
   --mat-mdc-focus-indicator-display: block;
 }
-
 
 @font-face {
   font-family: open_bold;
@@ -8064,7 +8053,7 @@ ion-refresher-content {
 .page-header[_ngcontent-ng-c943649379] .header-right-cont .not-loggedIn button {
   min-width: auto;
   width: auto;
-height: 25px;
+  height: 25px;
   max-width: 90px;
   font-size: 10px;
   background: var(--secondary-bg);

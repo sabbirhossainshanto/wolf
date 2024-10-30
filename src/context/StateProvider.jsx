@@ -2,7 +2,7 @@ import { createContext, useEffect, useState } from "react";
 import { API, Settings } from "../api";
 export const StateContext = createContext(null);
 import { getSetApis } from "../api/config";
-import notice from '../../notice.json'
+import notice from "../../notice.json";
 const StateProvider = ({ children }) => {
   /* Global state this states we are using in full project */
 
@@ -10,7 +10,7 @@ const StateProvider = ({ children }) => {
   const [showSidebar, setShowSidebar] = useState(false);
   const [token, setToken] = useState("");
   const [showLogin, setShowLogin] = useState(false);
- 
+
   const [getToken, setGetToken] = useState(false);
   const [tokenLoading, setTokenLoading] = useState(true);
   const [showEditStake, setShowEditStake] = useState(false);
@@ -34,8 +34,8 @@ const StateProvider = ({ children }) => {
   const [noticeLoaded, setNoticeLoaded] = useState(false);
   const baseUrl = notice?.result?.settings?.baseUrl;
   useEffect(() => {
-    getSetApis(setNoticeLoaded,baseUrl);
-  }, [noticeLoaded,baseUrl]);
+    getSetApis(setNoticeLoaded, baseUrl);
+  }, [noticeLoaded, baseUrl]);
 
   /* Get token from locale storage */
   useEffect(() => {
@@ -70,14 +70,13 @@ const StateProvider = ({ children }) => {
       setIcon(icon);
 
       /* Dynamically append  theme css  */
-      // const link = document.createElement("link");
-      // link.rel = "stylesheet";
-      // link.type = "text/css";
-      // link.href = `${API.assets}/${Settings.siteUrl}/theme.css`;
-      // document.head.appendChild(link);
-      // console.log(link);
+      const link = document.createElement("link");
+      link.rel = "stylesheet";
+      link.type = "text/css";
+      link.href = `${API.assets}/${Settings.siteUrl}/theme.css`;
+      document.head.appendChild(link);
+      console.log(link);
 
-      
       /*Dynamically append Logo */
       const logo = `${API.assets}/${Settings.siteUrl}/logo.${Settings.logoFormat}`;
       setLogo(logo);

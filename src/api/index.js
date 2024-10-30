@@ -46,6 +46,7 @@ export const API = {
   siteSetting: "",
   otpless: "",
   forgotPassword: "",
+  mac88: "",
 };
 
 export const Settings = {
@@ -72,4 +73,5 @@ export const Settings = {
   betFairCashOut: "",
   registrationWhatsapp: "",
   build: "",
+  mac88: "",
 };

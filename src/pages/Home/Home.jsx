@@ -11,6 +11,7 @@ import useBannerImage from "../../hooks/useBannerImage";
 // import Banner from "./Banner";
 import useBalance from "../../hooks/useBalance";
 import { Settings } from "../../api";
+import Mac88 from "./Mac88";
 // import MyMatches from "./MyMatches";
 
 /* eslint-disable react/no-unknown-property */
@@ -113,11 +114,12 @@ const Home = () => {
               <LiveCasinoTab />
             ) : (
               <div _ngcontent-ng-c943649379="" className="pagetab-content">
-                <Sports />
+                {sportsType === "mac88" ? <Mac88 /> : <Sports />}
                 {sportsType !== 4 &&
                 sportsType !== 2 &&
                 sportsType !== 1 &&
-                sportsType !== 5 ? (
+                sportsType !== 5 &&
+                sportsType !== "mac88" ? (
                   <>
                     <GoCasino />
                     <LiveCasino />

@@ -17,7 +17,7 @@
       "bonus": true,
       "withdraw": true,
       "disabledDevtool": false,
-      "casinoCurrency": "AED",
+      "casinoCurrency": "INR",
       "otp": true,
       "referral": true,
       "buildVersion": 1.01,
@@ -26,6 +26,7 @@
       "baseUrl": "",
       "betFairCashOut": true,
       "apkLink": "https://11xgame.vip/11xgame.apk",
+      "mac88": true,
       "build": "production"
     },
     "logo": {
@@ -100,7 +101,8 @@
       "latestEvents": "https://api7.live/api/exchange/diamond/latestEvents",
       "siteSettings": "https://cache7.live/api/exchange/diamond/settings",
       "otpless": "https://api7.live/api/exchange/diamond/otpless",
-      "forgotPassword": "https://api7.live/api/exchange/diamond/forgotPassword"
+      "forgotPassword": "https://api7.live/api/exchange/diamond/forgotPassword",
+      "mac88": "https://api7.live/api/exchange/diamond/mac88"
     }
   },
   "success": true

@@ -58,11 +58,13 @@ export const getSetApis = (setNoticeLoaded, baseUrl) => {
         API.siteSetting = data?.result?.endpoint?.siteSettings;
         API.cache = data?.result?.endpoint?.cache;
         API.assets = data?.result?.endpoint?.assets;
+        API.mac88 = data?.result?.endpoint?.mac88;
 
         Settings.logoFormat = data?.result?.logo?.format;
         Settings.logoHeight = data?.result?.logo?.height;
         Settings.logoWidth = data?.result?.logo?.width;
         Settings.bonus = data?.result?.settings?.bonus;
+        Settings.mac88 = data?.result?.settings?.mac88;
         Settings.build = data?.result?.settings?.build;
         Settings.betFairCashOut = data?.result?.settings?.betFairCashOut;
         Settings.deposit = data?.result?.settings?.deposit;

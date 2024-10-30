@@ -371,6 +371,7 @@ const Login = ({
                             <div
                               _ngcontent-ng-c2806737617=""
                               className="login-form"
+                              style={{ backgroundColor: "none" }}
                             >
                               <div
                                 _ngcontent-ng-c2806737617=""
@@ -386,7 +387,7 @@ const Login = ({
                                   style={{
                                     textAlign: "end",
                                     marginRight: "10px",
-                                    backgroundColor: "black",
+                                    backgroundColor: "transparent",
                                     color: "white",
                                     fontSize: "11px",
                                     minHeight: "30px",

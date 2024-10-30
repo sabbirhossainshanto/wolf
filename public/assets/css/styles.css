@@ -1,14 +1,4 @@
 :root {
-  /* theme css */
-  --primary-color: #488feb;
-  --secondary-color: #fff;
-  --primary-bg: #000000;
-  --secondary-bg: #fff;
-  --page-topBar: #141414;
-  --footerBG: #fff;
-  --color1: #fff;
-
-  /* theme */
   --primary-color-shade: #ffffff;
   --primary-color-tint: #ffffff;
   --primary-color-contrast: #000;
@@ -779,7 +769,7 @@ button .mat-mdc-button-touch-target {
 
 .top-header {
   padding: 10px;
-  background-color: var(--primary-bg);
+  background-color: var(--head-bg);
 }
 
 .inner-page-header {
@@ -996,7 +986,7 @@ button .mat-mdc-button-touch-target {
 }
 
 .login-section {
-  background-color: var(--header-dark-color);
+  background-color: var(--modal-bg);
   background-position: left;
 }
 
@@ -1583,7 +1573,7 @@ button .mat-mdc-button-touch-target {
 }
 
 .login-dialog div.mdc-dialog__surface .login-section div.body-section {
-  background-color: var(--primary-bg);
+  background-color: var(--modal-bg);
 }
 
 .login-dialog
@@ -11243,7 +11233,7 @@ svg.mdc-button__icon {
 .mat-sidenav-container
   .left-sidemenu[_ngcontent-ng-c967272132]
   .sidemenu-header[_ngcontent-ng-c967272132] {
-  background-color: var(--primary-bg);
+  background-color: var(--head-bg);
 }
 
 .mat-sidenav-container
@@ -18700,7 +18690,7 @@ mat-icon {
     color: var(--primary-color);
   }
   .login-dialog div.mdc-dialog__surface .login-section div.body-section {
-    background-color: var(--primary-bg);
+    background-color: var(--modal-bg);
   }
   .login-dialog
     div.mdc-dialog__surface
@@ -18878,7 +18868,7 @@ mat-icon {
 }
 
 .login-section {
-  background: var(--primary-bg);
+  background: var(--modal-bg);
   background-image: none !important;
 }
 .login-section .login-header-section {

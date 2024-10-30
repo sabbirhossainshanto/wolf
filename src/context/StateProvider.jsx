@@ -73,9 +73,14 @@ const StateProvider = ({ children }) => {
       const link = document.createElement("link");
       link.rel = "stylesheet";
       link.type = "text/css";
-      link.href = `${API.assets}/${Settings.siteUrl}/theme.css`;
-      document.head.appendChild(link);
-      console.log(link);
+      if (Settings.build === "production") {
+        link.href = `${API.assets}/${Settings.siteUrl}/theme.css`;
+        document.head.appendChild(link);
+        console.log(link);
+      } else {
+        link.href = `/assets/css/theme.css`;
+        document.head.appendChild(link);
+      }
 
       /*Dynamically append Logo */
       const logo = `${API.assets}/${Settings.siteUrl}/logo.${Settings.logoFormat}`;

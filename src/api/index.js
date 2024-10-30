@@ -71,4 +71,5 @@ export const Settings = {
   otpless: "",
   betFairCashOut: "",
   registrationWhatsapp: "",
+  build: "",
 };

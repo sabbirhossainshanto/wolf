@@ -368,36 +368,38 @@ const Login = ({
                                 </div>
                               </div>
                             </div>
-                            <div
-                              _ngcontent-ng-c2806737617=""
-                              className="login-form"
-                              style={{ backgroundColor: "none" }}
-                            >
+                            {Settings.register && (
                               <div
                                 _ngcontent-ng-c2806737617=""
-                                className="form-btn"
+                                className="login-form"
+                                style={{ backgroundColor: "none" }}
                               >
-                                <button
-                                  onClick={() => {
-                                    setShowLogin(false);
-                                    setShowForgotOTP(true);
-                                  }}
+                                <div
                                   _ngcontent-ng-c2806737617=""
-                                  className="btn "
-                                  style={{
-                                    textAlign: "end",
-                                    marginRight: "10px",
-                                    backgroundColor: "transparent",
-                                    color: "white",
-                                    fontSize: "11px",
-                                    minHeight: "30px",
-                                    marginBottom: "10px",
-                                  }}
+                                  className="form-btn"
                                 >
-                                  Forgot Password ?
-                                </button>
+                                  <button
+                                    onClick={() => {
+                                      setShowLogin(false);
+                                      setShowForgotOTP(true);
+                                    }}
+                                    _ngcontent-ng-c2806737617=""
+                                    className="btn "
+                                    style={{
+                                      textAlign: "end",
+                                      marginRight: "10px",
+                                      backgroundColor: "transparent",
+                                      color: "white",
+                                      fontSize: "11px",
+                                      minHeight: "30px",
+                                      marginBottom: "10px",
+                                    }}
+                                  >
+                                    Forgot Password ?
+                                  </button>
+                                </div>
                               </div>
-                            </div>
+                            )}
 
                             <div
                               _ngcontent-ng-c2806737617=""

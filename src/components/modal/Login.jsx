@@ -402,6 +402,9 @@ const Login = ({
                             )}
 
                             <div
+                              style={{
+                                marginTop: Settings.register ? "0px" : "20px",
+                              }}
                               _ngcontent-ng-c2806737617=""
                               className="login-form"
                             >

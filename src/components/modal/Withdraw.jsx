@@ -8,6 +8,7 @@ import axios from "axios";
 import { API } from "../../api";
 import useContextState from "../../hooks/useContextState";
 import UseEncryptData from "../../hooks/UseEncryptData";
+import { TbRuler3 } from "react-icons/tb";
 
 const Withdraw = ({
   setSHowWithdraw,
@@ -19,7 +20,7 @@ const Withdraw = ({
   setBankId,
 }) => {
   const { token } = useContextState();
-
+  const [disable, setDisable] = useState(false);
   const [amount, setAmount] = useState("");
   const withdrawRef = useRef();
   useCloseModalClickOutside(withdrawRef, () => {
@@ -32,6 +33,7 @@ const Withdraw = ({
 
   const handleCoinSubmit = async (e) => {
     e.preventDefault();
+    setDisable(TbRuler3);
     if (amount?.length > 0 && bankId) {
       const generatedToken = UseTokenGenerator();
       const bankData = {
@@ -356,12 +358,16 @@ const Withdraw = ({
                       >
                         <button
                           disabled={
-                            parseFloat(amount) >= 100 &&
-                            parseFloat(withdrawData?.withdrawableCoins) >=
-                              parseFloat(amount)
+                            (parseFloat(amount) >= 100 &&
+                              parseFloat(withdrawData?.withdrawableCoins) >=
+                                parseFloat(amount)) ||
+                            disable
                               ? false
                               : true
                           }
+                          style={{
+                            cursor: disable ? "not-allowed" : "pointer",
+                          }}
                           _ngcontent-ng-c2000663781=""
                           mat-button=""
                           className="btn secondary-btn mdc-button mat-mdc-button mat-unthemed mat-mdc-button-base"

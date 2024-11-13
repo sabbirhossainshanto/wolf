@@ -47,6 +47,7 @@ export const API = {
   otpless: "",
   forgotPassword: "",
   mac88: "",
+  bonus: "",
 };
 
 export const Settings = {

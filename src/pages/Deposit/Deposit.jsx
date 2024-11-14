@@ -126,6 +126,19 @@ const Deposit = () => {
     e.target.value = null;
   };
 
+  const handleUTRChange = (e) => {
+    const value = e.target.value;
+    if (/^[0-9]*$/.test(value)) {
+      console.log(value);
+      setUtr(value);
+    }
+  };
+  const handleKeyDown = (e) => {
+    if (!/[0-9]/.test(e.key) && e.key !== "Backspace" && e.key !== "Delete") {
+      e.preventDefault();
+    }
+  };
+
   return (
     <div
       _ngcontent-ng-c3816252360=""
@@ -402,7 +415,8 @@ const Deposit = () => {
                   >
                     <div _ngcontent-ng-c3816252360="" className="input-wrap">
                       <input
-                        onChange={(e) => setUtr(e.target.value)}
+                        onChange={handleUTRChange}
+                        onKeyDown={handleKeyDown}
                         _ngcontent-ng-c3816252360=""
                         placeholder="Enter payment UTR here"
                         type="number"

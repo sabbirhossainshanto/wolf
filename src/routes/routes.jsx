@@ -16,6 +16,7 @@ import Casino from "../pages/Casino/Casino";
 import NotFound from "../pages/NotFound/NotFound";
 import APK from "../pages/APK/APK";
 import BonusStatement from "../pages/BonusStatement/BonusStatement";
+import ReferralStatement from "../pages/ReferralStatement/ReferralStatement";
 
 export const router = createBrowserRouter(
   [
@@ -84,6 +85,10 @@ export const router = createBrowserRouter(
         {
           path: "apk",
           element: <APK />,
+        },
+        {
+          path: "referral-statement",
+          element: <ReferralStatement />,
         },
       ],
     },

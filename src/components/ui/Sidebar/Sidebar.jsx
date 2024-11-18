@@ -504,6 +504,22 @@ const Sidebar = () => {
                         </a>
                       </li>
                     )}
+                    <li
+                      _ngcontent-ng-c967272132=""
+                      onClick={() => setShowSidebar(false)}
+                      className="smenu-item"
+                    >
+                      <Link
+                        to="/referral-statement"
+                        _ngcontent-ng-c967272132=""
+                        className="smenu-link"
+                      >
+                        <RiEditBoxFill size={18} color="#3d3d3d" />
+                        <span _ngcontent-ng-c967272132="">
+                          Referral Statement
+                        </span>
+                      </Link>
+                    </li>
                   </>
                 )}
                 <li _ngcontent-ng-c967272132="" className="smenu-item">

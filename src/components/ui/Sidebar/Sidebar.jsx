@@ -5,12 +5,12 @@ import useCloseModalClickOutside from "../../../hooks/useCloseModalClickOutside"
 import { RiEditBoxFill } from "react-icons/ri";
 import useBonusBalance from "../../../hooks/useBonusBalance";
 import { handleLogOut } from "../../../utils/handleLogOut";
-import { API, Settings } from "../../../api";
+import { Settings } from "../../../api";
 import Warning from "../Notification/Warning";
 import ClaimWarning from "../Notification/ClaimWarning";
-import axios from "axios";
-import UseTokenGenerator from "../../../hooks/UseTokenGenerator";
-import UseEncryptData from "../../../hooks/UseEncryptData";
+// import axios from "axios";
+// import UseTokenGenerator from "../../../hooks/UseTokenGenerator";
+// import UseEncryptData from "../../../hooks/UseEncryptData";
 import useGetSocialLink from "../../../hooks/useGetSocialLink";
 import useBalance from "../../../hooks/useBalance";
 /* eslint-disable react/no-unknown-property */
@@ -24,8 +24,8 @@ const Sidebar = () => {
     setShowLogin,
     isCheckedBonusToken,
     logo,
-    setPromoErrMgs,
-    setPromoSuccessMsg,
+    // setPromoErrMgs,
+    // setPromoSuccessMsg,
     setShowHelpModal,
     setShowReferral,
     setShowBonusRule,
@@ -38,7 +38,7 @@ const Sidebar = () => {
   const { refetchBalance } = useBalance();
   const [warningMessage, setWarningMessage] = useState("");
   const [showClaimWarn, setShowClaimWarn] = useState(false);
-  const [promoCode, setPromoCode] = useState("");
+  // const [promoCode, setPromoCode] = useState("");
   const [referralCode, setReferralCode] = useState("");
   const { socialLink } = useGetSocialLink();
 
@@ -109,31 +109,31 @@ const Sidebar = () => {
   }, [referralCode]);
 
   /* Handle referral code */
-  const handlePromoSubmit = async () => {
-    /* Random token generator */
-    const generatedToken = UseTokenGenerator();
-    const postData = {
-      code: promoCode,
-      token: generatedToken,
-    };
-    /* Encrypted the post data */
-    const encryptedData = UseEncryptData(postData);
-    const res = await axios.post(API.referralCode, encryptedData, {
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    });
-    const data = res?.data;
-    if (data?.success) {
-      localStorage.setItem("referralCode", "hide");
-      const referralCode = localStorage.getItem("referralCode");
-      setReferralCode(referralCode);
-      setPromoSuccessMsg(data?.result?.message);
-      setShowSidebar(false);
-    } else {
-      setPromoErrMgs(data?.error?.errorMessage);
-    }
-  };
+  // const handlePromoSubmit = async () => {
+  //   /* Random token generator */
+  //   const generatedToken = UseTokenGenerator();
+  //   const postData = {
+  //     code: promoCode,
+  //     token: generatedToken,
+  //   };
+  //   /* Encrypted the post data */
+  //   const encryptedData = UseEncryptData(postData);
+  //   const res = await axios.post(API.referralCode, encryptedData, {
+  //     headers: {
+  //       Authorization: `Bearer ${token}`,
+  //     },
+  //   });
+  //   const data = res?.data;
+  //   if (data?.success) {
+  //     localStorage.setItem("referralCode", "hide");
+  //     const referralCode = localStorage.getItem("referralCode");
+  //     setReferralCode(referralCode);
+  //     setPromoSuccessMsg(data?.result?.message);
+  //     setShowSidebar(false);
+  //   } else {
+  //     setPromoErrMgs(data?.error?.errorMessage);
+  //   }
+  // };
 
   return (
     <>
@@ -310,7 +310,7 @@ const Sidebar = () => {
                         </div>
                       </li>
                     )}
-
+                    {/* 
                     {referralCode == "show" && (
                       <li
                         _ngcontent-ng-c967272132=""
@@ -350,7 +350,7 @@ const Sidebar = () => {
                           </button>
                         </div>
                       </li>
-                    )}
+                    )} */}
 
                     <li _ngcontent-ng-c967272132="" className="smenu-item">
                       <Link

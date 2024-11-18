@@ -7,6 +7,7 @@ const NotFound = () => {
   const location = useLocation();
   const { setShowOTP } = useContextState();
   const navigate = useNavigate();
+
   useEffect(() => {
     const showRegister = () => {
       if (location.pathname?.toLowerCase() === "/register") {
@@ -14,10 +15,18 @@ const NotFound = () => {
           setShowOTP(true);
         }
         navigate("/");
+      } else if (location.pathname.includes("/ref/")) {
+        const splitPath = location.pathname.split("/");
+        const lastDigit = splitPath[splitPath?.length - 1];
+        if (parseFloat(lastDigit)) {
+          localStorage.setItem("referralCode", lastDigit);
+          setShowOTP(true);
+          navigate("/");
+        }
       }
     };
     showRegister();
-  }, [location.pathname, navigate, setShowOTP]);
+  }, [location, navigate, setShowOTP]);
 
   return <Navigate to="/" replace />;
 };

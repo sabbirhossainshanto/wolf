@@ -14,7 +14,6 @@ const Referral = ({ setShowReferral }) => {
     setShowReferral(false);
   });
   const { data } = useGetIndex();
-  console.log(data);
 
   return (
     <div className="cdk-overlay-container">

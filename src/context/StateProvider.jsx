@@ -76,7 +76,6 @@ const StateProvider = ({ children }) => {
       if (Settings.build === "production") {
         link.href = `${API.assets}/${Settings.siteUrl}/theme.css`;
         document.head.appendChild(link);
-        console.log(link);
       } else {
         link.href = `/assets/css/theme.css`;
         document.head.appendChild(link);

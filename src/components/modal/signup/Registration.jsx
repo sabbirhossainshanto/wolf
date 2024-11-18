@@ -17,6 +17,7 @@ const Registration = ({
   setErrRegister,
   orderId,
 }) => {
+  const referralCode = localStorage.getItem("referralCode");
   const { refetchSocialLinks } = useGetSocialLink();
   const { logo, setGetToken } = useContextState();
   /* Close modal click outside */
@@ -45,7 +46,7 @@ const Registration = ({
       token: generatedToken,
       otp: user?.otp,
       isOtpAvailable: Settings.otp,
-      // referralCode: user.referralCode,
+      referralCode: referralCode || user.referralCode,
       orderId: orderId.orderId,
       otpMethod: orderId.otpMethod,
     };
@@ -63,6 +64,7 @@ const Registration = ({
     const data = await res.json();
 
     if (data?.success) {
+      localStorage.removeItem("referralCode");
       if (Settings.deposit) {
         const handleDeposit = handleDepositMethod(data.result.token);
         const res = await handleDeposit();
@@ -391,13 +393,13 @@ const Registration = ({
                                 </div>
                               </div>
                             </div>
-                            {/* <p
+                            <p
                               _ngcontent-ng-c1411651695=""
                               className="form-title ng-star-inserted"
                             >
                               Referral Code
-                            </p> */}
-                            {/* <div
+                            </p>
+                            <div
                               _ngcontent-ng-c2806737617=""
                               className="form-list"
                             >
@@ -418,6 +420,7 @@ const Registration = ({
                                             referralCode: e.target.value,
                                           });
                                         }}
+                                        readOnly={referralCode}
                                         _ngcontent-ng-c2806737617=""
                                         type="text"
                                         appnumericonly=""
@@ -427,6 +430,7 @@ const Registration = ({
                                         className="mat-mdc-input-element ng-tns-c1205077789-3 ng-untouched ng-pristine ng-invalid mat-mdc-form-field-input-control mdc-text-field__input cdk-text-field-autofill-monitored"
                                         id="mat-input-0"
                                         aria-required="true"
+                                        defaultValue={referralCode}
                                       />
                                     </div>
                                   </div>
@@ -437,7 +441,7 @@ const Registration = ({
                                   ></div>
                                 </div>
                               </div>
-                            </div> */}
+                            </div>
                             <div
                               _ngcontent-ng-c1411651695=""
                               className="form-btn"

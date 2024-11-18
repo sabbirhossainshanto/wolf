@@ -27,7 +27,7 @@ const Sidebar = () => {
     setPromoErrMgs,
     setPromoSuccessMsg,
     setShowHelpModal,
-    // setShowReferral,
+    setShowReferral,
     setShowBonusRule,
     setTokenLoading,
   } = useContextState();
@@ -485,7 +485,7 @@ const Sidebar = () => {
                         <span _ngcontent-ng-c967272132="">Edit Stakes</span>
                       </a>
                     </li>
-                    {/* {Settings.referral && (
+                    {Settings.referral && (
                       <li
                         _ngcontent-ng-c967272132=""
                         routerlinkactive="active-link"
@@ -503,7 +503,7 @@ const Sidebar = () => {
                           <span _ngcontent-ng-c967272132="">Referral</span>
                         </a>
                       </li>
-                    )} */}
+                    )}
                   </>
                 )}
                 <li _ngcontent-ng-c967272132="" className="smenu-item">

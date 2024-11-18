@@ -2,11 +2,10 @@
 import { motion } from "framer-motion";
 import { useRef, useState } from "react";
 import useCloseModalClickOutside from "../../hooks/useCloseModalClickOutside";
-import useBankAccount from "../../hooks/useBankAccount";
-import { myReferralCodePost } from "../../constant/constant";
 import useContextState from "../../hooks/useContextState";
 import { handleCopyToClipBoard } from "../../utils/handleCopyToClipBoard";
 import Success from "../ui/Notification/Success";
+import useGetIndex from "../../hooks/useGetIndex";
 const Referral = ({ setShowReferral }) => {
   const [successCopy, setSuccessCopy] = useState("");
   const { logo } = useContextState();
@@ -14,7 +13,8 @@ const Referral = ({ setShowReferral }) => {
   useCloseModalClickOutside(referralRef, () => {
     setShowReferral(false);
   });
-  const { bankData: myReferralCode } = useBankAccount(myReferralCodePost);
+  const { data } = useGetIndex();
+  console.log(data);
 
   return (
     <div className="cdk-overlay-container">
@@ -104,103 +104,28 @@ const Referral = ({ setShowReferral }) => {
                       <h3 _ngcontent-ng-c526813732="">Refer and earn</h3>
                       <p _ngcontent-ng-c526813732="">
                         Be our brand hero, refer your friend using your refer
-                        code, you get 500 on your friend’s first deposit and
-                        your friend gets 1500 bonus after registration.
+                        code.
                       </p>
                       <div
                         _ngcontent-ng-c526813732=""
                         className="referral-code"
                       >
                         <p
+                          style={{ textTransform: "lowercase" }}
                           _ngcontent-ng-c526813732=""
                           className="refer-code-text"
                         >
-                          {myReferralCode?.code}
+                          {data?.link}
                         </p>
                         <button
                           onClick={() =>
-                            handleCopyToClipBoard(
-                              myReferralCode?.code,
-                              setSuccessCopy
-                            )
+                            handleCopyToClipBoard(data?.text, setSuccessCopy)
                           }
                           _ngcontent-ng-c526813732=""
                           className="btn secondary-btn"
                         >
                           Copy
                         </button>
-                      </div>
-                      <div _ngcontent-ng-c526813732="" className="sharing">
-                        <div _ngcontent-ng-c526813732="" className="icon-list">
-                          <div
-                            _ngcontent-ng-c526813732=""
-                            className="icon-item ng-star-inserted"
-                          >
-                            <div
-                              _ngcontent-ng-c526813732=""
-                              className="icon-wrap"
-                            >
-                              <img
-                                _ngcontent-ng-c526813732=""
-                                alt="WhatsApp"
-                                src="/assets/img/whatsapp-icon.svg"
-                              />
-                            </div>
-                            <p _ngcontent-ng-c526813732="">WhatsApp</p>
-                          </div>
-                          <div
-                            _ngcontent-ng-c526813732=""
-                            className="icon-item ng-star-inserted"
-                          >
-                            <div
-                              _ngcontent-ng-c526813732=""
-                              className="icon-wrap"
-                            >
-                              <img
-                                _ngcontent-ng-c526813732=""
-                                alt="WhatsApp"
-                                src="/assets/img/wa_business.svg"
-                              />
-                            </div>
-                            <p _ngcontent-ng-c526813732="">WA Business</p>
-                          </div>
-                          <div
-                            _ngcontent-ng-c526813732=""
-                            className="icon-item ng-star-inserted"
-                          >
-                            <div
-                              _ngcontent-ng-c526813732=""
-                              className="icon-wrap"
-                            >
-                              <img
-                                _ngcontent-ng-c526813732=""
-                                alt="WhatsApp"
-                                src="/assets/img/icon_dark_telegram.svg"
-                              />
-                            </div>
-                            <p _ngcontent-ng-c526813732="">Telegram</p>
-                          </div>
-                          <div
-                            _ngcontent-ng-c526813732=""
-                            className="icon-item"
-                          >
-                            <div
-                              _ngcontent-ng-c526813732=""
-                              className="icon-wrap more"
-                            >
-                              <span
-                                _ngcontent-ng-c526813732=""
-                                role="img"
-                                className="mat-icon notranslate material-icons mat-ligature-font mat-icon-no-color"
-                                aria-hidden="true"
-                                data-mat-icon-type="font"
-                              >
-                                content_copy
-                              </span>
-                            </div>
-                            <p _ngcontent-ng-c526813732="">Copy Text</p>
-                          </div>
-                        </div>
                       </div>
                     </div>
                   </div>

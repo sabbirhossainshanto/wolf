@@ -60,6 +60,7 @@ export const getSetApis = (setNoticeLoaded, baseUrl) => {
         API.assets = data?.result?.endpoint?.assets;
         API.mac88 = data?.result?.endpoint?.mac88;
         API.bonus = data?.result?.endpoint?.bonus;
+        API.index = data?.result?.endpoint?.index;
 
         Settings.logoFormat = data?.result?.logo?.format;
         Settings.logoHeight = data?.result?.logo?.height;

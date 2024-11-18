@@ -48,6 +48,7 @@ export const API = {
   forgotPassword: "",
   mac88: "",
   bonus: "",
+  index: "",
 };
 
 export const Settings = {

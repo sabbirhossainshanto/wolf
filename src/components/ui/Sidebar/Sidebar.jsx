@@ -579,7 +579,10 @@ const Sidebar = () => {
                   _ngcontent-ng-c967272132=""
                   className="smenu-item social-links-wrap ng-star-inserted"
                 >
-                  <label _ngcontent-ng-c967272132="">Join us Now</label>
+                  {socialLink?.instagramLink || socialLink?.telegramLink ? (
+                    <label _ngcontent-ng-c967272132="">Join us Now</label>
+                  ) : null}
+
                   <div _ngcontent-ng-c967272132="" className="social-links">
                     {/* <a _ngcontent-ng-c967272132="" className="ng-star-inserted">
                       <img

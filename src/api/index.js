@@ -49,6 +49,7 @@ export const API = {
   mac88: "",
   bonus: "",
   index: "",
+  pg: "",
 };
 
 export const Settings = {

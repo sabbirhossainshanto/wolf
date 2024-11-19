@@ -10,6 +10,7 @@ export const getSetApis = (setNoticeLoaded, baseUrl) => {
       const data = res.data;
       if (data?.result?.endpoint) {
         API.forgotPassword = data?.result?.endpoint?.forgotPassword;
+        API.pg = data?.result?.endpoint?.pg;
         API.otpless = data?.result?.endpoint?.otpless;
         API.accessToken = data?.result?.endpoint?.accessToken;
         API.balance = data?.result?.endpoint?.balance;

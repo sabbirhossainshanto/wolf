@@ -50,8 +50,8 @@ const Deposit = () => {
           Authorization: `Bearer ${token}`,
         },
       });
-      if (res?.success) {
-        window.location.href = res?.result?.link;
+      if (res?.data?.success) {
+        window.location.href = res?.data?.result?.link;
         // if (settings?.paymentIntent) {
         //   setPgPaymentMethods(data?.result);
         //   setTime(60 * 20);
@@ -61,7 +61,7 @@ const Deposit = () => {
         //   window.location.href = data?.result?.link;
         // }
       } else {
-        toast.error(res?.result);
+        toast.error(res?.data?.result);
       }
     } else {
       const depositDetail = {

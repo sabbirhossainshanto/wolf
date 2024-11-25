@@ -25,6 +25,7 @@ const LoggedInProfile = ({
     setTokenLoading,
     setGetToken,
   } = useContextState();
+  const memberId = localStorage.getItem("memberId");
   const navigate = useNavigate();
   const { socialLink } = useGetSocialLink();
   const [showWithdraw, setSHowWithdraw] = useState(false);
@@ -125,14 +126,15 @@ const LoggedInProfile = ({
             <p _ngcontent-ng-c2865632707="" className="notranslate">
               {loginName}
             </p>
-
             <p
+              style={{ marginTop: "5px" }}
               _ngcontent-ng-c2865632707=""
-              className="notranslate ng-star-inserted"
+              className="notranslate"
             >
-              {" "}
-              -{" "}
+              User ID : {memberId}
             </p>
+
+            <p _ngcontent-ng-c2865632707="" className="notranslate"></p>
           </div>
           <div _ngcontent-ng-c2865632707="" className="actions-wrap">
             {!isCheckedBonusToken && (

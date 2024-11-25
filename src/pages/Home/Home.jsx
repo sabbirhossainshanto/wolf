@@ -30,6 +30,11 @@ const Home = () => {
       refetchBalance();
     }
   }, []);
+  useEffect(() => {
+    if (!tokenLoading && !Settings.balanceApiLoop) {
+      refetchBalance();
+    }
+  }, []);
 
   useEffect(() => {
     const leftArrow = document.getElementsByClassName("swiper-button-prev");

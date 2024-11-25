@@ -8,7 +8,7 @@ import useGetVersion from "../../../hooks/useGetVersion";
 /* eslint-disable react/no-unknown-property */
 const Footer = () => {
   const { version } = useGetVersion();
-  const { socialLink } = useGetSocialLink();
+  const { socialLink, refetchSocialLinks } = useGetSocialLink();
 
   const location = useLocation();
   const navigate = useNavigate();
@@ -24,6 +24,10 @@ const Footer = () => {
       window.open(socialLink?.whatsapplink, "_blank");
     }
   };
+
+  useEffect(() => {
+    refetchSocialLinks();
+  }, [token, refetchSocialLinks]);
 
   useEffect(() => {
     if (version?.chaport?.isChaportEnabled) {

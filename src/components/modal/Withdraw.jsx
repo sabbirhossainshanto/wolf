@@ -348,6 +348,14 @@ const Withdraw = ({
                                   {withdrawData?.defaultBank?.bankBranch}
                                 </p>
                               </li>
+                              <li _ngcontent-ng-c2000663781="">
+                                <label _ngcontent-ng-c2000663781="">
+                                  UPI ID
+                                </label>
+                                <p _ngcontent-ng-c2000663781="">
+                                  {withdrawData?.defaultBank?.upiId}
+                                </p>
+                              </li>
                             </ul>
                           </div>
                         </div>

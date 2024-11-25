@@ -19,6 +19,7 @@ const AddBank = ({
     accountName: "",
     ifsc: "",
     accountNumber: "",
+    upiId: "",
   });
   const addBankRef = useRef();
   useCloseModalClickOutside(addBankRef, () => {
@@ -31,11 +32,12 @@ const AddBank = ({
     const bankData = {
       accountName: addBank.accountName,
       ifsc: addBank.ifsc,
+      upiId: addBank.upiId,
       accountNumber: addBank.accountNumber,
       type: "addBankAccount",
       token: generatedToken,
     };
-const encryptedData = UseEncryptData(bankData)
+    const encryptedData = UseEncryptData(bankData);
     const res = await axios.post(API.bankAccount, encryptedData, {
       headers: {
         Authorization: `Bearer ${token}`,
@@ -172,6 +174,27 @@ const encryptedData = UseEncryptData(bankData)
                               type="number"
                               formcontrolname="accountNo"
                               className="ng-untouched ng-pristine ng-invalid"
+                            />
+                          </div>
+                          <div
+                            _ngcontent-ng-c1372444345=""
+                            className="input-wrap"
+                          >
+                            <label _ngcontent-ng-c1372444345="">
+                              UPI ID (Optional)
+                            </label>{" "}
+                            <input
+                              onChange={(e) => {
+                                setAddBank({
+                                  ...addBank,
+                                  upiId: e.target.value,
+                                });
+                              }}
+                              _ngcontent-ng-c1372444345=""
+                              placeholder="Enter UPI ID"
+                              type="text"
+                              formcontrolname="ifscCode"
+                              className="ifsc-input ng-untouched ng-pristine ng-invalid"
                             />
                           </div>
                           <div

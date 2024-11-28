@@ -17,6 +17,8 @@ import NotFound from "../pages/NotFound/NotFound";
 import APK from "../pages/APK/APK";
 import BonusStatement from "../pages/BonusStatement/BonusStatement";
 import ReferralStatement from "../pages/ReferralStatement/ReferralStatement";
+import HorseRacing from "../pages/HorseRacing/HorseRacing";
+import GreyhoundRacing from "../pages/GreyhoundRacing/GreyhoundRacing";
 
 export const router = createBrowserRouter(
   [
@@ -89,6 +91,14 @@ export const router = createBrowserRouter(
         {
           path: "referral-statement",
           element: <ReferralStatement />,
+        },
+        {
+          path: "horse-racing",
+          element: <HorseRacing />,
+        },
+        {
+          path: "greyhound-racing",
+          element: <GreyhoundRacing />,
         },
       ],
     },

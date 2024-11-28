@@ -12,7 +12,11 @@ const GreyhoundRacing = () => {
         minHeight: "100vh",
       }}
     >
-      <HorseGreyhound data={sports} title="Greyhound Racing" />
+      <HorseGreyhound
+        data={sports}
+        title="Greyhound Racing"
+        eventTypeId={4339}
+      />
     </div>
   );
 };

@@ -5,6 +5,7 @@ import Bookmaker2 from "./GameType/Bookmaker2";
 import Fancy from "./GameType/Fancy";
 import FancyOne from "./GameType/FancyOne";
 import MatchOdds from "./GameType/MatchOdds";
+import HorseGreyhound from "./GameType/HorseGreyhound";
 import OverByOver from "./GameType/OverByOver";
 import SportsBook from "./GameType/SportsBook/SportsBook";
 import { useParams } from "react-router-dom";
@@ -14,6 +15,7 @@ import useIFrame from "../../hooks/useIFrame";
 const MarketTab = ({
   sportsBook,
   data,
+  horseGreyhound,
   exposer,
   setOpenBetSlip,
   showIFrame,
@@ -244,7 +246,9 @@ const MarketTab = ({
                   setShowLoginWarn={setShowLoginWarn}
                 />
               )}
-              {sportsBook && <SportsBook sportsBook={sportsBook} />}
+              {Object.keys(sportsBook)?.length > 0 && (
+                <SportsBook sportsBook={sportsBook} />
+              )}
 
               {overByOver && overByOver?.length > 0 && (
                 <OverByOver
@@ -255,6 +259,16 @@ const MarketTab = ({
                   setShowLoginWarn={setShowLoginWarn}
                 />
               )}
+
+              {eventTypeId == 7 || eventTypeId == 4339 ? (
+                <HorseGreyhound
+                  data={horseGreyhound}
+                  setOpenBetSlip={setOpenBetSlip}
+                  setPlaceBetValues={setPlaceBetValues}
+                  exposer={exposer}
+                  setShowLoginWarn={setShowLoginWarn}
+                />
+              ) : null}
             </div>
           </div>
         </div>

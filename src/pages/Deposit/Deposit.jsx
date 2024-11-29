@@ -68,6 +68,7 @@ const Deposit = () => {
         type: "depositDetails",
         paymentId: method?.paymentId,
         token: generatedToken,
+        site: Settings.siteUrl,
       };
       const encryptedData = UseEncryptData(depositDetail);
       const res = await axios.post(API.bankAccount, encryptedData, {
@@ -124,6 +125,7 @@ const Deposit = () => {
         fileName: uploadedImage,
         utr: parseFloat(utr),
         token: generatedToken,
+        site: Settings.siteUrl,
       };
       const encryptedData = UseEncryptData(screenshotPostData);
       const res = await axios.post(API.bankAccount, encryptedData, {

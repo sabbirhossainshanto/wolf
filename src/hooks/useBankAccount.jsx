@@ -1,6 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
-import { API } from "../api";
+import { API, Settings } from "../api";
 import UseTokenGenerator from "./UseTokenGenerator";
 import useContextState from "./useContextState";
 import UseEncryptData from "./UseEncryptData";
@@ -15,6 +15,7 @@ const useBankAccount = (payload) => {
       const bankData = {
         ...payload,
         token: generatedToken,
+        site: Settings.siteUrl,
       };
       const encryptedData = UseEncryptData(bankData);
       const res = await axios.post(API.bankAccount, encryptedData, {

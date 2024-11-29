@@ -2,7 +2,7 @@ import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 import useContextState from "../useContextState";
 import UseTokenGenerator from "../UseTokenGenerator";
-import { API } from "../../api";
+import { API, Settings } from "../../api";
 import UseEncryptData from "../UseEncryptData";
 
 const useGetCoin = (payload) => {
@@ -15,15 +15,16 @@ const useGetCoin = (payload) => {
       const bankData = {
         ...payload,
         token: generatedToken,
+        site: Settings.siteUrl,
       };
-        const encryptedData = UseEncryptData(bankData);
+      const encryptedData = UseEncryptData(bankData);
       const res = await axios.post(API.bankAccount, encryptedData, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
       });
       const data = res?.data;
-     
+
       if (data?.success) {
         return data?.result;
       }

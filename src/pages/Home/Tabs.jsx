@@ -187,7 +187,7 @@ const Tabs = () => {
               </svg>
             </div>
             <div _ngcontent-ng-c2582205232="" className="tab-label">
-              Horse Racing
+              Horse
             </div>
           </div>
           <div
@@ -226,7 +226,7 @@ const Tabs = () => {
               </svg>
             </div>
             <div _ngcontent-ng-c2582205232="" className="tab-label">
-              Greyhound Racing
+              Greyhound
             </div>
           </div>
           <div

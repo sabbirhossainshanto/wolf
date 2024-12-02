@@ -192,13 +192,13 @@ button:not(:disabled) {
   border: 1px solid rgba(0, 0, 0, 0.125);
   border-radius: 0.25rem;
 }
-.card-header {
+.horse-greyhound .card-header {
   padding: 0.5rem 1rem;
   margin-bottom: 0;
   background-color: rgba(0, 0, 0, 0.03);
   border-bottom: 1px solid rgba(0, 0, 0, 0.125);
 }
-.card-header:first-child {
+.horse-greyhound .card-header:first-child {
   border-radius: calc(0.25rem - 1px) calc(0.25rem - 1px) 0 0;
 }
 .d-flex {
@@ -397,7 +397,7 @@ body.dark-theme ::placeholder {
   border-radius: 0.25rem !important;
 }
 
-.card-header[_ngcontent-wne-c149] {
+.horse-greyhound .card-header[_ngcontent-wne-c149] {
   padding: 0;
 }
 .today[_ngcontent-wne-c149] {

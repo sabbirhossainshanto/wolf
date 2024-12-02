@@ -29,7 +29,7 @@ const HorseGreyhound = ({ data, title, eventTypeId }) => {
     >
       <div
         _ngcontent-wne-c149=""
-        className="card m-1"
+        className="card m-1 horse-greyhound"
         style={{
           borderRadius: "2px",
           boxSizing: "border-box",

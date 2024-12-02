@@ -3,7 +3,7 @@ import { motion } from "framer-motion";
 import { useRef } from "react";
 import useCloseModalClickOutside from "../../hooks/useCloseModalClickOutside";
 
-const AccountStatementModal = ({ setShowModal,image }) => {
+const AccountStatementModal = ({ setShowModal, image }) => {
   /* Close modal click outside */
   const modalRef = useRef();
   useCloseModalClickOutside(modalRef, () => {
@@ -82,6 +82,7 @@ const AccountStatementModal = ({ setShowModal,image }) => {
                     <div _ngcontent-ng-c3542444880="" className="modal-body">
                       <div _ngcontent-ng-c3542444880="" className="img-wrap">
                         <img
+                          style={{ width: "100%" }}
                           _ngcontent-ng-c3542444880=""
                           alt="Preview"
                           src={image}

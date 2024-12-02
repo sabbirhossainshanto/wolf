@@ -294,6 +294,26 @@ const LoggedInProfile = ({
             className="smenu-item"
           >
             <Link
+              to="/withdraw-statement"
+              _ngcontent-ng-c2865632707=""
+              className="smenu-link"
+            >
+              <div _ngcontent-ng-c2865632707="" className="label-wrap">
+                <img
+                  _ngcontent-ng-c2865632707=""
+                  alt="Menu Icon"
+                  src="/assets/img/sidenav__ac_statement.svg"
+                />
+                <span _ngcontent-ng-c2865632707="">Withdraw Statement</span>
+              </div>
+            </Link>
+          </li>
+          <li
+            _ngcontent-ng-c2865632707=""
+            routerlinkactive="active-link"
+            className="smenu-item"
+          >
+            <Link
               to="/bonus-statement"
               _ngcontent-ng-c2865632707=""
               className="smenu-link"

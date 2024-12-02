@@ -45,6 +45,7 @@ const Deposit = () => {
         paymentId: method?.paymentId,
         token: generatedToken,
         site: Settings.siteUrl,
+        amount: paymentAmount,
       };
       const res = await axios.post(API.pg, pgPayload, {
         headers: {
@@ -85,7 +86,7 @@ const Deposit = () => {
   };
 
   useEffect(() => {
-    if (paymentMethodRef && paymentMethodRef.current && tabs) {
+    if (paymentMethodRef && paymentMethodRef.current && tabs && tabs !== "pg") {
       paymentMethodRef.current.scrollIntoView({
         behavior: "smooth",
       });
@@ -234,8 +235,16 @@ const Deposit = () => {
                     paymentId === method?.paymentId ? "selected" : ""
                   }`}
                 >
-                  <p _ngcontent-ng-c3816252360="">
-                    {method?.type?.toUpperCase()}
+                  <p
+                    style={{
+                      display: "flex",
+                      flexDirection: "column",
+                      gap: "2px",
+                    }}
+                    _ngcontent-ng-c3816252360=""
+                  >
+                    <span> {method?.type?.toUpperCase()}</span>
+                    <span>{method?.title}</span>
                   </p>
                   <div _ngcontent-ng-c3816252360="" className="img-wrap">
                     <img
@@ -262,7 +271,7 @@ const Deposit = () => {
           {tabs === "bank" && <Bank depositData={depositData} />}
         </div>
 
-        {tabs && (
+        {tabs && tabs !== "pg" && (
           <>
             <div
               _ngcontent-ng-c3816252360=""

@@ -1,5 +1,5 @@
 /* eslint-disable react/no-unknown-property */
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import QRCode from "./QRCode";
 import UPI from "./UPI";
 import Bank from "./Bank";
@@ -18,10 +18,10 @@ const Deposit = () => {
   const { token, copyTextSuccess, setCopyTextSuccess } = useContextState();
   const paymentAmount = localStorage.getItem("paymentAmount");
   const [tabs, setTabs] = useState("");
-
   const [paymentId, setPaymentId] = useState("");
   const [utr, setUtr] = useState(null);
   const [depositData, setDepositData] = useState({});
+  const paymentMethodRef = useRef();
   const { bankData: depositMethods } = useBankAccount({
     type: "depositMethods",
     amount: paymentAmount,
@@ -83,6 +83,14 @@ const Deposit = () => {
       }
     }
   };
+
+  useEffect(() => {
+    if (paymentMethodRef && paymentMethodRef.current && tabs) {
+      paymentMethodRef.current.scrollIntoView({
+        behavior: "smooth",
+      });
+    }
+  }, [tabs]);
 
   useEffect(() => {
     if (image) {
@@ -248,9 +256,11 @@ const Deposit = () => {
           </div>
         )}
 
-        {tabs === "qr" && <QRCode depositData={depositData} />}
-        {tabs === "upi" && <UPI depositData={depositData} />}
-        {tabs === "bank" && <Bank depositData={depositData} />}
+        <div ref={paymentMethodRef}>
+          {tabs === "qr" && <QRCode depositData={depositData} />}
+          {tabs === "upi" && <UPI depositData={depositData} />}
+          {tabs === "bank" && <Bank depositData={depositData} />}
+        </div>
 
         {tabs && (
           <>

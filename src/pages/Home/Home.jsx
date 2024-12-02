@@ -2,7 +2,6 @@ import Casino from "./Casino";
 import GoCasino from "./GoCasino";
 import LiveCasino from "./LiveCasino";
 import Sports from "./Sports";
-import Tabs from "./Tabs";
 import useContextState from "../../hooks/useContextState";
 import LiveCasinoTab from "./LiveCasinoTab/LiveCasinoTab";
 import { useEffect } from "react";
@@ -50,29 +49,20 @@ const Home = () => {
     <>
       <div
         _ngcontent-ng-c943649379=""
-        className="page-body demoID"
-        style={{
-          height: "100vh",
-        }}
+        className="hydrated"
+        // style="--offset-top: 0px; --offset-bottom: 0px"
       >
-        <Tabs />
-
         <div
-          _ngcontent-ng-c943649379=""
-          className="hydrated"
-          // style="--offset-top: 0px; --offset-bottom: 0px"
+          style={{
+            margin: "10px 0px 10px 0px",
+            padding: "0px 10px",
+          }}
         >
-          <div
-            style={{
-              margin: "10px 0px 10px 0px",
-              padding: "0px 10px",
-            }}
-          >
-            {sportsType === 0 && bannerImage?.banner?.length > 0 && (
-              <SliderImage bannerImage={bannerImage?.banner} />
-            )}
-          </div>
-          {/* <div
+          {sportsType === 0 && bannerImage?.banner?.length > 0 && (
+            <SliderImage bannerImage={bannerImage?.banner} />
+          )}
+        </div>
+        {/* <div
             style={{
               margin: "10px 0px 10px 0px",
               padding: "0px 10px",
@@ -82,61 +72,61 @@ const Home = () => {
               <Banner card={bannerImage?.card} />
             )}
           </div> */}
-          <div
-            style={{
-              margin: "10px 0px 10px 0px",
-              padding: "0px 10px 0px 10px",
-            }}
-          >
-            {/* <MyMatches /> */}
-          </div>
-          <div
-            _ngcontent-ng-c943649379=""
-            slot="fixed"
-            className="refresher refresher-md hydrated"
-          >
-            <div _ngcontent-ng-c943649379="" className="hydrated">
-              <div className="refresher-pulling">
-                <div className="refresher-pulling-icon">
-                  <ion-icon
-                    role="img"
-                    className="hydrated"
-                    aria-label="arrow down"
-                  ></ion-icon>
-                </div>
+        <div
+          style={{
+            margin: "10px 0px 10px 0px",
+            padding: "0px 10px 0px 10px",
+          }}
+        >
+          {/* <MyMatches /> */}
+        </div>
+        <div
+          _ngcontent-ng-c943649379=""
+          slot="fixed"
+          className="refresher refresher-md hydrated"
+        >
+          <div _ngcontent-ng-c943649379="" className="hydrated">
+            <div className="refresher-pulling">
+              <div className="refresher-pulling-icon">
+                <ion-icon
+                  role="img"
+                  className="hydrated"
+                  aria-label="arrow down"
+                ></ion-icon>
               </div>
-              <div className="refresher-refreshing">
-                <div className="refresher-refreshing-icon">
-                  <ion-spinner className="spinner-lines hydrated"></ion-spinner>
-                </div>
-              </div>{" "}
             </div>
-          </div>
-          <div _ngcontent-ng-c943649379="" className="pagetab-body">
-            {sportsType === "live-casino" ||
-            sportsType === "casino" ||
-            sportsType === "aura" ? (
-              <LiveCasinoTab />
-            ) : (
-              <div _ngcontent-ng-c943649379="" className="pagetab-content">
-                {sportsType === "mac88" ? <Mac88 /> : <Sports />}
-                {sportsType !== 4 &&
-                sportsType !== 2 &&
-                sportsType !== 1 &&
-                sportsType !== 5 &&
-                sportsType !== "mac88" ? (
-                  <>
-                    <GoCasino />
-                    <LiveCasino />
-                    <Casino />
-                  </>
-                ) : null}
+            <div className="refresher-refreshing">
+              <div className="refresher-refreshing-icon">
+                <ion-spinner className="spinner-lines hydrated"></ion-spinner>
               </div>
-            )}
+            </div>{" "}
           </div>
         </div>
+        <div _ngcontent-ng-c943649379="" className="pagetab-body">
+          {sportsType === "live-casino" ||
+          sportsType === "casino" ||
+          sportsType === "aura" ? (
+            <LiveCasinoTab />
+          ) : (
+            <div _ngcontent-ng-c943649379="" className="pagetab-content">
+              {sportsType === "mac88" ? <Mac88 /> : <Sports />}
+              {sportsType !== 4 &&
+              sportsType !== 2 &&
+              sportsType !== 1 &&
+              sportsType !== 5 &&
+              sportsType !== "mac88" ? (
+                <>
+                  <GoCasino />
+                  <LiveCasino />
+                  <Casino />
+                </>
+              ) : null}
+            </div>
+          )}
+        </div>
+      </div>
 
-        {/* {location.pathname === "/" && (
+      {/* {location.pathname === "/" && (
           <div style={{ backgroundColor: "#323232", textAlign: "center" }}>
             <img
               className="paymentTypesPadding"
@@ -144,7 +134,7 @@ const Home = () => {
             />
           </div>
         )} */}
-      </div>
+
       {/* {location.pathname === "/" && (
         <div
           style={{

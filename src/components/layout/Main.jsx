@@ -20,6 +20,8 @@ import ChangePassword from "../modal/ChangePassword";
 import useGetVersion from "../../hooks/useGetVersion";
 import VersionChange from "../modal/Warning";
 import useBalance from "../../hooks/useBalance";
+import Tabs from "../../pages/Home/Tabs";
+const pathnames = ["/", "/horse-racing", "/greyhound-racing"];
 
 const Main = () => {
   const {
@@ -46,6 +48,7 @@ const Main = () => {
     // isCheckedBonusToken,
     setTokenLoading,
   } = useContextState();
+
   const [showChangePassModal, setShowChangePassModal] = useState("");
   const [successEditStake, setSuccessEditStake] = useState("");
   const navigate = useNavigate();
@@ -304,7 +307,17 @@ const Main = () => {
                   className="container notranslate"
                 >
                   <Navbar />
-                  <Outlet />
+                  <div
+                    _ngcontent-ng-c943649379=""
+                    className="page-body demoID"
+                    style={{
+                      height: "100vh",
+                    }}
+                  >
+                    {pathnames.includes(location.pathname) && <Tabs />}
+                    <Outlet />
+                  </div>
+
                   <Footer />
                 </div>
               </div>

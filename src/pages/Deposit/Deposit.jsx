@@ -18,6 +18,7 @@ const Deposit = () => {
   const { token, copyTextSuccess, setCopyTextSuccess } = useContextState();
   const paymentAmount = localStorage.getItem("paymentAmount");
   const [tabs, setTabs] = useState("");
+
   const [paymentId, setPaymentId] = useState("");
   const [utr, setUtr] = useState(null);
   const [depositData, setDepositData] = useState({});
@@ -215,15 +216,19 @@ const Deposit = () => {
         {Array.isArray(depositMethods) && depositMethods?.length > 0 ? (
           <div _ngcontent-ng-c3816252360="" className="select-method-card">
             {depositMethods?.map((method) => {
+              console.log(method);
               return (
                 <div
                   key={method?.paymentId}
                   onClick={() => handleVisibleBankMethod(method)}
                   _ngcontent-ng-c3816252360=""
                   className={`method-type ng-star-inserted ${
-                    tabs === method?.type ? "selected" : ""
+                    paymentId === method?.paymentId ? "selected" : ""
                   }`}
                 >
+                  <p _ngcontent-ng-c3816252360="">
+                    {method?.type?.toUpperCase()}
+                  </p>
                   <div _ngcontent-ng-c3816252360="" className="img-wrap">
                     <img
                       _ngcontent-ng-c3816252360=""
@@ -233,9 +238,6 @@ const Deposit = () => {
                       }`}
                     />
                   </div>
-                  <p _ngcontent-ng-c3816252360="">
-                    {method?.type?.toUpperCase()}
-                  </p>
                 </div>
               );
             })}

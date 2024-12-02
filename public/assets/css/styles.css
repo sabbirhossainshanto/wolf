@@ -22067,10 +22067,9 @@ mat-icon {
 }
 .page-body[_ngcontent-ng-c3816252360]
   .select-method-card[_ngcontent-ng-c3816252360] {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  align-items: center;
-  justify-content: center;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
   background-color: var(--white-color);
   border-radius: 10px;
   padding: 10px;
@@ -22080,12 +22079,12 @@ mat-icon {
 .page-body[_ngcontent-ng-c3816252360]
   .select-method-card[_ngcontent-ng-c3816252360]
   .method-type[_ngcontent-ng-c3816252360] {
-  border: 1px solid var(--grey-100);
+  background-color: var(--grey-50);
   border-radius: 10px;
   display: flex;
   align-items: center;
-  justify-content: center;
-  flex-direction: column;
+  justify-content: space-between;
+
   padding: 10px;
   height: 100%;
   cursor: pointer;

@@ -246,7 +246,7 @@ const MarketTab = ({
                   setShowLoginWarn={setShowLoginWarn}
                 />
               )}
-              {Object.keys(sportsBook)?.length > 0 && (
+              {sportsBook && Object.keys(sportsBook)?.length > 0 && (
                 <SportsBook sportsBook={sportsBook} />
               )}
 

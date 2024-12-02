@@ -70,6 +70,8 @@ const GameDetails = () => {
     footballScore = match_odds?.[0]?.score;
   }
 
+  console.log(data);
+
   return (
     <>
       <div _ngcontent-ng-c942213636="" className="page-body">

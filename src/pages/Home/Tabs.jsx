@@ -9,6 +9,11 @@ const Tabs = () => {
   const { setSportsType, sportsType } = useContextState();
   const { latestEvents } = useLatestEvent();
   const navigate = useNavigate();
+
+  const handleNavigate = (sportsType) => {
+    setSportsType(sportsType);
+    navigate("/");
+  };
   return (
     <div
       _ngcontent-ng-c943649379=""
@@ -46,17 +51,19 @@ const Tabs = () => {
 
         <div _ngcontent-ng-c2582205232="" className="pagetab-header">
           <div
-            onClick={() => setSportsType(4)}
+            onClick={() => handleNavigate(4)}
             _ngcontent-ng-c2582205232=""
             routerlinkactive="active-link"
             className={`pagetab-item ng-star-inserted   ${
-              sportsType === 4 ? "active-link" : ""
+              sportsType === 4 && location.pathname === "/" ? "active-link" : ""
             }`}
           >
             <div
               _ngcontent-ng-c2582205232=""
               className={`icon-wrap ${
-                sportsType === 4 ? "rotate-animation" : ""
+                sportsType === 4 && location.pathname === "/"
+                  ? "rotate-animation"
+                  : ""
               }`}
             >
               <img
@@ -70,17 +77,19 @@ const Tabs = () => {
             </div>
           </div>
           <div
-            onClick={() => setSportsType(1)}
+            onClick={() => handleNavigate(1)}
             _ngcontent-ng-c2582205232=""
             routerlinkactive="active-link"
             className={`pagetab-item ng-star-inserted   ${
-              sportsType === 1 ? "active-link" : ""
+              sportsType === 1 && location.pathname === "/" ? "active-link" : ""
             }`}
           >
             <div
               _ngcontent-ng-c2582205232=""
               className={`icon-wrap ${
-                sportsType === 1 ? "rotate-animation" : ""
+                sportsType === 1 && location.pathname === "/"
+                  ? "rotate-animation"
+                  : ""
               }`}
             >
               <img
@@ -94,11 +103,11 @@ const Tabs = () => {
             </div>
           </div>
           <div
-            onClick={() => setSportsType(2)}
+            onClick={() => handleNavigate(2)}
             _ngcontent-ng-c2582205232=""
             routerlinkactive="active-link"
             className={`pagetab-item ng-star-inserted   ${
-              sportsType === 2 ? "active-link" : ""
+              sportsType === 2 && location.pathname === "/" ? "active-link" : ""
             }`}
           >
             {/* <p
@@ -110,7 +119,9 @@ const Tabs = () => {
             <div
               _ngcontent-ng-c2582205232=""
               className={`icon-wrap ${
-                sportsType === 2 ? "rotate-animation" : ""
+                sportsType === 2 && location.pathname === "/"
+                  ? "rotate-animation"
+                  : ""
               }`}
             >
               <img
@@ -124,11 +135,11 @@ const Tabs = () => {
             </div>
           </div>
           <div
-            onClick={() => setSportsType(5)}
+            onClick={() => handleNavigate(5)}
             _ngcontent-ng-c2582205232=""
             routerlinkactive="active-link"
             className={`pagetab-item ng-star-inserted   ${
-              sportsType === 5 ? "active-link" : ""
+              sportsType === 5 && location.pathname === "/" ? "active-link" : ""
             }`}
           >
             {/* <p
@@ -140,7 +151,9 @@ const Tabs = () => {
             <div
               _ngcontent-ng-c2582205232=""
               className={`icon-wrap ${
-                sportsType === 5 ? "rotate-animation" : ""
+                sportsType === 5 && location.pathname === "/"
+                  ? "rotate-animation"
+                  : ""
               }`}
             >
               <img
@@ -229,43 +242,16 @@ const Tabs = () => {
               Greyhound
             </div>
           </div>
-          <div
-            onClick={() => setSportsType(5)}
-            _ngcontent-ng-c2582205232=""
-            routerlinkactive="active-link"
-            className={`pagetab-item ng-star-inserted   ${
-              sportsType === 5 ? "active-link" : ""
-            }`}
-          >
-            {/* <p
-              _ngcontent-ng-c2582205232=""
-              className="newgame ng-star-inserted"
-            >
-              Started
-            </p> */}
-            <div
-              _ngcontent-ng-c2582205232=""
-              className={`icon-wrap ${
-                sportsType === 5 ? "rotate-animation" : ""
-              }`}
-            >
-              <img
-                _ngcontent-ng-c2582205232=""
-                alt="Tab Icon"
-                src="/assets/img/kabbadi.svg"
-              />
-            </div>
-            <div _ngcontent-ng-c2582205232="" className="tab-label">
-              Kabbadi
-            </div>
-          </div>
+
           {Settings.mac88 && Settings.casinoCurrency === "INR" && (
             <div
-              onClick={() => setSportsType("mac88")}
+              onClick={() => handleNavigate("mac88")}
               _ngcontent-ng-c2582205232=""
               routerlinkactive="active-link"
               className={`pagetab-item ng-star-inserted   ${
-                sportsType === "mac88" ? "active-link" : ""
+                sportsType === "mac88" && location.pathname === "/"
+                  ? "active-link"
+                  : ""
               }`}
             >
               {/* <p
@@ -277,7 +263,9 @@ const Tabs = () => {
               <div
                 _ngcontent-ng-c2582205232=""
                 className={`icon-wrap ${
-                  sportsType === "mac88" ? "rotate-animation" : ""
+                  sportsType === "mac88" && location.pathname === "/"
+                    ? "rotate-animation"
+                    : ""
                 }`}
               >
                 <svg
@@ -299,18 +287,22 @@ const Tabs = () => {
             </div>
           )}
           <div
-            onClick={() => setSportsType("aura")}
+            onClick={() => handleNavigate("aura")}
             _ngcontent-ng-c2582205232=""
             routerlink="/casino-bmk-lobby"
             routerlinkactive="active-link"
             className={`pagetab-item ng-star-inserted   ${
-              sportsType === "aura" ? "active-link" : ""
+              sportsType === "aura" && location.pathname === "/"
+                ? "active-link"
+                : ""
             }`}
           >
             <div
               _ngcontent-ng-c2582205232=""
               className={`icon-wrap ${
-                sportsType === "aura" ? "rotate-animation" : ""
+                sportsType === "aura" && location.pathname === "/"
+                  ? "rotate-animation"
+                  : ""
               }`}
             >
               <img
@@ -325,18 +317,22 @@ const Tabs = () => {
           </div>
 
           <div
-            onClick={() => setSportsType("live-casino")}
+            onClick={() => handleNavigate("live-casino")}
             _ngcontent-ng-c2582205232=""
             routerlink="/live-casino-lobby/live_casino"
             routerlinkactive="active-link"
             className={`pagetab-item ng-star-inserted   ${
-              sportsType === "live-casino" ? "active-link" : ""
+              sportsType === "live-casino" && location.pathname === "/"
+                ? "active-link"
+                : ""
             }`}
           >
             <div
               _ngcontent-ng-c2582205232=""
               className={`icon-wrap ${
-                sportsType === "live-casino" ? "rotate-animation" : ""
+                sportsType === "live-casino" && location.pathname === "/"
+                  ? "rotate-animation"
+                  : ""
               }`}
             >
               <img
@@ -351,18 +347,22 @@ const Tabs = () => {
           </div>
 
           <div
-            onClick={() => setSportsType("casino")}
+            onClick={() => handleNavigate("casino")}
             _ngcontent-ng-c2582205232=""
             routerlink="/casino-lobby/casino"
             routerlinkactive="active-link"
             className={`pagetab-item ng-star-inserted ${
-              sportsType === "casino" ? "active-link" : ""
+              sportsType === "casino" && location.pathname === "/"
+                ? "active-link"
+                : ""
             }`}
           >
             <div
               _ngcontent-ng-c2582205232=""
               className={`icon-wrap ${
-                sportsType === "casino" ? "rotate-animation" : ""
+                sportsType === "casino" && location.pathname === "/"
+                  ? "rotate-animation"
+                  : ""
               }`}
             >
               <img

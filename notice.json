@@ -27,7 +27,7 @@
       "betFairCashOut": true,
       "apkLink": "https://11xgame.vip/11xgame.apk",
       "mac88": true,
-      "build": "production"
+      "build": "development"
     },
     "logo": {
       "height": 55,

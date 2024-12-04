@@ -86,6 +86,7 @@ const GameDetails = () => {
             style={{
               paddingTop: "2px",
               paddingBottom: "2px",
+              position: "static",
             }}
           >
             <div

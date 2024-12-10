@@ -77,4 +77,5 @@ export const Settings = {
   registrationWhatsapp: "",
   build: "",
   mac88: "",
+  b2c: "",
 };

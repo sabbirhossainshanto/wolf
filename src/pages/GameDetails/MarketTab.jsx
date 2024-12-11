@@ -9,7 +9,6 @@ import HorseGreyhound from "./GameType/HorseGreyhound";
 import OverByOver from "./GameType/OverByOver";
 import SportsBook from "./GameType/SportsBook/SportsBook";
 import { useParams } from "react-router-dom";
-import useIFrame from "../../hooks/useIFrame";
 
 /* eslint-disable react/no-unknown-property */
 const MarketTab = ({
@@ -24,6 +23,7 @@ const MarketTab = ({
   setMatch_odds,
   setShowLoginWarn,
   score,
+  iFrame,
 }) => {
   const [bookmarker, setBookmarker] = useState([]);
   const [bookmarker2, setBookmarker2] = useState([]);
@@ -31,8 +31,8 @@ const MarketTab = ({
   const [fancy1, setFancy1] = useState([]);
   const [overByOver, setOverByOver] = useState([]);
   const { setPlaceBetValues } = useContextState();
-  const { eventId, eventTypeId } = useParams();
-  const { iFrameUrl } = useIFrame(eventTypeId, eventId);
+  const { eventTypeId } = useParams();
+
   /* Filtered all the game  */
   useEffect(() => {
     const filterMatch_odds = data?.filter(
@@ -89,17 +89,17 @@ const MarketTab = ({
               _ngcontent-ng-c942213636=""
               className="live-match-screen ng-star-inserted"
             >
-              {showIFrame && score?.hasVideo && (
+              {showIFrame && score?.hasVideo && iFrame && (
                 <iframe
                   _ngcontent-ng-c942213636=""
                   style={{
                     width: "100%",
                     border: "0px",
                   }}
-                  src={iFrameUrl?.url}
-                  referrerPolicy={
-                    iFrameUrl?.ref === false ? "no-referrer" : "no-referrer"
-                  }
+                  src={iFrame}
+                  // referrerPolicy={
+                  //   iFrameUrl?.ref === false ? "no-referrer" : "no-referrer"
+                  // }
                 ></iframe>
               )}
 

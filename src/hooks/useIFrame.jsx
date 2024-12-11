@@ -1,37 +1,13 @@
-import { useQuery } from "@tanstack/react-query";
-import useContextState from "./useContextState";
-import axios from "axios";
-import UseTokenGenerator from "./UseTokenGenerator";
-import UseEncryptData from "./UseEncryptData";
+import { useMutation } from "@tanstack/react-query";
 import { API } from "../api";
-/* Iframe  api  */
-const useIFrame = (eventTypeId, eventId, hasVideo) => {
-  const { token } = useContextState();
-  const { data: iFrameUrl } = useQuery({
-    queryKey: ["iframeVideo"],
-    /* match odds hasvideo = true then enable */
-    enabled: hasVideo,
-    queryFn: async () => {
-      const generatedToken = UseTokenGenerator();
-      const encryptedVideoData = UseEncryptData({
-        eventTypeId: eventTypeId,
-        eventId: eventId,
-        type: "video",
-        token: generatedToken,
-      });
-      const res = await axios.post(API.accessToken, encryptedVideoData, {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      });
-      const data = res?.data;
+import { AxiosSecure } from "../lib/AxiosSecure";
 
-      if (data?.success) {
-        return data?.result;
-      }
+export const useSportsVideo = () => {
+  return useMutation({
+    mutationKey: ["iframeVideo"],
+    mutationFn: async (payload) => {
+      const { data } = await AxiosSecure.post(API.accessToken, payload);
+      return data;
     },
   });
-  return { iFrameUrl };
 };
-
-export default useIFrame;

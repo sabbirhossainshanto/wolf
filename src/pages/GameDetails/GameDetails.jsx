@@ -14,6 +14,9 @@ import { API, Settings } from "../../api";
 import useBalance from "../../hooks/useBalance";
 import handleDecryptData from "../../utils/handleDecryptData";
 import Score from "./Score";
+import { useSportsVideo } from "../../hooks/useIFrame";
+import UseTokenGenerator from "../../hooks/UseTokenGenerator";
+import UseEncryptData from "../../hooks/UseEncryptData";
 /* eslint-disable react/no-unknown-property */
 const GameDetails = () => {
   const { eventId, eventTypeId } = useParams();
@@ -34,6 +37,27 @@ const GameDetails = () => {
   const [match_odds, setMatch_odds] = useState([]);
   const [showLoginWarn, setShowLoginWarn] = useState("");
   const { refetchBalance } = useBalance();
+  const [iFrame, setIframe] = useState(null);
+  const { mutate } = useSportsVideo();
+
+  const handleGetSportsVideo = () => {
+    const generatedToken = UseTokenGenerator();
+    const encryptedVideoData = UseEncryptData({
+      eventTypeId: eventTypeId,
+      eventId: eventId,
+      type: "video",
+      token: generatedToken,
+      site: Settings.siteUrl,
+      casinoCurrency: Settings.casinoCurrency,
+    });
+    mutate(encryptedVideoData, {
+      onSuccess: (data) => {
+        if (data?.success) {
+          setIframe(data?.result?.url);
+        }
+      },
+    });
+  };
 
   useEffect(() => {
     if (!tokenLoading && !Settings.balanceApiLoop) {
@@ -69,8 +93,6 @@ const GameDetails = () => {
   if (match_odds?.[0]?.eventTypeId == 1 && match_odds?.[0]?.score) {
     footballScore = match_odds?.[0]?.score;
   }
-
-  console.log(data);
 
   return (
     <>
@@ -202,6 +224,7 @@ const GameDetails = () => {
             /*  style="--mat-tab-animation-duration: 500ms" */
           >
             <Tabs
+              handleGetSportsVideo={handleGetSportsVideo}
               myBets={myBets}
               setTabs={setTabs}
               tabs={tabs}
@@ -213,6 +236,7 @@ const GameDetails = () => {
             />
             {tabs === "market" && (
               <MarketTab
+                iFrame={iFrame}
                 horseGreyhound={horseGreyhound}
                 score={score}
                 sportsBook={sportsBook}

@@ -9,6 +9,7 @@ const Tabs = ({
   showScore,
   setShowScore,
   score,
+  handleGetSportsVideo,
 }) => {
   return (
     <div className="mat-mdc-tab-header mat-tab-header">
@@ -106,6 +107,7 @@ const Tabs = ({
                         <button
                           // active class
                           onClick={() => {
+                            handleGetSportsVideo();
                             setShowIFrame((prev) => !prev);
                             setShowScore(false);
                           }}

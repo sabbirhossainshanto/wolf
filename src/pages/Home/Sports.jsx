@@ -18,7 +18,12 @@ const Sports = () => {
     const gameData = async () => {
       if (sportsType !== null) {
         const apiUrl = `${API.group}/${sportsType}`;
-        const res = await axios.get(apiUrl);
+        const res = await axios.get(apiUrl, {
+          headers: {
+            "Cache-Control": "public",
+            "max-age": 1,
+          },
+        });
         const data = res.data;
         const decryptionData = await handleDecryptData(JSON.stringify(data));
 

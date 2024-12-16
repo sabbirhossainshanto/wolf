@@ -68,7 +68,12 @@ const GameDetails = () => {
   /* get game details */
   useEffect(() => {
     const getGameDetails = async () => {
-      const res = await axios.get(`${API.odds}/${eventTypeId}/${eventId}`);
+      const res = await axios.get(`${API.odds}/${eventTypeId}/${eventId}`, {
+        headers: {
+          "Cache-Control": "public",
+          "max-age": 1,
+        },
+      });
       const data = res.data;
       const decryptionData = await handleDecryptData(JSON.stringify(data));
       setLoading(false);

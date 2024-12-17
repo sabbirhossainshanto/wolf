@@ -22,7 +22,7 @@ const Deposit = () => {
   const [utr, setUtr] = useState(null);
   const [depositData, setDepositData] = useState({});
   const paymentMethodRef = useRef();
-  const { bankData: depositMethods } = useBankAccount({
+  const { bankData: depositMethods, isFetched } = useBankAccount({
     type: "depositMethods",
     amount: paymentAmount,
   });
@@ -222,7 +222,7 @@ const Deposit = () => {
             5-10 minutes
           </p>
         </div>
-        {Array.isArray(depositMethods) && depositMethods?.length > 0 ? (
+        {Array.isArray(depositMethods) && depositMethods?.length > 0 && (
           <div _ngcontent-ng-c3816252360="" className="select-method-card">
             {depositMethods?.map((method) => {
               console.log(method);
@@ -259,7 +259,8 @@ const Deposit = () => {
               );
             })}
           </div>
-        ) : (
+        )}
+        {isFetched && depositMethods?.length === 0 && (
           <div style={{ textAlign: "center" }}>
             No deposit methods available right now.
           </div>

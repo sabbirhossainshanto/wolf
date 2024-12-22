@@ -89,6 +89,7 @@ export const getSetApis = (setNoticeLoaded, baseUrl) => {
         Settings.casinoCurrency = data?.result?.settings?.casinoCurrency;
         Settings.apkLink = data?.result?.settings?.apkLink;
         Settings.b2c = data?.result?.settings?.b2c;
+        Settings.bookmakerCashOut = data?.result?.settings?.bookmakerCashOut;
 
         setNoticeLoaded(true);
       }

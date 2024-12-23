@@ -6,6 +6,7 @@ import { handleCashOutPlaceBet } from "../../../utils/handleCashOutPlaceBet";
 import { Settings } from "../../../api";
 import Login from "../../../components/modal/Login";
 import { useParams } from "react-router-dom";
+import { isGameSuspended } from "../../../utils/isGameSuspended";
 
 /* eslint-disable react/no-unknown-property */
 const Bookmaker = ({
@@ -41,15 +42,15 @@ const Bookmaker = ({
       // Team A has a larger exposure.
       runner = runner1;
       largerExposure = exposureA;
-      layValue = runner1?.lay?.[0]?.price;
-      oppositeLayValue = runner2?.lay?.[0]?.price;
+      layValue = 1 + Number(runner1?.lay?.[0]?.price) / 100;
+      oppositeLayValue = 1 + Number(runner2?.lay?.[0]?.price) / 100;
       lowerExposure = exposureB;
     } else {
       // Team B has a larger exposure.
       runner = runner2;
       largerExposure = exposureB;
-      layValue = runner2?.lay?.[0]?.price;
-      oppositeLayValue = runner1?.lay?.[0]?.price;
+      layValue = 1 + Number(runner2?.lay?.[0]?.price) / 100;
+      oppositeLayValue = 1 + Number(runner1?.lay?.[0]?.price) / 100;
       lowerExposure = exposureA;
     }
 
@@ -97,6 +98,12 @@ const Bookmaker = ({
         if (runners?.length === 2) {
           const runner1 = runners[0];
           const runner2 = runners[1];
+
+          const runner1back = runner1?.back?.[0]?.price;
+          const runner1Lay = runner1?.lay?.[0]?.price;
+          const runner2back = runner2?.back?.[0]?.price;
+          const runner2Lay = runner2?.lay?.[0]?.price;
+
           const pnl1 = pnlBySelection?.find(
             (pnl) => pnl?.RunnerId === runner1?.id
           )?.pnl;
@@ -104,7 +111,16 @@ const Bookmaker = ({
             (pnl) => pnl?.RunnerId === runner2?.id
           )?.pnl;
 
-          if (pnl1 && pnl2 && runner1 && runner2) {
+          if (
+            pnl1 &&
+            pnl2 &&
+            runner1 &&
+            runner2 &&
+            runner1back &&
+            runner1Lay &&
+            runner2back &&
+            runner2Lay
+          ) {
             const result = computeExposureAndStake(
               pnl1,
               pnl2,
@@ -155,7 +171,7 @@ const Bookmaker = ({
                       gap: "10px",
                     }}
                   >
-                    {teamProfitForGame?.profit && (
+                    {teamProfitForGame?.profit !== 0 && (
                       <span
                         style={{
                           fontSize: "10px",
@@ -169,7 +185,11 @@ const Bookmaker = ({
                     )}
 
                     <button
-                      disabled={!teamProfitForGame}
+                      disabled={
+                        !teamProfitForGame ||
+                        isGameSuspended(games) ||
+                        teamProfitForGame?.profit === 0
+                      }
                       onClick={() =>
                         handleCashOutPlaceBet(
                           games,
@@ -184,9 +204,19 @@ const Bookmaker = ({
                       }
                       style={{
                         cursor: `${
-                          !teamProfitForGame ? "not-allowed" : "pointer"
+                          !teamProfitForGame ||
+                          isGameSuspended(games) ||
+                          teamProfitForGame?.profit === 0
+                            ? "not-allowed"
+                            : "pointer"
                         }`,
-                        opacity: `${!teamProfitForGame ? "0.6" : "1"}`,
+                        opacity: `${
+                          !teamProfitForGame ||
+                          isGameSuspended(games) ||
+                          teamProfitForGame?.profit === 0
+                            ? "0.6"
+                            : "1"
+                        }`,
                         zIndex: "1000",
                         pointerEvents: "auto",
                       }}

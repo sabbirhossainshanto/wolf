@@ -16,6 +16,9 @@ import GetForgotOTP from "../../modal/forgotPassword/GetForgotOTP";
 import ForgotPassword from "../../modal/forgotPassword/ForgotPassword";
 import AppPopup from "./AppPopUp";
 import useGetSocialLink from "../../../hooks/useGetSocialLink";
+import useGetNotification from "../../../hooks/useGetNotification";
+import { RxCross2 } from "react-icons/rx";
+import Marquee from "react-fast-marquee";
 // import { AndroidView } from "react-device-detect";
 const Navbar = () => {
   const { socialLink } = useGetSocialLink();
@@ -52,6 +55,34 @@ const Navbar = () => {
   const [mobileNo, setMobileNo] = useState("");
   const [errMsg, setErrMsg] = useState("");
   const [successMsg, setSuccessMsg] = useState("");
+  const { notification, isFetchingNotification, isFetched } =
+    useGetNotification();
+
+  const storedNotification = sessionStorage.getItem("notification");
+  const [showNotification, setShowNotification] = useState(false);
+
+  useEffect(() => {
+    if (!storedNotification) {
+      setShowNotification(true);
+    }
+    if (notification?.length > 0 && storedNotification && !showNotification) {
+      const apiNotification = JSON.stringify(notification);
+      if (apiNotification != storedNotification) {
+        setShowNotification(true);
+      }
+    }
+  }, [
+    notification,
+    showNotification,
+    storedNotification,
+    isFetched,
+    isFetchingNotification,
+  ]);
+
+  const closeNotification = () => {
+    setShowNotification(false);
+    sessionStorage.setItem("notification", JSON.stringify(notification));
+  };
 
   /* handle login demo user */
   const loginWithDemo = () => {
@@ -154,6 +185,21 @@ const Navbar = () => {
 
   return (
     <>
+      {showNotification && notification && (
+        <div
+          style={{
+            padding: "2px 5px",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "space-between",
+            gap: "20px",
+            fontSize: "11px",
+          }}
+        >
+          <Marquee>{notification?.[0]?.text} </Marquee>
+          <RxCross2 onClick={closeNotification} size={20} cursor="pointer" />
+        </div>
+      )}
       {Settings?.apkLink && isModalOpen && windowWidth < 550 && (
         <AppPopup setIsModalOpen={setIsModalOpen} />
       )}

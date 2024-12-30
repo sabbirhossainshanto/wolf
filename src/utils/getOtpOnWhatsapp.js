@@ -1,19 +1,14 @@
 import toast from "react-hot-toast";
-import { API, Settings } from "../api";
-import axios from "axios";
-import UseTokenGenerator from "../hooks/UseTokenGenerator";
-import UseEncryptData from "../hooks/UseEncryptData";
+import { API } from "../api";
+import { AxiosSecure } from "../lib/AxiosSecure";
 
 const getOtpOnWhatsapp = async (mobileNo, setOrderId, setShowRegister) => {
-  const generatedToken = UseTokenGenerator();
   const otpData = {
     mobile: mobileNo,
-    token: generatedToken,
-    site: Settings?.siteUrl,
     type: "otpsend",
   };
-  const encryptedData = UseEncryptData(otpData);
-  const res = await axios.post(API.otpless, encryptedData);
+
+  const res = await AxiosSecure.post(API.otpless, otpData);
   const data = res.data;
   if (data?.success) {
     setOrderId({

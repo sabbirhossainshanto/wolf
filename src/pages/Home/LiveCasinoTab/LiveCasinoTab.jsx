@@ -8,8 +8,10 @@ import useContextState from "../../../hooks/useContextState";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import Warning from "../../../components/ui/Notification/Warning";
+import useLanguage from "../../../hooks/useLanguage";
 
 const LiveCasinoTab = () => {
+  const { language } = useLanguage();
   const [showLeftDropdown, setShowLeftDropdown] = useState(false);
   const [showRightDropdown, setShowRightDropdown] = useState(false);
   const [gameList, setGameList] = useState("All");
@@ -28,19 +30,23 @@ const LiveCasinoTab = () => {
       casino: API.slotWolf,
       aura: API.auraWolf,
     };
+    let payload = {
+      gameList,
+      product,
+      isHome: false,
+    };
+    if (Settings.language) {
+      payload.language = language;
+    }
     const getGames = async () => {
-      const res = await axios.post(apiMapping[sportsType], {
-        gameList,
-        product,
-        isHome: false,
-      });
+      const res = await axios.post(apiMapping[sportsType], payload);
       if (res?.status === 200) {
         const result = res?.data;
         setData(result);
       }
     };
     getGames();
-  }, [gameList, product, sportsType, token]);
+  }, [gameList, product, sportsType, token, language]);
 
   useEffect(() => {
     setGameList("All");

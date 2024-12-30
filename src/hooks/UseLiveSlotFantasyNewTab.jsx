@@ -1,20 +1,9 @@
-import axios from "axios";
-import UseEncryptData from "./UseEncryptData";
-import UseTokenGenerator from "./UseTokenGenerator";
-
 import { API } from "../api";
-import useContextState from "./useContextState";
+import { AxiosSecure } from "../lib/AxiosSecure";
 /* open casino iframe in new tab */
 const UseLiveSlotFantasyNewTab = async (id) => {
-  const { token } = useContextState();
-  const generatedToken = UseTokenGenerator();
-  const encryptedData = UseEncryptData({
+  const res = await AxiosSecure.post(API.liveCasinoIFrame, {
     gameId: id?.toString(),
-    token: generatedToken,
-  });
-
-  const res = await axios.post(API.liveCasinoIFrame, encryptedData, {
-    headers: { Authorization: `Bearer ${token}` },
   });
   const data = res?.data;
   /* Open live casino in new tab */

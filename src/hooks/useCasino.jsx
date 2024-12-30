@@ -1,9 +1,11 @@
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 import useContextState from "./useContextState";
-import { API } from "../api";
+import { API, Settings } from "../api";
+import useLanguage from "./useLanguage";
 /* Get casino */
 const useCasino = () => {
+  const { language } = useLanguage();
   const { token } = useContextState();
   const {
     data,
@@ -12,25 +14,25 @@ const useCasino = () => {
   } = useQuery({
     queryKey: ["casinoWolf"],
     queryFn: async () => {
-      const res = await axios.post(
-        API.slotWolf,
-        {
-          gameList: "All",
-          product: "All",
-          isHome: true,
+      let payload = {
+        gameList: "All",
+        product: "All",
+        isHome: true,
+      };
+      if (Settings?.language) {
+        payload.language = language;
+      }
+      const res = await axios.post(API.slotWolf, payload, {
+        headers: {
+          Authorization: `Bearer ${token}`,
         },
-        {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        }
-      );
+      });
       const result = res?.data;
       if (result?.status === "success") {
         return result?.data;
       }
     },
-    refetchOnWindowFocus:false
+    refetchOnWindowFocus: false,
   });
   return { data, refetchLiveCasino, isLoading };
 };

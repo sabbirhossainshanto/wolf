@@ -1,28 +1,12 @@
 import { useQuery } from "@tanstack/react-query";
-import useContextState from "./useContextState";
-import UseTokenGenerator from "./UseTokenGenerator";
-import UseEncryptData from "./UseEncryptData";
-import axios from "axios";
 import { API } from "../api";
+import { AxiosSecure } from "../lib/AxiosSecure";
 
-/* exposure api */
 const useExposer = (eventId) => {
-  const { token, tokenLoading } = useContextState();
   const { data: exposer = [], refetch: refetchExposure } = useQuery({
     queryKey: ["exposure"],
-    enabled: !tokenLoading,
     queryFn: async () => {
-      const generatedToken = UseTokenGenerator();
-      const encryptedData = UseEncryptData(generatedToken);
-      const res = await axios.post(
-        `${API.exposure}/${eventId}`,
-        encryptedData,
-        {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        }
-      );
+      const res = await AxiosSecure.post(`${API.exposure}/${eventId}`);
       const data = res.data;
 
       if (data.success) {

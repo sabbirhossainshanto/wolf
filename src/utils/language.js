@@ -1,7 +1,7 @@
 export const findByLanguage = (data) => {
   let result = {};
   if (data) {
-    const language = localStorage.getItem("language");
+    const language = localStorage.getItem("language") || "english";
     data.forEach((item) => {
       // Get the key (sport name) from the object
       const sportKey = Object.keys(item)[0];

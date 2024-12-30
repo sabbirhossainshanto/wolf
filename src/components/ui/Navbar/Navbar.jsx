@@ -67,8 +67,6 @@ const Navbar = () => {
   const storedNotification = sessionStorage.getItem("notification");
   const [showNotification, setShowNotification] = useState(false);
 
-  console.log(showLanguage);
-
   useEffect(() => {
     if (!storedNotification) {
       setShowNotification(true);

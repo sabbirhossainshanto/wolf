@@ -2,11 +2,8 @@
 import { motion } from "framer-motion";
 import { useRef, useState } from "react";
 import useCloseModalClickOutside from "../../hooks/useCloseModalClickOutside";
-import UseTokenGenerator from "../../hooks/UseTokenGenerator";
-import axios from "axios";
 import { API } from "../../api";
-import useContextState from "../../hooks/useContextState";
-import UseEncryptData from "../../hooks/UseEncryptData";
+import { AxiosSecure } from "../../lib/AxiosSecure";
 const AddBank = ({
   setShowAddBank,
   setSuccessCrudMsg,
@@ -14,7 +11,6 @@ const AddBank = ({
   setErrCrudMsg,
   refetchWithdrawData,
 }) => {
-  const { token } = useContextState();
   const [addBank, setAddBank] = useState({
     accountName: "",
     ifsc: "",
@@ -28,21 +24,15 @@ const AddBank = ({
 
   const handleBankCrud = async (e) => {
     e.preventDefault();
-    const generatedToken = UseTokenGenerator();
     const bankData = {
       accountName: addBank.accountName,
       ifsc: addBank.ifsc,
       upiId: addBank.upiId,
       accountNumber: addBank.accountNumber,
       type: "addBankAccount",
-      token: generatedToken,
     };
-    const encryptedData = UseEncryptData(bankData);
-    const res = await axios.post(API.bankAccount, encryptedData, {
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    });
+
+    const res = await AxiosSecure.post(API.bankAccount, bankData);
     const data = res?.data;
     if (data?.success) {
       setSuccessCrudMsg(data?.result?.message);

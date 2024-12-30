@@ -1,15 +1,21 @@
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
-import { API } from "../api";
+import { API, Settings } from "../api";
+import useLanguage from "./useLanguage";
 
 const useGetMac88 = () => {
+  const { language } = useLanguage();
   const { data, refetch, isLoading } = useQuery({
     queryKey: ["mac88"],
 
     queryFn: async () => {
-      const res = await axios.post(API.mac88, {
+      let payload = {
         isHome: false,
-      });
+      };
+      if (Settings.language) {
+        payload.language = language;
+      }
+      const res = await axios.post(API.mac88, payload);
       const result = res?.data;
       if (result?.success) {
         return result?.data;

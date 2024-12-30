@@ -2,11 +2,11 @@ import { useRef } from "react";
 import useCloseModalClickOutside from "../../hooks/useCloseModalClickOutside";
 import { useForm } from "react-hook-form";
 import useContextState from "../../hooks/useContextState";
-import { API } from "../../api";
-
+import { API, Settings } from "../../api";
+import useLanguage from "../../hooks/useLanguage";
 
 /* eslint-disable react/no-unknown-property */
-const EditStake = ({ setShowEditStake,setSuccessEditStake }) => {
+const EditStake = ({ setShowEditStake, setSuccessEditStake }) => {
   /* Close modal click out side */
   const stakeRef = useRef();
   useCloseModalClickOutside(stakeRef, () => {
@@ -16,7 +16,8 @@ const EditStake = ({ setShowEditStake,setSuccessEditStake }) => {
   const buttonGameValue = JSON.parse(localStorage.getItem("buttonValue"));
   const { register, handleSubmit } = useForm();
   const { token } = useContextState();
-  
+  const { language } = useLanguage();
+
   const onSubmit = ({
     buttons0value,
     buttons1value,
@@ -27,47 +28,52 @@ const EditStake = ({ setShowEditStake,setSuccessEditStake }) => {
     buttons6value,
     buttons7value,
   }) => {
+    let payload = {
+      game: [
+        {
+          label: 100,
+          value: buttons0value,
+        },
+        {
+          label: 100,
+          value: buttons1value,
+        },
+        {
+          label: 100,
+          value: buttons2value,
+        },
+        {
+          label: 100,
+          value: buttons3value,
+        },
+        {
+          label: 100,
+          value: buttons4value,
+        },
+        {
+          label: 100,
+          value: buttons5value,
+        },
+        {
+          label: 100,
+          value: buttons6value,
+        },
+        {
+          label: 100,
+          value: buttons7value,
+        },
+      ],
+    };
+    if (Settings.language) {
+      payload.language = language;
+    }
+
     fetch(API.buttonValue, {
       method: "POST",
       headers: {
         Authorization: `Bearer ${token}`,
       },
-      body: JSON.stringify({
-        game: [
-          {
-            label: 100,
-            value: buttons0value,
-          },
-          {
-            label: 100,
-            value: buttons1value,
-          },
-          {
-            label: 100,
-            value: buttons2value,
-          },
-          {
-            label: 100,
-            value: buttons3value,
-          },
-          {
-            label: 100,
-            value: buttons4value,
-          },
-          {
-            label: 100,
-            value: buttons5value,
-          },
-          {
-            label: 100,
-            value: buttons6value,
-          },
-          {
-            label: 100,
-            value: buttons7value,
-          },
-        ],
-      }),
+      body: JSON.stringify(payload),
     })
       .then((res) => res.json())
       .then((data) => {
@@ -190,8 +196,6 @@ const EditStake = ({ setShowEditStake,setSuccessEditStake }) => {
                       <form
                         onSubmit={handleSubmit(onSubmit)}
                         _ngcontent-ng-c2718167310=""
-                      
-                    
                         className="ng-untouched ng-pristine ng-valid"
                       >
                         <div
@@ -355,7 +359,6 @@ const EditStake = ({ setShowEditStake,setSuccessEditStake }) => {
           ></div>
         </div>
       </div>
-
     </div>
   );
 };

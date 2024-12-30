@@ -6,13 +6,11 @@ import { useEffect, useState } from "react";
 import Withdraw from "../../components/modal/Withdraw";
 import Success from "../../components/ui/Notification/Success";
 import AddBank from "../../components/modal/AddBank";
-import UseTokenGenerator from "../../hooks/UseTokenGenerator";
-import axios from "axios";
-import UseEncryptData from "../../hooks/UseEncryptData";
 import { handleLogOut } from "../../utils/handleLogOut";
 import useLanguage from "../../hooks/useLanguage";
 import { LanguageKey } from "../../constant/constant";
 import { languageValue } from "../../utils/language";
+import { AxiosSecure } from "../../lib/AxiosSecure";
 
 /* eslint-disable react/no-unknown-property */
 const LoggedInProfile = ({
@@ -49,18 +47,11 @@ const LoggedInProfile = ({
 
   /* Handle Withdraw data */
   const handleWithdrawData = async () => {
-    const generatedToken = UseTokenGenerator();
     const bankData = {
       bankId,
       type: "withdrawForm",
-      token: generatedToken,
     };
-    const encryptedData = UseEncryptData(bankData);
-    const res = await axios.post(API.bankAccount, encryptedData, {
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    });
+    const res = await AxiosSecure.post(API.bankAccount, bankData);
     const data = res?.data;
     if (data?.success) {
       setWithdrawData(data?.result);

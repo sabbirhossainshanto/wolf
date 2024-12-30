@@ -11,6 +11,7 @@ import Warning from "../ui/Notification/Warning";
 import useContextState from "../../hooks/useContextState";
 import handleDepositMethod from "../../utils/handleDepositMethod";
 import useGetSocialLink from "../../hooks/useGetSocialLink";
+import { AxiosSecure } from "../../lib/AxiosSecure";
 const Login = ({
   setShowLogin,
   setErrorLogin,
@@ -20,12 +21,7 @@ const Login = ({
 }) => {
   const { refetchSocialLinks } = useGetSocialLink();
   const { logo, setShowChangePassModal } = useContextState();
-  const { register, handleSubmit } = useForm({
-    // defaultValues:{
-    //   username:'8888884000',
-    //   password:'avinya123'
-    // }
-  });
+  const { register, handleSubmit } = useForm();
   const [disable, setDisable] = useState(false);
   /* Close modal click out side */
   const warningRef = useRef();
@@ -39,27 +35,14 @@ const Login = ({
   /* handle login user */
   const onSubmit = async ({ username, password }) => {
     setDisable(true);
-    /* Random token generator */
-    const generatedToken = UseTokenGenerator();
     const loginData = {
       username: username,
       password: password,
-      token: generatedToken,
-      site: Settings.siteUrl,
       b2c: Settings.b2c,
     };
-    /* Encrypted the post data */
-    const encryptedData = UseEncryptData(loginData);
-    const res = await fetch(API.login, {
-      method: "POST",
-      headers: {
-        "content-type": "application/json",
-      },
-      body: JSON.stringify(encryptedData),
-    });
 
-    const data = await res.json();
-    console.log(data);
+    const { data } = await AxiosSecure.post(API.login, loginData);
+
     if (data.success) {
       setDisable(false);
       if (Settings.deposit) {

@@ -3,20 +3,16 @@ import { useEffect, useState } from "react";
 import AddBank from "../../components/modal/AddBank";
 import Warning from "../../components/modal/Warning";
 import { IoMdArrowDropdown, IoMdArrowDropright } from "react-icons/io";
-import UseTokenGenerator from "../../hooks/UseTokenGenerator";
-import axios from "axios";
 import { API } from "../../api";
-import useContextState from "../../hooks/useContextState";
 import { handleVisibleBankDetails } from "../../utils/handleVisibleBankDetails";
 import Success from "../../components/ui/Notification/Success";
 import useGetBankAccountName from "../../hooks/BankAccount/useGetBankAccountName";
-import UseEncryptData from "../../hooks/UseEncryptData";
+import { AxiosSecure } from "../../lib/AxiosSecure";
 
 const MyBankDetails = () => {
   const [showAddBank, setShowAddBank] = useState(false);
   const [showDefaultWarning, setShowDefaultWarning] = useState(false);
   const [bankId, setBankId] = useState("");
-  const { token } = useContextState();
   const [successCrudMgs, setSuccessCrudMsg] = useState("");
   const [errCrudMsg, setErrCrudMsg] = useState("");
   const [showDeleteWarning, setShowDeleteWarning] = useState(false);
@@ -27,21 +23,14 @@ const MyBankDetails = () => {
   };
   const { bankData, refetchBankData } = useGetBankAccountName(bankDataPostBody);
   const handleBankCrud = async (type, setShowWarning) => {
-    const generatedToken = UseTokenGenerator();
     const bankData = {
       type,
       bankId,
-      token: generatedToken,
     };
-    const encryptedData = UseEncryptData(bankData)
-    const res = await axios.post(API.bankAccount, encryptedData, {
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    });
+
+    const res = await AxiosSecure.post(API.bankAccount, bankData);
     const data = res?.data;
     if (data?.success) {
-
       setSuccessCrudMsg(data?.result?.message);
       refetchBankData();
       setShowWarning(false);
@@ -55,8 +44,6 @@ const MyBankDetails = () => {
   useEffect(() => {
     refetchBankData();
   }, [refetchBankData, activeTab]);
-
-
 
   return (
     <>

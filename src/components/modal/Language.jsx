@@ -98,7 +98,7 @@ const Language = ({ setShowLanguage }) => {
                               color: "black",
                               display: "flex",
                               alignItems: "center",
-                              fontSize: "15px",
+                              fontSize: "11px",
                             }}
                             _ngcontent-ng-c2806737617=""
                             className="form-title"
@@ -112,8 +112,9 @@ const Language = ({ setShowLanguage }) => {
                               flexDirection: "column",
                               alignItems: "start",
                               width: "100%",
-                              gap: "5px",
-                              marginTop: "10px",
+                              gap: "1px",
+                              marginTop: "0px",
+                              fontSize: "11px",
                             }}
                           >
                             {languages &&

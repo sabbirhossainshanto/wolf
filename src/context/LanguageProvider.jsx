@@ -18,8 +18,6 @@ const LanguageProvider = ({ children }) => {
     getLanguage();
   }, [language]);
 
-  console.log(valueByLanguage);
-
   const stateInfo = {
     languageLoading,
     setLanguageLoading,

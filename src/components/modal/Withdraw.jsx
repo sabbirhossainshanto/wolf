@@ -2,13 +2,9 @@
 import { motion } from "framer-motion";
 import { useRef, useState } from "react";
 import useCloseModalClickOutside from "../../hooks/useCloseModalClickOutside";
-
-import UseTokenGenerator from "../../hooks/UseTokenGenerator";
-import axios from "axios";
 import { API } from "../../api";
-import useContextState from "../../hooks/useContextState";
-import UseEncryptData from "../../hooks/UseEncryptData";
 import { TbRuler3 } from "react-icons/tb";
+import { AxiosSecure } from "../../lib/AxiosSecure";
 
 const Withdraw = ({
   setSHowWithdraw,
@@ -19,7 +15,6 @@ const Withdraw = ({
   withdrawData,
   setBankId,
 }) => {
-  const { token } = useContextState();
   const [disable, setDisable] = useState(false);
   const [amount, setAmount] = useState("");
   const withdrawRef = useRef();
@@ -35,20 +30,13 @@ const Withdraw = ({
     e.preventDefault();
     setDisable(TbRuler3);
     if (amount?.length > 0 && bankId) {
-      const generatedToken = UseTokenGenerator();
       const bankData = {
         type: "withdrawCoins",
         amount: amount,
         bankId,
-        token: generatedToken,
       };
-      const encryptedData = UseEncryptData(bankData);
-      const res = await axios.post(API.bankAccount, encryptedData, {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      });
-      const data = res?.data;
+
+      const { data } = await AxiosSecure.post(API.bankAccount, bankData);
 
       if (data?.success) {
         setWithdrawCoinSuccess(data?.result?.message);

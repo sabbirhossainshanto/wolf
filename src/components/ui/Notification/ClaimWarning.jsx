@@ -1,40 +1,35 @@
 import { useRef } from "react";
 import { motion } from "framer-motion";
 import useCloseModalClickOutside from "../../../hooks/useCloseModalClickOutside";
-import axios from "axios";
 import { API } from "../../../api";
-import UseTokenGenerator from "../../../hooks/UseTokenGenerator";
-import UseEncryptData from "../../../hooks/UseEncryptData";
 import useContextState from "../../../hooks/useContextState";
-const ClaimWarning = ({ setShowClaimWarn, bonusRefetchBalance,
-  refetchBalance }) => {
+import { AxiosSecure } from "../../../lib/AxiosSecure";
+const ClaimWarning = ({
+  setShowClaimWarn,
+  bonusRefetchBalance,
+  refetchBalance,
+}) => {
   const warningRef = useRef();
   /*  close warning modal click out side*/
   useCloseModalClickOutside(warningRef, () => {
     setShowClaimWarn(false);
   });
-  const { token, setSuccessClaimMsg, setErrClaimMsg } = useContextState();
+  const { setSuccessClaimMsg, setErrClaimMsg } = useContextState();
   /* Handle bonus to main wallet */
   const handleBonusToMainWallet = async () => {
-    const generatedToken = UseTokenGenerator();
-    const encryptedData = UseEncryptData(generatedToken);
-    const res = await axios.post(API.bonusClaim, encryptedData, {
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    });
+    const res = await AxiosSecure.post(API.bonusClaim);
     const result = res?.data;
     if (result?.success) {
-      refetchBalance()
-      bonusRefetchBalance()
+      refetchBalance();
+      bonusRefetchBalance();
       /* After success close claim warning modal */
       setShowClaimWarn(false);
       /* set success message  */
       setSuccessClaimMsg(result?.result?.message);
     } else {
-       /* After failed close claim warning modal */
+      /* After failed close claim warning modal */
       setShowClaimWarn(false);
-         /* set error message  */
+      /* set error message  */
       setErrClaimMsg(result?.error?.errorMessage);
     }
   };

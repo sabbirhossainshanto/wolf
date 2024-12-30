@@ -1,12 +1,8 @@
 import { useQuery } from "@tanstack/react-query";
-import { API, Settings } from "../api";
-import UseTokenGenerator from "./UseTokenGenerator";
-import UseEncryptData from "./UseEncryptData";
-import axios from "axios";
-import useContextState from "./useContextState";
+import { API } from "../api";
+import { AxiosSecure } from "../lib/AxiosSecure";
 
 const useGetNotification = () => {
-  const { token } = useContextState();
   const {
     data: notification = [],
     refetch: refetchNotification,
@@ -16,20 +12,7 @@ const useGetNotification = () => {
     queryKey: ["notifications"],
     queryFn: async () => {
       try {
-        const generatedToken = UseTokenGenerator();
-        const encryptedData = UseEncryptData({
-          token: generatedToken,
-          site: Settings.siteUrl,
-        });
-        const { data } = await axios.post(
-          `${API.notification}`,
-          encryptedData,
-          {
-            headers: {
-              Authorization: `Bearer ${token}`,
-            },
-          }
-        );
+        const { data } = await AxiosSecure.post(`${API.notification}`);
 
         if (data.success) {
           return data?.result;

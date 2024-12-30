@@ -2,14 +2,12 @@
 import { motion } from "framer-motion";
 import { useRef, useState } from "react";
 import useCloseModalClickOutside from "../../../hooks/useCloseModalClickOutside";
-import UseTokenGenerator from "../../../hooks/UseTokenGenerator";
-import UseEncryptData from "../../../hooks/UseEncryptData";
 import { API, Settings } from "../../../api";
-import axios from "axios";
 import useContextState from "../../../hooks/useContextState";
 import Success from "../../ui/Notification/Success";
 import getOtpOnWhatsapp from "../../../utils/getOtpOnWhatsapp";
 import toast from "react-hot-toast";
+import { AxiosSecure } from "../../../lib/AxiosSecure";
 const GetOTP = ({
   setShowOTP,
   setShowRegister,
@@ -29,14 +27,7 @@ const GetOTP = ({
     e.preventDefault();
     /* Get Otp based on settings*/
     if (Settings.otp) {
-      const generatedToken = UseTokenGenerator();
-      const otpData = {
-        mobile: mobileNo,
-        token: generatedToken,
-        site: Settings?.siteUrl,
-      };
-      const encryptedData = UseEncryptData(otpData);
-      const res = await axios.post(API.otp, encryptedData);
+      const res = await AxiosSecure.post(API.otp, { mobile: mobileNo });
       const data = res.data;
 
       if (data?.success) {

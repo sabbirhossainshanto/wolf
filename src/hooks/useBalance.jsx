@@ -1,7 +1,5 @@
 import { useQuery } from "@tanstack/react-query";
-import axios from "axios";
-import UseEncryptData from "./UseEncryptData";
-import UseTokenGenerator from "./UseTokenGenerator";
+import { AxiosSecure } from "../lib/AxiosSecure";
 import useContextState from "./useContextState";
 import { API, Settings } from "../api";
 import { handleLogOut } from "../utils/handleLogOut";
@@ -16,20 +14,14 @@ const useBalance = () => {
       if (!token) {
         return;
       }
-      const generatedToken = UseTokenGenerator();
-      const encryptedData = UseEncryptData(generatedToken);
-      const res = await axios.post(API.balance, encryptedData, {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      });
+      const res = await AxiosSecure.post(API.balance);
       if (res?.data?.success === false && token) {
         /* Logout if success false  */
         handleLogOut();
         setTokenLoading(true);
         /* Get current token */
         setGetToken((prev) => !prev);
-      } 
+      }
       if (res?.data?.success && token) {
         const data = res.data?.result;
         return data;

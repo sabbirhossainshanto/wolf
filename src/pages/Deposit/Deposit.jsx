@@ -11,8 +11,9 @@ import useContextState from "../../hooks/useContextState";
 import Success from "../../components/ui/Notification/Success";
 import { useNavigate } from "react-router-dom";
 import { FaSpinner } from "react-icons/fa";
-import UseEncryptData from "../../hooks/UseEncryptData";
 import toast from "react-hot-toast";
+import { AxiosSecure } from "../../lib/AxiosSecure";
+import useLanguage from "../../hooks/useLanguage";
 
 const Deposit = () => {
   const { token, copyTextSuccess, setCopyTextSuccess } = useContextState();
@@ -34,6 +35,7 @@ const Deposit = () => {
   const navigate = useNavigate();
   const [uploadedImage, setUploadedImage] = useState(null);
   const [filePath, setFilePath] = useState("");
+  const { language } = useLanguage();
 
   const handleVisibleBankMethod = async (method) => {
     setTabs(method?.type);
@@ -41,12 +43,15 @@ const Deposit = () => {
     const generatedToken = UseTokenGenerator();
 
     if (method?.type === "pg") {
-      const pgPayload = {
+      let pgPayload = {
         paymentId: method?.paymentId,
         token: generatedToken,
         site: Settings.siteUrl,
         amount: paymentAmount,
       };
+      if (Settings.language) {
+        pgPayload = language;
+      }
       const res = await axios.post(API.pg, pgPayload, {
         headers: {
           Authorization: `Bearer ${token}`,
@@ -69,15 +74,9 @@ const Deposit = () => {
       const depositDetail = {
         type: "depositDetails",
         paymentId: method?.paymentId,
-        token: generatedToken,
-        site: Settings.siteUrl,
       };
-      const encryptedData = UseEncryptData(depositDetail);
-      const res = await axios.post(API.bankAccount, encryptedData, {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      });
+
+      const res = await AxiosSecure.post(API.bankAccount, depositDetail);
       const data = res?.data;
       if (data?.success) {
         setDepositData(data?.result);
@@ -127,22 +126,15 @@ const Deposit = () => {
 
   const handleDepositSubmit = async () => {
     if (uploadedImage || utr) {
-      const generatedToken = UseTokenGenerator();
       const screenshotPostData = {
         type: "depositSubmit",
         paymentId,
         amount: paymentAmount,
         fileName: uploadedImage,
         utr: parseFloat(utr),
-        token: generatedToken,
-        site: Settings.siteUrl,
       };
-      const encryptedData = UseEncryptData(screenshotPostData);
-      const res = await axios.post(API.bankAccount, encryptedData, {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      });
+
+      const res = await AxiosSecure.post(API.bankAccount, screenshotPostData);
       const result = res?.data;
       if (result?.success) {
         setUtr(null);

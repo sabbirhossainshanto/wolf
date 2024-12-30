@@ -2,11 +2,12 @@ import { useEffect, useRef, useState } from "react";
 import useCloseModalClickOutside from "../../hooks/useCloseModalClickOutside";
 import UseTokenGenerator from "../../hooks/UseTokenGenerator";
 import UseEncryptData from "../../hooks/UseEncryptData";
-import { API } from "../../api";
+import { API, Settings } from "../../api";
 import useContextState from "../../hooks/useContextState";
 import useBalance from "../../hooks/useBalance";
 import { FaSpinner } from "react-icons/fa";
 import { MdKeyboardArrowUp, MdKeyboardArrowDown } from "react-icons/md";
+import useLanguage from "../../hooks/useLanguage";
 
 /* eslint-disable react/no-unknown-property */
 const BetSlip = ({
@@ -17,6 +18,7 @@ const BetSlip = ({
   setErrorMessage,
   refetchCurrentBets,
 }) => {
+  const { language } = useLanguage();
   const { token } = useContextState();
   /* Close modal click outside */
   const betSlipRef = useRef();
@@ -37,11 +39,14 @@ const BetSlip = ({
   /* Set price */
   useEffect(() => {
     setPrice(placeBetValues?.price);
-    setTotalSize(placeBetValues?.totalSize?.toFixed(2))
+    setTotalSize(placeBetValues?.totalSize?.toFixed(2));
   }, [placeBetValues]);
 
   let payload = {};
   if (price) {
+    if (Settings.language) {
+      payload.language = language;
+    }
     if (placeBetValues?.btype === "SPORTSBOOK") {
       payload = {
         price: price,
@@ -56,7 +61,7 @@ const BetSlip = ({
         maxLiabilityPerBet: placeBetValues?.maxLiabilityPerBet,
         totalSize: totalSize,
         isBettable: placeBetValues?.isBettable,
-        eventId:placeBetValues?.eventId
+        eventId: placeBetValues?.eventId,
       };
     } else {
       payload = {
@@ -71,7 +76,7 @@ const BetSlip = ({
         maxLiabilityPerMarket: placeBetValues?.maxLiabilityPerMarket,
         isBettable: placeBetValues?.isBettable,
         maxLiabilityPerBet: placeBetValues?.maxLiabilityPerBet,
-        eventId:placeBetValues?.eventId
+        eventId: placeBetValues?.eventId,
       };
     }
   }
@@ -99,7 +104,6 @@ const BetSlip = ({
     })
       .then((res) => res.json())
       .then((data) => {
-
         if (data?.success) {
           refetchExposure();
           refetchBalance();

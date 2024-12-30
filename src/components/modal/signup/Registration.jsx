@@ -3,11 +3,10 @@ import useCloseModalClickOutside from "../../../hooks/useCloseModalClickOutside"
 import { motion } from "framer-motion";
 import { useForm } from "react-hook-form";
 import { API, Settings } from "../../../api";
-import UseEncryptData from "../../../hooks/UseEncryptData";
-import UseTokenGenerator from "../../../hooks/UseTokenGenerator";
 import useContextState from "../../../hooks/useContextState";
 import handleDepositMethod from "../../../utils/handleDepositMethod";
 import useGetSocialLink from "../../../hooks/useGetSocialLink";
+import { AxiosSecure } from "../../../lib/AxiosSecure";
 /* eslint-disable react/no-unknown-property */
 const Registration = ({
   setShowRegister,
@@ -36,14 +35,11 @@ const Registration = ({
   const { handleSubmit } = useForm();
   /* Handle register */
   const onSubmit = async () => {
-    const generatedToken = UseTokenGenerator();
     const registerData = {
       username: user?.userName,
       password: user?.password,
       confirmPassword: user?.password,
       mobile: mobileNo,
-      site: API.siteUrl,
-      token: generatedToken,
       otp: user?.otp,
       isOtpAvailable: Settings.otp,
       referralCode: referralCode || user.referralCode,
@@ -51,15 +47,7 @@ const Registration = ({
       otpMethod: orderId.otpMethod,
     };
 
-    /* Encrypted post data */
-    const encryptedData = UseEncryptData(registerData);
-    const res = await fetch(API.register, {
-      method: "POST",
-      headers: {
-        "content-type": "application/json",
-      },
-      body: JSON.stringify(encryptedData),
-    });
+    const res = await AxiosSecure.post(API.register, registerData);
 
     const data = await res.json();
 

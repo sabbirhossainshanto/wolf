@@ -8,15 +8,20 @@ import { useEffect } from "react";
 import { handleLogOut } from "../utils/handleLogOut";
 
 const useBonusBalance = () => {
-  const { setGetToken, isCheckedBonusToken,setTokenLoading } = useContextState();
+  const { setGetToken, isCheckedBonusToken, setTokenLoading } =
+    useContextState();
   const bonusToken = localStorage.getItem("bonusToken");
-/* Bonus balance api */
+  const language = localStorage.getItem("language");
+  /* Bonus balance api */
   const { data: bonusBalanceData, refetch: bonusRefetchBalance } = useQuery({
     queryKey: ["bonusBalance"],
     enabled: isCheckedBonusToken,
     queryFn: async () => {
       const generatedToken = UseTokenGenerator();
-      const encryptedData = UseEncryptData(generatedToken);
+      const encryptedData = UseEncryptData({
+        token: generatedToken,
+        language,
+      });
       const res = await axios.post(API.balance, encryptedData, {
         headers: {
           Authorization: `Bearer ${bonusToken}`,
@@ -25,7 +30,7 @@ const useBonusBalance = () => {
       /* Logout if success false */
       if (res?.data?.success === false && bonusToken) {
         handleLogOut();
-        setTokenLoading(true)
+        setTokenLoading(true);
         setGetToken((prev) => !prev);
       } else if (res?.data?.success && bonusToken) {
         const data = res.data?.result;

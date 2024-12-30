@@ -2,8 +2,6 @@
 import { useRef, useState } from "react";
 import useCloseModalClickOutside from "../../hooks/useCloseModalClickOutside";
 import { API } from "../../api";
-import UseTokenGenerator from "../../hooks/UseTokenGenerator";
-import UseEncryptData from "../../hooks/UseEncryptData";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import useContextState from "../../hooks/useContextState";
@@ -11,6 +9,7 @@ import { motion } from "framer-motion";
 import useLanguage from "../../hooks/useLanguage";
 import { languageValue } from "../../utils/language";
 import { LanguageKey } from "../../constant/constant";
+import { AxiosSecure } from "../../lib/AxiosSecure";
 
 const ChangePassword = ({
   setShowChangePassModal,
@@ -19,7 +18,7 @@ const ChangePassword = ({
   warningRef,
 }) => {
   const { valueByLanguage } = useLanguage();
-  const { token, setGetToken } = useContextState();
+  const { setGetToken } = useContextState();
   /* Close modal click outside */
   const changePassRef = useRef();
   useCloseModalClickOutside(changePassRef, () => {
@@ -39,39 +38,29 @@ const ChangePassword = ({
   const navigate = useNavigate();
 
   /* Change password function */
-  const onSubmit = ({ password, newPassword, newPasswordConfirm }) => {
-    const generatedToken = UseTokenGenerator();
-    const encryptedData = UseEncryptData({
+  const onSubmit = async ({ password, newPassword, newPasswordConfirm }) => {
+    const payload = {
       oldPassword: password,
       password: newPassword,
       passVerify: newPasswordConfirm,
-      token: generatedToken,
-    });
-    fetch(API.changePassword, {
-      method: "POST",
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-      body: JSON.stringify(encryptedData),
-    })
-      .then((res) => res.json())
-      .then((data) => {
-        if (data.success) {
-          /* After success showing success message */
-          setSuccessMessage(data?.result?.message);
-          /* CLose modal */
-          setShowChangePassModal(false);
-          /* Logout and navigate home */
-          setTimeout(() => {
-            // handleLogOut();
-            setGetToken((prev) => !prev);
-            navigate("/");
-          }, 1000);
-        } else {
-          /* Showing error message during change password */
-          setErrorMessage(data?.error?.errorMessage);
-        }
-      });
+    };
+    const { data } = await AxiosSecure.post(API.changePassword, payload);
+
+    if (data.success) {
+      /* After success showing success message */
+      setSuccessMessage(data?.result?.message);
+      /* CLose modal */
+      setShowChangePassModal(false);
+      /* Logout and navigate home */
+      setTimeout(() => {
+        // handleLogOut();
+        setGetToken((prev) => !prev);
+        navigate("/");
+      }, 1000);
+    } else {
+      /* Showing error message during change password */
+      setErrorMessage(data?.error?.errorMessage);
+    }
   };
 
   return (

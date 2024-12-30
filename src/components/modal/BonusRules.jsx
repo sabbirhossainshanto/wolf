@@ -2,8 +2,13 @@
 import { useRef } from "react";
 import useCloseModalClickOutside from "../../hooks/useCloseModalClickOutside";
 import { motion } from "framer-motion";
+import useLanguage from "../../hooks/useLanguage";
+import { languageValue } from "../../utils/language";
+import { LanguageKey } from "../../constant/constant";
 
 const BonusRules = ({ setShowBonusRule }) => {
+  const { valueByLanguage } = useLanguage();
+
   const bonusRuleRef = useRef();
   useCloseModalClickOutside(bonusRuleRef, () => {
     setShowBonusRule(false);
@@ -48,7 +53,12 @@ const BonusRules = ({ setShowBonusRule }) => {
                 <div _nghost-ng-c3621893735="" className="ng-star-inserted">
                   <div _ngcontent-ng-c3621893735="" className="add-bank-modal">
                     <div _ngcontent-ng-c3621893735="" className="modal-header">
-                      <h2 _ngcontent-ng-c3621893735="">Bonus Rules</h2>
+                      <h2 _ngcontent-ng-c3621893735="">
+                        {languageValue(
+                          valueByLanguage,
+                          LanguageKey.BONUS_RULES
+                        )}
+                      </h2>
                       <button
                         onClick={() => setShowBonusRule(false)}
                         _ngcontent-ng-c3621893735=""
@@ -179,7 +189,6 @@ const BonusRules = ({ setShowBonusRule }) => {
             </div>
           </div>
           <div
-         
             className="cdk-visually-hidden cdk-focus-trap-anchor"
             aria-hidden="true"
           ></div>

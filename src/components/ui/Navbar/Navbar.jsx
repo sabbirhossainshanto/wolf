@@ -19,8 +19,14 @@ import useGetSocialLink from "../../../hooks/useGetSocialLink";
 import useGetNotification from "../../../hooks/useGetNotification";
 import { RxCross2 } from "react-icons/rx";
 import Marquee from "react-fast-marquee";
+import Language from "../../modal/Language";
+import useLanguage from "../../../hooks/useLanguage";
+import { languageValue } from "../../../utils/language";
+import { LanguageKey } from "../../../constant/constant";
 // import { AndroidView } from "react-device-detect";
 const Navbar = () => {
+  const { valueByLanguage } = useLanguage();
+  const language = localStorage.getItem("language");
   const { socialLink } = useGetSocialLink();
   const [orderId, setOrderId] = useState({
     orderId: "",
@@ -51,7 +57,7 @@ const Navbar = () => {
   const { balanceData } = useBalance();
   const [showWarning, setShowWarning] = useState("");
   const [showRegister, setShowRegister] = useState(false);
-
+  const [showLanguage, setShowLanguage] = useState(false);
   const [mobileNo, setMobileNo] = useState("");
   const [errMsg, setErrMsg] = useState("");
   const [successMsg, setSuccessMsg] = useState("");
@@ -60,6 +66,8 @@ const Navbar = () => {
 
   const storedNotification = sessionStorage.getItem("notification");
   const [showNotification, setShowNotification] = useState(false);
+
+  console.log(showLanguage);
 
   useEffect(() => {
     if (!storedNotification) {
@@ -208,7 +216,12 @@ const Navbar = () => {
         <Warning message={showWarning} setMessage={setShowWarning} />
       )}
 
-      <div _ngcontent-ng-c943649379="" className="page-header">
+      <div
+        style={{ position: "relative" }}
+        _ngcontent-ng-c943649379=""
+        className="page-header"
+      >
+        {showLanguage && <Language setShowLanguage={setShowLanguage} />}
         <div _ngcontent-ng-c943649379="" _nghost-ng-c3243547741="">
           <div
             _ngcontent-ng-c3243547741=""
@@ -258,8 +271,8 @@ const Navbar = () => {
               </Link>
             </div>
             {/* If token available then showing below html else----> */}
-            {token ? (
-              <div _ngcontent-ng-c3243547741="" className="header-right-cont">
+            <div _ngcontent-ng-c3243547741="" className="header-right-cont">
+              {token ? (
                 <div
                   _ngcontent-ng-c3243547741=""
                   className="loggedIn ng-star-inserted"
@@ -314,15 +327,19 @@ const Navbar = () => {
                       mat-ripple-loader-class-name="mat-mdc-button-ripple"
                     >
                       <span className="mat-mdc-button-persistent-ripple mdc-button__ripple"></span>
-                      <span className="mdc-button__label"> Deposit </span>
+                      <span className="mdc-button__label">
+                        {" "}
+                        {languageValue(
+                          valueByLanguage,
+                          LanguageKey.DEPOSIT
+                        )}{" "}
+                      </span>
                       <span className="mat-mdc-focus-indicator"></span>
                       <span className="mat-mdc-button-touch-target"></span>
                     </button>
                   )}
                 </div>
-              </div>
-            ) : (
-              <div _ngcontent-ng-c3243547741="" className="header-right-cont">
+              ) : (
                 <div
                   _ngcontent-ng-c3243547741=""
                   className="not-loggedIn ng-star-inserted"
@@ -335,7 +352,10 @@ const Navbar = () => {
                     mat-ripple-loader-class-name="mat-mdc-button-ripple"
                   >
                     <span className="mat-mdc-button-persistent-ripple mdc-button__ripple"></span>
-                    <span className="mdc-button__label">Login</span>
+                    <span className="mdc-button__label">
+                      {" "}
+                      {languageValue(valueByLanguage, LanguageKey.LOGIN)}
+                    </span>
                     <span className="mat-mdc-focus-indicator"></span>
                     <span className="mat-mdc-button-touch-target"></span>
                     <span className="mat-ripple mat-mdc-button-ripple"></span>
@@ -350,7 +370,10 @@ const Navbar = () => {
                       mat-ripple-loader-class-name="mat-mdc-button-ripple"
                     >
                       <span className="mat-mdc-button-persistent-ripple mdc-button__ripple"></span>
-                      <span className="mdc-button__label">Register</span>
+                      <span className="mdc-button__label">
+                        {" "}
+                        {languageValue(valueByLanguage, LanguageKey.REGISTER)}
+                      </span>
                       <span className="mat-mdc-focus-indicator"></span>
                       <span className="mat-mdc-button-touch-target"></span>
                       <span className="mat-ripple mat-mdc-button-ripple"></span>
@@ -389,8 +412,43 @@ const Navbar = () => {
                     </button>
                   )}
                 </div>
-              </div>
-            )}
+              )}
+              {Settings.language && (
+                <button
+                  onClick={() => setShowLanguage((prev) => !prev)}
+                  style={{
+                    display: "flex",
+                    flexDirection: "column",
+                    alignItems: "center",
+                    justifyContent: "end",
+                    background: "transparent",
+                    border: "none",
+                    marginTop: "14px",
+                  }}
+                >
+                  <div>
+                    <img
+                      style={{
+                        height: "20px",
+                        width: "20px",
+                      }}
+                      src="/src/assets/globe.gif"
+                      alt=""
+                    />
+                    <p
+                      style={{
+                        margin: "0px",
+                        fontSize: "10px",
+                        color: "white",
+                        textTransform: "capitalize",
+                      }}
+                    >
+                      {language || "EN"}
+                    </p>
+                  </div>
+                </button>
+              )}
+            </div>
           </div>
         </div>
         {/* Render html in condition */}

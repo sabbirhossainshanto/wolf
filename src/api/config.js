@@ -11,6 +11,7 @@ export const getSetApis = (setNoticeLoaded, baseUrl) => {
       if (data?.result?.endpoint) {
         API.forgotPassword = data?.result?.endpoint?.forgotPassword;
         API.pg = data?.result?.endpoint?.pg;
+        API.language = data?.result?.endpoint?.language;
         API.otpless = data?.result?.endpoint?.otpless;
         API.accessToken = data?.result?.endpoint?.accessToken;
         API.balance = data?.result?.endpoint?.balance;
@@ -90,6 +91,7 @@ export const getSetApis = (setNoticeLoaded, baseUrl) => {
         Settings.apkLink = data?.result?.settings?.apkLink;
         Settings.b2c = data?.result?.settings?.b2c;
         Settings.bookmakerCashOut = data?.result?.settings?.bookmakerCashOut;
+        Settings.language = data?.result?.settings?.language;
 
         setNoticeLoaded(true);
       }

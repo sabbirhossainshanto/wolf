@@ -1,7 +1,11 @@
 import { Link } from "react-router-dom";
+import useLanguage from "../../hooks/useLanguage";
+import { languageValue } from "../../utils/language";
+import { LanguageKey } from "../../constant/constant";
 
 /* eslint-disable react/no-unknown-property */
 const DemoProfile = () => {
+  const { valueByLanguage } = useLanguage();
   return (
     <>
       <div _ngcontent-ng-c2865632707="" className="user-details-wrap">
@@ -31,7 +35,10 @@ const DemoProfile = () => {
                   alt="Menu Icon"
                   src="/assets/img/sidenav_rules.svg"
                 />
-                <span _ngcontent-ng-c2865632707="">Rules</span>
+                <span _ngcontent-ng-c2865632707="">
+                  {" "}
+                  {languageValue(valueByLanguage, LanguageKey.RULES)}
+                </span>
               </div>
             </Link>
           </li>

@@ -5,8 +5,12 @@ import useCloseModalClickOutside from "../../hooks/useCloseModalClickOutside";
 import useContextState from "../../hooks/useContextState";
 import { useNavigate } from "react-router-dom";
 import useGetCoin from "../../hooks/BankAccount/useGetCoin";
+import useLanguage from "../../hooks/useLanguage";
+import { languageValue } from "../../utils/language";
+import { LanguageKey } from "../../constant/constant";
 
 const Deposit = ({ setSHowDeposit }) => {
+  const { valueByLanguage } = useLanguage();
   const { paymentAmount, setPaymentAmount } = useContextState();
   const withdrawRef = useRef();
   const navigate = useNavigate();
@@ -67,7 +71,10 @@ const Deposit = ({ setSHowDeposit }) => {
                     className="transaction-modal ng-star-inserted"
                   >
                     <div _ngcontent-ng-c2000663781="" className="modal-header">
-                      <h2 _ngcontent-ng-c2000663781="">Deposit</h2>
+                      <h2 _ngcontent-ng-c2000663781="">
+                        {" "}
+                        {languageValue(valueByLanguage, LanguageKey.DEPOSIT)}
+                      </h2>
                       <button
                         onClick={() => setSHowDeposit(false)}
                         _ngcontent-ng-c2000663781=""

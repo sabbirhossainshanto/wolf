@@ -43,6 +43,7 @@ const StateProvider = ({ children }) => {
       const getToken = localStorage.getItem("token");
       const getBonusToken = localStorage.getItem("bonusToken");
       const getCheckedBonusToken = localStorage.getItem("checkedBonusToken");
+
       /* If check box true of bonus token and bonus token available then using bonus token in authorization headers */
       if (getCheckedBonusToken && getBonusToken) {
         /* Set bonus token */

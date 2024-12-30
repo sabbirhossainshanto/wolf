@@ -3,8 +3,12 @@ import useCloseModalClickOutside from "../../hooks/useCloseModalClickOutside";
 import { motion } from "framer-motion";
 import useMyMarket from "../../hooks/useMyMarket";
 import { useNavigate } from "react-router-dom";
+import useLanguage from "../../hooks/useLanguage";
+import { languageValue } from "../../utils/language";
+import { LanguageKey } from "../../constant/constant";
 /* eslint-disable react/no-unknown-property */
 const MyMarket = ({ setShowMyMarket }) => {
+  const { valueByLanguage } = useLanguage();
   /* Close modal click out side */
   const marketRef = useRef();
   useCloseModalClickOutside(marketRef, () => {
@@ -136,7 +140,10 @@ const MyMarket = ({ setShowMyMarket }) => {
                           className="no-data ng-star-inserted"
                         >
                           <p _ngcontent-ng-c2482505616="">
-                            No bets placed yet, Place your bet now!
+                            {languageValue(
+                              valueByLanguage,
+                              LanguageKey.NO_BETS
+                            )}
                           </p>
                         </div>
                       )}

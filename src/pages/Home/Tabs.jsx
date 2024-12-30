@@ -4,9 +4,14 @@ import { useNavigate } from "react-router-dom";
 import useContextState from "../../hooks/useContextState";
 import useLatestEvent from "../../hooks/useLatestEvent";
 import { Settings } from "../../api";
+import useLanguage from "../../hooks/useLanguage";
+import { languageValue } from "../../utils/language";
+import { LanguageKey } from "../../constant/constant";
 
 const Tabs = () => {
+  const { valueByLanguage } = useLanguage();
   const { setSportsType, sportsType } = useContextState();
+
   const { latestEvents } = useLatestEvent();
   const navigate = useNavigate();
 
@@ -14,6 +19,7 @@ const Tabs = () => {
     setSportsType(sportsType);
     navigate("/");
   };
+
   return (
     <div
       _ngcontent-ng-c943649379=""
@@ -73,7 +79,8 @@ const Tabs = () => {
               />
             </div>
             <div _ngcontent-ng-c2582205232="" className="tab-label">
-              Cricket
+              {/* {valueByLanguage ? valueByLanguage?.CRICKET : "Cricket"} */}
+              {languageValue(valueByLanguage, LanguageKey.CRICKET)}
             </div>
           </div>
           <div
@@ -99,7 +106,7 @@ const Tabs = () => {
               />
             </div>
             <div _ngcontent-ng-c2582205232="" className="tab-label">
-              Soccer
+              {languageValue(valueByLanguage, LanguageKey.FOOTBALL)}
             </div>
           </div>
           <div
@@ -131,7 +138,7 @@ const Tabs = () => {
               />
             </div>
             <div _ngcontent-ng-c2582205232="" className="tab-label">
-              Tennis
+              {languageValue(valueByLanguage, LanguageKey.TENNIS)}
             </div>
           </div>
           <div
@@ -163,7 +170,7 @@ const Tabs = () => {
               />
             </div>
             <div _ngcontent-ng-c2582205232="" className="tab-label">
-              Kabbadi
+              {languageValue(valueByLanguage, LanguageKey.KABADDI)}
             </div>
           </div>
           <div
@@ -200,7 +207,7 @@ const Tabs = () => {
               </svg>
             </div>
             <div _ngcontent-ng-c2582205232="" className="tab-label">
-              Horse
+              {languageValue(valueByLanguage, LanguageKey.HORSE)}
             </div>
           </div>
           <div
@@ -239,7 +246,7 @@ const Tabs = () => {
               </svg>
             </div>
             <div _ngcontent-ng-c2582205232="" className="tab-label">
-              Greyhound
+              {languageValue(valueByLanguage, LanguageKey.GREYHOUND)}
             </div>
           </div>
 
@@ -282,7 +289,7 @@ const Tabs = () => {
                 </svg>
               </div>
               <div _ngcontent-ng-c2582205232="" className="tab-label">
-                Mac88
+                {languageValue(valueByLanguage, LanguageKey.MAC88)}
               </div>
             </div>
           )}
@@ -312,7 +319,7 @@ const Tabs = () => {
               />
             </div>
             <div _ngcontent-ng-c2582205232="" className="tab-label">
-              Card Games
+              {languageValue(valueByLanguage, LanguageKey.CARD_GAMES)}
             </div>
           </div>
 
@@ -342,7 +349,7 @@ const Tabs = () => {
               />
             </div>
             <div _ngcontent-ng-c2582205232="" className="tab-label">
-              Live Casino
+              {languageValue(valueByLanguage, LanguageKey.LIVE_CASINO)}
             </div>
           </div>
 
@@ -372,7 +379,7 @@ const Tabs = () => {
               />
             </div>
             <div _ngcontent-ng-c2582205232="" className="tab-label">
-              Casino
+              {languageValue(valueByLanguage, LanguageKey.LIVE_CASINO)}
             </div>
           </div>
         </div>

@@ -29,6 +29,7 @@
       "apkLink": "https://11xgame.vip/11xgame.apk",
       "mac88": true,
       "b2c": true,
+      "language": true,
       "build": "development"
     },
     "logo": {
@@ -107,7 +108,8 @@
       "mac88": "https://api7.live/api/exchange/diamond/mac88",
       "bonus": "https://api7.live/api/exchange/diamond/bonus",
       "index": "https://api7.live/api/exchange/diamond/index",
-      "pg": "https://api7.live/api/exchange/diamond/pg"
+      "pg": "https://api7.live/api/exchange/diamond/pg",
+      "language": "https://api7.live/api/exchange/diamond/language"
     }
   },
   "success": true

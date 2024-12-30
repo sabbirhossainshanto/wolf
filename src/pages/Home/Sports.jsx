@@ -7,12 +7,21 @@ import BetTable from "../../components/ui/BetTable/BetTable";
 import { GoClock } from "react-icons/go";
 import InPlay from "../../components/ui/BetTable/InPlay";
 import handleDecryptData from "../../utils/handleDecryptData";
+import useLanguage from "../../hooks/useLanguage";
+import { languageValue } from "../../utils/language";
+import { LanguageKey } from "../../constant/constant";
 
 const Sports = () => {
+  const { valueByLanguage } = useLanguage();
   const { sportsType, setSportsType } = useContextState();
   const [games, setGames] = useState(null);
   const [categories, setCategories] = useState([]);
-  const eventName = { 4: "Cricket", 2: "Tennis", 1: "Football", 5: "Kabbadi" };
+  const eventName = {
+    4: languageValue(valueByLanguage, LanguageKey.CRICKET),
+    2: languageValue(valueByLanguage, LanguageKey.TENNIS),
+    1: languageValue(valueByLanguage, LanguageKey.FOOTBALL),
+    5: languageValue(valueByLanguage, LanguageKey.KABADDI),
+  };
   /* Get game events */
   useEffect(() => {
     const gameData = async () => {

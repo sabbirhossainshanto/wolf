@@ -8,6 +8,9 @@ import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import useContextState from "../../hooks/useContextState";
 import { motion } from "framer-motion";
+import useLanguage from "../../hooks/useLanguage";
+import { languageValue } from "../../utils/language";
+import { LanguageKey } from "../../constant/constant";
 
 const ChangePassword = ({
   setShowChangePassModal,
@@ -15,6 +18,7 @@ const ChangePassword = ({
   setSuccessMessage,
   warningRef,
 }) => {
+  const { valueByLanguage } = useLanguage();
   const { token, setGetToken } = useContextState();
   /* Close modal click outside */
   const changePassRef = useRef();
@@ -71,8 +75,7 @@ const ChangePassword = ({
   };
 
   return (
-    <div className="cdk-overlay-container"
-    >
+    <div className="cdk-overlay-container">
       <div className="cdk-overlay-backdrop cdk-overlay-dark-backdrop cdk-overlay-backdrop-showing"></div>
       <div
         className="cdk-global-overlay-wrapper"
@@ -103,7 +106,6 @@ const ChangePassword = ({
             id="mat-mdc-dialog-1"
             role="dialog"
             aria-modal="true"
-            
           >
             <div className="mdc-dialog__container">
               <div className="mat-mdc-dialog-surface mdc-dialog__surface">
@@ -113,7 +115,13 @@ const ChangePassword = ({
                     className="change-password-modal"
                   >
                     <div _ngcontent-ng-c2641381007="" className="modal-header">
-                      <h2 _ngcontent-ng-c2641381007="">Change Password</h2>
+                      <h2 _ngcontent-ng-c2641381007="">
+                        {" "}
+                        {languageValue(
+                          valueByLanguage,
+                          LanguageKey.CHANGE_PASSWORD
+                        )}
+                      </h2>
                       <button
                         onClick={() => setShowChangePassModal(false)}
                         _ngcontent-ng-c2641381007=""

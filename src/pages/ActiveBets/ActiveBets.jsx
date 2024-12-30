@@ -1,6 +1,10 @@
+import { LanguageKey } from "../../constant/constant";
 import useCurrentBets from "../../hooks/useCurrentBets";
+import useLanguage from "../../hooks/useLanguage";
+import { languageValue } from "../../utils/language";
 /* eslint-disable react/no-unknown-property */
 const ActiveBets = () => {
+  const { valueByLanguage } = useLanguage();
   /* get my bets */
   const { myBets } = useCurrentBets();
 
@@ -102,178 +106,183 @@ const ActiveBets = () => {
                                   _ngcontent-ng-c773751984=""
                                   className="betslip-card ng-star-inserted"
                                 >
-                                  {myBets?.length > 0 ? ( <div
-                                    _ngcontent-ng-c773751984=""
-                                    className="betslip-data-wrap ng-star-inserted"
-                                  >
+                                  {myBets?.length > 0 ? (
                                     <div
                                       _ngcontent-ng-c773751984=""
-                                      className="betslip-title"
+                                      className="betslip-data-wrap ng-star-inserted"
                                     >
-                                      <h3 _ngcontent-ng-c773751984=""></h3>
                                       <div
                                         _ngcontent-ng-c773751984=""
-                                        className="odds-stake-wrap"
+                                        className="betslip-title"
                                       >
-                                        <h3 _ngcontent-ng-c773751984="">
-                                          Odds
-                                        </h3>
-                                        <h3 _ngcontent-ng-c773751984="">
-                                          Stake
-                                        </h3>
-                                      </div>
-                                    </div>
-                                    {Array.from(
-                                      new Set(
-                                        myBets.map((item) => item.eventName)
-                                      )
-                                    )?.map((category) => {
-                                      return (
+                                        <h3 _ngcontent-ng-c773751984=""></h3>
                                         <div
-                                          key={category}
                                           _ngcontent-ng-c773751984=""
-                                          className="mat-accordion bet-history-accordion ng-star-inserted"
+                                          className="odds-stake-wrap"
                                         >
+                                          <h3 _ngcontent-ng-c773751984="">
+                                            Odds
+                                          </h3>
+                                          <h3 _ngcontent-ng-c773751984="">
+                                            Stake
+                                          </h3>
+                                        </div>
+                                      </div>
+                                      {Array.from(
+                                        new Set(
+                                          myBets.map((item) => item.eventName)
+                                        )
+                                      )?.map((category) => {
+                                        return (
                                           <div
+                                            key={category}
                                             _ngcontent-ng-c773751984=""
-                                            hidetoggle="true"
-                                            className="mat-expansion-panel ng-tns-c1859850774-94 ng-star-inserted mat-expanded mat-expansion-panel-spacing"
+                                            className="mat-accordion bet-history-accordion ng-star-inserted"
                                           >
                                             <div
                                               _ngcontent-ng-c773751984=""
-                                              role="button"
-                                              className="mat-expansion-panel-header mat-focus-indicator ng-tns-c2690051721-95 ng-tns-c1859850774-94 mat-expansion-toggle-indicator-after ng-star-inserted mat-expanded"
-                                              id="mat-expansion-panel-header-12"
-                                              aria-controls="cdk-accordion-child-12"
-                                              aria-expanded="true"
-                                              aria-disabled="false"
+                                              hidetoggle="true"
+                                              className="mat-expansion-panel ng-tns-c1859850774-94 ng-star-inserted mat-expanded mat-expansion-panel-spacing"
                                             >
-                                              <span className="mat-content ng-tns-c2690051721-95 mat-content-hide-toggle">
-                                                <div
-                                                  _ngcontent-ng-c773751984=""
-                                                  className="mat-expansion-panel-header-title ng-tns-c2690051721-95"
-                                                >
-                                                  <h3 _ngcontent-ng-c773751984="">
-                                                    {category}
-                                                  </h3>
-                                                </div>
-                                                <div
-                                                  _ngcontent-ng-c773751984=""
-                                                  className="mat-expansion-panel-header-description ng-tns-c2690051721-95"
-                                                >
-                                                  <span
+                                              <div
+                                                _ngcontent-ng-c773751984=""
+                                                role="button"
+                                                className="mat-expansion-panel-header mat-focus-indicator ng-tns-c2690051721-95 ng-tns-c1859850774-94 mat-expansion-toggle-indicator-after ng-star-inserted mat-expanded"
+                                                id="mat-expansion-panel-header-12"
+                                                aria-controls="cdk-accordion-child-12"
+                                                aria-expanded="true"
+                                                aria-disabled="false"
+                                              >
+                                                <span className="mat-content ng-tns-c2690051721-95 mat-content-hide-toggle">
+                                                  <div
                                                     _ngcontent-ng-c773751984=""
-                                                    role="img"
-                                                    className="mat-icon notranslate material-icons mat-ligature-font mat-icon-no-color ng-star-inserted"
-                                                    aria-hidden="true"
-                                                    data-mat-icon-type="font"
+                                                    className="mat-expansion-panel-header-title ng-tns-c2690051721-95"
                                                   >
-                                                    arrow_drop_up
-                                                  </span>
-                                                </div>
-                                              </span>
-                                            </div>
-                                            <div
-                                              role="region"
-                                              className="mat-expansion-panel-content ng-tns-c1859850774-94 ng-trigger ng-trigger-bodyExpansion"
-                                              id="cdk-accordion-child-12"
-                                              aria-labelledby="mat-expansion-panel-header-12"
-                                            >
-                                              <div className="mat-expansion-panel-body ng-tns-c1859850774-94">
-                                                <div
-                                                  _ngcontent-ng-c773751984=""
-                                                  className="betslip-databody ng-tns-c1859850774-94"
-                                                >
-                                                  {myBets
-                                                    ?.filter(
-                                                      (games) =>
-                                                        games?.eventName ===
-                                                        category
-                                                    )
-                                                    ?.map((item, i) => {
-                                                      return (
-                                                        <div
-                                                          key={i}
-                                                          _ngcontent-ng-c773751984=""
-                                                          className={`betslip-datalist ng-star-inserted ${
-                                                            item?.betType ===
-                                                            "Back"
-                                                              ? "forback "
-                                                              : "forlay "
-                                                          }`}
-                                                        >
+                                                    <h3 _ngcontent-ng-c773751984="">
+                                                      {category}
+                                                    </h3>
+                                                  </div>
+                                                  <div
+                                                    _ngcontent-ng-c773751984=""
+                                                    className="mat-expansion-panel-header-description ng-tns-c2690051721-95"
+                                                  >
+                                                    <span
+                                                      _ngcontent-ng-c773751984=""
+                                                      role="img"
+                                                      className="mat-icon notranslate material-icons mat-ligature-font mat-icon-no-color ng-star-inserted"
+                                                      aria-hidden="true"
+                                                      data-mat-icon-type="font"
+                                                    >
+                                                      arrow_drop_up
+                                                    </span>
+                                                  </div>
+                                                </span>
+                                              </div>
+                                              <div
+                                                role="region"
+                                                className="mat-expansion-panel-content ng-tns-c1859850774-94 ng-trigger ng-trigger-bodyExpansion"
+                                                id="cdk-accordion-child-12"
+                                                aria-labelledby="mat-expansion-panel-header-12"
+                                              >
+                                                <div className="mat-expansion-panel-body ng-tns-c1859850774-94">
+                                                  <div
+                                                    _ngcontent-ng-c773751984=""
+                                                    className="betslip-databody ng-tns-c1859850774-94"
+                                                  >
+                                                    {myBets
+                                                      ?.filter(
+                                                        (games) =>
+                                                          games?.eventName ===
+                                                          category
+                                                      )
+                                                      ?.map((item, i) => {
+                                                        return (
                                                           <div
+                                                            key={i}
                                                             _ngcontent-ng-c773751984=""
-                                                            className="bs-gameinfo"
+                                                            className={`betslip-datalist ng-star-inserted ${
+                                                              item?.betType ===
+                                                              "Back"
+                                                                ? "forback "
+                                                                : "forlay "
+                                                            }`}
                                                           >
                                                             <div
                                                               _ngcontent-ng-c773751984=""
-                                                              className="game-type"
+                                                              className="bs-gameinfo"
                                                             >
-                                                              <p
+                                                              <div
                                                                 _ngcontent-ng-c773751984=""
-                                                                className="icon-bookmaker"
+                                                                className="game-type"
                                                               >
-                                                                F
-                                                              </p>
+                                                                <p
+                                                                  _ngcontent-ng-c773751984=""
+                                                                  className="icon-bookmaker"
+                                                                >
+                                                                  F
+                                                                </p>
+                                                              </div>
+                                                              <div
+                                                                _ngcontent-ng-c773751984=""
+                                                                className="bs-content"
+                                                              >
+                                                                <h3 _ngcontent-ng-c773751984="">
+                                                                  {item?.nation}
+                                                                </h3>
+                                                                <p
+                                                                  _ngcontent-ng-c773751984=""
+                                                                  className="game-title ng-star-inserted"
+                                                                >
+                                                                  <span _ngcontent-ng-c773751984="">
+                                                                    {
+                                                                      item?.eventName
+                                                                    }
+                                                                  </span>
+
+                                                                  <span _ngcontent-ng-c773751984="">
+                                                                    |{" "}
+                                                                    {
+                                                                      item?.placeDate
+                                                                    }
+                                                                  </span>
+                                                                </p>
+                                                              </div>
                                                             </div>
                                                             <div
                                                               _ngcontent-ng-c773751984=""
-                                                              className="bs-content"
+                                                              className="odds-stake-wrap"
                                                             >
                                                               <h3 _ngcontent-ng-c773751984="">
-                                                                {item?.nation}
+                                                                {item?.userRate}
                                                               </h3>
-                                                              <p
-                                                                _ngcontent-ng-c773751984=""
-                                                                className="game-title ng-star-inserted"
-                                                              >
-                                                                <span _ngcontent-ng-c773751984="">
-                                                                  {
-                                                                    item?.eventName
-                                                                  }
-                                                                </span>
-
-                                                                <span _ngcontent-ng-c773751984="">
-                                                                  |{" "}
-                                                                  {
-                                                                    item?.placeDate
-                                                                  }
-                                                                </span>
-                                                              </p>
+                                                              <h3 _ngcontent-ng-c773751984="">
+                                                                {item?.amount}
+                                                              </h3>
                                                             </div>
                                                           </div>
-                                                          <div
-                                                            _ngcontent-ng-c773751984=""
-                                                            className="odds-stake-wrap"
-                                                          >
-                                                            <h3 _ngcontent-ng-c773751984="">
-                                                              {item?.userRate}
-                                                            </h3>
-                                                            <h3 _ngcontent-ng-c773751984="">
-                                                              {item?.amount}
-                                                            </h3>
-                                                          </div>
-                                                        </div>
-                                                      );
-                                                    })}
+                                                        );
+                                                      })}
+                                                  </div>
                                                 </div>
                                               </div>
                                             </div>
                                           </div>
-                                        </div>
-                                      );
-                                    })}
-                                  </div>):(<div
-                      _ngcontent-ng-c3799324686=""
-                      className="no-data ng-star-inserted"
-                    >
-                      <p _ngcontent-ng-c3799324686="">
-                        No bets placed yet, Place your bet now!
-                      </p>
-                    </div>)}
-                                 
-                                  
+                                        );
+                                      })}
+                                    </div>
+                                  ) : (
+                                    <div
+                                      _ngcontent-ng-c3799324686=""
+                                      className="no-data ng-star-inserted"
+                                    >
+                                      <p _ngcontent-ng-c3799324686="">
+                                        {languageValue(
+                                          valueByLanguage,
+                                          LanguageKey.NO_BETS
+                                        )}
+                                      </p>
+                                    </div>
+                                  )}
                                 </div>
                               </div>
                             </div>

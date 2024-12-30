@@ -4,9 +4,13 @@ import MyMarket from "../../modal/MyMarket";
 import { useEffect, useState } from "react";
 import useGetSocialLink from "../../../hooks/useGetSocialLink";
 import useGetVersion from "../../../hooks/useGetVersion";
+import useLanguage from "../../../hooks/useLanguage";
+import { languageValue } from "../../../utils/language";
+import { LanguageKey } from "../../../constant/constant";
 
 /* eslint-disable react/no-unknown-property */
 const Footer = () => {
+  const { valueByLanguage } = useLanguage();
   const { version } = useGetVersion();
   const { socialLink, refetchSocialLinks } = useGetSocialLink();
 
@@ -136,7 +140,7 @@ const Footer = () => {
                 type="button"
                 className="btn secondary-btn w-100"
               >
-                Login
+                {languageValue(valueByLanguage, LanguageKey.LOGIN)}
               </button>
             </div>
           )}
@@ -168,7 +172,7 @@ const Footer = () => {
                     }}
                   />
                   <p _ngcontent-ng-c2125492905="" className="notranslate">
-                    Home
+                    {languageValue(valueByLanguage, LanguageKey.HOME)}
                   </p>{" "}
                 </span>
                 <span className="mat-mdc-focus-indicator"></span>
@@ -194,7 +198,7 @@ const Footer = () => {
                     }}
                   />
                   <p _ngcontent-ng-c2125492905="" className="notranslate">
-                    My Markets
+                    {languageValue(valueByLanguage, LanguageKey.MY_MARKETS)}
                   </p>{" "}
                 </span>
                 <span className="mat-mdc-focus-indicator"></span>
@@ -225,7 +229,7 @@ const Footer = () => {
                     }}
                   />
                   <p _ngcontent-ng-c2125492905="" className="notranslate">
-                    Passbook
+                    {languageValue(valueByLanguage, LanguageKey.PASSBOOK)}
                   </p>{" "}
                 </span>
                 <span className="mat-mdc-focus-indicator"></span>
@@ -256,7 +260,7 @@ const Footer = () => {
                     }}
                   />
                   <p _ngcontent-ng-c2125492905="" className="notranslate">
-                    Profile
+                    {languageValue(valueByLanguage, LanguageKey.PROFILE)}
                   </p>{" "}
                 </span>
                 <span className="mat-mdc-focus-indicator"></span>

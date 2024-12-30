@@ -10,6 +10,9 @@ import UseTokenGenerator from "../../hooks/UseTokenGenerator";
 import axios from "axios";
 import UseEncryptData from "../../hooks/UseEncryptData";
 import { handleLogOut } from "../../utils/handleLogOut";
+import useLanguage from "../../hooks/useLanguage";
+import { LanguageKey } from "../../constant/constant";
+import { languageValue } from "../../utils/language";
 
 /* eslint-disable react/no-unknown-property */
 const LoggedInProfile = ({
@@ -17,6 +20,7 @@ const LoggedInProfile = ({
   setShowChangePassModal,
   balanceData,
 }) => {
+  const { valueByLanguage } = useLanguage();
   const {
     isCheckedBonusToken,
     setSHowDeposit,
@@ -131,7 +135,7 @@ const LoggedInProfile = ({
               _ngcontent-ng-c2865632707=""
               className="notranslate"
             >
-              User ID : {memberId}
+              {languageValue(valueByLanguage, LanguageKey.USER_ID)} : {memberId}
             </p>
 
             <p _ngcontent-ng-c2865632707="" className="notranslate"></p>
@@ -146,7 +150,10 @@ const LoggedInProfile = ({
                 mat-ripple-loader-class-name="mat-mdc-button-ripple"
               >
                 <span className="mat-mdc-button-persistent-ripple mdc-button__ripple"></span>
-                <span className="mdc-button__label">Change Password</span>
+                <span className="mdc-button__label">
+                  {" "}
+                  {languageValue(valueByLanguage, LanguageKey.CHANGE_PASSWORD)}
+                </span>
                 <span className="mat-mdc-focus-indicator"></span>
                 <span className="mat-mdc-button-touch-target"></span>
                 <span className="mat-ripple mat-mdc-button-ripple"></span>
@@ -162,7 +169,10 @@ const LoggedInProfile = ({
           <div _ngcontent-ng-c2865632707="" className="card-wrapper">
             <div _ngcontent-ng-c2865632707="" className="bal-cont">
               <div _ngcontent-ng-c2865632707="" className="avl-bal show-bal">
-                <mat-label _ngcontent-ng-c2865632707="">Balance</mat-label>
+                <mat-label _ngcontent-ng-c2865632707="">
+                  {" "}
+                  {languageValue(valueByLanguage, LanguageKey.BALANCE)}
+                </mat-label>
                 <p _ngcontent-ng-c2865632707=""> {balanceData?.creditLimit}</p>
               </div>
             </div>
@@ -179,7 +189,10 @@ const LoggedInProfile = ({
                     mat-ripple-loader-class-name="mat-mdc-button-ripple"
                   >
                     <span className="mat-mdc-button-persistent-ripple mdc-button__ripple"></span>
-                    <span className="mdc-button__label">Deposit</span>
+                    <span className="mdc-button__label">
+                      {" "}
+                      {languageValue(valueByLanguage, LanguageKey.DEPOSIT)}
+                    </span>
                     <span className="mat-mdc-focus-indicator"></span>
                     <span className="mat-mdc-button-touch-target"></span>
                     <span className="mat-ripple mat-mdc-button-ripple"></span>
@@ -195,7 +208,10 @@ const LoggedInProfile = ({
                     mat-ripple-loader-class-name="mat-mdc-button-ripple"
                   >
                     <span className="mat-mdc-button-persistent-ripple mdc-button__ripple"></span>
-                    <span className="mdc-button__label">Withdraw</span>
+                    <span className="mdc-button__label">
+                      {" "}
+                      {languageValue(valueByLanguage, LanguageKey.WITHDRAW)}
+                    </span>
                     <span className="mat-mdc-focus-indicator"></span>
                     <span className="mat-mdc-button-touch-target"></span>
                   </button>
@@ -264,7 +280,10 @@ const LoggedInProfile = ({
                   alt="Menu Icon"
                   src="/assets/img/sidenav_activebets.svg"
                 />
-                <span _ngcontent-ng-c2865632707="">Active Bets</span>
+                <span _ngcontent-ng-c2865632707="">
+                  {" "}
+                  {languageValue(valueByLanguage, LanguageKey.ACTIVE_BETS)}
+                </span>
               </div>
             </Link>
           </li>
@@ -284,7 +303,13 @@ const LoggedInProfile = ({
                   alt="Menu Icon"
                   src="/assets/img/sidenav__ac_statement.svg"
                 />
-                <span _ngcontent-ng-c2865632707="">Deposit Statement</span>
+                <span _ngcontent-ng-c2865632707="">
+                  {" "}
+                  {languageValue(
+                    valueByLanguage,
+                    LanguageKey.DEPOSIT_STATEMENT
+                  )}
+                </span>
               </div>
             </Link>
           </li>
@@ -304,7 +329,13 @@ const LoggedInProfile = ({
                   alt="Menu Icon"
                   src="/assets/img/sidenav__ac_statement.svg"
                 />
-                <span _ngcontent-ng-c2865632707="">Withdraw Statement</span>
+                <span _ngcontent-ng-c2865632707="">
+                  {" "}
+                  {languageValue(
+                    valueByLanguage,
+                    LanguageKey.WITHDRAW_STATMENT
+                  )}
+                </span>
               </div>
             </Link>
           </li>
@@ -324,7 +355,10 @@ const LoggedInProfile = ({
                   alt="Menu Icon"
                   src="/assets/img/sidenav__ac_statement.svg"
                 />
-                <span _ngcontent-ng-c2865632707="">Bonus Statement</span>
+                <span _ngcontent-ng-c2865632707="">
+                  {" "}
+                  {languageValue(valueByLanguage, LanguageKey.BONUS_STATEMENT)}
+                </span>
               </div>
             </Link>
           </li>
@@ -345,7 +379,10 @@ const LoggedInProfile = ({
                   alt="Menu Icon"
                   src="/assets/img/sidenav_bank.svg"
                 />
-                <span _ngcontent-ng-c2865632707="">My Bank Details</span>
+                <span _ngcontent-ng-c2865632707="">
+                  {" "}
+                  {languageValue(valueByLanguage, LanguageKey.MY_BANK_DETAILS)}
+                </span>
               </div>
             </Link>
           </li>
@@ -383,7 +420,10 @@ const LoggedInProfile = ({
                   alt="Menu Icon"
                   src="/assets/img/sidenav_rules.svg"
                 />
-                <span _ngcontent-ng-c2865632707="">Rules</span>
+                <span _ngcontent-ng-c2865632707="">
+                  {" "}
+                  {languageValue(valueByLanguage, LanguageKey.RULES)}
+                </span>
               </div>
             </Link>
           </li>
@@ -405,7 +445,10 @@ const LoggedInProfile = ({
                     alt="Menu Icon"
                     src="/assets/img/sidenav_rules.svg"
                   />
-                  <span _ngcontent-ng-c2865632707="">Bonus Rules</span>
+                  <span _ngcontent-ng-c2865632707="">
+                    {" "}
+                    {languageValue(valueByLanguage, LanguageKey.BONUS_RULES)}
+                  </span>
                 </div>
               </a>
             </li>
@@ -429,7 +472,10 @@ const LoggedInProfile = ({
                     alt="Menu Icon"
                     src="/assets/img/whatsapp.png"
                   />
-                  <span _ngcontent-ng-c2865632707="">All Support</span>
+                  <span _ngcontent-ng-c2865632707="">
+                    {" "}
+                    {languageValue(valueByLanguage, LanguageKey.ALL_SUPPORT)}
+                  </span>
                 </div>
               </a>
             </li>
@@ -452,7 +498,13 @@ const LoggedInProfile = ({
                     alt="Menu Icon"
                     src="/assets/img/whatsapp.png"
                   />
-                  <span _ngcontent-ng-c2865632707=""> Deposit Support</span>
+                  <span _ngcontent-ng-c2865632707="">
+                    {" "}
+                    {languageValue(
+                      valueByLanguage,
+                      LanguageKey.DEPOSIT_SUPPORT
+                    )}
+                  </span>
                 </div>
               </a>
             </li>
@@ -483,7 +535,7 @@ const LoggedInProfile = ({
                     }}
                     _ngcontent-ng-c2865632707=""
                   >
-                    Logout
+                    {languageValue(valueByLanguage, LanguageKey.LOGOUT)}
                   </span>
                 </div>
               </a>
@@ -495,7 +547,10 @@ const LoggedInProfile = ({
             _ngcontent-ng-c2865632707=""
             className="social-links-wrap ng-star-inserted"
           >
-            <label _ngcontent-ng-c2865632707="">Join us Now</label>
+            <label _ngcontent-ng-c2865632707="">
+              {" "}
+              {languageValue(valueByLanguage, LanguageKey.JOIN_US)}
+            </label>
             <div _ngcontent-ng-c2865632707="" className="social-links">
               {/* <a _ngcontent-ng-c2865632707="" className="ng-star-inserted">
                 <img

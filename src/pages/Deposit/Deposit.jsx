@@ -14,6 +14,7 @@ import { FaSpinner } from "react-icons/fa";
 import toast from "react-hot-toast";
 import { AxiosSecure } from "../../lib/AxiosSecure";
 import useLanguage from "../../hooks/useLanguage";
+import USDT from "./USDT";
 
 const Deposit = () => {
   const { token, copyTextSuccess, setCopyTextSuccess } = useContextState();
@@ -74,9 +75,11 @@ const Deposit = () => {
       const depositDetail = {
         type: "depositDetails",
         paymentId: method?.paymentId,
+        amount: paymentAmount,
       };
 
       const res = await AxiosSecure.post(API.bankAccount, depositDetail);
+
       const data = res?.data;
       if (data?.success) {
         setDepositData(data?.result);
@@ -217,7 +220,6 @@ const Deposit = () => {
         {Array.isArray(depositMethods) && depositMethods?.length > 0 && (
           <div _ngcontent-ng-c3816252360="" className="select-method-card">
             {depositMethods?.map((method) => {
-              console.log(method);
               return (
                 <div
                   key={method?.paymentId}
@@ -260,6 +262,7 @@ const Deposit = () => {
 
         <div ref={paymentMethodRef}>
           {tabs === "qr" && <QRCode depositData={depositData} />}
+          {tabs === "usdt" && <USDT depositData={depositData} />}
           {tabs === "upi" && <UPI depositData={depositData} />}
           {tabs === "bank" && <Bank depositData={depositData} />}
         </div>

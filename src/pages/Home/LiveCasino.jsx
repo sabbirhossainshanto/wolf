@@ -6,15 +6,18 @@ import WarningCondition from "../../components/modal/WarningCondition";
 import { Settings } from "../../api";
 import { useNavigate } from "react-router-dom";
 import Warning from "../../components/ui/Notification/Warning";
-
+import useLanguage from "../../hooks/useLanguage";
+import { languageValue } from "../../utils/language";
+import { LanguageKey } from "../../constant/constant";
 
 const LiveCasino = () => {
+  const { valueByLanguage } = useLanguage();
   /* get live casino */
   const { data } = useLiveCasino();
   const { setSportsType, token, isCheckedBonusToken } = useContextState();
   const [showWarning, setShowWarning] = useState(false);
   const [gameInfo, setGameInfo] = useState({ gameName: "", gameId: "" });
-  const [warnMessage, setWarnMessage] = useState('');
+  const [warnMessage, setWarnMessage] = useState("");
   const navigate = useNavigate();
 
   const handleCasino = (id, name) => {
@@ -56,7 +59,7 @@ const LiveCasino = () => {
           className="view-all-link ng-star-inserted"
           onClick={() => setSportsType("live-casino")}
         >
-          View All
+          {languageValue(valueByLanguage, LanguageKey.VIEW_ALL)}
         </a>
       </div>
       <div
@@ -65,7 +68,6 @@ const LiveCasino = () => {
       >
         <ul _ngcontent-ng-c943649379="">
           {data?.map((item, i) => {
-          
             return (
               <li
                 onClick={() => handleCasino(item?.game_id, item?.game_name)}

@@ -6,8 +6,12 @@ import WarningCondition from "../../components/modal/WarningCondition";
 import { useNavigate } from "react-router-dom";
 import { Settings } from "../../api";
 import Warning from "../../components/ui/Notification/Warning";
+import useLanguage from "../../hooks/useLanguage";
+import { languageValue } from "../../utils/language";
+import { LanguageKey } from "../../constant/constant";
 
 const Casino = () => {
+  const { valueByLanguage } = useLanguage();
   /* get casino data */
   const { data } = useCasino();
   const { setSportsType, token, isCheckedBonusToken } = useContextState();
@@ -55,7 +59,7 @@ const Casino = () => {
           className="view-all-link ng-star-inserted"
           onClick={() => setSportsType("casino")}
         >
-          View All
+          {languageValue(valueByLanguage, LanguageKey.VIEW_ALL)}
         </a>
       </div>
       <div
@@ -64,7 +68,6 @@ const Casino = () => {
       >
         <ul _ngcontent-ng-c943649379="">
           {data?.map((item, i) => {
-   
             return (
               <li
                 key={i}

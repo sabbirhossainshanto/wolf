@@ -2,9 +2,9 @@
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import useContextState from "../../../hooks/useContextState";
 import Login from "../../modal/Login";
-import UseTokenGenerator from "../../../hooks/UseTokenGenerator";
-import UseEncryptData from "../../../hooks/UseEncryptData";
-import { API, Settings } from "../../../api";
+// import UseTokenGenerator from "../../../hooks/UseTokenGenerator";
+// import UseEncryptData from "../../../hooks/UseEncryptData";
+import { Settings } from "../../../api";
 import { useEffect, useState } from "react";
 import useBalance from "../../../hooks/useBalance";
 import { IoArrowBack } from "react-icons/io5";
@@ -91,50 +91,50 @@ const Navbar = () => {
   };
 
   /* handle login demo user */
-  const loginWithDemo = () => {
-    /* Random token generator */
-    const generatedToken = UseTokenGenerator();
-    /* Encrypted the post data */
-    const loginData = UseEncryptData({
-      username: "demo",
-      password: "",
-      token: generatedToken,
-    });
-    fetch(API.login, {
-      method: "POST",
-      headers: {
-        "content-type": "application/json",
-      },
-      body: JSON.stringify(loginData),
-    })
-      .then((res) => res.json())
-      .then((data) => {
-        /* Set token to localeStorage */
-        localStorage.setItem("token", data.result.token);
-        /* Set login name to locale storage */
-        localStorage.setItem("loginName", data.result.loginName);
-        /* set button value to locale storage */
-        const buttonValue = JSON.stringify(data.result.buttonValue.game);
-        /* set modal picture to locale storage for the open modal in home page */
-        localStorage.setItem("buttonValue", buttonValue);
-        const modal = [
-          { banner: data?.result?.banner },
-          { bannerTitle: data?.result?.bannerTitle },
-        ];
-        localStorage.setItem("modal", JSON.stringify(modal));
-        if (
-          localStorage.getItem("token") &&
-          localStorage.getItem("loginName") &&
-          data?.result?.changePassword === false
-        ) {
-          /* Get current token from locale storage */
-          setGetToken((prev) => !prev);
-        } else {
-          /* set  error message during login failed   */
-          setErrorLogin(data?.error);
-        }
-      });
-  };
+  // const loginWithDemo = () => {
+  //   /* Random token generator */
+  //   const generatedToken = UseTokenGenerator();
+  //   /* Encrypted the post data */
+  //   const loginData = UseEncryptData({
+  //     username: "demo",
+  //     password: "",
+  //     token: generatedToken,
+  //   });
+  //   fetch(API.login, {
+  //     method: "POST",
+  //     headers: {
+  //       "content-type": "application/json",
+  //     },
+  //     body: JSON.stringify(loginData),
+  //   })
+  //     .then((res) => res.json())
+  //     .then((data) => {
+  //       /* Set token to localeStorage */
+  //       localStorage.setItem("token", data.result.token);
+  //       /* Set login name to locale storage */
+  //       localStorage.setItem("loginName", data.result.loginName);
+  //       /* set button value to locale storage */
+  //       const buttonValue = JSON.stringify(data.result.buttonValue.game);
+  //       /* set modal picture to locale storage for the open modal in home page */
+  //       localStorage.setItem("buttonValue", buttonValue);
+  //       const modal = [
+  //         { banner: data?.result?.banner },
+  //         { bannerTitle: data?.result?.bannerTitle },
+  //       ];
+  //       localStorage.setItem("modal", JSON.stringify(modal));
+  //       if (
+  //         localStorage.getItem("token") &&
+  //         localStorage.getItem("loginName") &&
+  //         data?.result?.changePassword === false
+  //       ) {
+  //         /* Get current token from locale storage */
+  //         setGetToken((prev) => !prev);
+  //       } else {
+  //         /* set  error message during login failed   */
+  //         setErrorLogin(data?.error);
+  //       }
+  //     });
+  // };
 
   /* Handle navigate deposit page */
   const handleNavigateDeposit = () => {
@@ -394,7 +394,7 @@ const Navbar = () => {
                       </button>
                     )}
                   {/* If demo login true in settings then showing demologin button  */}
-                  {Settings.demoLogin && (
+                  {/* {Settings.demoLogin && (
                     <button
                       onClick={loginWithDemo}
                       _ngcontent-ng-c3243547741=""
@@ -408,7 +408,7 @@ const Navbar = () => {
                       <span className="mat-mdc-button-touch-target"></span>
                       <span className="mat-ripple mat-mdc-button-ripple"></span>
                     </button>
-                  )}
+                  )} */}
                 </div>
               )}
               {Settings.language && (
@@ -421,7 +421,7 @@ const Navbar = () => {
                     justifyContent: "end",
                     background: "transparent",
                     border: "none",
-                    marginTop: "14px",
+                    // marginTop: "14px",
                   }}
                 >
                   <div>

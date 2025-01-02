@@ -12,6 +12,7 @@ const LanguageProvider = ({ children }) => {
   useEffect(() => {
     const getLanguage = async () => {
       const { data } = await AxiosSecure.get(API.language);
+      // console.log(data);
       const d = findByLanguage(data);
       setValueByLanguage(d);
     };

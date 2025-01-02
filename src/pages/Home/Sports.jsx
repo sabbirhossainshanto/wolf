@@ -95,7 +95,7 @@ const Sports = () => {
                   className="view-all-link ng-star-inserted"
                   onClick={() => setSportsType(category)}
                 >
-                  View All
+                  {languageValue(valueByLanguage, LanguageKey.VIEW_ALL)}
                 </a>
               </div>
               {games &&

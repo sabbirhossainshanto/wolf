@@ -5,8 +5,12 @@ import useContextState from "../../hooks/useContextState";
 import useGoCasino from "../../hooks/useGoCasino";
 import { useNavigate } from "react-router-dom";
 import Warning from "../../components/ui/Notification/Warning";
+import useLanguage from "../../hooks/useLanguage";
+import { languageValue } from "../../utils/language";
+import { LanguageKey } from "../../constant/constant";
 
 const GoCasino = () => {
+  const { valueByLanguage } = useLanguage();
   /* get aura casino (go casino) */
   const { data } = useGoCasino();
   const { setSportsType, token, isCheckedBonusToken } = useContextState();
@@ -47,7 +51,7 @@ const GoCasino = () => {
           className="view-all-link ng-star-inserted"
           onClick={() => setSportsType("aura")}
         >
-          View All
+          {languageValue(valueByLanguage, LanguageKey.VIEW_ALL)}
         </a>
       </div>
       <div
@@ -56,7 +60,6 @@ const GoCasino = () => {
       >
         <ul _ngcontent-ng-c943649379="">
           {data?.map((item, i) => {
-   
             return (
               <li
                 onClick={() => handleCasino(item?.game_code, item?.game_name)}

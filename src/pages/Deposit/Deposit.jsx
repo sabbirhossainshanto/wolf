@@ -107,7 +107,7 @@ const Deposit = () => {
           },
         });
         const data = res.data;
-        console.log(data);
+
         if (data?.success) {
           setLoading(false);
           setUtr(data?.utr);

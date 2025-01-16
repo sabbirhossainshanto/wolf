@@ -30,7 +30,8 @@
       "mac88": true,
       "b2c": true,
       "language": true,
-      "build": "development"
+      "build": "development",
+      "betDelay": true
     },
     "logo": {
       "height": 55,

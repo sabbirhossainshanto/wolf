@@ -81,4 +81,5 @@ export const Settings = {
   b2c: "",
   bookmakerCashOut: "",
   language: "",
+  betDelay: "",
 };

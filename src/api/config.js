@@ -92,6 +92,7 @@ export const getSetApis = (setNoticeLoaded, baseUrl) => {
         Settings.b2c = data?.result?.settings?.b2c;
         Settings.bookmakerCashOut = data?.result?.settings?.bookmakerCashOut;
         Settings.language = data?.result?.settings?.language;
+        Settings.betDelay = data?.result?.settings?.betDelay;
 
         setNoticeLoaded(true);
       }

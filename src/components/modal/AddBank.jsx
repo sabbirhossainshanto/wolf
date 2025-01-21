@@ -1,9 +1,12 @@
 /* eslint-disable react/no-unknown-property */
 import { motion } from "framer-motion";
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import useCloseModalClickOutside from "../../hooks/useCloseModalClickOutside";
 import { API } from "../../api";
+import { jwtDecode } from "jwt-decode";
 import { AxiosSecure } from "../../lib/AxiosSecure";
+import useContextState from "../../hooks/useContextState";
+import toast from "react-hot-toast";
 const AddBank = ({
   setShowAddBank,
   setSuccessCrudMsg,
@@ -11,11 +14,17 @@ const AddBank = ({
   setErrCrudMsg,
   refetchWithdrawData,
 }) => {
+  const [isFormValid, setIsFormValid] = useState(false);
+  const [mobile, setMobile] = useState(null);
+  const { token } = useContextState();
+  const [orderId, setOrderId] = useState(null);
+  const [timer, setTimer] = useState(null);
   const [addBank, setAddBank] = useState({
     accountName: "",
     ifsc: "",
     accountNumber: "",
     upiId: "",
+    otp: "",
   });
   const addBankRef = useRef();
   useCloseModalClickOutside(addBankRef, () => {
@@ -24,13 +33,23 @@ const AddBank = ({
 
   const handleBankCrud = async (e) => {
     e.preventDefault();
-    const bankData = {
+
+    if (!addBank.otp) {
+      return toast.error("Please enter otp to add new account");
+    }
+
+    let bankData = {
       accountName: addBank.accountName,
       ifsc: addBank.ifsc,
-      upiId: addBank.upiId,
       accountNumber: addBank.accountNumber,
+      upiId: addBank.upiId,
       type: "addBankAccount",
     };
+    if (mobile) {
+      bankData.mobile = mobile;
+      bankData.otp = addBank.otp;
+      bankData.orderId = orderId;
+    }
 
     const res = await AxiosSecure.post(API.bankAccount, bankData);
     const data = res?.data;
@@ -47,6 +66,60 @@ const AddBank = ({
       setErrCrudMsg(data?.result?.message);
     }
   };
+
+  const validateForm = (bankDetails) => {
+    const isaccountNameFilled = bankDetails.accountName.trim() !== "";
+    const isaccountNumberFilled = bankDetails.accountNumber.trim() !== "";
+    const isIfscFilled = bankDetails.ifsc.trim() !== "";
+    const isOTPFilled = mobile ? bankDetails.otp.trim() !== "" : true;
+    const isFormValid =
+      isaccountNameFilled &&
+      isIfscFilled &&
+      isaccountNumberFilled &&
+      isOTPFilled;
+    setIsFormValid(isFormValid);
+  };
+
+  useEffect(() => {
+    validateForm(addBank);
+  }, [addBank]);
+
+  const getOtp = async () => {
+    const otpData = {
+      mobile,
+    };
+
+    const res = await AxiosSecure.post(API.otp, otpData);
+    const data = res.data;
+    if (data?.success) {
+      setTimer(60);
+      setOrderId(data?.result?.orderId);
+      toast.success(data?.result?.message);
+    } else {
+      toast.error(data?.error?.errorMessage);
+    }
+  };
+
+  useEffect(() => {
+    const getMobile = () => {
+      const decode = jwtDecode(token);
+      if (decode?.mobile) {
+        setMobile(decode?.mobile);
+      }
+    };
+    getMobile();
+  }, [token]);
+
+  useEffect(() => {
+    if (timer > 0) {
+      setTimeout(() => {
+        setTimer((prev) => prev - 1);
+      }, 1000);
+    } else {
+      setTimer(null);
+    }
+  }, [timer]);
+
   return (
     <div className="cdk-overlay-container">
       <div className="cdk-overlay-backdrop cdk-overlay-dark-backdrop cdk-overlay-backdrop-showing"></div>
@@ -208,6 +281,88 @@ const AddBank = ({
                               className="ifsc-input ng-untouched ng-pristine ng-invalid"
                             />
                           </div>
+                          {mobile && (
+                            <div
+                              style={{ position: "relative" }}
+                              _ngcontent-ng-c1372444345=""
+                              className="input-wrap"
+                            >
+                              <label _ngcontent-ng-c1372444345="">
+                                Mobile*
+                              </label>{" "}
+                              <input
+                                value={mobile}
+                                readOnly
+                                _ngcontent-ng-c1372444345=""
+                                placeholder="Enter bank iFSC"
+                                type="text"
+                                formcontrolname="ifscCode"
+                                className="ifsc-input ng-untouched ng-pristine ng-invalid"
+                              />
+                              {timer ? (
+                                <div
+                                  style={{
+                                    position: "absolute",
+                                    top: "27px",
+                                    right: "10px",
+                                    border: "none",
+                                    backgroundColor: "var(--primary-color)",
+                                    borderRadius: "4px",
+                                    padding: "6px 0px",
+                                    width: "80px",
+                                    color: "white",
+                                    fontSize: "11px",
+                                    display: "flex",
+                                    alignItems: "center",
+                                    justifyContent: "center",
+                                  }}
+                                >
+                                  Retry in {timer}
+                                </div>
+                              ) : (
+                                <button
+                                  onClick={getOtp}
+                                  style={{
+                                    position: "absolute",
+                                    top: "27px",
+                                    right: "10px",
+                                    border: "none",
+                                    backgroundColor: "var(--primary-color)",
+                                    borderRadius: "4px",
+                                    padding: "6px 0px",
+                                    width: "70px",
+                                    color: "white",
+                                    fontSize: "11px",
+                                  }}
+                                  type="button"
+                                >
+                                  Get OTP
+                                </button>
+                              )}
+                            </div>
+                          )}
+                          {mobile && (
+                            <div
+                              style={{ position: "relative" }}
+                              _ngcontent-ng-c1372444345=""
+                              className="input-wrap"
+                            >
+                              <label _ngcontent-ng-c1372444345="">OTP*</label>{" "}
+                              <input
+                                onChange={(e) => {
+                                  setAddBank({
+                                    ...addBank,
+                                    otp: e.target.value,
+                                  });
+                                }}
+                                _ngcontent-ng-c1372444345=""
+                                placeholder="Enter OTP"
+                                type="text"
+                                formcontrolname="ifscCode"
+                                className="ifsc-input ng-untouched ng-pristine ng-invalid"
+                              />
+                            </div>
+                          )}
                         </div>
                       </div>
                       <div
@@ -215,6 +370,7 @@ const AddBank = ({
                         className="modal-footer"
                       >
                         <button
+                          disabled={!isFormValid}
                           _ngcontent-ng-c1372444345=""
                           mat-button=""
                           type="submit"

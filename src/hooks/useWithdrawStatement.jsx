@@ -1,7 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
-import axios from "axios";
 import { API, Settings } from "../api";
 import useLanguage from "./useLanguage";
+import { AxiosSecure } from "../lib/AxiosSecure";
 
 /* withdraw api */
 const useWithdrawStatement = () => {
@@ -25,7 +25,7 @@ const useWithdrawStatement = () => {
       if (Settings.language) {
         payload.language = language;
       }
-      const res = await axios.post(API.accountStatement, payload);
+      const res = await AxiosSecure.post(API.accountStatement, payload);
       const data = res?.data;
 
       if (data?.success) {

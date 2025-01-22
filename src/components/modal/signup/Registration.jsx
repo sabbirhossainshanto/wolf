@@ -47,9 +47,7 @@ const Registration = ({
       otpMethod: orderId.otpMethod,
     };
 
-    const res = await AxiosSecure.post(API.register, registerData);
-
-    const data = await res.json();
+    const { data } = await AxiosSecure.post(API.register, registerData);
 
     if (data?.success) {
       localStorage.removeItem("referralCode");

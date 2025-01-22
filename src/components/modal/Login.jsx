@@ -4,8 +4,8 @@ import { IoClose } from "react-icons/io5";
 import useCloseModalClickOutside from "../../hooks/useCloseModalClickOutside";
 import { motion } from "framer-motion";
 import { useForm } from "react-hook-form";
-// import UseEncryptData from "../../hooks/UseEncryptData";
-// import UseTokenGenerator from "../../hooks/UseTokenGenerator";
+import UseEncryptData from "../../hooks/UseEncryptData";
+import UseTokenGenerator from "../../hooks/UseTokenGenerator";
 import { API, Settings } from "../../api";
 import Warning from "../ui/Notification/Warning";
 import useContextState from "../../hooks/useContextState";
@@ -93,53 +93,53 @@ const Login = ({
     }
   };
 
-  // /* handle login demo user */
-  // const loginWithDemo = () => {
-  //   setDisable(true);
-  //   /* Random token generator */
-  //   const generatedToken = UseTokenGenerator();
-  //   /* Encrypted the post data */
-  //   const loginData = UseEncryptData({
-  //     username: "demo",
-  //     password: "",
-  //     token: generatedToken,
-  //     site: Settings.siteUrl,
-  //     b2c: Settings.b2c,
-  //   });
-  //   fetch(API.login, {
-  //     method: "POST",
-  //     headers: {
-  //       "content-type": "application/json",
-  //     },
-  //     body: JSON.stringify(loginData),
-  //   })
-  //     .then((res) => res.json())
-  //     .then((data) => {
-  //       setDisable(false);
-  //       /* Set token to localeStorage */
-  //       localStorage.setItem("token", data.result.token);
-  //       /* Set login name to locale storage */
-  //       localStorage.setItem("loginName", data.result.loginName);
-  //       /* set button value to locale storage */
-  //       const buttonValue = JSON.stringify(data.result.buttonValue.game);
-  //       localStorage.setItem("buttonValue", buttonValue);
-  //       /* if in locale storage token and login name available and  data?.result?.changePassword === false */
-  //       if (
-  //         localStorage.getItem("token") &&
-  //         localStorage.getItem("loginName") &&
-  //         data?.result?.changePassword === false
-  //       ) {
-  //         /* close modal */
-  //         setShowLogin(false);
-  //         /* get current token from locale storage */
-  //         setGetToken((prev) => !prev);
-  //       } else {
-  //         /* Show error message during login failed */
-  //         setDisable(false);
-  //         setErrorLogin(data?.error);
-  //       }
-  //     });
-  // };
+  /* handle login demo user */
+  const loginWithDemo = () => {
+    setDisable(true);
+    /* Random token generator */
+    const generatedToken = UseTokenGenerator();
+    /* Encrypted the post data */
+    const loginData = UseEncryptData({
+      username: "demo",
+      password: "",
+      token: generatedToken,
+      site: Settings.siteUrl,
+      b2c: Settings.b2c,
+    });
+    fetch(API.login, {
+      method: "POST",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify(loginData),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        setDisable(false);
+        /* Set token to localeStorage */
+        localStorage.setItem("token", data.result.token);
+        /* Set login name to locale storage */
+        localStorage.setItem("loginName", data.result.loginName);
+        /* set button value to locale storage */
+        const buttonValue = JSON.stringify(data.result.buttonValue.game);
+        localStorage.setItem("buttonValue", buttonValue);
+        /* if in locale storage token and login name available and  data?.result?.changePassword === false */
+        if (
+          localStorage.getItem("token") &&
+          localStorage.getItem("loginName") &&
+          data?.result?.changePassword === false
+        ) {
+          /* close modal */
+          setShowLogin(false);
+          /* get current token from locale storage */
+          setGetToken((prev) => !prev);
+        } else {
+          /* Show error message during login failed */
+          setDisable(false);
+          setErrorLogin(data?.error);
+        }
+      });
+  };
 
   return (
     <>
@@ -405,13 +405,13 @@ const Login = ({
                                 >
                                   Login
                                 </button>
-                                {/* <p
+                                <p
                                   _ngcontent-ng-c2806737617=""
                                   className="separator ng-star-inserted"
                                 >
                                   OR
-                                </p> */}
-                                {/* <div
+                                </p>
+                                <div
                                   _ngcontent-ng-c2806737617=""
                                   className="extra-btns"
                                 >
@@ -425,7 +425,7 @@ const Login = ({
                                   >
                                     Login with Demo ID
                                   </button>
-                                </div> */}
+                                </div>
                               </div>
                             </div>
                           </form>

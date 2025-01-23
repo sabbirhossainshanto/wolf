@@ -15,8 +15,6 @@ import useBalance from "../../hooks/useBalance";
 import handleDecryptData from "../../utils/handleDecryptData";
 import Score from "./Score";
 import { useSportsVideo } from "../../hooks/useIFrame";
-import UseTokenGenerator from "../../hooks/UseTokenGenerator";
-import UseEncryptData from "../../hooks/UseEncryptData";
 /* eslint-disable react/no-unknown-property */
 const GameDetails = () => {
   const { eventId, eventTypeId } = useParams();
@@ -41,15 +39,12 @@ const GameDetails = () => {
   const { mutate } = useSportsVideo();
 
   const handleGetSportsVideo = () => {
-    const generatedToken = UseTokenGenerator();
-    const encryptedVideoData = UseEncryptData({
+    const encryptedVideoData = {
       eventTypeId: eventTypeId,
       eventId: eventId,
       type: "video",
-      token: generatedToken,
-      site: Settings.siteUrl,
       casinoCurrency: Settings.casinoCurrency,
-    });
+    };
     mutate(encryptedVideoData, {
       onSuccess: (data) => {
         if (data?.success) {

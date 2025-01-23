@@ -64,6 +64,7 @@ const BetSlip = ({
         totalSize: totalSize,
         isBettable: placeBetValues?.isBettable,
         eventId: placeBetValues?.eventId,
+        cashout: false,
       };
     } else {
       payload = {
@@ -79,6 +80,7 @@ const BetSlip = ({
         isBettable: placeBetValues?.isBettable,
         maxLiabilityPerBet: placeBetValues?.maxLiabilityPerBet,
         eventId: placeBetValues?.eventId,
+        cashout: placeBetValues?.cashout || false,
       };
     }
   }

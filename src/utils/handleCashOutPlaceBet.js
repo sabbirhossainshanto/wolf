@@ -48,6 +48,7 @@ export const handleCashOutPlaceBet = (
         marketName: games?.name,
         eventId: games?.eventId,
         totalSize: team?.newStakeValue,
+        cashout: true,
       });
     }
   } else {

@@ -53,11 +53,7 @@ const Deposit = () => {
       if (Settings.language) {
         pgPayload = language;
       }
-      const res = await axios.post(API.pg, pgPayload, {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      });
+      const res = await AxiosSecure.post(API.pg, pgPayload);
       if (res?.data?.success) {
         window.location.href = res?.data?.result?.link;
         // if (settings?.paymentIntent) {

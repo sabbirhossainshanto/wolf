@@ -1,16 +1,13 @@
 /* eslint-disable react/no-unknown-property */
-import axios from "axios";
-
 import { API } from "../../api";
 import toast from "react-hot-toast";
-import useContextState from "../../hooks/useContextState";
 import useBonusStatement from "../../hooks/useBonusStatement";
 import UseTokenGenerator from "../../hooks/UseTokenGenerator";
 import moment from "moment";
+import { AxiosSecure } from "../../lib/AxiosSecure";
 
 const BonusStatement = () => {
   const { data, refetch } = useBonusStatement();
-  const { token } = useContextState();
 
   const handleShowMessage = (item) => {
     if (item?.is_claimed == 1) {
@@ -52,12 +49,8 @@ const BonusStatement = () => {
       token: generatedToken,
     };
 
-    const result = await axios.post(API.bonus, payload, {
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    });
-    console.log(result);
+    const result = await AxiosSecure.post(API.bonus, payload);
+
     if (result?.data?.success) {
       refetch();
       toast.success(result?.data?.result);

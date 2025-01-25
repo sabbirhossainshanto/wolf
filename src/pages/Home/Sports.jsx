@@ -58,7 +58,11 @@ const Sports = () => {
     if (games) {
       /* create a array with all unique category for games */
       const categories = Array.from(
-        new Set(Object.values(games).map((item) => item.eventTypeId))
+        new Set(
+          Object.values(games)
+            .filter((item) => item.visible) // Only include items where visible is true
+            .map((item) => item.eventTypeId)
+        )
       );
       /* Sort the category for cricket > tennis > football */
       const sortedCategories = categories.sort((a, b) => {
@@ -128,6 +132,7 @@ const Sports = () => {
           Object.values(games).length > 0 &&
           (sportsType || sportsType === 0)
             ? Object.keys(games)
+                .filter((key) => games[key].visible)
                 .sort((keyA, keyB) => games[keyA].sort - games[keyB].sort)
                 .map((key, index) => {
                   return <InPlay key={index} keys={key} data={games} />;
@@ -166,6 +171,7 @@ const Sports = () => {
           <div _ngcontent-ng-c943649379="" className="table-body">
             {games && Object.values(games).length > 0 && sportsType === 4
               ? Object.keys(games)
+                  .filter((key) => games[key].visible)
                   .sort((keyA, keyB) => games[keyA].sort - games[keyB].sort)
                   .map((key, index) => (
                     <BetTable key={index} keys={key} data={games} />
@@ -173,6 +179,7 @@ const Sports = () => {
               : null}
             {games && Object.values(games).length > 0 && sportsType === 2
               ? Object.keys(games)
+                  .filter((key) => games[key].visible)
                   .sort((keyA, keyB) => games[keyA].sort - games[keyB].sort)
                   .map((key, index) => (
                     <BetTable key={index} keys={key} data={games} />

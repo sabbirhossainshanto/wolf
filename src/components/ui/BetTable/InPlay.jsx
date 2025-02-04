@@ -17,7 +17,7 @@ const InPlay = ({ keys, data }) => {
       return "4fr 2fr";
     }
   };
-
+  console.log(data[keys]);
   return (
     <>
       {data[keys]?.inPlay === 1 && data[keys]?.visible && (
@@ -48,7 +48,9 @@ const InPlay = ({ keys, data }) => {
                 style={{
                   cursor: "pointer",
                   gridTemplateColumns: defineGrid(
-                    sportsType,
+                    data?.[keys]?.eventTypeId == 2
+                      ? data?.[keys]?.eventTypeId
+                      : sportsType,
                     data?.[keys]?.score
                   ),
                 }}
@@ -61,7 +63,7 @@ const InPlay = ({ keys, data }) => {
                     {data[keys]?.[0]?.teamName}
                   </h3>
                 </div>
-                {sportsType == 2 && data?.[keys]?.score && (
+                {data?.[keys]?.eventTypeId == 2 && data?.[keys]?.score && (
                   <div
                     style={{
                       display: "flex",
@@ -181,7 +183,9 @@ const InPlay = ({ keys, data }) => {
                 style={{
                   cursor: "pointer",
                   gridTemplateColumns: defineGrid(
-                    sportsType,
+                    data?.[keys]?.eventTypeId == 2
+                      ? data?.[keys]?.eventTypeId
+                      : sportsType,
                     data?.[keys]?.score
                   ),
                 }}
@@ -194,7 +198,7 @@ const InPlay = ({ keys, data }) => {
                     {data[keys]?.[1]?.teamName}
                   </h3>
                 </div>
-                {sportsType == 2 && data?.[keys]?.score && (
+                {data?.[keys]?.eventTypeId == 2 && data?.[keys]?.score && (
                   <div
                     style={{
                       display: "flex",
@@ -313,7 +317,12 @@ const InPlay = ({ keys, data }) => {
               <div
                 style={{
                   cursor: "pointer",
-                  gridAutoColumns: defineGrid(sportsType, data?.[keys]?.score),
+                  gridAutoColumns: defineGrid(
+                    data?.[keys]?.eventTypeId == 2
+                      ? data?.[keys]?.eventTypeId
+                      : sportsType,
+                    data?.[keys]?.score
+                  ),
                 }}
                 _ngcontent-ng-c943649379=""
                 className="data-wrap ng-star-inserted"

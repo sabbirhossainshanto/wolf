@@ -226,7 +226,7 @@ const InPlay = ({ keys, data }) => {
                     <span
                       style={{
                         border: `${
-                          data[keys]?.score?.totalSet1
+                          data[keys]?.score?.totalSet2
                             ? "1px solid gray"
                             : "none"
                         }`,

@@ -17,6 +17,9 @@ import Score from "./Score";
 import { useSportsVideo } from "../../hooks/useIFrame";
 /* eslint-disable react/no-unknown-property */
 const GameDetails = () => {
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
   const { eventId, eventTypeId } = useParams();
   const [loading, setLoading] = useState(true);
   const [data, setData] = useState([]);

@@ -1,10 +1,9 @@
 /* eslint-disable react/no-unknown-property */
 import { useNavigate } from "react-router-dom";
 import { MdOutlineSmartDisplay } from "react-icons/md";
-import useContextState from "../../../hooks/useContextState";
 const InPlay = ({ keys, data }) => {
   const navigate = useNavigate();
-  const { sportsType } = useContextState();
+
   /* Navigate game details page */
   const navigateGameList = (keys) => {
     navigate(`/game-details/${data[keys]?.eventTypeId}/${keys}`);
@@ -17,7 +16,7 @@ const InPlay = ({ keys, data }) => {
       return "4fr 2fr";
     }
   };
-
+  // console.log(data[keys]);
   return (
     <>
       {data[keys]?.inPlay === 1 && data[keys]?.visible && (
@@ -137,7 +136,7 @@ const InPlay = ({ keys, data }) => {
                   </div>
                 )}
                 {/* Football */}
-                {sportsType == 1 && data?.[keys]?.score && (
+                {data?.[keys]?.eventTypeId == 1 && data?.[keys]?.score && (
                   <div
                     style={{
                       display: "flex",
@@ -304,7 +303,7 @@ const InPlay = ({ keys, data }) => {
                     </span>
                   </div>
                 )}
-                {sportsType == 1 && data?.[keys]?.score && (
+                {data?.[keys]?.eventTypeId == 1 && data?.[keys]?.score && (
                   <div
                     style={{
                       display: "flex",

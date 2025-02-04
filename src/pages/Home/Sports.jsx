@@ -169,7 +169,7 @@ const Sports = () => {
             </div>
           </div>
           <div _ngcontent-ng-c943649379="" className="table-body">
-            {games && Object.values(games).length > 0 && sportsType === 4
+            {games && Object.values(games).length > 0
               ? Object.keys(games)
                   .filter((key) => games[key].visible)
                   .sort((keyA, keyB) => games[keyA].sort - games[keyB].sort)
@@ -177,21 +177,6 @@ const Sports = () => {
                     <BetTable key={index} keys={key} data={games} />
                   ))
               : null}
-            {games && Object.values(games).length > 0 && sportsType === 2
-              ? Object.keys(games)
-                  .filter((key) => games[key].visible)
-                  .sort((keyA, keyB) => games[keyA].sort - games[keyB].sort)
-                  .map((key, index) => (
-                    <BetTable key={index} keys={key} data={games} />
-                  ))
-              : null}
-            {/* {games && Object.values(games).length > 0 && sportsType === 1
-              ? Object.keys(games)
-                  .sort((keyA, keyB) => games[keyA].sort - games[keyB].sort)
-                  .map((key, index) => (
-                    <BetTable key={index} keys={key} data={games} />
-                  ))
-              : null} */}
           </div>
         </div>
       )}

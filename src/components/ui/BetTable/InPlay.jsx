@@ -10,14 +10,14 @@ const InPlay = ({ keys, data }) => {
     navigate(`/game-details/${data[keys]?.eventTypeId}/${keys}`);
   };
 
-  const defineGrid = (sportsType, score) => {
-    if ((sportsType == 2 || sportsType == 1) && score) {
+  const defineGrid = (score) => {
+    if (score) {
       return "2fr 2fr 2fr";
     } else {
       return "4fr 2fr";
     }
   };
-  console.log(data[keys]);
+
   return (
     <>
       {data[keys]?.inPlay === 1 && data[keys]?.visible && (
@@ -47,22 +47,27 @@ const InPlay = ({ keys, data }) => {
               <div
                 style={{
                   cursor: "pointer",
-                  gridTemplateColumns: defineGrid(
-                    data?.[keys]?.eventTypeId == 2
-                      ? data?.[keys]?.eventTypeId
-                      : sportsType,
-                    data?.[keys]?.score
-                  ),
+                  gridTemplateColumns: defineGrid(data?.[keys]?.score),
                 }}
                 _ngcontent-ng-c943649379=""
                 className="data-wrap ng-star-inserted"
               >
                 <div _ngcontent-ng-c943649379="" className="teamlist-info">
-                  <span _ngcontent-ng-c943649379=""></span>
+                  {data?.[keys]?.eventTypeId === 4 ? (
+                    <img
+                      style={{ height: "15px" }}
+                      src={data?.[keys]?.image1}
+                      alt=""
+                    />
+                  ) : (
+                    <span _ngcontent-ng-c943649379=""></span>
+                  )}
+
                   <h3 _ngcontent-ng-c943649379="" className="team-title">
                     {data[keys]?.[0]?.teamName}
                   </h3>
                 </div>
+                {/* Tennis */}
                 {data?.[keys]?.eventTypeId == 2 && data?.[keys]?.score && (
                   <div
                     style={{
@@ -103,6 +108,35 @@ const InPlay = ({ keys, data }) => {
                     </span>
                   </div>
                 )}
+                {/* Cricket */}
+                {data?.[keys]?.eventTypeId == 4 && data?.[keys]?.score && (
+                  <div
+                    style={{
+                      display: "flex",
+                      alignItems: "center",
+                      gap: "10px",
+                      fontSize: "12px",
+                      margin: "0px",
+                      lineHeight: "0px",
+                      justifyContent: "end",
+                    }}
+                  >
+                    <span
+                      style={{
+                        border: `${
+                          data[keys]?.score?.totalSet1
+                            ? "1px solid gray"
+                            : "none"
+                        }`,
+                        padding: "7px 4px",
+                        borderRadius: "4px",
+                      }}
+                    >
+                      {data[keys]?.score?.totalSet1}
+                    </span>
+                  </div>
+                )}
+                {/* Football */}
                 {sportsType == 1 && data?.[keys]?.score && (
                   <div
                     style={{
@@ -182,18 +216,22 @@ const InPlay = ({ keys, data }) => {
               <div
                 style={{
                   cursor: "pointer",
-                  gridTemplateColumns: defineGrid(
-                    data?.[keys]?.eventTypeId == 2
-                      ? data?.[keys]?.eventTypeId
-                      : sportsType,
-                    data?.[keys]?.score
-                  ),
+                  gridTemplateColumns: defineGrid(data?.[keys]?.score),
                 }}
                 _ngcontent-ng-c943649379=""
                 className="data-wrap ng-star-inserted"
               >
                 <div _ngcontent-ng-c943649379="" className="teamlist-info">
-                  <span _ngcontent-ng-c943649379=""></span>
+                  {data?.[keys]?.eventTypeId === 4 ? (
+                    <img
+                      style={{ height: "15px" }}
+                      src={data?.[keys]?.image2}
+                      alt=""
+                    />
+                  ) : (
+                    <span _ngcontent-ng-c943649379=""></span>
+                  )}
+
                   <h3 _ngcontent-ng-c943649379="" className="team-title">
                     {data[keys]?.[1]?.teamName}
                   </h3>
@@ -232,6 +270,34 @@ const InPlay = ({ keys, data }) => {
                         }`,
                         padding: "7px 4px",
                         borderRadius: "2px",
+                      }}
+                    >
+                      {data[keys]?.score?.totalSet2}
+                    </span>
+                  </div>
+                )}
+
+                {data?.[keys]?.eventTypeId == 4 && data?.[keys]?.score && (
+                  <div
+                    style={{
+                      display: "flex",
+                      alignItems: "center",
+                      gap: "10px",
+                      fontSize: "12px",
+                      margin: "0px",
+                      lineHeight: "0px",
+                      justifyContent: "end",
+                    }}
+                  >
+                    <span
+                      style={{
+                        border: `${
+                          data[keys]?.score?.totalSet2
+                            ? "1px solid gray"
+                            : "none"
+                        }`,
+                        padding: "7px 4px",
+                        borderRadius: "4px",
                       }}
                     >
                       {data[keys]?.score?.totalSet2}
@@ -317,12 +383,7 @@ const InPlay = ({ keys, data }) => {
               <div
                 style={{
                   cursor: "pointer",
-                  gridAutoColumns: defineGrid(
-                    data?.[keys]?.eventTypeId == 2
-                      ? data?.[keys]?.eventTypeId
-                      : sportsType,
-                    data?.[keys]?.score
-                  ),
+                  gridAutoColumns: defineGrid(data?.[keys]?.score),
                 }}
                 _ngcontent-ng-c943649379=""
                 className="data-wrap ng-star-inserted"
